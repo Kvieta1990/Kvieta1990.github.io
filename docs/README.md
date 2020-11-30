@@ -3,7 +3,7 @@
 > Original Beautiful Jekyll template created by <a target="_blank" href="https://github.com/daattali/beautiful-jekyll">Dean Attali</a>.
 
 <p align="center">
-  <img src="/docs/assets/img/Complexmodelling_rmc.png" />
+  <img src="/docs/assets/img/Complexmodelling_rmc.png" style="height:20px;"/>
 </p>
 
 **This repository is for hosting the RMCProfile website only. Currently, we are not considering making RMCProfile fully open source and therefore the package source code is not attached here.**
