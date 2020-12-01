@@ -27,7 +27,10 @@ navbar-links:
     - Tutorial: "/nav_pages/tutorial"
     - Download: "https://github.com/Kvieta1990/kvieta1990.github.io/releases/"
     - Developers: "/nav_pages/developers"
-  Community: "https://github.com/Kvieta1990/kvieta1990.github.io/issues"
+  Community:
+    - About: "/nav_pages/about_community"
+    - On GitHub: "https://github.com/Kvieta1990/kvieta1990.github.io/issues"
+    - Mailing list: "http://lists.rmcprofile.org/mailman/listinfo/rmcprofile-users"
   Others:
     - Jobs: "/nav_pages/jobs"
 

@@ -38,7 +38,7 @@ div.index_bottom {
 
 .column {
   float: left;
-  width: 33.33%;
+  width: 25%;
   padding: 0px 20px;
 	margin-top: -10px;
   /* height: 300px; /* Should be removed. Only for demonstration */
@@ -350,6 +350,10 @@ img {
 .navbar-custom .navbar-nav .dropdown-menu .dropdown-item:hover,
 .navbar-custom .navbar-nav .dropdown-menu .dropdown-item:focus {
   color: {{ site.hover-col | default: "#0085A1" }};
+}
+
+.avatar-adjust {
+  margin-top: -45px;
 }
 
 .navbar-custom .avatar-container {

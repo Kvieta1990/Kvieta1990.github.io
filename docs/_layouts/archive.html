@@ -16,7 +16,7 @@ layout: default
         {% if year == page.year and month == page.month %}
         <li>
           <a class="post-link" href="{{post.url | prepend: site.baseurl}}"><h3 class="post-title mb0">{{post.title}}</h3></a>
-          <p class="post-meta small">{{ post.date | date: site.date_format }}</p>
+					<p class="post-meta small">{{ post.date | date: site.date_format }}, by {{ post.author }}</p>
           <div class="small">
             {% include post_tags.html tags-class="small" %}
           </div>

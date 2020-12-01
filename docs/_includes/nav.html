@@ -19,7 +19,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               {%- for childlink in link[1] -%}
                 {%- for linkparts in childlink %}
-								  {%- if linkparts[0] == "Download" -%}
+								  {%- if linkparts[0] == "Download" or linkparts[0] == "On GitHub" or linkparts[0] == "Mailing list" -%}
                     <a target="_blank" class="dropdown-item" href="{{ linkparts[1] | relative_url }}">{{ linkparts[0] }}</a>
 								  {% else %}
                     <a class="dropdown-item" href="{{ linkparts[1] | relative_url }}">{{ linkparts[0] }}</a>
@@ -49,12 +49,31 @@
 
   {% if site.avatar and page.show-avatar != false %}
     <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
       <div class="avatar-img-border">
-        <a href="{{ '' | absolute_url }}">
-          <img alt="Navigation bar avatar" class="avatar-img" src="{{ site.avatar | relative_url }}" />
-        </a>
+					<div class="avatar-adjust" id="safari">
+				  </div>
       </div>
     </div>
   {% endif %}
+
+<script>
+function myFunction() {
+		return '<a href="{{ '' | absolute_url }}"><img alt="Navigation bar avatar" class="avatar-img" src="{{ site.avatar | relative_url }}" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
 
 </nav>
