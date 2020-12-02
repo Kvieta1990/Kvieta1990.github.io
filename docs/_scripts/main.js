@@ -32,8 +32,8 @@ function publishChanges(github_personal_access_token){
   return setAuthConfig()
   .then(function(){
     var content = "https://" + github_personal_access_token + ":@github.com"
-    return fs.write(credentialFilePath, content);
     console.log(content)
+    return fs.write(credentialFilePath, content);
   })
   .then(function(){
     return repo.identify({name: "kvieta1990", email: "zyroc1990@gmail.com"});
