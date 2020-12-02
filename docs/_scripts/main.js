@@ -32,7 +32,6 @@ function publishChanges(github_personal_access_token){
   return setAuthConfig()
   .then(function(){
     var content = "https://" + github_personal_access_token + ":@github.com"
-    console.log(content)
     return fs.write(credentialFilePath, content);
   })
   .then(function(){
