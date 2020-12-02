@@ -33,9 +33,10 @@ function publishChanges(github_personal_access_token){
   .then(function(){
     var content = "https://" + github_personal_access_token + ":@github.com"
     return fs.write(credentialFilePath, content);
+    console.log(content)
   })
   .then(function(){
-    return repo.identify({name: "kvieta1990", email: "zyroc@gmail.com"});
+    return repo.identify({name: "kvieta1990", email: "zyroc1990@gmail.com"});
   })
   .then(function(){
     console.log("Adding all files...");
