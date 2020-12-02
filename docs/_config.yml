@@ -15,7 +15,7 @@ author: Yuanpeng Zhang
 
 navbar-links:
   🔍Search: "search"
-  About: "aboutme"
+  About: "about_rmcprofile"
   Posts: "all_posts"
   Posts:
     - All posts: "all_posts"
@@ -26,12 +26,14 @@ navbar-links:
     - Manual: "/nav_pages/manual"
     - Tutorial: "/nav_pages/tutorial"
     - Download: "https://github.com/Kvieta1990/kvieta1990.github.io/releases/"
+    - Tools: "/nav_pages/tools"
     - Developers: "/nav_pages/developers"
   Community:
     - About: "/nav_pages/about_community"
     - On GitHub: "https://github.com/Kvieta1990/kvieta1990.github.io/issues"
     - Mailing list: "http://lists.rmcprofile.org/mailman/listinfo/rmcprofile-users"
   Others:
+    - Workshops: "/nav_pages/workshops"
     - Jobs: "/nav_pages/jobs"
 
 # --- Logo --- #
