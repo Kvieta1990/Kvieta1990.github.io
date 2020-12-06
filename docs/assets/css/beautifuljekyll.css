@@ -53,6 +53,10 @@ div.index_bottom {
     margin-right: -40px;
 }
 
+body_pdf {
+	height: 100%;
+}
+
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 1.125rem;

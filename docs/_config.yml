@@ -35,6 +35,7 @@ navbar-links:
   Others:
     - Workshops: "/nav_pages/workshops"
     - Jobs: "/nav_pages/jobs"
+    - Disclaimer: "/nav_pages/disclaimer"
 
 # --- Logo --- #
 
