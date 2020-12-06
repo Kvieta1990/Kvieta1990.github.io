@@ -2,7 +2,8 @@
 layout: page
 title: Tutorials
 subtitle: Tutorials for using both RMCProfile package and relevant tools
-streamableId: e3d85x
+streamableId1: e3d85x
+streamableId2: dplo8p
 ---
 
 ---
@@ -13,4 +14,8 @@ streamableId: e3d85x
 
 Exercise-1
 
-{% include streamablePlayer.html id=page.streamableId %}
+{% include streamablePlayer.html id=page.streamableId1 %}
+
+Exercise-2
+
+{% include streamablePlayer.html id=page.streamableId2 %}
