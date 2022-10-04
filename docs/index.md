@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Yuanpeng's Profile
+title: Yuanpeng's Personal Blog
 subtitle: Neutron Scattering Scientist at ORNL
 ---
 
-Bio
+About Me
 ===
 
 <p align='center'>
