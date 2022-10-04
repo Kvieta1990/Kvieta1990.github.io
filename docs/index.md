@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Yuanpeng's Personal Blog
+title: Yuanpeng's Blog
 subtitle: Neutron Scattering Scientist at ORNL
 ---
 
