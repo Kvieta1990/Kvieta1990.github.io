@@ -25,7 +25,7 @@ for fitting scattering data based on supercell approach. Meanwhile, I am also
 interfacing the beamline scientists team and the software development team at ORNL,
 actively working on the development of Mantid framework for powder diffraction data reduction.
 
-<br>
+<br />
 
 My research interest mainly focuses on the application of neutron total scattering
 to look at local structure of materials - both nucleus and magnetic. The local environment

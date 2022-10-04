@@ -26,6 +26,8 @@ The other case is that ‘Oh no, the stuff I wrote at that time is totally wrong
 That is, however, not totally a disaster since we now realize something is going wrong, which, at least, is better than pretending everything is right!
 </p>
 
+<br />
+
 <p style='text-align: justify;'>
 At last, it is reading, writing, reviewing and effective interaction that makes everybody and also physics itself different from what it was yesterday. So, let's write!
 </p>
