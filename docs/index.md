@@ -1,49 +1,55 @@
 ---
 layout: page
-title: RMCProfile
-subtitle: Reverse Monte Carlo for crystalline and disordered materials
+title: Yuanpeng's Profile
+subtitle: Neutron Scattering Scientist at ORNL
 ---
 
-<p style='text-align: justify;'>Welcome to the home of RMCProfile, here you 
-can download the RMCProfile software, view/download documentation and examples,
-join community for discussion, learn about updates of the package, etc.</p>
+Bio
+===
 
 <p align='center'>
-<img src="/assets/img/Complexmodelling_rmc.png"
+<img src="/assets/img/SNS.jpg"
    style="border:none;"
-   alt="Comprehensive RMC method"
-   title="Comprehensive RMC method demo" />
+   alt="SNS"
+   title="SNS" />
 </p>
 
-<p style='text-align: justify;'>This version of RMC was built from the original
-RMCA code of McGreevy & Pusztai to determine the local structure of crystalline
-materials while still being capable of analyzing disordered systems. The 
-current version of RMCProfile results from a collaboration between scientists
-at ISIS facility (UK), Spallation Neutron Source (SNS at Oak Ridge National
-Laboratory, US), University of Cambridge (UK), University of Oxford (UK),
-Queen Mary University of London (QMUL, UK) and National Institute of Standards
-and Technology (NIST, US). It is now possible to fit many data types 
-simultaneously (Neutron & X-ray total scattering & the Bragg profile, EXAFS,
-single crystal diffuse scattering) and use a range of constraints to produce
-atomic models that are consistent with all the available data. In this way we
-are progressing the effort to develop a 'complex modeling' approach to 
-elucidate structural details of materials that are the key to their
-exploitable functional properties.
+<p style='text-align: justify;'>
+Working as neutron scattering scientist at ORNL, I have been 
+actively involved in software development and scientific research activities.
+The software development part mainly involves the development and maintenance of
+tools for neutron scattering data reduction and analysis, such as ADDIE environment
+for neutron total scattering data reduction, ADDIE web interface for structure
+mining and online Bragg and pair distribution function refinement, RMCProfile package
+for fitting scattering data based on supercell approach. Meanwhile, I am also
+interfacing the beamline scientists team and the software development team at ORNL,
+actively working on the development of Mantid framework for powder diffraction data reduction.
+
+My research interest mainly focuses on the application of neutron total scattering
+to look at local structure of materials - both nucleus and magnetic. The local environment
+plays an important role in determining properties in a wide range of functional materials,
+e.g., the polarization behavior in ferroelectric materials, ion transportation behavior in
+energy story materials, magnetic anisotropy in low dimensional magnetic systems, etc. My
+research interest at this point is to utilize total scattering technique to reveal local
+structure for energy storage (e.g. Li-ion battery, functional material (high entropy spinel
+materials) and low dimensional magnetic system (e.g. 2D vdWs magnetic materials). For
+futuristic perspective, using machine learning algorithms in phase recognition during
+phase transition is one of the goals to pursue.
 </p>
 
-<br />
+More
+===
 
-<p style='text-align: justify;'>If any issues with the RMCProfile package,
-any questions or any ideas to try out concerning the application of RMC method
-for modeling comprehensive data, please feel free to join the 
-<a target="_blank" href="https://github.com/Kvieta1990/kvieta1990.github.io/issues">community discussion</a>.
-Discussions are hosted as GitHub issues and one can view them without a GitHub
-account. To join the discussion, one does need a GitHub account, to either
-submit new issues or comment on other issues.</p> 
+- [Yuanpeng's ORNL profile](https://www.ornl.gov/staff-profile/yuanpeng-zhang)
 
-<p align='center'>
-<img src="/assets/img/dev_team_affiliation.png"
-   style="border:none;" width="650px"
-   alt="Development team affiliations"
-   title="Development team affiliations" />
-</p>
+- [Yuanpeng's Google scholar](https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en)
+
+- [Yuanpeng's ORCID](https://orcid.org/0000-0003-4224-3361)
+
+- [RMCProfile website](https://rmcprofile.pages.ornl.gov/)
+
+- [Yuanpeng's GitHub](https://github.com/Kvieta1990)
+
+- [Binder for Jupyter notebooks](https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master)
+
+- [Learning notes on GitHub](https://github.com/Kvieta1990/Iris)
