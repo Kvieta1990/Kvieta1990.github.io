@@ -4,8 +4,7 @@ title: Selected Publications
 subtitle: 
 ---
 
-***Click [here](https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en)
-for a full list of my publications.***
+<p><b><i>Click <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=e">here</a> for a full list of my publication list.</i></b></p>
 
 <u>2022</u>
 
