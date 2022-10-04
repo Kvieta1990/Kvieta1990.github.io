@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Selected Publications
-subtitle: 
+subtitle:     
 ---
 
 <p><b><i>Click <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=e">here</a> for a full list of my publication list.</i></b></p>
