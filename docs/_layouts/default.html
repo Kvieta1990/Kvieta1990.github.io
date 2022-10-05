@@ -4,6 +4,10 @@ layout: base
 
 {% include header.html type="page" %}
 
+{% if page.use_math %}
+{% include _mathjax_support.html %}
+{% endif %}
+
 <div class="intro-header"></div>
 
 <div role="main" class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">

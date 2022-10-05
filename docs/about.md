@@ -4,6 +4,13 @@ title: About My Blog
 subtitle: Brief intro to my blog
 ---
 
+<p align='center'>
+<img src="/assets/img/curious.png"
+   style="border:none;"
+   alt="about"
+   title="about" />
+</p>
+
 <p style='text-align: justify;'>
 This is my personal blog, for the purpose of recording my learning progress.
 For every single idea which I believe is crucial for understanding specific physics or other topics,
