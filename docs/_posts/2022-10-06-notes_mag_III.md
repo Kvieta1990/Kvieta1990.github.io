@@ -11,8 +11,8 @@ use_math: true
 <p align='center'>
 <img src="/assets/img/posts/maxwell.png"
    style="border:none;"
-   alt="top"
-   title="top" />
+   alt="maxwell"
+   title="maxwell" />
 <br />
 </p>
 
