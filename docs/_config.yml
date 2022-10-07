@@ -24,6 +24,14 @@ navbar-links:
   Research:
     - Publications: "/nav_pages/publications"
     - Learning Notes: "/nav_pages/lnotes"
+  More Links:
+    - ORNL Profile: "https://www.ornl.gov/staff-profile/yuanpeng-zhang"
+    - Google Scholar: "https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en"
+    - ORCID: "https://orcid.org/0000-0003-4224-3361"
+    - RMCProfile: "https://rmcprofile.pages.ornl.gov/"
+    - GitHub Profile: "https://github.com/Kvieta1990"
+    - Jupyter Binder: "https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master"
+    - More Notes: "https://github.com/Kvieta1990/Iris"
 
 # --- Logo --- #
 
