@@ -53,9 +53,9 @@ The Python script used to generate the two animations above is reproduced as fol
 </p>
 
 <div align="right">
-<button onclick="javascript:copytoclipboard('csp1')">Copy snippet to clipboard!</button>
+<button onclick="javascript:copytoclipboard('csp1')" style="border: none">Copy snippet to clipboard!</button>
 </div>
-<div style="background: rgb(255, 255, 255); border: solid gray; height: 500px; overflow: auto; padding: 0.2em 0.6em; width: auto;"><table><tbody><tr><td><pre style="color: grey; line-height: 125%; margin-bottom: 0px; margin-right: 5px; margin-top: 0px;">  1
+<div style="background: rgb(255, 255, 255); border: solid gray; height: 500px; overflow: auto; padding: 0.0em 0.0em; width: auto;"><table><tbody><tr><td><pre style="color: grey; line-height: 125%; margin-bottom: 0px; margin-right: 5px; margin-top: 0px;">  1
   2
   3
   4
