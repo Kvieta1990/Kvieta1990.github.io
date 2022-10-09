@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+<script type="text/javascript" async src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+  
+
+  
+
+  <title>Notes on Flask</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Setting up web host with Python Flask">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4001/feed.xml">
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Notes on Flask">
+  <meta property="og:description" content="Setting up web host with Python Flask">
+
+  
+  <meta property="og:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2020-11-20T00:00:00+00:00">
+  <meta property="og:url" content="http://localhost:4001/2020-11-20-flask/">
+  <link rel="canonical" href="http://localhost:4001/2020-11-20-flask/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Notes on Flask">
+  <meta property="twitter:description" content="Setting up web host with Python Flask">
+
+  
+  <meta name="twitter:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  
+
+  
+
+
+  
+
+  
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+</head>
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4001/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Research</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.pages.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+            </div>
+          </li>
+        </ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:4001/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Notes on Flask</h1>
+          
+            
+              <h2 class="post-subheading">Setting up web host with Python Flask</h2>
+            
+          
+
+          
+					<span class="post-meta">Posted on November 20, 2020, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/flask.png" style="border:none;" alt="flask" title="flask" />
+<br />
+</p>
+
+<p style="text-align: justify">
+We follow the tutorial given in Ref. [1, 2] for setting up the web host using Python Flask module. Details will not be reproduced in current blog step by step. Instead, we will focus on 1) some key aspects to make step description clearer and 2) steps where error can easily occur.
+
+<br />
+
+First, we give all the necessary recipes, as follows,
+</p>
+
+<ul>
+   <li>Flask - Python web server</li>
+
+   <li>uWSGI - Sitting in the middle between Flask and Nginx for connection purpose.</li>
+
+   <li>Nginx - Facing outwards to receive request.</li>
+</ul>
+
+<p style="text-align: justify">
+and we will configure the web host on CentOS 7.
+</p>
+
+<blockquote cite="">
+  <p>Traditionally, we have the web server hosts files in specific location on the server (e.g. /var/www) and then we will have, e.g. the Apache HTTP server to listen to user request (through a certain port, e.g. 80) and fetch certain files stored in specific location on the server and then send back to users’ browser. When using Python to set up web host, we have one more layer for the connection between files on the server to be visited and users. The idea is that Python is responsible for creating contents, uWSGI is responsible for ‘translating’ and Nginx is responsible for receiving from users for request and sending back to users the ‘translated’ contents.</p>
+</blockquote>
+
+<p><strong>☝Preparation</strong></p>
+
+<p style="text-align: justify">
+On CentOS 7, Nginx can be installed with yum,
+
+<br />
+
+<code class="language-plaintext highlighter-rouge">sudo yum install nginx</code>
+
+<br />
+
+Sometimes, it may also be necessary to install <code class="language-plaintext highlighter-rouge">pip</code> and <code class="language-plaintext highlighter-rouge">python-devel</code> if they are not already [3, 4],
+
+<br />
+
+<code class="language-plaintext highlighter-rouge">sudo yum install python-pip python-devel</code>
+
+<br />
+
+With Python 3, we may need to change the command to [5, 6, 13, 14],
+
+<br />
+
+<code class="language-plaintext highlighter-rouge">sudo yum install python3-pip python37-devel</code>
+
+<br />
+
+(here we take Python 3.7 as an example).
+
+<br />
+
+It is always recommended that we should create dedicated environment when setting up the web host with Python. Therefore, either we can follow the instruction given in Ref. [1, 2] to install and set up virtual Python environment using virtualenv using pip. Or we can use conda to set up the dedicated Python environment. Within the created environment, we can either use pip or conda to install necessary packages, namely uwsgi and flask. In some cases, using pip to install uwsgi may return error, where one has to use conda to install it.
+
+<br />
+<br />
+
+<b>N.B.</b> Though the packages are installed within certain environment (which seems not accessible from outside the environment), they can still be accessed from outside - the reason simply is that when a specific version of Python is used in question (e.g. that within a certain environment), all the packages installed within the corresponding environment will become available.
+
+</p>
+
+<p><br /></p>
+
+<p><strong>☝A simple start</strong></p>
+
+<p style="text-align: justify">
+With just Flask installed (no Nginx, no uWSGI), one can already host a web - that’s why we call Flask a Python web server, since simply with it we can just host a web server! Refer to Ref. [1, 2] for a Hello World demo with a simple Python script.
+</p>
+
+<p><br /></p>
+
+<p><strong>☝Create the WSGI entry point</strong></p>
+
+<p style="text-align: justify">
+Now we go a bit further to start the web host through WSGI entry point. According to Ref. [1, 2], the entry point here is just a simple Python script which first imports the Python method (containing the Flask app) and then run it. In Ref. [1, 2], the entry point script and the main Python app script are put together under the same directory. But in practice, we don’t have to do that - the import command in the entry point script should specify where to find the main app script.
+
+<br />
+<br />
+
+<b>N.B.</b> By default, uwsgi expects application as our app name. If we want to use another name for the app (specified in the main app Python script), we should specify the callable app name [7, 8]. When starting the uWSGI service directly from command line, we should have,
+
+<br />
+
+<code class="language-plaintext highlighter-rouge">uwsgi --socket 0.0.0.0:8000 --protocol=http --callable myapp -w run</code>
+
+<br />
+
+where myapp is our app name and run is the entry point script stem name.
+
+<br />
+<br />
+
+<b>N.B.</b> We should not use port 80 in the entry point script [9].
+</p>
+
+<p><br /></p>
+
+<p><strong>☝Configuring Nginx</strong></p>
+
+<p style="text-align: justify">
+The last step is to configure Nginx - to establish the connection between outside world and our Python app (through uWSGI as the interface as discussed above). To do this, again we should follow steps in Ref. [1, 2] and details won’t be reproduced here. One critical parameter to mention is the location of the socket file - this file is like a junction between Nginx and uWSGI and therefore in the configuration files of both, the socket file should be with exactly the same name.
+
+<br />
+
+Another potential issue to mention here is that, though Ref. [1, 2] mentions some file/folder permission configuration concerning setting up Nginx, in practice we may still have issues establishing the connection. The common problem is 502 bad gateway issue. Once this occurs, we can consider the following potential solutions,
+</p>
+
+<ul>
+   <li>Open port in firewall configuration. In CentOS 7, this may require the installation of `firewalld` package and following the instruction given in Ref. [11] for how-to.</li>
+   <li>If web server is within a certain organization network, we may need to check the firewall restriction of the organization network as well. Specifically for CADES service at ORNL, we need to follow the instruction in Ref. [12] for how-to.</li>
+   <li>We may want to disable SELinux, according to the comments in Ref. [1, 2].</li>
+</ul>
+
+<p style="text-align: justify">
+plus those mentioned in Ref. [1, 2].
+</p>
+
+<p><br /></p>
+
+<p align="center">
+========================I AM A SEPARATOR========================
+</p>
+
+<p><br /></p>
+
+<p><strong>☝Notes on setting up pdfitc on CADES hosted at ORNL</strong></p>
+
+<ul>
+  <li>
+    <p>We want to follow Long’s instruction in Ref. [15] for step-by-step procedures (see the ‘How to install’ section). We want to skip step-#5 and also for step-#7, the file we want to configure for implementing GSAS II is ‘run_gsas2_calc.py’ under ‘pdfitc’ folder. The line we want to change is the one containing ‘sys.path.insert’.</p>
+  </li>
+  <li>
+    <p>The folder cloned from Long’s ‘tsitc’ repository is not complete - some files and folders are missing which will cause the app not starting. We need to back up Long’s working version to a separate repository and develop from there (need to post the new repository here once it’s done).</p>
+  </li>
+  <li>
+    <p>For running the pdfitc service (edit ‘/etc/systemd/system/pdfitc.service’ file if changes to the service are needed) for the first time, we may encounter problems about modules not found. Usually, the missing modules (e.g. dash) should be straightforward to install with, e.g. conda.</p>
+  </li>
+  <li>
+    <p>The ‘celery.task’ method has been deprecated and therefore is no longer available with celery. Accordingly in the main ‘app.py’ file, we want to comment out the import line for ‘celery.task’ and change ‘revoke’ to ‘app.control.revoke’ [16, 17].</p>
+  </li>
+</ul>
+
+<p><b>References</b></p>
+
+<p>[1] <a href="https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-centos-7">https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-centos-7</a></p>
+
+<p>[2] <a href="https://www.evernote.com/l/AQrJngSLeBxB0okR7mOoGaUV072RVCnFd2M">https://www.evernote.com/l/AQrJngSLeBxB0okR7mOoGaUV072RVCnFd2M</a></p>
+
+<p>[3] <a href="https://stackoverflow.com/questions/44037637/error-installing-uwsgi-in-virtualenv">https://stackoverflow.com/questions/44037637/error-installing-uwsgi-in-virtualenv</a></p>
+
+<p>[4] <a href="https://www.evernote.com/l/AQpLAsPHMUdGBp-p5Y-y7Zvfe7Bvip53n84">https://www.evernote.com/l/AQpLAsPHMUdGBp-p5Y-y7Zvfe7Bvip53n84</a></p>
+
+<p>[5] <a href="https://stackoverflow.com/questions/23541205/cant-install-python-dev-on-centos-6-5">https://stackoverflow.com/questions/23541205/cant-install-python-dev-on-centos-6-5</a></p>
+
+<p>[6] <a href="https://www.evernote.com/l/AQptvLJl0n9OzIm13ajH6X1VrYTsq9DxidE">https://www.evernote.com/l/AQptvLJl0n9OzIm13ajH6X1VrYTsq9DxidE</a></p>
+
+<p>[7] <a href="https://stackoverflow.com/questions/12030809/flask-and-uwsgi-unable-to-load-app-0-mountpoint-callable-not-found-or-im">https://stackoverflow.com/questions/12030809/flask-and-uwsgi-unable-to-load-app-0-mountpoint-callable-not-found-or-im</a></p>
+
+<p>[8] <a href="https://www.evernote.com/l/AQrMIOSck-VJQ6E5qeo_tsWxMVAJBwiRhoQ">https://www.evernote.com/l/AQrMIOSck-VJQ6E5qeo_tsWxMVAJBwiRhoQ</a></p>
+
+<p>[9] <a href="https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux">https://stackoverflow.com/questions/51396047/running-flask-on-port-80-in-linux</a></p>
+
+<p>[10] <a href="https://www.evernote.com/l/AQqJG6XKtOxDtbIggIY2RwH1Mn2U3lcgbdM">https://www.evernote.com/l/AQqJG6XKtOxDtbIggIY2RwH1Mn2U3lcgbdM</a></p>
+
+<p>[11] <a href="https://www.tecmint.com/fix-firewall-cmd-command-not-found-error/">https://www.tecmint.com/fix-firewall-cmd-command-not-found-error/</a></p>
+
+<p>[12] <a href="https://docs.cades.ornl.gov/#openstack/manage-vm/create-new-security-group/">https://docs.cades.ornl.gov/#openstack/manage-vm/create-new-security-group/</a></p>
+
+<p>[13] <a href="https://phoenixnap.com/kb/how-to-install-pip-on-centos-8">https://phoenixnap.com/kb/how-to-install-pip-on-centos-8</a></p>
+
+<p>[14] <a href="https://www.evernote.com/l/AQqEzk-6MpBOT5lTrj1N-Viu5MZOEXuT9y4">https://www.evernote.com/l/AQqEzk-6MpBOT5lTrj1N-Viu5MZOEXuT9y4</a></p>
+
+<p>[15] <a href="https://code.ornl.gov/ly0/tsitc/-/tree/master/">https://code.ornl.gov/ly0/tsitc/-/tree/master/</a></p>
+
+<p>[16] <a href="https://github.com/celery/celery/issues/6406">https://github.com/celery/celery/issues/6406</a></p>
+
+<p>[17] <a href="https://docs.celeryproject.org/en/latest/userguide/workers.html#revoke-revoking-tasks">https://docs.celeryproject.org/en/latest/userguide/workers.html#revoke-revoking-tasks</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#programming">programming</a>
+          
+            <a href="/tags#web development">web development</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Flask&url=http%3A%2F%2Flocalhost%3A4001%2F2020-11-20-flask%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4001%2F2020-11-20-flask%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4001%2F2020-11-20-flask%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2020-09-25-rsa/" data-toggle="tooltip" data-placement="top" title="Notes on RSA algorithm">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2020-11-22-kde/" data-toggle="tooltip" data-placement="top" title="Notes on kernel density estimation">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/rmc/">RMC at ISIS facility</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://community.dur.ac.uk/john.evans/topas_workshop/tutorial_pdf_sno2.htm">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE (ORNL internal)</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href=""https://mlfinfo.jp/en/bl21/>Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+				</br>
+				<a target="_blank" href="http://e-ssrf.sinap.cas.cn/beamlines/bl13w1/201401/t20140112_152430.html">China - SSRF - BL13W1</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2020 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

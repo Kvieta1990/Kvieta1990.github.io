@@ -1,0 +1,13 @@
+var commit = require("./commit.js");
+
+var Head = function(_head){
+  this.head = _head;
+  this.name = _head.name;
+  this.commit = commit.wrap(_head.commit);
+};
+
+function wrapHead(_head){
+  return new Head(_head);
+}
+
+module.exports.wrap = wrapHead;

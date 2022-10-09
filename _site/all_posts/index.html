@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  
+
+  <title>Yuanpeng&apos;s Posts</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Posts by Yuanpeng on various topics">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4001/feed.xml">
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Yuanpeng&apos;s Posts">
+  <meta property="og:description" content="Posts by Yuanpeng on various topics">
+
+  
+  <meta property="og:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4001/all_posts/">
+  <link rel="canonical" href="http://localhost:4001/all_posts/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Yuanpeng&apos;s Posts">
+  <meta property="twitter:description" content="Posts by Yuanpeng on various topics">
+
+  
+  <meta name="twitter:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  
+
+  
+
+
+  
+
+  
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+</head>
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4001/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Research</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.pages.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+            </div>
+          </li>
+        </ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:4001/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="page-heading">
+						<h1>Yuanpeng's Posts</h1>
+          
+            
+              <hr class="small">
+              <span class="page-subheading">Posts by Yuanpeng on various topics</span>
+            
+          
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md " role="main">
+  <div class="row">
+    <div class=" page_body ">
+      
+
+      
+
+
+
+<div class="posts-list">
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2022-10-09-jekyll_maths/">
+      <h2 class="post-title">Math equation in Jekyll</h2>
+
+      
+        <h3 class="post-subtitle">
+        Notes on inclusion of equation in GitHub pages
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 9, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2022-10-09-jekyll_maths/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#programming">programming</a>
+      
+      <a href="http://localhost:4001/tags#web development">web development</a>
+      
+      <a href="http://localhost:4001/tags#jekyll">jekyll</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2022-06-20-iso_subg/">
+      <h2 class="post-title">Notes On Isotropy Subgroup</h2>
+
+      
+        <h3 class="post-subtitle">
+        Key notes for reading the lecture notes by Stokes on isotropy subgroup
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 20, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Figure. 1. Isotropy subgroup [1].
+
+
+
+      
+      
+        <a href="http://localhost:4001/2022-06-20-iso_subg/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#maths">maths</a>
+      
+      <a href="http://localhost:4001/tags#crystallography">crystallography</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2021-12-21-owncloud_setup/">
+      <h2 class="post-title">OwnCloud Server Setup</h2>
+
+      
+        <h3 class="post-subtitle">
+        Set up OwnCloud server on Windows with WSL
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 21, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2021-12-21-owncloud_setup/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#server">server</a>
+      
+      <a href="http://localhost:4001/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2021-08-25-nano_rmc/">
+      <h2 class="post-title">Size effect in RMCProfile</h2>
+
+      
+        <h3 class="post-subtitle">
+        Implementation of nano-size effect correction for modeling PDF
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 25, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Figure. 1. Simulation box for bulk (left) and nano (right) systems.
+
+
+
+      
+      
+        <a href="http://localhost:4001/2021-08-25-nano_rmc/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#nano">nano</a>
+      
+      <a href="http://localhost:4001/tags#rmc">rmc</a>
+      
+      <a href="http://localhost:4001/tags#theory">theory</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2021-07-09-coh_incoh_sl/">
+      <h2 class="post-title">Derivation of neutron incoherent scattering length</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 9, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Figure. 1. Neutron scattering length table by NIST [1].
+
+
+
+      
+      
+        <a href="http://localhost:4001/2021-07-09-coh_incoh_sl/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:4001/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:4001/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:4001/tags#total scattering">total scattering</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2021-07-08-top_physics/">
+      <h2 class="post-title">Notes on topological physics</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 8, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Image reproduced from Ref. [5].
+
+
+
+      
+      
+        <a href="http://localhost:4001/2021-07-08-top_physics/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#solid state physics">solid state physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2021-07-07-ising_sol/">
+      <h2 class="post-title">Notes on Ising model</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 7, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Ernst Ising (Left) and Wilhelm Lenz (Right) - Ising was Lenz’s student and the Ising model was claimed (by Ising himself) to be originated by Lenz but named after Ising.
+
+
+
+      
+      
+        <a href="http://localhost:4001/2021-07-07-ising_sol/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:4001/tags#thermodynamics">thermodynamics</a>
+      
+      <a href="http://localhost:4001/tags#statistical physics">statistical physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2021-06-24-man_jupyter_kernel/">
+      <h2 class="post-title">Management of Jupyter kernels</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 24, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2021-06-24-man_jupyter_kernel/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#programming">programming</a>
+      
+      <a href="http://localhost:4001/tags#software installation">software installation</a>
+      
+      <a href="http://localhost:4001/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2021-05-17-sphinx/">
+      <h2 class="post-title">Intro to Sphinx</h2>
+
+      
+        <h3 class="post-subtitle">
+        Documentation with docstring in Python
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on May 17, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2021-05-17-sphinx/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#programming">programming</a>
+      
+      <a href="http://localhost:4001/tags#python">python</a>
+      
+      <a href="http://localhost:4001/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2021-05-17-jup_kernel/">
+      <h2 class="post-title">Jupyterlab kernel setup</h2>
+
+      
+        <h3 class="post-subtitle">
+        Conda environment to be used as Jupyterlab kernel across users
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on May 17, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2021-05-17-jup_kernel/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#programming">programming</a>
+      
+      <a href="http://localhost:4001/tags#technical">technical</a>
+      
+      <a href="http://localhost:4001/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-12-21-notes_mag_III/">
+      <h2 class="post-title">Notes on magnetism - III</h2>
+
+      
+        <h3 class="post-subtitle">
+        Various physical quantities describing magnetic field
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 21, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-12-21-notes_mag_III/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:4001/tags#magnetism">magnetism</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-12-18-spin/">
+      <h2 class="post-title">About electron spin</h2>
+
+      
+        <h3 class="post-subtitle">
+        Why do we have spin half for electrons?
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 18, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Illustration for Stern-Glach experiment [1].
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-12-18-spin/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#quantum physics">quantum physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-12-01-rmc_configure/">
+      <h2 class="post-title">Configure RMCProfile</h2>
+
+      
+        <h3 class="post-subtitle">
+        Some tips for configuring RMCProfile on Unix/Linux system
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 1, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+  Configuration on Linux system
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-12-01-rmc_configure/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#total scattering">total scattering</a>
+      
+      <a href="http://localhost:4001/tags#tool">tool</a>
+      
+      <a href="http://localhost:4001/tags#data analysis">data analysis</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-11-28-notes_jekyll/">
+      <h2 class="post-title">Notes on Jekyll</h2>
+
+      
+        <h3 class="post-subtitle">
+        building site with Jekyll locally
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 28, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-11-28-notes_jekyll/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#programming">programming</a>
+      
+      <a href="http://localhost:4001/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-11-22-kde/">
+      <h2 class="post-title">Notes on kernel density estimation</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 22, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      With a collection of data, we may want to extract or estimate the underlying distribution model. For example, we have the collection of house price in a certain area, we want to have an idea about how the house price in that area is distributed. However, without a priori knowledge...
+      
+      
+        <a href="http://localhost:4001/2020-11-22-kde/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#maths">maths</a>
+      
+      <a href="http://localhost:4001/tags#statistics">statistics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-11-20-flask/">
+      <h2 class="post-title">Notes on Flask</h2>
+
+      
+        <h3 class="post-subtitle">
+        Setting up web host with Python Flask
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 20, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-11-20-flask/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#programming">programming</a>
+      
+      <a href="http://localhost:4001/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-09-25-rsa/">
+      <h2 class="post-title">Notes on RSA algorithm</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on September 25, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Image reproduced from Ref. [9].
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-09-25-rsa/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#technical">technical</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-07-27-thermo_2nd/">
+      <h2 class="post-title">为什么不能通过让海水不断降温从而获取无尽的能量？</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 27, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+      
+      
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-07-27-thermo_2nd/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#thermodynamics">thermodynamics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-07-22-temperature/">
+      <h2 class="post-title">Notes On Temperature</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 22, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-07-22-temperature/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#thermodynamics">thermodynamics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-07-06-occ_order/">
+      <h2 class="post-title">Notes on occupational short-range ordering in crystal</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 6, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      When multiple atomic species (including vacancies) coexist on the same crystallographic site, it immediately brings up a question - say, we have species A and B sharing the same site, then do we have clustering of A and B in separate domains, or do we have A and B preferring...
+      
+      
+        <a href="http://localhost:4001/2020-07-06-occ_order/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#crystallography">crystallography</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-07-04-sublime/">
+      <h2 class="post-title">Notes on Sublime Text 3</h2>
+
+      
+        <h3 class="post-subtitle">
+        Key binding configuration issue
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 4, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-07-04-sublime/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#tool">tool</a>
+      
+      <a href="http://localhost:4001/tags#IDE">IDE</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-06-28-fourier_transform/">
+      <h2 class="post-title">When Fourier transform meets total scattering</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 28, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-06-28-fourier_transform/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:4001/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:4001/tags#total scattering">total scattering</a>
+      
+      <a href="http://localhost:4001/tags#maths">maths</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-06-27-conda_build/">
+      <h2 class="post-title">Build package with conda recipe</h2>
+
+      
+        <h3 class="post-subtitle">
+        A minimal working example
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 27, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      There are indeed instructions and tutorials about how to build conda packages (which we can then install easily through conda, e. g. by simply executing ‘conda install …’ from command line) with conda recipe. However, as a beginner to conda build, it was really difficult for myself to find the...
+      
+      
+        <a href="http://localhost:4001/2020-06-27-conda_build/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#programming">programming</a>
+      
+      <a href="http://localhost:4001/tags#python">python</a>
+      
+      <a href="http://localhost:4001/tags#conda">conda</a>
+      
+      <a href="http://localhost:4001/tags#package">package</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-06-26-discus_install/">
+      <h2 class="post-title">Install DISCUS version 6 on Windows 10</h2>
+
+      
+        <h3 class="post-subtitle">
+        Problem & solution
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 26, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-06-26-discus_install/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#tool">tool</a>
+      
+      <a href="http://localhost:4001/tags#software installation">software installation</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-04-19-cuda_note_II/">
+      <h2 class="post-title">Notes on CUDA programming II</h2>
+
+      
+        <h3 class="post-subtitle">
+        Matrix multiplication
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 19, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+First of all, we may need a review for the very basic CUDA programming and GPU execution principle. Here, I want to use the diagram below to demonstrate the threadings on GPU with a very simple array addition operation example.
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-04-19-cuda_note_II/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#programming">programming</a>
+      
+      <a href="http://localhost:4001/tags#GPU">GPU</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-04-19-cuda_note_I/">
+      <h2 class="post-title">Notes on CUDA programming I</h2>
+
+      
+        <h3 class="post-subtitle">
+        Preparation
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 19, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      To understand and implement CUDA codes in practice, the very first step is to understand the allocation of threads on GPU. Fundamentally, threads are basic units on GPU where computation can happen in a parallel way. To the first level, threads are grouped into blocks, either in a 1D, 2D...
+      
+      
+        <a href="http://localhost:4001/2020-04-19-cuda_note_I/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#programming">programming</a>
+      
+      <a href="http://localhost:4001/tags#GPU">GPU</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-03-29-notes_mag_II/">
+      <h2 class="post-title">Notes on magnetism - II</h2>
+
+      
+        <h3 class="post-subtitle">
+        Magnetic ions in crystals
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 29, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Talking about the magnetism of ions in crystals naturally brings us out of the atomic physics picture which we previously based ourselves in when discussing the free atom and ions (see previous note by clicking me!). Also, for sure we should turn to the many-electron scheme instead of a single-electron...
+      
+      
+        <a href="http://localhost:4001/2020-03-29-notes_mag_II/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:4001/tags#magnetism">magnetism</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-03-18-notes_mag_I/">
+      <h2 class="post-title">Notes on magnetism - I</h2>
+
+      
+        <h3 class="post-subtitle">
+        Magnetism of free atoms and ions
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 18, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+To understand the magnetism of free atoms and ions, we may go through several stages, as follows,
+
+
+Hartree approximation - electrons are treated in a non-interactive manner.
+Beyond Hartree - interaction between electrons is taken into account.
+Spin-orbital coupling.
+Hyperfine interaction - the interaction between electrons and nucleus.
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-03-18-notes_mag_I/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:4001/tags#magnetism">magnetism</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2020-03-08-coriolis_force/">
+      <h2 class="post-title">About Coriolis force</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 8, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+First, a comprehensive GIF animation demonstrating the basic ideas of Coriolis force is presented.
+
+
+
+      
+      
+        <a href="http://localhost:4001/2020-03-08-coriolis_force/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#classical physics">classical physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2019-12-10-special_relativity/">
+      <h2 class="post-title">Notes on special relativity</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 10, 2019, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:4001/2019-12-10-special_relativity/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#general physics">general physics</a>
+      
+      <a href="http://localhost:4001/tags#relativity">relativity</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:4001/2019-12-08-einstein_fridge/">
+      <h2 class="post-title">A silent refrigerator</h2>
+
+      
+        <h3 class="post-subtitle">
+        The working principle of Einstein’s refrigerator
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 8, 2019, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      All refrigerators running with gas relies on the principle that the evaporation of liquid to its corresponding gas form will take heat from surroundings. After evaporation, the gas should be liquefied back to liquid form to finish the cycle, and of course, the process of liquefaction will emit heat. That’s...
+      
+      
+        <a href="http://localhost:4001/2019-12-08-einstein_fridge/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:4001/tags#general physics">general physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+</div>
+
+
+
+
+      
+
+      
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/rmc/">RMC at ISIS facility</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://community.dur.ac.uk/john.evans/topas_workshop/tutorial_pdf_sno2.htm">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE (ORNL internal)</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href=""https://mlfinfo.jp/en/bl21/>Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+				</br>
+				<a target="_blank" href="http://e-ssrf.sinap.cas.cn/beamlines/bl13w1/201401/t20140112_152430.html">China - SSRF - BL13W1</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2020 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
