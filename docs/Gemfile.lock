@@ -18,7 +18,6 @@ GEM
     em-websocket (0.5.2)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
-    eventmachine (1.2.7)
     eventmachine (1.2.7-x64-mingw32)
     ffi (1.13.1)
     forwardable-extended (2.6.0)
@@ -73,6 +72,7 @@ GEM
       concurrent-ruby (~> 1.0)
     tzinfo-data (1.2022.4)
       tzinfo (>= 1.0.0)
+    wdm (0.1.1)
     webrick (1.7.0)
 
 PLATFORMS
@@ -85,6 +85,7 @@ DEPENDENCIES
   rake (~> 12.0)
   tzinfo
   tzinfo-data
+  wdm (>= 0.1.0)
   webrick
 
 BUNDLED WITH

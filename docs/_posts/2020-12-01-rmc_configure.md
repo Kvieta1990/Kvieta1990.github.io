@@ -2,7 +2,7 @@
 layout: post
 title: Configure RMCProfile
 subtitle: Some tips for configuring RMCProfile on Unix/Linux system
-tags: [configuration, cluster, speed]
+tags: [total scattering, tool, data analysis]
 author: Yuanpeng Zhang
 comments: true
 ---
