@@ -1059,3 +1059,7 @@ pre {
   display: block;
   margin: 0 auto;
 }
+
+.copy-code-button {
+  display: block;
+}
