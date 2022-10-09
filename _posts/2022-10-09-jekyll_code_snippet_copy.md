@@ -31,7 +31,7 @@ First, we need to put the following Javascript codes into the `<header>` section
 <div align="right">
 <button onclick="javascript:copytoclipboard('csp1')" style="border: none">Copy snippet to clipboard!</button>
 </div>
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.0em .0em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.0em .0em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
  2
  3
  4
@@ -87,13 +87,13 @@ Here is where I put those lines in the `head.html` file, <a target="_blank" href
 
 <br />
 
-Then, as what I have above in current blog, we need to put down a button to link to the `copytoclipboard` function defined in the Javascript we just included. Here is the code for the button, which we can directly grab and put into our blog post (see <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/868f94cd02b16275f674c7f4bc3a0d2a215614c5/_posts/2020-04-19-cuda_note_II.md?plain=1#L65-L67">here</a> for the implementation in current blog)
+Then, as what I have above in current blog, we need to put down a button to link to the `copytoclipboard` function defined in the Javascript we just included. Here follows is the code for the button, which we can directly grab and put into our blog post (see <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/093b170b88a7a6ee1309ea882d8777c604439d22/_posts/2022-10-09-jekyll_code_snippet_copy.md?plain=1#L93-L95">here</a> for the implementation in current blog)
 </p>
 
 <div align="right">
 <button onclick="javascript:copytoclipboard('csp2')" style="border: none">Copy snippet to clipboard!</button>
 </div>
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.0em .0em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.0em .0em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
 2
 3</pre></td><td id="csp2"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">align=</span><span style="background-color: #fff0f0">&quot;right&quot;</span><span style="color: #007700">&gt;</span>
 <span style="color: #007700">&lt;button</span> <span style="color: #0000CC">onclick=</span><span style="background-color: #fff0f0">&quot;javascript:copytoclipboard(&#39;csp2&#39;)&quot;</span> <span style="color: #0000CC">style=</span><span style="background-color: #fff0f0">&quot;border: none&quot;</span><span style="color: #007700">&gt;</span>Copy snippet to clipboard!<span style="color: #007700">&lt;/button&gt;</span>
@@ -101,9 +101,15 @@ Then, as what I have above in current blog, we need to put down a button to link
 </pre></td></tr></table></div>
 
 <p style='text-align: justify'>
-Then, we need to go to the <a target="_blank" href="http://hilite.me/">hilite.me</a> website, where we can paste in our code snippet and the website will help us turning that into HTML codes with language specific grammar highlighting. From there, we can then copy those HTML codes and directly paste them into our blog post, like what I have here for the current blog (the first Javascript code snippet above).
+Then, we need to go to the <a target="_blank" href="http://hilite.me/">hilite.me</a> website, where we can paste in our code snippet and the website will help us turning that into HTML codes with language specific grammar highlighting. From there, we can then copy those HTML codes and directly paste them into our blog post, like what I have <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/093b170b88a7a6ee1309ea882d8777c604439d22/_posts/2022-10-09-jekyll_code_snippet_copy.md?plain=1#L34-L83">here</a> for the current blog (the first Javascript code snippet above).
 
 <br />
 
-Finally, to link the `copytoclipboard` function associated with a certain button to copy a specific block of codes, we need to add in a unique ID into the pasted HTML codes from <a target="_blank" href="http://hilite.me/">hilite.me</a>, like what I have here for the current blog (again, the first Javascript code snippet above). Then the function parameter for `copytoclipboard` needs to be consistent with the code block that we want to copy by clicking on the button - see here, again, for the the first Javascript code snippet above.
+Finally, to link the `copytoclipboard` function associated with a certain button to copy a specific block of codes, we need to add in a unique ID into the pasted HTML codes from <a target="_blank" href="http://hilite.me/">hilite.me</a>, like what I have <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/093b170b88a7a6ee1309ea882d8777c604439d22/_posts/2022-10-09-jekyll_code_snippet_copy.md?plain=1#L58">here</a> for the current blog (again, the first Javascript code snippet above). Then the function parameter for `copytoclipboard` needs to be consistent with the code block that we want to copy by clicking on the button - see <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/093b170b88a7a6ee1309ea882d8777c604439d22/_posts/2022-10-09-jekyll_code_snippet_copy.md?plain=1#L32">here</a>, again, for the the first Javascript code snippet above.
 </p>
+
+<blockquote cite="">
+<b>N. B.</b> The ID for the pasted code from <a target="_blank" href="http://hilite.me/">hilite.me</a> should go to <i>EXACTLY</i> the `<td>` section as presented in the link <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/093b170b88a7a6ee1309ea882d8777c604439d22/_posts/2022-10-09-jekyll_code_snippet_copy.md?plain=1#L58">here</a>.
+
+<b>N. B.</b> Those pasted HTML from <a target="_blank" href="http://hilite.me/">hilite.me</a> was changed a bit across all posts in my blog to remove the padding space of the code block - specifically it is this bit `padding:.0em .0em;` in <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/093b170b88a7a6ee1309ea882d8777c604439d22/_posts/2022-10-09-jekyll_code_snippet_copy.md?plain=1#L34">here</a>.
+</blockquote>
