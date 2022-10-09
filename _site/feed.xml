@@ -23,6 +23,17 @@
       </item>
     
       <item>
+        <title>Copy of code snippet in Jekyll</title>
+        <description>
+          Notes on inclusion of a button for copy code snippet in GitHub pages - 
+          Trying to follow several resources [1, 2] for setting up the code snippet copy capability in Jekyll site, but for some reason, I could not get it working. I suppose this may be something to do with theme I am using (the beautiful-jekyll theme), and I am not what to...
+        </description>
+        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-10-09-jekyll_code_snippet_copy/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-10-09-jekyll_code_snippet_copy/</guid>
+      </item>
+    
+      <item>
         <title>Notes On Isotropy Subgroup</title>
         <description>
           Key notes for reading the lecture notes by Stokes on isotropy subgroup - 
@@ -239,17 +250,6 @@
         <pubDate>Wed, 22 Jul 2020 00:00:00 +0000</pubDate>
         <link>http://localhost:4001/2020-07-22-temperature/</link>
         <guid isPermaLink="true">http://localhost:4001/2020-07-22-temperature/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on occupational short-range ordering in crystal</title>
-        <description>
-          
-          When multiple atomic species (including vacancies) coexist on the same crystallographic site, it immediately brings up a question - say, we have species A and B sharing the same site, then do we have clustering of A and B in separate domains, or do we have A and B preferring...
-        </description>
-        <pubDate>Mon, 06 Jul 2020 00:00:00 +0000</pubDate>
-        <link>http://localhost:4001/2020-07-06-occ_order/</link>
-        <guid isPermaLink="true">http://localhost:4001/2020-07-06-occ_order/</guid>
       </item>
     
   </channel>

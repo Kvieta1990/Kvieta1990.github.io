@@ -17,7 +17,7 @@ use_math: true
 </p>
 
 <p style='text-align: justify'>
-To enable the display of math equations in GitHub pages, we need to include the corresponding Javascript in our page header. Taking my current blog as an example (one can go to `MORE LINKS` $$\rightarrow$$ `BLOG REPO` to visit the GitHub repo for current blog), in the header part of each post, it is specified the `layout` is `post`. We then can find `post.html` in the `docs/_layouts` directory which includes the definition for the outlook of a post. There, in the header part, one can find it is further pointing to the `base` layout which then refers to the `base.html` file under `docs/_layouts`. Opening the `base.html` file, we can find that it includes the `head.html` file (which fundamentally defines the `<header>` section in the rendered HTML file). The `head.html` file can be found under `docs/_includes` directory.
+To enable the display of math equations in GitHub pages, we need to include the corresponding Javascript in our page header. Taking my current blog as an example (one can go to `MORE LINKS` $$\rightarrow$$ `BLOG REPO` to visit the GitHub repo for current blog), in the header part of each post, it is specified the `layout` is `post`. We then can find `post.html` in the `_layouts` directory which includes the definition for the outlook of a post. There, in the header part, one can find it is further pointing to the `base` layout which then refers to the `base.html` file under `_layouts`. Opening the `base.html` file, we can find that it includes the `head.html` file (which fundamentally defines the `<header>` section in the rendered HTML file). The `head.html` file can be found under `_includes` directory.
 
 <br />
 
@@ -31,15 +31,15 @@ First, we need to include the following codes in the `head.html` file,
 ```
 
 <p style='text-align: justify'>
-Here is where I put those lines in the `head.html` file, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/5f16789664b6c19f9f15f75cd4eee20c4787720a/docs/_includes/head.html#L14-L16">Click Me</a>.
+Here is where I put those lines in the `head.html` file, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/868f94cd02b16275f674c7f4bc3a0d2a215614c5/_includes/head.html#L14-L16">Click Me</a>.
 
 <br />
 
-The `page.use_math` variable is defined in the header of a post. Say, we want to enable the math display in a certain post, we just put `use_math: true` in the header of the post, like this, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/5f16789664b6c19f9f15f75cd4eee20c4787720a/docs/_posts/2020-03-08-coriolis_force.md?plain=1#L8">Click Me</a>.
+The `page.use_math` variable is defined in the header of a post. Say, we want to enable the math display in a certain post, we just put `use_math: true` in the header of the post, like this, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/868f94cd02b16275f674c7f4bc3a0d2a215614c5/_posts/2019-12-08-einstein_fridge.md?plain=1#L8">Click Me</a>.
 
 <br />
 
-The `mathjax_support.html` file is a file located in `docs/_includes` directory, with the following contents,
+The `mathjax_support.html` file is a file located in `_includes` directory, with the following contents,
 </p>
 
 ```html

@@ -286,7 +286,7 @@ if (chromeAgent) {
 </p>
 
 <p style="text-align: justify">
-To enable the display of math equations in GitHub pages, we need to include the corresponding Javascript in our page header. Taking my current blog as an example (one can go to <code class="language-plaintext highlighter-rouge">MORE LINKS</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">BLOG REPO</code> to visit the GitHub repo for current blog), in the header part of each post, it is specified the <code class="language-plaintext highlighter-rouge">layout</code> is <code class="language-plaintext highlighter-rouge">post</code>. We then can find <code class="language-plaintext highlighter-rouge">post.html</code> in the <code class="language-plaintext highlighter-rouge">docs/_layouts</code> directory which includes the definition for the outlook of a post. There, in the header part, one can find it is further pointing to the <code class="language-plaintext highlighter-rouge">base</code> layout which then refers to the <code class="language-plaintext highlighter-rouge">base.html</code> file under <code class="language-plaintext highlighter-rouge">docs/_layouts</code>. Opening the <code class="language-plaintext highlighter-rouge">base.html</code> file, we can find that it includes the <code class="language-plaintext highlighter-rouge">head.html</code> file (which fundamentally defines the <code class="language-plaintext highlighter-rouge">&lt;header&gt;</code> section in the rendered HTML file). The <code class="language-plaintext highlighter-rouge">head.html</code> file can be found under <code class="language-plaintext highlighter-rouge">docs/_includes</code> directory.
+To enable the display of math equations in GitHub pages, we need to include the corresponding Javascript in our page header. Taking my current blog as an example (one can go to <code class="language-plaintext highlighter-rouge">MORE LINKS</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">BLOG REPO</code> to visit the GitHub repo for current blog), in the header part of each post, it is specified the <code class="language-plaintext highlighter-rouge">layout</code> is <code class="language-plaintext highlighter-rouge">post</code>. We then can find <code class="language-plaintext highlighter-rouge">post.html</code> in the <code class="language-plaintext highlighter-rouge">_layouts</code> directory which includes the definition for the outlook of a post. There, in the header part, one can find it is further pointing to the <code class="language-plaintext highlighter-rouge">base</code> layout which then refers to the <code class="language-plaintext highlighter-rouge">base.html</code> file under <code class="language-plaintext highlighter-rouge">_layouts</code>. Opening the <code class="language-plaintext highlighter-rouge">base.html</code> file, we can find that it includes the <code class="language-plaintext highlighter-rouge">head.html</code> file (which fundamentally defines the <code class="language-plaintext highlighter-rouge">&lt;header&gt;</code> section in the rendered HTML file). The <code class="language-plaintext highlighter-rouge">head.html</code> file can be found under <code class="language-plaintext highlighter-rouge">_includes</code> directory.
 
 <br />
 
@@ -299,15 +299,15 @@ First, we need to include the following codes in the <code class="language-plain
 </code></pre></div></div>
 
 <p style="text-align: justify">
-Here is where I put those lines in the <code class="language-plaintext highlighter-rouge">head.html</code> file, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/5f16789664b6c19f9f15f75cd4eee20c4787720a/docs/_includes/head.html#L14-L16">Click Me</a>.
+Here is where I put those lines in the <code class="language-plaintext highlighter-rouge">head.html</code> file, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/868f94cd02b16275f674c7f4bc3a0d2a215614c5/_includes/head.html#L14-L16">Click Me</a>.
 
 <br />
 
-The <code class="language-plaintext highlighter-rouge">page.use_math</code> variable is defined in the header of a post. Say, we want to enable the math display in a certain post, we just put <code class="language-plaintext highlighter-rouge">use_math: true</code> in the header of the post, like this, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/5f16789664b6c19f9f15f75cd4eee20c4787720a/docs/_posts/2020-03-08-coriolis_force.md?plain=1#L8">Click Me</a>.
+The <code class="language-plaintext highlighter-rouge">page.use_math</code> variable is defined in the header of a post. Say, we want to enable the math display in a certain post, we just put <code class="language-plaintext highlighter-rouge">use_math: true</code> in the header of the post, like this, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/868f94cd02b16275f674c7f4bc3a0d2a215614c5/_posts/2019-12-08-einstein_fridge.md?plain=1#L8">Click Me</a>.
 
 <br />
 
-The <code class="language-plaintext highlighter-rouge">mathjax_support.html</code> file is a file located in <code class="language-plaintext highlighter-rouge">docs/_includes</code> directory, with the following contents,
+The <code class="language-plaintext highlighter-rouge">mathjax_support.html</code> file is a file located in <code class="language-plaintext highlighter-rouge">_includes</code> directory, with the following contents,
 </p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/x-mathjax-config"</span><span class="nt">&gt;</span>
@@ -383,7 +383,7 @@ Then for both inline and display equation, we can just use ‘$$’ symbol to cl
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2022-06-20-iso_subg/" data-toggle="tooltip" data-placement="top" title="Notes On Isotropy Subgroup">&larr; Previous Post</a>
+          <a class="page-link" href="/2022-10-09-jekyll_code_snippet_copy/" data-toggle="tooltip" data-placement="top" title="Copy of code snippet in Jekyll">&larr; Previous Post</a>
         </li>
         
         
