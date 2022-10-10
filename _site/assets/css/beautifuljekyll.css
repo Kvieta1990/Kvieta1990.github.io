@@ -1050,3 +1050,14 @@ pre {
 .copy-code-button {
   display: block;
 }
+
+.card .img-top {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99;
+    }
+.card:hover .img-top {
+    display: inline;
+}

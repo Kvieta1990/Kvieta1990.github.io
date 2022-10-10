@@ -9,9 +9,9 @@ About Me
 
 <p align='center'>
 <img src="/assets/img/SNS.jpg"
-   style="border:none;"
    alt="SNS"
    title="SNS" />
+   <img src="/assets/img/ORNL.png" class="img-top" alt="ORNL">
 </p>
 
 <p style='text-align: justify;'>
