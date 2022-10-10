@@ -7,12 +7,12 @@ subtitle: Neutron Scattering Scientist at ORNL
 About Me
 ===
 
-<p align='center'>
+<div align='center' class='card'>
 <img src="/assets/img/SNS.jpg"
    alt="SNS"
    title="SNS" />
    <img src="/assets/img/ORNL.png" class="img-top" alt="ORNL">
-</p>
+</div>
 
 <p style='text-align: justify;'>
 Working as neutron scattering scientist at ORNL, I have been 
