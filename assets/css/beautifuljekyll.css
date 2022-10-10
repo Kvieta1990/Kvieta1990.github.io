@@ -1105,7 +1105,7 @@ pre {
   position: absolute;
   top: 18%;
   left: 23%;
-  transform: translateZ(100px);
+  transform: translateZ(50px);
 	z-index: 99;
 }
 
