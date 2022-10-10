@@ -15,15 +15,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   
-    <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-  TeX: { equationNumbers: { autoNumber: "AMS" } }
-  });
-</script>
-<script type="text/javascript" async src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-  
 
   
 
@@ -295,33 +286,13 @@ To enable the display of math equations in GitHub pages, we need to include the 
 
 <br />
 
-First, we need to include the following codes in the <code class="language-plaintext highlighter-rouge">head.html</code> file,
+We then need to include the following codes in the <code class="language-plaintext highlighter-rouge">head.html</code> file,
 </p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% if page.use_math %}
-   {% include mathjax_support.html %}
-{% endif %}
-</code></pre></div></div>
-
-<p style="text-align: justify">
-Here is where I put those lines in the <code class="language-plaintext highlighter-rouge">head.html</code> file, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/868f94cd02b16275f674c7f4bc3a0d2a215614c5/_includes/head.html#L14-L16">Click Me</a>.
-
-<br />
-
-The <code class="language-plaintext highlighter-rouge">page.use_math</code> variable is defined in the header of a post. Say, we want to enable the math display in a certain post, we just put <code class="language-plaintext highlighter-rouge">use_math: true</code> in the header of the post, like this, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/868f94cd02b16275f674c7f4bc3a0d2a215614c5/_posts/2019-12-08-einstein_fridge.md?plain=1#L8">Click Me</a>.
-
-<br />
-
-The <code class="language-plaintext highlighter-rouge">mathjax_support.html</code> file is a file located in <code class="language-plaintext highlighter-rouge">_includes</code> directory, with the following contents,
-</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/x-mathjax-config"</span><span class="nt">&gt;</span>
-  <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
-   <span class="na">TeX</span><span class="p">:</span> <span class="p">{</span> <span class="na">equationNumbers</span><span class="p">:</span> <span class="p">{</span> <span class="na">autoNumber</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AMS</span><span class="dl">"</span> <span class="p">}</span> <span class="p">}</span>
-  <span class="p">});</span>
-<span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">async</span> <span class="na">src=</span><span class="s">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</code></pre></div></div>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text/javascript</span><span class="dl">"</span> <span class="k">async</span>
+  <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML</span><span class="dl">"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
 
 <p style="text-align: justify">
 Then for both inline and display equation, we can just use ‘$$’ symbol to claim an equation environment to write out equations.

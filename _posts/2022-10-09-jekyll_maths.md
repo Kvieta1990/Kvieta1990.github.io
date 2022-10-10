@@ -21,34 +21,13 @@ To enable the display of math equations in GitHub pages, we need to include the 
 
 <br />
 
-First, we need to include the following codes in the `head.html` file,
+We then need to include the following codes in the `head.html` file,
 </p>
 
-```html
-{% raw %}{% if page.use_math %}
-   {% include mathjax_support.html %}
-{% endif %}{% endraw %}
-```
-
-<p style='text-align: justify'>
-Here is where I put those lines in the `head.html` file, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/868f94cd02b16275f674c7f4bc3a0d2a215614c5/_includes/head.html#L14-L16">Click Me</a>.
-
-<br />
-
-The `page.use_math` variable is defined in the header of a post. Say, we want to enable the math display in a certain post, we just put `use_math: true` in the header of the post, like this, <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/868f94cd02b16275f674c7f4bc3a0d2a215614c5/_posts/2019-12-08-einstein_fridge.md?plain=1#L8">Click Me</a>.
-
-<br />
-
-The `mathjax_support.html` file is a file located in `_includes` directory, with the following contents,
-</p>
-
-```html
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-   TeX: { equationNumbers: { autoNumber: "AMS" } }
-  });
+```javascript
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-<script type="text/javascript" async src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 ```
 
 <p style='text-align: justify'>
