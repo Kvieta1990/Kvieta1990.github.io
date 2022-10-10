@@ -4,12 +4,16 @@ title: About My Blog
 subtitle: Brief intro to my blog
 ---
 
+<div data-tilt data-tilt-max="35" data-tilt-scale="0.8">
 <p align='center'>
 <img src="/assets/img/curious.png"
    style="border:none;"
    alt="about"
    title="about" />
 </p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 
 <p style='text-align: justify;'>
 This is my personal blog, for the purpose of recording my learning progress.
