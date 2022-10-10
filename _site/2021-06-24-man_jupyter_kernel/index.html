@@ -30,20 +30,20 @@
 
   
 
-  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4001/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
 
   
 
   
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163985757-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-163985757-1');
+  gtag('config', 'G-44PBCNZ80G');
 </script>
 
   
@@ -81,7 +81,7 @@
   
 
   
-
+  
   
 
   
@@ -92,15 +92,15 @@
   <meta property="og:description" content="Having multiple kernels available for Jupyter service, we may need to manage them at some point, e.g., rename kernel names and remove kernels. First, to show all available kernels, run the following command, jupyter kernelspec list we will then see output like this, Available kernels: python3 /opt/jupyterhub/lib64/python3.6/site-packages/ipykernel/resources diffpy /usr/local/share/jupyter/kernels/diffpy py37...">
 
   
-  <meta property="og:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2021-06-24T00:00:00+00:00">
-  <meta property="og:url" content="http://localhost:4001/2021-06-24-man_jupyter_kernel/">
-  <link rel="canonical" href="http://localhost:4001/2021-06-24-man_jupyter_kernel/">
+  <meta property="og:article:published_time" content="2021-06-24T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2021-06-24-man_jupyter_kernel/">
+  <link rel="canonical" href="http://localhost:4000/2021-06-24-man_jupyter_kernel/">
   
 
   
@@ -113,7 +113,7 @@
   <meta property="twitter:description" content="Having multiple kernels available for Jupyter service, we may need to manage them at some point, e.g., rename kernel names and remove kernels. First, to show all available kernels, run the following command, jupyter kernelspec list we will then see output like this, Available kernels: python3 /opt/jupyterhub/lib64/python3.6/site-packages/ipykernel/resources diffpy /usr/local/share/jupyter/kernels/diffpy py37...">
 
   
-  <meta name="twitter:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
@@ -152,35 +152,6 @@
     }
   }
 </script>
-
-<script language="Javascript">
-  let constrain = 20;
-  let mouseOverContainer = document.getElementById("ex1");
-  let ex1Layer = document.getElementById("ex1-layer");
-
-  function transforms(x, y, el) {
-    let box = el.getBoundingClientRect();
-    let calcX = -(y - box.y - (box.height / 2)) / constrain;
-    let calcY = (x - box.x - (box.width / 2)) / constrain;
-
-    return "perspective(100px) "
-      + "   rotateX("+ calcX +"deg) "
-      + "   rotateY("+ calcY +"deg) ";
-  };
-
-   function transformElement(el, xyEl) {
-    el.style.transform  = transforms.apply(null, xyEl);
-  }
-
-  mouseOverContainer.onmousemove = function(e) {
-    let xy = [e.clientX, e.clientY];
-    let position = xy.concat([ex1Layer]);
-
-    window.requestAnimationFrame(function(){
-      transformElement(ex1Layer, position);
-    });
-  };
-</script>script>
 </head>
 
 <body>
@@ -188,7 +159,7 @@
   
 
 
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4001/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -248,7 +219,7 @@
 
 <script>
 function myFunction() {
-		return '<a href="http://localhost:4001/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
 }
 let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
 let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
@@ -401,7 +372,7 @@ Among all the available kernels, there is a special one - the ‘base’ Jupyter
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Management+of+Jupyter+kernels&url=http%3A%2F%2Flocalhost%3A4001%2F2021-06-24-man_jupyter_kernel%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Management+of+Jupyter+kernels&url=http%3A%2F%2Flocalhost%3A4000%2F2021-06-24-man_jupyter_kernel%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -409,7 +380,7 @@ Among all the available kernels, there is a special one - the ‘base’ Jupyter
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4001%2F2021-06-24-man_jupyter_kernel%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2021-06-24-man_jupyter_kernel%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -417,7 +388,7 @@ Among all the available kernels, there is a special one - the ‘base’ Jupyter
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4001%2F2021-06-24-man_jupyter_kernel%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2021-06-24-man_jupyter_kernel%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>

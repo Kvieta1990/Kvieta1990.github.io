@@ -30,20 +30,20 @@
 
   
 
-  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4001/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
 
   
 
   
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163985757-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-163985757-1');
+  gtag('config', 'G-44PBCNZ80G');
 </script>
 
   
@@ -81,7 +81,7 @@
   
 
   
-
+  
   
 
   
@@ -92,13 +92,13 @@
   <meta property="og:description" content="Neutron Scattering Scientist at ORNL">
 
   
-  <meta property="og:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4001/">
-  <link rel="canonical" href="http://localhost:4001/">
+  <meta property="og:url" content="http://localhost:4000/">
+  <link rel="canonical" href="http://localhost:4000/">
   
 
   
@@ -111,7 +111,7 @@
   <meta property="twitter:description" content="Neutron Scattering Scientist at ORNL">
 
   
-  <meta name="twitter:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
@@ -150,35 +150,6 @@
     }
   }
 </script>
-
-<script language="Javascript">
-  let constrain = 20;
-  let mouseOverContainer = document.getElementById("ex1");
-  let ex1Layer = document.getElementById("ex1-layer");
-
-  function transforms(x, y, el) {
-    let box = el.getBoundingClientRect();
-    let calcX = -(y - box.y - (box.height / 2)) / constrain;
-    let calcY = (x - box.x - (box.width / 2)) / constrain;
-
-    return "perspective(100px) "
-      + "   rotateX("+ calcX +"deg) "
-      + "   rotateY("+ calcY +"deg) ";
-  };
-
-   function transformElement(el, xyEl) {
-    el.style.transform  = transforms.apply(null, xyEl);
-  }
-
-  mouseOverContainer.onmousemove = function(e) {
-    let xy = [e.clientX, e.clientY];
-    let position = xy.concat([ex1Layer]);
-
-    window.requestAnimationFrame(function(){
-      transformElement(ex1Layer, position);
-    });
-  };
-</script>script>
 </head>
 
 <body>
@@ -186,7 +157,7 @@
   
 
 
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4001/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -246,7 +217,7 @@
 
 <script>
 function myFunction() {
-		return '<a href="http://localhost:4001/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
 }
 let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
 let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
@@ -310,10 +281,6 @@ if (chromeAgent) {
    <img src="/assets/img/SNS.jpg" class="img-top" alt="ORNL" /></p>
 </div>
 
-<div id="ex1" class="container">
-  <div id="ex1-layer" class="box"></div>
-</div>
-
 <p style="text-align: justify;">
 Working as neutron scattering scientist at ORNL, I have been 
 actively involved in software development and scientific research activities.
@@ -345,25 +312,25 @@ phase transition is one of the goals to pursue.
 
 <ul>
   <li>
-    <p><a href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Yuanpeng’s ORNL profile</a></p>
+    <p><a target="_blank" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Yuanpeng’s ORNL profile</a></p>
   </li>
   <li>
-    <p><a href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&amp;hl=en">Yuanpeng’s Google scholar</a></p>
+    <p><a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&amp;hl=en">Yuanpeng’s Google scholar</a></p>
   </li>
   <li>
-    <p><a href="https://orcid.org/0000-0003-4224-3361">Yuanpeng’s ORCID</a></p>
+    <p><a target="_blank" href="https://orcid.org/0000-0003-4224-3361">Yuanpeng’s ORCID</a></p>
   </li>
   <li>
-    <p><a href="https://rmcprofile.pages.ornl.gov/">RMCProfile website</a></p>
+    <p><a target="_blank" href="https://rmcprofile.pages.ornl.gov/">RMCProfile website</a></p>
   </li>
   <li>
-    <p><a href="https://github.com/Kvieta1990">Yuanpeng’s GitHub</a></p>
+    <p><a target="_blank" href="https://github.com/Kvieta1990">Yuanpeng’s GitHub</a></p>
   </li>
   <li>
-    <p><a href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Binder for Jupyter notebooks</a></p>
+    <p><a target="_blank" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Binder for Jupyter notebooks</a></p>
   </li>
   <li>
-    <p><a href="https://github.com/Kvieta1990/Iris">Learning notes on GitHub</a></p>
+    <p><a target="_blank" href="https://github.com/Kvieta1990/Iris">Learning notes on GitHub</a></p>
   </li>
 </ul>
 

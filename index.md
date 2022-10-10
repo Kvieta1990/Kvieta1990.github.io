@@ -44,16 +44,18 @@ phase transition is one of the goals to pursue.
 More
 ===
 
-- [Yuanpeng's ORNL profile](https://www.ornl.gov/staff-profile/yuanpeng-zhang)
+- <a target="_blank" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Yuanpeng's ORNL profile</a>
 
-- [Yuanpeng's Google scholar](https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en)
+- <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Yuanpeng's Google scholar</a>
 
-- [Yuanpeng's ORCID](https://orcid.org/0000-0003-4224-3361)
+- <a target="_blank" href="https://orcid.org/0000-0003-4224-3361">Yuanpeng's ORCID</a>
 
-- [RMCProfile website](https://rmcprofile.pages.ornl.gov/)
+- <a target="_blank" href="https://rmcprofile.pages.ornl.gov/">RMCProfile website</a>
 
-- [Yuanpeng's GitHub](https://github.com/Kvieta1990)
+- <a target="_blank" href="https://github.com/Kvieta1990">Yuanpeng's GitHub</a>
 
-- [Binder for Jupyter notebooks](https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master)
+- <a target="_blank" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Binder for Jupyter notebooks</a>
 
-- [Learning notes on GitHub](https://github.com/Kvieta1990/Iris)
+- <a target="_blank" href="https://github.com/Kvieta1990/Iris">Learning notes on GitHub</a>
+
+- <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io">GitHub repo for current blog</a>

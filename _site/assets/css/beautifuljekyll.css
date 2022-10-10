@@ -1055,7 +1055,6 @@ pre {
     position: relative;
     display: inline-block;
     border: none;
-
 }
 .card .img-top {
     display: none;
@@ -1066,18 +1065,4 @@ pre {
 }
 .card:hover .img-top {
     display: inline;
-}
-
-.container {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.box {
-  border: 2px solid red;
-  height: 100px;
-  width: 100px;
-  position: absolute;
 }
