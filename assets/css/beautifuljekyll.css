@@ -1065,11 +1065,9 @@ pre {
 }
 
 .card {
-    width: 130px;
-    height: 195px;
     position: relative;
     display: inline-block;
-    margin: 50px;
+    border: none;
 }
 .card .img-top {
     display: none;

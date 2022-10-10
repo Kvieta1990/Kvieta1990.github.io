@@ -8,10 +8,10 @@ About Me
 ===
 
 <div align='center' class='card'>
-<img src="/assets/img/SNS.jpg"
+<img src="/assets/img/ORNL.png"
    alt="SNS"
    title="SNS" />
-   <img src="/assets/img/ORNL.png" class="img-top" alt="ORNL">
+   <img src="/assets/img/SNS.jpg" class="img-top" alt="ORNL">
 </div>
 
 <p style='text-align: justify;'>
