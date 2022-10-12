@@ -1087,6 +1087,7 @@ pre {
     display: inline;
 }
 
+
 @media screen and (min-width: 500px) {
 	.card .centered-text {
 	  display: none;
@@ -1113,8 +1114,40 @@ pre {
 	.card:hover .centered-text-1 {
 			display: inline;
 	}
+
+	h1 {
+	  font-size: 35px;
+	}
 }
 
-h1 {
-  font-size: 35px;
+@media screen and (max-width: 500px) {
+	.card .centered-text {
+	  display: none;
+	  position: absolute;
+	  top: 5%;
+	  left: 35%;
+	  transform: translateZ(50px);
+		z-index: 99;
+	}
+	
+	.card:hover .centered-text {
+			display: inline;
+	}
+	
+	.card .centered-text-1 {
+	  display: none;
+	  position: absolute;
+	  top: 18%;
+	  left: 32%;
+	  transform: translateZ(50px);
+		z-index: 99;
+	}
+	
+	.card:hover .centered-text-1 {
+			display: inline;
+	}
+
+	h1 {
+	  font-size: 10px;
+	}
 }
