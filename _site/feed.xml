@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Image effect in web page</title>
+        <description>
+          CSS + Javascript for basic image effect in web page - 
+          In the index page of current blog, we have a picture shown as below - if we hover the mouse over the image, it will change to another picture and also as we move our mouse, the image will tilt along with the mouse moving. Spallation Neutron Source Oak Ridge...
+        </description>
+        <pubDate>Thu, 13 Oct 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-10-13-css_javascript_img_effect/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-10-13-css_javascript_img_effect/</guid>
+      </item>
+    
+      <item>
         <title>Math equation in Jekyll</title>
         <description>
           Notes on inclusion of equation in GitHub pages - 
@@ -239,17 +250,6 @@
         <pubDate>Mon, 27 Jul 2020 00:00:00 +0000</pubDate>
         <link>http://localhost:4001/2020-07-27-thermo_2nd/</link>
         <guid isPermaLink="true">http://localhost:4001/2020-07-27-thermo_2nd/</guid>
-      </item>
-    
-      <item>
-        <title>Notes On Temperature</title>
-        <description>
-          
-          📌Introduction - What is temperature? By temperature (\(T\)), we could mean simply the ‘hotness’ of something, i. e. as always the case in our daily life, the higher \(T\) of an object, the hotter it is. But in physics, when we say temperature, we could also mean a parameter that...
-        </description>
-        <pubDate>Wed, 22 Jul 2020 00:00:00 +0000</pubDate>
-        <link>http://localhost:4001/2020-07-22-temperature/</link>
-        <guid isPermaLink="true">http://localhost:4001/2020-07-22-temperature/</guid>
       </item>
     
   </channel>

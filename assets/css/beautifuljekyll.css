@@ -11,7 +11,7 @@ html {
 }
 
 .post-header_archive {
-  margin-top: -80px;  
+  margin-top: -80px;
 }
 
 .column_top {
@@ -1097,11 +1097,11 @@ pre {
 	  transform: translateZ(50px);
 		z-index: 99;
 	}
-	
+
 	.card:hover .centered-text {
 			display: inline;
 	}
-	
+
 	.card .centered-text-1 {
 	  display: none;
 	  position: absolute;
@@ -1110,7 +1110,7 @@ pre {
 	  transform: translateZ(50px);
 		z-index: 99;
 	}
-	
+
 	.card:hover .centered-text-1 {
 			display: inline;
 	}
@@ -1129,11 +1129,11 @@ pre {
 	  transform: translateZ(50px);
 		z-index: 99;
 	}
-	
+
 	.card:hover .centered-text {
 			display: inline;
 	}
-	
+
 	.card .centered-text-1 {
 	  display: none;
 	  position: absolute;
@@ -1142,7 +1142,7 @@ pre {
 	  transform: translateZ(50px);
 		z-index: 99;
 	}
-	
+
 	.card:hover .centered-text-1 {
 			display: inline;
 	}
