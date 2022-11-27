@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Notes on Jupyterhub server setup</title>
+        <description>
+          Tips &amp; Tricks - 
+          This post is a collection of notes of tips and tricks when trying to set up Jupyterhub server on Ubuntu 20.04 focal, together with the installation of various kernels and extensions. The instructions in Ref. [1] had been followed to set up the Jupyterhub server. The server was set up...
+        </description>
+        <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-11-26-notes_jupyterhub/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-11-26-notes_jupyterhub/</guid>
+      </item>
+    
+      <item>
         <title>Notes on twin paradox</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sun, 22 Nov 2020 00:00:00 +0000</pubDate>
         <link>http://localhost:4001/2020-11-22-kde/</link>
         <guid isPermaLink="true">http://localhost:4001/2020-11-22-kde/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on Flask</title>
-        <description>
-          Setting up web host with Python Flask - 
-          We follow the tutorial given in Ref. [1, 2] for setting up the web host using Python Flask module. Details will not be reproduced in current blog step by step. Instead, we will focus on 1) some key aspects to make step description clearer and 2) steps where error can...
-        </description>
-        <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
-        <link>http://localhost:4001/2020-11-20-flask/</link>
-        <guid isPermaLink="true">http://localhost:4001/2020-11-20-flask/</guid>
       </item>
     
   </channel>
