@@ -374,22 +374,7 @@ sudo /opt/jupyterhub/bin/python3 -m pip install ipywidgets==7.7.2
 </code></p>
 
 <blockquote>
-  <p>Issue-2: <code class="language-plaintext highlighter-rouge">plotly</code> figure is not showing up.</p>
-</blockquote>
-
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution: </b> This again is something to do with the package version that is being installed. <code class="language-plaintext highlighter-rouge">ipywidgets</code> version 8.0.2 was found not to be working with <code class="language-plaintext highlighter-rouge">plotly</code> interactive plot. The version <code class="language-plaintext highlighter-rouge">7.7.2</code> should be working, which can be installed via [2],
-
-<br />
-
-<code>
-sudo /opt/jupyterhub/bin/python3 -m pip install ipywidgets==7.7.2
-<code></code>
-
-</code></p>
-
-<blockquote>
-  <p>Issue-2: Jupyter server fails to build, when executing <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/jupyter lab build</code></p>
+  <p>Issue-3: Jupyter server fails to build, when executing <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/jupyter lab build</code></p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -414,7 +399,7 @@ or
 </p>
 
 <blockquote>
-  <p>Issue-3: Installation of <code class="language-plaintext highlighter-rouge">xeus-cling</code> kernel for C++</p>
+  <p>Issue-5: Installation of <code class="language-plaintext highlighter-rouge">xeus-cling</code> kernel for C++</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -441,7 +426,7 @@ or
 </p>
 
 <blockquote>
-  <p>Issue-4: List of kernels is not complete</p>
+  <p>Issue-6: List of kernels is not complete</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -450,7 +435,7 @@ could happen that not all kernels are listed out. That could be because we were 
 </p>
 
 <blockquote>
-  <p>Issue-5: Installation of Juka kernel</p>
+  <p>Issue-7: Installation of Juka kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -458,7 +443,7 @@ could happen that not all kernels are listed out. That could be because we were 
 </p>
 
 <blockquote>
-  <p>Issue-6: Installation of SSH kernel</p>
+  <p>Issue-8: Installation of SSH kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -467,7 +452,7 @@ server is needed to be able to see the copied kernel.
 </p>
 
 <blockquote>
-  <p>Issue-7: Installation of C kernel</p>
+  <p>Issue-9: Installation of C kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -476,7 +461,7 @@ in which case the kernel will be installed to the root directory (i.e. <code cla
 </p>
 
 <blockquote>
-  <p>Issue-8: Installation of Fortran kernel</p>
+  <p>Issue-10: Installation of Fortran kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -522,7 +507,7 @@ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/includ
 </p>
 
 <blockquote>
-  <p>Issue-10: conda environment as jupyter kernel</p>
+  <p>Issue-11: conda environment as jupyter kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -530,7 +515,7 @@ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/includ
 </p>
 
 <blockquote>
-  <p>Issue-11: Installation of Lua kernel</p>
+  <p>Issue-12: Installation of Lua kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -538,7 +523,7 @@ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/includ
 </p>
 
 <blockquote>
-  <p>Issue-12: Installation of <code class="language-plaintext highlighter-rouge">diffpy-cmi</code> &amp; <code class="language-plaintext highlighter-rouge">mpdf</code> kernel</p>
+  <p>Issue-13: Installation of <code class="language-plaintext highlighter-rouge">diffpy-cmi</code> &amp; <code class="language-plaintext highlighter-rouge">mpdf</code> kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -562,7 +547,7 @@ $ sudo /opt/conda/envs/diffpy/bin/python setup.py install
 </p>
 
 <blockquote>
-  <p>Issue-13: Installation of <code class="language-plaintext highlighter-rouge">sagemath</code> kernel</p>
+  <p>Issue-14: Installation of <code class="language-plaintext highlighter-rouge">sagemath</code> kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -578,7 +563,7 @@ Step-2: Ref. [11]
 </p>
 
 <blockquote>
-  <p>Issue-14: Installation of the jupyter language server</p>
+  <p>Issue-15: Installation of the jupyter language server</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -586,7 +571,7 @@ Step-2: Ref. [11]
 </p>
 
 <blockquote>
-  <p>Issue-15: Code formt</p>
+  <p>Issue-16: Code formt</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -594,7 +579,7 @@ Step-2: Ref. [11]
 </p>
 
 <blockquote>
-  <p>Issue-16: Execution of commands in cell within Jupyter server take forever</p>
+  <p>Issue-17: Execution of commands in cell within Jupyter server take forever</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -639,7 +624,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
 <p><br /></p>
 
 <blockquote>
-  <p>Issue-17: <code class="language-plaintext highlighter-rouge">scilab</code> kernel log file</p>
+  <p>Issue-18: <code class="language-plaintext highlighter-rouge">scilab</code> kernel log file</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -653,7 +638,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
 <p><br /></p>
 
 <blockquote>
-  <p>Issue-18: <code class="language-plaintext highlighter-rouge">wolfram</code> kernel documentation file location</p>
+  <p>Issue-19: <code class="language-plaintext highlighter-rouge">wolfram</code> kernel documentation file location</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -669,7 +654,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
 </p>
 
 <blockquote>
-  <p>Issue-19: <code class="language-plaintext highlighter-rouge">go</code> kernel creates a <code class="language-plaintext highlighter-rouge">go</code> folder under home directory</p>
+  <p>Issue-20: <code class="language-plaintext highlighter-rouge">go</code> kernel creates a <code class="language-plaintext highlighter-rouge">go</code> folder under home directory</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -692,7 +677,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
 </p>
 
 <blockquote>
-  <p>Issue-20: <code class="language-plaintext highlighter-rouge">R</code> kernel creates an <code class="language-plaintext highlighter-rouge">R</code> folder under home directory</p>
+  <p>Issue-21: <code class="language-plaintext highlighter-rouge">R</code> kernel creates an <code class="language-plaintext highlighter-rouge">R</code> folder under home directory</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">

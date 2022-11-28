@@ -95,20 +95,7 @@ sudo /opt/jupyterhub/bin/python3 -m pip install ipywidgets==7.7.2
 
 </p>
 
-> Issue-2: `plotly` figure is not showing up.
-
-<p style='text-align: justify; margin-left: 50px'>
-<b>Solution: </b> This again is something to do with the package version that is being installed. `ipywidgets` version 8.0.2 was found not to be working with `plotly` interactive plot. The version `7.7.2` should be working, which can be installed via [2],
-
-<br />
-
-<code>
-sudo /opt/jupyterhub/bin/python3 -m pip install ipywidgets==7.7.2
-<code/>
-
-</p>
-
-> Issue-2: Jupyter server fails to build, when executing `sudo /opt/jupyterhub/bin/jupyter lab build`
+> Issue-3: Jupyter server fails to build, when executing `sudo /opt/jupyterhub/bin/jupyter lab build`
 
 <p style='text-align: justify; margin-left: 50px'>
 <b>Solution-1: </b> Sometimes it may be due to some problematic extension that was installed. In this case, we want to use either `pip` or `conda` to uninstall or remove the extension that was causing the problem (refer to the log file of the build that will be printed out on terminal). Meanwhile, we also need to uninstall the extension that was installed via the `jupyter labextension` command (if it has ever been installed in this way). Also, it seems that the un-installation of the extension should be after the un-installation of the module with `pip` or `conda`. In the case of the `ipysheet` extension, here follows may be the step to follow for the un-installation,
@@ -131,7 +118,7 @@ or
 `sudo /opt/jupyterhub/bin/jupyter lab build --dev-build=False --minimize=False`
 </p>
 
-> Issue-3: Installation of `xeus-cling` kernel for C++
+> Issue-4: Installation of `xeus-cling` kernel for C++
 
 <p style='text-align: justify; margin-left: 50px'>
 <b>Solution:</b> For installing `xeus-cling` kernel for C++, we need to use `mamba`, following the steps below,
@@ -156,34 +143,34 @@ or
 6. The command above will create jupyter kernel under `$PREFIX/share/jupyter/kernels`, or on some machines, the kernels may be found in some other places, like `$PREFIX//cling/share/jupyter/kernels`. To let our jupyterhub server see our kernels, we need to manually copy the available kernels to the proper directory (where jupyterhub can find). In my case, the target directory is `/opt/jupyterhub/share/jupyter/kernels/`.
 </p>
 
-> Issue-4: List of kernels is not complete
+> Issue-5: List of kernels is not complete
 
 <p style='text-align: justify; margin-left: 50px'>
 <b>Solution:</b> Sometimes when listing out all kernels using `jupyter kernelspec list`, it
 could happen that not all kernels are listed out. That could be because we were using the wrong `jupyter`. For example, if there a version of `jupyter` installed at `/usr/bin/jupyter`, it will always win over other `jupyter` versions. If it happens that we follow certain instructions to install the `jupyterhub` server into other places (e.g., Ref. [1]), then we will not see all kernels available on our machine by `jupyter ernelspec list`. In such a situation, we have to explicitly give the full path to the `jupyter` installed in a certain location (where we installed the `jupyterhub` server). In my case, the full path is `/opt/jupyterhub/bin/jupyter`.
 </p>
 
-> Issue-5: Installation of Juka kernel
+> Issue-6: Installation of Juka kernel
 
 <p style='text-align: justify; margin-left: 50px'>
 <b>Solution:</b> To install the `juka` kernel, for sure, initially, we need to install `Juka` - see Ref. [4]. Then execute `sudo /opt/jupyterhub/bin/pip install juka-kernel`, followed by `sudo /opt/jupyterhub/bin/python -m juka-kernel.install`. Finally, we need to go to the `juka_kernel` installation location (e.g. `/opt/jupyterhub/lib/python3.8/site-packages/juka/`) and execute, `/opt/jupyterhub/bin/python install.py --user`.
 </p>
 
-> Issue-6: Installation of SSH kernel
+> Issue-7: Installation of SSH kernel
 
 <p style='text-align: justify; margin-left: 50px'>
 <b>Solution:</b> When installing the SSH kernel following the instruction in Ref. [5], by default, the kernel is installed into `/root/.local/share/jupyter/kernels/ssh`. It seems that Jupyter has difficulty in finding the installed kernel in the location above. So, we may need to manually copy the whole directory above to our local area, such as `~/.local/share/jupyter/kernels/ssh`. A restart of the
 server is needed to be able to see the copied kernel.
 </p>
 
-> Issue-7: Installation of C kernel
+> Issue-8: Installation of C kernel
 
 <p style='text-align: justify; margin-left: 50px'>
 <b> Solution:</b> When installing the C kernel following Ref. [6], the execution of the kernel installation command may require `sudo` privilege,
 in which case the kernel will be installed to the root directory (i.e. `/root/.local/share/jupyter/kernels/c`). In that case, we then need to    manually copy the directory `c` to our local area, i.e., `$HOME/.local/share/jupyter/kernels/c`.
 </p>
 
-> Issue-8: Installation of Fortran kernel
+> Issue-9: Installation of Fortran kernel
 
 <p style='text-align: justify; margin-left: 50px'>
 <b>Solution-1:</b> For installing the `Coarray Fotran` kernel, we can following Ref. [7]. One of the prerequisite package for installing this kernel is `opencoarrays`. For the installation of this package, if we are on Ubuntu higher than 18.04, we may need to follow the instruction in Ref. [8] to install it manually.
