@@ -180,36 +180,35 @@ try to execute the followings commands,
 <br />
 ---
 <br />
-sudo cp /usr/lib/x86_64-linux-gnu/op
-<br />en-coarrays/mpich/lib/* /usr/lib/x86_64-linux-gnu/
+$ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/mpich/lib/* /usr/lib/x86_64-linux-gnu/
 <br />
-sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/openmpi/lib/* /usr/lib/x86_64-linux-gnu/
+$ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/openmpi/lib/* /usr/lib/x86_64-linux-gnu/
 <br />
-cd /usr/lib/x86_64-linux-gnu/
+$ cd /usr/lib/x86_64-linux-gnu/
 <br />
-sudo ln -s libmpi_usempif08.so.40 libmpi_usempif08.so
+$ sudo ln -s libmpi_usempif08.so.40 libmpi_usempif08.so
 <br />
-sudo ln -s libmpi_usempi_ignore_tkr.so.40 libmpi_usempi_ignore_tkr.so
+$ sudo ln -s libmpi_usempi_ignore_tkr.so.40 libmpi_usempi_ignore_tkr.so
 <br />
-sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
+$ sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
 <br />
-sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
+$ sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
 <br />
-sudo ln -s libmpi.so.40 libmpi.so
+$ sudo ln -s libmpi.so.40 libmpi.so
 <br />
-sudo ln -s libopen-rte.so.40 libopen-rte.so
+$ sudo ln -s libopen-rte.so.40 libopen-rte.so
 <br />
-sudo ln -s libopen-pal.so.40 libopen-pal.so
+$ sudo ln -s libopen-pal.so.40 libopen-pal.so
 <br />
-sudo ln -s libevent-2.1.so.7 libevent.so
+$ sudo ln -s libevent-2.1.so.7 libevent.so
 <br />
-sudo ln -s libevent_pthreads-2.1.so.7 libevent_pthreads.so
+$ sudo ln -s libevent_pthreads-2.1.so.7 libevent_pthreads.so
 <br />
-sudo ln -s libhwloc.so.15 libhwloc.so
+$ sudo ln -s libhwloc.so.15 libhwloc.so
 <br />
-sudo mkdir -p  /usr/include/OpenCoarrays-2.0.0-rc1_GNU-7.3.0
+$ sudo mkdir -p  /usr/include/OpenCoarrays-2.0.0-rc1_GNU-7.3.0
 <br />
-sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/includ
+$ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/include
 <br />
 ---
 </p>
@@ -268,20 +267,20 @@ Step-2: Ref. [11]
 <b>Solution:</b> Follow the instruction in Ref. [12] for installation and refer to Ref. [13] for configuration of the service.
 </p>
 
-> Issue-15: Code formt
+> Issue-15: Code format
 
 <p style='text-align: justify; margin-left: 50px'>
 <b> Solution:</b> Jupyterlab code format needs `black` to be installed. Refer to Ref. [14] for more details.
 </p>
 
-> Issue-16: Execution of commands in cell within Jupyter server take forever
+> Issue-16: Execution of commands in cell within Jupyter server takes forever
 
 <p style='text-align: justify; margin-left: 50px'>
 <b>Solution:</b> Sometimes a kernel may be launched successfully, but when trying to execute some commands within jupyterlab, it might fail. In this case, we can take a look at the kernel specification file (the JSON file) and see whether it is a problem with the improper command being executed when launching the kernel. Here follows is an example with the `scilab` kernel.
 <br />
 1. First, we can list out all the available kernels and get an idea about where the corresponding kernel file is located,
 <br />
-$ `/opt/jupyterhub/bin/jupyter kernelspec list`
+`/opt/jupyterhub/bin/jupyter kernelspec list`
 <br />
 <b>N. B. </b> In the case of `scilab`, the kernel file is here,
 <br />
