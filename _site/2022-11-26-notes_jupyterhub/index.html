@@ -30,7 +30,7 @@
 
   
 
-  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4001/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
 
   
 
@@ -92,15 +92,15 @@
   <meta property="og:description" content="Tips &amp; Tricks">
 
   
-  <meta property="og:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2022-11-26T00:00:00+00:00">
-  <meta property="og:url" content="http://localhost:4001/2022-11-26-notes_jupyterhub/">
-  <link rel="canonical" href="http://localhost:4001/2022-11-26-notes_jupyterhub/">
+  <meta property="og:article:published_time" content="2022-11-26T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2022-11-26-notes_jupyterhub/">
+  <link rel="canonical" href="http://localhost:4000/2022-11-26-notes_jupyterhub/">
   
 
   
@@ -113,7 +113,7 @@
   <meta property="twitter:description" content="Tips &amp; Tricks">
 
   
-  <meta name="twitter:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
@@ -159,7 +159,7 @@
   
 
 
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4001/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -219,7 +219,7 @@
 
 <script>
 function myFunction() {
-		return '<a href="http://localhost:4001/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
 }
 let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
 let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
@@ -399,7 +399,7 @@ or
 </p>
 
 <blockquote>
-  <p>Issue-5: Installation of <code class="language-plaintext highlighter-rouge">xeus-cling</code> kernel for C++</p>
+  <p>Issue-4: Installation of <code class="language-plaintext highlighter-rouge">xeus-cling</code> kernel for C++</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -426,7 +426,7 @@ or
 </p>
 
 <blockquote>
-  <p>Issue-6: List of kernels is not complete</p>
+  <p>Issue-5: List of kernels is not complete</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -435,7 +435,7 @@ could happen that not all kernels are listed out. That could be because we were 
 </p>
 
 <blockquote>
-  <p>Issue-7: Installation of Juka kernel</p>
+  <p>Issue-6: Installation of Juka kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -443,7 +443,7 @@ could happen that not all kernels are listed out. That could be because we were 
 </p>
 
 <blockquote>
-  <p>Issue-8: Installation of SSH kernel</p>
+  <p>Issue-7: Installation of SSH kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -452,7 +452,7 @@ server is needed to be able to see the copied kernel.
 </p>
 
 <blockquote>
-  <p>Issue-9: Installation of C kernel</p>
+  <p>Issue-8: Installation of C kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -461,7 +461,7 @@ in which case the kernel will be installed to the root directory (i.e. <code cla
 </p>
 
 <blockquote>
-  <p>Issue-10: Installation of Fortran kernel</p>
+  <p>Issue-9: Installation of Fortran kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -472,42 +472,41 @@ try to execute the followings commands,
 <br />
 —
 <br />
-sudo cp /usr/lib/x86_64-linux-gnu/op
-<br />en-coarrays/mpich/lib/* /usr/lib/x86_64-linux-gnu/
+$ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/mpich/lib/* /usr/lib/x86_64-linux-gnu/
 <br />
-sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/openmpi/lib/* /usr/lib/x86_64-linux-gnu/
+$ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/openmpi/lib/* /usr/lib/x86_64-linux-gnu/
 <br />
-cd /usr/lib/x86_64-linux-gnu/
+$ cd /usr/lib/x86_64-linux-gnu/
 <br />
-sudo ln -s libmpi_usempif08.so.40 libmpi_usempif08.so
+$ sudo ln -s libmpi_usempif08.so.40 libmpi_usempif08.so
 <br />
-sudo ln -s libmpi_usempi_ignore_tkr.so.40 libmpi_usempi_ignore_tkr.so
+$ sudo ln -s libmpi_usempi_ignore_tkr.so.40 libmpi_usempi_ignore_tkr.so
 <br />
-sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
+$ sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
 <br />
-sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
+$ sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
 <br />
-sudo ln -s libmpi.so.40 libmpi.so
+$ sudo ln -s libmpi.so.40 libmpi.so
 <br />
-sudo ln -s libopen-rte.so.40 libopen-rte.so
+$ sudo ln -s libopen-rte.so.40 libopen-rte.so
 <br />
-sudo ln -s libopen-pal.so.40 libopen-pal.so
+$ sudo ln -s libopen-pal.so.40 libopen-pal.so
 <br />
-sudo ln -s libevent-2.1.so.7 libevent.so
+$ sudo ln -s libevent-2.1.so.7 libevent.so
 <br />
-sudo ln -s libevent_pthreads-2.1.so.7 libevent_pthreads.so
+$ sudo ln -s libevent_pthreads-2.1.so.7 libevent_pthreads.so
 <br />
-sudo ln -s libhwloc.so.15 libhwloc.so
+$ sudo ln -s libhwloc.so.15 libhwloc.so
 <br />
-sudo mkdir -p  /usr/include/OpenCoarrays-2.0.0-rc1_GNU-7.3.0
+$ sudo mkdir -p  /usr/include/OpenCoarrays-2.0.0-rc1_GNU-7.3.0
 <br />
-sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/includ
+$ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/include
 <br />
 —
 </p>
 
 <blockquote>
-  <p>Issue-11: conda environment as jupyter kernel</p>
+  <p>Issue-10: conda environment as jupyter kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -515,7 +514,7 @@ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/includ
 </p>
 
 <blockquote>
-  <p>Issue-12: Installation of Lua kernel</p>
+  <p>Issue-11: Installation of Lua kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -523,7 +522,7 @@ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/includ
 </p>
 
 <blockquote>
-  <p>Issue-13: Installation of <code class="language-plaintext highlighter-rouge">diffpy-cmi</code> &amp; <code class="language-plaintext highlighter-rouge">mpdf</code> kernel</p>
+  <p>Issue-12: Installation of <code class="language-plaintext highlighter-rouge">diffpy-cmi</code> &amp; <code class="language-plaintext highlighter-rouge">mpdf</code> kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -547,7 +546,7 @@ $ sudo /opt/conda/envs/diffpy/bin/python setup.py install
 </p>
 
 <blockquote>
-  <p>Issue-14: Installation of <code class="language-plaintext highlighter-rouge">sagemath</code> kernel</p>
+  <p>Issue-13: Installation of <code class="language-plaintext highlighter-rouge">sagemath</code> kernel</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -563,7 +562,7 @@ Step-2: Ref. [11]
 </p>
 
 <blockquote>
-  <p>Issue-15: Installation of the jupyter language server</p>
+  <p>Issue-14: Installation of the jupyter language server</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -571,7 +570,7 @@ Step-2: Ref. [11]
 </p>
 
 <blockquote>
-  <p>Issue-16: Code formt</p>
+  <p>Issue-15: Code format</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -579,7 +578,7 @@ Step-2: Ref. [11]
 </p>
 
 <blockquote>
-  <p>Issue-17: Execution of commands in cell within Jupyter server take forever</p>
+  <p>Issue-16: Execution of commands in cell within Jupyter server takes forever</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -587,7 +586,7 @@ Step-2: Ref. [11]
 <br />
 1. First, we can list out all the available kernels and get an idea about where the corresponding kernel file is located,
 <br />
-$ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter kernelspec list</code>
+<code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter kernelspec list</code>
 <br />
 <b>N. B. </b> In the case of <code class="language-plaintext highlighter-rouge">scilab</code>, the kernel file is here,
 <br />
@@ -624,7 +623,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
 <p><br /></p>
 
 <blockquote>
-  <p>Issue-18: <code class="language-plaintext highlighter-rouge">scilab</code> kernel log file</p>
+  <p>Issue-17: <code class="language-plaintext highlighter-rouge">scilab</code> kernel log file</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -638,7 +637,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
 <p><br /></p>
 
 <blockquote>
-  <p>Issue-19: <code class="language-plaintext highlighter-rouge">wolfram</code> kernel documentation file location</p>
+  <p>Issue-18: <code class="language-plaintext highlighter-rouge">wolfram</code> kernel documentation file location</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -654,7 +653,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
 </p>
 
 <blockquote>
-  <p>Issue-20: <code class="language-plaintext highlighter-rouge">go</code> kernel creates a <code class="language-plaintext highlighter-rouge">go</code> folder under home directory</p>
+  <p>Issue-19: <code class="language-plaintext highlighter-rouge">go</code> kernel creates a <code class="language-plaintext highlighter-rouge">go</code> folder under home directory</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -677,7 +676,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
 </p>
 
 <blockquote>
-  <p>Issue-21: <code class="language-plaintext highlighter-rouge">R</code> kernel creates an <code class="language-plaintext highlighter-rouge">R</code> folder under home directory</p>
+  <p>Issue-20: <code class="language-plaintext highlighter-rouge">R</code> kernel creates an <code class="language-plaintext highlighter-rouge">R</code> folder under home directory</p>
 </blockquote>
 
 <p style="text-align: justify; margin-left: 50px">
@@ -745,7 +744,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Jupyterhub+server+setup&url=http%3A%2F%2Flocalhost%3A4001%2F2022-11-26-notes_jupyterhub%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Jupyterhub+server+setup&url=http%3A%2F%2Flocalhost%3A4000%2F2022-11-26-notes_jupyterhub%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -753,7 +752,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4001%2F2022-11-26-notes_jupyterhub%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2022-11-26-notes_jupyterhub%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -761,7 +760,7 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4001%2F2022-11-26-notes_jupyterhub%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2022-11-26-notes_jupyterhub%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -782,6 +781,10 @@ $ <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter
           <a class="page-link" href="/2022-10-30-twin_paradox/" data-toggle="tooltip" data-placement="top" title="Notes on twin paradox">&larr; Previous Post</a>
         </li>
         
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2022-11-29-notes_slurm/" data-toggle="tooltip" data-placement="top" title="Notes on slurm server setup">Next Post &rarr;</a>
+        </li>
         
       </ul>
       

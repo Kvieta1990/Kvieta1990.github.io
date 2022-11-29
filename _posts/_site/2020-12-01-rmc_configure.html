@@ -1,0 +1,59 @@
+<ul>
+  <li>
+    <p><strong>Configuration on Linux system</strong></p>
+
+    <ul>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">rmcprofile</code> on cluster</p>
+
+        <p style="text-align: justify">
+  To run `rmcprofile` on cluster, the following bash script may be helpful,
+  </p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  #!/bin/bash
+  ulimit -s unlimited
+  export OMP_NUM_THREADS=12
+  RMCProfile_PATH=WHEREVER_RMCProfile_FOLDER_IS_LOCATED
+  export PGPLOT_DIR=$RMCProfile_PATH/exe/libs
+  export LD_LIBRARY_PATH=$RMCProfile_PATH/exe/libs
+  export LIBRARY_PATH=$RMCProfile_PATH/exe/libs
+  export PATH=$PATH:$RMCProfile_PATH/exe
+  $RMCProfile_PATH/exe/rmcprofile stem_name
+</code></pre></div>        </div>
+
+        <p>where <code class="language-plaintext highlighter-rouge">WHEREVER_RMCProfile_FOLDER_IS_LOCATED</code> refers to the main 
+  RMCProfile directory within which the <code class="language-plaintext highlighter-rouge">exe</code> and <code class="language-plaintext highlighter-rouge">tutorial</code> 
+  sub-directories are usually located. stem_name refers to whatever
+  the stem name is for our RMC fitting. Put this script within RMC 
+  fitting directory and run it from there should not be a bad idea.</p>
+      </li>
+      <li>
+        <p>Speeding up <code class="language-plaintext highlighter-rouge">rmcprofile</code></p>
+
+        <p>No matter running on clusters or a PC, running the following two 
+  commands just before kicking off RMC fitting should help speeding
+  up the fitting.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ulimit -s unlimited
+  export OMP_NUM_THREADS=12
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Configuration on MacOS</strong></p>
+
+    <ul>
+      <li>
+        <p>Speeding up <code class="language-plaintext highlighter-rouge">rmcprofile</code></p>
+
+        <p>Running the following two commands just before kicking off RMC
+  fitting should help speeding up the fitting.</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ulimit -s unlimited
+  export OMP_NUM_THREADS=12
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>

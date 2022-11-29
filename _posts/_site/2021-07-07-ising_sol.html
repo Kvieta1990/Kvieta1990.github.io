@@ -1,0 +1,65 @@
+<p align="center">
+<img src="/assets/img/posts/Ising_Lenz.png" style="border:none;" alt="ising_lenz" title="ising_lenz" />
+<br />
+Ernst Ising (Left) and Wilhelm Lenz (Right) - Ising was Lenz's student and the Ising model was claimed (by Ising himself) to be originated by Lenz but named after Ising.
+</p>
+
+<p style="text-align: justify">
+Ising model was originally proposed for ferromagnetism and owing to its simplicity in describing the system interaction, it has been widely used in not only describing magnetic systems in theoretical physics area but also in other areas involving similar interaction mechanism. In fact, Ising model can potentially find its position in describing systems involving binary states whereby we have active influence upon each other between neighbors. Here in this blog, I will not try to reproduce those already available beautiful introduction to Ising model - see e.g., Ref. [1-4] and a whole bunch of others one can easily find on Internet. Instead, I will just write down the outline of the problem we are facing once we have the simple Ising model set up for describing the system energy. For example, we always hear people talking about the exact solution for Ising model. But, what actually are we trying to solve? What about those non-exact ways for 'solving' the Ising model?
+
+<br />
+
+First, it is worthwhile to write down the Hamiltonian for Ising model,
+</p>
+
+\[E_I{S_i} = -\sum_{\langle i,j\rangle}J_{ij}S_iS_j - \sum_{i=1}^NB_iSi\]
+
+<p style="text-align: justify">
+where the subscript $$I$$ represents the Ising model. The first term corresponds to the interaction energy between neighboring spins and the second term is the interaction energy with externally applied magnetic field. $$\{S_i\}$$ is a shortcut for the spin configuration of the system where each spin on its lattice site has its own orientation - either up (+1) or down (-1). $$i$$ and $$j$$ refers to lattice site and $$J_{ij}$$ is the exchange constant describing the interaction strength between neighboring spins. Given the Hamiltonian of system, we are trying to calculate a crucial quantity - the partition function, which is a defined as the function of system state variables such as temperature, volume, etc. Starting from partition function, we can derive most of other thermodynamic variables, e.g., system total energy, free energy, entropy, pressure, etc. Then naturally we can look into the phase transition problem, e.g., for magnetic system, using those quantities derived from partition function. Therefore, for Ising model, when we say we want the exact solution, we mean to obtain the exact analytical solution for the partition function, the general expression of which is given as below,
+</p>
+
+\[Z = \sum_{s_1=-1}^{+1}\sum_{s_2=-1}^{+1}\cdots\sum_{s_N=-1}^{+1}e^{-\beta E_I\{S_i\}}\]
+
+<p style="text-align: justify">
+The solution for 1D Ising model can be found in Ref. [3], which is based on the original publication by Kramers and Wannier [5]. The exact solution for 2D model was originally proposed by Onsager [6-8] and the whole derivation procedure is reproduced in details as presented in Ref. [6]. The exact solution for 3D situation has been a challenging question to the physics community. In 2007, Prof. Z. Zhang proposed his exact solution based on two conjectures [9] and currently it is still under active debate and development [10, 11]. About this debate, Prof. Z. Zhang has three series of blogs introducing the history and current development of this theory - one can refer to Ref. [12-14] for details.
+
+<br />
+
+Apart from exact solution, there are other ways to explore the phase transition behavior using Ising model, mainly based on numerical or simulation (e.g., Monte Carlo) approach. An approach based on iterative numerical technique can be found in Ref. [3] and typical examples for those based on Monte Carlo simulation can be found in Ref. [15, 16].
+</p>
+
+<p><br /></p>
+
+<p><b>References</b></p>
+
+<p>[1] <a href="http://blog.sciencenet.cn/blog-2344-3193.html">http://blog.sciencenet.cn/blog-2344-3193.html</a></p>
+
+<p>[2] <a href="http://blog.sciencenet.cn/blog-2344-3194.html">http://blog.sciencenet.cn/blog-2344-3194.html</a></p>
+
+<p>[3] <a href="https://1drv.ms/b/s!AlZpbyasn9jtoqUSanNV39-L40X42g?e=pOxR7u">https://1drv.ms/b/s!AlZpbyasn9jtoqUSanNV39-L40X42g?e=pOxR7u</a></p>
+
+<p>[4] <a href="https://1drv.ms/b/s!AlZpbyasn9jtoqUTtwM3cceW31_s5Q?e=d8RZv4">https://1drv.ms/b/s!AlZpbyasn9jtoqUTtwM3cceW31_s5Q?e=d8RZv4</a></p>
+
+<p>[5] H. A. Kramers and G. H. Wannier, Phys. Rev. 60, 263, 1941.</p>
+
+<p>[6] <a href="https://1drv.ms/b/s!AlZpbyasn9jtoqUUAfC4omrmXx1SSg?e=BX4WtI">https://1drv.ms/b/s!AlZpbyasn9jtoqUUAfC4omrmXx1SSg?e=BX4WtI</a></p>
+
+<p>[7] <a href="https://1drv.ms/b/s!AlZpbyasn9jtoqUVcBIXJkaygOTFXw?e=3V0JK0">https://1drv.ms/b/s!AlZpbyasn9jtoqUVcBIXJkaygOTFXw?e=3V0JK0</a></p>
+
+<p>[8] L. Onsager. Phys. Rev. 65, 117, 1944.</p>
+
+<p>[9] Z-D. Zhang, Philos. Mag. Lett. 87 (34), 5309-5419, 2007.</p>
+
+<p>[10] Zhi-Dong Zhang, Chinese Phys. B. 22, 030513, 2013.</p>
+
+<p>[11] Zhidong Zhang, Osamu Suzuki and Norman H. March, Adv. Appl. Chifford Al. 29, 12, 2019.</p>
+
+<p>[12] <a href="http://blog.sciencenet.cn/blog-2344-3476.html">http://blog.sciencenet.cn/blog-2344-3476.html</a></p>
+
+<p>[13] <a href="http://blog.sciencenet.cn/blog-2344-49176.html">http://blog.sciencenet.cn/blog-2344-49176.html</a></p>
+
+<p>[14] <a href="http://blog.sciencenet.cn/blog-2344-1173989.html">http://blog.sciencenet.cn/blog-2344-1173989.html</a></p>
+
+<p>[15] <a href="https://rajeshrinet.github.io/blog/2014/ising-model/">https://rajeshrinet.github.io/blog/2014/ising-model/</a></p>
+
+<p>[16] <a href="https://towardsdatascience.com/monte-carlo-method-applied-on-a-2d-binary-alloy-using-an-ising-model-on-python-70afa03b172b">https://towardsdatascience.com/monte-carlo-method-applied-on-a-2d-binary-alloy-using-an-ising-model-on-python-70afa03b172b</a></p>
