@@ -30,7 +30,7 @@
 
   
 
-  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4001/feed.xml">
 
   
 
@@ -92,15 +92,15 @@
   <meta property="og:description" content="Tips &amp; Tricks">
 
   
-  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  <meta property="og:image" content="http://localhost:4001/assets/img/avatar-icon.png">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2022-11-26T00:00:00-05:00">
-  <meta property="og:url" content="http://localhost:4000/2022-11-26-notes_jupyterhub/">
-  <link rel="canonical" href="http://localhost:4000/2022-11-26-notes_jupyterhub/">
+  <meta property="og:article:published_time" content="2022-11-26T00:00:00+00:00">
+  <meta property="og:url" content="http://localhost:4001/2022-11-26-notes_jupyterhub/">
+  <link rel="canonical" href="http://localhost:4001/2022-11-26-notes_jupyterhub/">
   
 
   
@@ -113,7 +113,7 @@
   <meta property="twitter:description" content="Tips &amp; Tricks">
 
   
-  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  <meta name="twitter:image" content="http://localhost:4001/assets/img/avatar-icon.png">
   
 
   
@@ -159,7 +159,7 @@
   
 
 
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4001/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -219,7 +219,7 @@
 
 <script>
 function myFunction() {
-		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+		return '<a href="http://localhost:4001/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
 }
 let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
 let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
@@ -511,6 +511,16 @@ $ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/include
 
 <p style="text-align: justify; margin-left: 50px">
 <b>Solution:</b> When following Ref. [1] to install the jupyterhub server, a conda environment was set up to become a kernel environment. In the future if we want to install packages to that environment to make certain modules available in that kernel, we need to use the conda <code class="language-plaintext highlighter-rouge">--prefix</code> flag to specify the full path to the conda environment where we are going to install certain modules.
+
+<br />
+
+A typical command would be,
+
+<code class="language-plaintext highlighter-rouge">sudo /home/cloud/.conda/envs/mantid-developer/bin/python -m ipykernel install --prefix=/opt/jupyterhub/ --name 'mantid-developer' --display-name "Mantid"</code>
+
+<br />
+
+Using the command above, the local conda environment located at <code class="language-plaintext highlighter-rouge">/home/cloud/.conda/envs/mantid-developer</code> will be registered as a jupyter kernel. The kernel will be installed into <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/share/jupyter/kernels/mantid-developer</code>.
 </p>
 
 <blockquote>
@@ -744,7 +754,7 @@ Step-2: Ref. [11]
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Jupyterhub+server+setup&url=http%3A%2F%2Flocalhost%3A4000%2F2022-11-26-notes_jupyterhub%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Jupyterhub+server+setup&url=http%3A%2F%2Flocalhost%3A4001%2F2022-11-26-notes_jupyterhub%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -752,7 +762,7 @@ Step-2: Ref. [11]
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2022-11-26-notes_jupyterhub%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4001%2F2022-11-26-notes_jupyterhub%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -760,7 +770,7 @@ Step-2: Ref. [11]
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2022-11-26-notes_jupyterhub%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4001%2F2022-11-26-notes_jupyterhub%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>

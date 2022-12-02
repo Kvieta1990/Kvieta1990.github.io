@@ -217,6 +217,16 @@ $ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/include
 
 <p style='text-align: justify; margin-left: 50px'>
 <b>Solution:</b> When following Ref. [1] to install the jupyterhub server, a conda environment was set up to become a kernel environment. In the future if we want to install packages to that environment to make certain modules available in that kernel, we need to use the conda `--prefix` flag to specify the full path to the conda environment where we are going to install certain modules.
+
+<br />
+
+A typical command would be,
+
+`sudo /home/cloud/.conda/envs/mantid-developer/bin/python -m ipykernel install --prefix=/opt/jupyterhub/ --name 'mantid-developer' --display-name "Mantid"`
+
+<br />
+
+Using the command above, the local conda environment located at `/home/cloud/.conda/envs/mantid-developer` will be registered as a jupyter kernel. The kernel will be installed into `/opt/jupyterhub/share/jupyter/kernels/mantid-developer`.
 </p>
 
 > Issue-11: Installation of Lua kernel

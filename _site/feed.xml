@@ -7,8 +7,8 @@
     
     <description>This website is a virtual proof that I&apos;m awesome</description>
     
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4001/</link>
+    <atom:link href="http://localhost:4001/feed.xml" rel="self" type="application/rss+xml" />
     
     
       <item>
@@ -17,9 +17,9 @@
           Tips &amp; Tricks - 
           This post is a collection of notes of tips and tricks when trying to set up slurm server on Ubuntu 20.04 focal. The instructions given in Ref. [1] has been followed to set up the single-node slurm service on Ubuntu. Several things are noteworthy, as below, Before following the instructions...
         </description>
-        <pubDate>Tue, 29 Nov 2022 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2022-11-29-notes_slurm/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-11-29-notes_slurm/</guid>
+        <pubDate>Tue, 29 Nov 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-11-29-notes_slurm/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-11-29-notes_slurm/</guid>
       </item>
     
       <item>
@@ -28,9 +28,9 @@
           Tips &amp; Tricks - 
           This post is a collection of notes of tips and tricks when trying to set up Jupyterhub server on Ubuntu 20.04 focal, together with the installation of various kernels and extensions. The instructions in Ref. [1] had been followed to set up the Jupyterhub server. The server was set up...
         </description>
-        <pubDate>Sat, 26 Nov 2022 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2022-11-26-notes_jupyterhub/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-11-26-notes_jupyterhub/</guid>
+        <pubDate>Sat, 26 Nov 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-11-26-notes_jupyterhub/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-11-26-notes_jupyterhub/</guid>
       </item>
     
       <item>
@@ -39,9 +39,9 @@
           
           This post is my notes for reading an online article published on Scientific American about resolving the twin paradox purely in the special relativity framework. Refer to Ref. [1, 2] for the original article. In the article, the Lorentz transformation relation was applied to the whole process corresponding to the...
         </description>
-        <pubDate>Sun, 30 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-30-twin_paradox/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-30-twin_paradox/</guid>
+        <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-10-30-twin_paradox/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-10-30-twin_paradox/</guid>
       </item>
     
       <item>
@@ -50,9 +50,9 @@
           About stray and demagnetization field - 
           In this post, some basics about the stray and demagnetization field will be covered. The post originates from reading the book by Stöhr – Ref. [1]. Figure. 1. Demonstration of materials magnetization – reproduced from Fig. 2.6 in Ref. [1]. To get an idea about the stray and demagnetization field,...
         </description>
-        <pubDate>Tue, 25 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-25-notes_mag_IV/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-25-notes_mag_IV/</guid>
+        <pubDate>Tue, 25 Oct 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-10-25-notes_mag_IV/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-10-25-notes_mag_IV/</guid>
       </item>
     
       <item>
@@ -61,9 +61,9 @@
           CSS + Javascript for basic image effect in web page - 
           In the index page of current blog, we have a picture shown as below - if we hover the mouse over the image, it will change to another picture and also as we move our mouse, the image will tilt along with the mouse moving. Spallation Neutron Source Oak Ridge...
         </description>
-        <pubDate>Thu, 13 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-13-css_javascript_img_effect/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-13-css_javascript_img_effect/</guid>
+        <pubDate>Thu, 13 Oct 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-10-13-css_javascript_img_effect/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-10-13-css_javascript_img_effect/</guid>
       </item>
     
       <item>
@@ -72,9 +72,9 @@
           Notes on inclusion of equation in GitHub pages - 
           To enable the display of math equations in GitHub pages, we need to include the corresponding Javascript in our page header. Taking my current blog as an example (one can go to MORE LINKS \(\rightarrow\) BLOG REPO to visit the GitHub repo for current blog), in the header part of...
         </description>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-09-jekyll_maths/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-09-jekyll_maths/</guid>
+        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-10-09-jekyll_maths/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-10-09-jekyll_maths/</guid>
       </item>
     
       <item>
@@ -83,9 +83,9 @@
           Notes on inclusion of a button for copy code snippet in GitHub pages - 
           Trying to follow several resources [1, 2] for setting up the code snippet copy capability in Jekyll site, but for some reason, I could not get it working. I suppose this may be something to do with theme I am using (the beautiful-jekyll theme), and I am not what to...
         </description>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-09-jekyll_code_snippet_copy/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-09-jekyll_code_snippet_copy/</guid>
+        <pubDate>Sun, 09 Oct 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-10-09-jekyll_code_snippet_copy/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-10-09-jekyll_code_snippet_copy/</guid>
       </item>
     
       <item>
@@ -94,9 +94,9 @@
           Key notes for reading the lecture notes by Stokes on isotropy subgroup - 
           Figure. 1. Isotropy subgroup [1]. This blog contains some key notes for reading the lecture notes by H. Stokes, et al. [1] on isotropy subgroup. Details about the lecture notes will not be reproduced here and instead we will just put down some key understanding as below, Two subspaces are...
         </description>
-        <pubDate>Mon, 20 Jun 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-06-20-iso_subg/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-06-20-iso_subg/</guid>
+        <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2022-06-20-iso_subg/</link>
+        <guid isPermaLink="true">http://localhost:4001/2022-06-20-iso_subg/</guid>
       </item>
     
       <item>
@@ -105,9 +105,9 @@
           Set up OwnCloud server on Windows with WSL - 
           👉 Ports configuration Refer to the following links to gist for configuration files concerning the ports configuration, /etc/apache2/ports.conf /etc/apache2/sites-enabled/000-default.conf 👉 Connection to WSL Apache server from outside (i.e., beyond localhost) This link provide detailed explanation about the IP address assignment scheme for WSL 2 and we need to follow the...
         </description>
-        <pubDate>Tue, 21 Dec 2021 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2021-12-21-owncloud_setup/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-12-21-owncloud_setup/</guid>
+        <pubDate>Tue, 21 Dec 2021 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2021-12-21-owncloud_setup/</link>
+        <guid isPermaLink="true">http://localhost:4001/2021-12-21-owncloud_setup/</guid>
       </item>
     
       <item>
@@ -116,9 +116,9 @@
           Implementation of nano-size effect correction for modeling PDF - 
           Figure. 1. Simulation box for bulk (left) and nano (right) systems. In Ref. [1], we discussed the theoretical principles for correcting the nano-size effect when modeling the pair distribution function (PDF). The fundamental idea is to bring back the uncorrelated pairings in between atoms belong to different nanoparticles, based on...
         </description>
-        <pubDate>Wed, 25 Aug 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-08-25-nano_rmc/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-08-25-nano_rmc/</guid>
+        <pubDate>Wed, 25 Aug 2021 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2021-08-25-nano_rmc/</link>
+        <guid isPermaLink="true">http://localhost:4001/2021-08-25-nano_rmc/</guid>
       </item>
     
       <item>
@@ -127,9 +127,9 @@
           
           Figure. 1. Neutron scattering length table by NIST [1]. When we do calculations relevant to neutron scattering, it is unavoidable that we will come across either coherent, incoherent or total scattering length of elements, which describes the strength of scattering neutrons by different elements, either coherently, incoherently or both. In...
         </description>
-        <pubDate>Fri, 09 Jul 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-07-09-coh_incoh_sl/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-07-09-coh_incoh_sl/</guid>
+        <pubDate>Fri, 09 Jul 2021 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2021-07-09-coh_incoh_sl/</link>
+        <guid isPermaLink="true">http://localhost:4001/2021-07-09-coh_incoh_sl/</guid>
       </item>
     
       <item>
@@ -138,9 +138,9 @@
           
           Image reproduced from Ref. [5]. In this blog, I will put down my learning notes as reading through the article on topological electrons by A. P. Ramirez and B. Skinner [1]. Basically, I will follow the story flow in Ref. [1] and therefore, first, I will note down the main...
         </description>
-        <pubDate>Thu, 08 Jul 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-07-08-top_physics/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-07-08-top_physics/</guid>
+        <pubDate>Thu, 08 Jul 2021 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2021-07-08-top_physics/</link>
+        <guid isPermaLink="true">http://localhost:4001/2021-07-08-top_physics/</guid>
       </item>
     
       <item>
@@ -149,9 +149,9 @@
           
           Ernst Ising (Left) and Wilhelm Lenz (Right) - Ising was Lenz’s student and the Ising model was claimed (by Ising himself) to be originated by Lenz but named after Ising. Ising model was originally proposed for ferromagnetism and owing to its simplicity in describing the system interaction, it has been...
         </description>
-        <pubDate>Wed, 07 Jul 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-07-07-ising_sol/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-07-07-ising_sol/</guid>
+        <pubDate>Wed, 07 Jul 2021 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2021-07-07-ising_sol/</link>
+        <guid isPermaLink="true">http://localhost:4001/2021-07-07-ising_sol/</guid>
       </item>
     
       <item>
@@ -160,9 +160,9 @@
           
           Having multiple kernels available for Jupyter service, we may need to manage them at some point, e.g., rename kernel names and remove kernels. First, to show all available kernels, run the following command, jupyter kernelspec list we will then see output like this, Available kernels: python3 /opt/jupyterhub/lib64/python3.6/site-packages/ipykernel/resources diffpy /usr/local/share/jupyter/kernels/diffpy py37...
         </description>
-        <pubDate>Thu, 24 Jun 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-06-24-man_jupyter_kernel/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-06-24-man_jupyter_kernel/</guid>
+        <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2021-06-24-man_jupyter_kernel/</link>
+        <guid isPermaLink="true">http://localhost:4001/2021-06-24-man_jupyter_kernel/</guid>
       </item>
     
       <item>
@@ -171,9 +171,9 @@
           Documentation with docstring in Python - 
           Docstring is part of Python script which will keep record of documentation and description of the relevant section in the script. It won’t make any effect upon the execution of the script but whenever needed, the docstring could be pulled out and displayed for users’ reference. Based on that, we...
         </description>
-        <pubDate>Mon, 17 May 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-05-17-sphinx/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-05-17-sphinx/</guid>
+        <pubDate>Mon, 17 May 2021 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2021-05-17-sphinx/</link>
+        <guid isPermaLink="true">http://localhost:4001/2021-05-17-sphinx/</guid>
       </item>
     
       <item>
@@ -182,9 +182,9 @@
           Conda environment to be used as Jupyterlab kernel across users - 
           When trying to set up our own Jupyterlab server where general users can visit and use, the link in Ref. [1] could be followed. Once we follow literally the step-1 specified in the link, the server should be running without problem and we can just start using our own online...
         </description>
-        <pubDate>Mon, 17 May 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-05-17-jup_kernel/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-05-17-jup_kernel/</guid>
+        <pubDate>Mon, 17 May 2021 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2021-05-17-jup_kernel/</link>
+        <guid isPermaLink="true">http://localhost:4001/2021-05-17-jup_kernel/</guid>
       </item>
     
       <item>
@@ -193,9 +193,9 @@
           Various physical quantities describing magnetic field - 
           Talking about magnetic field, we have three relevant physical quantities - magnetic field \(\vec{H}\), magnetic induction field \(\vec{B}\) and magnetization field \(\vec{M}\). It is straightforward to understand \(\vec{M}\) - when applying magnetic field (here, by ‘magnetic field’, we mean something in general, but not specifically refer to \(\vec{H}\)), we use...
         </description>
-        <pubDate>Mon, 21 Dec 2020 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2020-12-21-notes_mag_III/</link>
-        <guid isPermaLink="true">http://localhost:4000/2020-12-21-notes_mag_III/</guid>
+        <pubDate>Mon, 21 Dec 2020 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2020-12-21-notes_mag_III/</link>
+        <guid isPermaLink="true">http://localhost:4001/2020-12-21-notes_mag_III/</guid>
       </item>
     
       <item>
@@ -204,9 +204,9 @@
           Why do we have spin half for electrons? - 
           Illustration for Stern-Glach experiment [1]. Angular moment means rotation - this applies to electron as well. For electrons, any movement is associated with current and therefore angular moment naturally is tightly linked to current as well. Furthermore, current means magnetic field, as originated by Orsted. Mathematically, starting from expressing the...
         </description>
-        <pubDate>Fri, 18 Dec 2020 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2020-12-18-spin/</link>
-        <guid isPermaLink="true">http://localhost:4000/2020-12-18-spin/</guid>
+        <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2020-12-18-spin/</link>
+        <guid isPermaLink="true">http://localhost:4001/2020-12-18-spin/</guid>
       </item>
     
       <item>
@@ -215,9 +215,9 @@
           Some tips for configuring RMCProfile on Unix/Linux system - 
           Configuration on Linux system rmcprofile on cluster To run rmcprofile on cluster, the following bash script may be helpful, #!/bin/bash ulimit -s unlimited export OMP_NUM_THREADS=12 RMCProfile_PATH=WHEREVER_RMCProfile_FOLDER_IS_LOCATED export PGPLOT_DIR=$RMCProfile_PATH/exe/libs export LD_LIBRARY_PATH=$RMCProfile_PATH/exe/libs export LIBRARY_PATH=$RMCProfile_PATH/exe/libs export PATH=$PATH:$RMCProfile_PATH/exe $RMCProfile_PATH/exe/rmcprofile stem_name where WHEREVER_RMCProfile_FOLDER_IS_LOCATED refers to the main RMCProfile directory within which the exe and tutorial...
         </description>
-        <pubDate>Tue, 01 Dec 2020 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2020-12-01-rmc_configure/</link>
-        <guid isPermaLink="true">http://localhost:4000/2020-12-01-rmc_configure/</guid>
+        <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2020-12-01-rmc_configure/</link>
+        <guid isPermaLink="true">http://localhost:4001/2020-12-01-rmc_configure/</guid>
       </item>
     
       <item>
@@ -226,9 +226,9 @@
           building site with Jekyll locally - 
           One can follow Ref. [1] to build up site with Jekyll - it contains quite a few steps concerning the set-up of sites through GitHub pages. However, this is not necessary if one just wants to set up site locally and test. Therefore, after installing Ruby and Bundle, one can...
         </description>
-        <pubDate>Sat, 28 Nov 2020 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2020-11-28-notes_jekyll/</link>
-        <guid isPermaLink="true">http://localhost:4000/2020-11-28-notes_jekyll/</guid>
+        <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+        <link>http://localhost:4001/2020-11-28-notes_jekyll/</link>
+        <guid isPermaLink="true">http://localhost:4001/2020-11-28-notes_jekyll/</guid>
       </item>
     
   </channel>
