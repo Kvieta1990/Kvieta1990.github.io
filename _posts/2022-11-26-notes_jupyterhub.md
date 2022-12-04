@@ -116,6 +116,12 @@ or
 <b>Solution-2: </b> Sometimes it could be due to low memory issue, i.e., the system resource is not enough for building the jupyterlab server. In such a situation, following the prompt on the command line usually does not help. Specifically for Google cloud service, the advantage is that we can freely change the size of our instance allocation. So we can increase the size temporarily and build the jupyterlab server. After that, we can then change the size back to the smaller value as before just to save money -- we will be billed based on the actual use of resource, which is very nice! Alternatively, the following command could also be used to build jupyter server to get around with the memory issue, sometimes,
 <br />
 `sudo /opt/jupyterhub/bin/jupyter lab build --dev-build=False --minimize=False`
+<br />
+To get a sort of permanent solution to this issue (i. e., without the need to
+append `--dev-build=False --minimize=False` flags to the build command), we can
+edit the `jupyter_config.py` file under `/opt/jupyterhub/etc/jupyter` (create
+the file if it does not exist under the directory). The directory can be
+obtained via the command `/opt/jupyterhub/bin/jupyter --path`.
 </p>
 
 > Issue-4: Installation of `xeus-cling` kernel for C++
@@ -385,6 +391,16 @@ Step-2: Ref. [11]
 
 <br />
 
+> Issue-21: Installation of `jupyterlab-latex` extension
+
+<p style='text-align: justify; margin-left: 50px'>
+<b>Solution:</b> To make sure the extension works properly, we need to install
+`xelatex` first. Refer to Ref. [17] for information about the installation of
+`xelatex`.
+</p>
+
+<br />
+
 <b>References</b>
 
 [1] [https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html](https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html)
@@ -418,3 +434,5 @@ Step-2: Ref. [11]
 [15] [https://mathematica.stackexchange.com/questions/89369/prevent-10-2-from-creating-wolfram-mathematica-directory-on-linux](https://mathematica.stackexchange.com/questions/89369/prevent-10-2-from-creating-wolfram-mathematica-directory-on-linux)
 
 [16] [https://irkernel.github.io/installation/](https://irkernel.github.io/installation/)
+
+[17] [https://tex.stackexchange.com/questions/179778/xelatex-under-ubuntu](https://tex.stackexchange.com/questions/179778/xelatex-under-ubuntu)
