@@ -401,6 +401,23 @@ Step-2: Ref. [11]
 
 <br />
 
+> Issue-22: Issue with multiline editing
+
+<p style='text-align: justify; margin-left: 50px'>
+<b>Solution:</b> Sometimes we may find that using `Alt` + left mouse dragging is
+not able to perform the multiline editing (i.e., vertical selection). In this
+case, we can go to the settings and search for `code jump` and we will be able
+to see `Modifier key` in the settings. We can try to change it to `Shift` --
+quite often it is defaulted to `Alt` key which will then make the multiline
+editing fail (the cursor will change shape but not functioning). This tip can be
+found in Ref. [18], where it is suggested to change this key to `Control`.
+However, it seems that changing it to `Control` will disable the multi-cursor
+editing (i.e., `Control` + left click on multiple locations). Finally, it seems
+that changing it to `Shift` will enable both functionalities.
+</p>
+
+<br />
+
 <b>References</b>
 
 [1] [https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html](https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html)
@@ -436,3 +453,5 @@ Step-2: Ref. [11]
 [16] [https://irkernel.github.io/installation/](https://irkernel.github.io/installation/)
 
 [17] [https://tex.stackexchange.com/questions/179778/xelatex-under-ubuntu](https://tex.stackexchange.com/questions/179778/xelatex-under-ubuntu)
+
+[18] [https://stackoverflow.com/questions/49988636/multi-cursor-editing-in-jupyter-lab](https://stackoverflow.com/questions/49988636/multi-cursor-editing-in-jupyter-lab)
