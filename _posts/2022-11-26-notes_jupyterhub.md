@@ -418,6 +418,31 @@ that changing it to `Shift` will enable both functionalities.
 
 <br />
 
+> Issue-23: Installation of SoS for working with multiple kernels in one notebook in a convenient manner
+
+<p style='text-align: justify; margin-left: 50px'>
+<b>Solution:</b> SoS notebook is actually a jupyter kernel that allows up to
+select different sub-kernels inside the notebook. So that if we want to run
+multiple kernels in a single notebook without the necessity to changing kernels
+manually, this is the tool for us. Also, it has the capability to share
+variables in between kernels so it is not simply a kernel selection tool but
+instead has the interactability between different kernels. To install this tool,
+we can refer to Ref. [19] which contains very detailed step-by-step instructions.
+One little issue we should notice is that during the installation, there is a
+step to execute `python -m sos_notebook.install`. At this stage, it may complain
+about not being able to find the `jupyter-contrib-core` module. In this case, we
+can use `pip install jupyter-contrib-core` [20] to install the module and rerun the
+step and it should work.
+
+<br />
+
+<b>N. B. </b>We should prepend the two commands mentioned with the full path of
+the executables, just like what we have been doing across the whole note here,
+`/opt/jupyterhub/bin/`.
+</p>
+
+<br />
+
 <b>References</b>
 
 [1] [https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html](https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html)
@@ -455,3 +480,7 @@ that changing it to `Shift` will enable both functionalities.
 [17] [https://tex.stackexchange.com/questions/179778/xelatex-under-ubuntu](https://tex.stackexchange.com/questions/179778/xelatex-under-ubuntu)
 
 [18] [https://stackoverflow.com/questions/49988636/multi-cursor-editing-in-jupyter-lab](https://stackoverflow.com/questions/49988636/multi-cursor-editing-in-jupyter-lab)
+
+[19] [https://vatlab.github.io/sos-docs/running.html#content](https://vatlab.github.io/sos-docs/running.html#content)
+
+[20] [https://pypi.org/project/jupyter-contrib-core/](https://pypi.org/project/jupyter-contrib-core/)
