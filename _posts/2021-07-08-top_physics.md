@@ -36,7 +36,7 @@ n = 2(1 - g)
 $$
 
 <p style='text-align: justify'>
-When defining topological electrons, we are trying to look for similar definition as for the Gauss-Bonnet integral presented above. We can summarize the discussion in Ref. [1] as the following flow, Berry connection $$\rightarrow$$ Berry curvature $$\rightarrow$$ Berry phase. Considering then the integral of Berry curvature on the boundary of a 2D Brillouin zone, we then arrive the topological invariant - the Berry phase,
+When defining topological electrons, we are trying to look for similar definition as for the Gauss-Bonnet integral presented above. We can summarize the discussion in Ref. [1] as the following flow, Berry connection $$\rightarrow$$ Berry curvature $$\rightarrow$$ Berry phase. Considering then the integral of Berry curvature on the boundary of a 2D Brillouin zone, we then arrive at the topological invariant - the Berry phase,
 </p>
 
 $$
@@ -51,8 +51,8 @@ Next, I will talk about the implication of topological invariant for magnetic fi
 
 <blockquote cite="">
 If inversion symmetry is not broken, the path integral along the boundary of
-Brillouin zone will always Chern number of 0 -- for any $$\mathbf{p}$$,
-we have a corresponding $$-\mathbf{p}$$ with identical Berry connection,
+Brillouin zone will always Chern number of 0 --- for any '$$\mathbf{p}$$',
+we have a corresponding '$$-\mathbf{p}$$' with identical Berry connection,
 which will make the integration always 0.
 </blockquote>
 
