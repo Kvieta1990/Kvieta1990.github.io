@@ -477,12 +477,12 @@ The configuration file is usually located in the `.jupyter` under user's home di
 ```
 Set shell = CreateObject("WScript.Shell")
 shell.CurrentDirectory = "C:\Users\yuanp\OneDrive\One_Documents\JupyterLab"
-shell.Run "cmd /c jupyter lab --no-browser --port 8000", 0, false
+shell.Run "cmd /c jupyter lab --no-browser --port 8000 --ip 0.0.0.0", 0, false
 ```
 
 By doing this, we can then access the server via `localhost:8000` (or via the internet if the port forwarding is configured properly) at any time after the machine starts, without the need to start up the server manually.
 
-<b>N. B.</b> The second line here specifies the working directory. The `0, false` flag tells the script not to keep the terminal running after launching the server.
+<b>N. B.</b> The second line here specifies the working directory. The '--ip 0.0.0.0' flag tells the server to accept connections from the internet but not only the local host. The `0, false` flag tells the script not to keep the terminal running after launching the server.
 
 <br />
 
