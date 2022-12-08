@@ -443,6 +443,49 @@ the executables, just like what we have been doing across the whole note here,
 
 <br />
 
+> Issue-24: Jupyter on Windows -- 1
+
+<p style='text-align: justify; margin-left: 50px'>
+<b>Solution:</b>  With my local Windows jupyter server, for some reason, it
+fails to load the `jupyter_ntoebook_config.py` configuration file which sets up
+the port, password, etc. Not sure why but suspect this could be due to the
+package version issue  -- some of the packages might be updated or downgraded
+unintentionally during installing some packages. The workaround is to directly
+specify the port number when launching the jupyter lab server, by `jupyter lab
+--no-browser --port 8000`. For password setup (once for all), we can run the
+command `jupyter lab password` followed by inputting the password twice. A
+configuration file containing the password will be saved to the config folder,
+which will be discussed in next issue.
+</p>
+
+<br />
+
+> Issue-25: Jupyter on Windows -- 2
+
+<p style='text-align: justify; margin-left: 50px'>
+The configuration file is usually located in the `.jupyter` under user's home directory. To obtain the location where the configuration file is stored, we can run `jupyter --config-dir`.
+</p>
+
+<br />
+
+> Issue-26: Jupyter on Windows -- 3
+
+<p style='text-align: justify; margin-left: 50px'>
+<b>Solution:</b> To make the jupyter server an automatically loaded service when the machine starts, we can create a startup VBS script to launch the server. This may not be the optimal way, but it should work for the personal use. Here follows is attached the VBS script, for which we can make a shortcut, and we can put the shortcut into the startup folder (`Start + R` to launch the `Run` box, and type `shell:startup` to bring up the startup folder),
+</p>
+
+```
+Set shell = CreateObject("WScript.Shell")
+shell.CurrentDirectory = "C:\Users\yuanp\OneDrive\One_Documents\JupyterLab"
+shell.Run "cmd /c jupyter lab --no-browser --port 8000", 0, false
+```
+
+By doing this, we can then access the server via `localhost:8000` (or via the internet if the port forwarding is configured properly) at any time after the machine starts, without the need to start up the server manually.
+
+<b>N. B.</b> The second line here specifies the working directory. The `0, false` flag tells the script not to keep the terminal running after launching the server.
+
+<br />
+
 <b>References</b>
 
 [1] [https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html](https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html)
