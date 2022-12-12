@@ -407,13 +407,19 @@ Step-2: Ref. [11]
 <b>Solution:</b> Sometimes we may find that using `Alt` + left mouse dragging is
 not able to perform the multiline editing (i.e., vertical selection). In this
 case, we can go to the settings and search for `code jump` and we will be able
-to see `Modifier key` in the settings. We can try to change it to `Shift` --
+to see `Modifier key` in the settings. We can try to change it to `AltGraph` --
 quite often it is defaulted to `Alt` key which will then make the multiline
 editing fail (the cursor will change shape but not functioning). This tip can be
 found in Ref. [18], where it is suggested to change this key to `Control`.
 However, it seems that changing it to `Control` will disable the multi-cursor
 editing (i.e., `Control` + left click on multiple locations). Finally, it seems
-that changing it to `Shift` will enable both functionalities.
+that changing it to `AltGraph` will enable both functionalities.
+
+<br />
+
+<b>N. B.</b> Changing it to `Shift` would then diable the `Shift + Left Click` for
+block selection. 
+
 </p>
 
 <br />
