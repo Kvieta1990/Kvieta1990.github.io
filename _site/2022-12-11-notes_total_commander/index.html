@@ -30,7 +30,7 @@
 
   
 
-  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4001/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
 
   
 
@@ -92,15 +92,15 @@
   <meta property="og:description" content="Tips &amp; Tricks">
 
   
-  <meta property="og:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2022-12-11T00:00:00+00:00">
-  <meta property="og:url" content="http://localhost:4001/2022-12-11-notes_total_commander/">
-  <link rel="canonical" href="http://localhost:4001/2022-12-11-notes_total_commander/">
+  <meta property="og:article:published_time" content="2022-12-11T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2022-12-11-notes_total_commander/">
+  <link rel="canonical" href="http://localhost:4000/2022-12-11-notes_total_commander/">
   
 
   
@@ -113,7 +113,7 @@
   <meta property="twitter:description" content="Tips &amp; Tricks">
 
   
-  <meta name="twitter:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
@@ -159,7 +159,7 @@
   
 
 
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4001/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -179,7 +179,7 @@
           </li>
         
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Research</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
                     <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
@@ -219,7 +219,7 @@
 
 <script>
 function myFunction() {
-		return '<a href="http://localhost:4001/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
 }
 let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
 let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
@@ -290,7 +290,7 @@ file and directory operations.
 </p>
 
 <p align="center">
-<img src="/assets/img/posts/TC.png" style="border:none;" width="500" alt="tc" title="tc" />
+<img src="/assets/img/posts/TC.png" style="border:none;" width="800" alt="tc" title="tc" />
 </p>
 
 <blockquote>
@@ -327,11 +327,11 @@ defined in the <code class="language-plaintext highlighter-rouge">Sysapp.bar</co
 
 <p>Alternative to the solution with F4Menu (which is discussed elsewhere as posted below), I am providing a native solution. With this configuration, we can select multiple files and press a defined key combo to edit them using the defined editor.</p>
 
-<p>Go to ‘Configuration’ -&gt; ‘Options…’ -&gt; ‘Misc.’ -&gt; Specify a hotkey combo (like in my case, I chose ‘Ctrl+E’) under the ‘Redefine hotkeys (Keyboard remapping)’ section in the right panel. Then click on the magnify glass next to the ‘Command:’ input box down below. A ‘Choose command’ window will pop up where we can specify the command we want to associate with the hotkey we just defined.</p>
+<p>Go to <code class="language-plaintext highlighter-rouge">Configuration</code> -&gt; <code class="language-plaintext highlighter-rouge">Options...</code> -&gt; <code class="language-plaintext highlighter-rouge">Misc.</code> -&gt; Specify a hotkey combo (like in my case, I chose <code class="language-plaintext highlighter-rouge">Ctrl+E</code>) under the <code class="language-plaintext highlighter-rouge">Redefine hotkeys (Keyboard remapping)</code> section in the right panel. Then click on the magnify glass next to the <code class="language-plaintext highlighter-rouge">Command:</code> input box down below. A <code class="language-plaintext highlighter-rouge">Choose command</code> window will pop up where we can specify the command we want to associate with the hotkey we just defined.</p>
 
-<p>At the bottom of the pop-up window (the ‘Choose command’ window), we can click on the ‘New…’ button, which will bring up another pop-up window where we can give the command a name (e.g., ‘em_notepadpp’). After giving it a name, we will be lead to another window where we can put down the specific commands we want to execute. In the first box, we put in the full path to the editor executable that we want to use. In my case, I am using Notepad++ and this is my full path, ‘C:\Program Files (x86)\Notepad++\notepad++.exe’. To make sure it is working properly, we may want to include double quotation mark before and after the full path. In the second input box, we want to put ‘%P%S’ as the parameter of the command - this time, we don’t need any quotation mark and also we don’t have space between the two parameters. Then if we want to, we can specify the icon down below but I guess this is not necessary.</p>
+<p>At the bottom of the pop-up window (the <code class="language-plaintext highlighter-rouge">Choose command</code> window), we can click on the <code class="language-plaintext highlighter-rouge">New...</code> button, which will bring up another pop-up window where we can give the command a name (e.g., <code class="language-plaintext highlighter-rouge">em_notepadpp</code>). After giving it a name, we will be lead to another window where we can put down the specific commands we want to execute. In the first box, we put in the full path to the editor executable that we want to use. In my case, I am using Notepad++ and this is my full path, <code class="language-plaintext highlighter-rouge">C:\Program Files (x86)\Notepad++\notepad++.exe</code>. To make sure it is working properly, we may want to include double quotation mark before and after the full path. In the second input box, we want to put <code class="language-plaintext highlighter-rouge">%P%S</code> as the parameter of the command - this time, we don<code class="language-plaintext highlighter-rouge">t need any quotation mark and also we don</code>t have space between the two parameters. Then if we want to, we can specify the icon down below but I guess this is not necessary.</p>
 
-<p>Then we can just select the command we just defined (e.g., ‘em_notepadpp’) in the ‘Choose command’ window and click on ‘OK’. Then we will go back to the ‘Configuration’ window where we can see the defined command is already populated in the ‘Command:’ input box. Clicking on the ‘√’ on the right hand side will confirm the command. Then we are done by clicking on the ‘OK’ button.</p>
+<p>Then we can just select the command we just defined (e.g., <code class="language-plaintext highlighter-rouge">em_notepadpp</code>) in the <code class="language-plaintext highlighter-rouge">Choose command</code> window and click on <code class="language-plaintext highlighter-rouge">OK</code>. Then we will go back to the <code class="language-plaintext highlighter-rouge">Configuration</code> window where we can see the defined command is already populated in the <code class="language-plaintext highlighter-rouge">Command:</code> input box. Clicking on the <code class="language-plaintext highlighter-rouge">√</code> on the right hand side will confirm the command. Then we are done by clicking on the <code class="language-plaintext highlighter-rouge">OK</code> button.</p>
 
 <p>The same trick was posted on TC user forum – see Ref. [1].</p>
 
@@ -370,7 +370,7 @@ defined in the <code class="language-plaintext highlighter-rouge">Sysapp.bar</co
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Total+Commander+Setups&url=http%3A%2F%2Flocalhost%3A4001%2F2022-12-11-notes_total_commander%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Total+Commander+Setups&url=http%3A%2F%2Flocalhost%3A4000%2F2022-12-11-notes_total_commander%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -378,7 +378,7 @@ defined in the <code class="language-plaintext highlighter-rouge">Sysapp.bar</co
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4001%2F2022-12-11-notes_total_commander%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2022-12-11-notes_total_commander%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -386,7 +386,7 @@ defined in the <code class="language-plaintext highlighter-rouge">Sysapp.bar</co
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4001%2F2022-12-11-notes_total_commander%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2022-12-11-notes_total_commander%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -404,7 +404,7 @@ defined in the <code class="language-plaintext highlighter-rouge">Sysapp.bar</co
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2022-11-29-notes_slurm/" data-toggle="tooltip" data-placement="top" title="Notes on slurm server setup">&larr; Previous Post</a>
+          <a class="page-link" href="/2022-12-11-notes_gsasii/" data-toggle="tooltip" data-placement="top" title="Notes on GSAS-II">&larr; Previous Post</a>
         </li>
         
         

@@ -12,6 +12,28 @@
     
     
       <item>
+        <title>Notes on Total Commander Setups</title>
+        <description>
+          Tips &amp; Tricks - 
+          This post is a collection of notes of tips and tricks for Total Commander setups. This is a software as an alternative to the file explorer on Windows. It allows double column management and operations, making life much easier in terms of file and directory operations. Import/Export configuration file By...
+        </description>
+        <pubDate>Sun, 11 Dec 2022 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2022-12-11-notes_total_commander/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-12-11-notes_total_commander/</guid>
+      </item>
+    
+      <item>
+        <title>Notes on GSAS-II</title>
+        <description>
+          Tips &amp; Tricks - 
+          This post is a collection of notes of tips and tricks for using GSAS-II. Multi-phase refinement When we have more than one phase in GSAS-II refinement, we should have phase fraction for each of the phases involved. With this regard, we have, suppose we have two phases, three parameters –...
+        </description>
+        <pubDate>Sun, 11 Dec 2022 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2022-12-11-notes_gsasii/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-12-11-notes_gsasii/</guid>
+      </item>
+    
+      <item>
         <title>Notes on slurm server setup</title>
         <description>
           Tips &amp; Tricks - 
@@ -207,28 +229,6 @@
         <pubDate>Fri, 18 Dec 2020 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2020-12-18-spin/</link>
         <guid isPermaLink="true">http://localhost:4000/2020-12-18-spin/</guid>
-      </item>
-    
-      <item>
-        <title>Configure RMCProfile</title>
-        <description>
-          Some tips for configuring RMCProfile on Unix/Linux system - 
-          Configuration on Linux system rmcprofile on cluster To run rmcprofile on cluster, the following bash script may be helpful, #!/bin/bash ulimit -s unlimited export OMP_NUM_THREADS=12 RMCProfile_PATH=WHEREVER_RMCProfile_FOLDER_IS_LOCATED export PGPLOT_DIR=$RMCProfile_PATH/exe/libs export LD_LIBRARY_PATH=$RMCProfile_PATH/exe/libs export LIBRARY_PATH=$RMCProfile_PATH/exe/libs export PATH=$PATH:$RMCProfile_PATH/exe $RMCProfile_PATH/exe/rmcprofile stem_name where WHEREVER_RMCProfile_FOLDER_IS_LOCATED refers to the main RMCProfile directory within which the exe and tutorial...
-        </description>
-        <pubDate>Tue, 01 Dec 2020 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2020-12-01-rmc_configure/</link>
-        <guid isPermaLink="true">http://localhost:4000/2020-12-01-rmc_configure/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on Jekyll</title>
-        <description>
-          building site with Jekyll locally - 
-          One can follow Ref. [1] to build up site with Jekyll - it contains quite a few steps concerning the set-up of sites through GitHub pages. However, this is not necessary if one just wants to set up site locally and test. Therefore, after installing Ruby and Bundle, one can...
-        </description>
-        <pubDate>Sat, 28 Nov 2020 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2020-11-28-notes_jekyll/</link>
-        <guid isPermaLink="true">http://localhost:4000/2020-11-28-notes_jekyll/</guid>
       </item>
     
   </channel>

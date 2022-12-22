@@ -149,6 +149,14 @@
 <lastmod>2022-11-29T00:00:00-05:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/2022-12-11-notes_gsasii/</loc>
+<lastmod>2022-12-11T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/2022-12-11-notes_total_commander/</loc>
+<lastmod>2022-12-11T00:00:00-05:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/about/</loc>
 </url>
 <url>
@@ -192,6 +200,10 @@
 </url>
 <url>
 <loc>http://localhost:4000/nav_pages/tutorial/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/assets/docs/GSASII_Multiphase_setup.pdf</loc>
+<lastmod>2022-12-22T14:43:39-05:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/assets/docs/Notes_On_Coriolis_Force.pdf</loc>

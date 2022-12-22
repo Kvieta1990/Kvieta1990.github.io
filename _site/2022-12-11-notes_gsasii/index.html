@@ -18,13 +18,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Notes on GSAS-II</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="Tips &amp; Tricks">
 
   
 
@@ -88,17 +88,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Notes on GSAS-II">
+  <meta property="og:description" content="Tips &amp; Tricks">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2022/06/">
-  <link rel="canonical" href="http://localhost:4000/archive/2022/06/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2022-12-11T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2022-12-11-notes_gsasii/">
+  <link rel="canonical" href="http://localhost:4000/2022-12-11-notes_gsasii/">
   
 
   
@@ -107,8 +109,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Notes on GSAS-II">
+  <meta property="twitter:description" content="Tips &amp; Tricks">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -248,10 +250,18 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Notes on GSAS-II</h1>
+          
+            
+              <h2 class="post-subheading">Tips & Tricks</h2>
+            
           
 
+          
+					<span class="post-meta">Posted on December 11, 2022, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -264,201 +274,130 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
+      
 
-<div class="intro-header"></div>
+      
 
-<div role="main" class=" container-md ">
-  
-
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>June, 2022</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2022-06-20-iso_subg/"><h3 class="post-title mb0">Notes On Isotropy Subgroup</h3></a>
-					<p class="post-meta small">June 20, 2022, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#maths">maths</a>
-  
-    <a href="/tags#crystallography">crystallography</a>
-  
+      <article role="main" class="blog-post">
+        <p style="text-align: justify">
+This post is a collection of notes of tips and tricks for using GSAS-II.
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+<blockquote>
+  <p>Multi-phase refinement</p>
+</blockquote>
 
+<p>When we have more than one phase in GSAS-II refinement, we should have phase fraction for each of the phases involved. With this regard,
+we have, suppose we have two phases, three parameters – the overall scale factor and two phase fraction factors. In this case, we cannot
+let all of these three parameters to be refined since otherwise the program will by a high chance crash due to the strong correlation among
+these parameters. Instead, we should refine the scale factor together with one of the two phase fraction factors, while setting a constraint
+to specify that overall phase fraction should be 1. To add the constraint, we should follow the instruction in Ref. [1] (see #3 in Step-I),
+or <a href="/assets/doc/GSASII_Multiphase_setup.pdf">here</a>. Here it should be noticed that the phase fraction is referred to as <code class="language-plaintext highlighter-rouge">Scale</code> for each
+phase and this <code class="language-plaintext highlighter-rouge">Scale</code> should not be confused with that of the overall histogram.</p>
+
+<p><br /></p>
+
+<p><b>References</b></p>
+
+<p>[1] <a href="https://subversion.xray.aps.anl.gov/pyGSAS/Tutorials/SeqRefine/SequentialTutorial.htm">https://subversion.xray.aps.anl.gov/pyGSAS/Tutorials/SeqRefine/SequentialTutorial.htm</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#scattering">scattering</a>
+          
+            <a href="/tags#crystallography">crystallography</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
 
   
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+GSAS-II&url=http%3A%2F%2Flocalhost%3A4000%2F2022-12-11-notes_gsasii%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2022-12-11-notes_gsasii%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2022-12-11-notes_gsasii%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2022-11-29-notes_slurm/" data-toggle="tooltip" data-placement="top" title="Notes on slurm server setup">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2022-12-11-notes_total_commander/" data-toggle="tooltip" data-placement="top" title="Notes on Total Commander Setups">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
 </div>
 
 

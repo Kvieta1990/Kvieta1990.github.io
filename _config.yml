@@ -21,7 +21,7 @@ navbar-links:
     - All posts: "all_posts"
     - Archive: "archive"
     - Tags: "tags"
-  Research:
+  Academic:
     - Publications: "/nav_pages/publications"
     - Learning Notes: "/nav_pages/lnotes"
   More Links:
