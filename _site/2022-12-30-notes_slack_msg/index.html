@@ -18,13 +18,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Notes on Slack App Setup</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="Send message to Slack with Python">
 
   
 
@@ -88,17 +88,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Notes on Slack App Setup">
+  <meta property="og:description" content="Send message to Slack with Python">
 
   
   <meta property="og:image" content="http://localhost:4001/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4001/archive/2021/12/">
-  <link rel="canonical" href="http://localhost:4001/archive/2021/12/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2022-12-30T00:00:00+00:00">
+  <meta property="og:url" content="http://localhost:4001/2022-12-30-notes_slack_msg/">
+  <link rel="canonical" href="http://localhost:4001/2022-12-30-notes_slack_msg/">
   
 
   
@@ -107,8 +109,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Notes on Slack App Setup">
+  <meta property="twitter:description" content="Send message to Slack with Python">
 
   
   <meta name="twitter:image" content="http://localhost:4001/assets/img/avatar-icon.png">
@@ -248,10 +250,18 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Notes on Slack App Setup</h1>
+          
+            
+              <h2 class="post-subheading">Send message to Slack with Python</h2>
+            
           
 
+          
+					<span class="post-meta">Posted on December 30, 2022, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -264,205 +274,174 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
+      
 
-<div class="intro-header"></div>
+      
 
-<div role="main" class=" container-md ">
-  
-
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>December, 2021</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2021-12-21-owncloud_setup/"><h3 class="post-title mb0">OwnCloud Server Setup</h3></a>
-					<p class="post-meta small">December 21, 2021, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#server">server</a>
-  
-    <a href="/tags#web development">web development</a>
-  
+      <article role="main" class="blog-post">
+        <p style="text-align: justify">
+To set up for sending message to Slack using Python, we can refer to Ref. [1]. Most of the instructions in the reference
+would work out, with several glitches and thus necessary adjustments.
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+<p align="center">
+<img src="/assets/img/posts/slack.png" style="border:none;" width="100" alt="slack" title="slack" />
+</p>
 
+<blockquote>
+  <p>First, it should be stressed the importance of setting the proper <code class="language-plaintext highlighter-rouge">scope</code> when setting up the <code class="language-plaintext highlighter-rouge">OAuth &amp; Permissions</code>. If the
+scope is not set up properly, the message would not be sent successfully even the login token is configured without any problems.
+The instructions in Ref. [1] provides all the list of scope items that would guarantee a successful message sending.</p>
+</blockquote>
+
+<blockquote>
+  <p>Another tip is that the Python script containing the token cannot be exposed to public domains, e.g., be pushed to Github repo.
+Once we do that, Slack API can detect the exposure and disable the API, which does make sense since exposing the token to the
+public domain is definitely not a good idea. However, this only applies to the situation when we put the token directly in the
+script. If we define a system variable for the token and access the token within the script via the system variable, it should be fine.</p>
+</blockquote>
+
+<blockquote>
+  <p>A little glitch in the instruction in Ref. [1] is about the channel name. It seems that the channel name cannot contain the <code class="language-plaintext highlighter-rouge">#</code> symbol.</p>
+</blockquote>
+
+<p>Here follows is a working example of sending message to Slack using Python,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python
+</span>
+<span class="kn">from</span> <span class="nn">slack_sdk</span> <span class="kn">import</span> <span class="n">WebClient</span>
+<span class="kn">from</span> <span class="nn">slack_sdk.errors</span> <span class="kn">import</span> <span class="n">SlackApiError</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">WebClient</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s">"MY_TOKEN_FROM_SLACK_API"</span><span class="p">)</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mf">0.3</span><span class="p">:</span>
+    <span class="n">file_in</span> <span class="o">=</span> <span class="s">"/home/y8z/Dropbox/Documents_ORNL/Memorize/words.md"</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">file_in</span> <span class="o">=</span> <span class="s">"/home/y8z/Dropbox/Documents_ORNL/Memorize/others.md"</span>
+
+<span class="n">file_read</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_in</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="n">file_read</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">to_send</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">num_to_send</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_to_send</span><span class="p">):</span>
+        <span class="n">index_tmp</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">to_send</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">index_tmp</span><span class="p">)</span>
+    <span class="n">msg_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">to_send</span><span class="p">]</span>
+    <span class="n">msg_body</span> <span class="o">=</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">msg_list</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="n">chat_postMessage</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s">"memorize"</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">msg_body</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The script will randomly grab 5 words or other memorize items from the files in which I manually populated entries from time to time. Then it will
+send the randomly grabbed memorize items to my Slack channel. I set up a cron job that executes this script on a daily base so that I can deepen my
+memory on those items on a daily basis.</p>
+
+<p><br /></p>
+
+<p><b>References</b></p>
+
+<p>[1] <a href="https://plazagonzalo.medium.com/send-messages-to-slack-using-python-4b986586cb6e">https://plazagonzalo.medium.com/send-messages-to-slack-using-python-4b986586cb6e</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#tool">tool</a>
+          
+            <a href="/tags#technical">technical</a>
+          
+            <a href="/tags#Slack">Slack</a>
+          
+            <a href="/tags#Python">Python</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
 
   
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Slack+App+Setup&url=http%3A%2F%2Flocalhost%3A4001%2F2022-12-30-notes_slack_msg%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4001%2F2022-12-30-notes_slack_msg%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4001%2F2022-12-30-notes_slack_msg%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2022-12-11-notes_total_commander/" data-toggle="tooltip" data-placement="top" title="Notes on Total Commander Setups">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
 </div>
 
 
