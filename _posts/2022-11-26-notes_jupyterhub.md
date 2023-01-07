@@ -499,6 +499,14 @@ By doing this, we can then access the server via `localhost:8000` (or via the in
 
 <br />
 
+> Issue-27: Console Log for `ipywidgets` debug
+
+<p style='text-align: justify; margin-left: 50px'>
+<b>Solution:</b> When developing `ipywidgets` interface in Jupyterlab, sometime we will find that the widgets interface is not functioning as expected but there is no error message printed out. To get a knowledge about the error message in case of any for debugging purpose, we need to enable the console log view in Jupyterlab. To do that, we need to go to `View` $$\rightarrow$$ `Show Console Log` from the menu and then at the bottom of the page, we should be able to see all the console logs.
+</p>
+
+<br />
+
 <b>References</b>
 
 [1] [https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html](https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html)

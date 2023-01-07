@@ -820,6 +820,16 @@ shell.Run "cmd /c jupyter lab --no-browser --port 8000 --ip 0.0.0.0", 0, false
 
 <p><br /></p>
 
+<blockquote>
+  <p>Issue-27: Console Log for <code class="language-plaintext highlighter-rouge">ipywidgets</code> debug</p>
+</blockquote>
+
+<p style="text-align: justify; margin-left: 50px">
+<b>Solution:</b> When developing <code class="language-plaintext highlighter-rouge">ipywidgets</code> interface in Jupyterlab, sometime we will find that the widgets interface is not functioning as expected but there is no error message printed out. To get a knowledge about the error message in case of any for debugging purpose, we need to enable the console log view in Jupyterlab. To do that, we need to go to <code class="language-plaintext highlighter-rouge">View</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Show Console Log</code> from the menu and then at the bottom of the page, we should be able to see all the console logs.
+</p>
+
+<p><br /></p>
+
 <p><b>References</b></p>
 
 <p>[1] <a href="https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html">https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html</a></p>
