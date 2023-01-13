@@ -30,7 +30,7 @@
 
   
 
-  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4001/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
 
   
 
@@ -92,15 +92,15 @@
   <meta property="og:description" content="Tips &amp; Tricks">
 
   
-  <meta property="og:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2022-11-26T00:00:00+00:00">
-  <meta property="og:url" content="http://localhost:4001/2022-11-26-notes_jupyterhub/">
-  <link rel="canonical" href="http://localhost:4001/2022-11-26-notes_jupyterhub/">
+  <meta property="og:article:published_time" content="2022-11-26T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2022-11-26-notes_jupyterhub/">
+  <link rel="canonical" href="http://localhost:4000/2022-11-26-notes_jupyterhub/">
   
 
   
@@ -113,7 +113,7 @@
   <meta property="twitter:description" content="Tips &amp; Tricks">
 
   
-  <meta name="twitter:image" content="http://localhost:4001/assets/img/avatar-icon.png">
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
@@ -159,7 +159,7 @@
   
 
 
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4001/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -219,7 +219,7 @@
 
 <script>
 function myFunction() {
-		return '<a href="http://localhost:4001/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
 }
 let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
 let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
@@ -813,10 +813,11 @@ The configuration file is usually located in the <code class="language-plaintext
 shell.CurrentDirectory = "C:\Users\yuanp\OneDrive\One_Documents\JupyterLab"
 shell.Run "cmd /c jupyter lab --no-browser --port 8000 --ip 0.0.0.0", 0, false
 </code></pre></div></div>
+<p style="text-align: justify; margin-left: 50px">
+By doing this, we can then access the server via <code class="language-plaintext highlighter-rouge">localhost:8000</code> (or via the internet if the port forwarding is configured properly) at any time after the machine starts, without the need to start up the server manually.
 
-<p>By doing this, we can then access the server via <code class="language-plaintext highlighter-rouge">localhost:8000</code> (or via the internet if the port forwarding is configured properly) at any time after the machine starts, without the need to start up the server manually.</p>
-
-<p><b>N. B.</b> The second line here specifies the working directory. The ‘–ip 0.0.0.0’ flag tells the server to accept connections from the internet but not only the local host. The <code class="language-plaintext highlighter-rouge">0, false</code> flag tells the script not to keep the terminal running after launching the server.</p>
+<b>N. B.</b> The second line here specifies the working directory. The ‘–ip 0.0.0.0’ flag tells the server to accept connections from the internet but not only the local host. The <code class="language-plaintext highlighter-rouge">0, false</code> flag tells the script not to keep the terminal running after launching the server.
+</p>
 
 <p><br /></p>
 
@@ -826,6 +827,28 @@ shell.Run "cmd /c jupyter lab --no-browser --port 8000 --ip 0.0.0.0", 0, false
 
 <p style="text-align: justify; margin-left: 50px">
 <b>Solution:</b> When developing <code class="language-plaintext highlighter-rouge">ipywidgets</code> interface in Jupyterlab, sometime we will find that the widgets interface is not functioning as expected but there is no error message printed out. To get a knowledge about the error message in case of any for debugging purpose, we need to enable the console log view in Jupyterlab. To do that, we need to go to <code class="language-plaintext highlighter-rouge">View</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Show Console Log</code> from the menu and then at the bottom of the page, we should be able to see all the console logs.
+</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>Issue-28: <code class="language-plaintext highlighter-rouge">matplotlib</code> and <code class="language-plaintext highlighter-rouge">plotly</code> interactive plot</p>
+</blockquote>
+
+<p style="text-align: justify; margin-left: 50px">
+<b>Solution:</b> When there are some issues with either <code class="language-plaintext highlighter-rouge">%matplotlib widget</code> or
+some javascript error in showing the interactive plot or widgets, it could be
+something to do with the version of <code class="language-plaintext highlighter-rouge">ipywidgets</code> installed. Try the following
+steps,
+</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> /opt/conda/envs/python/bin/pip uninstall ipywidgets
+<span class="nb">sudo</span> /opt/conda/envs/python/bin/pip <span class="nb">install </span>ipywidgets
+</code></pre></div></div>
+
+<p style="text-align: justify; margin-left: 50px">
+It seems that installing the version of <code class="language-plaintext highlighter-rouge">8.0.4</code> for <code class="language-plaintext highlighter-rouge">ipywidgets</code> does solve the
+issue.
 </p>
 
 <p><br /></p>
@@ -897,7 +920,7 @@ shell.Run "cmd /c jupyter lab --no-browser --port 8000 --ip 0.0.0.0", 0, false
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Jupyterhub+server+setup&url=http%3A%2F%2Flocalhost%3A4001%2F2022-11-26-notes_jupyterhub%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Jupyterhub+server+setup&url=http%3A%2F%2Flocalhost%3A4000%2F2022-11-26-notes_jupyterhub%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -905,7 +928,7 @@ shell.Run "cmd /c jupyter lab --no-browser --port 8000 --ip 0.0.0.0", 0, false
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4001%2F2022-11-26-notes_jupyterhub%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2022-11-26-notes_jupyterhub%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -913,7 +936,7 @@ shell.Run "cmd /c jupyter lab --no-browser --port 8000 --ip 0.0.0.0", 0, false
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4001%2F2022-11-26-notes_jupyterhub%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2022-11-26-notes_jupyterhub%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>

@@ -492,10 +492,11 @@ Set shell = CreateObject("WScript.Shell")
 shell.CurrentDirectory = "C:\Users\yuanp\OneDrive\One_Documents\JupyterLab"
 shell.Run "cmd /c jupyter lab --no-browser --port 8000 --ip 0.0.0.0", 0, false
 ```
-
+<p style='text-align: justify; margin-left: 50px'>
 By doing this, we can then access the server via `localhost:8000` (or via the internet if the port forwarding is configured properly) at any time after the machine starts, without the need to start up the server manually.
 
 <b>N. B.</b> The second line here specifies the working directory. The '--ip 0.0.0.0' flag tells the server to accept connections from the internet but not only the local host. The `0, false` flag tells the script not to keep the terminal running after launching the server.
+</p>
 
 <br />
 
@@ -503,6 +504,27 @@ By doing this, we can then access the server via `localhost:8000` (or via the in
 
 <p style='text-align: justify; margin-left: 50px'>
 <b>Solution:</b> When developing `ipywidgets` interface in Jupyterlab, sometime we will find that the widgets interface is not functioning as expected but there is no error message printed out. To get a knowledge about the error message in case of any for debugging purpose, we need to enable the console log view in Jupyterlab. To do that, we need to go to `View` $$\rightarrow$$ `Show Console Log` from the menu and then at the bottom of the page, we should be able to see all the console logs.
+</p>
+
+<br />
+
+> Issue-28: `matplotlib` and `plotly` interactive plot
+
+<p style='text-align: justify; margin-left: 50px'>
+<b>Solution:</b> When there are some issues with either `%matplotlib widget` or
+some javascript error in showing the interactive plot or widgets, it could be
+something to do with the version of `ipywidgets` installed. Try the following
+steps,
+</p>
+
+```bash
+sudo /opt/conda/envs/python/bin/pip uninstall ipywidgets
+sudo /opt/conda/envs/python/bin/pip install ipywidgets
+```
+
+<p style='text-align: justify; margin-left: 50px'>
+It seems that installing the version of `8.0.4` for `ipywidgets` does solve the
+issue.
 </p>
 
 <br />
