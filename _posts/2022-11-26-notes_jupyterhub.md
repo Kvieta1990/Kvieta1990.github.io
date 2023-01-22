@@ -524,7 +524,8 @@ sudo /opt/conda/envs/python/bin/pip install ipywidgets
 
 <p style='text-align: justify; margin-left: 50px'>
 It seems that installing the version of `8.0.4` for `ipywidgets` does solve the
-issue.
+issue. As a side note, on my local jupyter server on a Windows machine, I found
+only the version of `7.6.5` for `ipywidgets` will work.
 </p>
 
 <br />
