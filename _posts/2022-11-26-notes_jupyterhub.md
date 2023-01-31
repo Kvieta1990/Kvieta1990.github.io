@@ -530,6 +530,30 @@ only the version of `7.6.5` for `ipywidgets` will work.
 
 <br />
 
+> Issue-29: Installation of `Mantid` kernel
+
+<p style='text-align: justify; margin-left: 50px'>
+<b>Solution:</b> First, we need to follow the instruction in Ref. [21] to install
+the conda environment for `Mantid`. After setting up the conda environment, we
+need to run the following command to add a certain build of `Mantid` into the
+conda environment path so that the corresponding version of `python` can find
+all `Mantid` relevant modules,
+</p>
+
+```bash
+conda activate mantid-developer
+python MANTID_REPO_DIR/build/bin/AddPythonPath.py
+```
+
+<p style='text-align: justify; margin-left: 50px'>
+where `MANTID_REPO_DIR` refers to the full path of the `mantid` repo directory
+and we are assuming that the conda environment for `Mantid` is called `mantid-developer`.
+Then we can refer to the instruction presented in `Issue-10` above to register
+the corresponding conda environment as a kernel of Jupyter.
+</p>
+
+<br />
+
 <b>References</b>
 
 [1] [https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html](https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html)
@@ -571,3 +595,5 @@ only the version of `7.6.5` for `ipywidgets` will work.
 [19] [https://vatlab.github.io/sos-docs/running.html#content](https://vatlab.github.io/sos-docs/running.html#content)
 
 [20] [https://pypi.org/project/jupyter-contrib-core/](https://pypi.org/project/jupyter-contrib-core/)
+
+[21] [https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#gettingstartedcondalinux](https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#gettingstartedcondalinux)
