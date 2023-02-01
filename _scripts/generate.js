@@ -83,6 +83,7 @@ function createArchiveFiles(){
         data[date.year].push(date.month);
       }
     }
+    console.log(data)
     return data;
   })
   .then(function(data){
