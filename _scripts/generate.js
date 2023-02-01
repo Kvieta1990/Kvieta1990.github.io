@@ -88,9 +88,13 @@ function createArchiveFiles(){
   .then(function(data){
     var promises = [];
     for(var year in data){
-      var yearDir = archiveDir + year.toString() + '/';
+      if (year) {
+        var yearDir = archiveDir + year.toString() + '/';
+      }
       data[year].forEach(function(month){
-        var monthDir = yearDir + month.toString() + '/';
+        if (month) {
+          var monthDir = yearDir + month.toString() + '/';
+        }
         var content = util.format(contentTemplate, "Archive", monthNames[month] + " " + year, year, month, monthNames[month]);
         var filePath = archiveDir + year + '/' + month + "/index.html";
         promises.push(createSingleArchiveFile(monthDir, filePath, content));
