@@ -28,14 +28,14 @@ function setAuthConfig(){
   return deferred.promise;
 };
 
-function publishChanges(github_personal_access_token){
+function publishChanges(gitlab_personal_access_token){
   return setAuthConfig()
   .then(function(){
-    var content = "https://" + github_personal_access_token + ":@github.com"
+    var content = "https://ouath2:" + gitlab_personal_access_token + "@code.ornl.gov/general/rmcprofile.git"
     return fs.write(credentialFilePath, content);
   })
   .then(function(){
-    return repo.identify({name: "kvieta1990", email: "zyroc1990@gmail.com"});
+    return repo.identify({name: "y8z", email: "zhangy3@ornl.gov"});
   })
   .then(function(){
     console.log("Adding all files...");
@@ -66,7 +66,7 @@ generate()
 })
 .then(function(status){
   if(!status.clean){
-    return publishChanges(process.env.GITHUB_TOKEN);
+    return publishChanges(process.env.GITLAB_TOKEN);
   }
 })
 .fail(console.error);
