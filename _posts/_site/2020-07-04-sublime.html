@@ -1,8 +1,0 @@
-<p align="center">
-<img src="/assets/img/posts/sublime.png" style="border:none;" alt="sublime" width="500" title="sublime" />
-<br />
-</p>
-
-<p style="text-align: justify">
-For many packages installed in Sublime Text 3, either we can configure the key bindings for executing available commands by going to 'Preferences'$$\rightarrow$$'Key Bindings', or we can go to the package specific key binding setting section. However, sometimes, we don't have a dedicated key binding setting section for some of the installed package, e. g. 'Google Search' package. In this case, it becomes a headache to set the key binding since we don't even know what commands are actually available there. To get an idea about what commands are available for such types of packages, we can go to '%APPDATA%\Sublime Text 3\Installed Packages' directory (taking Windows OS as an example) and find the package file, e. g. 'Google Search.sublime-package'. This file is just a zip file which contains all the necessary stuff of the installed package. Therefore, we can copy it to somewhere and change the file name extension to '.zip' and open the package with whatever available zip file manager program to inspect the content of the package. Within the package, we can find the file 'Default (Windows).sublime-keymap' (again, taking Windows OS as an example). Opening the file, we can see what command are actually available there and then we can go to 'Preferences'$$\rightarrow$$'Key Bindings' in Sublime Text 3 to assign new key bindings, if necessary.
-</p>
