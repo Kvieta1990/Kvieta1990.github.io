@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Notes on magnetism - I</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Magnetism of free atoms and ions">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Notes on magnetism - I">
+  <meta property="og:description" content="Magnetism of free atoms and ions">
+
+  
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2020-03-18T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2020-03-18-notes_mag_I/">
+  <link rel="canonical" href="http://localhost:4000/2020-03-18-notes_mag_I/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Notes on magnetism - I">
+  <meta property="twitter:description" content="Magnetism of free atoms and ions">
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+</head>
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.pages.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  
+            </div>
+          </li>
+        </ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Notes on magnetism - I</h1>
+          
+            
+              <h2 class="post-subheading">Magnetism of free atoms and ions</h2>
+            
+          
+
+          
+					<span class="post-meta">Posted on March 18, 2020, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p style="text-align: justify">
+To understand the magnetism of free atoms and ions, we may go through several stages, as follows,
+</p>
+<ul>
+<li>Hartree approximation - electrons are treated in a non-interactive manner.</li>
+<li>Beyond Hartree - interaction between electrons is taken into account.</li>
+<li>Spin-orbital coupling.</li>
+<li>Hyperfine interaction - the interaction between electrons and nucleus.</li>
+</ul>
+
+<p style="text-align: justify">
+<u><b>Stage-1</b></u>
+
+<br />
+
+At this stage, the single electron Schrodinger equation can be solved in the spherical potential field and one can get quantized energy levels indexed by quantum number \(n\), \(l\) and \(m\). Hydrogen atom is the simplest and the most special case - the Coulomb potential is rigorously inverse proportional to \(r\) and therefore energy levels with the same \(n\) but different \(l\) are degenerate. For general cases, e. g. hydrogen-like atoms, the effective Coulomb potential is not rigorously inverse proportional to \(r\), as the result of screening effect from the atom core charge (nucleus + electrons). This results in the splitting of \(r\) levels. However, no matter for which situation, the degeneracy over \(m\) is always there. Based on the recipes given here, one can then follow the Aufbau principle to fill electrons into various shells. Suppose we have already filled all levels between 1s and 4s and we are left with 5 more electrons to worry about, how many possibilities we have to finish filling the 5 electrons? The general formula is given as \(C_{2(2l+1)}^{n_{nl}}\)
+
+<br />
+
+where \(l\) refers to the angular momentum quantum number and \(n_{nl}\) refers to the number of left-over electrons. The logic here is that we have in total \(2(2l+1)\) degenerate states (considering spin up and down) and we can just pick up any \(n_{nl}\) ones from them to fill electrons, simply because they are all degenerate.
+</p>
+
+<p><br /></p>
+
+<p style="text-align: justify">
+<u><b>Stage-2</b></u>
+
+<br />
+
+Going beyond the Hartree approximation, we start to consider the interaction between electrons and here it comes that Hund’s rule plays an important role for determining the ground state (N.B. Hund’s rule is not working for determining excited state. Also, it is even not working perfectly, though for most of cases it is working fine, for determining the ground state). Behind the Hund’s rule, we have some fundamental physics, which we will mention later. But here we take exactly the same example mentioned above - to fill 5 electrons into the 3d levels. The 1st Hund’s rule says we should have the maximum coupled S. Here it immediately brings in a critical question: what coupled S really is. We already said that by going beyond the Hartree approximation, interaction between electrons is taken into account. Therefore, now electrons are not independent any more and we say they are coupled, including the coupling between orbital and spin momentum. In another word, previously we have been using \(l\), \(s\), \(m_l\) and \(m_s\) to label quantum states, but now we have to change our label for quantum states to the coupled representation, using \(L\), \(S\), \(m_L\) and \(m_S\) instead. How to get to coupled representation from independent representation is a typical/fundamental quantum mechanics problem, for which we can refer to Shankar’s book Principles of quantum mechanics (2nd edition, chapter-15). Back to the 1st Hund’s rule mentioned above (focusing on the coupling between electron spins for the moment), it can give us a non-degenerate (unique) ground state, with spins of all the five electrons aligned in a parallel manner, occupying each of the \(m_l = -2, -1, 0, 1, 2\) level. Why? Because Hund’s rules says we should have the coupled \(S\) as large as possible, and we know that the largest \(S\) should be equal to the largest possible value of \(S_z\). Furthermore, we know for sure that the largest possible value of \(S_z\) should be \(5/2\) with all spins lined up in the same direction. Here it may be a bit confusing that we said we go from independent representation to coupled representation, but it seems that the ground coupled state is just one of the original state in the independent representation. Actually, they are just seemingly identical and actually they are different stuff - in the coupled representation, the ground state we arrived at above is labeled with quantum number \(S = 5/2\) and \(m_S = 5/2\). However, for the independent representation, we have 5 independent labels for this single state (it’s just that all the five labels takes \(m_s = 1/2\))! Furthermore, if going beyond the ground state, we will immediately see the difference between these two representations - in most of the cases, the coupled state is a superposition of those states in the independent representation, where we have the so-called Clebsch-Gordan (CG) coefficients as the linear combination coefficients. For those excited states in the coupled representation, again we can refer to Shankar’s book mentioned above for details (chapter-15).
+</p>
+
+<blockquote cite="">
+  <p>Here, though not directly relevant to current discussion, it’s still worth mentioning the other two general important issues in fundamental quantum mechanics (which most people just take for granted yet without knowing why): 1) given the principal quantum number \(n\), we all know the orbital angular momentum can take \(0, 1, \dots, n-1\). But why? We can find the answer to this question in Shankar’s book mentioned above (page 422-423, 2nd edition), where the quantum version of Runge-Lenz vector is introduced to act as a ladder operator with respect to orbital angular momentum. The values of orbital angular momentum is then obtained by observing that all \(l&gt;n\) terms will vanish. 2) Given the orbital angular momentum quantum number \(l\), we all know \(m_l = -l, -(l-1), \dots, (l-1), l\). But why? The answer to this question can be found in page 321-324 in Shankar’s book and again the ladder operator is acting an important role here.</p>
+</blockquote>
+
+<p style="text-align: justify">
+When the coupled spin \(S\) does not recognize a unique ground state, here comes the 2nd Hund’s rule, concerning coupling of orbital angular momentum. It says the ground state should be the one with largest coupled \(L\). Following the same recipe above, we should immediately know that we are actually looking for a state with largest possible \(L_z\). For the five electrons situation mentioned above, coupled \(S\) has already specified a unique ground state. To demonstrate the 2nd Hund’s rule, we go for six electrons situation. Following the 1st Hund’s rule, the first five electrons should line up in a parallel manner into the five available levels and the 6th electron can choose whichever of the first five electrons to pair with, and obviously after pairing we should have the 6th electron aligned in the opposite direction with the spins of the first five electrons. To determine the true ground state, we need the 2nd Hund’s rule here - we are trying to look for the largest possible \(L_z\), which obviously point to that the 6th electron should be put on the level indexed by \(m_L = \pm 2\) (here the sign does not really make any difference since it is just a matter of choosing the positive direction of \(z\)-axis).
+</p>
+
+<blockquote cite="">
+  <p>The golden rule to keep in mind concerning the angular momentum coupling is that the value of the coupled angular momentum is equal to the largest possible sum of the corresponding magnetic quantum number of all the independent angular moment.</p>
+</blockquote>
+
+<p style="text-align: justify">
+Considering the interaction between electrons, the total number of non-degenerate states become \((2L+1)(2S+1)\).
+</p>
+
+<blockquote cite="">
+  <p>Understanding the physics behind the first two Hund’s rules. 1) Considering the first Hund’s rule, according to Pauli exclusion principle, electrons are not allowed to stay at exactly the same state. Therefore, by aligning in a parallel manner, electrons have to ‘stay away from each other’ (e. g. by taking up states indexed by different magnetic quantum number), which then help reducing the system energy (we can understand this as an effective Coulomb repulsion). 2) As for the second Hund’s rule, electrons tend to have the same orbital angular momentum, which means they rotate in the same direction and therefore they become further apart effectively because of the Coulomb repulsion - this also helps lowering the system energy.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p style="text-align: justify">
+<u><b>Stage-3</b></u>
+</p>
+
+<p align="center">
+<img src="/assets/img/posts/pauli_dirac.jpg" style="border:none;" alt="pauli_dirac" title="pauli_dirac" />
+<br />
+</p>
+
+<p style="text-align: justify">
+Now we need to bring in the spin-orbital coupling, which is crucial for understanding both the magnetic property of free atoms or ions discussed here and that of solid materials where atoms are bonded together to form crystal field. Attached picture shows two key figures in shaping quantum mechanics - Paul Dirac and Wolfgang Pauli. Specially, the relativistic version of \({\rm{Shr}}\ddot o{\rm{dinger}}\) equation given initially by Dirac not only embed spins in a natural way, but also it brings in the spin-orbital coupling term explicitly.
+
+<br />
+
+Here we will just briefly mention the spin-orbital coupling in terms of \(LS\) mode coupling (another alternative coupling mode is the \(jj\) mode, for which the coupling between \(l\) and \(s\) of a single electron is considered first and the coupling between electrons are considered as perturbation. In contrast, for the \(LS\) mode coupling, since the coupling between electrons is stronger, all \(l\)’s and \(s\)’s are coupled first and \(LS\) coupling is considered afterwards). Within the \(LS\) coupling mode, \(L\) and \(S\) are coupled following the basic addition principle of angular momentum (see chapter-15 in Shankar’s book mentioned above), which gives \(J = |L-S|, \dots, |L+S|\). In this case, the degenerate states in stage-2 discussed above will be further split, with respect to the coupled quantum number \(J\) and here we have the 3rd Hund’s rule comes into play - the ground state takes minimum \(J\) if we have less than half filled levels (e. g. suppose the situation where we have 4 electrons filling the \(3d\) level); or the ground state takes maximum \(J\) if we have more than half filled levels (e. g. suppose the situation where we have 6 electrons filling the \(3d\) level); when we have half filled level, the 3rd Hund’s rule becomes trivial since we have \(L = 0\) (e. g. suppose the situation where we have 5 electrons filling the \(3d\) level) and thus we have \(|L-S| = |L+S|\).
+</p>
+
+<p><br /></p>
+
+<p style="text-align: justify">
+<u><b>Stage-4</b></u>
+
+<br />
+
+The hyperfine interaction which further splits energy levels is due to the interaction between nucleus spins and electron spins. Detailed formulation is a bit complicated and we won’t proceed with it here. We can refer to section-2.6 in the lecture note <a href="https://draft.blogger.com/blog/post/edit/713170236114697752/2147277757047669261#" target="_blank">Theory of Magnetism</a> by Dr. C. Timm.
+</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#solid state physics">solid state physics</a>
+          
+            <a href="/tags#magnetism">magnetism</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+magnetism+-+I&url=http%3A%2F%2Flocalhost%3A4000%2F2020-03-18-notes_mag_I%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2020-03-18-notes_mag_I%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2020-03-18-notes_mag_I%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2020-03-08-coriolis_force/" data-toggle="tooltip" data-placement="top" title="About Coriolis force">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2020-03-29-notes_mag_II/" data-toggle="tooltip" data-placement="top" title="Notes on magnetism - II">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/rmc/">RMC at ISIS facility</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.pages.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://community.dur.ac.uk/john.evans/topas_workshop/tutorial_pdf_sno2.htm">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE (ORNL internal)</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href=""https://mlfinfo.jp/en/bl21/>Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+				</br>
+				<a target="_blank" href="http://e-ssrf.sinap.cas.cn/beamlines/bl13w1/201401/t20140112_152430.html">China - SSRF - BL13W1</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2020 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
