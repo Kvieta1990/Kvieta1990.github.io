@@ -18,13 +18,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Notes on setting up WindTerm</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="A platform integrating both terminal and file explorer">
 
   
 
@@ -88,17 +88,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Notes on setting up WindTerm">
+  <meta property="og:description" content="A platform integrating both terminal and file explorer">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2023/02/">
-  <link rel="canonical" href="http://localhost:4000/archive/2023/02/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2023-02-22T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2023-02-22-notes_windterm/">
+  <link rel="canonical" href="http://localhost:4000/2023-02-22-notes_windterm/">
   
 
   
@@ -107,8 +109,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Notes on setting up WindTerm">
+  <meta property="twitter:description" content="A platform integrating both terminal and file explorer">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -246,10 +248,18 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Notes on setting up WindTerm</h1>
+          
+            
+              <h2 class="post-subheading">A platform integrating both terminal and file explorer</h2>
+            
           
 
+          
+					<span class="post-meta">Posted on February 22, 2023, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -262,234 +272,144 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
-
-<div class="intro-header"></div>
-
-<div role="main" class=" container-md ">
-  
-
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>February, 2023</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
       
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2023-02-22-notes_windterm/"><h3 class="post-title mb0">Notes on setting up WindTerm</h3></a>
-					<p class="post-meta small">February 22, 2023, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#tool">tool</a>
-  
-    <a href="/tags#technical">technical</a>
-  
+
+      
+
+      <article role="main" class="blog-post">
+        <p>This post is about the configuration of the tool <a href="https://github.com/kingToolbox/WindTerm">WindTerm</a>, which is a quicker and better SSH/Telnet/Serial/Shell/Sftp client for DevOps.</p>
+
+<p align="center">
+<img src="/assets/img/posts/windterm.png" style="border:none;" width="900" alt="windterm" title="windterm" />
 </p>
 
-          </div>
+<p>The configuration on Windows is pretty smooth while for MacOS, it does need a
+bit attention.</p>
+
+<ul>
+  <li>
+    <p>In my case, I was having a little tool called <code class="language-plaintext highlighter-rouge">fig</code> which would send some
+escape sequence to the terminal by default. Such escape sequence could not be
+handled properly by <code class="language-plaintext highlighter-rouge">WindTerm</code> and therefore will output a lot of weird
+characters like <code class="language-plaintext highlighter-rouge">ESC]...</code> anytime when launching a local shell or executing
+any commands. For the moment, we have to remove the <code class="language-plaintext highlighter-rouge">fig</code> tool if that
+applies.</p>
+  </li>
+  <li>
+    <p>To install a new theme, we can download the theme package and put it under <code class="language-plaintext highlighter-rouge">/Applications/WindTerm.app/Contents/MacOS/global/themes</code> directory.
+For example, we can refer to the installation instruction for <a href="https://draculatheme.com/windterm">Dracula</a> theme.</p>
+  </li>
+  <li>
+    <p>To make <code class="language-plaintext highlighter-rouge">X11</code> working on MacOS to enable remote graphics, we may need to run
+the command <code class="language-plaintext highlighter-rouge">xhost +local:</code> on a local shell (which should be a once-for-all
+solution). Then we can set <code class="language-plaintext highlighter-rouge">External X display</code> in the session settings – we
+can leave the input box as blank to use the default server address.</p>
+
+    <blockquote>
+      <p>In my case, I have various remote servers and some of them are not
+  supporting the X11 connection. However, when trying to configure them
+  separately to use X11 connection for some of them and not to use for others,
+  it seems for the moment we cannot do such a configuration separately – the
+  default settings will always win, which may be a bug. In this case,
+  interestingly, I can select not to use the X11 display in the default
+  settings and the remote graphics is still working.</p>
+    </blockquote>
+  </li>
+</ul>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#tool">tool</a>
+          
+            <a href="/tags#technical">technical</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+setting+up+WindTerm&url=http%3A%2F%2Flocalhost%3A4000%2F2023-02-22-notes_windterm%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2023-02-22-notes_windterm%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2023-02-22-notes_windterm%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2023-02-15-notes_mybb/" data-toggle="tooltip" data-placement="top" title="Notes on Forum Setup with MyBB">&larr; Previous Post</a>
         </li>
         
+        
+      </ul>
       
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2023-02-15-notes_mybb/"><h3 class="post-title mb0">Notes on Forum Setup with MyBB</h3></a>
-					<p class="post-meta small">February 15, 2023, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#tool">tool</a>
-  
-    <a href="/tags#technical">technical</a>
-  
-    <a href="/tags#forum">forum</a>
-  
-    <a href="/tags#PHP">PHP</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 
