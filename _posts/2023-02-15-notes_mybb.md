@@ -86,6 +86,7 @@ all the necessary preparations beforehand, according to the [MyBB doc](https://d
 
 
 <b>References</b>
+
 [1] [https://community.mybb.com/mods.php?action=view&pid=1043](https://community.mybb.com/mods.php?action=view&pid=1043)
 
 [2] [https://community.mybb.com/mods.php?action=view&pid=659](https://community.mybb.com/mods.php?action=view&pid=659)
