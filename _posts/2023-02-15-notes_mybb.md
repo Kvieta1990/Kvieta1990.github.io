@@ -67,6 +67,23 @@ all the necessary preparations beforehand, according to the [MyBB doc](https://d
         URI     ldaps://ldapx.ornl.gov
         TLS_CACERT      /etc/ssl/certs/ca-certificates.crt
         ```
+- Announcement Templates
+
+    > There is a plugin for posting announcements on MyBB forum, at the top of
+    the index landing page, and the official web site is Ref. [2]. With the
+    plugin successfully installed, one can follow the route down below to edit
+    the announcements for different groups of users.
+
+    `AdminCP` -> `Templates & Style` -> `Templates` -> `Default Templates` ->
+    `DNT Announcements Templates`
+
+- Sometimes when installing some plugins, the installation may fail due to some
+  internal errors. To make the error message printout more useful, we can
+  change the level of error logging following the route below,
+
+    `Configurations` -> `Settings` -> `Server and Optimization Options` ->
+    `Error Logging Medium` -> `Log errors`
 
 <b>References</b>
 [1] [https://community.mybb.com/mods.php?action=view&pid=1043](https://community.mybb.com/mods.php?action=view&pid=1043)
+[2] [https://community.mybb.com/mods.php?action=view&pid=659](https://community.mybb.com/mods.php?action=view&pid=659)
