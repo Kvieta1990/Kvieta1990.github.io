@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     
-    <title>Yuanpeng's Blog</title>
+    <title>Yuanpeng&apos;s Blog</title>
     
     
-    <description>This website is a virtual proof that I'm awesome</description>
+    <description>This website is a virtual proof that I&apos;m awesome</description>
     
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4002/</link>
+    <atom:link href="http://localhost:4002/feed.xml" rel="self" type="application/rss+xml" />
     
     
       <item>
@@ -17,9 +17,9 @@
           A platform integrating both terminal and file explorer - 
           This post is about the configuration of the tool WindTerm, which is a quicker and better SSH/Telnet/Serial/Shell/Sftp client for DevOps. The configuration on Windows is pretty smooth while for MacOS, it does need a bit attention. In my case, I was having a little tool called fig which would send...
         </description>
-        <pubDate>Wed, 22 Feb 2023 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2023-02-22-notes_windterm/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-02-22-notes_windterm/</guid>
+        <pubDate>Wed, 22 Feb 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2023-02-22-notes_windterm/</link>
+        <guid isPermaLink="true">http://localhost:4002/2023-02-22-notes_windterm/</guid>
       </item>
     
       <item>
@@ -28,9 +28,9 @@
           Side notes for the setup along the way of configuration - 
           This post is for putting down some random sites notes as I struggle through the process of setting up a forum hosted with MyBB. Here is a very nice tutorial for running through the initial installation and setup, In this tutorial, the necessary modules were installed and configured during the...
         </description>
-        <pubDate>Wed, 15 Feb 2023 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2023-02-15-notes_mybb/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-02-15-notes_mybb/</guid>
+        <pubDate>Wed, 15 Feb 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2023-02-15-notes_mybb/</link>
+        <guid isPermaLink="true">http://localhost:4002/2023-02-15-notes_mybb/</guid>
       </item>
     
       <item>
@@ -39,9 +39,9 @@
           Send message to Slack with Python - 
           To set up for sending message to Slack using Python, we can refer to Ref. [1]. Most of the instructions in the reference would work out, with several glitches and thus necessary adjustments. First, it should be stressed the importance of setting the proper scope when setting up the OAuth...
         </description>
-        <pubDate>Fri, 30 Dec 2022 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2022-12-30-notes_slack_msg/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-12-30-notes_slack_msg/</guid>
+        <pubDate>Fri, 30 Dec 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2022-12-30-notes_slack_msg/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-12-30-notes_slack_msg/</guid>
       </item>
     
       <item>
@@ -50,9 +50,9 @@
           Tips &amp; Tricks - 
           This post is a collection of notes of tips and tricks for Total Commander setups. This is a software as an alternative to the file explorer on Windows. It allows double column management and operations, making life much easier in terms of file and directory operations. Import/Export configuration file By...
         </description>
-        <pubDate>Sun, 11 Dec 2022 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2022-12-11-notes_total_commander/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-12-11-notes_total_commander/</guid>
+        <pubDate>Sun, 11 Dec 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2022-12-11-notes_total_commander/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-12-11-notes_total_commander/</guid>
       </item>
     
       <item>
@@ -61,9 +61,9 @@
           Tips &amp; Tricks - 
           This post is a collection of notes of tips and tricks for using GSAS-II. Multi-phase refinement When we have more than one phase in GSAS-II refinement, we should have phase fraction for each of the phases involved. With this regard, we have, suppose we have two phases, three parameters –...
         </description>
-        <pubDate>Sun, 11 Dec 2022 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2022-12-11-notes_gsasii/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-12-11-notes_gsasii/</guid>
+        <pubDate>Sun, 11 Dec 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2022-12-11-notes_gsasii/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-12-11-notes_gsasii/</guid>
       </item>
     
       <item>
@@ -72,9 +72,9 @@
           Tips &amp; Tricks - 
           This post is a collection of notes of tips and tricks when trying to set up slurm server on Ubuntu 20.04 focal. The instructions given in Ref. [1] has been followed to set up the single-node slurm service on Ubuntu. Several things are noteworthy, as below, Before following the instructions...
         </description>
-        <pubDate>Tue, 29 Nov 2022 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2022-11-29-notes_slurm/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-11-29-notes_slurm/</guid>
+        <pubDate>Tue, 29 Nov 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2022-11-29-notes_slurm/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-11-29-notes_slurm/</guid>
       </item>
     
       <item>
@@ -83,9 +83,9 @@
           Tips &amp; Tricks - 
           This post is a collection of notes of tips and tricks when trying to set up Jupyterhub server on Ubuntu 20.04 focal, together with the installation of various kernels and extensions. The instructions in Ref. [1] had been followed to set up the Jupyterhub server. The server was set up...
         </description>
-        <pubDate>Sat, 26 Nov 2022 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2022-11-26-notes_jupyterhub/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-11-26-notes_jupyterhub/</guid>
+        <pubDate>Sat, 26 Nov 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2022-11-26-notes_jupyterhub/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-11-26-notes_jupyterhub/</guid>
       </item>
     
       <item>
@@ -95,8 +95,8 @@
           This post is my notes for reading an online article published on Scientific American about resolving the twin paradox purely in the special relativity framework. Refer to Ref. [1, 2] for the original article. In the article, the Lorentz transformation relation was applied to the whole process corresponding to the...
         </description>
         <pubDate>Sun, 30 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-30-twin_paradox/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-30-twin_paradox/</guid>
+        <link>http://localhost:4002/2022-10-30-twin_paradox/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-10-30-twin_paradox/</guid>
       </item>
     
       <item>
@@ -106,8 +106,8 @@
           In this post, some basics about the stray and demagnetization field will be covered. The post originates from reading the book by Stöhr – Ref. [1]. Figure. 1. Demonstration of materials magnetization – reproduced from Fig. 2.6 in Ref. [1]. To get an idea about the stray and demagnetization field,...
         </description>
         <pubDate>Tue, 25 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-25-notes_mag_IV/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-25-notes_mag_IV/</guid>
+        <link>http://localhost:4002/2022-10-25-notes_mag_IV/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-10-25-notes_mag_IV/</guid>
       </item>
     
       <item>
@@ -117,8 +117,8 @@
           In the index page of current blog, we have a picture shown as below - if we hover the mouse over the image, it will change to another picture and also as we move our mouse, the image will tilt along with the mouse moving. Spallation Neutron Source Oak Ridge...
         </description>
         <pubDate>Thu, 13 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-13-css_javascript_img_effect/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-13-css_javascript_img_effect/</guid>
+        <link>http://localhost:4002/2022-10-13-css_javascript_img_effect/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-10-13-css_javascript_img_effect/</guid>
       </item>
     
       <item>
@@ -128,8 +128,8 @@
           To enable the display of math equations in GitHub pages, we need to include the corresponding Javascript in our page header. Taking my current blog as an example (one can go to MORE LINKS \(\rightarrow\) BLOG REPO to visit the GitHub repo for current blog), in the header part of...
         </description>
         <pubDate>Sun, 09 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-09-jekyll_maths/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-09-jekyll_maths/</guid>
+        <link>http://localhost:4002/2022-10-09-jekyll_maths/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-10-09-jekyll_maths/</guid>
       </item>
     
       <item>
@@ -139,8 +139,8 @@
           Trying to follow several resources [1, 2] for setting up the code snippet copy capability in Jekyll site, but for some reason, I could not get it working. I suppose this may be something to do with theme I am using (the beautiful-jekyll theme), and I am not what to...
         </description>
         <pubDate>Sun, 09 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-09-jekyll_code_snippet_copy/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-09-jekyll_code_snippet_copy/</guid>
+        <link>http://localhost:4002/2022-10-09-jekyll_code_snippet_copy/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-10-09-jekyll_code_snippet_copy/</guid>
       </item>
     
       <item>
@@ -150,8 +150,8 @@
           Figure. 1. Isotropy subgroup [1]. This blog contains some key notes for reading the lecture notes by H. Stokes, et al. [1] on isotropy subgroup. Details about the lecture notes will not be reproduced here and instead we will just put down some key understanding as below, Two subspaces are...
         </description>
         <pubDate>Mon, 20 Jun 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-06-20-iso_subg/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-06-20-iso_subg/</guid>
+        <link>http://localhost:4002/2022-06-20-iso_subg/</link>
+        <guid isPermaLink="true">http://localhost:4002/2022-06-20-iso_subg/</guid>
       </item>
     
       <item>
@@ -160,9 +160,9 @@
           Set up OwnCloud server on Windows with WSL - 
           👉 Ports configuration Refer to the following links to gist for configuration files concerning the ports configuration, /etc/apache2/ports.conf /etc/apache2/sites-enabled/000-default.conf 👉 Connection to WSL Apache server from outside (i.e., beyond localhost) This link provide detailed explanation about the IP address assignment scheme for WSL 2 and we need to follow the...
         </description>
-        <pubDate>Tue, 21 Dec 2021 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2021-12-21-owncloud_setup/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-12-21-owncloud_setup/</guid>
+        <pubDate>Tue, 21 Dec 2021 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2021-12-21-owncloud_setup/</link>
+        <guid isPermaLink="true">http://localhost:4002/2021-12-21-owncloud_setup/</guid>
       </item>
     
       <item>
@@ -172,8 +172,8 @@
           Figure. 1. Simulation box for bulk (left) and nano (right) systems. In Ref. [1], we discussed the theoretical principles for correcting the nano-size effect when modeling the pair distribution function (PDF). The fundamental idea is to bring back the uncorrelated pairings in between atoms belong to different nanoparticles, based on...
         </description>
         <pubDate>Wed, 25 Aug 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-08-25-nano_rmc/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-08-25-nano_rmc/</guid>
+        <link>http://localhost:4002/2021-08-25-nano_rmc/</link>
+        <guid isPermaLink="true">http://localhost:4002/2021-08-25-nano_rmc/</guid>
       </item>
     
       <item>
@@ -183,8 +183,8 @@
           Figure. 1. Neutron scattering length table by NIST [1]. When we do calculations relevant to neutron scattering, it is unavoidable that we will come across either coherent, incoherent or total scattering length of elements, which describes the strength of scattering neutrons by different elements, either coherently, incoherently or both. In...
         </description>
         <pubDate>Fri, 09 Jul 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-07-09-coh_incoh_sl/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-07-09-coh_incoh_sl/</guid>
+        <link>http://localhost:4002/2021-07-09-coh_incoh_sl/</link>
+        <guid isPermaLink="true">http://localhost:4002/2021-07-09-coh_incoh_sl/</guid>
       </item>
     
       <item>
@@ -194,8 +194,8 @@
           Image reproduced from Ref. [5]. In this blog, I will put down my learning notes as reading through the article on topological electrons by A. P. Ramirez and B. Skinner [1]. Basically, I will follow the story flow in Ref. [1] and therefore, first, I will note down the main...
         </description>
         <pubDate>Thu, 08 Jul 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-07-08-top_physics/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-07-08-top_physics/</guid>
+        <link>http://localhost:4002/2021-07-08-top_physics/</link>
+        <guid isPermaLink="true">http://localhost:4002/2021-07-08-top_physics/</guid>
       </item>
     
       <item>
@@ -205,8 +205,8 @@
           Ernst Ising (Left) and Wilhelm Lenz (Right) - Ising was Lenz’s student and the Ising model was claimed (by Ising himself) to be originated by Lenz but named after Ising. Ising model was originally proposed for ferromagnetism and owing to its simplicity in describing the system interaction, it has been...
         </description>
         <pubDate>Wed, 07 Jul 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-07-07-ising_sol/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-07-07-ising_sol/</guid>
+        <link>http://localhost:4002/2021-07-07-ising_sol/</link>
+        <guid isPermaLink="true">http://localhost:4002/2021-07-07-ising_sol/</guid>
       </item>
     
       <item>
@@ -216,8 +216,8 @@
           Having multiple kernels available for Jupyter service, we may need to manage them at some point, e.g., rename kernel names and remove kernels. First, to show all available kernels, run the following command, jupyter kernelspec list we will then see output like this, Available kernels: python3 /opt/jupyterhub/lib64/python3.6/site-packages/ipykernel/resources diffpy /usr/local/share/jupyter/kernels/diffpy py37...
         </description>
         <pubDate>Thu, 24 Jun 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-06-24-man_jupyter_kernel/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-06-24-man_jupyter_kernel/</guid>
+        <link>http://localhost:4002/2021-06-24-man_jupyter_kernel/</link>
+        <guid isPermaLink="true">http://localhost:4002/2021-06-24-man_jupyter_kernel/</guid>
       </item>
     
       <item>
@@ -227,8 +227,8 @@
           Docstring is part of Python script which will keep record of documentation and description of the relevant section in the script. It won’t make any effect upon the execution of the script but whenever needed, the docstring could be pulled out and displayed for users’ reference. Based on that, we...
         </description>
         <pubDate>Mon, 17 May 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-05-17-sphinx/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-05-17-sphinx/</guid>
+        <link>http://localhost:4002/2021-05-17-sphinx/</link>
+        <guid isPermaLink="true">http://localhost:4002/2021-05-17-sphinx/</guid>
       </item>
     
   </channel>

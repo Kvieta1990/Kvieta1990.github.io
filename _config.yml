@@ -14,7 +14,7 @@ author: Yuanpeng Zhang
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  #  🔍Search: "search"
+  🔍Search: "search"
   About: "about"
   Posts: "all_posts"
   Posts:
