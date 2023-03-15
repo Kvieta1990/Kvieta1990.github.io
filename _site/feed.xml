@@ -12,6 +12,28 @@
     
     
       <item>
+        <title>Notes on implementing search in Jekyll site</title>
+        <description>
+          
+          The commonly used method for implementing search capability in jekyll site with lunr does not seem to be working specifically in my case (namely the current website that we are staring at now). Trying to Google a bit and tring a few suggested solutions such as changing the version of...
+        </description>
+        <pubDate>Tue, 14 Mar 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2023-03-14-notes_jekyll_search/</link>
+        <guid isPermaLink="true">http://localhost:4002/2023-03-14-notes_jekyll_search/</guid>
+      </item>
+    
+      <item>
+        <title>Notes Flask+Nginx+HTTPS setup</title>
+        <description>
+          
+          This blog posts contains some miscellaneous notes about the Flask setup with Nginx and HTTPS. This setup applies specifically to my Centos server. The Ref. [1] contains a gist of the nginx configuration file as a minimal working example. Specifically on Centos, it seems that by default the port 443...
+        </description>
+        <pubDate>Tue, 14 Mar 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2023-03-14-notes_flask_nginx_https/</link>
+        <guid isPermaLink="true">http://localhost:4002/2023-03-14-notes_flask_nginx_https/</guid>
+      </item>
+    
+      <item>
         <title>Notes on setting up WindTerm</title>
         <description>
           A platform integrating both terminal and file explorer - 
@@ -207,28 +229,6 @@
         <pubDate>Wed, 07 Jul 2021 00:00:00 -0400</pubDate>
         <link>http://localhost:4002/2021-07-07-ising_sol/</link>
         <guid isPermaLink="true">http://localhost:4002/2021-07-07-ising_sol/</guid>
-      </item>
-    
-      <item>
-        <title>Management of Jupyter kernels</title>
-        <description>
-          
-          Having multiple kernels available for Jupyter service, we may need to manage them at some point, e.g., rename kernel names and remove kernels. First, to show all available kernels, run the following command, jupyter kernelspec list we will then see output like this, Available kernels: python3 /opt/jupyterhub/lib64/python3.6/site-packages/ipykernel/resources diffpy /usr/local/share/jupyter/kernels/diffpy py37...
-        </description>
-        <pubDate>Thu, 24 Jun 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2021-06-24-man_jupyter_kernel/</link>
-        <guid isPermaLink="true">http://localhost:4002/2021-06-24-man_jupyter_kernel/</guid>
-      </item>
-    
-      <item>
-        <title>Intro to Sphinx</title>
-        <description>
-          Documentation with docstring in Python - 
-          Docstring is part of Python script which will keep record of documentation and description of the relevant section in the script. It won’t make any effect upon the execution of the script but whenever needed, the docstring could be pulled out and displayed for users’ reference. Based on that, we...
-        </description>
-        <pubDate>Mon, 17 May 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2021-05-17-sphinx/</link>
-        <guid isPermaLink="true">http://localhost:4002/2021-05-17-sphinx/</guid>
       </item>
     
   </channel>
