@@ -1,1 +1,1 @@
-Sitemap: https://iris2020.net/sitemap.xml
+Sitemap: http://localhost:4002/sitemap.xml
