@@ -65,8 +65,41 @@ all the necessary preparations beforehand, according to the [MyBB doc](https://d
         ```
         BASE    dc=xcams,dc=ornl,dc=gov
         URI     ldaps://ldapx.ornl.gov
-        TLS_CACERT      /etc/ssl/certs/ca-certificates.crt
+
+        TLS_CACERT      /etc/ssl/certs/ldapserver.pem
+
+        SSL start_tls
+        SSL on
+        TLS_REQCERT allow
         ```
+
+    - In the MyBB LDAP configuration page (see the link above for a screenshot of the page), if we choose
+    the SSL connection, we should notice the notes above the selection drop-down menu which states that if
+    we do want to use the SSL connection, we need to save the LDAP server's certificate to the trusted
+    store properly. To do this, we need to,
+
+        - First, obtain the certificate from the LDAP server
+
+            > To do this, we can use the following command,
+
+            ```
+            openssl s_client -showcerts -connect ldapx.ornl.gov:636 </dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ldapserver.crt
+            ```
+
+            where `ldapx.ornl.gov` is the ORNL LDAP server in my case. This will save the LDAP server's certificate to the local file
+            named with `ldapserver.crt`. In practice, we could have multiple certificates in the same certificate file which gives
+            the so-called PEM (i.e., Privacy Enhanced Mail) format.
+
+        - Add the obtained certificate to the trusted store on the client side
+
+            > To add the certificate to the trusted store on the client side, we can do the following steps,
+
+            - `sudo cp /path/to/certificate.crt /usr/local/share/ca-certificates/certificate.crt`
+
+            - `sudo update-ca-certificates`
+
+            > Attention that we should replace `/path/to/certificate.crt` to whatever specific to our case.
+
 - Announcement Templates
 
     > There is a plugin for posting announcements on MyBB forum, at the top of
