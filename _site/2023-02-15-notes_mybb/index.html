@@ -30,7 +30,7 @@
 
   
 
-  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4002/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
 
   
 
@@ -92,15 +92,15 @@
   <meta property="og:description" content="Side notes for the setup along the way of configuration">
 
   
-  <meta property="og:image" content="http://localhost:4002/assets/img/avatar-icon.png">
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2023-02-15T00:00:00-04:00">
-  <meta property="og:url" content="http://localhost:4002/2023-02-15-notes_mybb/">
-  <link rel="canonical" href="http://localhost:4002/2023-02-15-notes_mybb/">
+  <meta property="og:article:published_time" content="2023-02-15T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2023-02-15-notes_mybb/">
+  <link rel="canonical" href="http://localhost:4000/2023-02-15-notes_mybb/">
   
 
   
@@ -113,7 +113,7 @@
   <meta property="twitter:description" content="Side notes for the setup along the way of configuration">
 
   
-  <meta name="twitter:image" content="http://localhost:4002/assets/img/avatar-icon.png">
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
@@ -159,7 +159,7 @@
   
 
 
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4002/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -219,7 +219,7 @@
 
 <script>
 function myFunction() {
-		return '<a href="http://localhost:4002/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
 }
 let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
 let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
@@ -357,8 +357,56 @@ all the necessary preparations beforehand, according to the <a href="https://doc
 
         <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  BASE    dc=xcams,dc=ornl,dc=gov
   URI     ldaps://ldapx.ornl.gov
-  TLS_CACERT      /etc/ssl/certs/ca-certificates.crt
+
+  TLS_CACERT      /etc/ssl/certs/ldapserver.pem
+
+  SSL start_tls
+  SSL on
+  TLS_REQCERT allow
 </code></pre></div>        </div>
+      </li>
+      <li>
+        <p>In the MyBB LDAP configuration page (see the link above for a screenshot of the page), if we choose
+  the SSL connection, we should notice the notes above the selection drop-down menu which states that if
+  we do want to use the SSL connection, we need to save the LDAP server’s certificate to the trusted
+  store properly. To do this, we need to,</p>
+
+        <ul>
+          <li>
+            <p>First, obtain the certificate from the LDAP server</p>
+
+            <blockquote>
+              <p>To do this, we can use the following command,</p>
+            </blockquote>
+
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  openssl s_client -showcerts -connect ldapx.ornl.gov:636 &lt;/dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' &gt; ldapserver.crt
+</code></pre></div>            </div>
+
+            <p>where <code class="language-plaintext highlighter-rouge">ldapx.ornl.gov</code> is the ORNL LDAP server in my case. This will save the LDAP server’s certificate to the local file
+  named with <code class="language-plaintext highlighter-rouge">ldapserver.crt</code>. In practice, we could have multiple certificates in the same certificate file which gives
+  the so-called PEM (i.e., Privacy Enhanced Mail) format.</p>
+          </li>
+          <li>
+            <p>Add the obtained certificate to the trusted store on the client side</p>
+
+            <blockquote>
+              <p>To add the certificate to the trusted store on the client side, we can do the following steps,</p>
+            </blockquote>
+
+            <ul>
+              <li>
+                <p><code class="language-plaintext highlighter-rouge">sudo cp /path/to/certificate.crt /usr/local/share/ca-certificates/certificate.crt</code></p>
+              </li>
+              <li>
+                <p><code class="language-plaintext highlighter-rouge">sudo update-ca-certificates</code></p>
+              </li>
+            </ul>
+
+            <blockquote>
+              <p>Attention that we should replace <code class="language-plaintext highlighter-rouge">/path/to/certificate.crt</code> to whatever specific to our case.</p>
+            </blockquote>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -382,6 +430,29 @@ change the level of error logging following the route below,</p>
 
     <p><code class="language-plaintext highlighter-rouge">Configurations</code> -&gt; <code class="language-plaintext highlighter-rouge">Settings</code> -&gt; <code class="language-plaintext highlighter-rouge">Server and Optimization Options</code> -&gt;
   <code class="language-plaintext highlighter-rouge">Error Logging Medium</code> -&gt; <code class="language-plaintext highlighter-rouge">Log errors</code></p>
+  </li>
+  <li>
+    <p>Secure connection</p>
+
+    <blockquote>
+      <p>Specifically concerning the secure connection requirement by ORNL, on top
+  of the setting up of the SSL certificate to enable HTTPS connection, we
+  also need to pass the security scanning. During the configuration process,
+  we did come across multiple issues concerning the secure connection such as
+  the HTST requirement was not met, the certificate being used not trusted,
+  etc. The following link is my <code class="language-plaintext highlighter-rouge">private</code> (which is only visible to myself, if
+  you do want to see it, please get in touch with Yuanpeng Zhang at
+  <a href="zhangy3@ornl.gov">zhangy3@ornl.gov</a>) notes following the link below,</p>
+    </blockquote>
+
+    <p><a href="https://www.notion.so/iris2020/SSL-SMTP-Setup-37e94c2e004a40d7b2d16cf7d29515b5?pvs=4">https://www.notion.so/iris2020/SSL-SMTP-Setup-37e94c2e004a40d7b2d16cf7d29515b5?pvs=4</a></p>
+
+    <p><br /></p>
+
+    <blockquote>
+      <p>The note is just a random collection of issues and the solutions, so it is
+  not presented in an organized manner.</p>
+    </blockquote>
   </li>
 </ul>
 
@@ -420,7 +491,7 @@ change the level of error logging following the route below,</p>
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Forum+Setup+with+MyBB&url=http%3A%2F%2Flocalhost%3A4002%2F2023-02-15-notes_mybb%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Forum+Setup+with+MyBB&url=http%3A%2F%2Flocalhost%3A4000%2F2023-02-15-notes_mybb%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -428,7 +499,7 @@ change the level of error logging following the route below,</p>
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4002%2F2023-02-15-notes_mybb%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2023-02-15-notes_mybb%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -436,7 +507,7 @@ change the level of error logging following the route below,</p>
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4002%2F2023-02-15-notes_mybb%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2023-02-15-notes_mybb%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>

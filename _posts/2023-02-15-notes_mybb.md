@@ -117,6 +117,23 @@ all the necessary preparations beforehand, according to the [MyBB doc](https://d
     `Configurations` -> `Settings` -> `Server and Optimization Options` ->
     `Error Logging Medium` -> `Log errors`
 
+- Secure connection
+
+    > Specifically concerning the secure connection requirement by ORNL, on top
+    of the setting up of the SSL certificate to enable HTTPS connection, we
+    also need to pass the security scanning. During the configuration process,
+    we did come across multiple issues concerning the secure connection such as
+    the HTST requirement was not met, the certificate being used not trusted,
+    etc. The following link is my `private` (which is only visible to myself, if
+    you do want to see it, please get in touch with Yuanpeng Zhang at
+    [zhangy3@ornl.gov](zhangy3@ornl.gov)) notes following the link below,
+
+    [https://www.notion.so/iris2020/SSL-SMTP-Setup-37e94c2e004a40d7b2d16cf7d29515b5?pvs=4](https://www.notion.so/iris2020/SSL-SMTP-Setup-37e94c2e004a40d7b2d16cf7d29515b5?pvs=4)
+
+    <br />
+
+    > The note is just a random collection of issues and the solutions, so it is
+    not presented in an organized manner.
 
 <b>References</b>
 
