@@ -12,6 +12,28 @@
     
     
       <item>
+        <title>Notes on using Jupyter book</title>
+        <description>
+          
+          Following the instruction for building our book with Jupyter book, we will get the built book in HTML format, which we can then grab and host it somewhere. The GitHub page was used as the demo in the official Jupyter book website. However, if we do have our own web...
+        </description>
+        <pubDate>Sat, 15 Apr 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2023-04-15-notes_jbook/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-04-15-notes_jbook/</guid>
+      </item>
+    
+      <item>
+        <title>Notes on difference Fourier map</title>
+        <description>
+          
+          Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...
+        </description>
+        <pubDate>Fri, 14 Apr 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2023-04-14-notes_fdm/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-04-14-notes_fdm/</guid>
+      </item>
+    
+      <item>
         <title>Notes on implementing search in Jekyll site</title>
         <description>
           
@@ -207,28 +229,6 @@
         <pubDate>Fri, 09 Jul 2021 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2021-07-09-coh_incoh_sl/</link>
         <guid isPermaLink="true">http://localhost:4000/2021-07-09-coh_incoh_sl/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on topological physics</title>
-        <description>
-          
-          Image reproduced from Ref. [5]. In this blog, I will put down my learning notes as reading through the article on topological electrons by A. P. Ramirez and B. Skinner [1]. Basically, I will follow the story flow in Ref. [1] and therefore, first, I will note down the main...
-        </description>
-        <pubDate>Thu, 08 Jul 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-07-08-top_physics/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-07-08-top_physics/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on Ising model</title>
-        <description>
-          
-          Ernst Ising (Left) and Wilhelm Lenz (Right) - Ising was Lenz’s student and the Ising model was claimed (by Ising himself) to be originated by Lenz but named after Ising. Ising model was originally proposed for ferromagnetism and owing to its simplicity in describing the system interaction, it has been...
-        </description>
-        <pubDate>Wed, 07 Jul 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-07-07-ising_sol/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-07-07-ising_sol/</guid>
       </item>
     
   </channel>

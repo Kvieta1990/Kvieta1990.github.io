@@ -18,13 +18,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Notes on difference Fourier map</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...">
 
   
 
@@ -88,17 +88,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Notes on difference Fourier map">
+  <meta property="og:description" content="Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2019/12/">
-  <link rel="canonical" href="http://localhost:4000/archive/2019/12/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2023-04-14T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2023-04-14-notes_fdm/">
+  <link rel="canonical" href="http://localhost:4000/2023-04-14-notes_fdm/">
   
 
   
@@ -107,8 +109,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Notes on difference Fourier map">
+  <meta property="twitter:description" content="Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -248,10 +250,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Notes on difference Fourier map</h1>
           
 
+          
+					<span class="post-meta">Posted on April 14, 2023, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -264,244 +270,114 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly used ones as an effort to construct a useful real-space map of atoms via some tricks. It involves the the Rietveld refinement and the following construction of the density map through Fourier transform. The principle is that via Ritveld refinement, the model is refined against the experimental diffraction pattern and therefore both the amplitude and the phase of the structure factor can be calculated given the refined model. By assuming that the phase is shared between the observed and calculated structure factor, one can then construct the so-called difference Fourier map which would be very useful in locating those missing atoms that are not included in the Rietveld refinement – if without missing atoms and assuming a perfect Rietveld refinement, the observed and calculated structure factor would be identical in which case we won’t have the difference Fourier maop (i.e., zero difference). The amplitude of the observed structure factor can be calculated given the Rietveld refinement - it will give the information about the peak position and the profile from which the amplitude of the observed structure factor, knowing the experimentally measured scattering intensities (i.e., the \(y_{obs}\) values). One thing to notice is that since the building of the difference Fourier map is based on the assumption that the phase is shared between the calculated and observed structure factor (which is not perfectly the case in practice), the difference map constructed would contain the contribution not only from those missing atoms but also those existing ones (in the Rietveld refinement).</p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="http://pd.chem.ucl.ac.uk/pdnn/refine2/fourier.htm">http://pd.chem.ucl.ac.uk/pdnn/refine2/fourier.htm</a></p>
+
+<p>[2] <a href="https://www.notion.so/iris2020/Repo-of-Clips-5a8f345bf1d04f4fbc956bc44fa4bcc4?pvs=4#cad9f4d1f7674957940b7567972ee05d">Personal clip of Ref. [1]</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#crystallography">crystallography</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
 
 
-<div class="intro-header"></div>
 
-<div role="main" class=" container-md ">
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+difference+Fourier+map&url=http%3A%2F%2Flocalhost%3A4000%2F2023-04-14-notes_fdm%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
   
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>December, 2019</em></h2>
-  </header>
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2023-04-14-notes_fdm%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
 
   
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2019-12-10-special_relativity/"><h3 class="post-title mb0">Notes on special relativity</h3></a>
-					<p class="post-meta small">December 10, 2019, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2023-04-14-notes_fdm%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
   
-    <a href="/tags#general physics">general physics</a>
-  
-    <a href="/tags#relativity">relativity</a>
-  
-</p>
 
-          </div>
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2023-03-14-notes_jekyll_search/" data-toggle="tooltip" data-placement="top" title="Notes on implementing search in Jekyll site">&larr; Previous Post</a>
         </li>
         
-      
         
-        
-        
-        <li>
-          <a class="post-link" href="/2019-12-08-einstein_fridge/"><h3 class="post-title mb0">A silent refrigerator</h3></a>
-					<p class="post-meta small">December 8, 2019, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#general physics">general physics</a>
-  
-</p>
-
-          </div>
+        <li class="page-item next">
+          <a class="page-link" href="/2023-04-15-notes_jbook/" data-toggle="tooltip" data-placement="top" title="Notes on using Jupyter book">Next Post &rarr;</a>
         </li>
         
+      </ul>
       
-    </ol>
-  </article>
-</div>
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 

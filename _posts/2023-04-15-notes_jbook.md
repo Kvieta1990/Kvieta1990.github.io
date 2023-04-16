@@ -11,7 +11,7 @@ use_math: true
 <p align='center'>
 <img src="/assets/img/posts/jbook.png"
    style="border:none;"
-   width="100"
+   width="400"
    alt="jbook"
    title="jbook" />
 </p>
@@ -54,8 +54,10 @@ should be set to `nginx:nginx`. Meanwhile, all the files under `/mnt/Iris_ExtL/p
 be aware of that the file hosting the bibliography should be created. Then we should put the following contents
 in the file (followed by including such a bibliography file as part of the TOC),
 
-	```
-	 ```{bibliography}
-	 :style: unsrt
-	 ``` 
-	```
+<p style="margin-left: 1.1cm">
+   <a>\`</a><a>\`</a><a>\`</a><a>{bibliography}</a>
+   <br />
+   :style: unsrt
+   <br />
+   <a>\`</a><a>\`</a><a>\`</a>
+</p>
