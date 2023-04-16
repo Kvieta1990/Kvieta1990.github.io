@@ -59,10 +59,3 @@ in the file (followed by including such a bibliography file as part of the TOC),
 	 :style: unsrt
 	 ``` 
 	```
-
-References
-===
-
-[1] [http://pd.chem.ucl.ac.uk/pdnn/refine2/fourier.htm](http://pd.chem.ucl.ac.uk/pdnn/refine2/fourier.htm)
-
-[2] [Personal clip of Ref. [1]](https://www.notion.so/iris2020/Repo-of-Clips-5a8f345bf1d04f4fbc956bc44fa4bcc4?pvs=4#cad9f4d1f7674957940b7567972ee05d)
