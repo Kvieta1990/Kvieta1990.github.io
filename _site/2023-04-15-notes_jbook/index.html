@@ -333,6 +333,30 @@ in the file (followed by including such a bibliography file as part of the TOC),
    <a>`</a><a>`</a><a>`</a>
 </p>
 
+<blockquote>
+  <p>Here, a side note (which is irrelavant to current topic) is that to put the code block included within
+   the three backticks marks as plain text, we can refer to the source code of current page located at Ref. [1].</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Sometimes, the change in the deployed jupyter book may not be directly reflected at the client side due to
+caching. For example, on the server side, we may already change the root page from <code class="language-plaintext highlighter-rouge">intro</code> to <code class="language-plaintext highlighter-rouge">index</code>, the client
+side may be still seeing <code class="language-plaintext highlighter-rouge">intro</code> as the root page, in which case we then need to clear the browser cache and reload the page
+to see the effect.</p>
+  </li>
+  <li>
+    <p>When using <code class="language-plaintext highlighter-rouge">nginx</code> to server the website, as usual we can put the HTML files under a certain directory and configure
+the nginx server as specified above. However, I noticed that we CANNOT put the HTML files under our home directory, e.g.,
+<code class="language-plaintext highlighter-rouge">/home/cades/some_dir/pd</code> – the server would then complain about permission denied even the owner and the permission of
+all the HTML files were configured properly. The directory used above just worked out!</p>
+  </li>
+</ul>
+
+<p><b>References</b></p>
+
+<p>[1] <a href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/master/_posts/2023-04-15-notes_jbook.md">https://github.com/Kvieta1990/Kvieta1990.github.io/blob/master/_posts/2023-04-15-notes_jbook.md</a></p>
+
       </article>
 
       

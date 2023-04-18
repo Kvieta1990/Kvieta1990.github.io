@@ -454,6 +454,97 @@ change the level of error logging following the route below,</p>
   not presented in an organized manner.</p>
     </blockquote>
   </li>
+  <li>
+    <p>Domain name configuration</p>
+
+    <blockquote>
+      <p>If we want to configure the MyBB forum to stay under a certian directory
+  rather then the root directory, there are two aspects we need to configure
+  as detailed here. For example, by default we have MyBB configured to be
+  hosted at ‘https://my.domain.com’ and we want to change it to be hosted at
+  ‘https://my.domain.com/forum’. To do this, first we need to change the nginx
+  configuration, assuming we are using nginx for the reverse proxy and web
+  host. The following snippet should be good to go in the server section,</p>
+    </blockquote>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  server {
+      listen 80;
+      server_name powder.ornl.gov;
+      return 302 https://powder.ornl.gov/forum$request_uri;
+  }
+
+  server {
+      large_client_header_buffers 4 16k;
+      listen 443;
+
+      ssl on;
+      ssl_certificate     /home/cloud/Dev/SSL/powder.pem;
+      ssl_certificate_key         /home/cloud/Dev/SSL/powder.key;
+
+      server_name powder.ornl.gov;
+
+      # root /usr/share/nginx/html;
+      root /var/www/html;
+      index index.html
+
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ssl_prefer_server_ciphers on;
+      ssl_session_timeout 1d;
+      ssl_session_cache shared:SSL:50m;
+      add_header Strict-Transport-Security max-age=31536000;
+
+      location /forum {
+          index index.php index.html index.htm index.nginx-debian.html;
+      }
+
+      location /hub/ {
+          proxy_pass http://127.0.0.1:8000;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header Host $host;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+          # websocket headers
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade;
+          proxy_set_header X-Scheme $scheme;
+
+          proxy_buffering off;
+      }
+
+      location ~ \.php$ {
+          include snippets/fastcgi-php.conf;
+          fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+      }
+
+      location ~ /\.ht {
+          deny all;
+      }
+
+      # Managing requests to verify letsencrypt host
+      location ~ /.well-known {
+          allow all;
+      }
+  }
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>Then we need to change the settings in MyBB to adapt to the directory change.
+  To do this, we need to go to the location where all the MyBB files are stored
+  (e.g., <code class="language-plaintext highlighter-rouge">/var/www/html/forum</code>). Then we need to change the settings according to
+  our specific domain name and directory name where we want to host the forum,</p>
+    </blockquote>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ./inc/settings.php:$settings['bburl'] = "https://powder.ornl.gov/forum";
+  ./inc/settings.php:$settings['cookiedomain'] = ".powder.ornl.gov";
+  ./inc/settings.php:$settings['homeurl'] = "https://powder.ornl.gov/forum";
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>The settings in MyBB should be consistent with that in nignx considering the
+  domain name and the directory, as is the case in the example above.</p>
+    </blockquote>
+  </li>
 </ul>
 
 <p><b>References</b></p>
