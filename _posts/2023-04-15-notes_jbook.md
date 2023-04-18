@@ -61,3 +61,20 @@ in the file (followed by including such a bibliography file as part of the TOC),
    <br />
    <a>\`</a><a>\`</a><a>\`</a>
 </p>
+
+   > Here, a side note (which is irrelavant to current topic) is that to put the code block included within
+   the three backticks marks as plain text, we can refer to the source code of current page located at Ref. [1].
+
+- Sometimes, the change in the deployed jupyter book may not be directly reflected at the client side due to
+caching. For example, on the server side, we may already change the root page from `intro` to `index`, the client
+side may be still seeing `intro` as the root page, in which case we then need to clear the browser cache and reload the page
+to see the effect.
+
+- When using `nginx` to server the website, as usual we can put the HTML files under a certain directory and configure
+the nginx server as specified above. However, I noticed that we CANNOT put the HTML files under our home directory, e.g.,
+`/home/cades/some_dir/pd` -- the server would then complain about permission denied even the owner and the permission of
+all the HTML files were configured properly. The directory used above just worked out!
+
+<b>References</b>
+
+[1] [https://github.com/Kvieta1990/Kvieta1990.github.io/blob/master/_posts/2023-04-15-notes_jbook.md](https://github.com/Kvieta1990/Kvieta1990.github.io/blob/master/_posts/2023-04-15-notes_jbook.md)
