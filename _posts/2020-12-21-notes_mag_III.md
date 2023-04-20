@@ -21,7 +21,7 @@ Talking about magnetic field, we have three relevant physical quantities - magne
 </p>
 
 $$
-\vec{B} = \mu_0\vec{H} + \vec{M}
+\vec{B} = \mu_0(\vec{H} + \vec{M})
 $$
 
 <p style='text-align: justify'>
