@@ -301,11 +301,50 @@ to specify that overall phase fraction should be 1. To add the constraint, we sh
 or <a href="/assets/doc/GSASII_Multiphase_setup.pdf">here</a>. Here it should be noticed that the phase fraction is referred to as <code class="language-plaintext highlighter-rouge">Scale</code> for each
 phase and this <code class="language-plaintext highlighter-rouge">Scale</code> should not be confused with that of the overall histogram.</p>
 
+<blockquote>
+  <p>Development environment setup for GSAS-II</p>
+</blockquote>
+
+<blockquote>
+  <p>Refer to the documentation of GSAS-II for detailed explanation – see Ref. [2].</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>Set up the conda environment, using the command below,</p>
+
+    <p><code class="language-plaintext highlighter-rouge">conda create -n g2python python=3.10 wxpython numpy scipy matplotlib pyopengl  pillow h5py imageio conda requests -c conda-forge</code></p>
+  </li>
+  <li>
+    <p>Check out the GSAS-II source code, using SVN,</p>
+
+    <p><code class="language-plaintext highlighter-rouge">svn checkout https://subversion.xray.aps.anl.gov/pyGSAS/</code></p>
+  </li>
+  <li>
+    <p>Here follows, the configuration is specific to the PyCharm IDE. First, launch the PyCharm IDE and open the GSAS-II folder (i.e., the one we just checked out, <code class="language-plaintext highlighter-rouge">pyGSAS</code>).</p>
+  </li>
+  <li>
+    <p>Go to the top right corner of the interface and click on the drop-down menu as indicated with the green arrow below,</p>
+
+    <p><img src="/assets/img/posts/pycharm_gsasii_1.png" alt="pycharm gsasii" /></p>
+  </li>
+  <li>
+    <p>Select <code class="language-plaintext highlighter-rouge">Edit Configurations...</code> to open up the configuration window where we need to fill in information for the python interpreter, the main python script, etc.</p>
+  </li>
+  <li>
+    <p>Refer to the screenshot below for detailed configuration as a typical example,</p>
+
+    <p><img src="/assets/img/posts/pycharm_gsasii_2.png" alt="pycharm gsasii" /></p>
+  </li>
+</ol>
+
 <p><br /></p>
 
 <p><b>References</b></p>
 
 <p>[1] <a href="https://subversion.xray.aps.anl.gov/pyGSAS/Tutorials/SeqRefine/SequentialTutorial.htm">https://subversion.xray.aps.anl.gov/pyGSAS/Tutorials/SeqRefine/SequentialTutorial.htm</a></p>
+
+<p>[2] <a href="https://gsas-ii.readthedocs.io/en/latest/packages.html#gui-requirements">https://gsas-ii.readthedocs.io/en/latest/packages.html#gui-requirements</a></p>
 
       </article>
 
