@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>RMCProfile + LAMMPS Implementation</title>
+        <description>
+          
+          This blog is a collection of notes about implementing the lammps engine in our RMCProfile package [1] for energy calculation, using the provided wrapper routines provided with the lammps distribution. The note will be covering the installation of MPI compilers, building the lammps wrapper libraries, the implementation in the caller...
+        </description>
+        <pubDate>Sun, 11 Jun 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2023-06-11-rmc_lammps/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-06-11-rmc_lammps/</guid>
+      </item>
+    
+      <item>
         <title>Notes on using Jupyter book</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Wed, 25 Aug 2021 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2021-08-25-nano_rmc/</link>
         <guid isPermaLink="true">http://localhost:4000/2021-08-25-nano_rmc/</guid>
-      </item>
-    
-      <item>
-        <title>Derivation of neutron incoherent scattering length</title>
-        <description>
-          
-          Figure. 1. Neutron scattering length table by NIST [1]. When we do calculations relevant to neutron scattering, it is unavoidable that we will come across either coherent, incoherent or total scattering length of elements, which describes the strength of scattering neutrons by different elements, either coherently, incoherently or both. In...
-        </description>
-        <pubDate>Fri, 09 Jul 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021-07-09-coh_incoh_sl/</link>
-        <guid isPermaLink="true">http://localhost:4000/2021-07-09-coh_incoh_sl/</guid>
       </item>
     
   </channel>
