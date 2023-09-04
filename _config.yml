@@ -25,6 +25,7 @@ navbar-links:
     - Publications: "/nav_pages/publications"
     - Learning Notes: "/nav_pages/lnotes"
   More Links:
+    - My Website: "me.iris-home.net"
     - ORNL Profile: "https://www.ornl.gov/staff-profile/yuanpeng-zhang"
     - Google Scholar: "https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en"
     - ORCID: "https://orcid.org/0000-0003-4224-3361"
@@ -33,7 +34,7 @@ navbar-links:
     - Jupyter Binder: "https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master"
     - More Notes: "https://github.com/Kvieta1990/Iris"
     - Blog Repo: https://github.com/Kvieta1990/Kvieta1990.github.io
-    - MyChatBot: http://iris-home.net:8060/chat/bO3b1I3j159QHWTt
+    - MyChatBot: https://dify.iris-home.net/chat/bO3b1I3j159QHWTt
   Contact: "contact"
 
 # --- Logo --- #
