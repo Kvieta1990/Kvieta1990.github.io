@@ -18,13 +18,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Set up a self-hosted web server on Oracle VPS</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture, Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb RAM. We can refer to Ref. [1-3] for more information...">
 
   
 
@@ -88,17 +88,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Set up a self-hosted web server on Oracle VPS">
+  <meta property="og:description" content="It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture, Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb RAM. We can refer to Ref. [1-3] for more information...">
 
   
   <meta property="og:image" content="http://localhost:4002/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4002/archive/2020/03/">
-  <link rel="canonical" href="http://localhost:4002/archive/2020/03/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2023-09-08T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4002/2023-09-08-docker_nginx/">
+  <link rel="canonical" href="http://localhost:4002/2023-09-08-docker_nginx/">
   
 
   
@@ -107,8 +109,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Set up a self-hosted web server on Oracle VPS">
+  <meta property="twitter:description" content="It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture, Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb RAM. We can refer to Ref. [1-3] for more information...">
 
   
   <meta name="twitter:image" content="http://localhost:4002/assets/img/avatar-icon.png">
@@ -252,10 +254,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Set up a self-hosted web server on Oracle VPS</h1>
           
 
+          
+					<span class="post-meta">Posted on September 8, 2023, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -268,273 +274,237 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
+      
 
-<div class="intro-header"></div>
+      
 
-<div role="main" class=" container-md ">
-  
-
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>March, 2020</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2020-03-29-notes_mag_II/"><h3 class="post-title mb0">Notes on magnetism - II</h3></a>
-					<p class="post-meta small">March 29, 2020, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#solid state physics">solid state physics</a>
-  
-    <a href="/tags#magnetism">magnetism</a>
-  
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/vps_1panel_docker_nginx_setup.png" style="border:none;" width="600" alt="setup" title="setup" />
 </p>
 
-          </div>
+<p><br /></p>
+
+<p>It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture,
+Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb
+RAM. We can refer to Ref. [1-3] for more information – both are in Chinese only. Once the VPS is up
+running, we can use the <code class="language-plaintext highlighter-rouge">1Panel</code> tool [4] to set up an admin service available through the web interface
+for setting up and managing web services on our VPS to make it really useful, taking full advantage of the
+always-free resource.</p>
+
+<p>With <code class="language-plaintext highlighter-rouge">1Panle</code>, all the web services will be deployed using <code class="language-plaintext highlighter-rouge">Docker</code>, making it very easy to set up and
+manage. It is possible to deploy our own chatgpt service using docker as well – it is not included in
+the <code class="language-plaintext highlighter-rouge">1Panle</code> app store, but one can refer to Ref. [5] for detailed instructions about how-to.</p>
+
+<p>Here follows are listed several issues and the corresponding solution while I was setting up those services.</p>
+
+<h1 id="issue-1"><strong>Issue #1</strong></h1>
+
+<p>For some reason, the docker for hosting the <code class="language-plaintext highlighter-rouge">sftpgo</code> service would stop running from time to time, making
+the service not available frequently, in which case we need to manually restart the docker container all
+the time.</p>
+
+<h1 id="solution-1"><strong>Solution (#1):</strong></h1>
+
+<p>We can write a bash script like this,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nb">sudo </span>docker container ps <span class="nt">-a</span> <span class="nt">-f</span> <span class="s2">"id=652ff545ce6c"</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"Up"</span> <span class="o">&amp;&amp;</span> <span class="nv">a</span><span class="o">=</span>1 <span class="o">||</span> <span class="nv">a</span><span class="o">=</span>0
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$a</span> <span class="o">=</span> 0 <span class="o">]</span> <span class="p">;</span> <span class="k">then
+    </span><span class="nb">sudo </span>docker container start 652ff545ce6c
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>and make it executable (<code class="language-plaintext highlighter-rouge">chmod a+x check_sftpgo.sh</code>) and add it to the cron job to run it, e.g.,
+every minute so that the system will check the status of the docker container and restart it automatically
+if not running.</p>
+
+<h1 id="issue-2"><strong>Issue #2</strong></h1>
+
+<p>To make the connection to our web server secure, we need to set up SSL certificate and enable the HTTPS
+connection. We can do this by buying some SSL certificate and set up the HTTPS connection using the certificate
+using. e.g., <code class="language-plaintext highlighter-rouge">nginx</code> reverse proxy service. But we do need to pay for the certificate and it is probably not
+cheap.</p>
+
+<h1 id="solution-2"><strong>Solution (#2):</strong></h1>
+
+<p>To get a free, secure and easy-to-configure certificate service, we can use <code class="language-plaintext highlighter-rouge">CloudFlare</code> with which we can even
+use the domain name from other DNS provider (I am using Google domain and it was working perfectly). We can also use
+the <code class="language-plaintext highlighter-rouge">Page Rules</code> service provided by CloudFlare to force the visit to our web server following a certain rule, e.g.,
+always to use the HTTPS connection instead of HTTP – however, we can set up three free rules and beyond that we need
+to pay.</p>
+
+<h1 id="issue-3"><strong>Issue #3</strong></h1>
+
+<p>Let’s say we have a domain name <code class="language-plaintext highlighter-rouge">example.net</code> and we followed the <code class="language-plaintext highlighter-rouge">CloudFlare</code> way of setting up a secure connection via
+HTTPS. We are now facing the problem of having multiple services on a single VPS. For sure, we can directly use the port
+number like <code class="language-plaintext highlighter-rouge">example.net:9999</code> to point to the corresponding service on the server but this is probably not optimal in
+terms of both security and convenience.</p>
+
+<h1 id="solution-3"><strong>Solution (#3):</strong></h1>
+
+<p>An alternative option is to use nginx and specify a <code class="language-plaintext highlighter-rouge">location</code> for a server which then points to a certain port number
+via local connection – something like follows,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    listen 80;
+    server_name example.net;
+
+    location / {
+            proxy_pass         http://localhost:9999;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection "upgrade";
+            proxy_set_header   Host $host;
+    }
+}
+</code></pre></div></div>
+
+<p>This will work, but only for a single instance. For example, if I have another service hosted vai port 8888 and I tried
+to assign another location to it, it won’t work (not sure why, but in practice it did not work out).</p>
+
+<p>So, in this case, we can create subdomains, e.g., <code class="language-plaintext highlighter-rouge">sd.example.net</code> where <code class="language-plaintext highlighter-rouge">sd</code> can be with any arbitrary value and all
+those domains are considered as the subdomain of <code class="language-plaintext highlighter-rouge">example.net</code> and we are free to use them all – sometimes they are
+also called aliases but referring to the same thing. Then using <code class="language-plaintext highlighter-rouge">nginx</code>, we can create multiple configuration files,
+put them under <code class="language-plaintext highlighter-rouge">sites-enabled</code> directory (under <code class="language-plaintext highlighter-rouge">/etc/nginx</code>) and include them in the main <code class="language-plaintext highlighter-rouge">nginx</code> configuration file
+(<code class="language-plaintext highlighter-rouge">/etc/nginx/nginx.conf</code>), like this <code class="language-plaintext highlighter-rouge">include /etc/nginx/sites-enabled/*;</code> (within the <code class="language-plaintext highlighter-rouge">http</code> section). Here follows is
+a typical example file of such a configuration,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    listen 80;
+    server_name mm.iris-home.net;
+    location / {
+        proxy_pass         http://localhost:5230;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection "upgrade";
+        proxy_set_header   Host $host;
+    }
+}
+</code></pre></div></div>
+
+<p>Two things to note down,</p>
+
+<ol>
+  <li>
+    <p>For any of the configuration above for <code class="language-plaintext highlighter-rouge">nginx</code>, we only need to specify the <code class="language-plaintext highlighter-rouge">80</code> port (which is actually the
+http port) since the security part will be taken care of by <code class="language-plaintext highlighter-rouge">CloudFlare</code> following the notes above.</p>
+  </li>
+  <li>
+    <p>Quite often, people prefers to put the extra configuration files into the <code class="language-plaintext highlighter-rouge">sites-available</code> (also under
+<code class="language-plaintext highlighter-rouge">/etc/nginx</code>) and create soft link in the <code class="language-plaintext highlighter-rouge">sites-enabled</code> just for those to be enabled.</p>
+  </li>
+</ol>
+
+<p><b>References</b></p>
+
+<p>[1] <a href="https://www.youtube.com/watch?v=5a5tdJh8mKY">https://www.youtube.com/watch?v=5a5tdJh8mKY</a></p>
+
+<p>[2] <a href="https://www.freedidi.com/6075.html">https://www.freedidi.com/6075.html</a></p>
+
+<p>[3] <a href="https://www.freedidi.com/10167.html">https://www.freedidi.com/10167.html</a></p>
+
+<p>[4] <a href="https://github.com/1Panel-dev/1Panel">https://github.com/1Panel-dev/1Panel</a></p>
+
+<p>[5] <a href="https://github.com/langgenius/dify">https://github.com/langgenius/dify</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#programming">programming</a>
+          
+            <a href="/tags#web">web</a>
+          
+            <a href="/tags#VPS">VPS</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+a+self-hosted+web+server+on+Oracle+VPS&url=http%3A%2F%2Flocalhost%3A4002%2F2023-09-08-docker_nginx%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4002%2F2023-09-08-docker_nginx%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4002%2F2023-09-08-docker_nginx%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2023-08-11-rmc_papers/" data-toggle="tooltip" data-placement="top" title="Typical Science Papers with RMCProfile">&larr; Previous Post</a>
         </li>
         
+        
+      </ul>
       
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2020-03-18-notes_mag_I/"><h3 class="post-title mb0">Notes on magnetism - I</h3></a>
-					<p class="post-meta small">March 18, 2020, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#solid state physics">solid state physics</a>
-  
-    <a href="/tags#magnetism">magnetism</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2020-03-08-coriolis_force/"><h3 class="post-title mb0">About Coriolis force</h3></a>
-					<p class="post-meta small">March 8, 2020, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#classical physics">classical physics</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 
