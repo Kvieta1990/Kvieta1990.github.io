@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Thermal background in pair distrubtion function
+title: Thermal background in pair distrubtion function (PDF)
 subtitle:
 tags: [total scattering, theory, solid state physics]
 author: Yuanpeng Zhang
