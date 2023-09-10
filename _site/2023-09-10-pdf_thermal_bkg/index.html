@@ -18,13 +18,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Thermal background in pair distrubtion function</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="This post discusses the thermal background of a pair distribution function (PDF), taking the paper by K. Page, et al. [1] as the reference and noting down several aspects that are critical for understanding the topic. The paper was originally reporting an alternative way for coping with the incoherent inelastic...">
 
   
 
@@ -88,17 +88,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Thermal background in pair distrubtion function">
+  <meta property="og:description" content="This post discusses the thermal background of a pair distribution function (PDF), taking the paper by K. Page, et al. [1] as the reference and noting down several aspects that are critical for understanding the topic. The paper was originally reporting an alternative way for coping with the incoherent inelastic...">
 
   
   <meta property="og:image" content="http://localhost:4002/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4002/archive/2020/06/">
-  <link rel="canonical" href="http://localhost:4002/archive/2020/06/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2023-09-10T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4002/2023-09-10-pdf_thermal_bkg/">
+  <link rel="canonical" href="http://localhost:4002/2023-09-10-pdf_thermal_bkg/">
   
 
   
@@ -107,8 +109,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Thermal background in pair distrubtion function">
+  <meta property="twitter:description" content="This post discusses the thermal background of a pair distribution function (PDF), taking the paper by K. Page, et al. [1] as the reference and noting down several aspects that are critical for understanding the topic. The paper was originally reporting an alternative way for coping with the incoherent inelastic...">
 
   
   <meta name="twitter:image" content="http://localhost:4002/assets/img/avatar-icon.png">
@@ -252,10 +254,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Thermal background in pair distrubtion function</h1>
           
 
+          
+					<span class="post-meta">Posted on September 10, 2023, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -268,287 +274,184 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>This post discusses the thermal background of a pair distribution function (PDF), taking the paper by
+K. Page, et al. [1] as the reference and noting down several aspects that are critical for understanding
+the topic. The paper was originally reporting an alternative way for coping with the incoherent inelastic
+background issue for the total scattering measurement for systems containing hydrogen. Here, the overall
+formulation of the one-dimensional (after isotropic averaging, see Appendix-J in the book by M. Dove for
+reference [2]) total scattering structure factor from Ref. [1] (Eqn. 11) is reproduced without extra
+details – one can refer to the paper for detailed derivation.</p>
+
+\[\begin{equation}
+\begin{aligned}
+S_R(Q) &amp; = exp(-\langle\langle u_i^2\rangle\rangle Q^2)S(Q) + S_{I, coherent} + S_{I, incoherent}\nonumber\\
+&amp; = exp(-\langle\langle u_i^2\rangle\rangle Q^2)\frac{1}{N\langle b\rangle^2}\sum_i^N\sum_j^N\frac{sin(Q\,r_{ij})}{Q\,r_{ij}}\nonumber\\
+&amp; \hspace{0.5cm} + exp(-\langle\langle u_i^2\rangle\rangle Q^2)L + 1 - exp(-\langle\langle u_i^2\rangle\rangle Q^2)\nonumber\\
+&amp; \hspace{0.5cm} + S_{I, incoherent}\nonumber
+\end{aligned}
+\end{equation}\]
+
+<p><strong>📌Note-1</strong></p>
+
+<p><br /></p>
+
+<p>The multiplicative term \(exp(-\langle\langle u_i^2\rangle\rangle Q^2)\) originates from the atoms being
+away from ideal position (from which the structure factor is calculated), either statically or dynamically.
+But still, the resulted scattering is coherent and elastic, based on which Debye and Waller derived such a
+Gaussian dampening term of the scattering intensity as the function of \(Q\).</p>
+
+<p><br /></p>
+
+<p><strong>📌Note-2</strong></p>
+
+<p><br /></p>
+
+<p>In practice, the scattering event has the contribution from the inelastic scattering resulted from the energy
+exchange with phonons. If considering the coherent contribution only, the energy-integrated intensity (the
+\(S_{I, coherent}\) term in the formulation above) can be approximated by
+\(1 - exp(-\langle\langle u_i^2\rangle\rangle Q^2)\). However, in practice, such an approximation may not
+exactly stand. For example, for time-of-flight instrument with detectors located at different scattering angle,
+one can always find that the thermal background of the total scattering function \(S(Q)\) is not sitting on the
+same level of background, which then obviously disagree with the indication by the approximation. So, in practice,
+a more generic <em>ad hoc</em> form of the thermal background corresponding to the coherent inelastic scattering contribution
+may be given as,</p>
+
+\[a - b\,exp(-c\,Q^2)\]
+
+<p>where \(a\), \(b\) and \(c\) are parameters that can be fitted given the extracted background curve – how to extract
+the background level is a separate issue. For example, one can use the background estimation tool available in OriginLab
+or some tools with some Python modules.</p>
+
+<p><br /></p>
+
+<p><strong>📌Note-3</strong></p>
+
+<p><br /></p>
+
+<p>For sure, if the total scattering data is reduced in such a way that the high \(Q\) level is always to approach \(1\),
+e.g., by adjusting the packing fraction as the tweaking factor, one would have the parameter \(a\) above always being \(1\).</p>
+
+<p><br /></p>
+
+<p><strong>📌Note-4</strong></p>
+
+<p><br /></p>
+
+<p>In practice, however, the actual background corresponding to the coherent inelastic scattering does not matter that
+much since the Fourier transform of such a background will always give signal limited to the very low-\(r\) region in
+real-space. As such, the ‘thermal background’ can be reconstructed automatically by the Fourier filter which is usually
+applied at the post-procerssing stage of the total scattering data reduction, by forcing the low-\(r\) region of the
+real-space function to follow the baseline. This is equivalent to multiplying a window function onto the real-space function,
+the inverse Fourier transform of which will then create the ‘thermal background’.</p>
+
+<p><br /></p>
+
+<p><b>References</b></p>
+
+<p>[1] K. Page, et al. J.Appl.Cryst.(2011).44, 532–539.</p>
+
+<p>[2] Martin T. Dove. Structure and Dynamics: An Atomic View of Materials. 2002, Oxford University Press Inc., New York.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#total scattering">total scattering</a>
+          
+            <a href="/tags#theory">theory</a>
+          
+            <a href="/tags#solid state physics">solid state physics</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
 
 
-<div class="intro-header"></div>
 
-<div role="main" class=" container-md ">
-  
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>June, 2020</em></h2>
-  </header>
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
 
   
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2020-06-28-fourier_transform/"><h3 class="post-title mb0">When Fourier transform meets total scattering</h3></a>
-					<p class="post-meta small">June 28, 2020, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Thermal+background+in+pair+distrubtion+function&url=http%3A%2F%2Flocalhost%3A4002%2F2023-09-10-pdf_thermal_bkg%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
   
-    <a href="/tags#scattering">scattering</a>
-  
-    <a href="/tags#crystallography">crystallography</a>
-  
-    <a href="/tags#total scattering">total scattering</a>
-  
-    <a href="/tags#maths">maths</a>
-  
-</p>
 
-          </div>
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4002%2F2023-09-10-pdf_thermal_bkg%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4002%2F2023-09-10-pdf_thermal_bkg%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2023-09-08-docker_nginx/" data-toggle="tooltip" data-placement="top" title="Set up a self-hosted web server on Oracle VPS">&larr; Previous Post</a>
         </li>
         
+        
+      </ul>
       
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2020-06-27-conda_build/"><h3 class="post-title mb0">Build package with conda recipe</h3></a>
-					<p class="post-meta small">June 27, 2020, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#programming">programming</a>
-  
-    <a href="/tags#python">python</a>
-  
-    <a href="/tags#conda">conda</a>
-  
-    <a href="/tags#package">package</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2020-06-26-discus_install/"><h3 class="post-title mb0">Install DISCUS version 6 on Windows 10</h3></a>
-					<p class="post-meta small">June 26, 2020, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#tool">tool</a>
-  
-    <a href="/tags#software installation">software installation</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 

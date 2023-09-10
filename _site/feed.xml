@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Thermal background in pair distrubtion function</title>
+        <description>
+          
+          This post discusses the thermal background of a pair distribution function (PDF), taking the paper by K. Page, et al. [1] as the reference and noting down several aspects that are critical for understanding the topic. The paper was originally reporting an alternative way for coping with the incoherent inelastic...
+        </description>
+        <pubDate>Sun, 10 Sep 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2023-09-10-pdf_thermal_bkg/</link>
+        <guid isPermaLink="true">http://localhost:4002/2023-09-10-pdf_thermal_bkg/</guid>
+      </item>
+    
+      <item>
         <title>Set up a self-hosted web server on Oracle VPS</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sun, 09 Oct 2022 00:00:00 -0400</pubDate>
         <link>http://localhost:4002/2022-10-09-jekyll_code_snippet_copy/</link>
         <guid isPermaLink="true">http://localhost:4002/2022-10-09-jekyll_code_snippet_copy/</guid>
-      </item>
-    
-      <item>
-        <title>Notes On Isotropy Subgroup</title>
-        <description>
-          Key notes for reading the lecture notes by Stokes on isotropy subgroup - 
-          Figure. 1. Isotropy subgroup [1]. This blog contains some key notes for reading the lecture notes by H. Stokes, et al. [1] on isotropy subgroup. Details about the lecture notes will not be reproduced here and instead we will just put down some key understanding as below, Two subspaces are...
-        </description>
-        <pubDate>Mon, 20 Jun 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-06-20-iso_subg/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-06-20-iso_subg/</guid>
       </item>
     
   </channel>
