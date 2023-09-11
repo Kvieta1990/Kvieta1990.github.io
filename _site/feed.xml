@@ -12,7 +12,18 @@
     
     
       <item>
-        <title>Thermal background in pair distrubtion function</title>
+        <title>Rustdesk server setup</title>
+        <description>
+          
+          There are several available software in the market for remote control, such as Teamviewer (probably the most well-known one), AnyDesk, etc., including the built-in Windows remote control utility (which is actually already very good especially for the use of local network connection). For cross-platform usage, for sure, Teamviewer is probably...
+        </description>
+        <pubDate>Sun, 10 Sep 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4002/2023-09-10-rustdesk_server/</link>
+        <guid isPermaLink="true">http://localhost:4002/2023-09-10-rustdesk_server/</guid>
+      </item>
+    
+      <item>
+        <title>Thermal background in pair distrubtion function (PDF)</title>
         <description>
           
           This post discusses the thermal background of a pair distribution function (PDF), taking the paper by K. Page, et al. [1] as the reference and noting down several aspects that are critical for understanding the topic. The paper was originally reporting an alternative way for coping with the incoherent inelastic...
@@ -218,17 +229,6 @@
         <pubDate>Sun, 09 Oct 2022 00:00:00 -0400</pubDate>
         <link>http://localhost:4002/2022-10-09-jekyll_maths/</link>
         <guid isPermaLink="true">http://localhost:4002/2022-10-09-jekyll_maths/</guid>
-      </item>
-    
-      <item>
-        <title>Copy of code snippet in Jekyll</title>
-        <description>
-          Notes on inclusion of a button for copy code snippet in GitHub pages - 
-          Trying to follow several resources [1, 2] for setting up the code snippet copy capability in Jekyll site, but for some reason, I could not get it working. I suppose this may be something to do with theme I am using (the beautiful-jekyll theme), and I am not what to...
-        </description>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-10-09-jekyll_code_snippet_copy/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-10-09-jekyll_code_snippet_copy/</guid>
       </item>
     
   </channel>

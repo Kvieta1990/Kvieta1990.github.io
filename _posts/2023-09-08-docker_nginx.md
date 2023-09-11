@@ -20,7 +20,7 @@ use_math: true
 
 It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture,
 Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb
-RAM. We can refer to Ref. [1-3] for more information -- both are in Chinese only. Once the VPS is up
+RAM. We can refer to Ref. [1-3] for more information (in Chinese only). Once the VPS is up
 running, we can use the `1Panel` tool [4] to set up an admin service available through the web interface
 for setting up and managing web services on our VPS to make it really useful, taking full advantage of the
 always-free resource.
