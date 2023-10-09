@@ -24,13 +24,13 @@
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="{% assign date_format = site.date_format | default: &quot;%B %-d, %Y&quot; %} {%- capture site_tags -%} {%- for tag in site.tags -%} {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%} {%- endfor -%} {%- endcapture -%} {%- assign tags_list = site_tags | split:&apos;,&apos; | sort -%} {%- for tag...">
+  <meta name="description" content="{% assign date_format = site.date_format | default: &quot;%B %-d, %Y&quot; %} {%- capture site_tags -%} {%- for tag in site.tags -%} {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%} {%- endfor -%} {%- endcapture -%} {%- assign tags_list = site_tags | split:',' | sort -%} {%- for tag...">
 
   
 
   
 
-  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4002/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
 
   
 
@@ -89,16 +89,16 @@
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
   <meta property="og:title" content="Tag Index">
-  <meta property="og:description" content="{% assign date_format = site.date_format | default: &quot;%B %-d, %Y&quot; %} {%- capture site_tags -%} {%- for tag in site.tags -%} {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%} {%- endfor -%} {%- endcapture -%} {%- assign tags_list = site_tags | split:&apos;,&apos; | sort -%} {%- for tag...">
+  <meta property="og:description" content="{% assign date_format = site.date_format | default: &quot;%B %-d, %Y&quot; %} {%- capture site_tags -%} {%- for tag in site.tags -%} {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%} {%- endfor -%} {%- endcapture -%} {%- assign tags_list = site_tags | split:',' | sort -%} {%- for tag...">
 
   
-  <meta property="og:image" content="http://localhost:4002/assets/img/avatar-icon.png">
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4002/tags/">
-  <link rel="canonical" href="http://localhost:4002/tags/">
+  <meta property="og:url" content="http://localhost:4000/tags/">
+  <link rel="canonical" href="http://localhost:4000/tags/">
   
 
   
@@ -108,10 +108,10 @@
   <meta name="twitter:creator" content="@">
 
   <meta property="twitter:title" content="Tag Index">
-  <meta property="twitter:description" content="{% assign date_format = site.date_format | default: &quot;%B %-d, %Y&quot; %} {%- capture site_tags -%} {%- for tag in site.tags -%} {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%} {%- endfor -%} {%- endcapture -%} {%- assign tags_list = site_tags | split:&apos;,&apos; | sort -%} {%- for tag...">
+  <meta property="twitter:description" content="{% assign date_format = site.date_format | default: &quot;%B %-d, %Y&quot; %} {%- capture site_tags -%} {%- for tag in site.tags -%} {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%} {%- endfor -%} {%- endcapture -%} {%- assign tags_list = site_tags | split:',' | sort -%} {%- for tag...">
 
   
-  <meta name="twitter:image" content="http://localhost:4002/assets/img/avatar-icon.png">
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
@@ -157,7 +157,7 @@
   
 
 
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4002/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -221,7 +221,7 @@
 
 <script>
 function myFunction() {
-		return '<a href="http://localhost:4002/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
 }
 let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
 let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
@@ -273,7 +273,7 @@ if (chromeAgent) {
     <div class=" page_body ">
       
 
-      <a href="#GPU" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;GPU&nbsp;(2)</a><a href="#IDE" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;IDE&nbsp;(1)</a><a href="#LAMMPS" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;LAMMPS&nbsp;(1)</a><a href="#PHP" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;PHP&nbsp;(1)</a><a href="#Python" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Python&nbsp;(1)</a><a href="#RMCProfile" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;RMCProfile&nbsp;(2)</a><a href="#Research" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Research&nbsp;(1)</a><a href="#Slack" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Slack&nbsp;(1)</a><a href="#VPS" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;VPS&nbsp;(1)</a><a href="#Windows" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Windows&nbsp;(1)</a><a href="#classical physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;classical physics&nbsp;(1)</a><a href="#conda" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;conda&nbsp;(1)</a><a href="#crystallography" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;crystallography&nbsp;(6)</a><a href="#data analysis" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;data analysis&nbsp;(1)</a><a href="#forum" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;forum&nbsp;(1)</a><a href="#general physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;general physics&nbsp;(3)</a><a href="#jekyll" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;jekyll&nbsp;(2)</a><a href="#jupyter" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;jupyter&nbsp;(2)</a><a href="#magnetism" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;magnetism&nbsp;(4)</a><a href="#maths" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;maths&nbsp;(3)</a><a href="#nano" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;nano&nbsp;(1)</a><a href="#package" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;package&nbsp;(1)</a><a href="#programming" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;programming&nbsp;(16)</a><a href="#python" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;python&nbsp;(2)</a><a href="#quantum physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;quantum physics&nbsp;(1)</a><a href="#relativity" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;relativity&nbsp;(2)</a><a href="#rmc" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;rmc&nbsp;(1)</a><a href="#scattering" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;scattering&nbsp;(3)</a><a href="#server" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;server&nbsp;(3)</a><a href="#slurm" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;slurm&nbsp;(1)</a><a href="#software" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;software&nbsp;(2)</a><a href="#software installation" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;software installation&nbsp;(2)</a><a href="#solid state physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;solid state physics&nbsp;(8)</a><a href="#statistical physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;statistical physics&nbsp;(1)</a><a href="#statistics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;statistics&nbsp;(1)</a><a href="#technical" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;technical&nbsp;(6)</a><a href="#theory" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;theory&nbsp;(2)</a><a href="#thermodynamics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;thermodynamics&nbsp;(3)</a><a href="#tool" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;tool&nbsp;(7)</a><a href="#total scattering" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;total scattering&nbsp;(4)</a><a href="#web" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;web&nbsp;(2)</a><a href="#web development" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;web development&nbsp;(12)</a><div id="full-tags-list"><h2 id="GPU" class="linked-section">
+      <a href="#GPU" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;GPU&nbsp;(2)</a><a href="#IDE" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;IDE&nbsp;(1)</a><a href="#LAMMPS" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;LAMMPS&nbsp;(1)</a><a href="#PHP" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;PHP&nbsp;(1)</a><a href="#Python" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Python&nbsp;(1)</a><a href="#RMCProfile" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;RMCProfile&nbsp;(2)</a><a href="#Research" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Research&nbsp;(1)</a><a href="#Scattering" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Scattering&nbsp;(1)</a><a href="#Slack" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Slack&nbsp;(1)</a><a href="#VPS" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;VPS&nbsp;(1)</a><a href="#Windows" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Windows&nbsp;(1)</a><a href="#classical physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;classical physics&nbsp;(1)</a><a href="#conda" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;conda&nbsp;(1)</a><a href="#crystallography" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;crystallography&nbsp;(6)</a><a href="#data analysis" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;data analysis&nbsp;(1)</a><a href="#diffraction" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;diffraction&nbsp;(1)</a><a href="#forum" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;forum&nbsp;(1)</a><a href="#general physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;general physics&nbsp;(3)</a><a href="#jekyll" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;jekyll&nbsp;(2)</a><a href="#jupyter" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;jupyter&nbsp;(2)</a><a href="#magnetism" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;magnetism&nbsp;(4)</a><a href="#maths" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;maths&nbsp;(3)</a><a href="#nano" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;nano&nbsp;(1)</a><a href="#package" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;package&nbsp;(1)</a><a href="#programming" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;programming&nbsp;(16)</a><a href="#python" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;python&nbsp;(2)</a><a href="#quantum physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;quantum physics&nbsp;(1)</a><a href="#relativity" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;relativity&nbsp;(2)</a><a href="#rmc" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;rmc&nbsp;(1)</a><a href="#scattering" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;scattering&nbsp;(3)</a><a href="#server" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;server&nbsp;(3)</a><a href="#slurm" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;slurm&nbsp;(1)</a><a href="#software" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;software&nbsp;(2)</a><a href="#software installation" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;software installation&nbsp;(2)</a><a href="#solid state physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;solid state physics&nbsp;(9)</a><a href="#statistical physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;statistical physics&nbsp;(1)</a><a href="#statistics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;statistics&nbsp;(1)</a><a href="#technical" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;technical&nbsp;(6)</a><a href="#theory" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;theory&nbsp;(3)</a><a href="#thermodynamics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;thermodynamics&nbsp;(3)</a><a href="#tool" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;tool&nbsp;(7)</a><a href="#total scattering" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;total scattering&nbsp;(4)</a><a href="#web" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;web&nbsp;(2)</a><a href="#web development" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;web development&nbsp;(12)</a><div id="full-tags-list"><h2 id="GPU" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
         &nbsp;GPU&nbsp;(2)
     </h2>
@@ -312,7 +312,7 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2023-02-15-notes_mybb/">Notes on Forum Setup with MyBB</a>
                 <div class="entry-date">
-										<time datetime="2023-02-15T00:00:00-04:00">February 15, 2023</time>, by Yuanpeng Zhang
+										<time datetime="2023-02-15T00:00:00-05:00">February 15, 2023</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="Python" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -321,7 +321,7 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2022-12-30-notes_slack_msg/">Notes on Slack App Setup</a>
                 <div class="entry-date">
-										<time datetime="2022-12-30T00:00:00-04:00">December 30, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-12-30T00:00:00-05:00">December 30, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="RMCProfile" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -346,6 +346,15 @@ if (chromeAgent) {
                 <div class="entry-date">
 										<time datetime="2023-08-11T00:00:00-04:00">August 11, 2023</time>, by Yuanpeng Zhang
                 </div>
+            </div></div><h2 id="Scattering" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;Scattering&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2023-10-09-diff_size_strain/">Size & strain effect and preferred orientation in diffraction</a>
+                <div class="entry-date">
+										<time datetime="2023-10-09T00:00:00-04:00">October 9, 2023</time>, by Yuanpeng Zhang
+                </div>
             </div></div><h2 id="Slack" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
         &nbsp;Slack&nbsp;(1)
@@ -353,7 +362,7 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2022-12-30-notes_slack_msg/">Notes on Slack App Setup</a>
                 <div class="entry-date">
-										<time datetime="2022-12-30T00:00:00-04:00">December 30, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-12-30T00:00:00-05:00">December 30, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="VPS" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -371,7 +380,7 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2022-12-11-notes_total_commander/">Notes on Total Commander Setups</a>
                 <div class="entry-date">
-										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-12-11T00:00:00-05:00">December 11, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="classical physics" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -380,7 +389,7 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2020-03-08-coriolis_force/">About Coriolis force</a>
                 <div class="entry-date">
-										<time datetime="2020-03-08T00:00:00-04:00">March 8, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-03-08T00:00:00-05:00">March 8, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="conda" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -403,7 +412,7 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2022-12-11-notes_gsasii/">Notes on GSAS-II</a>
                 <div class="entry-date">
-										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-12-11T00:00:00-05:00">December 11, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2022-06-20-iso_subg/">Notes On Isotropy Subgroup</a>
@@ -432,7 +441,16 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2020-12-01-rmc_configure/">Configure RMCProfile</a>
                 <div class="entry-date">
-										<time datetime="2020-12-01T00:00:00-04:00">December 1, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-12-01T00:00:00-05:00">December 1, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="diffraction" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;diffraction&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2023-10-09-diff_size_strain/">Size & strain effect and preferred orientation in diffraction</a>
+                <div class="entry-date">
+										<time datetime="2023-10-09T00:00:00-04:00">October 9, 2023</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="forum" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -441,7 +459,7 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2023-02-15-notes_mybb/">Notes on Forum Setup with MyBB</a>
                 <div class="entry-date">
-										<time datetime="2023-02-15T00:00:00-04:00">February 15, 2023</time>, by Yuanpeng Zhang
+										<time datetime="2023-02-15T00:00:00-05:00">February 15, 2023</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="general physics" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -455,12 +473,12 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2019-12-10-special_relativity/">Notes on special relativity</a>
                 <div class="entry-date">
-										<time datetime="2019-12-10T00:00:00-04:00">December 10, 2019</time>, by Yuanpeng Zhang
+										<time datetime="2019-12-10T00:00:00-05:00">December 10, 2019</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2019-12-08-einstein_fridge/">A silent refrigerator</a>
                 <div class="entry-date">
-										<time datetime="2019-12-08T00:00:00-04:00">December 8, 2019</time>, by Yuanpeng Zhang
+										<time datetime="2019-12-08T00:00:00-05:00">December 8, 2019</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="jekyll" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -488,7 +506,7 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2022-11-26-notes_jupyterhub/">Notes on Jupyterhub server setup</a>
                 <div class="entry-date">
-										<time datetime="2022-11-26T00:00:00-04:00">November 26, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-11-26T00:00:00-05:00">November 26, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="magnetism" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -502,7 +520,7 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2020-12-21-notes_mag_III/">Notes on magnetism - III</a>
                 <div class="entry-date">
-										<time datetime="2020-12-21T00:00:00-04:00">December 21, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-12-21T00:00:00-05:00">December 21, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2020-03-29-notes_mag_II/">Notes on magnetism - II</a>
@@ -526,7 +544,7 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2020-11-22-kde/">Notes on kernel density estimation</a>
                 <div class="entry-date">
-										<time datetime="2020-11-22T00:00:00-04:00">November 22, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-11-22T00:00:00-05:00">November 22, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2020-06-28-fourier_transform/">When Fourier transform meets total scattering</a>
@@ -613,12 +631,12 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2020-11-28-notes_jekyll/">Notes on Jekyll</a>
                 <div class="entry-date">
-										<time datetime="2020-11-28T00:00:00-04:00">November 28, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-11-28T00:00:00-05:00">November 28, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2020-11-20-flask/">Notes on Flask</a>
                 <div class="entry-date">
-										<time datetime="2020-11-20T00:00:00-04:00">November 20, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-11-20T00:00:00-05:00">November 20, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2020-06-27-conda_build/">Build package with conda recipe</a>
@@ -656,7 +674,7 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2020-12-18-spin/">About electron spin</a>
                 <div class="entry-date">
-										<time datetime="2020-12-18T00:00:00-04:00">December 18, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-12-18T00:00:00-05:00">December 18, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="relativity" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -670,7 +688,7 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2019-12-10-special_relativity/">Notes on special relativity</a>
                 <div class="entry-date">
-										<time datetime="2019-12-10T00:00:00-04:00">December 10, 2019</time>, by Yuanpeng Zhang
+										<time datetime="2019-12-10T00:00:00-05:00">December 10, 2019</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="rmc" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -688,7 +706,7 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2022-12-11-notes_gsasii/">Notes on GSAS-II</a>
                 <div class="entry-date">
-										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-12-11T00:00:00-05:00">December 11, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2021-07-09-coh_incoh_sl/">Derivation of neutron incoherent scattering length</a>
@@ -712,12 +730,12 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2022-11-29-notes_slurm/">Notes on slurm server setup</a>
                 <div class="entry-date">
-										<time datetime="2022-11-29T00:00:00-04:00">November 29, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-11-29T00:00:00-05:00">November 29, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2021-12-21-owncloud_setup/">OwnCloud Server Setup</a>
                 <div class="entry-date">
-										<time datetime="2021-12-21T00:00:00-04:00">December 21, 2021</time>, by Yuanpeng Zhang
+										<time datetime="2021-12-21T00:00:00-05:00">December 21, 2021</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="slurm" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -726,7 +744,7 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2022-11-29-notes_slurm/">Notes on slurm server setup</a>
                 <div class="entry-date">
-										<time datetime="2022-11-29T00:00:00-04:00">November 29, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-11-29T00:00:00-05:00">November 29, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="software" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -740,7 +758,7 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2022-12-11-notes_total_commander/">Notes on Total Commander Setups</a>
                 <div class="entry-date">
-										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-12-11T00:00:00-05:00">December 11, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="software installation" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -758,9 +776,14 @@ if (chromeAgent) {
                 </div>
             </div></div><h2 id="solid state physics" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
-        &nbsp;solid state physics&nbsp;(8)
+        &nbsp;solid state physics&nbsp;(9)
     </h2>
     <div class="post-list"><div class="tag-entry">
+                <a href="/2023-10-09-diff_size_strain/">Size & strain effect and preferred orientation in diffraction</a>
+                <div class="entry-date">
+										<time datetime="2023-10-09T00:00:00-04:00">October 9, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
                 <a href="/2023-09-10-pdf_thermal_bkg/">Thermal background in pair distrubtion function (PDF)</a>
                 <div class="entry-date">
 										<time datetime="2023-09-10T00:00:00-04:00">September 10, 2023</time>, by Yuanpeng Zhang
@@ -788,7 +811,7 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2020-12-21-notes_mag_III/">Notes on magnetism - III</a>
                 <div class="entry-date">
-										<time datetime="2020-12-21T00:00:00-04:00">December 21, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-12-21T00:00:00-05:00">December 21, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2020-03-29-notes_mag_II/">Notes on magnetism - II</a>
@@ -816,7 +839,7 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2020-11-22-kde/">Notes on kernel density estimation</a>
                 <div class="entry-date">
-										<time datetime="2020-11-22T00:00:00-04:00">November 22, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-11-22T00:00:00-05:00">November 22, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div></div><h2 id="technical" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
@@ -825,22 +848,22 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2023-02-22-notes_windterm/">Notes on setting up WindTerm</a>
                 <div class="entry-date">
-										<time datetime="2023-02-22T00:00:00-04:00">February 22, 2023</time>, by Yuanpeng Zhang
+										<time datetime="2023-02-22T00:00:00-05:00">February 22, 2023</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2023-02-15-notes_mybb/">Notes on Forum Setup with MyBB</a>
                 <div class="entry-date">
-										<time datetime="2023-02-15T00:00:00-04:00">February 15, 2023</time>, by Yuanpeng Zhang
+										<time datetime="2023-02-15T00:00:00-05:00">February 15, 2023</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2022-12-30-notes_slack_msg/">Notes on Slack App Setup</a>
                 <div class="entry-date">
-										<time datetime="2022-12-30T00:00:00-04:00">December 30, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-12-30T00:00:00-05:00">December 30, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2022-12-11-notes_total_commander/">Notes on Total Commander Setups</a>
                 <div class="entry-date">
-										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-12-11T00:00:00-05:00">December 11, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2021-05-17-jup_kernel/">Jupyterlab kernel setup</a>
@@ -854,9 +877,14 @@ if (chromeAgent) {
                 </div>
             </div></div><h2 id="theory" class="linked-section">
         <i class="fas fa-tag" aria-hidden="true"></i>
-        &nbsp;theory&nbsp;(2)
+        &nbsp;theory&nbsp;(3)
     </h2>
     <div class="post-list"><div class="tag-entry">
+                <a href="/2023-10-09-diff_size_strain/">Size & strain effect and preferred orientation in diffraction</a>
+                <div class="entry-date">
+										<time datetime="2023-10-09T00:00:00-04:00">October 9, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
                 <a href="/2023-09-10-pdf_thermal_bkg/">Thermal background in pair distrubtion function (PDF)</a>
                 <div class="entry-date">
 										<time datetime="2023-09-10T00:00:00-04:00">September 10, 2023</time>, by Yuanpeng Zhang
@@ -892,27 +920,27 @@ if (chromeAgent) {
     <div class="post-list"><div class="tag-entry">
                 <a href="/2023-02-22-notes_windterm/">Notes on setting up WindTerm</a>
                 <div class="entry-date">
-										<time datetime="2023-02-22T00:00:00-04:00">February 22, 2023</time>, by Yuanpeng Zhang
+										<time datetime="2023-02-22T00:00:00-05:00">February 22, 2023</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2023-02-15-notes_mybb/">Notes on Forum Setup with MyBB</a>
                 <div class="entry-date">
-										<time datetime="2023-02-15T00:00:00-04:00">February 15, 2023</time>, by Yuanpeng Zhang
+										<time datetime="2023-02-15T00:00:00-05:00">February 15, 2023</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2022-12-30-notes_slack_msg/">Notes on Slack App Setup</a>
                 <div class="entry-date">
-										<time datetime="2022-12-30T00:00:00-04:00">December 30, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-12-30T00:00:00-05:00">December 30, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2022-12-11-notes_total_commander/">Notes on Total Commander Setups</a>
                 <div class="entry-date">
-										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-12-11T00:00:00-05:00">December 11, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2020-12-01-rmc_configure/">Configure RMCProfile</a>
                 <div class="entry-date">
-										<time datetime="2020-12-01T00:00:00-04:00">December 1, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-12-01T00:00:00-05:00">December 1, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2020-07-04-sublime/">Notes on Sublime Text 3</a>
@@ -941,7 +969,7 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2020-12-01-rmc_configure/">Configure RMCProfile</a>
                 <div class="entry-date">
-										<time datetime="2020-12-01T00:00:00-04:00">December 1, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-12-01T00:00:00-05:00">December 1, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2020-06-28-fourier_transform/">When Fourier transform meets total scattering</a>
@@ -979,7 +1007,7 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2022-11-26-notes_jupyterhub/">Notes on Jupyterhub server setup</a>
                 <div class="entry-date">
-										<time datetime="2022-11-26T00:00:00-04:00">November 26, 2022</time>, by Yuanpeng Zhang
+										<time datetime="2022-11-26T00:00:00-05:00">November 26, 2022</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2022-10-13-css_javascript_img_effect/">Image effect in web page</a>
@@ -999,7 +1027,7 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2021-12-21-owncloud_setup/">OwnCloud Server Setup</a>
                 <div class="entry-date">
-										<time datetime="2021-12-21T00:00:00-04:00">December 21, 2021</time>, by Yuanpeng Zhang
+										<time datetime="2021-12-21T00:00:00-05:00">December 21, 2021</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2021-06-24-man_jupyter_kernel/">Management of Jupyter kernels</a>
@@ -1019,12 +1047,12 @@ if (chromeAgent) {
             </div><div class="tag-entry">
                 <a href="/2020-11-28-notes_jekyll/">Notes on Jekyll</a>
                 <div class="entry-date">
-										<time datetime="2020-11-28T00:00:00-04:00">November 28, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-11-28T00:00:00-05:00">November 28, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div><div class="tag-entry">
                 <a href="/2020-11-20-flask/">Notes on Flask</a>
                 <div class="entry-date">
-										<time datetime="2020-11-20T00:00:00-04:00">November 20, 2020</time>, by Yuanpeng Zhang
+										<time datetime="2020-11-20T00:00:00-05:00">November 20, 2020</time>, by Yuanpeng Zhang
                 </div>
             </div></div></div>
 

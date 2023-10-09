@@ -2,14 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     
-    <title>Yuanpeng&apos;s Blog</title>
+    <title>Yuanpeng's Blog</title>
     
     
-    <description>This website is a virtual proof that I&apos;m awesome</description>
+    <description>This website is a virtual proof that I'm awesome</description>
     
-    <link>http://localhost:4002/</link>
-    <atom:link href="http://localhost:4002/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+      <item>
+        <title>Size &amp; strain effect and preferred orientation in diffraction</title>
+        <description>
+          
+          Size effect The Bragg equation can be derived based on a simple picture where one can calculate the phase difference between the two sets of incoming and scattered beam corresponding to two scattering center. The fundamental idea is that when the phase difference is the integer multiple of the wavelength,...
+        </description>
+        <pubDate>Mon, 09 Oct 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2023-10-09-diff_size_strain/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-10-09-diff_size_strain/</guid>
+      </item>
     
       <item>
         <title>Rustdesk server setup</title>
@@ -18,8 +29,8 @@
           There are several available software in the market for remote control, such as Teamviewer (probably the most well-known one), AnyDesk, etc., including the built-in Windows remote control utility (which is actually already very good especially for the use of local network connection). For cross-platform usage, for sure, Teamviewer is probably...
         </description>
         <pubDate>Sun, 10 Sep 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-09-10-rustdesk_server/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-09-10-rustdesk_server/</guid>
+        <link>http://localhost:4000/2023-09-10-rustdesk_server/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-09-10-rustdesk_server/</guid>
       </item>
     
       <item>
@@ -29,8 +40,8 @@
           This post discusses the thermal background of a pair distribution function (PDF), taking the paper by K. Page, et al. [1] as the reference and noting down several aspects that are critical for understanding the topic. The paper was originally reporting an alternative way for coping with the incoherent inelastic...
         </description>
         <pubDate>Sun, 10 Sep 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-09-10-pdf_thermal_bkg/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-09-10-pdf_thermal_bkg/</guid>
+        <link>http://localhost:4000/2023-09-10-pdf_thermal_bkg/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-09-10-pdf_thermal_bkg/</guid>
       </item>
     
       <item>
@@ -40,8 +51,8 @@
           It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture, Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb RAM. We can refer to Ref. [1-3] for more information...
         </description>
         <pubDate>Fri, 08 Sep 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-09-08-docker_nginx/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-09-08-docker_nginx/</guid>
+        <link>http://localhost:4000/2023-09-08-docker_nginx/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-09-08-docker_nginx/</guid>
       </item>
     
       <item>
@@ -51,8 +62,8 @@
           This blog lists out several typical research papers with RMCProfile that I myself was involved. Title: Hidden Local Symmetry Breaking in a Kagome-Lattice Magnetic Weyl Semimetal Authors: Qiang Zhang, Yuanpeng Zhang, Masaaki Matsuda, Vasile Ovidiu Garlea, Jiaqiang Yan, Michael A. McGuire, D. Alan Tennant, and Satoshi Okamoto Abstract: Exploring the...
         </description>
         <pubDate>Fri, 11 Aug 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-08-11-rmc_papers/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-08-11-rmc_papers/</guid>
+        <link>http://localhost:4000/2023-08-11-rmc_papers/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-08-11-rmc_papers/</guid>
       </item>
     
       <item>
@@ -62,8 +73,8 @@
           This blog is a collection of notes about implementing the lammps engine in our RMCProfile package [1] for energy calculation, using the provided wrapper routines provided with the lammps distribution. The note will be covering the installation of MPI compilers, building the lammps wrapper libraries, the implementation in the caller...
         </description>
         <pubDate>Sun, 11 Jun 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-06-11-rmc_lammps/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-06-11-rmc_lammps/</guid>
+        <link>http://localhost:4000/2023-06-11-rmc_lammps/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-06-11-rmc_lammps/</guid>
       </item>
     
       <item>
@@ -73,8 +84,8 @@
           Following the instruction for building our book with Jupyter book, we will get the built book in HTML format, which we can then grab and host it somewhere. The GitHub page was used as the demo in the official Jupyter book website. However, if we do have our own web...
         </description>
         <pubDate>Sat, 15 Apr 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-04-15-notes_jbook/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-04-15-notes_jbook/</guid>
+        <link>http://localhost:4000/2023-04-15-notes_jbook/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-04-15-notes_jbook/</guid>
       </item>
     
       <item>
@@ -84,8 +95,8 @@
           Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...
         </description>
         <pubDate>Fri, 14 Apr 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-04-14-notes_fdm/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-04-14-notes_fdm/</guid>
+        <link>http://localhost:4000/2023-04-14-notes_fdm/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-04-14-notes_fdm/</guid>
       </item>
     
       <item>
@@ -95,8 +106,8 @@
           The commonly used method for implementing search capability in jekyll site with lunr does not seem to be working specifically in my case (namely the current website that we are staring at now). Trying to Google a bit and tring a few suggested solutions such as changing the version of...
         </description>
         <pubDate>Tue, 14 Mar 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-03-14-notes_jekyll_search/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-03-14-notes_jekyll_search/</guid>
+        <link>http://localhost:4000/2023-03-14-notes_jekyll_search/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-03-14-notes_jekyll_search/</guid>
       </item>
     
       <item>
@@ -106,8 +117,8 @@
           This blog posts contains some miscellaneous notes about the Flask setup with Nginx and HTTPS. This setup applies specifically to my Centos server. The Ref. [1] contains a gist of the nginx configuration file as a minimal working example. Specifically on Centos, it seems that by default the port 443...
         </description>
         <pubDate>Tue, 14 Mar 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-03-14-notes_flask_nginx_https/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-03-14-notes_flask_nginx_https/</guid>
+        <link>http://localhost:4000/2023-03-14-notes_flask_nginx_https/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-03-14-notes_flask_nginx_https/</guid>
       </item>
     
       <item>
@@ -116,9 +127,9 @@
           A platform integrating both terminal and file explorer - 
           This post is about the configuration of the tool WindTerm, which is a quicker and better SSH/Telnet/Serial/Shell/Sftp client for DevOps. The configuration on Windows is pretty smooth while for MacOS, it does need a bit attention. In my case, I was having a little tool called fig which would send...
         </description>
-        <pubDate>Wed, 22 Feb 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-02-22-notes_windterm/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-02-22-notes_windterm/</guid>
+        <pubDate>Wed, 22 Feb 2023 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2023-02-22-notes_windterm/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-02-22-notes_windterm/</guid>
       </item>
     
       <item>
@@ -127,9 +138,9 @@
           Side notes for the setup along the way of configuration - 
           This post is for putting down some random sites notes as I struggle through the process of setting up a forum hosted with MyBB. Here is a very nice tutorial for running through the initial installation and setup, In this tutorial, the necessary modules were installed and configured during the...
         </description>
-        <pubDate>Wed, 15 Feb 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2023-02-15-notes_mybb/</link>
-        <guid isPermaLink="true">http://localhost:4002/2023-02-15-notes_mybb/</guid>
+        <pubDate>Wed, 15 Feb 2023 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2023-02-15-notes_mybb/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-02-15-notes_mybb/</guid>
       </item>
     
       <item>
@@ -138,9 +149,9 @@
           Send message to Slack with Python - 
           To set up for sending message to Slack using Python, we can refer to Ref. [1]. Most of the instructions in the reference would work out, with several glitches and thus necessary adjustments. First, it should be stressed the importance of setting the proper scope when setting up the OAuth...
         </description>
-        <pubDate>Fri, 30 Dec 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-12-30-notes_slack_msg/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-12-30-notes_slack_msg/</guid>
+        <pubDate>Fri, 30 Dec 2022 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2022-12-30-notes_slack_msg/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-12-30-notes_slack_msg/</guid>
       </item>
     
       <item>
@@ -149,9 +160,9 @@
           Tips &amp; Tricks - 
           This post is a collection of notes of tips and tricks for Total Commander setups. This is a software as an alternative to the file explorer on Windows. It allows double column management and operations, making life much easier in terms of file and directory operations. Import/Export configuration file By...
         </description>
-        <pubDate>Sun, 11 Dec 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-12-11-notes_total_commander/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-12-11-notes_total_commander/</guid>
+        <pubDate>Sun, 11 Dec 2022 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2022-12-11-notes_total_commander/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-12-11-notes_total_commander/</guid>
       </item>
     
       <item>
@@ -160,9 +171,9 @@
           Tips &amp; Tricks - 
           This post is a collection of notes of tips and tricks for using GSAS-II. Multi-phase refinement When we have more than one phase in GSAS-II refinement, we should have phase fraction for each of the phases involved. With this regard, we have, suppose we have two phases, three parameters –...
         </description>
-        <pubDate>Sun, 11 Dec 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-12-11-notes_gsasii/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-12-11-notes_gsasii/</guid>
+        <pubDate>Sun, 11 Dec 2022 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2022-12-11-notes_gsasii/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-12-11-notes_gsasii/</guid>
       </item>
     
       <item>
@@ -171,9 +182,9 @@
           Tips &amp; Tricks - 
           This post is a collection of notes of tips and tricks when trying to set up slurm server on Ubuntu 20.04 focal. The instructions given in Ref. [1] has been followed to set up the single-node slurm service on Ubuntu. Several things are noteworthy, as below, Before following the instructions...
         </description>
-        <pubDate>Tue, 29 Nov 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-11-29-notes_slurm/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-11-29-notes_slurm/</guid>
+        <pubDate>Tue, 29 Nov 2022 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2022-11-29-notes_slurm/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-11-29-notes_slurm/</guid>
       </item>
     
       <item>
@@ -182,9 +193,9 @@
           Tips &amp; Tricks - 
           This post is a collection of notes of tips and tricks when trying to set up Jupyterhub server on Ubuntu 20.04 focal, together with the installation of various kernels and extensions. The instructions in Ref. [1] had been followed to set up the Jupyterhub server. The server was set up...
         </description>
-        <pubDate>Sat, 26 Nov 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-11-26-notes_jupyterhub/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-11-26-notes_jupyterhub/</guid>
+        <pubDate>Sat, 26 Nov 2022 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2022-11-26-notes_jupyterhub/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-11-26-notes_jupyterhub/</guid>
       </item>
     
       <item>
@@ -194,8 +205,8 @@
           This post is my notes for reading an online article published on Scientific American about resolving the twin paradox purely in the special relativity framework. Refer to Ref. [1, 2] for the original article. In the article, the Lorentz transformation relation was applied to the whole process corresponding to the...
         </description>
         <pubDate>Sun, 30 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-10-30-twin_paradox/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-10-30-twin_paradox/</guid>
+        <link>http://localhost:4000/2022-10-30-twin_paradox/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-30-twin_paradox/</guid>
       </item>
     
       <item>
@@ -205,8 +216,8 @@
           In this post, some basics about the stray and demagnetization field will be covered. The post originates from reading the book by Stöhr – Ref. [1]. Figure. 1. Demonstration of materials magnetization – reproduced from Fig. 2.6 in Ref. [1]. To get an idea about the stray and demagnetization field,...
         </description>
         <pubDate>Tue, 25 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-10-25-notes_mag_IV/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-10-25-notes_mag_IV/</guid>
+        <link>http://localhost:4000/2022-10-25-notes_mag_IV/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-25-notes_mag_IV/</guid>
       </item>
     
       <item>
@@ -216,19 +227,8 @@
           In the index page of current blog, we have a picture shown as below - if we hover the mouse over the image, it will change to another picture and also as we move our mouse, the image will tilt along with the mouse moving. Spallation Neutron Source Oak Ridge...
         </description>
         <pubDate>Thu, 13 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-10-13-css_javascript_img_effect/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-10-13-css_javascript_img_effect/</guid>
-      </item>
-    
-      <item>
-        <title>Math equation in Jekyll</title>
-        <description>
-          Notes on inclusion of equation in GitHub pages - 
-          To enable the display of math equations in GitHub pages, we need to include the corresponding Javascript in our page header. Taking my current blog as an example (one can go to MORE LINKS \(\rightarrow\) BLOG REPO to visit the GitHub repo for current blog), in the header part of...
-        </description>
-        <pubDate>Sun, 09 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4002/2022-10-09-jekyll_maths/</link>
-        <guid isPermaLink="true">http://localhost:4002/2022-10-09-jekyll_maths/</guid>
+        <link>http://localhost:4000/2022-10-13-css_javascript_img_effect/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-13-css_javascript_img_effect/</guid>
       </item>
     
   </channel>
