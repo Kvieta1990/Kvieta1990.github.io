@@ -73,7 +73,7 @@ If one is in the admin group, that means we can generate Anaconda token in the A
 <br/>
 
 <blockquote style="margin-left: 59px">
-The displayed token above was created for this demo only and has already been revoked (thus no longer valid).
+The token here (which is already masked out) was created for this demo only and has already been revoked (thus no longer valid).
 </blockquote>
 
 <ol start="5">
