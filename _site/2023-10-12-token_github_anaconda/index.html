@@ -18,13 +18,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Anaconda token setup for GitHub action</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="Conda package building and deploying (to Anaconda) can be configured in GitHub action so that when a certain action triggers the GitHub action, the conda package will be built and deployed automatically. As part of the setup, the Anaconda token is required in the GitHub settings so that the secure...">
 
   
 
@@ -88,17 +88,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Anaconda token setup for GitHub action">
+  <meta property="og:description" content="Conda package building and deploying (to Anaconda) can be configured in GitHub action so that when a certain action triggers the GitHub action, the conda package will be built and deployed automatically. As part of the setup, the Anaconda token is required in the GitHub settings so that the secure...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2023/09/">
-  <link rel="canonical" href="http://localhost:4000/archive/2023/09/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2023-10-12T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2023-10-12-token_github_anaconda/">
+  <link rel="canonical" href="http://localhost:4000/2023-10-12-token_github_anaconda/">
   
 
   
@@ -107,8 +109,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Anaconda token setup for GitHub action">
+  <meta property="twitter:description" content="Conda package building and deploying (to Anaconda) can be configured in GitHub action so that when a certain action triggers the GitHub action, the conda package will be built and deployed automatically. As part of the setup, the Anaconda token is required in the GitHub settings so that the secure...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -252,10 +254,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Anaconda token setup for GitHub action</h1>
           
 
+          
+					<span class="post-meta">Posted on October 12, 2023, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -268,297 +274,168 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
-
-<div class="intro-header"></div>
-
-<div role="main" class=" container-md ">
-  
-
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>September, 2023</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
       
-        
-        
-        
+
       
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2023-09-10-rustdesk_server/"><h3 class="post-title mb0">Rustdesk server setup</h3></a>
-					<p class="post-meta small">September 10, 2023, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#server">server</a>
-  
-    <a href="/tags#web">web</a>
-  
-    <a href="/tags#software">software</a>
-  
+
+      <article role="main" class="blog-post">
+        <p>Conda package building and deploying (to Anaconda) can be configured in GitHub action so that
+when a certain action triggers the GitHub action, the conda package will be built and deployed
+automatically. As part of the setup, the Anaconda token is required in the GitHub settings so that
+the secure connection could be established for the automatic deploying the package to Anaconda.
+Here follows is a general procedure that one could follow for the token setup.</p>
+
+<ol>
+  <li>Go to Anaconda project web page, e.g., <a href="https://anaconda.org/neutrons/mantid-total-scattering/settings/collaborators" target="_blank">https://anaconda.org/neutrons/mantid-total-scattering/settings/collaborators</a> and check whether one is in the admin group -- refer to the image below,</li>
+</ol>
+
+<p align="center">
+<img src="/assets/img/posts/anaconda_owner_check.png" style="border:none;" width="800" alt="anaconda_check" title="anaconda_check" />
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2023-09-10-pdf_thermal_bkg/"><h3 class="post-title mb0">Thermal background in pair distrubtion function (PDF)</h3></a>
-					<p class="post-meta small">September 10, 2023, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#total scattering">total scattering</a>
-  
-    <a href="/tags#theory">theory</a>
-  
-    <a href="/tags#solid state physics">solid state physics</a>
-  
+<p><br /></p>
+
+<blockquote style="margin-left: 59px">
+  <p>If one is in the admin group, that means we can generate Anaconda token in the Anaconda user settings page as detailed in next step. Otherwise, one need to request for the admin access first.</p>
+</blockquote>
+
+<ol start="2">
+  <li>Once making sure one is in the admin list, go to the user settings following the image below,</li>
+</ol>
+
+<p align="center">
+<img src="/assets/img/posts/anaconda_user_settings.png" style="border:none;" width="800" alt="anaconda_user_setting" title="anaconda_user_setting" />
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2023-09-08-docker_nginx/"><h3 class="post-title mb0">Set up a self-hosted web server on Oracle VPS</h3></a>
-					<p class="post-meta small">September 8, 2023, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#programming">programming</a>
-  
-    <a href="/tags#web">web</a>
-  
-    <a href="/tags#VPS">VPS</a>
-  
+<ol start="3">
+  <li>Go to 'Access' in user settings,</li>
+</ol>
+
+<p align="center">
+<img src="/assets/img/posts/anaconda_token_set.png" style="border:none;" width="800" alt="anaconda_token_setting" title="anaconda_token_setting" />
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+<p style="margin-left: 57px">Then fill in a token name, select relevant scopes (which controls what one can do with the token) and give it an expiration date.</p>
 
+<ol start="4">
+  <li>The resulted token will be displayed on top of the web page and one can select and copy it for the next step,</li>
+</ol>
+
+<p align="center">
+<img src="/assets/img/posts/anaconda_token_copy.png" style="border:none;" width="800" alt="anaconda_token_copy" title="anaconda_token_copy" />
+</p>
+
+<blockquote style="margin-left: 59px">
+  <p>The displayed token above was created for this demo only and has already been revoked (this no longer invalid).</p>
+</blockquote>
+
+<ol start="5">
+  <li>With the copied token from previous step, one should go to the GitHub settings page of the repository to be configured, and then
+follow the instruction below to put in the copied Anaconda token. Either one can create a new repository token or one can change
+an existing one.</li>
+</ol>
+
+<p align="center">
+<img src="/assets/img/posts/github_token_settings.png" style="border:none;" width="800" alt="github_token_settings" title="github_token_settings" />
+</p>
+
+<p style="margin-left: 57px">The token change can be done at any time but will usually be needed when the existing token has expired.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#programming">programming</a>
+          
+            <a href="/tags#technical">technical</a>
+          
+            <a href="/tags#package">package</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
 
   
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Anaconda+token+setup+for+GitHub+action&url=http%3A%2F%2Flocalhost%3A4000%2F2023-10-12-token_github_anaconda%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2023-10-12-token_github_anaconda%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2023-10-12-token_github_anaconda%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2023-10-09-diff_size_strain/" data-toggle="tooltip" data-placement="top" title="Size & strain effect and preferred orientation in diffraction">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
 </div>
 
 
