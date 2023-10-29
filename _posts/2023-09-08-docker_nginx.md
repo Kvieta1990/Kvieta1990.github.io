@@ -135,6 +135,25 @@ http port) since the security part will be taken care of by `CloudFlare` followi
 2. Quite often, people prefers to put the extra configuration files into the `sites-available` (also under
 `/etc/nginx`) and create soft link in the `sites-enabled` just for those to be enabled. 
 
+**Issue #4**
+===
+
+When hosting file sharing service such as `SFTPGo` or `KOD Cloud`, etc., the backend web interface will highly likely
+be configured via `nginx`. With the default settings of `nginx`, there will be upper limit of `1 Mb` for the file
+uploading. Then if the file to be uploaded exceeds the size limit, we will encounter with server error. 
+
+**Solution (#4):**
+===
+
+Open the `/etc/nginx/nginx.conf` file (as `root`) and add in the following configuration in the `http`, `server`, and
+`location` section,
+
+    ```
+    client_max_body_size 100M;
+    ```
+
+Then restart the `nginx` server, e.g., via `sudo systemctl restart nginx`.
+
 <b>References</b>
 
 [1] [https://www.youtube.com/watch?v=5a5tdJh8mKY](https://www.youtube.com/watch?v=5a5tdJh8mKY)

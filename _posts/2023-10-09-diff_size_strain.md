@@ -2,7 +2,7 @@
 layout: post
 title: Size & strain effect and preferred orientation in diffraction
 subtitle:
-tags: [Scattering, diffraction, theory, solid state physics]
+tags: [scattering, diffraction, theory, solid state physics]
 author: Yuanpeng Zhang
 comments: true
 use_math: true
