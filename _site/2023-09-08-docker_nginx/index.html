@@ -98,7 +98,7 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2023-09-08T00:00:00-04:00">
+  <meta property="og:article:published_time" content="2023-09-08T00:00:00-05:00">
   <meta property="og:url" content="http://localhost:4000/2023-09-08-docker_nginx/">
   <link rel="canonical" href="http://localhost:4000/2023-09-08-docker_nginx/">
   
@@ -401,6 +401,24 @@ http port) since the security part will be taken care of by <code class="languag
 <code class="language-plaintext highlighter-rouge">/etc/nginx</code>) and create soft link in the <code class="language-plaintext highlighter-rouge">sites-enabled</code> just for those to be enabled.</p>
   </li>
 </ol>
+
+<h1 id="issue-4"><strong>Issue #4</strong></h1>
+
+<p>When hosting file sharing service such as <code class="language-plaintext highlighter-rouge">SFTPGo</code> or <code class="language-plaintext highlighter-rouge">KOD Cloud</code>, etc., the backend web interface will highly likely
+be configured via <code class="language-plaintext highlighter-rouge">nginx</code>. With the default settings of <code class="language-plaintext highlighter-rouge">nginx</code>, there will be upper limit of <code class="language-plaintext highlighter-rouge">1 Mb</code> for the file
+uploading. Then if the file to be uploaded exceeds the size limit, we will encounter with server error.</p>
+
+<h1 id="solution-4"><strong>Solution (#4):</strong></h1>
+
+<p>Open the <code class="language-plaintext highlighter-rouge">/etc/nginx/nginx.conf</code> file (as <code class="language-plaintext highlighter-rouge">root</code>) and add in the following configuration in the <code class="language-plaintext highlighter-rouge">http</code>, <code class="language-plaintext highlighter-rouge">server</code>, and
+<code class="language-plaintext highlighter-rouge">location</code> section,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```
+client_max_body_size 100M;
+```
+</code></pre></div></div>
+
+<p>Then restart the <code class="language-plaintext highlighter-rouge">nginx</code> server, e.g., via <code class="language-plaintext highlighter-rouge">sudo systemctl restart nginx</code>.</p>
 
 <p><b>References</b></p>
 

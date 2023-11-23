@@ -154,6 +154,34 @@ Open the `/etc/nginx/nginx.conf` file (as `root`) and add in the following confi
 
 Then restart the `nginx` server, e.g., via `sudo systemctl restart nginx`.
 
+**Issue #5**
+===
+
+When setting up the `nextcloud` app with `1Panel`, there is a small thing we should
+pay attention to.
+
+**Solution (#5):**
+===
+
+Following the setup of the nginx+cloudflare proxy step, the `nginx` configuration should look like,
+
+```
+server {
+    listen 80;
+    server_name nc.iris-home.net;
+    location / {
+        proxy_pass         https://localhost:40069;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection "upgrade";
+        proxy_set_header   Host $host;
+    }
+}
+```
+
+The subdomain `nc.iris-home.net` should be configured in `Cloudflare` and it should be noticed that
+the local `https` connection is used instead of `http` -- see the `proxy_pass` setting above.
+
 <b>References</b>
 
 [1] [https://www.youtube.com/watch?v=5a5tdJh8mKY](https://www.youtube.com/watch?v=5a5tdJh8mKY)

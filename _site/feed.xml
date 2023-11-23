@@ -2,14 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     
-    <title>Yuanpeng's Blog</title>
+    <title>Yuanpeng&apos;s Blog</title>
     
     
-    <description>This website is a virtual proof that I'm awesome</description>
+    <description>This website is a virtual proof that I&apos;m awesome</description>
     
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+      <item>
+        <title>Find out symmetry from RMC fitted supercell</title>
+        <description>
+          
+          In the reverse Monte Carlo (RMC) modeling, there is no constraint of symmetry exerted on the model. Once the initial unit cell is expanded to a supercell, the symmetry constraint will be removed and the model will be purely driven by the data together with some other physical or chemical...
+        </description>
+        <pubDate>Sun, 29 Oct 2023 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2023-10-29-findsym/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-10-29-findsym/</guid>
+      </item>
     
       <item>
         <title>Anaconda token setup for GitHub action</title>
@@ -17,7 +28,7 @@
           
           Conda package building and deploying (to Anaconda) can be configured in GitHub action so that when a certain action triggers the GitHub action, the conda package will be built and deployed automatically. As part of the setup, the Anaconda token is required in the GitHub settings so that the secure...
         </description>
-        <pubDate>Thu, 12 Oct 2023 00:00:00 -0400</pubDate>
+        <pubDate>Thu, 12 Oct 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-10-12-token_github_anaconda/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-10-12-token_github_anaconda/</guid>
       </item>
@@ -28,7 +39,7 @@
           
           Size effect The Bragg equation can be derived based on a simple picture where one can calculate the phase difference between the two sets of incoming and scattered beam corresponding to two scattering center. The fundamental idea is that when the phase difference is the integer multiple of the wavelength,...
         </description>
-        <pubDate>Mon, 09 Oct 2023 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 09 Oct 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-10-09-diff_size_strain/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-10-09-diff_size_strain/</guid>
       </item>
@@ -39,7 +50,7 @@
           
           There are several available software in the market for remote control, such as Teamviewer (probably the most well-known one), AnyDesk, etc., including the built-in Windows remote control utility (which is actually already very good especially for the use of local network connection). For cross-platform usage, for sure, Teamviewer is probably...
         </description>
-        <pubDate>Sun, 10 Sep 2023 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 10 Sep 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-09-10-rustdesk_server/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-09-10-rustdesk_server/</guid>
       </item>
@@ -50,7 +61,7 @@
           
           This post discusses the thermal background of a pair distribution function (PDF), taking the paper by K. Page, et al. [1] as the reference and noting down several aspects that are critical for understanding the topic. The paper was originally reporting an alternative way for coping with the incoherent inelastic...
         </description>
-        <pubDate>Sun, 10 Sep 2023 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 10 Sep 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-09-10-pdf_thermal_bkg/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-09-10-pdf_thermal_bkg/</guid>
       </item>
@@ -61,7 +72,7 @@
           
           It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture, Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb RAM. We can refer to Ref. [1-3] for more information...
         </description>
-        <pubDate>Fri, 08 Sep 2023 00:00:00 -0400</pubDate>
+        <pubDate>Fri, 08 Sep 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-09-08-docker_nginx/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-09-08-docker_nginx/</guid>
       </item>
@@ -72,7 +83,7 @@
           
           This blog lists out several typical research papers with RMCProfile that I myself was involved. Title: Hidden Local Symmetry Breaking in a Kagome-Lattice Magnetic Weyl Semimetal Authors: Qiang Zhang, Yuanpeng Zhang, Masaaki Matsuda, Vasile Ovidiu Garlea, Jiaqiang Yan, Michael A. McGuire, D. Alan Tennant, and Satoshi Okamoto Abstract: Exploring the...
         </description>
-        <pubDate>Fri, 11 Aug 2023 00:00:00 -0400</pubDate>
+        <pubDate>Fri, 11 Aug 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-08-11-rmc_papers/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-08-11-rmc_papers/</guid>
       </item>
@@ -83,7 +94,7 @@
           
           This blog is a collection of notes about implementing the lammps engine in our RMCProfile package [1] for energy calculation, using the provided wrapper routines provided with the lammps distribution. The note will be covering the installation of MPI compilers, building the lammps wrapper libraries, the implementation in the caller...
         </description>
-        <pubDate>Sun, 11 Jun 2023 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 11 Jun 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-06-11-rmc_lammps/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-06-11-rmc_lammps/</guid>
       </item>
@@ -94,7 +105,7 @@
           
           Following the instruction for building our book with Jupyter book, we will get the built book in HTML format, which we can then grab and host it somewhere. The GitHub page was used as the demo in the official Jupyter book website. However, if we do have our own web...
         </description>
-        <pubDate>Sat, 15 Apr 2023 00:00:00 -0400</pubDate>
+        <pubDate>Sat, 15 Apr 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-04-15-notes_jbook/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-04-15-notes_jbook/</guid>
       </item>
@@ -105,7 +116,7 @@
           
           Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...
         </description>
-        <pubDate>Fri, 14 Apr 2023 00:00:00 -0400</pubDate>
+        <pubDate>Fri, 14 Apr 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-04-14-notes_fdm/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-04-14-notes_fdm/</guid>
       </item>
@@ -116,7 +127,7 @@
           
           The commonly used method for implementing search capability in jekyll site with lunr does not seem to be working specifically in my case (namely the current website that we are staring at now). Trying to Google a bit and tring a few suggested solutions such as changing the version of...
         </description>
-        <pubDate>Tue, 14 Mar 2023 00:00:00 -0400</pubDate>
+        <pubDate>Tue, 14 Mar 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-03-14-notes_jekyll_search/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-03-14-notes_jekyll_search/</guid>
       </item>
@@ -127,7 +138,7 @@
           
           This blog posts contains some miscellaneous notes about the Flask setup with Nginx and HTTPS. This setup applies specifically to my Centos server. The Ref. [1] contains a gist of the nginx configuration file as a minimal working example. Specifically on Centos, it seems that by default the port 443...
         </description>
-        <pubDate>Tue, 14 Mar 2023 00:00:00 -0400</pubDate>
+        <pubDate>Tue, 14 Mar 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-03-14-notes_flask_nginx_https/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-03-14-notes_flask_nginx_https/</guid>
       </item>
@@ -215,20 +226,9 @@
           
           This post is my notes for reading an online article published on Scientific American about resolving the twin paradox purely in the special relativity framework. Refer to Ref. [1, 2] for the original article. In the article, the Lorentz transformation relation was applied to the whole process corresponding to the...
         </description>
-        <pubDate>Sun, 30 Oct 2022 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 30 Oct 2022 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2022-10-30-twin_paradox/</link>
         <guid isPermaLink="true">http://localhost:4000/2022-10-30-twin_paradox/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on magnetism - IV</title>
-        <description>
-          About stray and demagnetization field - 
-          In this post, some basics about the stray and demagnetization field will be covered. The post originates from reading the book by Stöhr – Ref. [1]. Figure. 1. Demonstration of materials magnetization – reproduced from Fig. 2.6 in Ref. [1]. To get an idea about the stray and demagnetization field,...
-        </description>
-        <pubDate>Tue, 25 Oct 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022-10-25-notes_mag_IV/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-25-notes_mag_IV/</guid>
       </item>
     
   </channel>

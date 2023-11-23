@@ -18,13 +18,13 @@
 
   
 
-  <title>Notes on difference Fourier map</title>
+  <title>Find out symmetry from RMC fitted supercell</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...">
+  <meta name="description" content="In the reverse Monte Carlo (RMC) modeling, there is no constraint of symmetry exerted on the model. Once the initial unit cell is expanded to a supercell, the symmetry constraint will be removed and the model will be purely driven by the data together with some other physical or chemical...">
 
   
 
@@ -88,8 +88,8 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Notes on difference Fourier map">
-  <meta property="og:description" content="Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...">
+  <meta property="og:title" content="Find out symmetry from RMC fitted supercell">
+  <meta property="og:description" content="In the reverse Monte Carlo (RMC) modeling, there is no constraint of symmetry exerted on the model. Once the initial unit cell is expanded to a supercell, the symmetry constraint will be removed and the model will be purely driven by the data together with some other physical or chemical...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -98,9 +98,9 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2023-04-14T00:00:00-05:00">
-  <meta property="og:url" content="http://localhost:4000/2023-04-14-notes_fdm/">
-  <link rel="canonical" href="http://localhost:4000/2023-04-14-notes_fdm/">
+  <meta property="og:article:published_time" content="2023-10-29T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2023-10-29-findsym/">
+  <link rel="canonical" href="http://localhost:4000/2023-10-29-findsym/">
   
 
   
@@ -109,8 +109,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Notes on difference Fourier map">
-  <meta property="twitter:description" content="Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...">
+  <meta property="twitter:title" content="Find out symmetry from RMC fitted supercell">
+  <meta property="twitter:description" content="In the reverse Monte Carlo (RMC) modeling, there is no constraint of symmetry exerted on the model. Once the initial unit cell is expanded to a supercell, the symmetry constraint will be removed and the model will be purely driven by the data together with some other physical or chemical...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -255,11 +255,11 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>Notes on difference Fourier map</h1>
+						<h1>Find out symmetry from RMC fitted supercell</h1>
           
 
           
-					<span class="post-meta">Posted on April 14, 2023, by Yuanpeng Zhang</span>
+					<span class="post-meta">Posted on October 29, 2023, by Yuanpeng Zhang</span>
             
             
           
@@ -283,13 +283,70 @@ if (chromeAgent) {
       
 
       <article role="main" class="blog-post">
-        <p>Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly used ones as an effort to construct a useful real-space map of atoms via some tricks. It involves the the Rietveld refinement and the following construction of the density map through Fourier transform. The principle is that via Ritveld refinement, the model is refined against the experimental diffraction pattern and therefore both the amplitude and the phase of the structure factor can be calculated given the refined model. By assuming that the phase is shared between the observed and calculated structure factor, one can then construct the so-called difference Fourier map which would be very useful in locating those missing atoms that are not included in the Rietveld refinement – if without missing atoms and assuming a perfect Rietveld refinement, the observed and calculated structure factor would be identical in which case we won’t have the difference Fourier maop (i.e., zero difference). The amplitude of the observed structure factor can be calculated given the Rietveld refinement - it will give the information about the peak position and the profile from which the amplitude of the observed structure factor, knowing the experimentally measured scattering intensities (i.e., the \(y_{obs}\) values). One thing to notice is that since the building of the difference Fourier map is based on the assumption that the phase is shared between the calculated and observed structure factor (which is not perfectly the case in practice), the difference map constructed would contain the contribution not only from those missing atoms but also those existing ones (in the Rietveld refinement).</p>
+        <p>In the reverse Monte Carlo (RMC) modeling, there is no constraint of symmetry exerted on the model.
+Once the initial unit cell is expanded to a supercell, the symmetry constraint will be removed and
+the model will be purely driven by the data together with some other physical or chemical
+constraint. The purpose is to provide the model with as large configuration space as possible to
+explore and therefore it is hopeful that the model will be able to catch the distortion feature that
+is otherwise not accessible from the unit cell based routines. However, sometimes we may be still
+interested in the symmetry of the resulted supercell configuration from the RMC fitting. With this
+regard, the <code class="language-plaintext highlighter-rouge">findsym</code> program [1] developed by H. T. Stoles and B. J. Campbell, et al. could be used
+to extract the symmetry from a <code class="language-plaintext highlighter-rouge">P1</code> cell.</p>
+
+<p>There is an on-line version of the program available at [2]. Also, there is a command-line version
+of the program which can be found at [3]. The download is password protected, please get in touch
+with either myself (in which case I will get in touch with the developer for permission) or one can
+directly contact the developer for download.</p>
+
+<p>To use the program, one can follow the process below.</p>
+
+<ol>
+  <li>
+    <p>Use the included <code class="language-plaintext highlighter-rouge">findsym_cifinput</code> program to generate the input file for running <code class="language-plaintext highlighter-rouge">findsym</code>.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./findsym_cifinput CIF_FILE_NAME.cif <span class="o">&gt;</span> CIF_FILE_NAME.inp
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Grab the generated input file (<code class="language-plaintext highlighter-rouge">CIF_FILE_NAME.inp</code> in this example) and run <code class="language-plaintext highlighter-rouge">findsym</code>.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./findsym &lt; CIF_FILE_NAME.inp <span class="o">&gt;</span> CIF_FILE_NAME.out
+</code></pre></div>    </div>
+
+    <p>Most of the settings in the input file generated above should not need any retouching, apart from
+the tolerance settings as presented in the head part of the input file,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>!useKeyWords
+!title
+CIF file mn3sn_500.cif
+!latticeTolerance
+ 0.900E-04
+!atomicPositionTolerance
+ 0.500E-01
+!atomicPositionMaxTolerance
+ 0.330E+00
+!occupationTolerance
+ 0.100E-02
+...
+</code></pre></div>    </div>
+
+    <p>The several tolerance settings here specify how tolerant we are for the various structure
+aspects. The more tolerant we are, the higher chance we will have to extract a higher symmetry,
+and vice versa. Imagine that we have zero tolerance, then a tiny amount of distortion from the
+ideal position or lattice parameter will be considered as lowering the symmetry and thus the
+extracted symmetry will tend to always end up with the <code class="language-plaintext highlighter-rouge">P1</code> symmetry. In practice, one can play
+around with the tolerance settings and project a heat map to get a feel about the symmetry
+variation as the change of tolerance.</p>
+  </li>
+</ol>
 
 <h1 id="references">References</h1>
 
-<p>[1] <a href="http://pd.chem.ucl.ac.uk/pdnn/refine2/fourier.htm">http://pd.chem.ucl.ac.uk/pdnn/refine2/fourier.htm</a></p>
+<p>[1] H. T. Stokes and D. M. Hatch, J.Appl.Cryst.(2005).38,237-238.</p>
 
-<p>[2] <a href="https://www.notion.so/iris2020/Repo-of-Clips-5a8f345bf1d04f4fbc956bc44fa4bcc4?pvs=4#cad9f4d1f7674957940b7567972ee05d">Personal clip of Ref. [1]</a></p>
+<p>[2] <a href="https://stokes.byu.edu/iso/findsym.php">https://stokes.byu.edu/iso/findsym.php</a></p>
+
+<p>[3] <a href="http://bit.ly/3seZjtR">http://bit.ly/3seZjtR</a></p>
 
       </article>
 
@@ -297,7 +354,11 @@ if (chromeAgent) {
         <div class="blog-tags">
           <span>Tags:</span>
           
-            <a href="/tags#crystallography">crystallography</a>
+            <a href="/tags#scattering">scattering</a>
+          
+            <a href="/tags#total scattering">total scattering</a>
+          
+            <a href="/tags#solid state physics">solid state physics</a>
           
         </div>
       
@@ -314,7 +375,7 @@ if (chromeAgent) {
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+difference+Fourier+map&url=http%3A%2F%2Flocalhost%3A4000%2F2023-04-14-notes_fdm%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Find+out+symmetry+from+RMC+fitted+supercell&url=http%3A%2F%2Flocalhost%3A4000%2F2023-10-29-findsym%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -322,7 +383,7 @@ if (chromeAgent) {
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2023-04-14-notes_fdm%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2023-10-29-findsym%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -330,7 +391,7 @@ if (chromeAgent) {
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2023-04-14-notes_fdm%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2023-10-29-findsym%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -348,13 +409,9 @@ if (chromeAgent) {
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2023-03-14-notes_jekyll_search/" data-toggle="tooltip" data-placement="top" title="Notes on implementing search in Jekyll site">&larr; Previous Post</a>
+          <a class="page-link" href="/2023-10-12-token_github_anaconda/" data-toggle="tooltip" data-placement="top" title="Anaconda token setup for GitHub action">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2023-04-15-notes_jbook/" data-toggle="tooltip" data-placement="top" title="Notes on using Jupyter book">Next Post &rarr;</a>
-        </li>
         
       </ul>
       

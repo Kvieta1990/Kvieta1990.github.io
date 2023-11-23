@@ -90,4 +90,7 @@ an existing one.</li>
    title="github_token_settings" />
 </p>
 
-<p style="margin-left: 57px">The token change can be done at any time but will usually be needed when the existing token has expired.</p>
+<p style="margin-left: 57px">The token change can be done at any time but will usually be needed when the existing token has expired.
+Also, it should be mentioned that if the token will be used for deploying a conda package to anaconda cloud, the package will be
+uploaded to the channel of the specific user who was creating the token.
+</p>
