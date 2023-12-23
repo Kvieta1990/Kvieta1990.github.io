@@ -152,7 +152,9 @@
     }
   }
 </script>
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
 </head>
+
 
 <body>
 
@@ -249,6 +251,7 @@ if (chromeAgent) {
 
 
 <header class="header-section ">
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
 
 <div class="intro-header no-img">
   <div class="container-md">
@@ -548,6 +551,19 @@ change the level of error logging following the route below,</p>
       <p>The settings in MyBB should be consistent with that in nignx considering the
   domain name and the directory, as is the case in the example above.</p>
     </blockquote>
+  </li>
+  <li>
+    <p>To add in a favicon (the little icon that will show on the tab of the web page) for MyBB, we
+just need to put the <code class="language-plaintext highlighter-rouge">favicon.ico</code> file (has to be exactly the name) in the root directory of the
+MyBB host, e.g., <code class="language-plaintext highlighter-rouge">/var/www/html</code>. If the whole forum contents are located within a sub-folder under
+the web host folder, like this <code class="language-plaintext highlighter-rouge">/var/www/html/forum</code>, the <code class="language-plaintext highlighter-rouge">favicon.ico</code> file should then sit under
+<code class="language-plaintext highlighter-rouge">/var/www/html</code> but NOT <code class="language-plaintext highlighter-rouge">/var/www/html/forum</code>.</p>
+  </li>
+  <li>
+    <p>To add in javascript in the header for all pages of the forum – for example, we may want to add
+in the javascript for tracking the forum traffic using some services – we need to go to <code class="language-plaintext highlighter-rouge">Admin CP</code>
+-&gt; <code class="language-plaintext highlighter-rouge">Templates &amp; Style</code> -&gt; <code class="language-plaintext highlighter-rouge">Templates</code> -&gt; <code class="language-plaintext highlighter-rouge">Default Templates</code> -&gt; <code class="language-plaintext highlighter-rouge">Header Templates</code> -&gt; <code class="language-plaintext highlighter-rouge">header</code>. Then
+we can just put the javascript to the top of the template block.</p>
   </li>
 </ul>
 

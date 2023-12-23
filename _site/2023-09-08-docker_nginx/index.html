@@ -152,7 +152,9 @@
     }
   }
 </script>
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
 </head>
+
 
 <body>
 
@@ -249,6 +251,7 @@ if (chromeAgent) {
 
 
 <header class="header-section ">
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
 
 <div class="intro-header no-img">
   <div class="container-md">
@@ -419,6 +422,31 @@ client_max_body_size 100M;
 </code></pre></div></div>
 
 <p>Then restart the <code class="language-plaintext highlighter-rouge">nginx</code> server, e.g., via <code class="language-plaintext highlighter-rouge">sudo systemctl restart nginx</code>.</p>
+
+<h1 id="issue-5"><strong>Issue #5</strong></h1>
+
+<p>When setting up the <code class="language-plaintext highlighter-rouge">nextcloud</code> app with <code class="language-plaintext highlighter-rouge">1Panel</code>, there is a small thing we should
+pay attention to.</p>
+
+<h1 id="solution-5"><strong>Solution (#5):</strong></h1>
+
+<p>Following the setup of the nginx+cloudflare proxy step, the <code class="language-plaintext highlighter-rouge">nginx</code> configuration should look like,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    listen 80;
+    server_name nc.iris-home.net;
+    location / {
+        proxy_pass         https://localhost:40069;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection "upgrade";
+        proxy_set_header   Host $host;
+    }
+}
+</code></pre></div></div>
+
+<p>The subdomain <code class="language-plaintext highlighter-rouge">nc.iris-home.net</code> should be configured in <code class="language-plaintext highlighter-rouge">Cloudflare</code> and it should be noticed that
+the local <code class="language-plaintext highlighter-rouge">https</code> connection is used instead of <code class="language-plaintext highlighter-rouge">http</code> – see the <code class="language-plaintext highlighter-rouge">proxy_pass</code> setting above.</p>
 
 <p><b>References</b></p>
 

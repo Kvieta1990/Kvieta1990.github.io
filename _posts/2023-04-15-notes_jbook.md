@@ -78,20 +78,20 @@ all the HTML files were configured properly. The directory used above just worke
 - To insert javascript to the header of each page in the built book, in the `_config.yml` file, we need to have the
 `sphinx` section like this,
 
-```
-sphinx:
-  config:
-    bibtex_reference_style: author_year
-    nb_execution_show_tb: True
-    nb_execution_timeout: 120
-    html_js_files: [ ['https://umm.iris-home.net/script.js', {'data-website-id': '1ec8f93f-95ed-478f-9f23-a038fe03adf3'}] ]
-```
+   ```
+   sphinx:
+     config:
+       bibtex_reference_style: author_year
+       nb_execution_show_tb: True
+       nb_execution_timeout: 120
+       html_js_files: [ ['https://umm.iris-home.net/script.js', {'data-website-id': '1ec8f93f-95ed-478f-9f23-a038fe03adf3'}] ]
+   ```
 
-    > The corresponding javascript insertion would be,
-
-    ```
-    <script async src="https://umm.iris-home.net/script.js" data-website-id="1ec8f93f-95ed-478f-9f23-a038fe03adf3"></script>
-    ```
+   The corresponding javascript insertion would be,
+   
+   ```
+   <script async src="https://umm.iris-home.net/script.js" data-website-id="1ec8f93f-95ed-478f-9f23-a038fe03adf3"></script>
+   ```
 
 <b>References</b>
 

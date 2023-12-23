@@ -152,7 +152,9 @@
     }
   }
 </script>
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
 </head>
+
 
 <body>
 
@@ -249,6 +251,7 @@ if (chromeAgent) {
 
 
 <header class="header-section ">
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
 
 <div class="intro-header no-img">
   <div class="container-md">
@@ -354,6 +357,23 @@ to see the effect.</p>
 the nginx server as specified above. However, I noticed that we CANNOT put the HTML files under our home directory, e.g.,
 <code class="language-plaintext highlighter-rouge">/home/cades/some_dir/pd</code> – the server would then complain about permission denied even the owner and the permission of
 all the HTML files were configured properly. The directory used above just worked out!</p>
+  </li>
+  <li>
+    <p>To insert javascript to the header of each page in the built book, in the <code class="language-plaintext highlighter-rouge">_config.yml</code> file, we need to have the
+<code class="language-plaintext highlighter-rouge">sphinx</code> section like this,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sphinx:
+   config:
+     bibtex_reference_style: author_year
+     nb_execution_show_tb: True
+     nb_execution_timeout: 120
+     html_js_files: [ ['https://umm.iris-home.net/script.js', {'data-website-id': '1ec8f93f-95ed-478f-9f23-a038fe03adf3'}] ]
+</code></pre></div>    </div>
+
+    <p>The corresponding javascript insertion would be,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> &lt;script async src="https://umm.iris-home.net/script.js" data-website-id="1ec8f93f-95ed-478f-9f23-a038fe03adf3"&gt;&lt;/script&gt;
+</code></pre></div>    </div>
   </li>
 </ul>
 
