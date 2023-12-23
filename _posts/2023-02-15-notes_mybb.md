@@ -221,6 +221,17 @@ all the necessary preparations beforehand, according to the [MyBB doc](https://d
     > The settings in MyBB should be consistent with that in nignx considering the
     domain name and the directory, as is the case in the example above.
 
+- To add in a favicon (the little icon that will show on the tab of the web page) for MyBB, we
+just need to put the `favicon.ico` file (has to be exactly the name) in the root directory of the
+MyBB host, e.g., `/var/www/html`. If the whole forum contents are located within a sub-folder under
+the web host folder, like this `/var/www/html/forum`, the `favicon.ico` file should then sit under
+`/var/www/html` but NOT `/var/www/html/forum`.
+
+- To add in javascript in the header for all pages of the forum -- for example, we may want to add
+in the javascript for tracking the forum traffic using some services -- we need to go to `Admin CP`
+-> `Templates & Style` -> `Templates` -> `Default Templates` -> `Header Templates` -> `header`. Then
+we can just put the javascript to the top of the template block.
+
 <b>References</b>
 
 [1] [https://community.mybb.com/mods.php?action=view&pid=1043](https://community.mybb.com/mods.php?action=view&pid=1043)
