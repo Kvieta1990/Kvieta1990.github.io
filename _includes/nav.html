@@ -19,7 +19,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               {%- for childlink in link[1] -%}
                 {%- for linkparts in childlink %}
-								  {%- if linkparts[0] == "My Website" or linkparts[0] == "ORNL Profile" or linkparts[0] == "Google Scholar" or linkparts[0] == "ORCID" or linkparts[0] == "RMCProfile" or linkparts[0] == "GitHub Profile" or linkparts[0] == "Jupyter Binder" or linkparts[0] == "More Notes" or linkparts[0] == "Blog Repo" -%}
+								  {%- if linkparts[0] == "My Website" or linkparts[0] == "ORNL Profile" or linkparts[0] == "Google Scholar" or linkparts[0] == "ORCID" or linkparts[0] == "RMCProfile" or linkparts[0] == "GitHub Profile" or linkparts[0] == "Jupyter Binder" or linkparts[0] == "More Notes" or linkparts[0] == "Blog Repo" or linkparts[0] == "Dify Chat" or linkparts[0] == "Gemini Chat" -%}
                     <a target="_blank" class="dropdown-item" href="{{ linkparts[1] | relative_url }}">{{ linkparts[0] }}</a>
 								  {% else %}
                     <a class="dropdown-item" href="{{ linkparts[1] | relative_url }}">{{ linkparts[0] }}</a>

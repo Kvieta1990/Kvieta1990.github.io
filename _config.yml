@@ -34,7 +34,8 @@ navbar-links:
     - Jupyter Binder: "https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master"
     - More Notes: "https://github.com/Kvieta1990/Iris"
     - Blog Repo: https://github.com/Kvieta1990/Kvieta1990.github.io
-    - MyChatBot: https://dify.iris-home.net/chat/bO3b1I3j159QHWTt
+    - Dify Chat: https://dify.iris-home.net/chat/bO3b1I3j159QHWTt
+    - Gemini Chat: https://gm.iris-home.net
   Contact: "contact"
 
 # --- Logo --- #
