@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Setting up services on VPS using docker</title>
+        <description>
+          
+          To set up services on VPS, one could follow the conventional routine to configure the server and set up the services. However, such services would then live natively on the VPS operating system, which is not completely self-contained (e.g., one may need to configure multiple services in the same configuration...
+        </description>
+        <pubDate>Mon, 25 Dec 2023 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2023-12-25-vps_docker_services/</link>
+        <guid isPermaLink="true">http://localhost:4000/2023-12-25-vps_docker_services/</guid>
+      </item>
+    
+      <item>
         <title>Find out symmetry from RMC fitted supercell</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sat, 26 Nov 2022 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2022-11-26-notes_jupyterhub/</link>
         <guid isPermaLink="true">http://localhost:4000/2022-11-26-notes_jupyterhub/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on twin paradox</title>
-        <description>
-          
-          This post is my notes for reading an online article published on Scientific American about resolving the twin paradox purely in the special relativity framework. Refer to Ref. [1, 2] for the original article. In the article, the Lorentz transformation relation was applied to the whole process corresponding to the...
-        </description>
-        <pubDate>Sun, 30 Oct 2022 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2022-10-30-twin_paradox/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-10-30-twin_paradox/</guid>
       </item>
     
   </channel>
