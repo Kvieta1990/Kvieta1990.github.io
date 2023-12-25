@@ -18,6 +18,10 @@ About Me
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 
+<p style='text-align: center;color: green; font-size: 25px;'>
+<b>Hover your mouse over the picture to see something interesting</b>
+</p>
+
 <p style='text-align: justify;'>
 Working as neutron scattering scientist at ORNL, I have been 
 actively involved in software development and scientific research activities.
