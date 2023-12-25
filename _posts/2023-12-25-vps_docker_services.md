@@ -17,7 +17,7 @@ With this regard, using docker for deploying services on VPS is provided by many
 Here in this blog, I will try to record my notes when trying to set up several typical services on
 my own VPS hosted at Oracle cloud with the ARM architecture. The first service I want to mention is
 the Gemini Pro Chat service which is built on top of the Google Gemini Pro large-language model (LLM)
-API [1] which was released very recently. The service repo can be found in Ref. [2], where the option
+API [1] that was released very recently. The service repo can be found in Ref. [2], where the option
 of deploying the service using docker is provided. Although, using the provided docker command can
 successfully fire up the server without problems, it seems I could not figure out the way to
 customize the docker image. Simply, I just want to change the footer to replace the default link
@@ -30,7 +30,9 @@ out the repo [2], I found they did include the `docker-compose.yml` and the `.en
 we could then execute `sudo docker compose up -d` which will then read in the two files mentioned
 here -- the `docker-compose.yml` file contains the docker configuration and the `.env` file contains
 some necessary environmental variables needed for running the docker image. With this way, I could
-make any changes I want and run the docker image without problems.
+make any changes I want and run the docker image without problems. Just in case the docker way just
+does not work out, we then can roll back to the conventional way of deployment, i.e., the local way,
+following the instructions provided in Ref. [2] (see [here](https://github.com/babaohuang/GeminiProChat?tab=readme-ov-file#running-locally)).
 
 Another service I want to mention here is `dify` [3], which is a web-based service for
 wrapping up the GPT models to provide web interface for it. They also provided the docker way of
