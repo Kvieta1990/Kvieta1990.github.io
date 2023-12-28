@@ -340,6 +340,78 @@ More reference materials can be found in Refs. [2-4].
 
 <p>Run the command, <code class="language-plaintext highlighter-rouge">bundle add webrick</code>.</p>
 
+<hr />
+
+<p><b>Google search indexing for our website</b></p>
+
+<ul>
+  <li>
+    <p>First we need to generate a sitemap.xml for our website. To do this, we can
+following the instruction provided in Ref. [5]. Basically, we need to manually
+generate an <code class="language-plaintext highlighter-rouge">sitemap.xml</code> file under the root directory of the Jekyll site. Then
+either running <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code> to build the website locally or pushing
+the codes to GitHub where the whole website will be generated automatically, the
+full <code class="language-plaintext highlighter-rouge">sitemap.xml</code> file will be automatically generated under the <code class="language-plaintext highlighter-rouge">_site</code> directory,
+according to the template we provided in the original <code class="language-plaintext highlighter-rouge">sitemap.xml</code> file (under
+the root directory). As a reference, we could refer to template <code class="language-plaintext highlighter-rouge">sitemap.xml</code> available <a href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/master/sitemap.xml" target="_blank">here</a> for
+current website (built with Jekyll and hosted on GitHub pages).</p>
+  </li>
+  <li>
+    <p>Once the <code class="language-plaintext highlighter-rouge">sitemap.xml</code> file is available on the website, e.g., at <code class="language-plaintext highlighter-rouge">https://iris2020.net/sitemap.xml</code>
+for current website, we can go to the <a href="https://search.google.com/search-console" target="_blank">Google Search Console</a>, and add a property
+for our website (if it is not already existing),</p>
+  </li>
+</ul>
+
+<p align="center">
+<img src="/assets/img/posts/gsc_ap.png" style="border:none;" alt="gsc1" title="gsc1" />
+<br />
+</p>
+
+<ul>
+  <li>Once the property for our website is created, select it from the top-left corner
+dropdown menu as presented in the image above. Then we go to <code class="language-plaintext highlighter-rouge">Sitemaps</code> under
+<code class="language-plaintext highlighter-rouge">Indexing</code> in the option list on the left,</li>
+</ul>
+
+<p align="center">
+<img src="/assets/img/posts/gsc_smap.png" style="border:none;" alt="gsc2" title="gsc2" />
+<br />
+</p>
+
+<ul>
+  <li>Here we can add in the full URL to the sitemap of our website, e.g., <code class="language-plaintext highlighter-rouge">https://iris2020.net/sitemap.xml</code> in
+the input box on the top, if the sitemap is not already added (we can see a full list of submitted sitemaps),</li>
+</ul>
+
+<p align="center">
+<img src="/assets/img/posts/gsc_smap1.png" style="border:none;" alt="gsc3" title="gsc3" />
+<br />
+</p>
+
+<ul>
+  <li>Then, we want to submit the request for Google to (re)crawl our website, by going to
+<code class="language-plaintext highlighter-rouge">URL inspection</code> (on the left of the console) and put in the URL of our website in the search box on the top,</li>
+</ul>
+
+<p align="center">
+<img src="/assets/img/posts/gsc_ui.png" style="border:none;" alt="gsc4" title="gsc4" />
+<br />
+</p>
+
+<ul>
+  <li>Finally, we want to click on the <code class="language-plaintext highlighter-rouge">REQUEST INDEXING</code> to submit the (re)crawling
+request to Google and it will take several days or weeks for Google go (re)index
+our website so that it can be better searched with Google,</li>
+</ul>
+
+<p align="center">
+<img src="/assets/img/posts/gsc_indexing.png" style="border:none;" alt="gsc4" title="gsc4" />
+<br />
+</p>
+
+<hr />
+
 <p><br /></p>
 
 <p><b>References<b></b></b></p>
@@ -351,6 +423,8 @@ More reference materials can be found in Refs. [2-4].
 <p>[3] <a href="https://pages.github.com/versions/">https://pages.github.com/versions/</a></p>
 
 <p>[4] <a href="https://bundler.io/gemfile.html">https://bundler.io/gemfile.html</a></p>
+
+<p>[5] <a href="https://www.independent-software.com/generating-a-sitemap-xml-with-jekyll-without-a-plugin.html">https://www.independent-software.com/generating-a-sitemap-xml-with-jekyll-without-a-plugin.html</a></p>
 
       </article>
 

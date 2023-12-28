@@ -64,6 +64,8 @@ provided below [4] (cited as is),
   > Refer to the source code of current post <a href="https://raw.githubusercontent.com/Kvieta1990/Kvieta1990.github.io/master/_posts/2023-03-14-notes_jekyll_search.md" target="_blank">here</a> for the way to include Jekyll Liquid
   codes explicitly in the web page without rendering its contents.
 
+  > The solution here was provided by ChatGPT with the prompt of `jekyll include {% raw %}{%{% endraw %} as plain text`.
+
 Submitting the search will lead us to a Google search page where all the results
 will be presented.
 
