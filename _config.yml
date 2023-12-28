@@ -237,6 +237,7 @@ exclude:
   - screenshot.png
   - docs/
 
+url: "https://iris2020.net"
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
