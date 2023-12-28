@@ -37,11 +37,35 @@ which the above instructions is based on.
 
 - Here follows is the piece of code implemented for current website,
 
-```javascript
-<script async src="https://cse.google.com/cse.js?cx=477bd17655d3640c5">
-</script>
-<div class="gcse-search"></div>
-```
+  ```javascript
+  <script async src="https://cse.google.com/cse.js?cx=477bd17655d3640c5">
+  </script>
+  <div class="gcse-search"></div>
+  ```
+
+---
+
+If none of the lunr or Google search implementation works, we can refer to the 
+instruction for an alternative method with Google search implementation as
+provided below [4] (cited as is),
+
+- Download the file [search-google.html](https://raw.githubusercontent.com/jhvanderschee/jekyllcodex/gh-pages/_includes/search-google.html) and change the domain name
+- Save the file in the `_includes` directory of your project
+- Add the following statement to your layout where you want the search box to appear,
+
+  ```
+  {% raw %}
+  {% include search-google.html %}
+  {% endraw %}
+  ```
+
+  <br>
+
+  > Refer to the source code of current post <a href="https://raw.githubusercontent.com/Kvieta1990/Kvieta1990.github.io/master/_posts/2023-03-14-notes_jekyll_search.md" target="_blank">here</a> for the way to include Jekyll Liquid
+  codes explicitly in the web page without rendering its contents.
+
+Submitting the search will lead us to a Google search page where all the results
+will be presented.
 
 References
 ===
@@ -51,3 +75,5 @@ References
 [2] [https://cse.google.com/cse/create/new](https://cse.google.com/cse/create/new)
 
 [3] [https://github.com/Kvieta1990/Kvieta1990.github.io](https://github.com/Kvieta1990/Kvieta1990.github.io)
+
+[4] [https://jekyllcodex.org/without-plugin/search-google/](https://jekyllcodex.org/without-plugin/search-google/)

@@ -317,13 +317,42 @@ which the above instructions is based on.</p>
   </li>
   <li>
     <p>Here follows is the piece of code implemented for current website,</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="k">async</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://cse.google.com/cse.js?cx=477bd17655d3640c5</span><span class="dl">"</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">div</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">gcse-search</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span></code></pre></div>    </div>
   </li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="k">async</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://cse.google.com/cse.js?cx=477bd17655d3640c5</span><span class="dl">"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">div</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">gcse-search</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span></code></pre></div></div>
+<hr />
+
+<p>If none of the lunr or Google search implementation works, we can refer to the 
+instruction for an alternative method with Google search implementation as
+provided below [4] (cited as is),</p>
+
+<ul>
+  <li>Download the file <a href="https://raw.githubusercontent.com/jhvanderschee/jekyllcodex/gh-pages/_includes/search-google.html">search-google.html</a> and change the domain name</li>
+  <li>Save the file in the <code class="language-plaintext highlighter-rouge">_includes</code> directory of your project</li>
+  <li>
+    <p>Add the following statement to your layout where you want the search box to appear,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  
+{% include search-google.html %}
+  
+</code></pre></div>    </div>
+
+    <p><br /></p>
+
+    <blockquote>
+      <p>Refer to the source code of current post <a href="https://raw.githubusercontent.com/Kvieta1990/Kvieta1990.github.io/master/_posts/2023-03-14-notes_jekyll_search.md" target="_blank">here</a> for the way to include Jekyll Liquid
+codes explicitly in the web page without rendering its contents.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>Submitting the search will lead us to a Google search page where all the results
+will be presented.</p>
 
 <h1 id="references">References</h1>
 
@@ -332,6 +361,8 @@ which the above instructions is based on.</p>
 <p>[2] <a href="https://cse.google.com/cse/create/new">https://cse.google.com/cse/create/new</a></p>
 
 <p>[3] <a href="https://github.com/Kvieta1990/Kvieta1990.github.io">https://github.com/Kvieta1990/Kvieta1990.github.io</a></p>
+
+<p>[4] <a href="https://jekyllcodex.org/without-plugin/search-google/">https://jekyllcodex.org/without-plugin/search-google/</a></p>
 
       </article>
 
