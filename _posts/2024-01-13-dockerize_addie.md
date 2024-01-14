@@ -168,6 +168,14 @@ file, we need to create a `startup.sh` file as below,
     So, if we were preparing the `startup.sh` file on Windows, the file ending will cause some issues, in which case, we may
     need to edit the file using special solutions, e.g., in WSL linux environment on Windows.
 
+    > The `export` command is for exporting the library system path so that the GSASII program can find the
+    `libgfortran.so.4` that we previously put in the `/usr/lib64` directory.
+
+    > In the last line of the startup script, we don't need the `&` sign so that the process will be running as the
+    for-ground process without releasing the process. If we put an `&` sign to the end of the command, docker will
+    exit immediately after running the last command since he thinks that he has gone over all the processes and will
+    exit without worrying about those jobs running in the background.
+
 14. Build the docker image,
 
     ```powershell
