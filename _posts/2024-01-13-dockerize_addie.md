@@ -133,15 +133,29 @@ where the `ubuntu` refers to the pulled docker image name.
 9. Finally, we need to copy over the `instance` folder (download the zip file [here](https://kd.iris-home.net/#s/-CMXrVqA),
 get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access passcode) to the `/tsitc` directory.
 
-10. Going through all the procedures as detailed above, the image should be ready for firing up a ADDIE service and we
-will continue to prepare the docker image.
+10. Going through all the procedures as detailed above, the container should be ready to be committed to a new image
+with which we can then fire up an ADDIE service.
 
 11. Exit the docker container -- just execute `exit` from the command line.
+
+12. Commit the container to a new image. First, we can check the running container(s) using the command,
+
+    ```bash
+    docker ps -a
+    ```
+
+    Identifying the container we were working on by its name and ID, then,
+
+    ```bash
+    docker commit [CONTAINER_ID] flask_addie
+    ```
+
+    Use the command `docker images` to check the new committed image in the docker image list.
 
 12. Prepare a `Dockerfile` file, as below,
 
     ```
-    FROM ubuntu-addie
+    FROM flask_addie
 
     WORKDIR /tsitc
 
@@ -149,6 +163,11 @@ will continue to prepare the docker image.
 
     CMD ["/bin/bash", "-c", "/startup.sh"]
     ```
+
+    where `flask_addie` is just the name of the new committed docker image in previous step. The name
+    can be whatever we prefer to use. To avoid confusion, we can choose a new name anytime we commit the
+    new image from a container -- I am not sure whether committing a container to an already existing image
+    will cause any issues.
 
 13. In the same folder (now, we already existed the docker container and we are on the host machine) as the `Dockerfile`
 file, we need to create a `startup.sh` file as below,
