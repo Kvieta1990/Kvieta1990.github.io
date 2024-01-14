@@ -18,6 +18,8 @@ use_math: true
 
 <br />
 
+# Initial Docker Image Build
+
 As conventionally, the ADDIE (ADvanced DIffraction Environment, available at [addie.ornl.gov](addie.ornl.gov)) service is deployed on a
 VPS (specifically, an instance on the ORNL hosted research cloud). The service itself and all
 the necessary configurations are therefore locked to the VPS machine, making it extremely painful
@@ -138,6 +140,12 @@ with which we can then fire up an ADDIE service.
 
 11. Exit the docker container -- just execute `exit` from the command line.
 
+    > After exiting the container, if we want to run the container again in the interactive mode, use the following command,
+
+    ```bash
+    docker exec -it [CCONTAINER_NAME] bash
+    ```
+
 12. Commit the container to a new image. First, we can check the running container(s) using the command,
 
     ```bash
@@ -152,7 +160,12 @@ with which we can then fire up an ADDIE service.
 
     Use the command `docker images` to check the new committed image in the docker image list.
 
-12. Prepare a `Dockerfile` file, as below,
+    > The `flask_addie` here refers to the name of the image to be created by the commitment. It could
+    be possible that an image with the same name already exists on the local host. In such a situation,
+    the existing image with the same name as, e.g., `flask_addie`, will be renamed to `<none>` and the
+    new `flask_addie` stays the latest.
+
+13. Prepare a `Dockerfile` file, as below,
 
     ```
     FROM flask_addie
@@ -169,7 +182,7 @@ with which we can then fire up an ADDIE service.
     new image from a container -- I am not sure whether committing a container to an already existing image
     will cause any issues.
 
-13. In the same folder (now, we already existed the docker container and we are on the host machine) as the `Dockerfile`
+14. In the same folder (now, we already existed the docker container and we are on the host machine) as the `Dockerfile`
 file, we need to create a `startup.sh` file as below,
 
     ```
@@ -195,21 +208,25 @@ file, we need to create a `startup.sh` file as below,
     exit immediately after running the last command since he thinks that he has gone over all the processes and will
     exit without worrying about those jobs running in the background.
 
-14. Build the docker image,
+15. Build the docker image,
 
     ```powershell
     docker image build -t flask_addie .
     ```
 
-15. Fire up the container,
+    > Again, the `flask_addie` here refers to the image to be created via the image building. Same as the comments
+    above, if a local image of the same name already exists, the existing image will be renamed to `<none>`, with the
+    new `flask_addie` staying the latest.
+
+16. Fire up the container,
 
     ```powershell
     docker run -p 5000:5000 -d flask_addie
     ```
 
-16. The Flask server should be now accessible from the host machine, at `localhost:5000`.
+17. The Flask server should be now accessible from the host machine, at `localhost:5000`.
 
-17. Push the local docker image to the Docker Hub,
+18. Push the local docker image to the Docker Hub,
 
     ```
     docker login --username=apw247
@@ -225,6 +242,75 @@ file, we need to create a `startup.sh` file as below,
 
     to see all the existing images on our host machine and we can identify the associated
     image ID with the `flask_addie` image.
+
+    > For security purpose, the remote docker repository is made private. To contribute to the repo,
+    please get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> to request access.
+
+# Development
+
+Following the procedures above, we now have the docker image to start with. For further development,
+we need a) new codes, b) local testing, c) making new docker image, and d) deployment. In this section,
+we will focus the local testing, assuming that we have put in our new codes. The source codes for ADDIE
+is hosted on ORNL gitlab server, [https://code.ornl.gov/general/tsitc](https://code.ornl.gov/general/tsitc).
+The `master` branch corresponds to the current deployed production version. The `docker` branch is specifically
+for the the docker version of the service, as the GSASII installation location is different in the docker image
+and the server where the current service is deployed. The `docker_dev` branch is for the development and testing
+of the docker version. Here follows are given the detailed steps to do the local testing,
+
+1. Commit and push the new codes to be tested to the `docker_dev` branch.
+
+    > The source code is also protected, so, to contribute, get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a>.
+
+2. Pull the docker image, check local images and run the image as a container interactively,
+
+    ```bash
+    docker pull apw247/flask_addie:latest
+    docker images
+    docker run -i -t apw247/flask_addie bash
+    ```
+
+3. Within the docker container, change directory to the source code repo of ADDIE, pull the codes and exit the container,
+
+    ```bash
+    cd /tsitc
+    git checkout docker_dev
+    git pull
+    exit
+    ```
+
+    > There should be a better way to build the docker image to include such steps in the startup running script. But
+    I will stay with the slightly tedious steps here, which is actually not too tedious.
+
+    > To prevent the popup request for username and the token any time when running the git push or pull command, we could
+    run the following command (before running `git push` or `git pull`) to remember the passcode for git,
+
+    ```bash
+    git config --global credential.helper store
+    ```
+
+4. Check the running container, identify the one we were just working with, and commit the container to a new image,
+
+    ```bash
+    docker commit [CONTAINER_ID] flask_addie
+    ```
+5. On the local machine, change directory to the `tsitc` repo and further into the `docker` directory inside the repo --
+clone the source repo if not yet cloned.
+
+6. Follow the steps 15-17 in previous section to build the new image and run the service locally for testing. 
+
+# Deployment
+
+1. For deployment, the initial steps are quite similar to the development procedures as detailed in the `Development` section above.
+The only difference is that we need to check out the `master` branch instead of the `docker_dev` one. After all the initial steps,
+we need to push the new docker image to Docker Hub, following the instruction as presented in step-18 in the first section.
+
+2. Finally, on the remote VPS, we need to run,
+
+    ```bash
+    docker run -p 5000:5000 -d flask_addie
+    ```
+
+    to start up the server and then we can configure `nginx` to redirect the traffic on the port 443 to the local 5000 port.
 
 References
 ===

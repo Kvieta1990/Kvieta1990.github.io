@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Dockerize the ADDIE service</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Initial Docker Image Build As conventionally, the ADDIE (ADvanced DIffraction Environment, available at addie.ornl.gov) service is deployed on a VPS (specifically, an instance on the ORNL hosted research cloud). The service itself and all the necessary configurations are therefore locked to the VPS machine, making it extremely painful for transfer...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Dockerize the ADDIE service">
+  <meta property="og:description" content="Initial Docker Image Build As conventionally, the ADDIE (ADvanced DIffraction Environment, available at addie.ornl.gov) service is deployed on a VPS (specifically, an instance on the ORNL hosted research cloud). The service itself and all the necessary configurations are therefore locked to the VPS machine, making it extremely painful for transfer...">
+
+  
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2024-01-13T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2024-01-13-dockerize_addie/">
+  <link rel="canonical" href="http://localhost:4000/2024-01-13-dockerize_addie/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Dockerize the ADDIE service">
+  <meta property="twitter:description" content="Initial Docker Image Build As conventionally, the ADDIE (ADvanced DIffraction Environment, available at addie.ornl.gov) service is deployed on a VPS (specifically, an instance on the ORNL hosted research cloud). The service itself and all the necessary configurations are therefore locked to the VPS machine, making it extremely painful for transfer...">
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Website</a>
+								  <a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.pages.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://dify.iris-home.net/chat/bO3b1I3j159QHWTt">Dify Chat</a>
+								  <a target="_blank" class="dropdown-item" href="https://gm.iris-home.net">Gemini Chat</a>
+								  
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Dockerize the ADDIE service</h1>
+          
+
+          
+					<span class="post-meta">Posted on January 13, 2024, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/addie_logo_ornl.png" style="border:none;" width="600" alt="addie" title="addie" />
+</p>
+
+<p><br /></p>
+
+<h1 id="initial-docker-image-build">Initial Docker Image Build</h1>
+
+<p>As conventionally, the ADDIE (ADvanced DIffraction Environment, available at <a href="addie.ornl.gov">addie.ornl.gov</a>) service is deployed on a
+VPS (specifically, an instance on the ORNL hosted research cloud). The service itself and all
+the necessary configurations are therefore locked to the VPS machine, making it extremely painful
+for transfer and maintenance. Especially for the maintenance, anytime we need to install a new
+functionality into the ADDIE service, unavoidably we would need some new dependencies. However, the
+existing modules and libraries will potentially be conflicting with the module we are trying to
+install and quite often we need to do the homework for testing and find out the compatible versions
+of all the modules (existing ones and those to be installed). Doing such on a VPS locally is rather
+risky as once the installed new module breaks some other modules, it is very difficult, or sometimes
+even impossible, to roll back. So, from the long run, we need to make the service containerized, using,
+e.g., docker so the whole service is self-contained and more importantly, the testing will become
+way easier. We just need to pull the docker image, fire up a container and perform the installation
+and test interactively. Once finished, we can then push the image to a new version and deploy it on
+the VPS via docker. This blog will keep a record of the preparation of the docker image for ADDIE.
+The procedure may not be the optimal one, as the finally prepared docker image is with the size of
+~10 Gb. But at least, it will give us a working version of the docker image, with which we can then
+easily fire up a ADDIE service instance on any supported VPS.</p>
+
+<blockquote>
+  <p><strong>N.B.</strong> The reason why the docker image is large is that we include all the required modules and
+configurations in the image. We could probably do the installation and configuration via docker
+entrypoint or startup script. But in this case, I will not go through that route, and in my case,
+the image is huge, but the startup script is very simple.</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>Pull a startup docker image, e.g.,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker pull ubuntu
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Run the pulled docker image interactively,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker run <span class="nt">-i</span> <span class="nt">-t</span> ubuntu bash
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>where the <code class="language-plaintext highlighter-rouge">ubuntu</code> refers to the pulled docker image name.</p>
+
+<ol>
+  <li>
+    <p>Within the interactive docker container, install all the necessary packages,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> apt <span class="nb">install </span>git
+ apt <span class="nb">install </span>gfortran
+ apt <span class="nb">install </span>build-essential
+ apt <span class="nb">install </span>vim
+ apt <span class="nb">install </span>wget
+ apt <span class="nb">install </span>curl
+ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh <span class="nt">-P</span> /tmp &amp; bash /tmp/Miniconda3-latest-Linux-x86_64.sh
+ apt <span class="nb">install </span>python-wxtools
+ curl https://subversion.xray.aps.anl.gov/admin_pyGSAS/downloads/gsas2full-Latest-Linux-x86_64.sh <span class="o">&gt;</span> /tmp/gsas2full-Latest-Linux-x86_64.sh
+ bash /tmp/gsas2full-Latest-Linux-x86_64.sh <span class="nt">-b</span> <span class="nt">-p</span> ~/g2full
+ apt <span class="nb">install </span>redis-server
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p><code class="language-plaintext highlighter-rouge">curl</code> and <code class="language-plaintext highlighter-rouge">python-wxtools</code> are needed for running GSASII. Without <code class="language-plaintext highlighter-rouge">python-wxtools</code>, running GSASII will complain about
+ <code class="language-plaintext highlighter-rouge">wx</code> not found.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>GSASII also needs <code class="language-plaintext highlighter-rouge">libgfortran.so.4</code> to run and usually the library file is not available in the startup image. We can
+ download this file <a href="/assets/files/libgfortran.so.4">here</a> and put it somewhere in the docker container (e.g., <code class="language-plaintext highlighter-rouge">/usr/lib64</code>)
+ which we will use later on.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Clone the source code of ADDIE (assuming we are located at <code class="language-plaintext highlighter-rouge">/</code> in the docker container on the command line),</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone https://code.ornl.gov/general/tsitc.git
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>We need the token for login. Go to <code class="language-plaintext highlighter-rouge">Settings</code> -&gt; <code class="language-plaintext highlighter-rouge">Access Tokens</code> -&gt; <code class="language-plaintext highlighter-rouge">Add new token</code>, and select proper
+ permission, select the expiration date and then copy the generated token.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Create a conda environment,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> conda create <span class="nt">-n</span> py37 <span class="nv">python</span><span class="o">=</span>3.7
+ conda activate py37
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>The <code class="language-plaintext highlighter-rouge">Diffpy-CMI</code> module is only compatible with Python=3.7, so we have to stay with it for
+ the moment, even the Python=3.7 has been dropped for support.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Go into the <code class="language-plaintext highlighter-rouge">tsitc</code> directory and install all the required python modules,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install <code class="language-plaintext highlighter-rouge">Diffpy-CMI</code>,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> conda config <span class="nt">--add</span> channels diffpy
+ conda <span class="nb">install </span>diffpy-cmi
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install <code class="language-plaintext highlighter-rouge">strumining</code>,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone https://code.ornl.gov/ly0/strumining.git
+ <span class="nb">cd </span>strumining
+ pip <span class="nb">install </span>pymatgen
+ pip <span class="nb">install </span>pybtex
+ pip <span class="nb">install </span>PyYAML
+ python setup.py <span class="nb">install</span>
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>After the installation, we need to manually copy over two folders (<code class="language-plaintext highlighter-rouge">data</code> and <code class="language-plaintext highlighter-rouge">utils</code>) in the <code class="language-plaintext highlighter-rouge">strumining</code> source code
+ tree to the corresponding location in the conda environment. In my case, the destination is,</p>
+    </blockquote>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> /root/miniconda3/envs/py37/lib/python3.7/site-packages/strumining-1.0.0-py3.7.egg/strumining
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>The specific location will depend on the conda installation location and the conda environment we created previously.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Finally, we need to copy over the <code class="language-plaintext highlighter-rouge">instance</code> folder (download the zip file <a href="https://kd.iris-home.net/#s/-CMXrVqA">here</a>,
+get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access passcode) to the <code class="language-plaintext highlighter-rouge">/tsitc</code> directory.</a></a></p>
+  </li>
+  <li>
+    <p>Going through all the procedures as detailed above, the container should be ready to be committed to a new image
+with which we can then fire up an ADDIE service.</p>
+  </li>
+  <li>
+    <p>Exit the docker container – just execute <code class="language-plaintext highlighter-rouge">exit</code> from the command line.</p>
+
+    <blockquote>
+      <p>After exiting the container, if we want to run the container again in the interactive mode, use the following command,</p>
+    </blockquote>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">exec</span> <span class="nt">-it</span> <span class="o">[</span>CCONTAINER_NAME] bash
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Commit the container to a new image. First, we can check the running container(s) using the command,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ps <span class="nt">-a</span>
+</code></pre></div>    </div>
+
+    <p>Identifying the container we were working on by its name and ID, then,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker commit <span class="o">[</span>CONTAINER_ID] flask_addie
+</code></pre></div>    </div>
+
+    <p>Use the command <code class="language-plaintext highlighter-rouge">docker images</code> to check the new committed image in the docker image list.</p>
+
+    <blockquote>
+      <p>The <code class="language-plaintext highlighter-rouge">flask_addie</code> here refers to the name of the image to be created by the commitment. It could
+be possible that an image with the same name already exists on the local host. In such a situation,
+the existing image with the same name as, e.g., <code class="language-plaintext highlighter-rouge">flask_addie</code>, will be renamed to <code class="language-plaintext highlighter-rouge">&lt;none&gt;</code> and the
+new <code class="language-plaintext highlighter-rouge">flask_addie</code> stays the latest.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Prepare a <code class="language-plaintext highlighter-rouge">Dockerfile</code> file, as below,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM flask_addie
+
+WORKDIR /tsitc
+
+COPY startup.sh /
+
+CMD ["/bin/bash", "-c", "/startup.sh"]
+</code></pre></div>    </div>
+
+    <p>where <code class="language-plaintext highlighter-rouge">flask_addie</code> is just the name of the new committed docker image in previous step. The name
+can be whatever we prefer to use. To avoid confusion, we can choose a new name anytime we commit the
+new image from a container – I am not sure whether committing a container to an already existing image
+will cause any issues.</p>
+  </li>
+  <li>
+    <p>In the same folder (now, we already existed the docker container and we are on the host machine) as the <code class="language-plaintext highlighter-rouge">Dockerfile</code>
+file, we need to create a <code class="language-plaintext highlighter-rouge">startup.sh</code> file as below,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#!/bin/bash
+
+source /root/miniconda3/etc/profile.d/conda.sh
+conda activate py37
+export LD_LIBRARY_PATH='/usr/lib64'
+gunicorn -w 3 -b :5000 run:app &amp;
+redis-server --port 6379 &amp;
+celery -A pdfitc.app.celery worker --loglevel=info
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p><strong>N.B.</strong> The startup script will be run when launching the docker image and it will be running in the linux environment.
+So, if we were preparing the <code class="language-plaintext highlighter-rouge">startup.sh</code> file on Windows, the file ending will cause some issues, in which case, we may
+need to edit the file using special solutions, e.g., in WSL linux environment on Windows.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>The <code class="language-plaintext highlighter-rouge">export</code> command is for exporting the library system path so that the GSASII program can find the
+<code class="language-plaintext highlighter-rouge">libgfortran.so.4</code> that we previously put in the <code class="language-plaintext highlighter-rouge">/usr/lib64</code> directory.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>In the last line of the startup script, we don’t need the <code class="language-plaintext highlighter-rouge">&amp;</code> sign so that the process will be running as the
+for-ground process without releasing the process. If we put an <code class="language-plaintext highlighter-rouge">&amp;</code> sign to the end of the command, docker will
+exit immediately after running the last command since he thinks that he has gone over all the processes and will
+exit without worrying about those jobs running in the background.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Build the docker image,</p>
+
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">docker</span><span class="w"> </span><span class="nx">image</span><span class="w"> </span><span class="nx">build</span><span class="w"> </span><span class="nt">-t</span><span class="w"> </span><span class="nx">flask_addie</span><span class="w"> </span><span class="o">.</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <blockquote>
+      <p>Again, the <code class="language-plaintext highlighter-rouge">flask_addie</code> here refers to the image to be created via the image building. Same as the comments
+above, if a local image of the same name already exists, the existing image will be renamed to <code class="language-plaintext highlighter-rouge">&lt;none&gt;</code>, with the
+new <code class="language-plaintext highlighter-rouge">flask_addie</code> staying the latest.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Fire up the container,</p>
+
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">docker</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="nt">-p</span><span class="w"> </span><span class="nx">5000:5000</span><span class="w"> </span><span class="nt">-d</span><span class="w"> </span><span class="nx">flask_addie</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The Flask server should be now accessible from the host machine, at <code class="language-plaintext highlighter-rouge">localhost:5000</code>.</p>
+  </li>
+  <li>
+    <p>Push the local docker image to the Docker Hub,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker login --username=apw247
+docker tag bb38976d03cf apw247/flask_addie:latest
+docker push apw247/flask_addie
+</code></pre></div>    </div>
+
+    <p>where <code class="language-plaintext highlighter-rouge">bb38976d03cf</code> is the docker image ID which we can obtain via the command,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker images
+</code></pre></div>    </div>
+
+    <p>to see all the existing images on our host machine and we can identify the associated
+image ID with the <code class="language-plaintext highlighter-rouge">flask_addie</code> image.</p>
+
+    <blockquote>
+      <p>For security purpose, the remote docker repository is made private. To contribute to the repo,
+please get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> to request access.</a></a></p>
+    </blockquote>
+  </li>
+</ol>
+
+<h1 id="development">Development</h1>
+
+<p>Following the procedures above, we now have the docker image to start with. For further development,
+we need a) new codes, b) local testing, c) making new docker image, and d) deployment. In this section,
+we will focus the local testing, assuming that we have put in our new codes. The source codes for ADDIE
+is hosted on ORNL gitlab server, <a href="https://code.ornl.gov/general/tsitc">https://code.ornl.gov/general/tsitc</a>.
+The <code class="language-plaintext highlighter-rouge">master</code> branch corresponds to the current deployed production version. The <code class="language-plaintext highlighter-rouge">docker</code> branch is specifically
+for the the docker version of the service, as the GSASII installation location is different in the docker image
+and the server where the current service is deployed. The <code class="language-plaintext highlighter-rouge">docker_dev</code> branch is for the development and testing
+of the docker version. Here follows are given the detailed steps to do the local testing,</p>
+
+<ol>
+  <li>
+    <p>Commit and push the new codes to be tested to the <code class="language-plaintext highlighter-rouge">docker_dev</code> branch.</p>
+
+    <blockquote>
+      <p>The source code is also protected, so, to contribute, get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a>.</a></a></p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Pull the docker image, check local images and run the image as a container interactively,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker pull apw247/flask_addie:latest
+ docker images
+ docker run <span class="nt">-i</span> <span class="nt">-t</span> apw247/flask_addie bash
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Within the docker container, change directory to the source code repo of ADDIE, pull the codes and exit the container,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> /tsitc
+ git checkout docker_dev
+ git pull
+ <span class="nb">exit</span>
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>There should be a better way to build the docker image to include such steps in the startup running script. But
+ I will stay with the slightly tedious steps here, which is actually not too tedious.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>To prevent the popup request for username and the token any time when running the git push or pull command, we could
+ run the following command (before running <code class="language-plaintext highlighter-rouge">git push</code> or <code class="language-plaintext highlighter-rouge">git pull</code>) to remember the passcode for git,</p>
+    </blockquote>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git config <span class="nt">--global</span> credential.helper store
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Check the running container, identify the one we were just working with, and commit the container to a new image,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker commit <span class="o">[</span>CONTAINER_ID] flask_addie
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>On the local machine, change directory to the <code class="language-plaintext highlighter-rouge">tsitc</code> repo and further into the <code class="language-plaintext highlighter-rouge">docker</code> directory inside the repo –
+clone the source repo if not yet cloned.</p>
+  </li>
+  <li>
+    <p>Follow the steps 15-17 in previous section to build the new image and run the service locally for testing.</p>
+  </li>
+</ol>
+
+<h1 id="deployment">Deployment</h1>
+
+<ol>
+  <li>
+    <p>For deployment, the initial steps are quite similar to the development procedures as detailed in the <code class="language-plaintext highlighter-rouge">Development</code> section above.
+The only difference is that we need to check out the <code class="language-plaintext highlighter-rouge">master</code> branch instead of the <code class="language-plaintext highlighter-rouge">docker_dev</code> one. After all the initial steps,
+we need to push the new docker image to Docker Hub, following the instruction as presented in step-18 in the first section.</p>
+  </li>
+  <li>
+    <p>Finally, on the remote VPS, we need to run,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker run <span class="nt">-p</span> 5000:5000 <span class="nt">-d</span> flask_addie
+</code></pre></div>    </div>
+
+    <p>to start up the server and then we can configure <code class="language-plaintext highlighter-rouge">nginx</code> to redirect the traffic on the port 443 to the local 5000 port.</p>
+  </li>
+</ol>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://blog.logrocket.com/build-deploy-flask-app-using-docker/">https://blog.logrocket.com/build-deploy-flask-app-using-docker/</a></p>
+
+<p>[2] <a href="https://www.baeldung.com/linux/docker-cmd-multiple-commands">https://www.baeldung.com/linux/docker-cmd-multiple-commands</a></p>
+
+<p>[3] <a href="https://stackoverflow.com/questions/34549859/run-a-script-in-dockerfile">https://stackoverflow.com/questions/34549859/run-a-script-in-dockerfile</a></p>
+
+<p>[4] <a href="https://subversion.xray.aps.anl.gov/trac/pyGSAS/wiki/InstallLinux">https://subversion.xray.aps.anl.gov/trac/pyGSAS/wiki/InstallLinux</a></p>
+
+<p>[5] <a href="https://www.letscloud.io/community/how-to-launch-a-docker-container-with-an-interactive-shell">https://www.letscloud.io/community/how-to-launch-a-docker-container-with-an-interactive-shell</a></p>
+
+<p>[6] <a href="https://phoenixnap.com/kb/install-gcc-ubuntu">https://phoenixnap.com/kb/install-gcc-ubuntu</a></p>
+
+<p>[7] <a href="https://stackoverflow.com/questions/8609666/python-importerror-no-module-named-wx">https://stackoverflow.com/questions/8609666/python-importerror-no-module-named-wx</a></p>
+
+<p>[8] <a href="https://www.diffpy.org/products/diffpycmi/index.html">https://www.diffpy.org/products/diffpycmi/index.html</a></p>
+
+<p>[9] <a href="https://jsta.github.io/r-docker-tutorial/04-Dockerhub.html">https://jsta.github.io/r-docker-tutorial/04-Dockerhub.html</a></p>
+
+<p>[10] <a href="https://askubuntu.com/questions/1218048/activating-conda-environment-in-within-a-shell-script">https://askubuntu.com/questions/1218048/activating-conda-environment-in-within-a-shell-script</a></p>
+
+<p>[11] <a href="https://phoenixnap.com/kb/install-gcc-ubuntu">https://phoenixnap.com/kb/install-gcc-ubuntu</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#web">web</a>
+          
+            <a href="/tags#docker">docker</a>
+          
+            <a href="/tags#scattering">scattering</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Dockerize+the+ADDIE+service&url=http%3A%2F%2Flocalhost%3A4000%2F2024-01-13-dockerize_addie%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2024-01-13-dockerize_addie%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2024-01-13-dockerize_addie%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2023-12-25-vps_docker_services/" data-toggle="tooltip" data-placement="top" title="Setting up services on VPS using docker">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/rmc/">RMC at ISIS facility</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.pages.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://community.dur.ac.uk/john.evans/topas_workshop/tutorial_pdf_sno2.htm">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href=""https://mlfinfo.jp/en/bl21/>Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+				</br>
+				<a target="_blank" href="http://e-ssrf.sinap.cas.cn/beamlines/bl13w1/201401/t20140112_152430.html">China - SSRF - BL13W1</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2020 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

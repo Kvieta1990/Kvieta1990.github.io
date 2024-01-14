@@ -18,13 +18,13 @@
 
   
 
-  <title>Derivation of neutron incoherent scattering length</title>
+  <title>Archive</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="Figure. 1. Neutron scattering length table by NIST [1]. When we do calculations relevant to neutron scattering, it is unavoidable that we will come across either coherent, incoherent or total scattering length of elements, which describes the strength of scattering neutrons by different elements, either coherently, incoherently or both. In...">
+  <meta name="description" content="">
 
   
 
@@ -88,19 +88,17 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Derivation of neutron incoherent scattering length">
-  <meta property="og:description" content="Figure. 1. Neutron scattering length table by NIST [1]. When we do calculations relevant to neutron scattering, it is unavoidable that we will come across either coherent, incoherent or total scattering length of elements, which describes the strength of scattering neutrons by different elements, either coherently, incoherently or both. In...">
+  <meta property="og:title" content="Archive">
+  <meta property="og:description" content="">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="article">
-  <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2021-07-09T00:00:00-05:00">
-  <meta property="og:url" content="http://localhost:4000/2021-07-09-coh_incoh_sl/">
-  <link rel="canonical" href="http://localhost:4000/2021-07-09-coh_incoh_sl/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/archive/2024/01/">
+  <link rel="canonical" href="http://localhost:4000/archive/2024/01/">
   
 
   
@@ -109,8 +107,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Derivation of neutron incoherent scattering length">
-  <meta property="twitter:description" content="Figure. 1. Neutron scattering length table by NIST [1]. When we do calculations relevant to neutron scattering, it is unavoidable that we will come across either coherent, incoherent or total scattering length of elements, which describes the strength of scattering neutrons by different elements, either coherently, incoherently or both. In...">
+  <meta property="twitter:title" content="Archive">
+  <meta property="twitter:description" content="">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -258,14 +256,10 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="post-heading">
-						<h1>Derivation of neutron incoherent scattering length</h1>
+        <div class="page-heading">
+						<h1>Archive</h1>
           
 
-          
-					<span class="post-meta">Posted on July 9, 2021, by Yuanpeng Zhang</span>
-            
-            
           
         </div>
       </div>
@@ -278,172 +272,271 @@ if (chromeAgent) {
 
 
 
-<div class=" container-md ">
-  <div class="row">
-    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
-
-      
-
-      
-
-      <article role="main" class="blog-post">
-        <p align="center">
-<img src="/assets/img/posts/nist_neutron_data.png" style="border:none;" alt="nist_table" title="nist_table" />
-<br />
-<b>Figure. 1.</b> Neutron scattering length table by NIST [1].
-</p>
-
-<p style="text-align: justify">
-When we do calculations relevant to neutron scattering, it is unavoidable that we will come across either coherent, incoherent or total scattering length of elements, which describes the strength of scattering neutrons by different elements, either coherently, incoherently or both. In this article, I will try to uncover the three different types of neutron scattering length, by going through the derivation in details.
-
-First, the differential cross section for neutron scattering by a certain structure is given as below – here we do the derivation for a single-species system so we can derive the relevant scattering length conveniently.
-</p>
-
-\[\frac{d\sigma}{d\Omega} = \sum_{i,j}b_ib_je^{-i\vec{Q}\cdot (\vec{R}_i - \vec{R}_j)}\]
-
-<p style="text-align: justify">
-where \(i\), \(j\) refers to atoms located at different locations in the structure under beam. In practice, every single \(b_i\), \(b_j\) depends on the corresponding nuclear isotope, spin orientation relative to neutron, nuclear eigenstate, etc. What we are interested in and what is meaningful in practical calculation is the average \(\langle b_ib_j\rangle\) across all pairs in system, which then can be used as an effective representative of system. To obtain \(\langle b_ib_j\rangle\), we first write,
-</p>
-
-\[b_i = \langle b\rangle + \delta b_i\]
-
-<p style="text-align: justify">
-where we should have \(\langle\delta b_i\rangle = 0\), if assuming random variation of \(b_i\) around \(\langle b\rangle\) for an arbitrary \(i\). Further,
-</p>
-
-\[\begin{equation}\begin{aligned}\langle b_ib_j\rangle &amp; = \Big\langle\langle b\rangle^2 + \langle b\rangle(\delta b_i + \delta b_j) + \delta b_i\delta b_j\Big\rangle\\ &amp; = \Big\langle\langle b\rangle^2\Big\rangle + \big\langle\langle b\rangle(\delta b_i + \delta b_j)\big\rangle + \langle\delta b_i\delta b_j\rangle\\ &amp; = \langle b\rangle^2 + 0 + \langle\delta b_i \delta b_j\rangle\end{aligned}\nonumber\end{equation}\]
-
-<p style="text-align: justify">
-\(\langle\delta b_i\delta b_j\rangle\) is then the quantity we want to calculate. The good news is, it is only non-zero when \(i = j\), assuming atom \(i\) and \(j\) is irrelevant to each other. For \(i = j\), we have,
-</p>
-
-\[\langle b^2\rangle = \langle b\rangle^2 + \langle\delta b_i^2\rangle \Rightarrow \langle\delta b_i^2\rangle = \langle b^2\rangle - \langle b\rangle^2\]
-
-<p style="text-align: justify">
-For \(i \neq j\), we simply have,
-</p>
-
-\[\langle b_ib_j\rangle = \langle b\rangle^2\]
-
-<p style="text-align: justify">
-Going back to the equation for calculating differential cross section and putting in the expression for \(\langle b_ib_j\rangle\), we have,
-</p>
-
-\[\begin{equation}\begin{aligned}\frac{d\sigma}{d\Omega} &amp; = \sum_{i,j}^N\langle b_ib_j\rangle e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)}\\ &amp; = \sum_{i\neq j}^N\Big[\langle b\rangle^2e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)} + \langle\delta b_i\delta b_j\rangle e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)}\Big] + \\ &amp; \hspace{0.75cm} \sum_{i=j}^N\Big[\langle b\rangle^2e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)} + \langle\delta b_i\delta b_j\rangle e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)}\Big]\\ &amp; = \sum_{i\neq j}^N\Big[\langle b\rangle^2e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)} + 0\Big] + \sum_{i=j}^N\Big[\langle b\rangle^2e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)} + (\langle b^2\rangle - \langle b\rangle^2)\Big]\\ &amp; = \sum_{i,j}^N\langle b\rangle^2e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)} + N(\langle b^2\rangle - \langle b\rangle^2)\end{aligned}\nonumber\end{equation}\]
-
-<p style="text-align: justify">
-where \(N\) is the total number of atoms in system. Here we see the first term is relevant to atomic positions and therefore is the coherent scattering term. Accordingly, \(\langle b\rangle^2\) is the coherent scattering length (squared). The second term is nothing to do with structure and therefore is the incoherent scattering term. Accordingly,
-</p>
-
-\[\langle b^2\rangle - \langle b\rangle^2\]
-
-<p style="text-align: justify">
-is the incoherent scattering length (squared).
-</p>
-
-<p><br /></p>
-
-<p><b>References</b></p>
-
-<p>[1] <a href="https://www.ncnr.nist.gov/resources/n-lengths/">https://www.ncnr.nist.gov/resources/n-lengths/</a></p>
-
-      </article>
-
-      
-        <div class="blog-tags">
-          <span>Tags:</span>
-          
-            <a href="/tags#scattering">scattering</a>
-          
-            <a href="/tags#solid state physics">solid state physics</a>
-          
-            <a href="/tags#crystallography">crystallography</a>
-          
-            <a href="/tags#total scattering">total scattering</a>
-          
-        </div>
-      
-
-      
-
-      
-        <!-- Check if any share-links are active -->
 
 
+<div class="intro-header"></div>
 
-
-<section id = "social-share-section">
-  <span class="sr-only">Share: </span>
-
-  
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Derivation+of+neutron+incoherent+scattering+length&url=http%3A%2F%2Flocalhost%3A4000%2F2021-07-09-coh_incoh_sl%2F"
-      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
-      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
-      <span class="sr-only">Twitter</span>
-    </a>
+<div role="main" class=" container-md ">
   
 
-  
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2021-07-09-coh_incoh_sl%2F"
-      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
-      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
-      <span class="sr-only">Facebook</span>
-    </a>
-  
+  <div class="post">
+  <header class="post-header post-header_archive">
+    <h2>Posted in <em>January, 2024</em></h2>
+  </header>
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2021-07-09-coh_incoh_sl%2F"
-      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
-      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
-      <span class="sr-only">LinkedIn</span>
-    </a>
-  
-
-  
-
-</section>
-
-
-
+  <article class="post-content">
+    <ol>
       
-
-      <ul class="pagination blog-pager">
         
-        <li class="page-item previous">
-          <a class="page-link" href="/2021-07-08-top_physics/" data-toggle="tooltip" data-placement="top" title="Notes on topological physics">&larr; Previous Post</a>
+        
+        
+        <li>
+          <a class="post-link" href="/2024-01-13-dockerize_addie/"><h3 class="post-title mb0">Dockerize the ADDIE service</h3></a>
+					<p class="post-meta small">January 13, 2024, by Yuanpeng Zhang</p>
+          <div class="small">
+            
+<p class="post-tags small">
+  <i class="fa fa-tags"></i>
+  
+    <a href="/tags#web">web</a>
+  
+    <a href="/tags#docker">docker</a>
+  
+    <a href="/tags#scattering">scattering</a>
+  
+</p>
+
+          </div>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2021-08-25-nano_rmc/" data-toggle="tooltip" data-placement="top" title="Size effect in RMCProfile">Next Post &rarr;</a>
-        </li>
-        
-      </ul>
       
-  <div id="disqus_thread"></div>
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_shortname = &quot;rmcprofile&quot;;
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://rmcprofile.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+    </ol>
+  </article>
+</div>
 
 
-    </div>
-  </div>
+  
 </div>
 
 
