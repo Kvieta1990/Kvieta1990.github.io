@@ -18,11 +18,11 @@ use_math: true
 
 <br />
 
-As conventionally, the ADDIE (ADvanced DIffraction Environment) service is deployed on a
+As conventionally, the ADDIE (ADvanced DIffraction Environment, available at [addie.ornl.gov](addie.ornl.gov)) service is deployed on a
 VPS (specifically, an instance on the ORNL hosted research cloud). The service itself and all
 the necessary configurations are therefore locked to the VPS machine, making it extremely painful
 for transfer and maintenance. Especially for the maintenance, anytime we need to install a new
-functionality into the ADDIE service, unavoidably we would need some dependencies. However, the
+functionality into the ADDIE service, unavoidably we would need some new dependencies. However, the
 existing modules and libraries will potentially be conflicting with the module we are trying to
 install and quite often we need to do the homework for testing and find out the compatible versions
 of all the modules (existing ones and those to be installed). Doing such on a VPS locally is rather
