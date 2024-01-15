@@ -18,7 +18,9 @@ provide YOURLS in its application store and we can install it quickly and easily
 
 However, the setup does need some care.
 
-1. We need to specify the external URL in the installation configuration page, as shown below,
+- We need to specify the external URL in the installation configuration page, as shown below,
+
+	> Here, I am using `nginx+CloudFlare` for setting up the web traffic and the external URL is from the CloudFlare service.
 
 <p align='center'>
 <img src="/assets/img/posts/yourls.png"
@@ -28,10 +30,7 @@ However, the setup does need some care.
    title="yourls" />
 </p>
 
-	> Here, I am using `nginx+CloudFlare` for setting up the web traffic and the external URL is from
-	the CloudFlare service.
-
-2. We don't need to expose the port for serving the YOURLS service to public. With `CloudFlare`, we
+- We don't need to expose the port for serving the YOURLS service to public. With `CloudFlare`, we
 can assign a sub-domain (e.g., yr.iris-home.net in my case) to the IP address of our VPS. Then, we
 can configure nginx in the following way to let the external URL redirect to `localhost` at the port
 specified for `YOURLS`,
@@ -57,7 +56,7 @@ specified for `YOURLS`,
 	}
 	```
 
-3. The following chunk in the `nginx` configuration is necessary,
+- The following chunk in the `nginx` configuration is necessary,
 
 	```
 	location /admin {
@@ -73,8 +72,6 @@ specified for `YOURLS`,
 	`yr.iris-home.net` directly without appending the directory `/admin`, it will complain about
 	`site access forbidden`. In practice, we would visit the admin page, add in the URL to be shortened,
 	and then it will go into the database with the shortened URL created.
-
-<br>
 
 References
 ===
