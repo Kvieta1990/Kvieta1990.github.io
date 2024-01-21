@@ -135,6 +135,20 @@ where the `ubuntu` refers to the pulled docker image name.
 9. Finally, we need to copy over the `instance` folder (download the zip file [here](https://kd.iris-home.net/#s/-CMXrVqA),
 get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access passcode) to the `/tsitc` directory.
 
+    > With the recent update to include the LDAP authentication, there is another file `ldap_blueprint.py` under the
+    `pdfitc` directory that needs to be copied over manually, as this file contains sensitive authentication information
+    which should not be included in the git history.
+
+    > Also with the LDAP implementation, we need to install the `flask-session`, `flask-wtf`, `pyldap`, and `pyoncat`
+    modules,
+
+    ```bash
+    conda install conda-forge::flask-session
+    conda install anaconda::flask-wtf
+    pip install pyldap
+    pip install https://oncat.ornl.gov/packages/pyoncat-1.5.1-py3-none-any.whl
+    ```
+
 10. Going through all the procedures as detailed above, the container should be ready to be committed to a new image
 with which we can then fire up an ADDIE service.
 
@@ -296,7 +310,7 @@ of the docker version. Here follows are given the detailed steps to do the local
 5. On the local machine, change directory to the `tsitc` repo and further into the `docker` directory inside the repo --
 clone the source repo if not yet cloned.
 
-6. Follow the steps 15-17 in previous section to build the new image and run the service locally for testing. 
+6. Follow the steps 13-15 in previous section to build the new image and run the service locally for testing. 
 
 # Deployment
 
