@@ -149,6 +149,13 @@ get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access pa
     pip install https://oncat.ornl.gov/packages/pyoncat-1.5.1-py3-none-any.whl
     ```
 
+    > When installing `pyldap` with `pip`, we might come across with errors relevant to the `gcc` failure, in which case
+    the following command might be helpful [12],
+
+    ```bash
+    sudo apt install libsasl2-dev libldap2-dev libssl-dev
+    ```
+
 10. Going through all the procedures as detailed above, the container should be ready to be committed to a new image
 with which we can then fire up an ADDIE service.
 
@@ -350,3 +357,5 @@ References
 [10] [https://askubuntu.com/questions/1218048/activating-conda-environment-in-within-a-shell-script](https://askubuntu.com/questions/1218048/activating-conda-environment-in-within-a-shell-script)
 
 [11] [https://phoenixnap.com/kb/install-gcc-ubuntu](https://phoenixnap.com/kb/install-gcc-ubuntu)
+
+[12] [https://stackoverflow.com/questions/4768446/i-cant-install-python-ldap](https://stackoverflow.com/questions/4768446/i-cant-install-python-ldap)
