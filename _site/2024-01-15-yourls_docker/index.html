@@ -294,70 +294,67 @@ The latest version (<a href="https://github.com/1Panel-dev/1Panel/releases/tag/v
 provide YOURLS in its application store and we can install it quickly and easily.</p>
 
 <blockquote>
-  <p>The default github page and the documentation is in Chinese. They should have English support.</p>
+  <p>The default github page and the documentation for <code class="language-plaintext highlighter-rouge">1Panel</code> is in Chinese. They should have English support.</p>
 </blockquote>
 
-<p>However, the setup does need some care.</p>
+<p>Though the installation of <code class="language-plaintext highlighter-rouge">YOURLS</code> via <code class="language-plaintext highlighter-rouge">1Panel</code> is made easy, the practical setup does need some care.</p>
 
-<ul>
+<ol>
   <li>
     <p>We need to specify the external URL in the installation configuration page, as shown below,</p>
 
     <blockquote>
       <p>Here, I am using <code class="language-plaintext highlighter-rouge">nginx+CloudFlare</code> for setting up the web traffic and the external URL is from the CloudFlare service.</p>
     </blockquote>
+
+    <p align="center">
+ <img src="/assets/img/posts/yourls.png" style="border:none;" width="600" alt="yourls" title="yourls" />
+ </p>
   </li>
-</ul>
-
-<p align="center">
-<img src="/assets/img/posts/yourls.png" style="border:none;" width="600" alt="yourls" title="yourls" />
-</p>
-
-<ul>
   <li>
     <p>We don’t need to expose the port for serving the YOURLS service to public. With <code class="language-plaintext highlighter-rouge">CloudFlare</code>, we
 can assign a sub-domain (e.g., yr.iris-home.net in my case) to the IP address of our VPS. Then, we
 can configure nginx in the following way to let the external URL redirect to <code class="language-plaintext highlighter-rouge">localhost</code> at the port
 specified for <code class="language-plaintext highlighter-rouge">YOURLS</code>,</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  server {
-          listen 80;
-          server_name yr.iris-home.net;
-          location / {
-                  proxy_pass         http://localhost:40037;
-                  proxy_http_version 1.1;
-                  proxy_set_header   Upgrade $http_upgrade;
-                  proxy_set_header   Connection "upgrade";
-                  proxy_set_header   Host $host;
-          }
-          location /admin {
-                  proxy_pass         http://localhost:40037/admin;
-                  proxy_http_version 1.1;
-                  proxy_set_header   Upgrade $http_upgrade;
-                  proxy_set_header   Connection "upgrade";
-                  proxy_set_header   Host $host;
-          }
-  }
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> server {
+         listen 80;
+         server_name yr.iris-home.net;
+         location / {
+                 proxy_pass         http://localhost:40037;
+                 proxy_http_version 1.1;
+                 proxy_set_header   Upgrade $http_upgrade;
+                 proxy_set_header   Connection "upgrade";
+                 proxy_set_header   Host $host;
+         }
+         location /admin {
+                 proxy_pass         http://localhost:40037/admin;
+                 proxy_http_version 1.1;
+                 proxy_set_header   Upgrade $http_upgrade;
+                 proxy_set_header   Connection "upgrade";
+                 proxy_set_header   Host $host;
+         }
+ }
 </code></pre></div>    </div>
   </li>
   <li>
     <p>The following chunk in the <code class="language-plaintext highlighter-rouge">nginx</code> configuration is necessary,</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  location /admin {
-      proxy_pass         http://localhost:40037/admin;
-      proxy_http_version 1.1;
-      proxy_set_header   Upgrade $http_upgrade;
-      proxy_set_header   Connection "upgrade";
-      proxy_set_header   Host $host;
-  }
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> location /admin {
+     proxy_pass         http://localhost:40037/admin;
+     proxy_http_version 1.1;
+     proxy_set_header   Upgrade $http_upgrade;
+     proxy_set_header   Connection "upgrade";
+     proxy_set_header   Host $host;
+ }
 </code></pre></div>    </div>
 
     <p>as we can only access the YOURLS service via the admin page, meaning that if we visit the domain
-  <code class="language-plaintext highlighter-rouge">yr.iris-home.net</code> directly without appending the directory <code class="language-plaintext highlighter-rouge">/admin</code>, it will complain about
-  <code class="language-plaintext highlighter-rouge">site access forbidden</code>. In practice, we would visit the admin page, add in the URL to be shortened,
-  and then it will go into the database with the shortened URL created.</p>
+ <code class="language-plaintext highlighter-rouge">yr.iris-home.net</code> directly without appending the directory <code class="language-plaintext highlighter-rouge">/admin</code>, it will complain about
+ <code class="language-plaintext highlighter-rouge">site access forbidden</code>. In practice, we would visit the admin page, add in the URL to be shortened,
+ and then it will go into the database with the shortened URL created.</p>
   </li>
-</ul>
+</ol>
 
 <h1 id="references">References</h1>
 

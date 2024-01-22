@@ -427,6 +427,31 @@ the image is huge, but the startup script is very simple.</p>
   <li>
     <p>Finally, we need to copy over the <code class="language-plaintext highlighter-rouge">instance</code> folder (download the zip file <a href="https://kd.iris-home.net/#s/-CMXrVqA">here</a>,
 get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access passcode) to the <code class="language-plaintext highlighter-rouge">/tsitc</code> directory.</a></a></p>
+
+    <blockquote>
+      <p>With the recent update to include the LDAP authentication, there is another file <code class="language-plaintext highlighter-rouge">ldap_blueprint.py</code> under the
+ <code class="language-plaintext highlighter-rouge">pdfitc</code> directory that needs to be copied over manually, as this file contains sensitive authentication information
+ which should not be included in the git history.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Also with the LDAP implementation, we need to install the <code class="language-plaintext highlighter-rouge">flask-session</code>, <code class="language-plaintext highlighter-rouge">flask-wtf</code>, <code class="language-plaintext highlighter-rouge">pyldap</code>, and <code class="language-plaintext highlighter-rouge">pyoncat</code>
+ modules,</p>
+    </blockquote>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> conda <span class="nb">install </span>conda-forge::flask-session
+ conda <span class="nb">install </span>anaconda::flask-wtf
+ pip <span class="nb">install </span>pyldap
+ pip <span class="nb">install </span>https://oncat.ornl.gov/packages/pyoncat-1.5.1-py3-none-any.whl
+</code></pre></div>    </div>
+
+    <blockquote>
+      <p>When installing <code class="language-plaintext highlighter-rouge">pyldap</code> with <code class="language-plaintext highlighter-rouge">pip</code>, we might come across with errors relevant to the <code class="language-plaintext highlighter-rouge">gcc</code> failure, in which case
+ the following command might be helpful [12],</p>
+    </blockquote>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt <span class="nb">install </span>libsasl2-dev libldap2-dev libssl-dev
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Going through all the procedures as detailed above, the container should be ready to be committed to a new image
@@ -615,7 +640,7 @@ of the docker version. Here follows are given the detailed steps to do the local
 clone the source repo if not yet cloned.</p>
   </li>
   <li>
-    <p>Follow the steps 15-17 in previous section to build the new image and run the service locally for testing.</p>
+    <p>Follow the steps 13-15 in previous section to build the new image and run the service locally for testing.</p>
   </li>
 </ol>
 
@@ -660,6 +685,8 @@ we need to push the new docker image to Docker Hub, following the instruction as
 <p>[10] <a href="https://askubuntu.com/questions/1218048/activating-conda-environment-in-within-a-shell-script">https://askubuntu.com/questions/1218048/activating-conda-environment-in-within-a-shell-script</a></p>
 
 <p>[11] <a href="https://phoenixnap.com/kb/install-gcc-ubuntu">https://phoenixnap.com/kb/install-gcc-ubuntu</a></p>
+
+<p>[12] <a href="https://stackoverflow.com/questions/4768446/i-cant-install-python-ldap">https://stackoverflow.com/questions/4768446/i-cant-install-python-ldap</a></p>
 
       </article>
 

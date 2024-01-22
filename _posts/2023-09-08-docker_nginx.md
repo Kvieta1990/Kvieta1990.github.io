@@ -182,6 +182,123 @@ server {
 The subdomain `nc.iris-home.net` should be configured in `Cloudflare` and it should be noticed that
 the local `https` connection is used instead of `http` -- see the `proxy_pass` setting above.
 
+Issue #6
+===
+
+Docker services backup
+
+Solution (#6)
+===
+
+All the docker services installed via the `1Panel` interface were not backed up here. Those manually
+installed services were backed up to include their docker compose files -- click [here](/assets/files/oraclel_docker_backups_01222024.zip) to download the backup package.
+
+Here follows are the domain names corresponding to the services,
+
+| Service      | Domain Name |
+| ----------- | ----------- |
+| Homepage      | me.iris-home.net      |
+| Dify   | dify.iris-home.net        |
+| Gemini   | gm.iris-home.net        |
+| SFTPGo   | gg.iris-home.net        |
+| KODCloud   | kd.iris-home.net        |
+| nextCloud   | nc.iris-home.net        |
+| Pingvin   | pv.iris-home.net        |
+| Memos   | mm.iris-home.net        |
+| UptimeKuma   | ut.iris-home.net        |
+| VPSScheduler   | ql.iris-home.net        |
+| ITTools   | it.iris-home.net        |
+| Bitwarden   | bw.iris-home.net        |
+| Umami   | umm.iris-home.net        |
+| PhotoPrism   | pg.iris-home.net        |
+| FlatNotes   | fn.iris-home.net        |
+| StirlingPDF   | sp.iris-home.net        |
+| Grampsy   | gs.iris-home.net        |
+| TeamMapper   | tm.iris-home.net        |
+| Drawio   | di.iris-home.net        |
+| YOURLS   | yr.iris-home.net        |
+
+The `nginx` configuration files were backed up [here](/assets/files/oracle_nginx_backups_01222024.zip).
+
+Issue #7
+===
+
+`YOURLS` installation.
+
+Solution (#7)
+===
+
+When installing `YOURLS` (e.g., with `1Panel` interface), we need to follow up the installation by visiting the `domain_name/admin` to finish up the installation. Here we just need to replace `domain_name` with our own domain name and in my case, it is `yr.iris-home.net`. Also, after the installation, the domain name, e.g., `yr.iris-home.net` cannot be directly visited -- we still need to visit the `admin` page to define new short URLs.
+
+Issue #8
+===
+
+Restart docker services manually after VPS host machine restart.
+
+Solution (#8)
+===
+
+For the moment, there are several docker services that have to be started manually after the host
+VPS machine is restarted. Here below is a summary for the service folder where we need to to to start the corresponding docker service manually.
+
+| Service      | Directory |
+| ----------- | ----------- |
+| Dify   | /home/ubuntu/packages/dify/docker        |
+| Pingvin   | /home/ubuntu/packages/pingvin        |
+| PhotoPrism   | /home/ubuntu/packages/photoprism       |
+| TeamMapper   | /home/ubuntu/packages/teammapper        |
+
+The command we need to run is `sudo docker-compose up -d`, assuming we have changed directory to those listed in the table above, respectively.
+
+Issue #9
+===
+
+Installation of `dashy` as a self-hosted web-based personal dashboard.
+
+Solution (#9)
+===
+
+1. The docker compose file can be found in the backup file [here](/assets/files/oraclel_docker_backups_01222024.zip).
+
+2. We also need a configuration file which is the backend control of the frontend dashboard layout. The configuration can also be found in the backup file above.
+
+3. In the configuration, I also included the configuration for widgets and we can just use such a configuration as the starting template to continue.
+
+    > Information for widgets installation can also be found [here](https://wiki.opensourceisawesome.com/books/self-hosted-dashboards/page/adding-widgets-to-the-dashy-dashboard) and [here](https://github.com/Lissy93/dashy/blob/master/docs/widgets.md).
+
+4. By default, after installation, the dashboard does not come with any authentication mechanism and everyone can change the configuration. To add in the authentication mechanism, refer to the configuration backup file mentioned above, or the link [here](https://dashy.to/docs/authentication/).
+
+5. There are quite a few resources for icons that can be used in `dashy`,
+
+    - [https://github.com/Lissy93/dashy/wiki/icons/12b2d497821e3849c50bbe982950659c887b298b](https://github.com/Lissy93/dashy/wiki/icons/12b2d497821e3849c50bbe982950659c887b298b)
+
+    - [https://github.com/walkxcode/dashboard-icons/blob/main/ICONS.md](https://github.com/walkxcode/dashboard-icons/blob/main/ICONS.md)
+
+    - [https://github.com/NX211/homer-icons?tab=readme-ov-file](https://github.com/NX211/homer-icons?tab=readme-ov-file)
+
+    - [https://github.com/walkxcode/dashboard-icons](https://github.com/walkxcode/dashboard-icons)
+
+6. We can configure to use the `Code::stats` widgets to track the coding history on various machines. To do this, we need to configure `Code:stats` at [https://codestats.net/](https://codestats.net/). We need to add in our machines in the `Machines` menu to obtain the API for a certain machine. Then we need to install editor plugins to enable the connection to the `Code::stats` to track our coding within certain editors. Specially,
+
+    > If we are using `neovim` and are using `LazyVim` for managing the plugins, we need to refer to Ref. [6] for a usable plugin. For the installation of the plugin, we need to create a plugin file under `~/.config/nvim/lua/plugins/` and give it a name, e.g., `codestats.lua`. Then put can put in the following contents in the file,
+
+
+    ```lua
+    return {
+        "YannickFricke/codestats.nvim",
+        config = function()
+            require("codestats-nvim").setup({
+                token = "CODESTATS_API",
+            })
+        end,
+        requires = { { "nvim-lua/plenary.nvim" } },
+    }
+    ```
+
+    where we want to replace `CODESTATS_API` with our `Code::stats` API.
+
+    > We can also configure `zsh` to update to `Code::stats`. Information can be found in Ref. [7]. We can use the manual method mentioned there to install the plugin, by first downloading the plugin file [here](https://gitlab.com/code-stats/code-stats-zsh/-/raw/master/codestats.plugin.zsh?ref_type=heads). We can put the plugin file somewhere in our system, e.g., `~/.zsh/codestats.plugin.zsh` and change directory there to execute `source codestats.plugin.zsh` to install the plugin. We need to put `export CODESTATS_API_KEY="<api key here>"` in our `.zshrc` file where we can populate the place holder with our own `Code::stats` API. To make sure each time the plugin will be sourced when launching `neovim`, we can add the source command such as `source ~/.zsh/codestats.plugin.zsh` to our `.zshrc` (or `.zshenv`) file.
+
 <b>References</b>
 
 [1] [https://www.youtube.com/watch?v=5a5tdJh8mKY](https://www.youtube.com/watch?v=5a5tdJh8mKY)
@@ -193,3 +310,7 @@ the local `https` connection is used instead of `http` -- see the `proxy_pass` s
 [4] [https://github.com/1Panel-dev/1Panel](https://github.com/1Panel-dev/1Panel)
 
 [5] [https://github.com/langgenius/dify](https://github.com/langgenius/dify)
+
+[6] [https://github.com/YannickFricke/codestats.nvim](https://github.com/YannickFricke/codestats.nvim)
+
+[7] [https://gitlab.com/code-stats/code-stats-zsh](https://gitlab.com/code-stats/code-stats-zsh)
