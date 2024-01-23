@@ -330,7 +330,10 @@ docker push apw247/hrconvert2
 
 after which we could then change the image to `apw247/hrconvert2:latest` in the docker compose file.
 
-<b>References</b>
+<br>
+
+References
+===
 
 [1] [https://www.youtube.com/watch?v=5a5tdJh8mKY](https://www.youtube.com/watch?v=5a5tdJh8mKY)
 
