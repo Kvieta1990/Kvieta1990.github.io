@@ -247,6 +247,7 @@ VPS machine is restarted. Here below is a summary for the service folder where w
 | Pingvin   | /home/ubuntu/packages/pingvin        |
 | PhotoPrism   | /home/ubuntu/packages/photoprism       |
 | TeamMapper   | /home/ubuntu/packages/teammapper        |
+| HRConvert2   | /home/ubuntu/packages/HRConvert2-Docker        |
 
 The command we need to run is `sudo docker-compose up -d`, assuming we have changed directory to those listed in the table above, respectively.
 
@@ -298,6 +299,36 @@ Solution (#9)
     where we want to replace `CODESTATS_API` with our `Code::stats` API.
 
     > We can also configure `zsh` to update to `Code::stats`. Information can be found in Ref. [7]. We can use the manual method mentioned there to install the plugin, by first downloading the plugin file [here](https://gitlab.com/code-stats/code-stats-zsh/-/raw/master/codestats.plugin.zsh?ref_type=heads). We can put the plugin file somewhere in our system, e.g., `~/.zsh/codestats.plugin.zsh` and change directory there to execute `source codestats.plugin.zsh` to install the plugin. We need to put `export CODESTATS_API_KEY="<api key here>"` in our `.zshrc` file where we can populate the place holder with our own `Code::stats` API. To make sure each time the plugin will be sourced when launching `neovim`, we can add the source command such as `source ~/.zsh/codestats.plugin.zsh` to our `.zshrc` (or `.zshenv`) file.
+
+Issue #10
+===
+
+Installation of HRConvert2, which is an open source online service for file format conversion.
+
+Solution (#10)
+===
+
+The source codes of `HRConvert2` are available [here](https://github.com/zelon88/HRConvert2) on GitHub. There, we have the link to the docker way of installation. We can specifically follow the instruction for [Docker Compose Setup](https://github.com/dwaaan/HRConvert2-Docker?tab=readme-ov-file#docker-compose-setup) for details. A simple input would be the configuration for the `config.php` file, where on the top we need to fill in several randomly generated strings, with. e.g., BitWarded generator tool. Normally, this will work out. However, in some cases, we may need to build our own image -- typically in my case, I was trying to deploy the service on my oracle VPS with `ARM64` architecture and the existing docker compose file which would use the existing docker image for `HRConvert2` does not support the `ARM64` architecture. So, I had to build my own image. To do this, I could use the following commands,
+
+    ```bash
+    git clone https://github.com/dwaaan/HRConvert2-Docker
+    cd HRConvert2-Docker
+    vim config.php
+    vim Dockerfile
+    sudo docker image build -t hrconvert2 .
+    vim docker-compose.yml
+    sudo docker-compose up -d
+    ```
+
+Instructions for editing the `config.php` file has been given above. For the `Dockerfile` file, we need to remove `rar` and `unrar` from the docker `RUN apt-get` list as `rar` is not available on ARM64 architecture -- `unrar` can be installed but I would remove the support for `rar`, though, I did not spend efforts in getting rid of the `rar` part in the web GUI, which requires dealing with those PHP files. For the `docker-compose.yml` file, we want to change docker image to `image: hrconvert2:latest` to use our locally built version. After that, actually we could log in docker and push our local image to the `dockerhub`.
+
+    ```bash
+    docker login --username=apw247
+    docker tag IMAGE_ID apw247/hrconvert2:latest
+    docker push apw247/hrconvert2
+    ```
+
+after which we could then change the image to `apw247/hrconvert2:latest` in the docker compose file.
 
 <b>References</b>
 
