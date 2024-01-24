@@ -73,8 +73,20 @@ specified for `YOURLS`,
     `site access forbidden`. In practice, we would visit the admin page, add in the URL to be shortened,
     and then it will go into the database with the shortened URL created.
 
+4. A curated list of plugins for `YOURLS` can be found in Ref. [3].
+
+5. Sometimes, when using the short URL generated via `YOURLS`, there would be a banner message on the top part of
+the redirected webpage. This is because we were enabling the `toolbar` plugin. Refer to Ref. [4] for more
+information -- here, it should be noticed that the plugin mentioned in Ref. [4] is called `sample-toobar` whereas
+in the latest version (as of writing the current blog) of `YOURLS`, the plugin is called `YOURLS Toolbar`.
+
 References
 ===
 
 [1] [https://github.com/YOURLS/YOURLS](https://github.com/YOURLS/YOURLS)
+
 [2] [https://github.com/1Panel-dev/1Panel/tree/dev](https://github.com/1Panel-dev/1Panel/tree/dev)
+
+[3] [https://github.com/YOURLS/awesome?tab=readme-ov-file](https://github.com/YOURLS/awesome?tab=readme-ov-file)
+
+[4] [https://github.com/orgs/YOURLS/discussions/2988](https://github.com/orgs/YOURLS/discussions/2988)
