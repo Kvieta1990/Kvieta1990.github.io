@@ -330,6 +330,36 @@ docker push apw247/hrconvert2
 
 after which we could then change the image to `apw247/hrconvert2:latest` in the docker compose file.
 
+Issue #11
+===
+
+Hosting a QR code generator.
+
+Solution (#11)
+===
+
+There are multiple available choices for hosting a web based QR code generator, as listed in Ref. [8]. However, on ARM64 architecture, we need to rebuild the docker image on our ARM64 machine. As such, I tried several of them and had no luck. The one that I ended up with working is this one in Ref. [9]. In their GitHub repo, the `Dockerfile` is provided from which we can build a docker image on our ARM64 machine,
+
+```bash
+cd <GITHUB_REPO>
+sudo docker image build -t qrcode .
+sudo docker login --username=apw247
+sudo docker tag IMAGE_ID apw247/qrcode:latest
+sudo docker push apw247/qrcode
+vim docker-compose.yml
+```
+
+where `<GITHUB_REPO>` refers to the GitHub repo directory for `bizzycola/qrcode-generator` in Ref. [9]. `IMAGE_ID` refers to the ID of the docker image that was built in previous step. At the last step, we need to edit the `docker-compose.yml` file to change the image to be used to the one we just built and pushed. Also, we need to change the port if necessary, e.g., when the default port is already in use. Here is my version,
+
+```YAML
+version: "3.9"
+services:
+  web:
+    image: apw247/qrcode:latest
+    ports:
+      - "5580:80"
+```
+
 <br>
 
 References
@@ -348,3 +378,7 @@ References
 [6] [https://github.com/YannickFricke/codestats.nvim](https://github.com/YannickFricke/codestats.nvim)
 
 [7] [https://gitlab.com/code-stats/code-stats-zsh](https://gitlab.com/code-stats/code-stats-zsh)
+
+[8] [https://noted.lol/qr-code-generators/](https://noted.lol/qr-code-generators/)
+
+[9] [https://github.com/bizzycola/qrcode-generator](https://github.com/bizzycola/qrcode-generator)
