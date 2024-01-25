@@ -696,6 +696,32 @@ docker push apw247/hrconvert2
 
 <p>after which we could then change the image to <code class="language-plaintext highlighter-rouge">apw247/hrconvert2:latest</code> in the docker compose file.</p>
 
+<h1 id="issue-11">Issue #11</h1>
+
+<p>Hosting a QR code generator.</p>
+
+<h1 id="solution-11">Solution (#11)</h1>
+
+<p>There are multiple available choices for hosting a web based QR code generator, as listed in Ref. [8]. However, on ARM64 architecture, we need to rebuild the docker image on our ARM64 machine. As such, I tried several of them and had no luck. The one that I ended up with working is this one in Ref. [9]. In their GitHub repo, the <code class="language-plaintext highlighter-rouge">Dockerfile</code> is provided from which we can build a docker image on our ARM64 machine,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> &lt;GITHUB_REPO&gt;
+<span class="nb">sudo </span>docker image build <span class="nt">-t</span> qrcode <span class="nb">.</span>
+<span class="nb">sudo </span>docker login <span class="nt">--username</span><span class="o">=</span>apw247
+<span class="nb">sudo </span>docker tag IMAGE_ID apw247/qrcode:latest
+<span class="nb">sudo </span>docker push apw247/qrcode
+vim docker-compose.yml
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">&lt;GITHUB_REPO&gt;</code> refers to the GitHub repo directory for <code class="language-plaintext highlighter-rouge">bizzycola/qrcode-generator</code> in Ref. [9]. <code class="language-plaintext highlighter-rouge">IMAGE_ID</code> refers to the ID of the docker image that was built in previous step. At the last step, we need to edit the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file to change the image to be used to the one we just built and pushed. Also, we need to change the port if necessary, e.g., when the default port is already in use. Here is my version,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: "3.9"
+services:
+  web:
+    image: apw247/qrcode:latest
+    ports:
+      - "5580:80"
+</code></pre></div></div>
+
 <p><br /></p>
 
 <h1 id="references">References</h1>
@@ -713,6 +739,10 @@ docker push apw247/hrconvert2
 <p>[6] <a href="https://github.com/YannickFricke/codestats.nvim">https://github.com/YannickFricke/codestats.nvim</a></p>
 
 <p>[7] <a href="https://gitlab.com/code-stats/code-stats-zsh">https://gitlab.com/code-stats/code-stats-zsh</a></p>
+
+<p>[8] <a href="https://noted.lol/qr-code-generators/">https://noted.lol/qr-code-generators/</a></p>
+
+<p>[9] <a href="https://github.com/bizzycola/qrcode-generator">https://github.com/bizzycola/qrcode-generator</a></p>
 
       </article>
 

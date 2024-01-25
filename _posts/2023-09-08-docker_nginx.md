@@ -351,7 +351,7 @@ vim docker-compose.yml
 
 where `<GITHUB_REPO>` refers to the GitHub repo directory for `bizzycola/qrcode-generator` in Ref. [9]. `IMAGE_ID` refers to the ID of the docker image that was built in previous step. At the last step, we need to edit the `docker-compose.yml` file to change the image to be used to the one we just built and pushed. Also, we need to change the port if necessary, e.g., when the default port is already in use. Here is my version,
 
-```YAML
+```
 version: "3.9"
 services:
   web:
