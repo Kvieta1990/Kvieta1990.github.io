@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Set up Dify server on VPS with docker</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Dify is an LLM application platform which can provide access to various LLM models, tools and applications. With it, we can build our own ChatBot server acting just like ChatGPT. At the backend, it utilizes the LLM services from various providers, such as openAI, Gemini, etc., through API call. In...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Set up Dify server on VPS with docker">
+  <meta property="og:description" content="Dify is an LLM application platform which can provide access to various LLM models, tools and applications. With it, we can build our own ChatBot server acting just like ChatGPT. At the backend, it utilizes the LLM services from various providers, such as openAI, Gemini, etc., through API call. In...">
+
+  
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2024-01-27T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2024-01-27-docker_dify/">
+  <link rel="canonical" href="http://localhost:4000/2024-01-27-docker_dify/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Set up Dify server on VPS with docker">
+  <meta property="twitter:description" content="Dify is an LLM application platform which can provide access to various LLM models, tools and applications. With it, we can build our own ChatBot server acting just like ChatGPT. At the backend, it utilizes the LLM services from various providers, such as openAI, Gemini, etc., through API call. In...">
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Website</a>
+								  <a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.pages.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://dify.iris-home.net/chat/bO3b1I3j159QHWTt">Dify Chat</a>
+								  <a target="_blank" class="dropdown-item" href="https://gm.iris-home.net">Gemini Chat</a>
+								  
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Set up Dify server on VPS with docker</h1>
+          
+
+          
+					<span class="post-meta">Posted on January 27, 2024, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/dify.png" style="border:none;" width="600" alt="dify" title="dify" />
+</p>
+
+<p>Dify is an LLM application platform which can provide access to various LLM models, tools and applications. With it,
+we can build our own ChatBot server acting just like ChatGPT. At the backend, it utilizes the LLM services from various
+providers, such as openAI, Gemini, etc., through API call. In my case, I am using both the <code class="language-plaintext highlighter-rouge">openAI</code> and <code class="language-plaintext highlighter-rouge">Gemini</code> API
+calls. Within the <code class="language-plaintext highlighter-rouge">Dify</code> platform, we can create apps serving different purposes and they are independent from each
+other. Also, we can set up our own knowledge and use that together with the API to train the chatbot with our own
+knowledge base. Here in this blog, I am going to walk through the process of setting up our own <code class="language-plaintext highlighter-rouge">Dify</code> server, create
+apps in it, add in our own knowledge base, and add in extra tools (such as <code class="language-plaintext highlighter-rouge">DALL-E</code>, <code class="language-plaintext highlighter-rouge">Mathematica API</code>, etc.) to access
+more functionalities.</p>
+
+<ol>
+  <li>
+    <p>To self host a <code class="language-plaintext highlighter-rouge">Dify</code> server, we need our own VPS. In my case, I am using the Oracle VPS with <code class="language-plaintext highlighter-rouge">ARM64</code> architecture.
+Oracle provides a <code class="language-plaintext highlighter-rouge">always-free</code> version of the <code class="language-plaintext highlighter-rouge">ARM64</code> VPS which comes with a very powerful configuration (4 CPU cores and
+24 Gb RAM). One could obtain such a powerful and always-free service via <a href="https://www.oracle.com/cloud/">Oracle Cloud</a>.</p>
+
+    <blockquote>
+      <p>The <code class="language-plaintext highlighter-rouge">always-free</code> service with such a powerful configuration is <code class="language-plaintext highlighter-rouge">ONLY</code> available for the <code class="language-plaintext highlighter-rouge">ARM64</code> architecture and it
+is not always available. It depends on the availability of Oracle resources in different regions. So, when registering
+for the service, choosing the region of the VPS server is important. Also, the registration process is bundled with
+credit card and personal information verification and once registered, the region cannot be changed. However, it may
+not be straightforward to know beforehand in which region will the powerful and always-free <code class="language-plaintext highlighter-rouge">ARM64</code> architecture be
+available. So, in practice, whether or not we can get the powerful machine for free is a bit luck-based.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Once we have a VPS, log into it and grab the docker compose file <a href="https://github.com/langgenius/dify/blob/main/docker/docker-compose.yaml">here</a>
+for firing up the <code class="language-plaintext highlighter-rouge">Dify</code> service. Usually, the docker compose file will be up-to-date to catch up with the backend codes
+and the docker images. So, for installation and update, we can, most of the time, rely on this docker compose file.</p>
+
+    <blockquote>
+      <p>Using the docker compose way for setting up the server, when we want to update the server, we may need to stop and remove
+the old docker containers for <code class="language-plaintext highlighter-rouge">Dify</code> and all the other associated docker containers (such as the <code class="language-plaintext highlighter-rouge">nginx</code> and the <code class="language-plaintext highlighter-rouge">dify-web</code>)
+and then run the compose again with the up-to-date compose file.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Once the <code class="language-plaintext highlighter-rouge">Dify</code> server is up, we can go to its admin page via the main domain name. The docker compose file should
+contain the port on host that the <code class="language-plaintext highlighter-rouge">Dify</code> service will be running on. With the port number, we can for sure access the
+service with the IP address together with the port number, via the HTTP traffic. In practice, we may need a domain name
+and also to make our website secure, we also need to configure the reverse proxy (using, e.g., <code class="language-plaintext highlighter-rouge">nginx</code>) and the SSL
+certificate, etc. Details on these processes will not be covered in this blog and we can refer to my another blog
+<a href="https://iris2020.net/2023-09-08-docker_nginx/">here</a>.</p>
+  </li>
+  <li>
+    <p>To add in tools in the up-to-date version of <code class="language-plaintext highlighter-rouge">Dify</code>, in the admin page, we can refer to the following image,</p>
+
+    <p align="center">
+<img src="/assets/img/posts/dify_tools.png" style="border:none;" width="600" alt="dify_tools" title="dify_tools" />
+</p>
+  </li>
+  <li>
+    <p>For some of the tools there, they need authorization which usually requires us to obtain API from the backend
+service provider. For example, to use the <code class="language-plaintext highlighter-rouge">DALL-E</code> tool, we need to obtain the API from openAI and it is not free. Once
+authorized, we can go to the <code class="language-plaintext highlighter-rouge">Studio</code> menu (see the top part of the image above) and either create a new app of click on
+and existing app to go into the app configuration page. First , we want to make sure that we should choose the type of
+the app as <code class="language-plaintext highlighter-rouge">Agent Assistant</code> but not the <code class="language-plaintext highlighter-rouge">Basic Assistant</code> since the tools can only be added in <code class="language-plaintext highlighter-rouge">Agent Assistant</code>.</p>
+
+    <p align="center">
+<img src="/assets/img/posts/dify_tools1.png" style="border:none;" width="600" alt="dify_tools1" title="dify_tools1" />
+</p>
+
+    <blockquote>
+      <p>In my case, when trying to use the <code class="language-plaintext highlighter-rouge">DALL-E</code> tool, there was a bug in the <code class="language-plaintext highlighter-rouge">Dify</code> codes and the tool implementation
+was not working. Refer to the link <a href="https://github.com/langgenius/dify/issues/2246#issuecomment-1912535817">here</a> for
+the solution.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>For using the <code class="language-plaintext highlighter-rouge">Mathematica</code> tool, we can obtain our Mathematica API <a href="https://developer.wolframalpha.com/access">here</a>.
+My company has the <code class="language-plaintext highlighter-rouge">Mathematica</code> subscription and therefore I can get the API access through my company account. Also,
+it is worth mentioning that after the <code class="language-plaintext highlighter-rouge">Mathematica</code> app ID is created, we need to give it a while before it starts to
+take effect. Within that period before its taking effect, adding in the App ID in <code class="language-plaintext highlighter-rouge">Dify</code> will suggest that the App ID
+is invalid.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Google recently release the Gemini Pro API and in <code class="language-plaintext highlighter-rouge">Dify</code>, we can also configure it to use the Gemini API. We can go
+to the settings interface (click on the top right user dropdown and go to the settings panel to further select
+<code class="language-plaintext highlighter-rouge">Model Provider</code>). Here follows is shown the way to obtain the Gemini API,</p>
+
+    <p align="center">
+   <video width="600" controls="">
+      <source src="/assets/img/posts/gemini_api.mp4" type="video/mp4" />
+   </video>
+</p>
+  </li>
+  <li>
+    <p>To add in our own knowledge base to train our own chatbot, we can go to the <code class="language-plaintext highlighter-rouge">Knowledge</code> option on the top of the <code class="language-plaintext highlighter-rouge">Dify</code>
+admin page. There, we can import files, or in the future, we can choose to <code class="language-plaintext highlighter-rouge">Sync from website</code> (currently not available
+as of Jan-28-2024). Then in our app, we can go to the <code class="language-plaintext highlighter-rouge">Context</code> section and select the knowledge we just created in the
+<code class="language-plaintext highlighter-rouge">Knowledge</code> section.</p>
+  </li>
+  <li>
+    <p>Since some of the GPT API’s may have limitation of tokens, sometimes in our chat app in <code class="language-plaintext highlighter-rouge">Dify</code>, when the context is
+becoming long, the app may not be able to further respond to our inquiry, in which case we then have to lose the context
+and create a new chat.</p>
+  </li>
+  <li>
+    <p>If we go to the <code class="language-plaintext highlighter-rouge">Overview</code> section in our app configuration page – see the image below,</p>
+
+    <p align="center">
+<img src="/assets/img/posts/dify_app_overview.png" style="border:none;" width="600" alt="dify_app_overview" title="dify_app_overview" />
+</p>
+  </li>
+</ol>
+
+<p>we can further click on the <code class="language-plaintext highlighter-rouge">Embedded</code> option just below the public URL of our app and see a few options that <code class="language-plaintext highlighter-rouge">Dify</code>
+provides to embed our app in other apps such as our website, or Google Chrome extension. In my case, I was implementing
+my <code class="language-plaintext highlighter-rouge">Dify</code> app in my personal website constructed using wordpress. In my wordpress, I need to go to <code class="language-plaintext highlighter-rouge">Settings</code> and further
+go to <code class="language-plaintext highlighter-rouge">Head and Footer</code> to populate the <code class="language-plaintext highlighter-rouge">Dify</code> app codes into the <code class="language-plaintext highlighter-rouge">Head and footer</code> injection part.</p>
+
+<p align="center">
+   <img src="/assets/img/posts/dify_wp.png" style="border:none;" width="600" alt="dify_wp" title="dify_wp" />
+   </p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#web">web</a>
+          
+            <a href="/tags#docker">docker</a>
+          
+            <a href="/tags#gpt">gpt</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+Dify+server+on+VPS+with+docker&url=http%3A%2F%2Flocalhost%3A4000%2F2024-01-27-docker_dify%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2024-01-27-docker_dify%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2024-01-27-docker_dify%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2024-01-15-yourls_docker/" data-toggle="tooltip" data-placement="top" title="Set up YOURLS on VPS with docker">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/rmc/">RMC at ISIS facility</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.pages.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://community.dur.ac.uk/john.evans/topas_workshop/tutorial_pdf_sno2.htm">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href=""https://mlfinfo.jp/en/bl21/>Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+				</br>
+				<a target="_blank" href="http://e-ssrf.sinap.cas.cn/beamlines/bl13w1/201401/t20140112_152430.html">China - SSRF - BL13W1</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2020 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
