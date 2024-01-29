@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Resize Oracle VPS volume</title>
+        <description>
+          
+          When setting up Oracle cloud instance, we would give the instance an initial allocation of volume, and later on we might find that the initial volume size is not enough as we install more and more services into our VPS. In such a situation, we may want to expand the...
+        </description>
+        <pubDate>Sun, 28 Jan 2024 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</guid>
+      </item>
+    
+      <item>
         <title>Set up Dify server on VPS with docker</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Fri, 30 Dec 2022 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2022-12-30-notes_slack_msg/</link>
         <guid isPermaLink="true">http://localhost:4000/2022-12-30-notes_slack_msg/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on Total Commander Setups</title>
-        <description>
-          Tips &amp; Tricks - 
-          This post is a collection of notes of tips and tricks for Total Commander setups. This is a software as an alternative to the file explorer on Windows. It allows double column management and operations, making life much easier in terms of file and directory operations. Import/Export configuration file By...
-        </description>
-        <pubDate>Sun, 11 Dec 2022 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2022-12-11-notes_total_commander/</link>
-        <guid isPermaLink="true">http://localhost:4000/2022-12-11-notes_total_commander/</guid>
       </item>
     
   </channel>

@@ -360,6 +360,16 @@ services:
       - "5580:80"
 ```
 
+Issue #12
+===
+
+Installation of `Wiki.js` -- a self-hosted Wiki.
+
+Solution (#12)
+===
+
+Through the `1Panel` interface, we could easily install the `Wiki.js` Wiki system. However, I found that after the installation, from time to time, we would encounter errors here and there. Not sure what exactly the reason is, though. Alternatively, we could install the service directly using the docker compose approach, following the instruction provided in their official documentation [10].
+
 <br>
 
 References
@@ -382,3 +392,5 @@ References
 [8] [https://noted.lol/qr-code-generators/](https://noted.lol/qr-code-generators/)
 
 [9] [https://github.com/bizzycola/qrcode-generator](https://github.com/bizzycola/qrcode-generator)
+
+[10] [https://docs.requarks.io/install/docker#using-docker-compose](https://docs.requarks.io/install/docker#using-docker-compose)
