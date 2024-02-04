@@ -1,19 +1,25 @@
-<form method="get" id="search-google" action="https://www.google.com/search" target="_blank"><input type="hidden" name="sitesearch" value="iris2020.net" /><input type="text" name="q" maxlength="255" value="" placeholder="Search via Google" class="form-control" /></form>
+<form method="get" id="yaForm" accept-charset="UTF-8" action="https://ya.iris-home.net/yacysearch.html" target="_blank">
+    <input type="hidden" name="verify" value="cacheonly" />
+    <input type="hidden" name="maximumRecords" value="10" />
+    <input type="hidden" name="meanCount" value="5" />
+    <input type="hidden" name="resource" value="local" />
+    <input type="hidden" name="urlmaskfilter" value=".*" />
+    <input type="hidden" name="prefermaskfilter" value="" />
+    <input type="hidden" name="display" value="2" />
+    <input type="hidden" name="nav" value="all" />
+    <input type="text" name="query" id="yaInput" maxlength="255" value="" placeholder="Search via Yacy" class="form-control"/>
+</form>
 
 <script>
-document.getElementById("yaForm").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevent form submission
+    document.getElementById("yaForm").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-  var inputValue = document.getElementById("yaInput").value;
-  var appendString = " site:iris2020.net";
+        var inputValue = document.getElementById("yaInput").value;
+        var appendString = " site:iris2020.net";
 
-  // Append the string to the input value
-  var newValue = inputValue + appendString;
+        var newValue = inputValue + appendString;
 
-  // Update the input value
-  document.getElementById("yaInput").value = newValue;
-
-  // Submit the form
-  this.submit();
-});
+        document.getElementById("yaInput").value = newValue;
+        this.submit();
+    });
 </script>
