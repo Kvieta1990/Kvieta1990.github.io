@@ -1,48 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<style>
-.search-form {
-  display: inline-flex;
-  align-items: center;
-  max-width: 800px;
-  min-width: 600px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.search-form input[type="text"] {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.glass-button {
-  border: none;
-  background-color: transparent;
-  color: #555555;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.glass-button:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-body {
-  display: flex;
-  justify-content: center;
-}
-</style>
-
-<body>
 <form method="get" id="yaForm" accept-charset="UTF-8" action="https://ya.iris-home.net/yacysearch.html" target="_blank">
-    <div class="search-form">
+    <div>
         <input type="text" name="search" id="yaInput" placeholder="Search the site with Yacy...">
         <input type="hidden" name="verify" value="cacheonly" />
         <input type="hidden" name="maximumRecords" value="10" />
@@ -56,7 +15,6 @@ body {
     </div>
     <p style="clear:both;"></p>
 </form>
-</body>
 
 <script>
 document.getElementById("yaForm").addEventListener("submit", function(event) {
