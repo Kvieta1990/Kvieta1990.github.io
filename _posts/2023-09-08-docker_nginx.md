@@ -248,8 +248,15 @@ VPS machine is restarted. Here below is a summary for the service folder where w
 | PhotoPrism   | /home/ubuntu/packages/photoprism       |
 | TeamMapper   | /home/ubuntu/packages/teammapper        |
 | HRConvert2   | /home/ubuntu/packages/HRConvert2-Docker        |
+| Yacy   | /home/ubuntu/packages/yacy        |
+| WBO   | /home/ubuntu/packages/wbo        |
+| Paperless   | /home/ubuntu/packages/paperless-ngx_docker        |
+| Wikijs   | /home/ubuntu/packages/wikijs        |
+| yopass   | /home/ubuntu/packages/yopass/deploy/docker-compose/insecure        |
 
 The command we need to run is `sudo docker-compose up -d`, assuming we have changed directory to those listed in the table above, respectively.
+
+> For `Yacy` and `wbo`, we need to run the `start.sh` script in their corresponding directories.
 
 Issue #9
 ===
