@@ -11,3 +11,20 @@ footer.footer-min {
   border-top: 1px solid #eeeeee;
   text-align: center;
 }
+
+.search-container {
+        display: flex;
+}
+
+.search-input {
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}

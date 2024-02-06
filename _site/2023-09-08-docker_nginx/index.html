@@ -2,6 +2,7 @@
 <html lang="en">
 <!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
@@ -598,10 +599,34 @@ VPS machine is restarted. Here below is a summary for the service folder where w
       <td>HRConvert2</td>
       <td>/home/ubuntu/packages/HRConvert2-Docker</td>
     </tr>
+    <tr>
+      <td>Yacy</td>
+      <td>/home/ubuntu/packages/yacy</td>
+    </tr>
+    <tr>
+      <td>WBO</td>
+      <td>/home/ubuntu/packages/wbo</td>
+    </tr>
+    <tr>
+      <td>Paperless</td>
+      <td>/home/ubuntu/packages/paperless-ngx_docker</td>
+    </tr>
+    <tr>
+      <td>Wikijs</td>
+      <td>/home/ubuntu/packages/wikijs</td>
+    </tr>
+    <tr>
+      <td>yopass</td>
+      <td>/home/ubuntu/packages/yopass/deploy/docker-compose/insecure</td>
+    </tr>
   </tbody>
 </table>
 
 <p>The command we need to run is <code class="language-plaintext highlighter-rouge">sudo docker-compose up -d</code>, assuming we have changed directory to those listed in the table above, respectively.</p>
+
+<blockquote>
+  <p>For <code class="language-plaintext highlighter-rouge">Yacy</code> and <code class="language-plaintext highlighter-rouge">wbo</code>, we need to run the <code class="language-plaintext highlighter-rouge">start.sh</code> script in their corresponding directories.</p>
+</blockquote>
 
 <h1 id="issue-9">Issue #9</h1>
 
