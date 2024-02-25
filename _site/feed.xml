@@ -12,6 +12,24 @@
     
     
       <item>
+        <title>Photoshop基于图层生成动画</title>
+        <description>
+          
+          将一系列图片导入到Photoshop里，然后基于图层生成动画，即每一个图层为生成动画的一帧，下面给出的是详细的操作步骤，
+
+
+   
+      
+   
+
+
+        </description>
+        <pubDate>Sun, 25 Feb 2024 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2024-02-25-ps_make_animation/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-02-25-ps_make_animation/</guid>
+      </item>
+    
+      <item>
         <title>Set up our own search engine with Yacy</title>
         <description>
           
@@ -218,17 +236,6 @@
         <pubDate>Wed, 22 Feb 2023 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2023-02-22-notes_windterm/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-02-22-notes_windterm/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on Forum Setup with MyBB</title>
-        <description>
-          Side notes for the setup along the way of configuration - 
-          This post is for putting down some random sites notes as I struggle through the process of setting up a forum hosted with MyBB. Here is a very nice tutorial for running through the initial installation and setup, In this tutorial, the necessary modules were installed and configured during the...
-        </description>
-        <pubDate>Wed, 15 Feb 2023 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2023-02-15-notes_mybb/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-02-15-notes_mybb/</guid>
       </item>
     
   </channel>
