@@ -395,17 +395,20 @@ and create a new chat.</p>
     <p align="center">
 <img src="/assets/img/posts/dify_app_overview.png" style="border:none;" width="600" alt="dify_app_overview" title="dify_app_overview" />
 </p>
-  </li>
-</ol>
 
-<p>we can further click on the <code class="language-plaintext highlighter-rouge">Embedded</code> option just below the public URL of our app and see a few options that <code class="language-plaintext highlighter-rouge">Dify</code>
+    <p>we can further click on the <code class="language-plaintext highlighter-rouge">Embedded</code> option just below the public URL of our app and see a few options that <code class="language-plaintext highlighter-rouge">Dify</code>
 provides to embed our app in other apps such as our website, or Google Chrome extension. In my case, I was implementing
 my <code class="language-plaintext highlighter-rouge">Dify</code> app in my personal website constructed using wordpress. In my wordpress, I need to go to <code class="language-plaintext highlighter-rouge">Settings</code> and further
 go to <code class="language-plaintext highlighter-rouge">Head and Footer</code> to populate the <code class="language-plaintext highlighter-rouge">Dify</code> app codes into the <code class="language-plaintext highlighter-rouge">Head and footer</code> injection part.</p>
 
-<p align="center">
-   <img src="/assets/img/posts/dify_wp.png" style="border:none;" width="600" alt="dify_wp" title="dify_wp" />
-   </p>
+    <p align="center">
+<img src="/assets/img/posts/dify_wp.png" style="border:none;" width="600" alt="dify_wp" title="dify_wp" />
+</p>
+  </li>
+  <li>
+    <p>To upgrade <code class="language-plaintext highlighter-rouge">Dify</code> to the latest version, we could copy over the <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> file from the <a href="https://github.com/langgenius/dify/blob/main/docker/docker-compose.yaml">GitHub repo</a>. We may need to copy over the settings in our old compose file to the downloaded new version. We may want to stop the currently running <code class="language-plaintext highlighter-rouge">Dify</code> service by running <code class="language-plaintext highlighter-rouge">sudo docker ps -a | grep 'dify'</code> first to grab the container IDs relevant to the <code class="language-plaintext highlighter-rouge">Dify</code> service, followed by running <code class="language-plaintext highlighter-rouge">sudo docker container stop DIFY_CONTAINER_ID_1 DIFY_CONTAINER_ID_2 DIFY_CONTAINER_ID_3</code> and <code class="language-plaintext highlighter-rouge">sudo docker container rm DIFY_CONTAINER_ID_1 DIFY_CONTAINER_ID_2 DIFY_CONTAINER_ID_3</code> commands. After that, we then go to the directory where the <code class="language-plaintext highlighter-rouge">docker-compose.yaml</code> file is located and run the <code class="language-plaintext highlighter-rouge">sudo docker compose up -d</code> command to start the <code class="language-plaintext highlighter-rouge">Dify</code> service. Be default, there will be another docker containing running to support the <code class="language-plaintext highlighter-rouge">Dify</code> service, namely the <code class="language-plaintext highlighter-rouge">nginx</code> docker container for web hosting. We also need to restart the <code class="language-plaintext highlighter-rouge">nginx</code> container. In my case, I only have one <code class="language-plaintext highlighter-rouge">nginx</code> container running and it is easy to identify the ID and restart it by running <code class="language-plaintext highlighter-rouge">sudo docker restart NGINX_CONTAINER_ID</code>. If we have multiple <code class="language-plaintext highlighter-rouge">nginx</code> containers running, for sure, we need to first identify which one is relevant to the <code class="language-plaintext highlighter-rouge">Dify</code> service.</p>
+  </li>
+</ol>
 
       </article>
 

@@ -114,7 +114,7 @@ and create a new chat.
       title="dify_app_overview" />
    </p>
 
-we can further click on the `Embedded` option just below the public URL of our app and see a few options that `Dify`
+    we can further click on the `Embedded` option just below the public URL of our app and see a few options that `Dify`
 provides to embed our app in other apps such as our website, or Google Chrome extension. In my case, I was implementing
 my `Dify` app in my personal website constructed using wordpress. In my wordpress, I need to go to `Settings` and further
 go to `Head and Footer` to populate the `Dify` app codes into the `Head and footer` injection part.
