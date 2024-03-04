@@ -34,7 +34,7 @@ $$
 \vec{b} = b\,sin\alpha\vec{\hat{y}} + b\,cos\alpha\vec{\hat{z}}\ \ \ \ (2)
 $$
 
-As for $$\vec{a}$$, first, as seen from the right panel in the picture above, the projection onto the $$z$$-axis can be straightforwardly written down as $$a\,cos\beta\vec{\hat{z}}$$. So, we can write down $$\vec{a}$$ as,
+As for $$\vec{a}$$, first, as seen from the right panel in the picture above, the projection onto the $$z$$-axis can be straightforwardly written down as $$a_z = a\,cos\beta$$. So, we can write down $$\vec{a}$$ as,
 
 $$
 \vec{a} = a_x\vec{\hat{x}} + a_y\vec{\hat{y}} + a\,cos\beta\vec{\hat{z}}\ \ \ \ (3)
@@ -60,4 +60,15 @@ Finally, $$a_x$$ can be easily calculated as,
 
 $$
 a_x = \sqrt{a^2 - a_y^2 - a_z^2}\ \ \ \ (5)
+$$
+
+So, we would have,
+
+$$
+\begin{equation}
+\begin{aligned}
+\vec{a} & = \sqrt{a^2 - \Big[\frac{a(cos\gamma - cos\alpha cos\beta)}{sin\alpha}\Big]^2 - a^2cos^2\beta}\vec{\hat{x}} + \frac{a(cos\gamma - cos\alpha cos\beta)}{sin\alpha}\vec{\hat{y}} + a\,cos\beta\vec{\hat{z}}\\
+\vec{b} & = 
+\end{aligned}
+\end{equation}
 $$
