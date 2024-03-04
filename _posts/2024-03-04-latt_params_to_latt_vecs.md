@@ -25,19 +25,19 @@ Lattice vectors projection in the Cartesian coordinate system. The left panel sh
 First, it is straightforward to put down the lattice vector $$\vec{c}$$ as,
 
 $$
-\vec{c} = c\vec{\hat{z}} (1)
+\vec{c} = c\vec{\hat{z}}\ \ \ \ (1)
 $$
 
 where $$\vec{\hat{z}}$$ refers to the unit vector along the $$z$$-axis, and the same symbol also applies for $$x$$- and $$y$$-axis. Since $$\vec{b}$$ is put in the y-z plane and therefore, it is also straightforward to write down the projection of $$\vec{b}$ as,
 
 $$
-\vec{b} = b\,sin\alpha\vec{\hat{y}} + b\,cos\alpha\vec{\hat{z}} (2)
+\vec{b} = b\,sin\alpha\vec{\hat{y}} + b\,cos\alpha\vec{\hat{z}}\ \ \ \ (2)
 $$
 
 As for $$\vec{a}$$, first, as seen from the right panel in the picture above, the projection onto the $$z$$-axis can be straightforwardly written down as $$a\,cos\beta\vec{\hat{z}}$$. So, we can write down $$\vec{a}$$ as,
 
 $$
-\vec{a} = a_x\vec{\hat{x}} + a_y\vec{\hat{y}} + a\,cos\beta\vec{\hat{z}} (3)
+\vec{a} = a_x\vec{\hat{x}} + a_y\vec{\hat{y}} + a\,cos\beta\vec{\hat{z}}\ \ \ \ (3)
 $$
 
 with $$a_x$$ and $$a_y$$ to be determined. Further, given the vector form of $$\vec{b}$$ and $$\vec{a}$$ presented in Eqn. (2) and (3), we can write down their dot product as,
@@ -51,7 +51,7 @@ $$
 & \Rightarrow ab\,cos\gamma = a_yb\,sin\alpha + ab\,cos\alpha cos\beta\\
 & \Rightarrow a_yb\,sin\alpha = ab\,cos\gamma - ab\,cos\alpha cos\beta\\
 & \Rightarrow a_y\,sin\alpha = a\,cos\gamma - a\,cos\alpha cos\beta\\
-& \Rightarrow a_y = \frac{a(cos\gamma - cos\alpha cos\beta)}{sin\alpha} (4)
+& \Rightarrow a_y = \frac{a(cos\gamma - cos\alpha cos\beta)}{sin\alpha}\ \ \ \ (4)
 \end{aligned}
 \end{equation}
 $$
@@ -59,5 +59,5 @@ $$
 Finally, $$a_x$$ can be easily calculated as,
 
 $$
-a_x = \sqrt(a^2 - a_y^2 - a_z^2) (5)
+a_x = \sqrt{a^2 - a_y^2 - a_z^2}\ \ \ \ (5)
 $$
