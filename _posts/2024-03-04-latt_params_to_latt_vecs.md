@@ -25,19 +25,19 @@ Lattice vectors projection in the Cartesian coordinate system. The left panel sh
 First, it is straightforward to put down the lattice vector $$\vec{c}$$ as,
 
 $$
-\vec{c} = c\vec{\hat{z}}\ \ \ \ (1)
+\vec{c} = c\,\vec{\hat{z}}\ \ \ \ (1)
 $$
 
 where $$\vec{\hat{z}}$$ refers to the unit vector along the $$z$$-axis, and the same symbol also applies for $$x$$- and $$y$$-axis. Since $$\vec{b}$$ is put in the y-z plane and therefore, it is also straightforward to write down the projection of $$\vec{b}$ as,
 
 $$
-\vec{b} = b\,sin\alpha\vec{\hat{y}} + b\,cos\alpha\vec{\hat{z}}\ \ \ \ (2)
+\vec{b} = b\,sin\alpha\,\vec{\hat{y}} + b\,cos\alpha\,\vec{\hat{z}}\ \ \ \ (2)
 $$
 
 As for $$\vec{a}$$, first, as seen from the right panel in the picture above, the projection onto the $$z$$-axis can be straightforwardly written down as $$a_z = a\,cos\beta$$. So, we can write down $$\vec{a}$$ as,
 
 $$
-\vec{a} = a_x\vec{\hat{x}} + a_y\vec{\hat{y}} + a\,cos\beta\vec{\hat{z}}\ \ \ \ (3)
+\vec{a} = a_x\,\vec{\hat{x}} + a_y\,\vec{\hat{y}} + a\,cos\beta\,\vec{\hat{z}}\ \ \ \ (3)
 $$
 
 with $$a_x$$ and $$a_y$$ to be determined. Further, given the vector form of $$\vec{b}$$ and $$\vec{a}$$ presented in Eqn. (2) and (3), we can write down their dot product as,
@@ -45,7 +45,7 @@ with $$a_x$$ and $$a_y$$ to be determined. Further, given the vector form of $$\
 $$
 \begin{equation}
 \begin{aligned}
-\vec{a}\cdot\vec{b} & = (a_x\vec{\hat{x}} + a_y\vec{\hat{y}} + a\,cos\beta\vec{\hat{z}})\cdot(b\,sin\alpha\vec{\hat{y}} + b\,cos\alpha\vec{\hat{z}})\\
+\vec{a}\cdot\vec{b} & = (a_x\,\vec{\hat{x}} + a_y\,\vec{\hat{y}} + a\,cos\beta\,\vec{\hat{z}})\cdot(b\,sin\alpha\,\vec{\hat{y}} + b\,cos\alpha\,\vec{\hat{z}})\\
 & = a_yb\,sin\alpha + ab\,cos\alpha cos\beta\\
 & = |\vec{a}|\cdot|\vec{b}|\cdot cos\gamma\\
 & \Rightarrow ab\,cos\gamma = a_yb\,sin\alpha + ab\,cos\alpha cos\beta\\
@@ -67,8 +67,9 @@ So, we would have,
 $$
 \begin{equation}
 \begin{aligned}
-\vec{a} & = \sqrt{a^2 - \Big[\frac{a(cos\gamma - cos\alpha cos\beta)}{sin\alpha}\Big]^2 - a^2cos^2\beta}\vec{\hat{x}} + \frac{a(cos\gamma - cos\alpha cos\beta)}{sin\alpha}\vec{\hat{y}} + a\,cos\beta\vec{\hat{z}}\\
-\vec{b} & = 
+\vec{a} & = \sqrt{a^2 - \Big[\frac{a(cos\gamma - cos\alpha cos\beta)}{sin\alpha}\Big]^2 - a^2cos^2\beta}\,\vec{\hat{x}} + \frac{a(cos\gamma - cos\alpha cos\beta)}{sin\alpha}\,\vec{\hat{y}} + a\,cos\beta\,\vec{\hat{z}}\\
+\vec{b} & = b\,sin\alpha\,\vec{\hat{y}} + b\,cos\alpha\,\vec{\hat{z}}\\
+\vec{c} & = c\,\vec{\hat{z}}
 \end{aligned}
 \end{equation}
 $$
