@@ -27,7 +27,7 @@ sudo docker exec -it c48274cdba79 /bin/bash
 
 where the first line of the command is to obtain the ID of the running docker container and the second line runs the docker container in the interactive mode with the ID obtained in the first step. Then we can execute the installation command for the extension within the docker container,
 
-```dash
+```bash
 composer require sycho/flarum-private-facade:"*"
 ```
 
