@@ -11,7 +11,7 @@ use_math: true
 <p align='center'>
 <img src="/assets/img/posts/logo_flarum.png"
    style="border:none;"
-   width="600"
+   width="300"
    alt="flarum"
    title="flarum" />
 </p>
