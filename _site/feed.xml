@@ -2,14 +2,69 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     
-    <title>Yuanpeng's Blog</title>
+    <title>Yuanpeng&apos;s Blog</title>
     
     
-    <description>This website is a virtual proof that I'm awesome</description>
+    <description>This website is a virtual proof that I&apos;m awesome</description>
     
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+      <item>
+        <title>Amazon AWS S3 setup</title>
+        <description>
+          
+          Introduction Amazon S3 is a cloud service for setting up drives on the cloud, meaning that we can use it for storing and sharing files on the cloud. Compared to the Cloud drives that we commonly see and use every day, such as Dropbox, Google Drive, Proton Drive, Box, and...
+        </description>
+        <pubDate>Sat, 16 Mar 2024 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2024-03-16-aws_s3_notes/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-03-16-aws_s3_notes/</guid>
+      </item>
+    
+      <item>
+        <title>Notes on using VSCode</title>
+        <description>
+          
+          This post is a collection of notes for useful setups, tricks and utilities in VSCode, as one of the popular IDEs in the market, along with Sublime Text, Atom, JetBrains, and so many to name. Python Debugger Running the debug mode for coding in IDE is a very convenient feature,...
+        </description>
+        <pubDate>Mon, 11 Mar 2024 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2024-03-11-vscode_python_debugger/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-03-11-vscode_python_debugger/</guid>
+      </item>
+    
+      <item>
+        <title>Mouse gesture on Mac</title>
+        <description>
+          
+          On Windows, we have software like AutoHotkey with which we can define keyboard shortcut for running various actions in a convenient way. With AutoHotkey, we can also define mouse gestures to execute actions quickly. Here in Ref. [1] is provided a zip file containing the AutoHotkey files for some useful...
+        </description>
+        <pubDate>Mon, 11 Mar 2024 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2024-03-11-mac_mouse_gesture/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-03-11-mac_mouse_gesture/</guid>
+      </item>
+    
+      <item>
+        <title>Set up a Flarum forum on VPS</title>
+        <description>
+          
+          Set up a VPS and getting a domain for the VPS will not be covered in this blog. Here, I am assuming we have already got our VPS up running. I am using the 1Panel control panel to install the Flarum forum web service, which is one of the most...
+        </description>
+        <pubDate>Thu, 07 Mar 2024 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2024-03-07-flarum_setup/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-03-07-flarum_setup/</guid>
+      </item>
+    
+      <item>
+        <title>Construct lattice vectors from lattice parameters</title>
+        <description>
+          
+          In crystallography, quite often we would use the 6 lattice parameters to describe the unit cell, namely, a, b, c, \(\alpha\), \(\beta\) and \(\gamma\). In some cases, we would also need to construct those lattice vectors (\(\vec{a}\), \(\vec{b}\) and \(\vec{c}\)) in Cartesian coordinate system. For example, when we want to...
+        </description>
+        <pubDate>Mon, 04 Mar 2024 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2024-03-04-latt_params_to_latt_vecs/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-03-04-latt_params_to_latt_vecs/</guid>
+      </item>
     
       <item>
         <title>Photoshop基于图层生成动画</title>
@@ -24,7 +79,7 @@
 
 
         </description>
-        <pubDate>Sun, 25 Feb 2024 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 25 Feb 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-02-25-ps_make_animation/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-02-25-ps_make_animation/</guid>
       </item>
@@ -35,7 +90,7 @@
           
           The fundamental idea of web searching is through web crawling, critical information about the website and the embedded links in the crawled website can be obtained. Based on the crawling results, a ranking algorithm could be applied, based on which one can search the website using keywords. Nowadays, we get...
         </description>
-        <pubDate>Sun, 04 Feb 2024 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 04 Feb 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-02-04-yacy_setup/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-02-04-yacy_setup/</guid>
       </item>
@@ -46,7 +101,7 @@
           
           When setting up Oracle cloud instance, we would give the instance an initial allocation of volume, and later on we might find that the initial volume size is not enough as we install more and more services into our VPS. In such a situation, we may want to expand the...
         </description>
-        <pubDate>Sun, 28 Jan 2024 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 28 Jan 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</guid>
       </item>
@@ -57,7 +112,7 @@
           
           Dify is an LLM application platform which can provide access to various LLM models, tools and applications. With it, we can build our own ChatBot server acting just like ChatGPT. At the backend, it utilizes the LLM services from various providers, such as openAI, Gemini, etc., through API call. In...
         </description>
-        <pubDate>Sat, 27 Jan 2024 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 27 Jan 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-01-27-docker_dify/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-27-docker_dify/</guid>
       </item>
@@ -68,7 +123,7 @@
           
           YOURLS is an URL shortening service [1] and we can deploy a local version of the service to our own VPS. Here, I am using the 1Panel service [2] to set up YOURLS – 1Panel is a web-based Linux system management interface with which we can manage our VPS and...
         </description>
-        <pubDate>Mon, 15 Jan 2024 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 15 Jan 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-01-15-yourls_docker/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-15-yourls_docker/</guid>
       </item>
@@ -79,7 +134,7 @@
           
           Initial Docker Image Build As conventionally, the ADDIE (ADvanced DIffraction Environment, available at addie.ornl.gov) service is deployed on a VPS (specifically, an instance on the ORNL hosted research cloud). The service itself and all the necessary configurations are therefore locked to the VPS machine, making it extremely painful for transfer...
         </description>
-        <pubDate>Sat, 13 Jan 2024 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 13 Jan 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-01-13-dockerize_addie/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-13-dockerize_addie/</guid>
       </item>
@@ -90,7 +145,7 @@
           
           To set up services on VPS, one could follow the conventional routine to configure the server and set up the services. However, such services would then live natively on the VPS operating system, which is not completely self-contained (e.g., one may need to configure multiple services in the same configuration...
         </description>
-        <pubDate>Mon, 25 Dec 2023 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 25 Dec 2023 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2023-12-25-vps_docker_services/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-12-25-vps_docker_services/</guid>
       </item>
@@ -181,61 +236,6 @@
         <pubDate>Sun, 11 Jun 2023 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2023-06-11-rmc_lammps/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-06-11-rmc_lammps/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on using Jupyter book</title>
-        <description>
-          
-          Following the instruction for building our book with Jupyter book, we will get the built book in HTML format, which we can then grab and host it somewhere. The GitHub page was used as the demo in the official Jupyter book website. However, if we do have our own web...
-        </description>
-        <pubDate>Sat, 15 Apr 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2023-04-15-notes_jbook/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-04-15-notes_jbook/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on difference Fourier map</title>
-        <description>
-          
-          Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...
-        </description>
-        <pubDate>Fri, 14 Apr 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2023-04-14-notes_fdm/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-04-14-notes_fdm/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on implementing search in Jekyll site</title>
-        <description>
-          
-          The commonly used method for implementing search capability in jekyll site with lunr does not seem to be working specifically in my case (namely the current website that we are staring at now). Trying to Google a bit and tring a few suggested solutions such as changing the version of...
-        </description>
-        <pubDate>Tue, 14 Mar 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2023-03-14-notes_jekyll_search/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-03-14-notes_jekyll_search/</guid>
-      </item>
-    
-      <item>
-        <title>Notes Flask+Nginx+HTTPS setup</title>
-        <description>
-          
-          This blog posts contains some miscellaneous notes about the Flask setup with Nginx and HTTPS. This setup applies specifically to my Centos server. The Ref. [1] contains a gist of the nginx configuration file as a minimal working example. Specifically on Centos, it seems that by default the port 443...
-        </description>
-        <pubDate>Tue, 14 Mar 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2023-03-14-notes_flask_nginx_https/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-03-14-notes_flask_nginx_https/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on setting up WindTerm</title>
-        <description>
-          A platform integrating both terminal and file explorer - 
-          This post is about the configuration of the tool WindTerm, which is a quicker and better SSH/Telnet/Serial/Shell/Sftp client for DevOps. The configuration on Windows is pretty smooth while for MacOS, it does need a bit attention. In my case, I was having a little tool called fig which would send...
-        </description>
-        <pubDate>Wed, 22 Feb 2023 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2023-02-22-notes_windterm/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-02-22-notes_windterm/</guid>
       </item>
     
   </channel>

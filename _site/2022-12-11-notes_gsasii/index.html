@@ -99,7 +99,7 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2022-12-11T00:00:00-05:00">
+  <meta property="og:article:published_time" content="2022-12-11T00:00:00-04:00">
   <meta property="og:url" content="http://localhost:4000/2022-12-11-notes_gsasii/">
   <link rel="canonical" href="http://localhost:4000/2022-12-11-notes_gsasii/">
   
@@ -192,6 +192,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Website</a>
+								  <a target="_blank" class="dropdown-item" href="https://fla.iris-home.net">My Forum</a>
 								  <a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
 								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
 								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
@@ -293,57 +294,71 @@ if (chromeAgent) {
 
       <article role="main" class="blog-post">
         <p style="text-align: justify">
-This post is a collection of notes of tips and tricks for using GSAS-II.
+GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in
+Python, with some underlying routines in Fortran and C++. It is possible to grab the source codes of GSAS-II, develop
+and test it locally. This post covers the steps to set up the local development environment for GSAS-II. 
+This post is a collection of notes of tips and tricks for using and developing GSAS-II.
 </p>
 
-<blockquote>
-  <p>Multi-phase refinement</p>
-</blockquote>
-
-<p>When we have more than one phase in GSAS-II refinement, we should have phase fraction for each of the phases involved. With this regard,
-we have, suppose we have two phases, three parameters – the overall scale factor and two phase fraction factors. In this case, we cannot
-let all of these three parameters to be refined since otherwise the program will by a high chance crash due to the strong correlation among
-these parameters. Instead, we should refine the scale factor together with one of the two phase fraction factors, while setting a constraint
-to specify that overall phase fraction should be 1. To add the constraint, we should follow the instruction in Ref. [1] (see #3 in Step-I),
-or <a href="/assets/doc/GSASII_Multiphase_setup.pdf">here</a>. Here it should be noticed that the phase fraction is referred to as <code class="language-plaintext highlighter-rouge">Scale</code> for each
-phase and this <code class="language-plaintext highlighter-rouge">Scale</code> should not be confused with that of the overall histogram.</p>
-
-<blockquote>
-  <p>Development environment setup for GSAS-II</p>
-</blockquote>
-
-<blockquote>
-  <p>Refer to the documentation of GSAS-II for detailed explanation – see Ref. [2].</p>
-</blockquote>
-
-<ol>
+<ul>
   <li>
-    <p>Set up the conda environment, using the command below,</p>
+    <p>Multi-phase refinement</p>
 
-    <p><code class="language-plaintext highlighter-rouge">conda create -n g2python python=3.10 wxpython numpy scipy matplotlib pyopengl  pillow h5py imageio conda requests -c conda-forge</code></p>
+    <p>When we have more than one phase in GSAS-II refinement, we should have phase fraction for each of the phases involved. With this regard,
+  we have, suppose we have two phases, three parameters – the overall scale factor and two phase fraction factors. In this case, we cannot
+  let all of these three parameters to be refined since otherwise the program will by a high chance crash due to the strong correlation among
+  these parameters. Instead, we should refine the scale factor together with one of the two phase fraction factors, while setting a constraint
+  to specify that overall phase fraction should be 1. To add the constraint, we should follow the instruction in Ref. [1] (see #3 in Step-I),
+  or <a href="/assets/doc/GSASII_Multiphase_setup.pdf">here</a>. Here it should be noticed that the phase fraction is referred to as <code class="language-plaintext highlighter-rouge">Scale</code> for each
+  phase and this <code class="language-plaintext highlighter-rouge">Scale</code> should not be confused with that of the overall histogram.</p>
   </li>
   <li>
-    <p>Check out the GSAS-II source code, using SVN,</p>
+    <p>Development environment setup for GSAS-II</p>
 
-    <p><code class="language-plaintext highlighter-rouge">svn checkout https://subversion.xray.aps.anl.gov/pyGSAS/</code></p>
-  </li>
-  <li>
-    <p>Here follows, the configuration is specific to the PyCharm IDE. First, launch the PyCharm IDE and open the GSAS-II folder (i.e., the one we just checked out, <code class="language-plaintext highlighter-rouge">pyGSAS</code>).</p>
-  </li>
-  <li>
-    <p>Go to the top right corner of the interface and click on the drop-down menu as indicated with the green arrow below,</p>
+    <blockquote>
+      <p>Refer to the documentation of GSAS-II for detailed explanation – see Ref. [2].</p>
+    </blockquote>
 
-    <p><img src="/assets/img/posts/pycharm_gsasii_1.png" alt="pycharm gsasii" /></p>
-  </li>
-  <li>
-    <p>Select <code class="language-plaintext highlighter-rouge">Edit Configurations...</code> to open up the configuration window where we need to fill in information for the python interpreter, the main python script, etc.</p>
-  </li>
-  <li>
-    <p>Refer to the screenshot below for detailed configuration as a typical example,</p>
+    <ol>
+      <li>
+        <p>Set up the conda environment, using the command below,</p>
 
-    <p><img src="/assets/img/posts/pycharm_gsasii_2.png" alt="pycharm gsasii" /></p>
+        <p><code class="language-plaintext highlighter-rouge">conda create -n g2python python=3.10 wxpython numpy scipy matplotlib pyopengl  pillow h5py imageio conda requests -c conda-forge</code></p>
+      </li>
+      <li>
+        <p>Check out the GSAS-II source code, using SVN,</p>
+
+        <p><code class="language-plaintext highlighter-rouge">svn checkout https://subversion.xray.aps.anl.gov/pyGSAS/</code></p>
+      </li>
+      <li>
+        <p>Here follows, the configuration is specific to the PyCharm IDE. First, launch the PyCharm IDE and open the GSAS-II folder (i.e., the one we just checked out, <code class="language-plaintext highlighter-rouge">pyGSAS</code>).</p>
+      </li>
+      <li>
+        <p>Go to the top right corner of the interface and click on the drop-down menu as indicated with the green arrow below,</p>
+
+        <p><img src="/assets/img/posts/pycharm_gsasii_1.png" alt="pycharm gsasii" /></p>
+      </li>
+      <li>
+        <p>Select <code class="language-plaintext highlighter-rouge">Edit Configurations...</code> to open up the configuration window where we need to fill in information for the python interpreter, the main python script, etc.</p>
+      </li>
+      <li>
+        <p>Refer to the screenshot below for detailed configuration as a typical example,</p>
+
+        <p><img src="/assets/img/posts/pycharm_gsasii_2.png" alt="pycharm gsasii" /></p>
+      </li>
+    </ol>
+
+    <blockquote>
+      <p>Here follows is a recorded video demonstrating the above process,</p>
+    </blockquote>
+
+    <p align="center">
+     <video width="800" controls="">
+        <source src="/assets/img/posts/pycharm_gsasii.mp4" type="video/mp4" />
+     </video>
+  </p>
   </li>
-</ol>
+</ul>
 
 <p><br /></p>
 

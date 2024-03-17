@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Amazon AWS S3 setup</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Introduction Amazon S3 is a cloud service for setting up drives on the cloud, meaning that we can use it for storing and sharing files on the cloud. Compared to the Cloud drives that we commonly see and use every day, such as Dropbox, Google Drive, Proton Drive, Box, and...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Amazon AWS S3 setup">
+  <meta property="og:description" content="Introduction Amazon S3 is a cloud service for setting up drives on the cloud, meaning that we can use it for storing and sharing files on the cloud. Compared to the Cloud drives that we commonly see and use every day, such as Dropbox, Google Drive, Proton Drive, Box, and...">
+
+  
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2024-03-16T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2024-03-16-aws_s3_notes/">
+  <link rel="canonical" href="http://localhost:4000/2024-03-16-aws_s3_notes/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Amazon AWS S3 setup">
+  <meta property="twitter:description" content="Introduction Amazon S3 is a cloud service for setting up drives on the cloud, meaning that we can use it for storing and sharing files on the cloud. Compared to the Cloud drives that we commonly see and use every day, such as Dropbox, Google Drive, Proton Drive, Box, and...">
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Website</a>
+								  <a target="_blank" class="dropdown-item" href="https://fla.iris-home.net">My Forum</a>
+								  <a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.pages.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://dify.iris-home.net/chat/bO3b1I3j159QHWTt">Dify Chat</a>
+								  <a target="_blank" class="dropdown-item" href="https://gm.iris-home.net">Gemini Chat</a>
+								  
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script async src="https://umm.iris-home.net/script.js" data-website-id="ef162bbb-f0c9-4cae-aac1-b55679ddf215"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Amazon AWS S3 setup</h1>
+          
+
+          
+					<span class="post-meta">Posted on March 16, 2024, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Amazon S3 is a cloud service for setting up drives on the cloud, meaning that we can use it for
+storing and sharing files on the cloud. Compared to the Cloud drives that we commonly see and use
+every day, such as Dropbox, Google Drive, Proton Drive, Box, and among others to name, the Amazon
+S3 service is more like a backend thing for providing the underlying remote drive service. Based on
+such a backend engine, there exist wrapper apps to provide frontend interface for users to get
+access to the S3 cloud drive in an easy way.</p>
+
+<blockquote>
+  <p>Though, AWS does provide frontend interface with which we can check, upload and download
+   files, it is for sure not for daily use as the access to the AWS S3 frontend interface is not
+   as straightforward as those daily used ones.</p>
+</blockquote>
+
+<p>Typically, one has two main types of options to use the S3 cloud drive. One main way is to mount
+the S3 drive locally using routines like <code class="language-plaintext highlighter-rouge">s3fs</code> and a few other options as mentioned in Ref. [1].
+Another typical way of using S3 drive is to use it as the storage service for some web drive apps.
+In my case, I have a VPS (transfer to <a href="https://iris2020.net/2023-09-08-docker_nginx/">here</a> and <a href="https://iris2020.net/2024-01-28-oracle_vps_vol_expand/">here</a> for more about my VPS set up with Oracle) on which I have web-based
+file servers <code class="language-plaintext highlighter-rouge">SFTPGo</code> [2], <code class="language-plaintext highlighter-rouge">FileCodeBox</code> [3] and <code class="language-plaintext highlighter-rouge">KOD Cloud</code> [4]. These web-based file servers
+provide the capability to use the S3 drive as the storage.</p>
+
+<p>In this tutorial, I will be covering the procedure to set up the AWS S3 bucket (the terminology that
+Amazon uses for their storage service). Also, I will put down some notes concerning the issues that
+I randomly came across when playing around with S3 service initially as a beginner.</p>
+
+<h1 id="setup">Setup</h1>
+
+<p>First, we can go to <a href="https://aws.amazon.com/s3/">https://aws.amazon.com/s3/</a> where we can log in
+, if we have already got an account, or register one otherwise. The sign-in screen will look like
+this,</p>
+
+<p align="center">
+<img src="/assets/img/posts/s3_init.png" style="border:none;" width="300" alt="s3_init" title="s3_init" />
+</p>
+
+<p>and the register screen will be like this,</p>
+
+<p align="center">
+<img src="/assets/img/posts/s3_register.png" style="border:none;" width="500" alt="s3_register" title="s3_register" />
+</p>
+
+<p>Here, we can notice that in both the log-in and register screen, we have the definition of a <code class="language-plaintext highlighter-rouge">root</code>
+user. This is just like whatever other normal user account we created anywhere else – the reason
+for calling this <code class="language-plaintext highlighter-rouge">root</code> user is because, later on, when logging into the AWS cloud service system,
+we will have the capability, as the <code class="language-plaintext highlighter-rouge">root</code> user, to create other users inside the AWS service (
+namely, the <code class="language-plaintext highlighter-rouge">IAM</code>, short for <code class="language-plaintext highlighter-rouge">Identity Access Management</code>). Amazon provides different entry point
+for these two different types of user account and that is why we see two options in the log-in
+screen.</p>
+
+<p>Once we have an account – suppose we are talking about the <code class="language-plaintext highlighter-rouge">root</code> account here – we can then log
+into the AWS control panel. After successful login, we will see screen like follows,</p>
+
+<p align="center">
+<img src="/assets/img/posts/s3_main.png" style="border:none;" width="1000" alt="s3_main" title="s3_main" />
+</p>
+
+<p>In the main control panel as shown, we can go to the search bar on the top-left to search for
+<code class="language-plaintext highlighter-rouge">S3</code> and we can then go to the <code class="language-plaintext highlighter-rouge">S3</code> control panel, where we can set up the so-called <code class="language-plaintext highlighter-rouge">bucket</code>.
+Basically, this is just the terminology used by AWS for <code class="language-plaintext highlighter-rouge">storage</code>. We can set up multiple buckets
+for different uses and they are independent from each other. As shown below, I have set up only
+one bucket,</p>
+
+<p align="center">
+<img src="/assets/img/posts/s3_bucket.png" style="border:none;" width="1000" alt="s3_bucket" title="s3_bucket" />
+</p>
+
+<p>The charging for the <code class="language-plaintext highlighter-rouge">S3</code> storage service is not like what we usually have for normal cloud drive
+services (the reason is also obvious – as mentioned above, <code class="language-plaintext highlighter-rouge">S3</code> is more like a backend service) –
+it is based on the usage of the storage. Basically, we put files (<code class="language-plaintext highlighter-rouge">S3</code> calls them <code class="language-plaintext highlighter-rouge">objects</code>) in the
+<code class="language-plaintext highlighter-rouge">bucket</code> and <code class="language-plaintext highlighter-rouge">S3</code> will calculate the cost based on the size of the file and how long we have stored
+the file for, during the month. For sure, there are other factors in calculating the charge rate but
+still the basic idea stays. For more details, refer to Ref. [5].</p>
+
+<h1 id="tips--notes">Tips &amp; Notes</h1>
+
+<ol>
+  <li>
+    <p>Here is the way to obtain the ID and alias for a user,</p>
+
+    <blockquote>
+      <p><code class="language-plaintext highlighter-rouge">IAM</code> dashboard =&gt; <code class="language-plaintext highlighter-rouge">AWS Account</code> =&gt; show the ID and alias (user name)</p>
+    </blockquote>
+
+    <blockquote>
+      <p>The <code class="language-plaintext highlighter-rouge">root</code> user can also has its alias</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>To set up the access key, which includes an ID and key secret,</p>
+
+    <blockquote>
+      <p><code class="language-plaintext highlighter-rouge">IAM</code> dashboard =&gt; Quick Links =&gt; My security credentials =&gt; access key setup</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>To set up the MFA (Multiple Factor Authentication),</p>
+
+    <blockquote>
+      <p><code class="language-plaintext highlighter-rouge">IAM</code> dashboard =&gt; Quick Links =&gt; My security credentials =&gt; Multi-factor authentication (MFA)</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">Access Key ID</code> and <code class="language-plaintext highlighter-rouge">Access Key Secret</code> are commonly used in cloud drive configurations to
+connect to our S3 bucket.</p>
+
+    <p>Here is the example configuration for <code class="language-plaintext highlighter-rouge">KOD cloud</code>,</p>
+
+    <p align="center">
+<img src="/assets/img/posts/KOD_s3.png" style="border:none;" width="800" alt="KOD_s3" title="KOD_s3" />
+</p>
+
+    <p>Here is the example configuration for <code class="language-plaintext highlighter-rouge">FileCodeBox</code>,</p>
+
+    <p align="center">
+<img src="/assets/img/posts/filecodebox_s3.png" style="border:none;" width="800" alt="filecodebox_s3" title="filecodebox_s3" />
+</p>
+
+    <blockquote>
+      <p>For the <code class="language-plaintext highlighter-rouge">FileCodeBox</code> configuration, we are also required to have the access token as shown in
+the picture above. To obtain the token, we need to first install the AWS CLI tool, following the
+instruction in Ref. [6]. Then we can run the following commands,</p>
+    </blockquote>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure
+aws sts get-session-token <span class="nt">--duration-seconds</span> 900 <span class="nt">--serial-number</span> <span class="s2">"arn:aws:iam::678556961563:mfa/yuanpeng"</span> <span class="nt">--token-code</span> 846532
+</code></pre></div>    </div>
+
+    <p>The <code class="language-plaintext highlighter-rouge">serial-number</code> can be obtained as shown in the picture below,</p>
+
+    <p align="center">
+<img src="/assets/img/posts/s3_serial_number.png" style="border:none;" width="1000" alt="s3_serial_number" title="s3_serial_number" />
+</p>
+
+    <p>in which we are looking for the <code class="language-plaintext highlighter-rouge">Identifier</code>. The <code class="language-plaintext highlighter-rouge">token-code</code> refers to the MFA token.</p>
+
+    <blockquote>
+      <p>Sometimes our access key and secret may have been updated since last time of generation of the token,
+in which case we need to run aws confiure again to fill in the new key and secret. [7]</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Endpoint =&gt; refer to Ref. [8] for details about the endpoint.</p>
+  </li>
+  <li>
+    <p>About <code class="language-plaintext highlighter-rouge">hostname</code>, we can refer to the configuration for <code class="language-plaintext highlighter-rouge">FileCodeBox</code> above – the first part of the
+URL is the bucket name and we can figure out the hostname to fill in according to the endpoint and our
+bucket, by following the same format as shown in the picture above.</p>
+  </li>
+  <li>
+    <p>To mount the S3 drive locally, we have multiple options. <code class="language-plaintext highlighter-rouge">s3f3-fuse</code> [9, 10] is probably one of the options,
+but it is usually slow [11]. On Windows, we have options like <code class="language-plaintext highlighter-rouge">RClone</code>, <code class="language-plaintext highlighter-rouge">S3Drive</code>, etc. [11]. To use the <code class="language-plaintext highlighter-rouge">s3fe-fuse</code>
+option, we can use the following command,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s3fs yuanpeng ams_yuanpeng <span class="nt">-o</span> <span class="nv">passwd_file</span><span class="o">=</span><span class="k">${</span><span class="nv">HOME</span><span class="k">}</span>/.passwd-s3fs <span class="nt">-o</span> allow_other <span class="nt">-o</span> <span class="nb">umask</span><span class="o">=</span>000
+</code></pre></div>    </div>
+
+    <p>where <code class="language-plaintext highlighter-rouge">.passwd-s3fs</code> is our password file containing the <code class="language-plaintext highlighter-rouge">Access Key ID</code> and the <code class="language-plaintext highlighter-rouge">Access Key Secret</code>,
+following the following format, <code class="language-plaintext highlighter-rouge">Access Key ID:Access Key Secret</code>. <code class="language-plaintext highlighter-rouge">yuanpeng</code> here refers to the 
+bucket name and <code class="language-plaintext highlighter-rouge">ams_yuanpeng</code> refers to an empty local directory to mount the S3 drive to.</p>
+  </li>
+  <li>
+    <p>Here are some useful links about the permission policy settings in S3 – Refs. [12-15].</p>
+  </li>
+</ol>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://www.reddit.com/r/aws/comments/o7xffs/s3_bucket_mount_to_windows/?rdt=51783">https://www.reddit.com/r/aws/comments/o7xffs/s3_bucket_mount_to_windows/?rdt=51783</a></p>
+
+<p>[2] <a href="https://sftpgo.com/">https://sftpgo.com/</a></p>
+
+<p>[3] <a href="https://github.com/vastsa/FileCodeBox">https://github.com/vastsa/FileCodeBox</a></p>
+
+<p>[4] <a href="https://github.com/Handsomedoggy/KodExplorer">https://github.com/Handsomedoggy/KodExplorer</a></p>
+
+<p>[5] <a href="https://aws.amazon.com/s3/pricing/">https://aws.amazon.com/s3/pricing/</a></p>
+
+<p>[6] <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html</a></p>
+
+<p>[7] <a href="https://stackoverflow.com/questions/34582318/how-can-i-resolve-the-error-the-security-token-included-in-the-request-is-inval">https://stackoverflow.com/questions/34582318/how-can-i-resolve-the-error-the-security-token-included-in-the-request-is-inval</a></p>
+
+<p>[8] <a href="https://docs.aws.amazon.com/general/latest/gr/s3.html">https://docs.aws.amazon.com/general/latest/gr/s3.html</a></p>
+
+<p>[9] <a href="https://stackoverflow.com/questions/62686880/how-to-mount-aws-s3-using-s3fs-to-allow-full-access-to-any-user">https://stackoverflow.com/questions/62686880/how-to-mount-aws-s3-using-s3fs-to-allow-full-access-to-any-user</a></p>
+
+<p>[10] <a href="https://stackoverflow.com/questions/17544139/allowing-permission-using-s3fs-bucket-directory-for-other-users">https://stackoverflow.com/questions/17544139/allowing-permission-using-s3fs-bucket-directory-for-other-users</a></p>
+
+<p>[11] <a href="https://www.reddit.com/r/aws/comments/o7xffs/s3_bucket_mount_to_windows/">https://www.reddit.com/r/aws/comments/o7xffs/s3_bucket_mount_to_windows/</a></p>
+
+<p>[12] <a href="https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html">https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html</a></p>
+
+<p>[13] <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/troubleshoot-403-errors.html#troubleshoot-403-tips?icmpid=docs_amazons3_console">https://docs.aws.amazon.com/AmazonS3/latest/userguide/troubleshoot-403-errors.html#troubleshoot-403-tips?icmpid=docs_amazons3_console</a></p>
+
+<p>[14] <a href="https://repost.aws/knowledge-center/s3-static-website-endpoint-error">https://repost.aws/knowledge-center/s3-static-website-endpoint-error</a></p>
+
+<p>[15] <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteAccessPermissionsReqd.html#bucket-policy-static-site">https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteAccessPermissionsReqd.html#bucket-policy-static-site</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#cloud">cloud</a>
+          
+            <a href="/tags#tutorial">tutorial</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Amazon+AWS+S3+setup&url=http%3A%2F%2Flocalhost%3A4000%2F2024-03-16-aws_s3_notes%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2024-03-16-aws_s3_notes%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2024-03-16-aws_s3_notes%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2024-03-11-vscode_python_debugger/" data-toggle="tooltip" data-placement="top" title="Notes on using VSCode">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/rmc/">RMC at ISIS facility</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.pages.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://community.dur.ac.uk/john.evans/topas_workshop/tutorial_pdf_sno2.htm">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href=""https://mlfinfo.jp/en/bl21/>Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+				</br>
+				<a target="_blank" href="http://e-ssrf.sinap.cas.cn/beamlines/bl13w1/201401/t20140112_152430.html">China - SSRF - BL13W1</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2020 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
