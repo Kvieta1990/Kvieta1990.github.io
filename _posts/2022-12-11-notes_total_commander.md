@@ -59,8 +59,24 @@ Then we can just select the command we just defined (e.g., `em_notepadpp`) in th
 
 The same trick was posted on TC user forum -- see Ref. [1].
 
+> Configure the Image Viewer
+
+By default, Total Commander will use the old Windows image viewer which looks ugly and also sometimes does not work at all for opening some images. To use the new version of the image viewer on Windows, we need to select an image file, then go to `Files` => `Associate With...` and make sure the `Replace with: PhotoViewer.dll` is `unchecked` (by default, this box would be checked and TC would use the old Windows image viewer for opening an image), as shown below,
+
+<p align='center'>
+<img src="/assets/img/posts/tc_image_viewer_config.png"
+   style="border:none;"
+   width="500"
+   alt="tc_imc"
+   title="tc_imc" />
+</p>
+
+Instructions originate from Ref. [2].
+
 <br />
 
 <b>References</b>
 
 [1] [https://www.ghisler.ch/board/viewtopic.php?t=28817](https://www.ghisler.ch/board/viewtopic.php?t=28817)
+
+[2] [https://ghisler.ch/board/viewtopic.php?t=72249](https://ghisler.ch/board/viewtopic.php?t=72249)
