@@ -320,10 +320,10 @@ Next, we take a look at the solution for moving electron, taking the example of 
 
 $$
 \begin{align}
-i\partial_t\psi_1 = -i\partial_x\psi_4 + m\psi_1\\
-i\partial_t\psi_2 = -i\partial_x\psi_3 + m\psi_2\\
-i\partial_t\psi_3 = -i\partial_x\psi_2 - m\psi_3\\
-i\partial_t\psi_14= -i\partial_x\psi_1 - m\psi_4\ \ \ \ (45)
+i\partial_t\psi_1 & = -i\partial_x\psi_4 + m\psi_1\\
+i\partial_t\psi_2 & = -i\partial_x\psi_3 + m\psi_2\\
+i\partial_t\psi_3 & = -i\partial_x\psi_2 - m\psi_3\\
+i\partial_t\psi_4 & = -i\partial_x\psi_1 - m\psi_4\ \ \ \ (45)
 \end{align}
 $$
 
@@ -395,7 +395,7 @@ About the Negative Energy Solution
 
 For the postive energy solution, the lowest possible energy level corresponds to the electron at rest, giving the energy of $$E = mc^2$$ and as the electron moves faster, the momentum will increase and the energy will go up in level. When electron jumps from the lower energy level to a higher one, it will acquire energy from external resources like photons. However, the existence of negative energy levels means that electrons can jump from the postive energy states to those negative states by emitting photons and such a process can keep going without end -- as it goes on, electron would gain momentum and thus would move faster and faster until approaching the speed of light. This brings in the difficulty for the Dirac equation to stand and its indication at this point seems impossible and indeed it is impossible. The workaround proposed by Dirac himself is to assume that all the negative energy states are fully occupied and not observable until an electron is excited to jump from the negative energy states to the positive states, leaving a hole in the so-called `Dirac sea` formed by all electrons occupying all the negative energy states. Such a hole was later on identified as anti-electron, the particle with the same mass as electron but with positive charge of the same magnitude. So, the Dirac equation actually predicts the existence of anti-matter, which did come as a surprise initially. But not so long after Dirac's proposition and prediction, Carl Anderson experimentally observed the existence of anti-electron, called `positron`, which won himself the Nobel Prize in Physics in 1936 [11].
 
-</br>
+<br />
 
 Finally, it should be pointed out that though Dirac equation predicts the existence of positron, but it achieves this by introducing the Diract sea that is full of un-observable infinite number of electrons occupying the negative energy states. However, at the end of the day, the picture with electron and positron is simple and elegant enough to explain the experiments, so comes the question why we actually need the invention of Dirac sea in the first place. This is a pain point of Dirac equation and it actually goes back to the problem with quantum mechanics itself, which, is a theory dealing with a single electron and `positron` never appears in the theory and therefore no wonder it cannot directly work with the idea of positron without any workaround. Second, in quantum mechanics, the wavefunction in conserved in space, meaning that the full space integration will always yield 1 (assuming normalized wavefunction). Therefore, it is not compatible with the idea of particle being created or destroyed. Instead, it only allows the idea of particles transitioning between energy levels, and therefore, the creation of particles would somehow correspond to the picture of transitioning from an invisible state in the quantum mechanics framework and vice versa for the disappearance of particles. That is to say, the quantum mechanics framework fundamentally is not compatible with the relativistic wave mechanics. We need quantum electrodynamics (QED) to come into help, with this regard.
 
