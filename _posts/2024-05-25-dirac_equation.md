@@ -186,7 +186,7 @@ $$
 \hat{\sigma}_x^2 = \hat{\sigma}_x^2 = \hat{\sigma}_x^2 = \begin{bmatrix}0 & 1\\ 1 & 0\end{bmatrix} \ \ \ \ (25)
 $$
 
-where the identity matrix is serving the role of `1`. We are, though, still missing the matix for $$\beta$$, and it turns out that we cannot find 4 $$2\times 2$$ matrices that meet our needs. So, in Dirac's solution, 4 $4\times 4$ matrices were constructed as follows,
+where the identity matrix is serving the role of `1`. We are, though, still missing the matix for $$\beta$$, and it turns out that we cannot find four $$2\times 2$$ matrices that meet our needs. So, in Dirac's solution, four $$4\times 4$$ matrices were constructed as follows,
 
 $$
 \alpha_x = \begin{bmatrix}0 & 0 & 0 & 1\\ 0 & 0 & 1 & 0\\ 0 & 1 & 0 & 0\\ 1 & 0 & 0 & 0\end{bmatrix}\ \ \ \ (26)
@@ -276,7 +276,7 @@ $$
 
 So, the energy value corresponding to the solution of Dirac equation for electron at rest does reproduce what special relativity is supposed to give us, i.e., $$E = mc^2$$. Therefore, zero mass should correspond to zero energy and vice versa, namely, zero energy corresponds to `nothing`. So, what does negative energy really mean?
 
-With a two-component spinor space, the spin operator (the $z$-component) is given by the Pauli matrix and for the four-component wavefunction, the z-component of the spin operator can be constructed by putting two Pauli matrices along the diagonal, as,
+With a two-component spinor space, the spin operator (the $$z$$-component) is given by the Pauli matrix and for the four-component wavefunction, the z-component of the spin operator can be constructed by putting two Pauli matrices along the diagonal, as,
 
 $$
 \hat{\Sigma}_z = \begin{bmatrix}1 & 0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & -1 \end{bmatrix}\ \ \ \ (39)
@@ -316,7 +316,7 @@ $$
 
 Therefore, we can see that in the QM theory framework, the spin-orbital coupling is a result of taking into account of the special relativity.
 
-Next, we take a look at the solution for moving electron, taking the example of electron moving along the x-direction, i.e., $$\mathbf{p} = (p_x, 0, 0)$$. The Dirac equation can be given as,
+Next, we take a look at the solution for moving electron, taking the example of electron moving along the $$x$$-direction, i.e., $$\mathbf{p} = (p_x, 0, 0)$$. The Dirac equation can be given as,
 
 $$
 \begin{align}
