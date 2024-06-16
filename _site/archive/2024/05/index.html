@@ -19,13 +19,13 @@
 
   
 
-  <title>Notes on slurm server setup</title>
+  <title>Archive</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="Tips &amp; Tricks">
+  <meta name="description" content="">
 
   
 
@@ -89,19 +89,17 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Notes on slurm server setup">
-  <meta property="og:description" content="Tips &amp; Tricks">
+  <meta property="og:title" content="Archive">
+  <meta property="og:description" content="">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="article">
-  <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2022-11-29T00:00:00-04:00">
-  <meta property="og:url" content="http://localhost:4000/2022-11-29-notes_slurm/">
-  <link rel="canonical" href="http://localhost:4000/2022-11-29-notes_slurm/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/archive/2024/05/">
+  <link rel="canonical" href="http://localhost:4000/archive/2024/05/">
   
 
   
@@ -110,8 +108,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Notes on slurm server setup">
-  <meta property="twitter:description" content="Tips &amp; Tricks">
+  <meta property="twitter:title" content="Archive">
+  <meta property="twitter:description" content="">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -260,18 +258,10 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="post-heading">
-						<h1>Notes on slurm server setup</h1>
-          
-            
-              <h2 class="post-subheading">Tips & Tricks</h2>
-            
+        <div class="page-heading">
+						<h1>Archive</h1>
           
 
-          
-					<span class="post-meta">Posted on November 29, 2022, by Yuanpeng Zhang</span>
-            
-            
           
         </div>
       </div>
@@ -284,231 +274,313 @@ if (chromeAgent) {
 
 
 
-<div class=" container-md ">
-  <div class="row">
-    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
-
-      
-
-      
-
-      <article role="main" class="blog-post">
-        <p style="text-align: justify">
-This post is a collection of notes of tips and tricks when trying to set up slurm server on Ubuntu 20.04 focal.
-</p>
-
-<p align="center">
-<img src="/assets/img/posts/slurm.png" style="border:none;" width="500" alt="slurm" title="slurm" />
-</p>
-
-<ol>
-  <li>
-    <p>First, we set up <code class="language-plaintext highlighter-rouge">munge</code>, which can be installed on Ubuntu via,</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt <span class="nb">install </span>munge
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Install <code class="language-plaintext highlighter-rouge">slurmd</code> and <code class="language-plaintext highlighter-rouge">slurmctld</code>,</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt <span class="nb">install </span>slurm-wlm
-</code></pre></div>    </div>
-
-    <blockquote>
-      <p>If the installation fails complaining about <code class="language-plaintext highlighter-rouge">error "adduser: The UID 64030 is already in use"</code>, the following commands may be helpful,</p>
-    </blockquote>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>apt <span class="nb">install </span>libuser
- <span class="nb">sudo </span>luseradd <span class="nt">-r</span> <span class="nt">--shell</span><span class="o">=</span>/bin/false <span class="nt">-M</span> <span class="nt">--uid</span><span class="o">=</span>64030 slurm
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Write the following contents into <code class="language-plaintext highlighter-rouge">/etc/slurm/slurm.conf</code>,</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ControlMachine=iris2
- AuthType=auth/munge
- CryptoType=crypto/munge
- MpiDefault=none
- ProctrackType=proctrack/linuxproc
- ReturnToService=2
- SlurmctldPidFile=/run/slurm/slurmctld.pid
- SlurmctldPort=6817
- SlurmdPidFile=/run/slurm/slurmd.pid
- SlurmdPort=6818
- SlurmdSpoolDir=/var/lib/slurm-llnl/slurmd
- SlurmUser=slurm
- StateSaveLocation=/var/lib/slurm-llnl/slurmctld
- SwitchType=switch/none
- TaskPlugin=task/none
- InactiveLimit=0
- KillWait=30
- MinJobAge=300
- SlurmctldTimeout=120
- SlurmdTimeout=300
- Waittime=0
- SchedulerType=sched/backfill
- SelectType=select/cons_res
- SelectTypeParameters=CR_Core
- AccountingStorageType=accounting_storage/none
- AccountingStoreFlags=job_comment
- ClusterName=cluster
- JobCompType=jobcomp/none
- JobAcctGatherFrequency=30
- JobAcctGatherType=jobacct_gather/none
- SlurmctldDebug=3
- SlurmdDebug=3
- NodeName=iris2 CPUs=32 Boards=1 SocketsPerBoard=32 CoresPerSocket=1 ThreadsPerCore=1 RealMemory=64294
- PartitionName=batch Nodes=iris2 Default=YES MaxTime=INFINITE State=UP
-</code></pre></div>    </div>
-
-    <blockquote>
-      <p>The host name <code class="language-plaintext highlighter-rouge">iris2</code> (occurring in multiple locations) in the above quoted configuration should be replaced by whatever the host name of the server is, which can be obtained by running <code class="language-plaintext highlighter-rouge">hostname</code> on the terminal.</p>
-    </blockquote>
-
-    <blockquote>
-      <p>The second line from the bottom should also be replaced by relevant info to the server. The info can be obtained by running <code class="language-plaintext highlighter-rouge">slurmd -C</code> in the terminal. The <code class="language-plaintext highlighter-rouge">slurmd</code> command will become available after step-2.</p>
-    </blockquote>
-  </li>
-  <li>
-    <p>Start <code class="language-plaintext highlighter-rouge">slurmd</code> and <code class="language-plaintext highlighter-rouge">slurmctld</code> services by running,</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>service slurmd start
- <span class="nb">sudo </span>service slurmctld start
-</code></pre></div>    </div>
-
-    <p>respectively, and check their status, via,</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>service slurmd status
- <span class="nb">sudo </span>service slurmctld status
-</code></pre></div>    </div>
-
-    <p>Quite often, we may have some issues with the PID files for either <code class="language-plaintext highlighter-rouge">slurmd</code>, or <code class="language-plaintext highlighter-rouge">slurmctld</code>, or both. Using the configuration file above, we may need to create the file <code class="language-plaintext highlighter-rouge">/etc/tmpfiles.d/slurmd.conf</code> and put the following line into the file,</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> d /run/slurm 0770 root slurm -
-</code></pre></div>    </div>
-
-    <p>which can guarantee that the <code class="language-plaintext highlighter-rouge">slurm</code> can be created with the right permission after each rebooting. Also, we need to create the directories <code class="language-plaintext highlighter-rouge">/var/lib/slurm-llnl/slurmd</code> and <code class="language-plaintext highlighter-rouge">/var/lib/slurm-llnl/slurmctld</code> and give them the right owner (i.e., <code class="language-plaintext highlighter-rouge">slurm</code>), via,</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo mkdir</span> <span class="nt">-p</span> /var/lib/slurm-llnl/slurmd
- <span class="nb">sudo mkdir</span> <span class="nt">-p</span> /var/lib/slurm-llnl/slurmctld
- <span class="nb">sudo chown </span>slurm:slurm /var/lib/slurm-llnl/slurmd
- <span class="nb">sudo chown </span>slurm:slurm /var/lib/slurm-llnl/slurmctld
-</code></pre></div>    </div>
-
-    <blockquote>
-      <p>If running <code class="language-plaintext highlighter-rouge">sudo service slurmd start</code> and <code class="language-plaintext highlighter-rouge">sudo service slurmctld start</code> fails due to that the port <code class="language-plaintext highlighter-rouge">6818</code> and/or <code class="language-plaintext highlighter-rouge">6817</code> is being used, we can run the following command to kill anything running on the relevant port, e.g.,</p>
-    </blockquote>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sudo kill -9 `sudo lsof -t -i:6818`
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<p><br /></p>
-
-<p style="text-align: justify">
-Sometimes, when trying to submit jobs after the server is up running, it may show that the computing node is <code class="language-plaintext highlighter-rouge">drained</code>. To undrain it, we may need to follow the instruction in Ref. [1]. Also, sometimes we may see the log of the server is complaining about not being able to fine the PID file. This should not matter that much in terms of server running and jobs management.
-</p>
-
-<p><br /></p>
-
-<p><b>References</b></p>
-
-<p>[1] <a href="https://stackoverflow.com/questions/29535118/how-to-undrain-slurm-nodes-in-drain-state">https://stackoverflow.com/questions/29535118/how-to-undrain-slurm-nodes-in-drain-state</a></p>
-
-      </article>
-
-      
-        <div class="blog-tags">
-          <span>Tags:</span>
-          
-            <a href="/tags#slurm">slurm</a>
-          
-            <a href="/tags#server">server</a>
-          
-        </div>
-      
-
-      
-
-      
-        <!-- Check if any share-links are active -->
 
 
+<div class="intro-header"></div>
 
-
-<section id = "social-share-section">
-  <span class="sr-only">Share: </span>
-
-  
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+slurm+server+setup&url=http%3A%2F%2Flocalhost%3A4000%2F2022-11-29-notes_slurm%2F"
-      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
-      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
-      <span class="sr-only">Twitter</span>
-    </a>
+<div role="main" class=" container-md ">
   
 
-  
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2022-11-29-notes_slurm%2F"
-      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
-      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
-      <span class="sr-only">Facebook</span>
-    </a>
-  
+  <div class="post">
+  <header class="post-header post-header_archive">
+    <h2>Posted in <em>May, 2024</em></h2>
+  </header>
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2022-11-29-notes_slurm%2F"
-      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
-      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
-      <span class="sr-only">LinkedIn</span>
-    </a>
-  
-
-  
-
-</section>
-
-
-
+  <article class="post-content">
+    <ol>
       
-
-      <ul class="pagination blog-pager">
         
-        <li class="page-item previous">
-          <a class="page-link" href="/2022-11-26-notes_jupyterhub/" data-toggle="tooltip" data-placement="top" title="Notes on Jupyterhub server setup">&larr; Previous Post</a>
+        
+        
+        <li>
+          <a class="post-link" href="/2024-05-25-dirac_equation/"><h3 class="post-title mb0">Dirac Equation</h3></a>
+					<p class="post-meta small">May 25, 2024, by Yuanpeng Zhang</p>
+          <div class="small">
+            
+<p class="post-tags small">
+  <i class="fa fa-tags"></i>
+  
+    <a href="/tags#Quantum Mechanics">Quantum Mechanics</a>
+  
+    <a href="/tags#Relativity">Relativity</a>
+  
+</p>
+
+          </div>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2022-12-11-notes_gsasii/" data-toggle="tooltip" data-placement="top" title="Notes on GSAS-II">Next Post &rarr;</a>
-        </li>
-        
-      </ul>
       
-  <div id="disqus_thread"></div>
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_shortname = &quot;rmcprofile&quot;;
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://rmcprofile.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+    </ol>
+  </article>
+</div>
 
 
-    </div>
-  </div>
+  
 </div>
 
 

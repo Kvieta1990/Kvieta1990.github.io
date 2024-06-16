@@ -554,6 +554,27 @@ the corresponding conda environment as a kernel of Jupyter.
 
 <br />
 
+> Issue-30: Use the classic interface
+
+<p style='text-align: justify; margin-left: 50px'>
+<b>Solution:</b> Sometimes, we may need to use the classic interface instead of the
+jupyterlab interface. For example, the `RISE` extension that can turn the notebook into
+slides will not work with the jupyterlab interface. To enable the classic interface, we
+need to remove `lab` from the URL. Suppose the jupyterlab URL is `https://powder.ornl.gov/hub/user/cloud/lab/tree/Temp/mp_api_trying.ipynb`, the
+URL for using the classic interface will be `https://powder.ornl.gov/hub/user/cloud/tree/Temp/mp_api_trying.ipynb`.
+</p>
+
+<br />
+
+> Issue-31: Plotly plots not showing in classic interface
+
+<p style='text-align: justify; margin-left: 50px'>
+<b>Solution:</b> If plotly plots are not showing in the classic interface, consider shutdown the kernel and
+restart.
+</p>
+
+<br />
+
 <b>References</b>
 
 [1] [https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html](https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html)
