@@ -333,6 +333,24 @@ we need to push the new docker image to Docker Hub, following the instruction as
 
     to start up the server and then we can configure `nginx` to redirect the traffic on the port 443 to the local 5000 port.
 
+3. The ADDIE service is hosted on an ORNL research cloud instance -- this is the ORNL internal cloud computation resource. For security concerns, ORNL needs to perform systematic scanning over the server and the ADDIE service. On the system side, those vulnerabilities can be easily patched according to the instructions provided by the cyber security team. On the `nginx` side, we need to add specific headers for mitigating the potential vulnerabilities and it turns out that not only we need to patch for the `nginx` configuration, but also we need to add in some security header into the Flask app. Here is the saved `nginx` configuration, [Click Me](https://pf.iris-home.net/yuanpeng/4b777e0fd8df413babd544f05fac427f/raw/HEAD/nginx.conf), and here is the chunk of codes in the Flask app,
+
+    ```python
+    # Define a function to set X-Frame-Options header
+    def add_security_headers(response):
+        response.headers['X-Frame-Options'] = 'DENY'
+        response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains; preload;'
+        return response
+
+
+    # Register the function as an after_request handler
+    app.after_request(add_security_headers)
+    ```
+
+4. There are some other security patches that will be needed in the Flask app, to mitigate risks such as Cross-Site Request Forgery (CSRF), rigorous input field checking, etc. We can refer to the source codes for ADDIE (ORNL internal access only, not open source yet) here, [Click Me](https://code.ornl.gov/general/tsitc).
+
+5. Another domain `addie-dev.ornl.gov` has been made available to point to the local `6000` port. So, to fire up a test service of ADDIE, we can execute `docker run -it -p 6000:5000 apw247/flask_addie bash` and refer to the `startup.sh` commands to execute the commands within the interactive docker container. In this way, we can see the terminal outputs as actions are being performed on `addie-dev.ornl.gov`.
+
 References
 ===
 

@@ -99,7 +99,7 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2024-01-13T00:00:00-04:00">
+  <meta property="og:article:published_time" content="2024-01-13T00:00:00-05:00">
   <meta property="og:url" content="http://localhost:4000/2024-01-13-dockerize_addie/">
   <link rel="canonical" href="http://localhost:4000/2024-01-13-dockerize_addie/">
   
@@ -661,6 +661,26 @@ we need to push the new docker image to Docker Hub, following the instruction as
 </code></pre></div>    </div>
 
     <p>to start up the server and then we can configure <code class="language-plaintext highlighter-rouge">nginx</code> to redirect the traffic on the port 443 to the local 5000 port.</p>
+  </li>
+  <li>
+    <p>The ADDIE service is hosted on an ORNL research cloud instance – this is the ORNL internal cloud computation resource. For security concerns, ORNL needs to perform systematic scanning over the server and the ADDIE service. On the system side, those vulnerabilities can be easily patched according to the instructions provided by the cyber security team. On the <code class="language-plaintext highlighter-rouge">nginx</code> side, we need to add specific headers for mitigating the potential vulnerabilities and it turns out that not only we need to patch for the <code class="language-plaintext highlighter-rouge">nginx</code> configuration, but also we need to add in some security header into the Flask app. Here is the saved <code class="language-plaintext highlighter-rouge">nginx</code> configuration, <a href="https://pf.iris-home.net/yuanpeng/4b777e0fd8df413babd544f05fac427f/raw/HEAD/nginx.conf">Click Me</a>, and here is the chunk of codes in the Flask app,</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1"># Define a function to set X-Frame-Options header
+</span> <span class="k">def</span> <span class="nf">add_security_headers</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+     <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s">'X-Frame-Options'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'DENY'</span>
+     <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s">'Strict-Transport-Security'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'max-age=31536000; includeSubDomains; preload;'</span>
+     <span class="k">return</span> <span class="n">response</span>
+
+
+ <span class="c1"># Register the function as an after_request handler
+</span> <span class="n">app</span><span class="p">.</span><span class="n">after_request</span><span class="p">(</span><span class="n">add_security_headers</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>There are some other security patches that will be needed in the Flask app, to mitigate risks such as Cross-Site Request Forgery (CSRF), rigorous input field checking, etc. We can refer to the source codes for ADDIE (ORNL internal access only, not open source yet) here, <a href="https://code.ornl.gov/general/tsitc">Click Me</a>.</p>
+  </li>
+  <li>
+    <p>Another domain <code class="language-plaintext highlighter-rouge">addie-dev.ornl.gov</code> has been made available to point to the local <code class="language-plaintext highlighter-rouge">6000</code> port. So, to fire up a test service of ADDIE, we can execute <code class="language-plaintext highlighter-rouge">docker run -it -p 6000:5000 apw247/flask_addie bash</code> and refer to the <code class="language-plaintext highlighter-rouge">startup.sh</code> commands to execute the commands within the interactive docker container. In this way, we can see the terminal outputs as actions are being performed on <code class="language-plaintext highlighter-rouge">addie-dev.ornl.gov</code>.</p>
   </li>
 </ol>
 
