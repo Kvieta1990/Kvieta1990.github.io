@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Notes and Tips for using Docker</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="🏷️ Use git diff in a Docker container Within a Docker container, if we are located in a git repository and try to execute git diff, there will be no problems. However, if the current working directory is not a git repository and we try to execute git diff /full/path/to/git/repo,...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Notes and Tips for using Docker">
+  <meta property="og:description" content="🏷️ Use git diff in a Docker container Within a Docker container, if we are located in a git repository and try to execute git diff, there will be no problems. However, if the current working directory is not a git repository and we try to execute git diff /full/path/to/git/repo,...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2020/12/">
-  <link rel="canonical" href="http://localhost:4000/archive/2020/12/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2024-07-16T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2024-07-16-docker_tips/">
+  <link rel="canonical" href="http://localhost:4000/2024-07-16-docker_tips/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Notes and Tips for using Docker">
+  <meta property="twitter:description" content="🏷️ Use git diff in a Docker container Within a Docker container, if we are located in a git repository and try to execute git diff, there will be no problems. However, if the current working directory is not a git repository and we try to execute git diff /full/path/to/git/repo,...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -258,10 +260,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Notes and Tips for using Docker</h1>
           
 
+          
+					<span class="post-meta">Posted on July 16, 2024, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -274,351 +280,125 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
+      
 
-<div class="intro-header"></div>
+      
 
-<div role="main" class=" container-md ">
-  
-
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>December, 2020</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2020-12-21-notes_mag_III/"><h3 class="post-title mb0">Notes on magnetism - III</h3></a>
-					<p class="post-meta small">December 21, 2020, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#solid state physics">solid state physics</a>
-  
-    <a href="/tags#magnetism">magnetism</a>
-  
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/Docker_logo.png" style="border:none;" width="600" alt="docker" title="docker" />
 </p>
 
-          </div>
+<p><br /></p>
+
+<h1 id="️-use-git-diff-in-a-docker-container">🏷️ Use <code class="language-plaintext highlighter-rouge">git diff</code> in a Docker container</h1>
+
+<p>Within a Docker container, if we are located in a <code class="language-plaintext highlighter-rouge">git</code> repository and try to execute <code class="language-plaintext highlighter-rouge">git diff</code>, there will be no problems. However, if the current working directory is not a <code class="language-plaintext highlighter-rouge">git</code> repository and we try to execute <code class="language-plaintext highlighter-rouge">git diff /full/path/to/git/repo</code>, the command will fail, complaining about <code class="language-plaintext highlighter-rouge">not a working repository</code>. This is something relevant to the environment and configuration within the Docker container. To solve this issue, we can set up the <code class="language-plaintext highlighter-rouge">GIT_DIR</code> environment variable first, change to the <code class="language-plaintext highlighter-rouge">git</code> repository directory, and then execute <code class="language-plaintext highlighter-rouge">git diff</code> [1],</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">GIT_DIR</span><span class="o">=</span>/full/path/to/git/repo/.git
+<span class="nb">cd</span> /full/path/to/git/repo
+git diff
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="/assets/img/posts/lobehub_git_diff_docker.png" target="_blank">Solution provided by <code class="language-plaintext highlighter-rouge">GPT3.5 Turbo</code> model.</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#docker">docker</a>
+          
+            <a href="/tags#dev">dev</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+and+Tips+for+using+Docker&url=http%3A%2F%2Flocalhost%3A4000%2F2024-07-16-docker_tips%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2024-07-16-docker_tips%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2024-07-16-docker_tips%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2024-05-25-dirac_equation/" data-toggle="tooltip" data-placement="top" title="Dirac Equation">&larr; Previous Post</a>
         </li>
         
+        
+      </ul>
       
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2020-12-18-spin/"><h3 class="post-title mb0">About electron spin</h3></a>
-					<p class="post-meta small">December 18, 2020, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#quantum physics">quantum physics</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2020-12-01-rmc_configure/"><h3 class="post-title mb0">Configure RMCProfile</h3></a>
-					<p class="post-meta small">December 1, 2020, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#total scattering">total scattering</a>
-  
-    <a href="/tags#tool">tool</a>
-  
-    <a href="/tags#data analysis">data analysis</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 

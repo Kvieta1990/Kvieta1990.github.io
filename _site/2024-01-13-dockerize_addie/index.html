@@ -680,7 +680,33 @@ we need to push the new docker image to Docker Hub, following the instruction as
     <p>There are some other security patches that will be needed in the Flask app, to mitigate risks such as Cross-Site Request Forgery (CSRF), rigorous input field checking, etc. We can refer to the source codes for ADDIE (ORNL internal access only, not open source yet) here, <a href="https://code.ornl.gov/general/tsitc">Click Me</a>.</p>
   </li>
   <li>
-    <p>Another domain <code class="language-plaintext highlighter-rouge">addie-dev.ornl.gov</code> has been made available to point to the local <code class="language-plaintext highlighter-rouge">6000</code> port. So, to fire up a test service of ADDIE, we can execute <code class="language-plaintext highlighter-rouge">docker run -it -p 6000:5000 apw247/flask_addie bash</code> and refer to the <code class="language-plaintext highlighter-rouge">startup.sh</code> commands to execute the commands within the interactive docker container. In this way, we can see the terminal outputs as actions are being performed on <code class="language-plaintext highlighter-rouge">addie-dev.ornl.gov</code>.</p>
+    <p>Another domain <code class="language-plaintext highlighter-rouge">addie-dev.ornl.gov</code> has been made available to point to the local <code class="language-plaintext highlighter-rouge">6000</code> port. So, to fire up a test service of ADDIE, we can execute the following command first,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>docker run <span class="nt">--privileged</span> <span class="nt">-v</span> /home/cloud/.ssh:/root/.ssh/keys <span class="nt">-it</span> <span class="nt">-p</span> 6000:5000 apw247/flask_addie bash
+</code></pre></div>    </div>
+
+    <p><br /></p>
+
+    <blockquote>
+      <p>The <code class="language-plaintext highlighter-rouge">--privileged</code> flag is to ensure that remote drives can be mounted using <code class="language-plaintext highlighter-rouge">sshfs</code> within the docker container.</p>
+    </blockquote>
+
+    <p>Then, within the docker container, run the following commands to start up the server,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sshfs sns:/SNS /SNS
+ sshfs sns:/HFIR /HFIR
+ conda activate py37
+ gunicorn <span class="nt">-c</span> gunicorn_config.py run:app &amp;
+ redis-server <span class="nt">--port</span> 6379 &amp;
+ celery <span class="nt">-A</span> pdfitc.app.celery worker <span class="nt">--loglevel</span><span class="o">=</span>info &amp;
+</code></pre></div>    </div>
+
+    <p>As the dev server is up running, we can open another terminal to execute,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sudo docker exec -it [CONTAINER_ID] /bin/bash
+</code></pre></div>    </div>
+
+    <p>where <code class="language-plaintext highlighter-rouge">[CONTAINER_ID]</code> refers to the ID of the running docker container started in previous step (use <code class="language-plaintext highlighter-rouge">sudo docker ps -a</code> to see all the running containers). Within this interactive shell, we can change the code and it will be directly reflected onto the <code class="language-plaintext highlighter-rouge">addie-dev.ornl.gov</code> server – we may have to kill the <code class="language-plaintext highlighter-rouge">gunicorn</code> job from another shell and restart it if it is the Python source codes that were changed. The changes in template HTML files will be directly reflected without restarting the server, though.</p>
   </li>
 </ol>
 

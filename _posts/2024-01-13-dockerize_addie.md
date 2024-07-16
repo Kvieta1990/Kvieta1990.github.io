@@ -349,7 +349,34 @@ we need to push the new docker image to Docker Hub, following the instruction as
 
 4. There are some other security patches that will be needed in the Flask app, to mitigate risks such as Cross-Site Request Forgery (CSRF), rigorous input field checking, etc. We can refer to the source codes for ADDIE (ORNL internal access only, not open source yet) here, [Click Me](https://code.ornl.gov/general/tsitc).
 
-5. Another domain `addie-dev.ornl.gov` has been made available to point to the local `6000` port. So, to fire up a test service of ADDIE, we can execute `docker run -it -p 6000:5000 apw247/flask_addie bash` and refer to the `startup.sh` commands to execute the commands within the interactive docker container. In this way, we can see the terminal outputs as actions are being performed on `addie-dev.ornl.gov`.
+5. Another domain `addie-dev.ornl.gov` has been made available to point to the local `6000` port. So, to fire up a test service of ADDIE, we can execute the following command first,
+
+    ```bash
+    sudo docker run --privileged -v /home/cloud/.ssh:/root/.ssh/keys -it -p 6000:5000 apw247/flask_addie bash
+    ```
+
+    <br>
+
+    > The `--privileged` flag is to ensure that remote drives can be mounted using `sshfs` within the docker container.
+
+    Then, within the docker container, run the following commands to start up the server,
+
+    ```bash
+    sshfs sns:/SNS /SNS
+    sshfs sns:/HFIR /HFIR
+    conda activate py37
+    gunicorn -c gunicorn_config.py run:app &
+    redis-server --port 6379 &
+    celery -A pdfitc.app.celery worker --loglevel=info &
+    ```
+
+    As the dev server is up running, we can open another terminal to execute,
+
+    ```
+    sudo docker exec -it [CONTAINER_ID] /bin/bash
+    ```
+
+    where `[CONTAINER_ID]` refers to the ID of the running docker container started in previous step (use `sudo docker ps -a` to see all the running containers). Within this interactive shell, we can change the code and it will be directly reflected onto the `addie-dev.ornl.gov` server -- we may have to kill the `gunicorn` job from another shell and restart it if it is the Python source codes that were changed. The changes in template HTML files will be directly reflected without restarting the server, though.
 
 References
 ===

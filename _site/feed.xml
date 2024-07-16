@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Notes and Tips for using Docker</title>
+        <description>
+          
+          🏷️ Use git diff in a Docker container Within a Docker container, if we are located in a git repository and try to execute git diff, there will be no problems. However, if the current working directory is not a git repository and we try to execute git diff /full/path/to/git/repo,...
+        </description>
+        <pubDate>Tue, 16 Jul 2024 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2024-07-16-docker_tips/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-07-16-docker_tips/</guid>
+      </item>
+    
+      <item>
         <title>Dirac Equation</title>
         <description>
           
@@ -225,17 +236,6 @@
         <pubDate>Fri, 08 Sep 2023 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2023-09-08-docker_nginx/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-09-08-docker_nginx/</guid>
-      </item>
-    
-      <item>
-        <title>Typical Science Papers with RMCProfile</title>
-        <description>
-          
-          This blog lists out several typical research papers with RMCProfile that I myself was involved. Title: Hidden Local Symmetry Breaking in a Kagome-Lattice Magnetic Weyl Semimetal Authors: Qiang Zhang, Yuanpeng Zhang, Masaaki Matsuda, Vasile Ovidiu Garlea, Jiaqiang Yan, Michael A. McGuire, D. Alan Tennant, and Satoshi Okamoto Abstract: Exploring the...
-        </description>
-        <pubDate>Fri, 11 Aug 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2023-08-11-rmc_papers/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-08-11-rmc_papers/</guid>
       </item>
     
   </channel>
