@@ -377,6 +377,22 @@ Solution (#12)
 
 Through the `1Panel` interface, we could easily install the `Wiki.js` Wiki system. However, I found that after the installation, from time to time, we would encounter errors here and there. Not sure what exactly the reason is, though. Alternatively, we could install the service directly using the docker compose approach, following the instruction provided in their official documentation [10].
 
+Issue #13
+===
+
+Website set up with `Wordpress` stuck in the `maintenance` mode after upgrading.
+
+Solution (#13)
+===
+
+In case of the `Wordpress` hosted website is stuck in the `maintenance` mode, we may need to manually remove the `.maintenance` file under the root directory of the `Wordpress` web server. In case of the `Wordpress` is hosted via `Docker`, we need to launch the running `Wordpress` docker container in the interactive mode, by running,
+
+```bash
+sudo docker exec -it [CONTAINER_ID] /bin/bash
+```
+
+where `[CONTAINER_ID]` refers to the ID of the running `Wordpress` container, which can be obtained by running `sudo docker ps -a | grep "wordpress"`. Once in the interactive container, we can go to the root directory of the web service which is usually `/var/www/html` and remove the `.maintenance` file manually and exit the container by running `exit`. We may then need to restart the container, via `sudo docker container restart [CONTAINER_ID]`.
+
 <br>
 
 References
