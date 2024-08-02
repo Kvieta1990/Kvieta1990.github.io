@@ -99,7 +99,7 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2024-01-13T00:00:00-05:00">
+  <meta property="og:article:published_time" content="2024-01-13T00:00:00-04:00">
   <meta property="og:url" content="http://localhost:4000/2024-01-13-dockerize_addie/">
   <link rel="canonical" href="http://localhost:4000/2024-01-13-dockerize_addie/">
   
@@ -707,6 +707,28 @@ we need to push the new docker image to Docker Hub, following the instruction as
 </code></pre></div>    </div>
 
     <p>where <code class="language-plaintext highlighter-rouge">[CONTAINER_ID]</code> refers to the ID of the running docker container started in previous step (use <code class="language-plaintext highlighter-rouge">sudo docker ps -a</code> to see all the running containers). Within this interactive shell, we can change the code and it will be directly reflected onto the <code class="language-plaintext highlighter-rouge">addie-dev.ornl.gov</code> server – we may have to kill the <code class="language-plaintext highlighter-rouge">gunicorn</code> job from another shell and restart it if it is the Python source codes that were changed. The changes in template HTML files will be directly reflected without restarting the server, though.</p>
+  </li>
+  <li>
+    <p>The production version of the server can be fired up using the following command,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>docker run <span class="nt">--privileged</span> <span class="nt">-v</span> /home/cloud/.ssh:/root/.ssh/keys <span class="nt">-p</span> 5000:5000 <span class="nt">-d</span> apw247/flask_addie:latest
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>While the production docker container is running, we can lanuch an interactive shell in the running container like this,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> CONTAINER_ID /bin/bash
+</code></pre></div>    </div>
+
+    <p>where <code class="language-plaintext highlighter-rouge">CONTAINER_ID</code> is the ID of the running container, which can be obtained via running <code class="language-plaintext highlighter-rouge">sudo docker ps -a</code>.</p>
+  </li>
+  <li>
+    <p>Sometimes during the docker image commit and building process, we could have multiple repositories attached a single image ID. In this case, if we want to remove certain tags, we can do,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>docker rmi REPO_NAME
+</code></pre></div>    </div>
+
+    <p>where <code class="language-plaintext highlighter-rouge">REPO_NAME</code> refers to the repository name associated with a certain image. It can be obtained via running <code class="language-plaintext highlighter-rouge">sudo docker images</code> and usually the first column would be the repository name.</p>
   </li>
 </ol>
 

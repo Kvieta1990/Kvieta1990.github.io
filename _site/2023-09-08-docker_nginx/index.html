@@ -756,6 +756,19 @@ services:
 
 <p>Through the <code class="language-plaintext highlighter-rouge">1Panel</code> interface, we could easily install the <code class="language-plaintext highlighter-rouge">Wiki.js</code> Wiki system. However, I found that after the installation, from time to time, we would encounter errors here and there. Not sure what exactly the reason is, though. Alternatively, we could install the service directly using the docker compose approach, following the instruction provided in their official documentation [10].</p>
 
+<h1 id="issue-13">Issue #13</h1>
+
+<p>Website set up with <code class="language-plaintext highlighter-rouge">Wordpress</code> stuck in the <code class="language-plaintext highlighter-rouge">maintenance</code> mode after upgrading.</p>
+
+<h1 id="solution-13">Solution (#13)</h1>
+
+<p>In case of the <code class="language-plaintext highlighter-rouge">Wordpress</code> hosted website is stuck in the <code class="language-plaintext highlighter-rouge">maintenance</code> mode, we may need to manually remove the <code class="language-plaintext highlighter-rouge">.maintenance</code> file under the root directory of the <code class="language-plaintext highlighter-rouge">Wordpress</code> web server. In case of the <code class="language-plaintext highlighter-rouge">Wordpress</code> is hosted via <code class="language-plaintext highlighter-rouge">Docker</code>, we need to launch the running <code class="language-plaintext highlighter-rouge">Wordpress</code> docker container in the interactive mode, by running,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> <span class="o">[</span>CONTAINER_ID] /bin/bash
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">[CONTAINER_ID]</code> refers to the ID of the running <code class="language-plaintext highlighter-rouge">Wordpress</code> container, which can be obtained by running <code class="language-plaintext highlighter-rouge">sudo docker ps -a | grep "wordpress"</code>. Once in the interactive container, we can go to the root directory of the web service which is usually <code class="language-plaintext highlighter-rouge">/var/www/html</code> and remove the <code class="language-plaintext highlighter-rouge">.maintenance</code> file manually and exit the container by running <code class="language-plaintext highlighter-rouge">exit</code>. We may then need to restart the container, via <code class="language-plaintext highlighter-rouge">sudo docker container restart [CONTAINER_ID]</code>.</p>
+
 <p><br /></p>
 
 <h1 id="references">References</h1>

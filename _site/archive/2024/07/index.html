@@ -19,13 +19,13 @@
 
   
 
-  <title>Set up our own search engine with Yacy</title>
+  <title>Archive</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="The fundamental idea of web searching is through web crawling, critical information about the website and the embedded links in the crawled website can be obtained. Based on the crawling results, a ranking algorithm could be applied, based on which one can search the website using keywords. Nowadays, we get...">
+  <meta name="description" content="">
 
   
 
@@ -89,19 +89,17 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Set up our own search engine with Yacy">
-  <meta property="og:description" content="The fundamental idea of web searching is through web crawling, critical information about the website and the embedded links in the crawled website can be obtained. Based on the crawling results, a ranking algorithm could be applied, based on which one can search the website using keywords. Nowadays, we get...">
+  <meta property="og:title" content="Archive">
+  <meta property="og:description" content="">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="article">
-  <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2024-02-04T00:00:00-04:00">
-  <meta property="og:url" content="http://localhost:4000/2024-02-04-yacy_setup/">
-  <link rel="canonical" href="http://localhost:4000/2024-02-04-yacy_setup/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/archive/2024/07/">
+  <link rel="canonical" href="http://localhost:4000/archive/2024/07/">
   
 
   
@@ -110,8 +108,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Set up our own search engine with Yacy">
-  <meta property="twitter:description" content="The fundamental idea of web searching is through web crawling, critical information about the website and the embedded links in the crawled website can be obtained. Based on the crawling results, a ranking algorithm could be applied, based on which one can search the website using keywords. Nowadays, we get...">
+  <meta property="twitter:title" content="Archive">
+  <meta property="twitter:description" content="">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -260,14 +258,10 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="post-heading">
-						<h1>Set up our own search engine with Yacy</h1>
+        <div class="page-heading">
+						<h1>Archive</h1>
           
 
-          
-					<span class="post-meta">Posted on February 4, 2024, by Yuanpeng Zhang</span>
-            
-            
           
         </div>
       </div>
@@ -280,127 +274,317 @@ if (chromeAgent) {
 
 
 
-<div class=" container-md ">
-  <div class="row">
-    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
-
-      
-
-      
-
-      <article role="main" class="blog-post">
-        <p>The fundamental idea of web searching is through web crawling, critical information about the website and the embedded links in the crawled website can be obtained. Based on the crawling results, a ranking algorithm could be applied, based on which one can search the website using keywords. Nowadays, we get so much into Google, which also takes the same way of performing the ranking of millions or probably billions of website for searching. Google, as a centralized searching service provider, they need to deal with so many websites in the market and as an end user, if we want our website to be seen by Google, we may need to submit the crawling request to Google – if not, Google still is able to find our website and perform crawling for it but that will probably take forever, since the reality is, as said above, Google needs to deal with those tons of websites on the market and our own website has little chance to be seen if we are not submitting the crawling request to Google. However, even though we submit the crawling request, still it may take some time and sometimes, for whatever reason, the crawling may not give back a full crawling for our site, etc. As an end user, if we want to have a dedicated search engine just for our website, we can go to the market and search for alternative search engines. <code class="language-plaintext highlighter-rouge">Yacy</code> is the one that I found useful and here in this blog, I will note down the setup of <code class="language-plaintext highlighter-rouge">Yacy</code> on my own VPS and its implementation in my own blog website (actually, the current blog website that you are visiting now).</p>
-
-<p><code class="language-plaintext highlighter-rouge">Yacy</code> provides docker image for the service, and to run the docker container to fire up the server, we can simply run the following command,</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nb">sudo </span>docker run <span class="nt">-d</span> <span class="nt">--name</span> yacy_search_server <span class="nt">-p</span> 8092:8090 <span class="nt">-p</span> 8443:8443 <span class="nt">-v</span> yacy_search_server_data:/opt/yacy_search_server/DATA <span class="nt">--restart</span> unless-stopped <span class="nt">--log-opt</span> max-size<span class="o">=</span>200m <span class="nt">--log-opt</span> max-file<span class="o">=</span>2 yacy/yacy_search_server:aarch64-latest
-</code></pre></div></div>
-
-<p>where <code class="language-plaintext highlighter-rouge">8092</code> is my selected port number.</p>
-
-<blockquote>
-  <p>Here, concerning the proxy setup to make the <code class="language-plaintext highlighter-rouge">Yacy</code> server secure, we can refer to my another blog <a href="https://iris2020.net/2023-09-08-docker_nginx/" target="_blank">here</a>.</p>
-</blockquote>
-
-<p>The next step is to implement the <code class="language-plaintext highlighter-rouge">Yacy</code> engine into our own website. In my case, I am using <code class="language-plaintext highlighter-rouge">jekyll</code> to host the current blog on <code class="language-plaintext highlighter-rouge">GitHub</code>. We can refer to the YAML configuration file <a href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/master/_config.yml" target="_blank">here</a> about the overall configuration of the whole site to be generated with <code class="language-plaintext highlighter-rouge">jekyll</code>. Specifically, the search page link in the top menu is configured <a href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/ed61a590f1cbb2f61146345e590bc1804c9d02ac/_config.yml#L17" target="_blank">here</a>. This further points to the <code class="language-plaintext highlighter-rouge">search.html</code> file <a href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/master/search.html" target="_blank">here</a>, which further contains the inclusion of the <code class="language-plaintext highlighter-rouge">search-google.html</code> file. The <code class="language-plaintext highlighter-rouge">search-google.html</code> file then contains the HTML codes for hosting the search box which will lead up to the <code class="language-plaintext highlighter-rouge">Yacy</code> engine. The file can be found <a href="https://github.com/Kvieta1990/Kvieta1990.github.io/blob/master/_includes/search-google.html" target="_blank">here</a>. The file was created by combining multiple pieces. The first piece is from the <code class="language-plaintext highlighter-rouge">Yacy</code> server. Once we have our <code class="language-plaintext highlighter-rouge">Yacy</code> server set up, we can visit the page, e.g., <code class="language-plaintext highlighter-rouge">ya.iris-home.net</code> in my case. Further, we go to <code class="language-plaintext highlighter-rouge">Administration</code> (needs login) =&gt; <code class="language-plaintext highlighter-rouge">Search Portal Integration</code> (left-side menu) =&gt; <code class="language-plaintext highlighter-rouge">Portal Configuration</code> =&gt; <code class="language-plaintext highlighter-rouge">Search Box Anywhere</code> (top selection menu in the right-side panel). There, we can see the code snippet that we need to grab for the implementation of <code class="language-plaintext highlighter-rouge">Yacy</code>. Here, I did not take them all but instead only the form part. Next, it seems that <code class="language-plaintext highlighter-rouge">Yacy</code> does not provide the API interface with which we can directly provide our own website as the parameters to tell <code class="language-plaintext highlighter-rouge">Yacy</code> to search our own website instead of an overall searching. As a workaround, I have a piece of javascript to append our site to the input search contents and pass the concatenated search string to <code class="language-plaintext highlighter-rouge">Yacy</code> to guide it to search our own website for the provided keywords.</p>
-
-<blockquote>
-  <p>Before <code class="language-plaintext highlighter-rouge">Yacy</code> is able to search our website, we need to crawl it first. To do this, we go to <code class="language-plaintext highlighter-rouge">First Steps</code> =&gt; <code class="language-plaintext highlighter-rouge">Load Web Pages, Crawler</code>, Then, we only need to fill in our website URL and hit the <code class="language-plaintext highlighter-rouge">Start New Crawl</code> and <code class="language-plaintext highlighter-rouge">Yacy</code> will start the crawling. That’s all. Once the crawling is done, our website information will be available to <code class="language-plaintext highlighter-rouge">Yacy</code> and the search over our website should be doable with <code class="language-plaintext highlighter-rouge">Yacy</code>.</p>
-</blockquote>
-
-      </article>
-
-      
-        <div class="blog-tags">
-          <span>Tags:</span>
-          
-            <a href="/tags#web">web</a>
-          
-            <a href="/tags#search">search</a>
-          
-        </div>
-      
-
-      
-
-      
-        <!-- Check if any share-links are active -->
 
 
+<div class="intro-header"></div>
 
-
-<section id = "social-share-section">
-  <span class="sr-only">Share: </span>
-
-  
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+our+own+search+engine+with+Yacy&url=http%3A%2F%2Flocalhost%3A4000%2F2024-02-04-yacy_setup%2F"
-      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
-      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
-      <span class="sr-only">Twitter</span>
-    </a>
+<div role="main" class=" container-md ">
   
 
-  
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2024-02-04-yacy_setup%2F"
-      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
-      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
-      <span class="sr-only">Facebook</span>
-    </a>
-  
+  <div class="post">
+  <header class="post-header post-header_archive">
+    <h2>Posted in <em>July, 2024</em></h2>
+  </header>
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2024-02-04-yacy_setup%2F"
-      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
-      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
-      <span class="sr-only">LinkedIn</span>
-    </a>
-  
-
-  
-
-</section>
-
-
-
+  <article class="post-content">
+    <ol>
       
-
-      <ul class="pagination blog-pager">
         
-        <li class="page-item previous">
-          <a class="page-link" href="/2024-01-28-oracle_vps_vol_expand/" data-toggle="tooltip" data-placement="top" title="Resize Oracle VPS volume">&larr; Previous Post</a>
+        
+        
+        <li>
+          <a class="post-link" href="/2024-07-16-docker_tips/"><h3 class="post-title mb0">Notes and Tips for using Docker</h3></a>
+					<p class="post-meta small">July 16, 2024, by Yuanpeng Zhang</p>
+          <div class="small">
+            
+<p class="post-tags small">
+  <i class="fa fa-tags"></i>
+  
+    <a href="/tags#docker">docker</a>
+  
+    <a href="/tags#dev">dev</a>
+  
+</p>
+
+          </div>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2024-02-25-ps_make_animation/" data-toggle="tooltip" data-placement="top" title="Photoshop基于图层生成动画">Next Post &rarr;</a>
-        </li>
-        
-      </ul>
       
-  <div id="disqus_thread"></div>
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_shortname = &quot;rmcprofile&quot;;
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://rmcprofile.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+        
+        
+        
+      
+    </ol>
+  </article>
+</div>
 
 
-    </div>
-  </div>
+  
 </div>
 
 

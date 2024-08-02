@@ -378,6 +378,28 @@ we need to push the new docker image to Docker Hub, following the instruction as
 
     where `[CONTAINER_ID]` refers to the ID of the running docker container started in previous step (use `sudo docker ps -a` to see all the running containers). Within this interactive shell, we can change the code and it will be directly reflected onto the `addie-dev.ornl.gov` server -- we may have to kill the `gunicorn` job from another shell and restart it if it is the Python source codes that were changed. The changes in template HTML files will be directly reflected without restarting the server, though.
 
+6. The production version of the server can be fired up using the following command,
+
+    ```bash
+    sudo docker run --privileged -v /home/cloud/.ssh:/root/.ssh/keys -p 5000:5000 -d apw247/flask_addie:latest
+    ```
+
+7. While the production docker container is running, we can lanuch an interactive shell in the running container like this,
+
+    ```bash
+    sudo docker exec -it CONTAINER_ID /bin/bash
+    ```
+
+    where `CONTAINER_ID` is the ID of the running container, which can be obtained via running `sudo docker ps -a`.
+
+8. Sometimes during the docker image commit and building process, we could have multiple repositories attached a single image ID. In this case, if we want to remove certain tags, we can do,
+
+    ```bash
+    sudo docker rmi REPO_NAME
+    ```
+
+    where `REPO_NAME` refers to the repository name associated with a certain image. It can be obtained via running `sudo docker images` and usually the first column would be the repository name.
+
 References
 ===
 
