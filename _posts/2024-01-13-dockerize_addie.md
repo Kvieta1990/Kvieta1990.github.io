@@ -55,7 +55,7 @@ the image is huge, but the startup script is very simple.
     docker run -i -t ubuntu bash
     ```
 
-where the `ubuntu` refers to the pulled docker image name.
+    where the `ubuntu` refers to the pulled docker image name.
 
 3. Within the interactive docker container, install all the necessary packages,
 
@@ -186,6 +186,12 @@ with which we can then fire up an ADDIE service.
     the existing image with the same name as, e.g., `flask_addie`, will be renamed to `<none>` and the
     new `flask_addie` stays the latest.
 
+    > <span style="color:red">***N.B.*** It is always a good practice not to do the commit so often since otherwise
+    the docker image will have a lot of layers until hitting the limit whereby we cannot do the commit anymore.
+    Instead, once we have done the initial commit, we can use the `git pull` command in the startup script
+    (see step below) to update the source codes so that the web service inside the docker container can be
+    updated.</span>
+
 13. Prepare a `Dockerfile` file, as below,
 
     ```
@@ -212,6 +218,8 @@ file, we need to create a `startup.sh` file as below,
     source /root/miniconda3/etc/profile.d/conda.sh
     conda activate py37
     export LD_LIBRARY_PATH='/usr/lib64'
+
+    git pull
     gunicorn -w 3 -b :5000 run:app &
     redis-server --port 6379 &
     celery -A pdfitc.app.celery worker --loglevel=info

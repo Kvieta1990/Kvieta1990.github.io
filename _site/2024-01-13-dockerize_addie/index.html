@@ -334,12 +334,9 @@ the image is huge, but the startup script is very simple.</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker run <span class="nt">-i</span> <span class="nt">-t</span> ubuntu bash
 </code></pre></div>    </div>
+
+    <p>where the <code class="language-plaintext highlighter-rouge">ubuntu</code> refers to the pulled docker image name.</p>
   </li>
-</ol>
-
-<p>where the <code class="language-plaintext highlighter-rouge">ubuntu</code> refers to the pulled docker image name.</p>
-
-<ol>
   <li>
     <p>Within the interactive docker container, install all the necessary packages,</p>
 
@@ -488,6 +485,14 @@ be possible that an image with the same name already exists on the local host. I
 the existing image with the same name as, e.g., <code class="language-plaintext highlighter-rouge">flask_addie</code>, will be renamed to <code class="language-plaintext highlighter-rouge">&lt;none&gt;</code> and the
 new <code class="language-plaintext highlighter-rouge">flask_addie</code> stays the latest.</p>
     </blockquote>
+
+    <blockquote>
+      <p><span style="color:red"><strong><em>N.B.</em></strong> It is always a good practice not to do the commit so often since otherwise
+the docker image will have a lot of layers until hitting the limit whereby we cannot do the commit anymore.
+Instead, once we have done the initial commit, we can use the <code class="language-plaintext highlighter-rouge">git pull</code> command in the startup script
+(see step below) to update the source codes so that the web service inside the docker container can be
+updated.</span></p>
+    </blockquote>
   </li>
   <li>
     <p>Prepare a <code class="language-plaintext highlighter-rouge">Dockerfile</code> file, as below,</p>
@@ -515,6 +520,8 @@ file, we need to create a <code class="language-plaintext highlighter-rouge">sta
 source /root/miniconda3/etc/profile.d/conda.sh
 conda activate py37
 export LD_LIBRARY_PATH='/usr/lib64'
+
+git pull
 gunicorn -w 3 -b :5000 run:app &amp;
 redis-server --port 6379 &amp;
 celery -A pdfitc.app.celery worker --loglevel=info
