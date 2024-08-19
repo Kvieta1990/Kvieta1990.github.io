@@ -31,11 +31,11 @@ navbar-links:
     - RMCProfile: "https://rmcprofile.ornl.gov/"
     - My Dashboard: "https://dh.iris-home.net"
     - GitHub Profile: "https://github.com/Kvieta1990"
-    - Blog Repo: https://github.com/Kvieta1990/Kvieta1990.github.io
+    - Blog Repo: "https://github.com/Kvieta1990/Kvieta1990.github.io"
     - Jupyter Binder: "https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master"
     - More Notes: "https://github.com/Kvieta1990/Iris"
-    - Dify Chat: https://yr.iris-home.net/chat/ychat
-    - LobeHub: https://lobe.iris-home.net
+    - Dify Chat: "https://yr.iris-home.net/chat/ychat"
+    - LobeHub: "https://lobe.iris-home.net"
   Contact: "contact"
 
 # --- Logo --- #
