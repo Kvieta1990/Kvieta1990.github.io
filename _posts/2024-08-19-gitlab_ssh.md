@@ -104,3 +104,18 @@ git clone ornlgit:general/tsitc.git
 ```
 
 where we have replaced `git@code.ornl.gov` in the originally copied address with the unique name `ornlgit` that we assigned to the GitLab server in our local SSH configuration file. From now on, we should be able to use git within the checked out repo without the need to worry about login, etc., as the connection has already been established in a secure way using the SSH key.
+
+<style>
+   .callout-box {
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-left: 6px solid #007bff; /* Add a colored border on the left */
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 10px;
+   }
+</style>
+
+<p class="callout-box">
+On Windows, we need to use the `git` terminal -- if we follow the instruction [here](https://git-scm.com/download/win) to install the Windows version of `git`, we will have access to the `git` terminal. Inside the `git` terminal, we can edit the `~/.ssh/config` file to put in the host configuration mentioned above just like what we would do on a Unix/Linux machine. Using `git` through Windows terminal like `powershell` or `CMD` will probably work with the SSH key, but I am not sure how for the moment and will leave it for further exploration.
+</p>

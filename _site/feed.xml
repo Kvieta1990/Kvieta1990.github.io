@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     
-    <title>Yuanpeng's Blog</title>
+    <title>Yuanpeng&apos;s Blog</title>
     
     
-    <description>This website is a virtual proof that I'm awesome</description>
+    <description>This website is a virtual proof that I&apos;m awesome</description>
     
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
@@ -105,7 +105,7 @@
           
           Set up a VPS and getting a domain for the VPS will not be covered in this blog. Here, I am assuming we have already got our VPS up running. I am using the 1Panel control panel to install the Flarum forum web service, which is one of the most...
         </description>
-        <pubDate>Thu, 07 Mar 2024 00:00:00 -0500</pubDate>
+        <pubDate>Thu, 07 Mar 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-03-07-flarum_setup/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-07-flarum_setup/</guid>
       </item>
@@ -116,7 +116,7 @@
           
           In crystallography, quite often we would use the 6 lattice parameters to describe the unit cell, namely, a, b, c, \(\alpha\), \(\beta\) and \(\gamma\). In some cases, we would also need to construct those lattice vectors (\(\vec{a}\), \(\vec{b}\) and \(\vec{c}\)) in Cartesian coordinate system. For example, when we want to...
         </description>
-        <pubDate>Mon, 04 Mar 2024 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 04 Mar 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-03-04-latt_params_to_latt_vecs/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-04-latt_params_to_latt_vecs/</guid>
       </item>
@@ -134,7 +134,7 @@
 
 
         </description>
-        <pubDate>Sun, 25 Feb 2024 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 25 Feb 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-02-25-ps_make_animation/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-02-25-ps_make_animation/</guid>
       </item>
@@ -145,7 +145,7 @@
           
           The fundamental idea of web searching is through web crawling, critical information about the website and the embedded links in the crawled website can be obtained. Based on the crawling results, a ranking algorithm could be applied, based on which one can search the website using keywords. Nowadays, we get...
         </description>
-        <pubDate>Sun, 04 Feb 2024 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 04 Feb 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-02-04-yacy_setup/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-02-04-yacy_setup/</guid>
       </item>
@@ -156,7 +156,7 @@
           
           When setting up Oracle cloud instance, we would give the instance an initial allocation of volume, and later on we might find that the initial volume size is not enough as we install more and more services into our VPS. In such a situation, we may want to expand the...
         </description>
-        <pubDate>Sun, 28 Jan 2024 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 28 Jan 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</guid>
       </item>
@@ -167,7 +167,7 @@
           
           Dify is an LLM application platform which can provide access to various LLM models, tools and applications. With it, we can build our own ChatBot server acting just like ChatGPT. At the backend, it utilizes the LLM services from various providers, such as openAI, Gemini, etc., through API call. In...
         </description>
-        <pubDate>Sat, 27 Jan 2024 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 27 Jan 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-01-27-docker_dify/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-27-docker_dify/</guid>
       </item>
@@ -178,7 +178,7 @@
           
           YOURLS is an URL shortening service [1] and we can deploy a local version of the service to our own VPS. Here, I am using the 1Panel service [2] to set up YOURLS – 1Panel is a web-based Linux system management interface with which we can manage our VPS and...
         </description>
-        <pubDate>Mon, 15 Jan 2024 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 15 Jan 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-01-15-yourls_docker/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-15-yourls_docker/</guid>
       </item>
@@ -189,7 +189,7 @@
           
           Initial Docker Image Build As conventionally, the ADDIE (ADvanced DIffraction Environment, available at addie.ornl.gov) service is deployed on a VPS (specifically, an instance on the ORNL hosted research cloud). The service itself and all the necessary configurations are therefore locked to the VPS machine, making it extremely painful for transfer...
         </description>
-        <pubDate>Sat, 13 Jan 2024 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 13 Jan 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-01-13-dockerize_addie/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-13-dockerize_addie/</guid>
       </item>
@@ -200,7 +200,7 @@
           
           To set up services on VPS, one could follow the conventional routine to configure the server and set up the services. However, such services would then live natively on the VPS operating system, which is not completely self-contained (e.g., one may need to configure multiple services in the same configuration...
         </description>
-        <pubDate>Mon, 25 Dec 2023 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 25 Dec 2023 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2023-12-25-vps_docker_services/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-12-25-vps_docker_services/</guid>
       </item>
