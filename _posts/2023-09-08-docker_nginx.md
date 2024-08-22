@@ -393,6 +393,63 @@ sudo docker exec -it [CONTAINER_ID] /bin/bash
 
 where `[CONTAINER_ID]` refers to the ID of the running `Wordpress` container, which can be obtained by running `sudo docker ps -a | grep "wordpress"`. Once in the interactive container, we can go to the root directory of the web service which is usually `/var/www/html` and remove the `.maintenance` file manually and exit the container by running `exit`. We may then need to restart the container, via `sudo docker container restart [CONTAINER_ID]`.
 
+Issue #14
+===
+
+Set up `Affine` service, which is a workspace with fully merged docs, whiteboards and databases [11].
+
+Solution (#14)
+===
+
+Here, I am using `1panel` [12] to set up the `Affine` service and the installation is just a click-and-go operation, very straightforward -- just find the app in the app store in the `1panel` interface and install the app by filling in some necessary parameters. After the successful installation, we need to do some post configuration to enable the email verification and the AI features. By default, such two features would not be enabled when following the normal way of installation, e.g., using `1panel`. In my case, my `Affine` app will be installed to the `1panel` app list, which can be found here, `/opt/1panel/apps/affine/affine`. To enable the email verification feature, we need to edit the `.env` file in the app folder to put in the email service configuration like below,
+
+```
+AFFINE_ADMIN_EMAIL="******"
+AFFINE_ADMIN_PASSWORD="******"
+CONTAINER_NAME="1Panel-affine-X7oq"
+CPUS=0
+HOST_IP=""
+MEMORY_LIMIT=0
+PANEL_APP_PORT_HTTP=3010
+PANEL_APP_PORT_HTTP_5555=5555
+PANEL_DB_HOST="postgresql"
+PANEL_DB_HOST_NAME="postgresql"
+PANEL_DB_NAME="affine_rtkwcm"
+PANEL_DB_PORT=5432
+PANEL_DB_USER="affine_4kaPn4"
+PANEL_DB_USER_PASSWORD="******"
+PANEL_REDIS_HOST="redis"
+PANEL_REDIS_ROOT_PASSWORD="******"
+AFFINE_SERVER_HOST="aff.iris-home.net"
+MAILER_HOST="smtp.gmail.com"
+MAILER_PORT=587
+MAILER_USER="******"
+MAILER_PASSWORD="******"
+```
+
+where all the email address and password relevant entries were left out. The normal installation via `1panel` should already take care of the configuration up until the `PANEL_REDIS_ROOT_PASSWORD` entry. The `AFFINE_SERVER_HOST` entry then should be added manually to be consistent with exact the host name where the `Affine` service can be reached. Here for the mail service, I am using `Gmail` and the `MAILER_USER` entry is just our `Gmail` email address. The `MAILER_PASSWORD` needs to be the Google application password, which can be obtained following the instruction in Ref. [13].
+
+To enable the AI feature, we need to first obtain the `OpenAI` API at [14]. Then we need to edit the `data/config/affine.js` file under the `Affine` application directory mentioned above [15]. Scrolling to the bottom of the file, we can fine the `Copilot` section and we just need to uncomment the section and fill in the `OpenAI` API key, like this,
+
+```
+// /* Copilot Plugin */
+AFFiNE.use('copilot', {
+  openai: {
+    apiKey: '<OpenAI_API_Key>',
+  },
+  // fal: {
+  //   apiKey: 'your-key',
+  // },
+  // unsplashKey: 'your-key',
+  // storage: {
+  //   provider: 'cloudflare-r2',
+  //   bucket: 'copilot',
+  // }
+})
+```
+
+After the manual configuration, we may need to stop the running container by running `sudo docker stop <CONTAINER_ID>` and the `<CONTAINER_ID>` can be obtained by running `sudo docker ps -a | grep "affine"`. Then we can do `sudo docker rm <CONTAINER_ID>` to remove the container and run `sudo docker compose up -d` in the `Affine` application directory mentioned above, namely `/opt/1panel/apps/affine/affine`.
+
 <br>
 
 References
@@ -417,3 +474,13 @@ References
 [9] [https://github.com/bizzycola/qrcode-generator](https://github.com/bizzycola/qrcode-generator)
 
 [10] [https://docs.requarks.io/install/docker#using-docker-compose](https://docs.requarks.io/install/docker#using-docker-compose)
+
+[11] [https://affine.pro/](https://affine.pro/)
+
+[12] [https://github.com/1Panel-dev/1Panel](https://github.com/1Panel-dev/1Panel)
+
+[13] [https://support.google.com/accounts/answer/185833?hl=en](https://support.google.com/accounts/answer/185833?hl=en)
+
+[14] [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+
+[15] [https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437](https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437)

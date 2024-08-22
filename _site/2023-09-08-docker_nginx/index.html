@@ -768,6 +768,59 @@ services:
 
 <p>where <code class="language-plaintext highlighter-rouge">[CONTAINER_ID]</code> refers to the ID of the running <code class="language-plaintext highlighter-rouge">Wordpress</code> container, which can be obtained by running <code class="language-plaintext highlighter-rouge">sudo docker ps -a | grep "wordpress"</code>. Once in the interactive container, we can go to the root directory of the web service which is usually <code class="language-plaintext highlighter-rouge">/var/www/html</code> and remove the <code class="language-plaintext highlighter-rouge">.maintenance</code> file manually and exit the container by running <code class="language-plaintext highlighter-rouge">exit</code>. We may then need to restart the container, via <code class="language-plaintext highlighter-rouge">sudo docker container restart [CONTAINER_ID]</code>.</p>
 
+<h1 id="issue-14">Issue #14</h1>
+
+<p>Set up <code class="language-plaintext highlighter-rouge">Affine</code> service, which is a workspace with fully merged docs, whiteboards and databases [11].</p>
+
+<h1 id="solution-14">Solution (#14)</h1>
+
+<p>Here, I am using <code class="language-plaintext highlighter-rouge">1panel</code> [12] to set up the <code class="language-plaintext highlighter-rouge">Affine</code> service and the installation is just a click-and-go operation, very straightforward – just find the app in the app store in the <code class="language-plaintext highlighter-rouge">1panel</code> interface and install the app by filling in some necessary parameters. After the successful installation, we need to do some post configuration to enable the email verification and the AI features. By default, such two features would not be enabled when following the normal way of installation, e.g., using <code class="language-plaintext highlighter-rouge">1panel</code>. In my case, my <code class="language-plaintext highlighter-rouge">Affine</code> app will be installed to the <code class="language-plaintext highlighter-rouge">1panel</code> app list, which can be found here, <code class="language-plaintext highlighter-rouge">/opt/1panel/apps/affine/affine</code>. To enable the email verification feature, we need to edit the <code class="language-plaintext highlighter-rouge">.env</code> file in the app folder to put in the email service configuration like below,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AFFINE_ADMIN_EMAIL="******"
+AFFINE_ADMIN_PASSWORD="******"
+CONTAINER_NAME="1Panel-affine-X7oq"
+CPUS=0
+HOST_IP=""
+MEMORY_LIMIT=0
+PANEL_APP_PORT_HTTP=3010
+PANEL_APP_PORT_HTTP_5555=5555
+PANEL_DB_HOST="postgresql"
+PANEL_DB_HOST_NAME="postgresql"
+PANEL_DB_NAME="affine_rtkwcm"
+PANEL_DB_PORT=5432
+PANEL_DB_USER="affine_4kaPn4"
+PANEL_DB_USER_PASSWORD="******"
+PANEL_REDIS_HOST="redis"
+PANEL_REDIS_ROOT_PASSWORD="******"
+AFFINE_SERVER_HOST="aff.iris-home.net"
+MAILER_HOST="smtp.gmail.com"
+MAILER_PORT=587
+MAILER_USER="******"
+MAILER_PASSWORD="******"
+</code></pre></div></div>
+
+<p>where all the email address and password relevant entries were left out. The normal installation via <code class="language-plaintext highlighter-rouge">1panel</code> should already take care of the configuration up until the <code class="language-plaintext highlighter-rouge">PANEL_REDIS_ROOT_PASSWORD</code> entry. The <code class="language-plaintext highlighter-rouge">AFFINE_SERVER_HOST</code> entry then should be added manually to be consistent with exact the host name where the <code class="language-plaintext highlighter-rouge">Affine</code> service can be reached. Here for the mail service, I am using <code class="language-plaintext highlighter-rouge">Gmail</code> and the <code class="language-plaintext highlighter-rouge">MAILER_USER</code> entry is just our <code class="language-plaintext highlighter-rouge">Gmail</code> email address. The <code class="language-plaintext highlighter-rouge">MAILER_PASSWORD</code> needs to be the Google application password, which can be obtained following the instruction in Ref. [13].</p>
+
+<p>To enable the AI feature, we need to first obtain the <code class="language-plaintext highlighter-rouge">OpenAI</code> API at [14]. Then we need to edit the <code class="language-plaintext highlighter-rouge">data/config/affine.js</code> file under the <code class="language-plaintext highlighter-rouge">Affine</code> application directory mentioned above [15]. Scrolling to the bottom of the file, we can fine the <code class="language-plaintext highlighter-rouge">Copilot</code> section and we just need to uncomment the section and fill in the <code class="language-plaintext highlighter-rouge">OpenAI</code> API key, like this,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// /* Copilot Plugin */
+AFFiNE.use('copilot', {
+  openai: {
+    apiKey: '&lt;OpenAI_API_Key&gt;',
+  },
+  // fal: {
+  //   apiKey: 'your-key',
+  // },
+  // unsplashKey: 'your-key',
+  // storage: {
+  //   provider: 'cloudflare-r2',
+  //   bucket: 'copilot',
+  // }
+})
+</code></pre></div></div>
+
+<p>After the manual configuration, we may need to stop the running container by running <code class="language-plaintext highlighter-rouge">sudo docker stop &lt;CONTAINER_ID&gt;</code> and the <code class="language-plaintext highlighter-rouge">&lt;CONTAINER_ID&gt;</code> can be obtained by running <code class="language-plaintext highlighter-rouge">sudo docker ps -a | grep "affine"</code>. Then we can do <code class="language-plaintext highlighter-rouge">sudo docker rm &lt;CONTAINER_ID&gt;</code> to remove the container and run <code class="language-plaintext highlighter-rouge">sudo docker compose up -d</code> in the <code class="language-plaintext highlighter-rouge">Affine</code> application directory mentioned above, namely <code class="language-plaintext highlighter-rouge">/opt/1panel/apps/affine/affine</code>.</p>
+
 <p><br /></p>
 
 <h1 id="references">References</h1>
@@ -791,6 +844,16 @@ services:
 <p>[9] <a href="https://github.com/bizzycola/qrcode-generator">https://github.com/bizzycola/qrcode-generator</a></p>
 
 <p>[10] <a href="https://docs.requarks.io/install/docker#using-docker-compose">https://docs.requarks.io/install/docker#using-docker-compose</a></p>
+
+<p>[11] <a href="https://affine.pro/">https://affine.pro/</a></p>
+
+<p>[12] <a href="https://github.com/1Panel-dev/1Panel">https://github.com/1Panel-dev/1Panel</a></p>
+
+<p>[13] <a href="https://support.google.com/accounts/answer/185833?hl=en">https://support.google.com/accounts/answer/185833?hl=en</a></p>
+
+<p>[14] <a href="https://platform.openai.com/api-keys">https://platform.openai.com/api-keys</a></p>
+
+<p>[15] <a href="https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437">https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437</a></p>
 
       </article>
 
