@@ -106,16 +106,30 @@ git clone ornlgit:general/tsitc.git
 where we have replaced `git@code.ornl.gov` in the originally copied address with the unique name `ornlgit` that we assigned to the GitLab server in our local SSH configuration file. From now on, we should be able to use git within the checked out repo without the need to worry about login, etc., as the connection has already been established in a secure way using the SSH key.
 
 <style>
-   .callout-box {
-      padding: 20px;
-      background-color: #f9f9f9;
-      border-left: 6px solid #007bff; /* Add a colored border on the left */
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-top: 10px;
-   }
+.callout {
+    margin: 20px 0;
+    padding: 15px 20px;
+    background-color: #e8f4fd; /* Light blue background */
+    border-left: 5px solid #007BFF; /* Blue accent on the left */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    font-family: Arial, sans-serif; /* Ensuring the font is consistent */
+}
+
+.callout-header {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff; /* Matching the blue accent */
+}
+
+.callout-content {
+    margin-top: 10px;
+    line-height: 1.6; /* Improving readability */
+}
 </style>
 
-<p class="callout-box">
+<p class="callout">
+<a style="color:#007bff;font-weight:bold;font-size:18px;margin-bottom:5px">For Windows</a>
+<br>
 On Windows, we need to use the `git` terminal -- if we follow the instruction [here](https://git-scm.com/download/win) to install the Windows version of `git`, we will have access to the `git` terminal. Inside the `git` terminal, we can edit the `~/.ssh/config` file to put in the host configuration mentioned above just like what we would do on a Unix/Linux machine. Using `git` through Windows terminal like `powershell` or `CMD` will probably work with the SSH key, but I am not sure how for the moment and will leave it for further exploration.
 </p>

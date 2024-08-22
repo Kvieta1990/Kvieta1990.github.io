@@ -356,17 +356,31 @@ if (chromeAgent) {
 <p>where we have replaced <code class="language-plaintext highlighter-rouge">git@code.ornl.gov</code> in the originally copied address with the unique name <code class="language-plaintext highlighter-rouge">ornlgit</code> that we assigned to the GitLab server in our local SSH configuration file. From now on, we should be able to use git within the checked out repo without the need to worry about login, etc., as the connection has already been established in a secure way using the SSH key.</p>
 
 <style>
-   .callout-box {
-      padding: 20px;
-      background-color: #f9f9f9;
-      border-left: 6px solid #007bff; /* Add a colored border on the left */
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-top: 10px;
-   }
+.callout {
+    margin: 20px 0;
+    padding: 15px 20px;
+    background-color: #e8f4fd; /* Light blue background */
+    border-left: 5px solid #007BFF; /* Blue accent on the left */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    font-family: Arial, sans-serif; /* Ensuring the font is consistent */
+}
+
+.callout-header {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff; /* Matching the blue accent */
+}
+
+.callout-content {
+    margin-top: 10px;
+    line-height: 1.6; /* Improving readability */
+}
 </style>
 
-<p class="callout-box">
+<p class="callout">
+<a style="color:#007bff;font-weight:bold;font-size:18px;margin-bottom:5px">For Windows</a>
+<br />
 On Windows, we need to use the <code class="language-plaintext highlighter-rouge">git</code> terminal – if we follow the instruction <a href="https://git-scm.com/download/win">here</a> to install the Windows version of <code class="language-plaintext highlighter-rouge">git</code>, we will have access to the <code class="language-plaintext highlighter-rouge">git</code> terminal. Inside the <code class="language-plaintext highlighter-rouge">git</code> terminal, we can edit the <code class="language-plaintext highlighter-rouge">~/.ssh/config</code> file to put in the host configuration mentioned above just like what we would do on a Unix/Linux machine. Using <code class="language-plaintext highlighter-rouge">git</code> through Windows terminal like <code class="language-plaintext highlighter-rouge">powershell</code> or <code class="language-plaintext highlighter-rouge">CMD</code> will probably work with the SSH key, but I am not sure how for the moment and will leave it for further exploration.
 </p>
 
