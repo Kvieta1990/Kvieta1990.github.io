@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Van Hove Function</title>
+        <description>
+          
+          The Van Hove function describes the time dependent pair correlation between atoms, \[G(r, t) = \frac{1}{4\pi \rho_0Nr^2}\sum_{i,j}\delta(r - |\vec{r}_i(0) - \vec{r}_j(t)|)\] \(i\) and \(j\) runs over all the \(N\) atoms in the system. \(\vec{r}_i\) refers to the position of the atom \(i\) at time \(t\). The following formula describes the...
+        </description>
+        <pubDate>Thu, 22 Aug 2024 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2024-08-22-van_hove_func/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-08-22-van_hove_func/</guid>
+      </item>
+    
+      <item>
         <title>Use SSH key with GitLab</title>
         <description>
           
@@ -225,17 +236,6 @@
         <pubDate>Thu, 12 Oct 2023 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2023-10-12-token_github_anaconda/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-10-12-token_github_anaconda/</guid>
-      </item>
-    
-      <item>
-        <title>Size &amp; strain effect and preferred orientation in diffraction</title>
-        <description>
-          
-          Size effect The Bragg equation can be derived based on a simple picture where one can calculate the phase difference between the two sets of incoming and scattered beam corresponding to two scattering center. The fundamental idea is that when the phase difference is the integer multiple of the wavelength,...
-        </description>
-        <pubDate>Mon, 09 Oct 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2023-10-09-diff_size_strain/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-10-09-diff_size_strain/</guid>
       </item>
     
   </channel>

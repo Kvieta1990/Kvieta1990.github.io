@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Van Hove Function</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="The Van Hove function describes the time dependent pair correlation between atoms, \[G(r, t) = \frac{1}{4\pi \rho_0Nr^2}\sum_{i,j}\delta(r - |\vec{r}_i(0) - \vec{r}_j(t)|)\] \(i\) and \(j\) runs over all the \(N\) atoms in the system. \(\vec{r}_i\) refers to the position of the atom \(i\) at time \(t\). The following formula describes the...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Van Hove Function">
+  <meta property="og:description" content="The Van Hove function describes the time dependent pair correlation between atoms, \[G(r, t) = \frac{1}{4\pi \rho_0Nr^2}\sum_{i,j}\delta(r - |\vec{r}_i(0) - \vec{r}_j(t)|)\] \(i\) and \(j\) runs over all the \(N\) atoms in the system. \(\vec{r}_i\) refers to the position of the atom \(i\) at time \(t\). The following formula describes the...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2020/02/">
-  <link rel="canonical" href="http://localhost:4000/archive/2020/02/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2024-08-22T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2024-08-22-van_hove_func/">
+  <link rel="canonical" href="http://localhost:4000/2024-08-22-van_hove_func/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Van Hove Function">
+  <meta property="twitter:description" content="The Van Hove function describes the time dependent pair correlation between atoms, \[G(r, t) = \frac{1}{4\pi \rho_0Nr^2}\sum_{i,j}\delta(r - |\vec{r}_i(0) - \vec{r}_j(t)|)\] \(i\) and \(j\) runs over all the \(N\) atoms in the system. \(\vec{r}_i\) refers to the position of the atom \(i\) at time \(t\). The following formula describes the...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -257,10 +259,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Van Hove Function</h1>
           
 
+          
+					<span class="post-meta">Posted on August 22, 2024, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -273,316 +279,131 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>The Van Hove function describes the time dependent pair correlation between atoms,</p>
+
+\[G(r, t) = \frac{1}{4\pi \rho_0Nr^2}\sum_{i,j}\delta(r - |\vec{r}_i(0) - \vec{r}_j(t)|)\]
+
+<p>\(i\) and \(j\) runs over all the \(N\) atoms in the system. \(\vec{r}_i\) refers to the position of the atom \(i\) at time \(t\). The following formula describes the fundamental construction of the Van Hove function from the dynamic structure factor \(S(Q, E)\),</p>
+
+\[G(r, t) = \frac{1}{2\pi\rho_0r}\int S(Q, E)sin(Qr)e^{i\omega t}Q\,dQ\,dE\]
+
+<p>For more details and references about the formulation, refer to Ref. [1, 2]. From the above formulation, there are two main immediate derivations to reiterate,</p>
+
+<ol>
+  <li>
+    <p>If we integrate out the energy (as mathematically shown in Eqn. 6 in Ref. [1]), as for a normal pair distribution function (PDF) measurement without discriminating the incoming and outgoing energy, that is just to set \(t = 0\), in the formula above – the exponential term in the Fourier transform of the energy part accordingly becomes \(1\), and we can pull out the energy relevant terms to have Eqn. 6. in Ref. [1]. Such a mathematical result indicates that in a normal PDF measurement, we are actually measuring the equal-time correlation (i.e., simultaneously catch atoms with respect to the pair distance – since we can only measure pair distances without knowing sample position directly due to the phase problem). In contrast, the non-equal-time correlation (i.e., \(t \neq 0\)) refers to something like catching atom A at \(t = 0\) but catching atom B at \(t=t_1\), again, with respect to the pair distance, in which case we then get the evolution of the real-space correlation with time.</p>
+  </li>
+  <li>
+    <p>If we can somehow measure only the elastic scattering, that means the \(S(Q, E)\) function is a Dirac \(\delta\) function in the energy space and we know that the Fourier transform of a Dirac \(\delta\) function is a constant in the coupled space. Therefore, such a measurement will yield a static picture of the atomic configuration, i.e., correlation is constant in time space, or, atoms ‘not moving’ in the measured picture.</p>
+  </li>
+</ol>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://doi.org/10.1080/00268976.2019.1649488">T. Egami &amp; Y. Shinohara, Dynamics of water in real space and time, <em>Mol. Phys.</em>, 2019, 117 (22), 3227-3231.</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#crystallography">crystallography</a>
+          
+            <a href="/tags#total scattering">total scattering</a>
+          
+            <a href="/tags#dynamic PDF">dynamic PDF</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
 
 
-<div class="intro-header"></div>
 
-<div role="main" class=" container-md ">
-  
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>February, 2020</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
-
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
 
   
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Van+Hove+Function&url=http%3A%2F%2Flocalhost%3A4000%2F2024-08-22-van_hove_func%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2024-08-22-van_hove_func%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2024-08-22-van_hove_func%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2024-08-19-gitlab_ssh/" data-toggle="tooltip" data-placement="top" title="Use SSH key with GitLab">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
 </div>
 
 
