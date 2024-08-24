@@ -1,7 +1,7 @@
 ---
 layout: page
-title: About My Blog
-subtitle: Brief intro to my blog
+title: About
+subtitle: Brief intro to my homepage
 ---
 
 <div data-tilt data-tilt-max="35" data-tilt-scale="0.8">
@@ -16,7 +16,7 @@ subtitle: Brief intro to my blog
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
 
 <p style='text-align: justify;'>
-This is my personal blog, for the purpose of recording my learning progress.
+This is my personal homepage, for the purpose of letting people know about myself and recording my learning progress.
 For every single idea which I believe is crucial for understanding specific physics or other topics,
 I have been trying my best to write them down. On one hand, this can help myself refreshing my mind from time to time,
 and on the other, if someone else loving physics happens to meet this site,

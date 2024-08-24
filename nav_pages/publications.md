@@ -8,6 +8,24 @@ subtitle: 　
 
 <br />
 
+<u>2024</u>
+
+- Bernadette Cladek, **Yuanpeng Zhang**, Russell Maier, Bruce Ravel, Matthew G Tucker, Igor Levin, <u><b><i>J. Appl. Cryst.</i></b></u> 2024, 57, 1023-1039.
+
+- Wojciech A. Sławiński, Christopher J. Kerr, **Yuanpeng Zhang**, Helen Y. Playford, Martin T. Dove, Anthony E. Phillips, Matthew G. Tucke, <u><b><i>J. Appl. Cryst.</i></b></u> 2024, 57, 1251-1262.
+
+- Dmitry S Maltsev, Darren M Driscoll, **Yuanpeng Zhang**, Joerg C Neuefeind, Benjamin Reinhart, Can Agca, Debmalya Ray, Phillip W Halstenberg, Mina Aziziha, Juliano Schorne-Pinto, Theodore M Besmann, Vyacheslav S Bryantsev, Sheng Dai, Santanu Roy, Alexander S Ivanov, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2024, 146, 21220-21224.
+
+- Zheng Sun, Hui Liu, Ji Zhang, Huajie Luo, Yonghao Yao, **Yuanpeng Zhang**, Laijun Liu, Joerg C Neuefeind, Jun Chen, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2024, 146, 13467-13476.
+
+- **Yuanpeng Zhang**, Zhiling Dun, Yunqi Cai, Chengkun Xing, Naveen Kumar Chogondahalli Cui, Qi, Muniraju, Qiang Zhang, Yongqing Li, Jinguang Cheng, Haidong Zhou, <u><b><i>Phys. Rev. B</i></b></u> 2024, 109, 144407.
+
+- Shumin Zhang, Feipeng Zhao, Lo-Yueh Chang, Yu-Chun Chuang, Zhen Zhang, Yuanmin Zhu, Xiaoge Hao, Jiamin Fu, Jiatang Chen, Jing Luo, Minsi Li, Yingjie Gao, Yining Huang, Tsun-Kong Sham, M. Danny Gu*, **Yuanpeng Zhang\***, Graham King*, Xueliang Sun*, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2024, 146, 2977-2985.
+
+- Hui Liu, Zheng Sun, Ji Zhang, Huajie Luo, **Yuanpeng Zhang**, Andrea Sanson, Manuel Hinterstein, Laijun Liu, Joerg C Neuefeind, Jun Chen, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2024, 146, 3498-3507.
+
+- Sichen Jiao, Yujian Sun, Dekai Shi, **Yuanpeng Zhang**, Xuelong Wang, Jue Liu, Le Kang, Fangwei Wang, Xiqian Yu, Hong Li, Liquan Chen, Xuejie Huang, <u><b><i>Energy Environ. Sci.</i></b></u> 2024, 17, 4977-4987.
+
 <u>2023</u>
 
 - Sichen Jiao, Yujian Sun, Junyang Wang, Dekai Shi, Yapei Li, Xiangkang Jiang, Fangwei Wang, **Yuanpeng Zhang\***, Jue Liu, Xuelong Wang*, Xiqian Yu*, Hong Li, Liquan Chen, Xuejie Huang, <u><b><i>Adv. Energy Mater.</i></b></u> 2023, 13, 2301636.

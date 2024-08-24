@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Yuanpeng's Blog
+title: Yuanpeng Zhang
 subtitle: Neutron Scattering Scientist at ORNL
 ---
 
@@ -58,9 +58,11 @@ More
 
 - <a target="_blank" href="https://orcid.org/0000-0003-4224-3361">Yuanpeng's ORCID</a>
 
-- <a target="_blank" href="https://rmcprofile.pages.ornl.gov/">RMCProfile website</a>
+- <a target="_blank" href="https://dh.iris-home.net">Yuanpeng's Dashboard</a>
 
 - <a target="_blank" href="https://github.com/Kvieta1990">Yuanpeng's GitHub</a>
+
+- <a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
 
 - <a target="_blank" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Binder for Jupyter notebooks</a>
 
