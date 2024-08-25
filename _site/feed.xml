@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>FAQs about Mantid &amp;ndash; Yuanpeng&apos;s Collection</title>
+        <description>
+          
+          Mantid is framework for processing and analyzing neutron and muon scattering data. Eevery now and then, I found myself having difficulties in using some of the algorithms in Mantid and every time I keep forgetting what the solution is. So, in this blog, I will try to note down the...
+        </description>
+        <pubDate>Sat, 24 Aug 2024 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2024-08-24-mantid_faq/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-08-24-mantid_faq/</guid>
+      </item>
+    
+      <item>
         <title>Van Hove Function</title>
         <description>
           
@@ -225,17 +236,6 @@
         <pubDate>Sun, 29 Oct 2023 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2023-10-29-findsym/</link>
         <guid isPermaLink="true">http://localhost:4000/2023-10-29-findsym/</guid>
-      </item>
-    
-      <item>
-        <title>Anaconda token setup for GitHub action</title>
-        <description>
-          
-          Conda package building and deploying (to Anaconda) can be configured in GitHub action so that when a certain action triggers the GitHub action, the conda package will be built and deployed automatically. As part of the setup, the Anaconda token is required in the GitHub settings so that the secure...
-        </description>
-        <pubDate>Thu, 12 Oct 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2023-10-12-token_github_anaconda/</link>
-        <guid isPermaLink="true">http://localhost:4000/2023-10-12-token_github_anaconda/</guid>
       </item>
     
   </channel>
