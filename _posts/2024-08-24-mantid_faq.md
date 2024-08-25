@@ -46,9 +46,9 @@ use_math: true
 
 <p class="faq-container">
     <a class="faq-item">
-        <a class="faq-question">▶️ How to do the time filtering and save the filtered workspace properly?</a>
+        <a class="faq-question" id="faq1">▶️ How to do the time filtering and save the filtered workspace properly?</a>
         <span class="faq-answer">
-            <b>Answer</b>: Time filtering can be done with the following snippet, by specifying the absolute time for start and end. Relative time can be used as well, but it seems that the algorithm is not behaving as documented in the `Mantid` documentation [1] -- when an integer is used as the input for the `StopTime` parameter, it seems that the algorithm still treat it as `seconds` but not `nanoseconds` as given in the documentation. 
+            <a href="#faq1"><b># Answer</b></a>: Time filtering can be done with the following snippet, by specifying the absolute time for start and end. Relative time can be used as well, but it seems that the algorithm is not behaving as documented in the `Mantid` documentation [1] -- when an integer is used as the input for the `StopTime` parameter, it seems that the algorithm still treat it as `seconds` but not `nanoseconds` as given in the documentation. 
             <br>
             <span class="callout multiline-span">
                 &nbsp;FilterByTime(
