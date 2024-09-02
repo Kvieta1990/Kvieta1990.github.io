@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Output of the Reduced Time-of-Flight Powder Diffraction Bragg Data</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="Fundamentally, the Bragg diffraction data that we will be using for the Rietveld analysis is nothing different as compared to the total scattering data – it is just that for the Bragg data analysis, we focus only on the Bragg peaks, treating the diffuse scattering signal as purely the background....">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Output of the Reduced Time-of-Flight Powder Diffraction Bragg Data">
+  <meta property="og:description" content="Fundamentally, the Bragg diffraction data that we will be using for the Rietveld analysis is nothing different as compared to the total scattering data – it is just that for the Bragg data analysis, we focus only on the Bragg peaks, treating the diffuse scattering signal as purely the background....">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2020/02/">
-  <link rel="canonical" href="http://localhost:4000/archive/2020/02/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2024-08-30T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2024-08-30-tof_binning/">
+  <link rel="canonical" href="http://localhost:4000/2024-08-30-tof_binning/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Output of the Reduced Time-of-Flight Powder Diffraction Bragg Data">
+  <meta property="twitter:description" content="Fundamentally, the Bragg diffraction data that we will be using for the Rietveld analysis is nothing different as compared to the total scattering data – it is just that for the Bragg data analysis, we focus only on the Bragg peaks, treating the diffuse scattering signal as purely the background....">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -258,10 +260,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Output of the Reduced Time-of-Flight Powder Diffraction Bragg Data</h1>
           
 
+          
+					<span class="post-meta">Posted on August 30, 2024, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -274,324 +280,134 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/bragg_software.png" style="border:none;" width="400" alt="bragg_software" title="bragg_software" />
+</p>
+
+<p>Fundamentally, the Bragg diffraction data that we will be using for the Rietveld analysis is nothing different as compared to the total scattering data – it is just that for the Bragg data analysis, we focus only on the Bragg peaks, treating the diffuse scattering signal as purely the background. So, in principle, they should follow the same process of data reduction [1] and the reduced data should be output with the same form to keep consistent. For sure, due to the possible misalignment between the sample and the calibrant (e.g., diamond), we would normally need a second calibration while we are doing the Rietveld refinement, commonly using a standard silicon sample, with more calibration parameters as compared to the initial calibration for the total scattering data. As such, we would need the Bragg diffraction data output in time-of-flight (TOF) space. But that is just a unit conversion step – once we successfully reduce the total scattering data and make sure it comes in its normalized form (i.e., the normalized \(S(Q)\) which should go to 1 at the high \(Q\) region), we can always convert the \(Q\)-space data to TOF-space using an arbitrary <code class="language-plaintext highlighter-rouge">DIFC</code> constant and in our Rietveld refinement process, we then worry about the proper calibration constant to be used for converting the TOF data into \(d\)- (or, \(q\)-) space.</p>
+
+<p><br /></p>
+
+<p>However, in practice, quite often the Bragg diffraction data is not produced with the same procedure as used for the total scattering data production. Instead, only the necessary background subtraction and probably a vanadium normalization will be applied to produce the Bragg data, without worrying about the normalization process. This is fine for Bragg data analysis as 1) we don’t care too much about the absolute scaling of the data, and 2) we don’t care too much about the background since it is just the background anyways. One question,to ask is, though, what harm do we have if we produce the normalized version of the Bragg data with all the necessary corrections in place, as what we do for reducing the total scattering data? The answer is obvious – no harm <code class="language-plaintext highlighter-rouge">at all</code>… It turns out to be just a convention thing, and to be honest, output Bragg data in its unnormalized form actually makes it impossible to compare in between different instruments, or even in between different banks for the same sample measured on the same instrument. Although, this is not a real harm that the unnormalized data incorporates – as we said, we don’t really care too much about the background and scaling of the data for a Rietveld analysis – still it does not make any obvious sense why we choose the unnormalized version of the Bragg data against the normalized version which brings in only benefit but not harm <code class="language-plaintext highlighter-rouge">at all</code>…</p>
+
+<p><br /></p>
+
+<p>Another thing to pay attention to when output the Bragg diffraction data is that different data analysis software does take different form of data. By this, not only we mean the format of the data file, but also the actual form of the data itself. For example, GSAS (I and II) takes the histogram data as the input and internally it will convert the data into distribution via dividing by the bin width. However, Topas takes in directly the distribution data and therefore the input data for Topas should already have the bin width divided out. This requires the developers for data reduction to pay attention to the bin width issue while producing the Bragg data output for different software. Depending on whether the internally reduced data is already a distribution data or not, we need to worry about whether multiplying the bin width, e.g., for producing the output Bragg data for GSAS (I or II). The <code class="language-plaintext highlighter-rouge">Mantid</code> algorithm <code class="language-plaintext highlighter-rouge">SaveGSS</code> [2] for the Bragg data output does come with a <code class="language-plaintext highlighter-rouge">MultiplyByBinWidth</code> parameter to control whether multiplying the output by the bin width. For GSAS data file, the bin width information is also necessary to be in the header line for each bank since the program will need it for converting the data internally to distribution type of data. The bin width is given as a constant which is basically \(\Delta T / T\), which corresponds to a constant binning for the logarithmic axis. To see this, we simply have,</p>
+
+\[d\,ln\, T = \frac{d\,T}{T}\]
+
+<p>so that,</p>
+
+\[\Delta ln\,T = Const = \frac{\Delta T}{T}\]
+
+<p>Therefore, for each TOF data point in the Bragg output, we can use the \(\Delta T / T\) constant for the corresponding bank to figure out the bin width that we need to divide or multiply by to convert in between the histogram and distribution type of data.</p>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://powder.ornl.gov/total_scattering/data_reduction/princple_implementation.html">Documentation for total scattering data reduction with <code class="language-plaintext highlighter-rouge">MantidTotalScattering</code> framework</a></p>
+
+<p>[2] <a href="https://docs.mantidproject.org/nightly/algorithms/SaveGSS-v1.html">Documentation for the <code class="language-plaintext highlighter-rouge">Mantid</code> algorithm <code class="language-plaintext highlighter-rouge">SaveGSS</code></a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#data reduction">data reduction</a>
+          
+            <a href="/tags#crystallography">crystallography</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
 
 
-<div class="intro-header"></div>
 
-<div role="main" class=" container-md ">
-  
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>February, 2020</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
-
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
 
   
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Output+of+the+Reduced+Time-of-Flight+Powder+Diffraction+Bragg+Data&url=http%3A%2F%2Flocalhost%3A4000%2F2024-08-30-tof_binning%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2024-08-30-tof_binning%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2024-08-30-tof_binning%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2024-08-24-mantid_faq/" data-toggle="tooltip" data-placement="top" title="FAQs about Mantid &ndash; Yuanpeng's Collection">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
 </div>
 
 
