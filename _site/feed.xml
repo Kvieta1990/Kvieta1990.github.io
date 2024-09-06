@@ -2,14 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     
-    <title>Yuanpeng&apos;s Blog</title>
+    <title>Yuanpeng's Blog</title>
     
     
-    <description>This website is a virtual proof that I&apos;m awesome</description>
+    <description>This website is a virtual proof that I'm awesome</description>
     
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+      <item>
+        <title>Description of Magnetic Structure with Propogation Vector</title>
+        <description>
+          
+          The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus...
+        </description>
+        <pubDate>Fri, 06 Sep 2024 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2024-09-06-mag_struc_k_vec/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-09-06-mag_struc_k_vec/</guid>
+      </item>
     
       <item>
         <title>Tips on Wordpress Setup</title>
@@ -34,7 +45,7 @@
       </item>
     
       <item>
-        <title>FAQs about Mantid &amp;ndash; Yuanpeng&apos;s Collection</title>
+        <title>FAQs about Mantid &amp;ndash; Yuanpeng's Collection</title>
         <description>
           
           Mantid is framework for processing and analyzing neutron and muon scattering data. Eevery now and then, I found myself having difficulties in using some of the algorithms in Mantid and every time I keep forgetting what the solution is. So, in this blog, I will try to note down the...
@@ -149,7 +160,7 @@
           
           Set up a VPS and getting a domain for the VPS will not be covered in this blog. Here, I am assuming we have already got our VPS up running. I am using the 1Panel control panel to install the Flarum forum web service, which is one of the most...
         </description>
-        <pubDate>Thu, 07 Mar 2024 00:00:00 -0400</pubDate>
+        <pubDate>Thu, 07 Mar 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-03-07-flarum_setup/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-07-flarum_setup/</guid>
       </item>
@@ -160,7 +171,7 @@
           
           In crystallography, quite often we would use the 6 lattice parameters to describe the unit cell, namely, a, b, c, \(\alpha\), \(\beta\) and \(\gamma\). In some cases, we would also need to construct those lattice vectors (\(\vec{a}\), \(\vec{b}\) and \(\vec{c}\)) in Cartesian coordinate system. For example, when we want to...
         </description>
-        <pubDate>Mon, 04 Mar 2024 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 04 Mar 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-03-04-latt_params_to_latt_vecs/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-04-latt_params_to_latt_vecs/</guid>
       </item>
@@ -178,7 +189,7 @@
 
 
         </description>
-        <pubDate>Sun, 25 Feb 2024 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 25 Feb 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-02-25-ps_make_animation/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-02-25-ps_make_animation/</guid>
       </item>
@@ -189,7 +200,7 @@
           
           The fundamental idea of web searching is through web crawling, critical information about the website and the embedded links in the crawled website can be obtained. Based on the crawling results, a ranking algorithm could be applied, based on which one can search the website using keywords. Nowadays, we get...
         </description>
-        <pubDate>Sun, 04 Feb 2024 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 04 Feb 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-02-04-yacy_setup/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-02-04-yacy_setup/</guid>
       </item>
@@ -200,7 +211,7 @@
           
           When setting up Oracle cloud instance, we would give the instance an initial allocation of volume, and later on we might find that the initial volume size is not enough as we install more and more services into our VPS. In such a situation, we may want to expand the...
         </description>
-        <pubDate>Sun, 28 Jan 2024 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 28 Jan 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</guid>
       </item>
@@ -211,7 +222,7 @@
           
           Dify is an LLM application platform which can provide access to various LLM models, tools and applications. With it, we can build our own ChatBot server acting just like ChatGPT. At the backend, it utilizes the LLM services from various providers, such as openAI, Gemini, etc., through API call. In...
         </description>
-        <pubDate>Sat, 27 Jan 2024 00:00:00 -0400</pubDate>
+        <pubDate>Sat, 27 Jan 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-01-27-docker_dify/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-27-docker_dify/</guid>
       </item>
@@ -222,20 +233,9 @@
           
           YOURLS is an URL shortening service [1] and we can deploy a local version of the service to our own VPS. Here, I am using the 1Panel service [2] to set up YOURLS – 1Panel is a web-based Linux system management interface with which we can manage our VPS and...
         </description>
-        <pubDate>Mon, 15 Jan 2024 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 15 Jan 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-01-15-yourls_docker/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-15-yourls_docker/</guid>
-      </item>
-    
-      <item>
-        <title>Dockerize the ADDIE service</title>
-        <description>
-          
-          Initial Docker Image Build As conventionally, the ADDIE (ADvanced DIffraction Environment, available at addie.ornl.gov) service is deployed on a VPS (specifically, an instance on the ORNL hosted research cloud). The service itself and all the necessary configurations are therefore locked to the VPS machine, making it extremely painful for transfer...
-        </description>
-        <pubDate>Sat, 13 Jan 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-01-13-dockerize_addie/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-01-13-dockerize_addie/</guid>
       </item>
     
   </channel>
