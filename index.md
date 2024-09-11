@@ -54,18 +54,26 @@ More
 
 - <a target="_blank" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">Yuanpeng's ORNL profile</a>
 
+- <a target="_blank" href="https://me.iris-home.net">Yuanpeng's Homepage</a>
+
+- <a target="_blank" href="https://dh.iris-home.net">Yuanpeng's Dashboard</a>
+
+- <a target="_blank" href="https://page.iris-home.net">Yuanpeng's Collection</a>
+
 - <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Yuanpeng's Google scholar</a>
 
 - <a target="_blank" href="https://orcid.org/0000-0003-4224-3361">Yuanpeng's ORCID</a>
 
-- <a target="_blank" href="https://dh.iris-home.net">Yuanpeng's Dashboard</a>
-
 - <a target="_blank" href="https://github.com/Kvieta1990">Yuanpeng's GitHub</a>
 
-- <a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+- <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io">GitHub repo for current blog</a>
 
 - <a target="_blank" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Binder for Jupyter notebooks</a>
 
 - <a target="_blank" href="https://github.com/Kvieta1990/Iris">Learning notes on GitHub</a>
 
-- <a target="_blank" href="https://github.com/Kvieta1990/Kvieta1990.github.io">GitHub repo for current blog</a>
+- <a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+
+- <a target="_blank" href="https://yr.iris-home.net/ychat">Dify Chat Service</a>
+
+- <a target="_blank" href="https://lobe.iris-home.net/">Lobehub Chat Service</a>
