@@ -1,0 +1,160 @@
+{
+  "name": "Slashdot2Gmail",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {}
+      },
+      "id": "0ba0bdd9-13cf-4fba-b650-9522f6436894",
+      "name": "RSS Read",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "position": [
+        1100,
+        620
+      ],
+      "retryOnFail": true,
+      "typeVersion": 1,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "257d7e0a-1c6e-42ca-825c-347fec574914",
+              "name": "url",
+              "type": "string",
+              "value": "http://rss.slashdot.org/Slashdot/slashdotMain"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5e6c2e90-acb2-48a8-a92a-189be743d629",
+      "name": "RSS feed",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        860,
+        620
+      ],
+      "typeVersion": 3.3
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "id": "553cae28-ef13-41ad-a363-8f80710106c1",
+      "name": "Morning Update",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        620,
+        620
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "jsCode": "let out_str = \"<strong>Slashdot Topics</strong><br><strong>=============</strong><br><br>\";\nlet str_tmp = \"\";\nfor (const item of $input.all()) {\n  str_tmp += \"<strong>\" + item.json.title + \"</strong><br>\";\n  str_tmp += \"<strong>\" + item.json.date + \"</strong><br>\";\n  str_tmp += item.json.content;\n}\nout_str += str_tmp;\n\nreturn {\"all_str\": out_str};"
+      },
+      "id": "e00079e6-c547-4220-89cd-94663408df2f",
+      "name": "Collect All Contents",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1340,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "zyroc1990@gmail.com",
+        "subject": "=Slashdot Topics for Today",
+        "message": "={{ $json.all_str }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "a890ab49-120f-4cf4-9868-1bb246550134",
+      "name": "Send To Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        1580,
+        620
+      ],
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "WHfPUrIu8QCkyp16",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Collect All Contents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS feed": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Morning Update": {
+      "main": [
+        [
+          {
+            "node": "RSS feed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect All Contents": {
+      "main": [
+        [
+          {
+            "node": "Send To Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "cea1ee95-89ea-494b-a437-d52860854953",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9e6efd9c28e47e03fa73d79f6052f3d2285b9e1b0a145f29726d9ca1f764930c"
+  },
+  "id": "uCdiFux450F3aA5y",
+  "tags": []
+}

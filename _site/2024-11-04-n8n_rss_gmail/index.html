@@ -19,13 +19,13 @@
 
   
 
-  <title>Size &amp; strain effect and preferred orientation in diffraction</title>
+  <title>Set up an automated workflow for collecting RSS feeds and send to Gmail</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="Size effect The Bragg equation can be derived based on a simple picture where one can calculate the phase difference between the two sets of incoming and scattered beam corresponding to two scattering center. The fundamental idea is that when the phase difference is the integer multiple of the wavelength,...">
+  <meta name="description" content="Following previous post at Ref. [1], we get a feel about the procedures for setting up an automated workflow with n8n. Here in this post, we try to build another simple workflow and the assumption here is that we have already gone through the post in Ref. [1] for all...">
 
   
 
@@ -89,8 +89,8 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Size &amp; strain effect and preferred orientation in diffraction">
-  <meta property="og:description" content="Size effect The Bragg equation can be derived based on a simple picture where one can calculate the phase difference between the two sets of incoming and scattered beam corresponding to two scattering center. The fundamental idea is that when the phase difference is the integer multiple of the wavelength,...">
+  <meta property="og:title" content="Set up an automated workflow for collecting RSS feeds and send to Gmail">
+  <meta property="og:description" content="Following previous post at Ref. [1], we get a feel about the procedures for setting up an automated workflow with n8n. Here in this post, we try to build another simple workflow and the assumption here is that we have already gone through the post in Ref. [1] for all...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -99,9 +99,9 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2023-10-09T00:00:00-04:00">
-  <meta property="og:url" content="http://localhost:4000/2023-10-09-diff_size_strain/">
-  <link rel="canonical" href="http://localhost:4000/2023-10-09-diff_size_strain/">
+  <meta property="og:article:published_time" content="2024-11-04T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2024-11-04-n8n_rss_gmail/">
+  <link rel="canonical" href="http://localhost:4000/2024-11-04-n8n_rss_gmail/">
   
 
   
@@ -110,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Size &amp; strain effect and preferred orientation in diffraction">
-  <meta property="twitter:description" content="Size effect The Bragg equation can be derived based on a simple picture where one can calculate the phase difference between the two sets of incoming and scattered beam corresponding to two scattering center. The fundamental idea is that when the phase difference is the integer multiple of the wavelength,...">
+  <meta property="twitter:title" content="Set up an automated workflow for collecting RSS feeds and send to Gmail">
+  <meta property="twitter:description" content="Following previous post at Ref. [1], we get a feel about the procedures for setting up an automated workflow with n8n. Here in this post, we try to build another simple workflow and the assumption here is that we have already gone through the post in Ref. [1] for all...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -261,11 +261,11 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>Size & strain effect and preferred orientation in diffraction</h1>
+						<h1>Set up an automated workflow for collecting RSS feeds and send to Gmail</h1>
           
 
           
-					<span class="post-meta">Posted on October 9, 2023, by Yuanpeng Zhang</span>
+					<span class="post-meta">Posted on November 4, 2024, by Yuanpeng Zhang</span>
             
             
           
@@ -289,147 +289,49 @@ if (chromeAgent) {
       
 
       <article role="main" class="blog-post">
-        <h1 id="size-effect">Size effect</h1>
+        <style>
+    .faq-container {
+        margin: 0 auto;
+    }
+    .faq-question {
+        margin-bottom: 10px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .faq-answer {
+        display: none;
+        margin-bottom: 20px;
+    }
+    .callout {
+        background-color: #e8f4fd; /* Light blue background */
+        border-left: 5px solid #007BFF; /* Blue accent on the left */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        font-family: Arial, sans-serif; /* Ensuring the font is consistent */
+    }
+    .multiline-span {
+        display: block; /* or display: inline-block; */
+    }
+</style>
 
-<p>The Bragg equation can be derived based on a simple picture where one can calculate the phase difference
-between the two sets of incoming and scattered beam corresponding to two scattering center. The fundamental
-idea is that when the phase difference is the integer multiple of the wavelength, one would have the
-diffraction maxima and thus the Bragg scattering condition. However, the actual scattering event can be
-pictured in a more general way, as described, for example, in the book by M. Dove (see section 6.3 in
-Ref. [1]). Based on the general picture of scattering event, the overall scattering intensity can be
-mathematically described as the summation of a series of plain wave, as given below,</p>
+<p align="center">
+<img src="/assets/img/posts/n8n.png" style="border:none;" width="200" alt="n8n" title="n8n" />
+</p>
 
-\[F(\vec{Q}) = \sum_n exp(i\vec{Q}\cdot\vec{r}_n)\]
+<p>Following previous post at Ref. [1], we get a feel about the procedures for setting up an automated workflow with <code class="language-plaintext highlighter-rouge">n8n</code>. Here in this post, we try to build another simple workflow and the assumption here is that we have already gone through the post in Ref. [1] for all the initial setups, including the installation of <code class="language-plaintext highlighter-rouge">n8n</code>, the configuration for secure connection, etc.</p>
 
-<p>Here, we are treating the scattering center as geometric points without size. In practice, the scattering
-center won’t be a point and the internal correlation within the scattering center could be described by
-a corresponding quantity representing its overall scattering strength. For X-ray, it is the form factor and
-for neutron, one has the scattering length. Mathematically, the expansion from a point scatterer to one with
-finite size can be described by convolution in real-space and according to the property of Fourier transform (calculating
-the scattering intensity following the equation above either in a discrete or continuous manner is equivalent
-to Fourier transform from the mathematical perspective), such a convolution will corresponding to a multiplication
-in reciprocal space. Therefore, considering the finite size effect of the scatterer only yields a multiplicative
-factor to the formulation above. For the purpose of discussion in this article, such a multiplicative factor
-won’t make any real difference and thus will be omitted here in the context.</p>
+<p>Once again, I put the workflow JSON file in Ref. [2]. Once importing the JSON file into <code class="language-plaintext highlighter-rouge">n8n</code>, there are several configurations we need to go through to get it working. First, we need to put in our intended RSS address in the <code class="language-plaintext highlighter-rouge">RSS feed</code> node – in my example, I was using the RSS for <code class="language-plaintext highlighter-rouge">Slashdot</code>. If we have never set up the Gmail API credential in <code class="language-plaintext highlighter-rouge">n8n</code>, again, the <code class="language-plaintext highlighter-rouge">Gmail</code> node will show an exclamation mark, indicating that we should set up the credential first. To do this, we need to go to the <code class="language-plaintext highlighter-rouge">n8n</code> credentials setup page (see Ref. [1]) and select the <code class="language-plaintext highlighter-rouge">Gmail OAuth2 API</code>. Here, we need to follow the instructions in Ref. [3] to set up the Gmail API (N.B. we may need to enable the <code class="language-plaintext highlighter-rouge">Gmail API</code> as well, apart from those APIs mentioned in the post). After this, we will obtain the API credential ID and secret that we need to put into the <code class="language-plaintext highlighter-rouge">n8n</code> credentials setup. When setting up the Google API, we will be asked for the redirect URL and we need to copy the URL from the <code class="language-plaintext highlighter-rouge">OAuth Redirect URL</code> box in the <code class="language-plaintext highlighter-rouge">Gmail OAuth2 API</code> setup page (in <code class="language-plaintext highlighter-rouge">n8n</code>). One thing to notice is, when installing <code class="language-plaintext highlighter-rouge">n8n</code> from docker, we need to manually put in two environment variables to tell the docker engine the URL associated with the <code class="language-plaintext highlighter-rouge">n8n</code> service. Otherwise, the default redirect URL (something like <code class="language-plaintext highlighter-rouge">http://localhost:5678</code>) will be shown in the <code class="language-plaintext highlighter-rouge">Gmail OAuth2 API</code> setup page, which for sure will not work. To add in the environment variables, in the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, we need to put in <code class="language-plaintext highlighter-rouge">N8N_EDITOR_BASE_URL: "https://nn.iris-home.net"</code> and <code class="language-plaintext highlighter-rouge">WEBHOOK_URL: "https://nn.iris-home.net"</code> under the <code class="language-plaintext highlighter-rouge">environment:</code> entry [4]. After changing the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, we need to rebuild the docker container – in <code class="language-plaintext highlighter-rouge">1Panel</code>, this is just simply a button clicking. Then the workflow should just work.</p>
 
 <p><br /></p>
 
-<p>As the simplest case, if we consider a one-dimensional chain of scatterers arranged in an equally-spaced manner,
-the overall scattering intensity can be calculated as presented below, according to the formulation above and
-assuming the space between adjacent scatterers is \(\vec{a}\) (a vector point along the 1D chain) and
-overall we have \(N\) atoms [2, 3],</p>
-
-\[\begin{equation}
-\begin{aligned}
-I(\vec{Q}) &amp; = |F(\vec{Q})|^2 = |\sum_{n=0}^{n=N}exp(i\vec{Q}\cdot\vec{r}_n)|^2\\
-&amp; = |\sum_{n=0}^{n=N}exp[i\vec{Q}\cdot(\vec{r}_0 + n\vec{a})]|^2\\
-&amp; = |exp(i\vec{Q}\cdot\vec{r}_0)|^2\times|\sum_{n=0}^{n=N}exp(i\,n\vec{Q}\cdot\vec{a})|^2\\
-&amp; = 1 \times |\sum_{n=0}^{n=N}exp(i\,n\vec{Q}\cdot\vec{a})| \times |\sum_{n=0}^{n=N}exp(i\,n\vec{Q}\cdot\vec{a})|^*\\
-&amp; = \frac{1 - e^{i\,N\vec{Q}\cdot\vec{a}}}{1 - e^{i\vec{Q}\cdot\vec{a}}} \times \frac{1 - e^{-i\,N\vec{Q}\cdot\vec{a}}}{1 - e^{-i\vec{Q}\cdot\vec{a}}}\\
-&amp; = \frac{2 - (e^{i\,N\vec{Q}\cdot\vec{a}} + e^{-i\,N\vec{Q}\cdot\vec{a}})}{2 - (e^{i\vec{Q}\cdot\vec{a}} + e^{-i\vec{Q}\cdot\vec{a}})}\\
-&amp; = \frac{2 - 2cos(N\vec{Q}\cdot\vec{a})}{2 - 2cos(\vec{Q}\cdot\vec{a})}\\
-&amp; = \frac{2 \times 2sin^2(\frac{N\vec{Q}\cdot\vec{a}}{2})}{2 \times 2sin^2(\frac{\vec{Q}\cdot\vec{a}}{2})}\\
-&amp; = [\frac{sin(\frac{N\vec{Q}\cdot\vec{a}}{2})}{sin(\frac{\vec{Q}\cdot\vec{a}}{2})}]^2
-\end{aligned}
-\end{equation}\]
-
-<blockquote>
-  <p>Here we are calculating the quantity corresponding to the experimentally measured intensity which is
-associated with the <em>square of the amplitude</em>. \(\vec{r}_0\) here represents the position of the first
-atom in the series.</p>
-</blockquote>
-
-<p>The resulted intensity corresponding to the scattering of the 1D chain of atoms can be plotted as below,
-as the function of \(\vec{Q}\cdot\vec{a}\) (fundamentally, the function of the scattering vector \(\vec{Q}\)),</p>
-
-<p align="center">
-<img src="/assets/img/posts/diff_size_effect.png" style="border:none;" width="800" alt="rmc_lammps" title="rmc_lammps" />
-</p>
-
-<blockquote>
-  <p>Here for the demo purpose, we consider the situation where \(N = 2, 3, 4\).</p>
-</blockquote>
-
-<p>Two things that can be told from the plot are,</p>
-
-<ol>
-  <li>
-    <p>The diffraction peaks are located at certain locations, and from the mathematical
-expression above, one can arrive at the condition as \(\vec{Q}\cdot\vec{a} = 2\pi n\), where
-\(n = 1, 2, 3, \dots\). Considering the magnitude of \(|\vec{Q}| = \frac{4\pi sin\theta}{\lambda}\), one
-can simply arrive at the Bragg equation from the peaking condition here.</p>
-  </li>
-  <li>
-    <p>As the number of scatterers (\(N\)) involved in the 1D chain increases, the resulted diffraction peak becomes
-sharper, until reaching a delta function when \(N\) approaches infinity. Put the other way round, as \(N\) decreases,
-the diffraction peak becomes broader, demonstrating clearly the finite size effect upon the diffraction peak broadening.</p>
-  </li>
-</ol>
-
-<blockquote>
-  <p>The python script used for generating the plot here can be downloaded following <a href="/assets/files/diff_size_effect.py">this link</a>.</p>
-</blockquote>
-
-<p>Beyond the simplest 1D case presented here, the general relation between the finite size of samples and the diffraction
-peak broadening is given by the Scherrer equation,</p>
-
-\[\tau = \frac{K\lambda}{\beta\,cos\theta}\]
-
-<p>where \(\tau\) refers to the mean size of the ordered domains, \(K\) is a dimensionless shape factor, \(\lambda\) is the
-wavelength of the scattering beam, \(\beta\) is the line broadening at half the maximum intensity (FWHM), after
-subtracting the instrumental line broadening, in radians, \(\theta\) is the Bragg angle. The derivation of Scherrer equation
-based on the scattering intensity formulation presented above can be found in Wikipedia [2].</p>
-
-<h1 id="strain-effect">Strain effect</h1>
-
-<p>Assuming we have a crystal with infinite size, we would have the diffraction peaks as described by the summation of a series
-of delta functions, meaning infinitely sharp diffraction peaks. However, in practice, if we have strain effect in our crystal,
-the lattice will be distorted as compared to the ideal situation, meaning the spacing between lattice planes will be changed
-as compared to the ideal crystal. In such a situation, the Bragg condition will be met at different location in reciprocal
-space, i.e., the diffraction peaks will shift their positions. If then we have inhomogeneously strained crystals, the scattering
-peak will be distributed around the nominal position (without strain) and the end result is the diffraction peak broadening.
-Detailed explanation and illustration could be found in Ref. [4].</p>
-
-<p>Since both the size and strain effect could lead to the broadening of diffraction peaks and in practice there comes the
-natural question how we are going to decouple the two effects and derive the size and strain of our samples independently.
-There are two main solutions based on different level of assumptions, namely the Williamson-Hall plot and the Warren-Averbach
-method. The former one is a coarse solution, based on the simple assumption that the overall peak broadening is simply a
-summation of the contributions from the two, whereas the second one is in general a more rigorous solution. The details of
-both solutions can be found in Ref. [5].</p>
-
-<h1 id="preferred-orientation-and-texture">Preferred orientation and Texture</h1>
-
-<p>For powder diffraction, we ideally assume having a polycrystalline sample where lots of small crystalline samples uniformly
-orient in space. When shining a beam on such a polycrystalline sample and collect the diffraction signal using a 2D detector,
-one would have the diffraction rings corresponding to the Bragg conditions for different lattice planes. Spots long each
-diffraction ring corresponds to a small piece of crystalline sample orienting along a certain direction. If those small
-crystalline samples are indeed uniformly distributed in the polycrystalline sample, the scattering intensity extracted
-from those diffraction rings is representative and the relative intensities corresponding to different lattice planes can
-be linked by their corresponding structure factor. However, if for some reason the distribution of those small crystalline
-samples is non-uniform, the scattering intensities extracted from the diffraction rings are not comparable to each other
-according to the structure factor. Instead, the relative intensity is associated with both the structure factors and the
-number of small crystalline samples orienting in different directions. In practice, we have two typical such situations –
-preferred orientation and texture. The former one is more of a systematic effect, i.e., the sample systematically prefer
-to grow along a certain lattice direction whereas the second one refers specifically the case where there are insufficient
-crystallites to provide a true powder diffraction pattern. Both situations will lead to the incomplete coverage of the
-diffraction rings where the coverage of different diffraction rings is different across different lattice planes. More
-detailed discussion could be found in Ref. [6, 7].</p>
-
 <h1 id="references">References</h1>
 
-<p>[1] M. Dove, Structure and Dynamics: An Atomic View of Materials. Oxford University Press. 2002.</p>
+<p>[1] <a href="https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/">https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/</a></p>
 
-<p>[2] <a href="https://en.wikipedia.org/wiki/Scherrer_equation">https://en.wikipedia.org/wiki/Scherrer_equation</a></p>
+<p>[2] <a href="/assets/files/Slashdot2Gmail.json" target="_blank">Slashdot2Gmail.json</a></p>
 
-<p>[3] <a href="http://pd.chem.ucl.ac.uk/pdnn/diff1/scat1d.htm#link1">http://pd.chem.ucl.ac.uk/pdnn/diff1/scat1d.htm#link1</a></p>
+<p>[3] <a href="https://docs.n8n.io/integrations/builtin/credentials/google/oauth-generic/?utm_source=n8n_app&amp;utm_medium=credential_settings&amp;utm_campaign=create_new_credentials_modal#create-a-google-cloud-console-project">https://docs.n8n.io/integrations/builtin/credentials/google/oauth-generic/?utm_source=n8n_app&amp;utm_medium=credential_settings&amp;utm_campaign=create_new_credentials_modal#create-a-google-cloud-console-project</a></p>
 
-<p>[4] <a href="http://pd.chem.ucl.ac.uk/pdnn/peaks/size.htm">http://pd.chem.ucl.ac.uk/pdnn/peaks/size.htm</a></p>
-
-<p>[5] <a href="http://pd.chem.ucl.ac.uk/pdnn/peaks/sizedet.htm">http://pd.chem.ucl.ac.uk/pdnn/peaks/sizedet.htm</a></p>
-
-<p>[6] <a href="http://pd.chem.ucl.ac.uk/pdnn/inst1/texture1.htm">http://pd.chem.ucl.ac.uk/pdnn/inst1/texture1.htm</a></p>
-
-<p>[7] <a href="http://pd.chem.ucl.ac.uk/pdnn/inst1/texture2.htm">http://pd.chem.ucl.ac.uk/pdnn/inst1/texture2.htm</a></p>
+<p>[4] <a href="https://community.n8n.io/t/oauth-redirect-url/45108/2">https://community.n8n.io/t/oauth-redirect-url/45108/2</a></p>
 
       </article>
 
@@ -437,13 +339,15 @@ detailed discussion could be found in Ref. [6, 7].</p>
         <div class="blog-tags">
           <span>Tags:</span>
           
-            <a href="/tags#scattering">scattering</a>
+            <a href="/tags#web">web</a>
           
-            <a href="/tags#diffraction">diffraction</a>
+            <a href="/tags#server">server</a>
           
-            <a href="/tags#theory">theory</a>
+            <a href="/tags#tutorial">tutorial</a>
           
-            <a href="/tags#solid state physics">solid state physics</a>
+            <a href="/tags#gmail">gmail</a>
+          
+            <a href="/tags#automation">automation</a>
           
         </div>
       
@@ -460,7 +364,7 @@ detailed discussion could be found in Ref. [6, 7].</p>
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Size+%26+strain+effect+and+preferred+orientation+in+diffraction&url=http%3A%2F%2Flocalhost%3A4000%2F2023-10-09-diff_size_strain%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+an+automated+workflow+for+collecting+RSS+feeds+and+send+to+Gmail&url=http%3A%2F%2Flocalhost%3A4000%2F2024-11-04-n8n_rss_gmail%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -468,7 +372,7 @@ detailed discussion could be found in Ref. [6, 7].</p>
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2023-10-09-diff_size_strain%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2024-11-04-n8n_rss_gmail%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -476,7 +380,7 @@ detailed discussion could be found in Ref. [6, 7].</p>
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2023-10-09-diff_size_strain%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2024-11-04-n8n_rss_gmail%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -494,13 +398,9 @@ detailed discussion could be found in Ref. [6, 7].</p>
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2023-09-10-rustdesk_server/" data-toggle="tooltip" data-placement="top" title="Rustdesk server setup">&larr; Previous Post</a>
+          <a class="page-link" href="/2024-11-03-n8n_notion_slack_workflow/" data-toggle="tooltip" data-placement="top" title="Set up an automated workflow for Notion & Slack connection with n8n">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2023-10-12-token_github_anaconda/" data-toggle="tooltip" data-placement="top" title="Anaconda token setup for GitHub action">Next Post &rarr;</a>
-        </li>
         
       </ul>
       
