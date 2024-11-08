@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Set up workflows for bidirectional connection between NocoDB and Slack</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="NocoDB is a web-based platform that allows building no-code database, with a spreadsheet-like interface, allowing convenient interaction with the database. Here in this post, I am going to walk through the setup of workflows that connects the NocoDB database with Slack, in a bidirectional manner. Namely, we can build a...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Set up workflows for bidirectional connection between NocoDB and Slack">
+  <meta property="og:description" content="NocoDB is a web-based platform that allows building no-code database, with a spreadsheet-like interface, allowing convenient interaction with the database. Here in this post, I am going to walk through the setup of workflows that connects the NocoDB database with Slack, in a bidirectional manner. Namely, we can build a...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2021/07/">
-  <link rel="canonical" href="http://localhost:4000/archive/2021/07/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2024-11-07T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2024-11-07-n8n_slack_nocodb/">
+  <link rel="canonical" href="http://localhost:4000/2024-11-07-n8n_slack_nocodb/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Set up workflows for bidirectional connection between NocoDB and Slack">
+  <meta property="twitter:description" content="NocoDB is a web-based platform that allows building no-code database, with a spreadsheet-like interface, allowing convenient interaction with the database. Here in this post, I am going to walk through the setup of workflows that connects the NocoDB database with Slack, in a bidirectional manner. Namely, we can build a...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -258,10 +260,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Set up workflows for bidirectional connection between NocoDB and Slack</h1>
           
 
+          
+					<span class="post-meta">Posted on November 7, 2024, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -274,395 +280,174 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
+      
 
-<div class="intro-header"></div>
+      
 
-<div role="main" class=" container-md ">
-  
+      <article role="main" class="blog-post">
+        <style>
+    .faq-container {
+        margin: 0 auto;
+    }
+    .faq-question {
+        margin-bottom: 10px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .faq-answer {
+        display: none;
+        margin-bottom: 20px;
+    }
+    .callout {
+        background-color: #e8f4fd; /* Light blue background */
+        border-left: 5px solid #007BFF; /* Blue accent on the left */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        font-family: Arial, sans-serif; /* Ensuring the font is consistent */
+    }
+    .multiline-span {
+        display: block; /* or display: inline-block; */
+    }
+</style>
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>July, 2021</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2021-07-09-coh_incoh_sl/"><h3 class="post-title mb0">Derivation of neutron incoherent scattering length</h3></a>
-					<p class="post-meta small">July 9, 2021, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#scattering">scattering</a>
-  
-    <a href="/tags#solid state physics">solid state physics</a>
-  
-    <a href="/tags#crystallography">crystallography</a>
-  
-    <a href="/tags#total scattering">total scattering</a>
-  
+<p align="center">
+<img src="/assets/img/posts/n8n.png" style="border:none;" width="200" alt="n8n" title="n8n" />
 </p>
 
-          </div>
+<p><code class="language-plaintext highlighter-rouge">NocoDB</code> is a web-based platform that allows building no-code database, with a spreadsheet-like interface, allowing convenient interaction with the database. Here in this post, I am going to walk through the setup of workflows that connects the NocoDB database with Slack, in a bidirectional manner. Namely, we can build a workflow that grabs the NocoDB database entries and post messages to Slack. Or, we can trigger a workflow via Slack event (e.g., app mentioning) and post some entries to the NocoDB database.</p>
+
+<p>To set up the forward connection, i.e., from NocoDB to Slack, we first need to create an API token in <code class="language-plaintext highlighter-rouge">NocoDB</code> via <code class="language-plaintext highlighter-rouge">Team &amp; Settings</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Tokens</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Add new token</code>, and we can give the token a meaningful name. Then we go to <code class="language-plaintext highlighter-rouge">n8n</code> and further go to <code class="language-plaintext highlighter-rouge">Credentials</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Add credential</code> and search for <code class="language-plaintext highlighter-rouge">NocoDB Token account</code> to paste in the token we created in <code class="language-plaintext highlighter-rouge">NocoDB</code>. The JSON file in Ref. [1] can be imported into <code class="language-plaintext highlighter-rouge">n8n</code> (see the instructions in Ref. [2, 3] for more details). Again, when exclamation marks is shown alongside a node, that indicates the credential for the node needs to be selected. We just double click on the node and select the credential in the relevant dropdown list. In my example workflow, I have a <code class="language-plaintext highlighter-rouge">NocoDB</code> database containing my collection of English words and its corresponding Chinese translation. My workflow is responsible for randomly grabbing 5 entries in the database every day at noon and 5:00 pm and send them to my Slack channel so I can check for better memory.</p>
+
+<p>For the backward connection, we want to trigger the workflow via an event in Slack. Here, by <code class="language-plaintext highlighter-rouge">event</code>, we basically mean something happening in Slack. We can refer to Ref. [4-6] for available events in Slack. On the Slack side, we want to use <code class="language-plaintext highlighter-rouge">Event Subscriptions</code> [4] – go to the list of apps in our Slack workspace at Ref. [7] (if needed app does not exist, we can create it in the page) and select our intended app from the list, and then go to <code class="language-plaintext highlighter-rouge">Event Subscriptions</code> to enable it. Once enabled, we can put in the webhook URL that we would get from <code class="language-plaintext highlighter-rouge">n8n</code> when creating the node of a slack trigger, e.g., <code class="language-plaintext highlighter-rouge">On bot app mention</code>. Double clicking the Slack trigger node, we can see the <code class="language-plaintext highlighter-rouge">Webhook URLs</code> on the top and we can expand it to see the URL. We can copy the URL and paste it into the Slack <code class="language-plaintext highlighter-rouge">Event Subscriptions</code> settings. Then under <code class="language-plaintext highlighter-rouge">Subsribe to bot events</code> in <code class="language-plaintext highlighter-rouge">Event Subscriptions</code>, we can add in the trigger event to Subsribe, e.g., <code class="language-plaintext highlighter-rouge">app_mention</code>. Then we can save the changes. Back to the <code class="language-plaintext highlighter-rouge">n8n</code> settings, we need to choose the channel to watch and once the channel is selected, we again need to go to Slack and add the Slack app (which we used above for setting up the <code class="language-plaintext highlighter-rouge">Event Subscriptions</code>) to the channel (see Ref. [3]).</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>Here, it is worth mentioning that for the <code class="language-plaintext highlighter-rouge">Webhoook URLs</code>, when we are doing tests of the workflow, we need to select the <code class="language-plaintext highlighter-rouge">Test URL</code> to use in <code class="language-plaintext highlighter-rouge">n8n</code>. Once we finish the testing and make sure everything is working fine, we should then copy the <code class="language-plaintext highlighter-rouge">Production URL</code> to Slack <code class="language-plaintext highlighter-rouge">Event Subscriptions</code> settings.</p>
+</blockquote>
+
+<p>The JSON file for the backward connection workflow can be found in Ref. [8].</p>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="/assets/files/Dict2Slack.json" target="_blank">Dict2Slack.json</a></p>
+
+<p>[2] <a href="https://iris2020.net/2024-11-04-n8n_rss_gmail/">https://iris2020.net/2024-11-04-n8n_rss_gmail/</a></p>
+
+<p>[3] <a href="https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/">https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/</a></p>
+
+<p>[4] <a href="https://api.slack.com/apis/events-api#verification">https://api.slack.com/apis/events-api#verification</a></p>
+
+<p>[5] <a href="https://api.slack.com/apis/http">https://api.slack.com/apis/http</a></p>
+
+<p>[6] <a href="https://api.slack.com/events">https://api.slack.com/events</a></p>
+
+<p>[7] <a href="https://api.slack.com/apps/">https://api.slack.com/apps/</a></p>
+
+<p>[8] <a href="/assets/files/Msg2NocoDB.json" target="_blank">Msg2NocoDB.json</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#web">web</a>
+          
+            <a href="/tags#server">server</a>
+          
+            <a href="/tags#tutorial">tutorial</a>
+          
+            <a href="/tags#slack">slack</a>
+          
+            <a href="/tags#automation">automation</a>
+          
+            <a href="/tags#database">database</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+workflows+for+bidirectional+connection+between+NocoDB+and+Slack&url=http%3A%2F%2Flocalhost%3A4000%2F2024-11-07-n8n_slack_nocodb%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2024-11-07-n8n_slack_nocodb%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2024-11-07-n8n_slack_nocodb%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2024-11-04-n8n_rss_gmail/" data-toggle="tooltip" data-placement="top" title="Set up an automated workflow for collecting RSS feeds and send to Gmail">&larr; Previous Post</a>
         </li>
         
+        
+      </ul>
       
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2021-07-08-top_physics/"><h3 class="post-title mb0">Notes on topological physics</h3></a>
-					<p class="post-meta small">July 8, 2021, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#solid state physics">solid state physics</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2021-07-07-ising_sol/"><h3 class="post-title mb0">Notes on Ising model</h3></a>
-					<p class="post-meta small">July 7, 2021, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#solid state physics">solid state physics</a>
-  
-    <a href="/tags#thermodynamics">thermodynamics</a>
-  
-    <a href="/tags#statistical physics">statistical physics</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 

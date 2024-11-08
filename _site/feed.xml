@@ -2,14 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     
-    <title>Yuanpeng's Blog</title>
+    <title>Yuanpeng&apos;s Blog</title>
     
     
-    <description>This website is a virtual proof that I'm awesome</description>
+    <description>This website is a virtual proof that I&apos;m awesome</description>
     
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
+    
+      <item>
+        <title>Set up workflows for bidirectional connection between NocoDB and Slack</title>
+        <description>
+          
+          NocoDB is a web-based platform that allows building no-code database, with a spreadsheet-like interface, allowing convenient interaction with the database. Here in this post, I am going to walk through the setup of workflows that connects the NocoDB database with Slack, in a bidirectional manner. Namely, we can build a...
+        </description>
+        <pubDate>Thu, 07 Nov 2024 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2024-11-07-n8n_slack_nocodb/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-11-07-n8n_slack_nocodb/</guid>
+      </item>
     
       <item>
         <title>Set up an automated workflow for collecting RSS feeds and send to Gmail</title>
@@ -28,7 +39,7 @@
           
           n8n is a web platform for setting up automated workflows. There are hundreds of apps and software integrations in the platform so that they can be embedded in the automated workflow through APIs. This post goes over the process of setting up a workflow for automatically fetching the to-do list...
         </description>
-        <pubDate>Sun, 03 Nov 2024 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 03 Nov 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-11-03-n8n_notion_slack_workflow/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-11-03-n8n_notion_slack_workflow/</guid>
       </item>
@@ -39,7 +50,7 @@
           
           Wordpress is commonly used framework for setting up website without directly and heavily working with HTML or CSS. Here in this blog, I will note down tips for using Wordpress – it keeps record of my problem solving along the way so the whole blog does not come in a...
         </description>
-        <pubDate>Tue, 03 Sep 2024 00:00:00 -0400</pubDate>
+        <pubDate>Tue, 03 Sep 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-09-03-wordpress_tips/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-09-03-wordpress_tips/</guid>
       </item>
@@ -50,18 +61,18 @@
           
           Fundamentally, the Bragg diffraction data that we will be using for the Rietveld analysis is nothing different as compared to the total scattering data – it is just that for the Bragg data analysis, we focus only on the Bragg peaks, treating the diffuse scattering signal as purely the background....
         </description>
-        <pubDate>Fri, 30 Aug 2024 00:00:00 -0400</pubDate>
+        <pubDate>Fri, 30 Aug 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-08-30-tof_binning/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-30-tof_binning/</guid>
       </item>
     
       <item>
-        <title>FAQs about Mantid &amp;ndash; Yuanpeng's Collection</title>
+        <title>FAQs about Mantid &amp;ndash; Yuanpeng&apos;s Collection</title>
         <description>
           
           Mantid is framework for processing and analyzing neutron and muon scattering data. Eevery now and then, I found myself having difficulties in using some of the algorithms in Mantid and every time I keep forgetting what the solution is. So, in this blog, I will try to note down the...
         </description>
-        <pubDate>Sat, 24 Aug 2024 00:00:00 -0400</pubDate>
+        <pubDate>Sat, 24 Aug 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-08-24-mantid_faq/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-24-mantid_faq/</guid>
       </item>
@@ -72,7 +83,7 @@
           
           The Van Hove function describes the time dependent pair correlation between atoms, \[G(r, t) = \frac{1}{4\pi \rho_0Nr^2}\sum_{i,j}\delta(r - |\vec{r}_i(0) - \vec{r}_j(t)|)\] \(i\) and \(j\) runs over all the \(N\) atoms in the system. \(\vec{r}_i\) refers to the position of the atom \(i\) at time \(t\). The following formula describes the...
         </description>
-        <pubDate>Thu, 22 Aug 2024 00:00:00 -0400</pubDate>
+        <pubDate>Thu, 22 Aug 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-08-22-van_hove_func/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-22-van_hove_func/</guid>
       </item>
@@ -83,7 +94,7 @@
           
           This post notes down the procedures to go through for setting up the connection to GitLab using SSH key so that we don’t need to bother with the login credentials, which, sometimes can be tedious due to firewall issues, etc. Here, I am using Unix-like OS for demo for the...
         </description>
-        <pubDate>Mon, 19 Aug 2024 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 19 Aug 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-08-19-gitlab_ssh/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-19-gitlab_ssh/</guid>
       </item>
@@ -94,7 +105,7 @@
           
           Close packing means that if assuming hard sphere model for atoms, we would have as much dense packing of those hard spheres as possible. Specifically, this refers to the packing of equal spheres (radius being equal). Normally, we have two types of close packing, the hexagonal close packing (HCP) and...
         </description>
-        <pubDate>Thu, 15 Aug 2024 00:00:00 -0400</pubDate>
+        <pubDate>Thu, 15 Aug 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-08-15-stacking_fault/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-15-stacking_fault/</guid>
       </item>
@@ -105,7 +116,7 @@
           
           Normally for a powder sample, we are assuming that we have a uniform distribution of orientation of those small crystalline samples, meaning that we have many small crystalline pieces of the sample and their orientation in space is uniform. As such, in the measured powder diffraction pattern, the peak intensities...
         </description>
-        <pubDate>Sat, 03 Aug 2024 00:00:00 -0400</pubDate>
+        <pubDate>Sat, 03 Aug 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-08-03-preferred_orientation_texture/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-03-preferred_orientation_texture/</guid>
       </item>
@@ -116,7 +127,7 @@
           
           🏷️ Use git diff in a Docker container Within a Docker container, if we are located in a git repository and try to execute git diff, there will be no problems. However, if the current working directory is not a git repository and we try to execute git diff /full/path/to/git/repo,...
         </description>
-        <pubDate>Tue, 16 Jul 2024 00:00:00 -0400</pubDate>
+        <pubDate>Tue, 16 Jul 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-07-16-docker_tips/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-07-16-docker_tips/</guid>
       </item>
@@ -127,7 +138,7 @@
           
           Introduction Here in this post, I will be summarizing the derivation of Dirac Equation, following the YouTube video series in Ref. [1-3]. Dirac equation, at the same time beautifully combining quantum mechanics (QM) and special relativity (SR), also infers the existence of electron spin, proposes the existence of antimatter, and...
         </description>
-        <pubDate>Sat, 25 May 2024 00:00:00 -0400</pubDate>
+        <pubDate>Sat, 25 May 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-05-25-dirac_equation/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-05-25-dirac_equation/</guid>
       </item>
@@ -138,7 +149,7 @@
           
           Introduction Amazon S3 is a cloud service for setting up drives on the cloud, meaning that we can use it for storing and sharing files on the cloud. Compared to the Cloud drives that we commonly see and use every day, such as Dropbox, Google Drive, Proton Drive, Box, and...
         </description>
-        <pubDate>Sat, 16 Mar 2024 00:00:00 -0400</pubDate>
+        <pubDate>Sat, 16 Mar 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-03-16-aws_s3_notes/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-16-aws_s3_notes/</guid>
       </item>
@@ -149,7 +160,7 @@
           
           This post is a collection of notes for useful setups, tricks and utilities in VSCode, as one of the popular IDEs in the market, along with Sublime Text, Atom, JetBrains, and so many to name. Python Debugger Running the debug mode for coding in IDE is a very convenient feature,...
         </description>
-        <pubDate>Mon, 11 Mar 2024 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 11 Mar 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-03-11-vscode_python_debugger/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-11-vscode_python_debugger/</guid>
       </item>
@@ -160,7 +171,7 @@
           
           On Windows, we have software like AutoHotkey with which we can define keyboard shortcut for running various actions in a convenient way. With AutoHotkey, we can also define mouse gestures to execute actions quickly. Here in Ref. [1] is provided a zip file containing the AutoHotkey files for some useful...
         </description>
-        <pubDate>Mon, 11 Mar 2024 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 11 Mar 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-03-11-mac_mouse_gesture/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-11-mac_mouse_gesture/</guid>
       </item>
@@ -225,17 +236,6 @@
         <pubDate>Sun, 28 Jan 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</guid>
-      </item>
-    
-      <item>
-        <title>Set up Dify server on VPS with docker</title>
-        <description>
-          
-          Dify is an LLM application platform which can provide access to various LLM models, tools and applications. With it, we can build our own ChatBot server acting just like ChatGPT. At the backend, it utilizes the LLM services from various providers, such as openAI, Gemini, etc., through API call. In...
-        </description>
-        <pubDate>Sat, 27 Jan 2024 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2024-01-27-docker_dify/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-01-27-docker_dify/</guid>
       </item>
     
   </channel>

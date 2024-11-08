@@ -1,0 +1,141 @@
+{
+  "name": "Dict2Slack",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "getAll",
+        "projectId": "pnky607i4cjxwt9",
+        "table": "mc56fdhmwb7peom",
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "d0e987e6-c65c-4c31-baa5-6d28be7248a7",
+      "name": "NocoDB",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        680,
+        500
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "VjuCaxiqFnEUSdLB",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 12
+            },
+            {
+              "triggerAtHour": 17
+            }
+          ]
+        }
+      },
+      "id": "e599a8e3-8ace-415a-8656-367c64336bd7",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        460,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let length = Object.keys($input.all()).length;\nlet out_dict = {};\nlet out_string = \"\";\nlet randomNumber = 0;\n\nfor (let i = 1; i <= 5; i++) {\n  randomNumber = Math.floor(Math.random() * (length + 1));\n  out_dict[$input.all()[randomNumber].json[\"Word & Expression\"]] = $input.all()[randomNumber].json.Chinese\n}\n\nfor (const item of $input.all()) {\n  item.json[\"Word & Expression\"];\n}\n\nlet keys = Object.keys(out_dict);\nfor (let i = 0; i < keys.length; i++) {\n    let key = keys[i];\n    let value = out_dict[key];\n\n    if (i === keys.length - 1) {\n        out_string += key + \" - \" + value;\n    } else {\n        out_string += key + \" - \" + value + \"\\n\";\n    }\n}\n\nreturn {\"out_str\": out_string};"
+      },
+      "id": "5ba91389-8b33-4154-9c22-1af000331b41",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        900,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C07GTQSKZ4G",
+          "mode": "list",
+          "cachedResultName": "memorize"
+        },
+        "text": "={{ $json.out_str }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "id": "9072e100-8730-46db-86d4-fa45ea3b19ec",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [
+        1120,
+        500
+      ],
+      "webhookId": "031e0c1a-99e4-4072-bf56-06d56d30d0a8",
+      "credentials": {
+        "slackApi": {
+          "id": "r5QUn6Ta6QHLD1SR",
+          "name": "Slack account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "NocoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NocoDB": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5d7dc3de-6a92-4fbd-a8f1-7744e6cc8ddb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9e6efd9c28e47e03fa73d79f6052f3d2285b9e1b0a145f29726d9ca1f764930c"
+  },
+  "id": "VoqxO63QGO1FVgHo",
+  "tags": []
+}

@@ -1,0 +1,194 @@
+{
+  "name": "Msg2NocoDB",
+  "nodes": [
+    {
+      "parameters": {
+        "trigger": [
+          "app_mention"
+        ],
+        "channelId": {
+          "__rl": true,
+          "value": "C07GTQSKZ4G",
+          "mode": "list",
+          "cachedResultName": "memorize"
+        },
+        "options": {}
+      },
+      "id": "df4649d4-c117-4949-8c16-7290055d7b80",
+      "name": "Trigger on App Mention",
+      "type": "n8n-nodes-base.slackTrigger",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        660
+      ],
+      "webhookId": "e9283e48-1794-4590-9e13-1f3a92b41139",
+      "credentials": {
+        "slackApi": {
+          "id": "r5QUn6Ta6QHLD1SR",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let msg = $input.first().json.text;\nlet new_entry = msg.split('>')[1].trim();\nlet item_list = new_entry.split(\"-\");\nlet valid_item;\n\nif (item_list.length === 2) {\n  valid_item = true;\n  new_entry = item_list;\n} else {\n  valid_item = false;\n}\n\nreturn {\"new_item\": new_entry, \"valid\": valid_item};"
+      },
+      "id": "2d166c0b-8642-447b-b292-4d89555f7d57",
+      "name": "Grab the New Entry",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        140,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d0a0b60c-9af9-4e81-a9ff-e8efb4f9d7f2",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": "={{ true }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b0117d0a-dfaf-46ad-b57d-3ab2cc857273",
+      "name": "Check if Valid Entry",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        380,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "nocoDbApiToken",
+        "operation": "create",
+        "projectId": "pnky607i4cjxwt9",
+        "table": "mc56fdhmwb7peom",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Word & Expression",
+              "fieldValue": "={{ $json.new_item[0] }}"
+            },
+            {
+              "fieldName": "Chinese",
+              "fieldValue": "={{ $json.new_item[1] }}"
+            }
+          ]
+        }
+      },
+      "id": "4d48d81a-9605-470c-8dc9-e61017c45443",
+      "name": "Write To NocoDB",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 3,
+      "position": [
+        660,
+        540
+      ],
+      "credentials": {
+        "nocoDbApiToken": {
+          "id": "VjuCaxiqFnEUSdLB",
+          "name": "NocoDB Token account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "8c2162a5-2dd4-462b-8cde-8af3b19bb233",
+      "name": "Stop",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        660,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "content": "The new message should be mentioning the `NEN` app in the Slack `memorize` channel. The new entry should be a string with '-' in the middle. The left side should be English and the right side should be Chinese.",
+        "color": 4
+      },
+      "id": "e5015ea3-58bb-4e80-9db0-68cc52641a37",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        60,
+        480
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Trigger on App Mention": {
+      "main": [
+        [
+          {
+            "node": "Grab the New Entry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grab the New Entry": {
+      "main": [
+        [
+          {
+            "node": "Check if Valid Entry",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if Valid Entry": {
+      "main": [
+        [
+          {
+            "node": "Write To NocoDB",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "52c7b647-e6d8-4e29-bf3d-c6cb8ddb8f3c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9e6efd9c28e47e03fa73d79f6052f3d2285b9e1b0a145f29726d9ca1f764930c"
+  },
+  "id": "KHuR1FzCqE4GJvI3",
+  "tags": []
+}
