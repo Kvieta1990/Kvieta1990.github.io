@@ -93,6 +93,8 @@ the image is huge, but the startup script is very simple.
     git checkout -b docker_new remotes/origin/docker_new
     ```
 
+    <br>
+
     > We need the token for login. Go to `Settings` -> `Access Tokens` -> `Add new token`, and select proper
     permission, select the expiration date and then copy the generated token.
 
@@ -104,6 +106,8 @@ the image is huge, but the startup script is very simple.
     conda create -n py37 python=3.7
     conda activate py37
     ```
+
+    <br>
 
     > The `Diffpy-CMI` module is only compatible with Python=3.7, so we have to stay with it for
     the moment, even the Python=3.7 has been dropped for support.
@@ -132,6 +136,8 @@ the image is huge, but the startup script is very simple.
     pip install PyYAML
     python setup.py install
     ```
+
+    <br>
 
     > After the installation, we need to manually copy over two folders (`data` and `utils`) in the `strumining` source code
     tree to the corresponding location in the conda environment. In my case, the destination is,
@@ -166,6 +172,8 @@ get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access pa
     pip install pyldap
     pip install https://oncat.ornl.gov/packages/pyoncat-1.5.1-py3-none-any.whl
     ```
+
+    <br>
 
     > When installing `pyldap` with `pip`, we might come across with errors relevant to the `gcc` failure, in which case
     the following command might be helpful [12],
@@ -262,6 +270,8 @@ file, we need to create a `startup.sh` file as below,
     celery -A pdfitc.app.celery worker --loglevel=info
     ```
 
+    <br>
+
     > **N.B.** The startup script will be run when launching the docker image and it will be running in the linux environment.
     So, if we were preparing the `startup.sh` file on Windows, the file ending will cause some issues, in which case, we may
     need to edit the file using special solutions, e.g., in WSL linux environment on Windows.
@@ -280,6 +290,8 @@ file, we need to create a `startup.sh` file as below,
     docker image build -t flask_addie_n .
     ```
 
+    <br>
+
     > Again, the `flask_addie_n` here refers to the image to be created via the image building. Same as the comments
     above, if a local image of the same name already exists, the existing image will be renamed to `<none>`, with the
     new `flask_addie_n` staying the latest.
@@ -289,6 +301,8 @@ file, we need to create a `startup.sh` file as below,
     ```bash
     docker run --privileged -v /home/cloud/.ssh:/root/.ssh/keys -p 5000:5000 -d flask_addie_n
     ```
+
+    <br>
 
     > In the demo here, we were mapping the local directory `/home/cloud/.ssh` to the `/root/.ssh/keys` directory inside the docker container. In general situation, we can for sure adjust the location on both sides, but we will take this as is in current documentation.
 
