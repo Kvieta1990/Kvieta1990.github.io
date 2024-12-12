@@ -66,12 +66,18 @@ the image is huge, but the startup script is very simple.
     apt install vim
     apt install wget
     apt install curl
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -P /tmp & bash /tmp/Miniconda3-latest-Linux-x86_64.sh
+    apt install sshfs
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -P /tmp
+    bash /tmp/Miniconda3-latest-Linux-x86_64.sh
     apt install python-wxtools
-    curl https://subversion.xray.aps.anl.gov/admin_pyGSAS/downloads/gsas2full-Latest-Linux-x86_64.sh > /tmp/gsas2full-Latest-Linux-x86_64.sh
+    wget https://github.com/AdvancedPhotonSource/GSAS-II-buildtools/releases/download/v1.0.1/gsas2full-Latest-Linux-x86_64.sh -P /tmp
     bash /tmp/gsas2full-Latest-Linux-x86_64.sh -b -p ~/g2full
     apt install redis-server
     ```
+
+    <br>
+
+    > `GSAS-II` requires quite a few compiled modules to run and those modules were pre-compiled against a certain Python version. However, for the reason to be mentioned down below, we have to stay with `Python=3.7` which is no longer working with the latest compiled `GSAS-II` modules. So, after we install the full `GSAS-II` package, we need to remove all those pre-compiled modules within the `/root/g2full/GSAS-II/GSASII-bin` directory and place the unzipped files from [this link](https://flv.iris-home.net/pkgs/bindist.zip) in there -- files in the link here were compiled some old version of Python which works just fine with `Python=3.7`.
 
     > `curl` and `python-wxtools` are needed for running GSASII. Without `python-wxtools`, running GSASII will complain about
     `wx` not found.
@@ -84,10 +90,13 @@ the image is huge, but the startup script is very simple.
 
     ```bash
     git clone https://code.ornl.gov/general/tsitc.git
+    git checkout -b docker_new remotes/origin/docker_new
     ```
 
     > We need the token for login. Go to `Settings` -> `Access Tokens` -> `Add new token`, and select proper
     permission, select the expiration date and then copy the generated token.
+
+    > Also, we need to let the system memorize the git credentials so we don't to type in the access token every time we try to pull the updates. We can run `remotes/origin/docker_new`.
 
 5. Create a conda environment,
 
@@ -115,6 +124,7 @@ the image is huge, but the startup script is very simple.
 8. Install `strumining`,
 
     ```bash
+    cd
     git clone https://code.ornl.gov/ly0/strumining.git
     cd strumining
     pip install pymatgen
@@ -132,12 +142,20 @@ the image is huge, but the startup script is very simple.
 
     > The specific location will depend on the conda installation location and the conda environment we created previously.
 
-9. Finally, we need to copy over the `instance` folder (download the zip file [here](https://kd.iris-home.net/#s/-CMXrVqA),
+9. Finally, we need to copy over the `instance` folder (download the zip file [here](https://pv.iris-home.net/s/Q4NjAxM),
 get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access passcode) to the `/tsitc` directory.
 
-    > With the recent update to include the LDAP authentication, there is another file `ldap_blueprint.py` under the
+    <!---
+    One of the commonly used passwords was used here for `instance.zip` file.
+    -->
+
+    > With the recent update to include the LDAP authentication, there is another file `ldap_blueprint.py` (download it [here](https://pv.iris-home.net/s/I1MDY5O) -- again, get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access passcode) under the
     `pdfitc` directory that needs to be copied over manually, as this file contains sensitive authentication information
     which should not be included in the git history.
+
+    <!---
+    One of the commonly used passwords was used here for `dap_blueprint.py` file.
+    -->
 
     > Also with the LDAP implementation, we need to install the `flask-session`, `flask-wtf`, `pyldap`, and `pyoncat`
     modules,
@@ -156,16 +174,20 @@ get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access pa
     sudo apt install libsasl2-dev libldap2-dev libssl-dev
     ```
 
-10. Going through all the procedures as detailed above, the container should be ready to be committed to a new image
-with which we can then fire up an ADDIE service.
+10. Install the `VESTA` and `data2config` software, by running,
+
+    ```
+    mkdir /Applications
+    cd /Applications
+    wget https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-x86_64.tar.bz2
+    tar xvf VESTA-gtk3-x86_64.tar.bz2
+    mv VESTA-gtk3-x86_64 VESTA-gtk3
+    mkdir -p /Applications/RMCProfile_package_V6.7.9/exe
+    cd /Applications/RMCProfile_package_V6.7.9/exe
+    wget https://flv.iris-home.net/pkgs/data2config
+    ```
 
 11. Exit the docker container -- just execute `exit` from the command line.
-
-    > After exiting the container, if we want to run the container again in the interactive mode, use the following command,
-
-    ```bash
-    docker exec -it [CCONTAINER_NAME] bash
-    ```
 
 12. Commit the container to a new image. First, we can check the running container(s) using the command,
 
@@ -176,15 +198,15 @@ with which we can then fire up an ADDIE service.
     Identifying the container we were working on by its name and ID, then,
 
     ```bash
-    docker commit [CONTAINER_ID] flask_addie
+    docker commit [CONTAINER_ID] flask_addie_n
     ```
 
     Use the command `docker images` to check the new committed image in the docker image list.
 
-    > The `flask_addie` here refers to the name of the image to be created by the commitment. It could
+    > The `flask_addie_n` here refers to the name of the image to be created by the commitment. It could
     be possible that an image with the same name already exists on the local host. In such a situation,
-    the existing image with the same name as, e.g., `flask_addie`, will be renamed to `<none>` and the
-    new `flask_addie` stays the latest.
+    the existing image with the same name as, e.g., `flask_addie_n`, will be renamed to `<none>` and the
+    new `flask_addie_n` stays the latest.
 
     > <span style="color:red">***N.B.*** It is always a good practice not to do the commit so often since otherwise
     the docker image will have a lot of layers until hitting the limit whereby we cannot do the commit anymore.
@@ -195,7 +217,7 @@ with which we can then fire up an ADDIE service.
 13. Prepare a `Dockerfile` file, as below,
 
     ```
-    FROM flask_addie
+    FROM flask_addie_n
 
     WORKDIR /tsitc
 
@@ -204,10 +226,9 @@ with which we can then fire up an ADDIE service.
     CMD ["/bin/bash", "-c", "/startup.sh"]
     ```
 
-    where `flask_addie` is just the name of the new committed docker image in previous step. The name
-    can be whatever we prefer to use. To avoid confusion, we can choose a new name anytime we commit the
-    new image from a container -- I am not sure whether committing a container to an already existing image
-    will cause any issues.
+    where `flask_addie_n` is just the name of the new committed docker image in previous step. The name
+    can be whatever we prefer to use and we can always use `flask_addie_n` as it will overwrite the existing
+    image with the same name and the original one will be backed up to a `<none>` image.
 
 14. In the same folder (now, we already existed the docker container and we are on the host machine) as the `Dockerfile`
 file, we need to create a `startup.sh` file as below,
@@ -219,8 +240,24 @@ file, we need to create a `startup.sh` file as below,
     conda activate py37
     export LD_LIBRARY_PATH='/usr/lib64'
 
+    sns_dir="/SNS"
+    if findmnt | grep -q "${sns_dir}"; then
+        echo "The directory ${sns_dir} is mounted."
+    else
+        echo "The directory ${sns_dir} is not mounted."
+        sshfs sns:/SNS /SNS
+    fi
+
+    hfir_dir="/HFIR"
+    if findmnt | grep -q "${hfir_dir}"; then
+        echo "The directory ${hfir_dir} is mounted."
+    else
+        echo "The directory ${hfir_dir} is not mounted."
+        sshfs sns:/HFIR /HFIR
+    fi
+
     git pull
-    gunicorn -w 3 -b :5000 run:app &
+    gunicorn -c gunicorn_config.py run:app &
     redis-server --port 6379 &
     celery -A pdfitc.app.celery worker --loglevel=info
     ```
@@ -239,28 +276,39 @@ file, we need to create a `startup.sh` file as below,
 
 15. Build the docker image,
 
-    ```powershell
-    docker image build -t flask_addie .
+    ```bash
+    docker image build -t flask_addie_n .
     ```
 
-    > Again, the `flask_addie` here refers to the image to be created via the image building. Same as the comments
+    > Again, the `flask_addie_n` here refers to the image to be created via the image building. Same as the comments
     above, if a local image of the same name already exists, the existing image will be renamed to `<none>`, with the
-    new `flask_addie` staying the latest.
+    new `flask_addie_n` staying the latest.
 
 16. Fire up the container,
 
-    ```powershell
-    docker run -p 5000:5000 -d flask_addie
+    ```bash
+    docker run --privileged -v /home/cloud/.ssh:/root/.ssh/keys -p 5000:5000 -d flask_addie_n
     ```
+
+    > In the demo here, we were mapping the local directory `/home/cloud/.ssh` to the `/root/.ssh/keys` directory inside the docker container. In general situation, we can for sure adjust the location on both sides, but we will take this as is in current documentation.
 
 17. The Flask server should be now accessible from the host machine, at `localhost:5000`.
 
-18. Push the local docker image to the Docker Hub,
+18. Now, we want to go into the running container in the interactive mode and set up the passwordless connection to the `Analysis` cluster,
+
+    ```
+    docker exec -it [CONTAINER_ID] /bin/bash
+    cd ~/.ssh
+    cp keys/* .
+    chown root:root config
+    ```
+
+19. Push the local docker image to the Docker Hub,
 
     ```
     docker login --username=apw247
-    docker tag bb38976d03cf apw247/flask_addie:latest
-    docker push apw247/flask_addie
+    docker tag bb38976d03cf apw247/flask_addie_n:latest
+    docker push apw247/flask_addie_n
     ```
 
     where `bb38976d03cf` is the docker image ID which we can obtain via the command,
@@ -270,78 +318,22 @@ file, we need to create a `startup.sh` file as below,
     ```
 
     to see all the existing images on our host machine and we can identify the associated
-    image ID with the `flask_addie` image.
+    image ID with the `flask_addie_n` image.
 
     > For security purpose, the remote docker repository is made private. To contribute to the repo,
     please get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> to request access.
 
-# Development
-
-Following the procedures above, we now have the docker image to start with. For further development,
-we need a) new codes, b) local testing, c) making new docker image, and d) deployment. In this section,
-we will focus the local testing, assuming that we have put in our new codes. The source codes for ADDIE
-is hosted on ORNL gitlab server, [https://code.ornl.gov/general/tsitc](https://code.ornl.gov/general/tsitc).
-The `master` branch corresponds to the current deployed production version. The `docker` branch is specifically
-for the the docker version of the service, as the GSASII installation location is different in the docker image
-and the server where the current service is deployed. The `docker_dev` branch is for the development and testing
-of the docker version. Here follows are given the detailed steps to do the local testing,
-
-1. Commit and push the new codes to be tested to the `docker_dev` branch.
-
-    > The source code is also protected, so, to contribute, get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a>.
-
-2. Pull the docker image, check local images and run the image as a container interactively,
-
-    ```bash
-    docker pull apw247/flask_addie:latest
-    docker images
-    docker run -i -t apw247/flask_addie bash
-    ```
-
-3. Within the docker container, change directory to the source code repo of ADDIE, pull the codes and exit the container,
-
-    ```bash
-    cd /tsitc
-    git checkout docker_dev
-    git pull
-    exit
-    ```
-
-    > There should be a better way to build the docker image to include such steps in the startup running script. But
-    I will stay with the slightly tedious steps here, which is actually not too tedious.
-
-    > To prevent the popup request for username and the token any time when running the git push or pull command, we could
-    run the following command (before running `git push` or `git pull`) to remember the passcode for git,
-
-    ```bash
-    git config --global credential.helper store
-    ```
-
-4. Check the running container, identify the one we were just working with, and commit the container to a new image,
-
-    ```bash
-    docker commit [CONTAINER_ID] flask_addie
-    ```
-5. On the local machine, change directory to the `tsitc` repo and further into the `docker` directory inside the repo --
-clone the source repo if not yet cloned.
-
-6. Follow the steps 13-15 in previous section to build the new image and run the service locally for testing. 
-
 # Deployment
 
-1. For deployment, the initial steps are quite similar to the development procedures as detailed in the `Development` section above.
-The only difference is that we need to check out the `master` branch instead of the `docker_dev` one. After all the initial steps,
-we need to push the new docker image to Docker Hub, following the instruction as presented in step-18 in the first section.
-
-2. Finally, on the remote VPS, we need to run,
+1. First, log in the remote VPS and run,
 
     ```bash
-    docker run -p 5000:5000 -d flask_addie
+    docker run --privileged -v /home/cloud/.ssh:/root/.ssh/keys -p 5000:5000 -d apw247/flask_addie_n
     ```
 
     to start up the server and then we can configure `nginx` to redirect the traffic on the port 443 to the local 5000 port.
 
-3. The ADDIE service is hosted on an ORNL research cloud instance -- this is the ORNL internal cloud computation resource. For security concerns, ORNL needs to perform systematic scanning over the server and the ADDIE service. On the system side, those vulnerabilities can be easily patched according to the instructions provided by the cyber security team. On the `nginx` side, we need to add specific headers for mitigating the potential vulnerabilities and it turns out that not only we need to patch for the `nginx` configuration, but also we need to add in some security header into the Flask app. Here is the saved `nginx` configuration, [Click Me](https://pf.iris-home.net/yuanpeng/4b777e0fd8df413babd544f05fac427f/raw/HEAD/nginx.conf), and here is the chunk of codes in the Flask app,
+2. The ADDIE service is hosted on an ORNL research cloud instance -- this is the ORNL internal cloud computation resource. For security concerns, ORNL needs to perform systematic scanning over the server and the ADDIE service. On the system side, those vulnerabilities can be easily patched according to the instructions provided by the cyber security team. On the `nginx` side, we need to add specific headers for mitigating the potential vulnerabilities and it turns out that not only we need to patch for the `nginx` configuration, but also we need to add in some security header into the Flask app. Here is the saved `nginx` configuration, [Click Me](https://pf.iris-home.net/yuanpeng/4b777e0fd8df413babd544f05fac427f/raw/HEAD/nginx.conf), and here is the chunk of codes in the Flask app,
 
     ```python
     # Define a function to set X-Frame-Options header
@@ -355,12 +347,12 @@ we need to push the new docker image to Docker Hub, following the instruction as
     app.after_request(add_security_headers)
     ```
 
-4. There are some other security patches that will be needed in the Flask app, to mitigate risks such as Cross-Site Request Forgery (CSRF), rigorous input field checking, etc. We can refer to the source codes for ADDIE (ORNL internal access only, not open source yet) here, [Click Me](https://code.ornl.gov/general/tsitc).
+3. There are some other security patches that will be needed in the Flask app, to mitigate risks such as Cross-Site Request Forgery (CSRF), rigorous input field checking, etc. We can refer to the source codes for ADDIE (ORNL internal access only, not open source yet) here, [Click Me](https://code.ornl.gov/general/tsitc).
 
-5. Another domain `addie-dev.ornl.gov` has been made available to point to the local `6000` port. So, to fire up a test service of ADDIE, we can execute the following command first,
+4. Another domain `addie-dev.ornl.gov` has been made available to point to the local `6000` port. So, to fire up a test service of ADDIE, we can execute the following command first,
 
     ```bash
-    sudo docker run --privileged -v /home/cloud/.ssh:/root/.ssh/keys -it -p 6000:5000 apw247/flask_addie bash
+    sudo docker run --privileged -v /home/cloud/.ssh:/root/.ssh/keys -it -p 6000:5000 apw247/flask_addie_n bash
     ```
 
     <br>
@@ -386,13 +378,7 @@ we need to push the new docker image to Docker Hub, following the instruction as
 
     where `[CONTAINER_ID]` refers to the ID of the running docker container started in previous step (use `sudo docker ps -a` to see all the running containers). Within this interactive shell, we can change the code and it will be directly reflected onto the `addie-dev.ornl.gov` server -- we may have to kill the `gunicorn` job from another shell and restart it if it is the Python source codes that were changed. The changes in template HTML files will be directly reflected without restarting the server, though.
 
-6. The production version of the server can be fired up using the following command,
-
-    ```bash
-    sudo docker run --privileged -v /home/cloud/.ssh:/root/.ssh/keys -p 5000:5000 -d apw247/flask_addie:latest
-    ```
-
-7. While the production docker container is running, we can lanuch an interactive shell in the running container like this,
+5. While the docker container is running, we can lanuch an interactive shell in the running container like this,
 
     ```bash
     sudo docker exec -it CONTAINER_ID /bin/bash
@@ -400,7 +386,7 @@ we need to push the new docker image to Docker Hub, following the instruction as
 
     where `CONTAINER_ID` is the ID of the running container, which can be obtained via running `sudo docker ps -a`.
 
-8. Sometimes during the docker image commit and building process, we could have multiple repositories attached a single image ID. In this case, if we want to remove certain tags, we can do,
+6. Sometimes during the docker image commit and building process, we could have multiple repositories attached a single image ID. In this case, if we want to remove certain tags, we can do,
 
     ```bash
     sudo docker rmi REPO_NAME
