@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>A brief summary of the early superconductivity development</title>
+        <description>
+          
+          The diagram below is maded out of the nice article in Ref. [1] by Prof. C. Slichter, summarizing the history of the early development of superconductivity. It goes over the discovery of superconducting phenomenon, the early efforts in revealing the reason why such a peculiar phenomenon could ever happen, the...
+        </description>
+        <pubDate>Mon, 16 Dec 2024 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2024-12-16-superconductivity_summary/</link>
+        <guid isPermaLink="true">http://localhost:4000/2024-12-16-superconductivity_summary/</guid>
+      </item>
+    
+      <item>
         <title>Set up workflows for bidirectional connection between NocoDB and Slack</title>
         <description>
           
@@ -225,17 +236,6 @@
         <pubDate>Sun, 04 Feb 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-02-04-yacy_setup/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-02-04-yacy_setup/</guid>
-      </item>
-    
-      <item>
-        <title>Resize Oracle VPS volume</title>
-        <description>
-          
-          When setting up Oracle cloud instance, we would give the instance an initial allocation of volume, and later on we might find that the initial volume size is not enough as we install more and more services into our VPS. In such a situation, we may want to expand the...
-        </description>
-        <pubDate>Sun, 28 Jan 2024 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-01-28-oracle_vps_vol_expand/</guid>
       </item>
     
   </channel>

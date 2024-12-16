@@ -346,12 +346,20 @@ the image is huge, but the startup script is very simple.</p>
  apt <span class="nb">install </span>vim
  apt <span class="nb">install </span>wget
  apt <span class="nb">install </span>curl
- wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh <span class="nt">-P</span> /tmp &amp; bash /tmp/Miniconda3-latest-Linux-x86_64.sh
+ apt <span class="nb">install </span>sshfs
+ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh <span class="nt">-P</span> /tmp
+ bash /tmp/Miniconda3-latest-Linux-x86_64.sh
  apt <span class="nb">install </span>python-wxtools
- curl https://subversion.xray.aps.anl.gov/admin_pyGSAS/downloads/gsas2full-Latest-Linux-x86_64.sh <span class="o">&gt;</span> /tmp/gsas2full-Latest-Linux-x86_64.sh
+ wget https://github.com/AdvancedPhotonSource/GSAS-II-buildtools/releases/download/v1.0.1/gsas2full-Latest-Linux-x86_64.sh <span class="nt">-P</span> /tmp
  bash /tmp/gsas2full-Latest-Linux-x86_64.sh <span class="nt">-b</span> <span class="nt">-p</span> ~/g2full
  apt <span class="nb">install </span>redis-server
 </code></pre></div>    </div>
+
+    <p><br /></p>
+
+    <blockquote>
+      <p><code class="language-plaintext highlighter-rouge">GSAS-II</code> requires quite a few compiled modules to run and those modules were pre-compiled against a certain Python version. However, for the reason to be mentioned down below, we have to stay with <code class="language-plaintext highlighter-rouge">Python=3.7</code> which is no longer working with the latest compiled <code class="language-plaintext highlighter-rouge">GSAS-II</code> modules. So, after we install the full <code class="language-plaintext highlighter-rouge">GSAS-II</code> package, we need to remove all those pre-compiled modules within the <code class="language-plaintext highlighter-rouge">/root/g2full/GSAS-II/GSASII-bin</code> directory and place the unzipped files from <a href="https://flv.iris-home.net/pkgs/bindist.zip">this link</a> in there – files in the link here were compiled some old version of Python which works just fine with <code class="language-plaintext highlighter-rouge">Python=3.7</code>.</p>
+    </blockquote>
 
     <blockquote>
       <p><code class="language-plaintext highlighter-rouge">curl</code> and <code class="language-plaintext highlighter-rouge">python-wxtools</code> are needed for running GSASII. Without <code class="language-plaintext highlighter-rouge">python-wxtools</code>, running GSASII will complain about
@@ -368,11 +376,18 @@ the image is huge, but the startup script is very simple.</p>
     <p>Clone the source code of ADDIE (assuming we are located at <code class="language-plaintext highlighter-rouge">/</code> in the docker container on the command line),</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone https://code.ornl.gov/general/tsitc.git
+ git checkout <span class="nt">-b</span> docker_new remotes/origin/docker_new
 </code></pre></div>    </div>
+
+    <p><br /></p>
 
     <blockquote>
       <p>We need the token for login. Go to <code class="language-plaintext highlighter-rouge">Settings</code> -&gt; <code class="language-plaintext highlighter-rouge">Access Tokens</code> -&gt; <code class="language-plaintext highlighter-rouge">Add new token</code>, and select proper
  permission, select the expiration date and then copy the generated token.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Also, we need to let the system memorize the git credentials so we don’t to type in the access token every time we try to pull the updates. We can run <code class="language-plaintext highlighter-rouge">remotes/origin/docker_new</code>.</p>
     </blockquote>
   </li>
   <li>
@@ -381,6 +396,8 @@ the image is huge, but the startup script is very simple.</p>
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> conda create <span class="nt">-n</span> py37 <span class="nv">python</span><span class="o">=</span>3.7
  conda activate py37
 </code></pre></div>    </div>
+
+    <p><br /></p>
 
     <blockquote>
       <p>The <code class="language-plaintext highlighter-rouge">Diffpy-CMI</code> module is only compatible with Python=3.7, so we have to stay with it for
@@ -403,13 +420,16 @@ the image is huge, but the startup script is very simple.</p>
   <li>
     <p>Install <code class="language-plaintext highlighter-rouge">strumining</code>,</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone https://code.ornl.gov/ly0/strumining.git
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd
+ </span>git clone https://code.ornl.gov/ly0/strumining.git
  <span class="nb">cd </span>strumining
  pip <span class="nb">install </span>pymatgen
  pip <span class="nb">install </span>pybtex
  pip <span class="nb">install </span>PyYAML
  python setup.py <span class="nb">install</span>
 </code></pre></div>    </div>
+
+    <p><br /></p>
 
     <blockquote>
       <p>After the installation, we need to manually copy over two folders (<code class="language-plaintext highlighter-rouge">data</code> and <code class="language-plaintext highlighter-rouge">utils</code>) in the <code class="language-plaintext highlighter-rouge">strumining</code> source code
@@ -424,14 +444,22 @@ the image is huge, but the startup script is very simple.</p>
     </blockquote>
   </li>
   <li>
-    <p>Finally, we need to copy over the <code class="language-plaintext highlighter-rouge">instance</code> folder (download the zip file <a href="https://kd.iris-home.net/#s/-CMXrVqA">here</a>,
+    <p>Finally, we need to copy over the <code class="language-plaintext highlighter-rouge">instance</code> folder (download the zip file <a href="https://pv.iris-home.net/s/Q4NjAxM">here</a>,
 get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access passcode) to the <code class="language-plaintext highlighter-rouge">/tsitc</code> directory.</a></a></p>
 
+    <p><!---
+ One of the commonly used passwords was used here for `instance.zip` file.
+ --></p>
+
     <blockquote>
-      <p>With the recent update to include the LDAP authentication, there is another file <code class="language-plaintext highlighter-rouge">ldap_blueprint.py</code> under the
+      <p>With the recent update to include the LDAP authentication, there is another file <code class="language-plaintext highlighter-rouge">ldap_blueprint.py</code> (download it <a href="https://pv.iris-home.net/s/I1MDY5O">here</a> – again, get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access passcode) under the
  <code class="language-plaintext highlighter-rouge">pdfitc</code> directory that needs to be copied over manually, as this file contains sensitive authentication information
- which should not be included in the git history.</p>
+ which should not be included in the git history.</a></a></p>
     </blockquote>
+
+    <p><!---
+ One of the commonly used passwords was used here for `dap_blueprint.py` file.
+ --></p>
 
     <blockquote>
       <p>Also with the LDAP implementation, we need to install the <code class="language-plaintext highlighter-rouge">flask-session</code>, <code class="language-plaintext highlighter-rouge">flask-wtf</code>, <code class="language-plaintext highlighter-rouge">pyldap</code>, and <code class="language-plaintext highlighter-rouge">pyoncat</code>
@@ -444,6 +472,8 @@ get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access pa
  pip <span class="nb">install </span>https://oncat.ornl.gov/packages/pyoncat-1.5.1-py3-none-any.whl
 </code></pre></div>    </div>
 
+    <p><br /></p>
+
     <blockquote>
       <p>When installing <code class="language-plaintext highlighter-rouge">pyldap</code> with <code class="language-plaintext highlighter-rouge">pip</code>, we might come across with errors relevant to the <code class="language-plaintext highlighter-rouge">gcc</code> failure, in which case
  the following command might be helpful [12],</p>
@@ -453,18 +483,20 @@ get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> for access pa
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Going through all the procedures as detailed above, the container should be ready to be committed to a new image
-with which we can then fire up an ADDIE service.</p>
+    <p>Install the <code class="language-plaintext highlighter-rouge">VESTA</code> and <code class="language-plaintext highlighter-rouge">data2config</code> software, by running,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir /Applications
+cd /Applications
+wget https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-x86_64.tar.bz2
+tar xvf VESTA-gtk3-x86_64.tar.bz2
+mv VESTA-gtk3-x86_64 VESTA-gtk3
+mkdir -p /Applications/RMCProfile_package_V6.7.9/exe
+cd /Applications/RMCProfile_package_V6.7.9/exe
+wget https://flv.iris-home.net/pkgs/data2config
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Exit the docker container – just execute <code class="language-plaintext highlighter-rouge">exit</code> from the command line.</p>
-
-    <blockquote>
-      <p>After exiting the container, if we want to run the container again in the interactive mode, use the following command,</p>
-    </blockquote>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">exec</span> <span class="nt">-it</span> <span class="o">[</span>CCONTAINER_NAME] bash
-</code></pre></div>    </div>
   </li>
   <li>
     <p>Commit the container to a new image. First, we can check the running container(s) using the command,</p>
@@ -474,16 +506,16 @@ with which we can then fire up an ADDIE service.</p>
 
     <p>Identifying the container we were working on by its name and ID, then,</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker commit <span class="o">[</span>CONTAINER_ID] flask_addie
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker commit <span class="o">[</span>CONTAINER_ID] flask_addie_n
 </code></pre></div>    </div>
 
     <p>Use the command <code class="language-plaintext highlighter-rouge">docker images</code> to check the new committed image in the docker image list.</p>
 
     <blockquote>
-      <p>The <code class="language-plaintext highlighter-rouge">flask_addie</code> here refers to the name of the image to be created by the commitment. It could
+      <p>The <code class="language-plaintext highlighter-rouge">flask_addie_n</code> here refers to the name of the image to be created by the commitment. It could
 be possible that an image with the same name already exists on the local host. In such a situation,
-the existing image with the same name as, e.g., <code class="language-plaintext highlighter-rouge">flask_addie</code>, will be renamed to <code class="language-plaintext highlighter-rouge">&lt;none&gt;</code> and the
-new <code class="language-plaintext highlighter-rouge">flask_addie</code> stays the latest.</p>
+the existing image with the same name as, e.g., <code class="language-plaintext highlighter-rouge">flask_addie_n</code>, will be renamed to <code class="language-plaintext highlighter-rouge">&lt;none&gt;</code> and the
+new <code class="language-plaintext highlighter-rouge">flask_addie_n</code> stays the latest.</p>
     </blockquote>
 
     <blockquote>
@@ -497,7 +529,7 @@ updated.</span></p>
   <li>
     <p>Prepare a <code class="language-plaintext highlighter-rouge">Dockerfile</code> file, as below,</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM flask_addie
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM flask_addie_n
 
 WORKDIR /tsitc
 
@@ -506,10 +538,9 @@ COPY startup.sh /
 CMD ["/bin/bash", "-c", "/startup.sh"]
 </code></pre></div>    </div>
 
-    <p>where <code class="language-plaintext highlighter-rouge">flask_addie</code> is just the name of the new committed docker image in previous step. The name
-can be whatever we prefer to use. To avoid confusion, we can choose a new name anytime we commit the
-new image from a container – I am not sure whether committing a container to an already existing image
-will cause any issues.</p>
+    <p>where <code class="language-plaintext highlighter-rouge">flask_addie_n</code> is just the name of the new committed docker image in previous step. The name
+can be whatever we prefer to use and we can always use <code class="language-plaintext highlighter-rouge">flask_addie_n</code> as it will overwrite the existing
+image with the same name and the original one will be backed up to a <code class="language-plaintext highlighter-rouge">&lt;none&gt;</code> image.</p>
   </li>
   <li>
     <p>In the same folder (now, we already existed the docker container and we are on the host machine) as the <code class="language-plaintext highlighter-rouge">Dockerfile</code>
@@ -521,11 +552,29 @@ source /root/miniconda3/etc/profile.d/conda.sh
 conda activate py37
 export LD_LIBRARY_PATH='/usr/lib64'
 
+sns_dir="/SNS"
+if findmnt | grep -q "${sns_dir}"; then
+    echo "The directory ${sns_dir} is mounted."
+else
+    echo "The directory ${sns_dir} is not mounted."
+    sshfs sns:/SNS /SNS
+fi
+
+hfir_dir="/HFIR"
+if findmnt | grep -q "${hfir_dir}"; then
+    echo "The directory ${hfir_dir} is mounted."
+else
+    echo "The directory ${hfir_dir} is not mounted."
+    sshfs sns:/HFIR /HFIR
+fi
+
 git pull
-gunicorn -w 3 -b :5000 run:app &amp;
+gunicorn -c gunicorn_config.py run:app &amp;
 redis-server --port 6379 &amp;
 celery -A pdfitc.app.celery worker --loglevel=info
 </code></pre></div>    </div>
+
+    <p><br /></p>
 
     <blockquote>
       <p><strong>N.B.</strong> The startup script will be run when launching the docker image and it will be running in the linux environment.
@@ -548,30 +597,47 @@ exit without worrying about those jobs running in the background.</p>
   <li>
     <p>Build the docker image,</p>
 
-    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">docker</span><span class="w"> </span><span class="nx">image</span><span class="w"> </span><span class="nx">build</span><span class="w"> </span><span class="nt">-t</span><span class="w"> </span><span class="nx">flask_addie</span><span class="w"> </span><span class="o">.</span><span class="w">
-</span></code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker image build <span class="nt">-t</span> flask_addie_n <span class="nb">.</span>
+</code></pre></div>    </div>
+
+    <p><br /></p>
 
     <blockquote>
-      <p>Again, the <code class="language-plaintext highlighter-rouge">flask_addie</code> here refers to the image to be created via the image building. Same as the comments
+      <p>Again, the <code class="language-plaintext highlighter-rouge">flask_addie_n</code> here refers to the image to be created via the image building. Same as the comments
 above, if a local image of the same name already exists, the existing image will be renamed to <code class="language-plaintext highlighter-rouge">&lt;none&gt;</code>, with the
-new <code class="language-plaintext highlighter-rouge">flask_addie</code> staying the latest.</p>
+new <code class="language-plaintext highlighter-rouge">flask_addie_n</code> staying the latest.</p>
     </blockquote>
   </li>
   <li>
     <p>Fire up the container,</p>
 
-    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">docker</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="nt">-p</span><span class="w"> </span><span class="nx">5000:5000</span><span class="w"> </span><span class="nt">-d</span><span class="w"> </span><span class="nx">flask_addie</span><span class="w">
-</span></code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--privileged</span> <span class="nt">-v</span> /home/cloud/.ssh:/root/.ssh/keys <span class="nt">-p</span> 5000:5000 <span class="nt">-d</span> flask_addie_n
+</code></pre></div>    </div>
+
+    <p><br /></p>
+
+    <blockquote>
+      <p>In the demo here, we were mapping the local directory <code class="language-plaintext highlighter-rouge">/home/cloud/.ssh</code> to the <code class="language-plaintext highlighter-rouge">/root/.ssh/keys</code> directory inside the docker container. In general situation, we can for sure adjust the location on both sides, but we will take this as is in current documentation.</p>
+    </blockquote>
   </li>
   <li>
     <p>The Flask server should be now accessible from the host machine, at <code class="language-plaintext highlighter-rouge">localhost:5000</code>.</p>
   </li>
   <li>
+    <p>Now, we want to go into the running container in the interactive mode and set up the passwordless connection to the <code class="language-plaintext highlighter-rouge">Analysis</code> cluster,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker exec -it [CONTAINER_ID] /bin/bash
+cd ~/.ssh
+cp keys/* .
+chown root:root config
+</code></pre></div>    </div>
+  </li>
+  <li>
     <p>Push the local docker image to the Docker Hub,</p>
 
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker login --username=apw247
-docker tag bb38976d03cf apw247/flask_addie:latest
-docker push apw247/flask_addie
+docker tag bb38976d03cf apw247/flask_addie_n:latest
+docker push apw247/flask_addie_n
 </code></pre></div>    </div>
 
     <p>where <code class="language-plaintext highlighter-rouge">bb38976d03cf</code> is the docker image ID which we can obtain via the command,</p>
@@ -580,7 +646,7 @@ docker push apw247/flask_addie
 </code></pre></div>    </div>
 
     <p>to see all the existing images on our host machine and we can identify the associated
-image ID with the <code class="language-plaintext highlighter-rouge">flask_addie</code> image.</p>
+image ID with the <code class="language-plaintext highlighter-rouge">flask_addie_n</code> image.</p>
 
     <blockquote>
       <p>For security purpose, the remote docker repository is made private. To contribute to the repo,
@@ -589,82 +655,13 @@ please get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a> to req
   </li>
 </ol>
 
-<h1 id="development">Development</h1>
-
-<p>Following the procedures above, we now have the docker image to start with. For further development,
-we need a) new codes, b) local testing, c) making new docker image, and d) deployment. In this section,
-we will focus the local testing, assuming that we have put in our new codes. The source codes for ADDIE
-is hosted on ORNL gitlab server, <a href="https://code.ornl.gov/general/tsitc">https://code.ornl.gov/general/tsitc</a>.
-The <code class="language-plaintext highlighter-rouge">master</code> branch corresponds to the current deployed production version. The <code class="language-plaintext highlighter-rouge">docker</code> branch is specifically
-for the the docker version of the service, as the GSASII installation location is different in the docker image
-and the server where the current service is deployed. The <code class="language-plaintext highlighter-rouge">docker_dev</code> branch is for the development and testing
-of the docker version. Here follows are given the detailed steps to do the local testing,</p>
-
-<ol>
-  <li>
-    <p>Commit and push the new codes to be tested to the <code class="language-plaintext highlighter-rouge">docker_dev</code> branch.</p>
-
-    <blockquote>
-      <p>The source code is also protected, so, to contribute, get in touch with <a href="mailto:zyroc1990@gmail.com">Yuanpeng<a>.</a></a></p>
-    </blockquote>
-  </li>
-  <li>
-    <p>Pull the docker image, check local images and run the image as a container interactively,</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker pull apw247/flask_addie:latest
- docker images
- docker run <span class="nt">-i</span> <span class="nt">-t</span> apw247/flask_addie bash
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Within the docker container, change directory to the source code repo of ADDIE, pull the codes and exit the container,</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">cd</span> /tsitc
- git checkout docker_dev
- git pull
- <span class="nb">exit</span>
-</code></pre></div>    </div>
-
-    <blockquote>
-      <p>There should be a better way to build the docker image to include such steps in the startup running script. But
- I will stay with the slightly tedious steps here, which is actually not too tedious.</p>
-    </blockquote>
-
-    <blockquote>
-      <p>To prevent the popup request for username and the token any time when running the git push or pull command, we could
- run the following command (before running <code class="language-plaintext highlighter-rouge">git push</code> or <code class="language-plaintext highlighter-rouge">git pull</code>) to remember the passcode for git,</p>
-    </blockquote>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git config <span class="nt">--global</span> credential.helper store
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Check the running container, identify the one we were just working with, and commit the container to a new image,</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker commit <span class="o">[</span>CONTAINER_ID] flask_addie
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>On the local machine, change directory to the <code class="language-plaintext highlighter-rouge">tsitc</code> repo and further into the <code class="language-plaintext highlighter-rouge">docker</code> directory inside the repo –
-clone the source repo if not yet cloned.</p>
-  </li>
-  <li>
-    <p>Follow the steps 13-15 in previous section to build the new image and run the service locally for testing.</p>
-  </li>
-</ol>
-
 <h1 id="deployment">Deployment</h1>
 
 <ol>
   <li>
-    <p>For deployment, the initial steps are quite similar to the development procedures as detailed in the <code class="language-plaintext highlighter-rouge">Development</code> section above.
-The only difference is that we need to check out the <code class="language-plaintext highlighter-rouge">master</code> branch instead of the <code class="language-plaintext highlighter-rouge">docker_dev</code> one. After all the initial steps,
-we need to push the new docker image to Docker Hub, following the instruction as presented in step-18 in the first section.</p>
-  </li>
-  <li>
-    <p>Finally, on the remote VPS, we need to run,</p>
+    <p>First, log in the remote VPS and run,</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker run <span class="nt">-p</span> 5000:5000 <span class="nt">-d</span> flask_addie
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> docker run <span class="nt">--privileged</span> <span class="nt">-v</span> /home/cloud/.ssh:/root/.ssh/keys <span class="nt">-p</span> 5000:5000 <span class="nt">-d</span> apw247/flask_addie_n
 </code></pre></div>    </div>
 
     <p>to start up the server and then we can configure <code class="language-plaintext highlighter-rouge">nginx</code> to redirect the traffic on the port 443 to the local 5000 port.</p>
@@ -689,7 +686,7 @@ we need to push the new docker image to Docker Hub, following the instruction as
   <li>
     <p>Another domain <code class="language-plaintext highlighter-rouge">addie-dev.ornl.gov</code> has been made available to point to the local <code class="language-plaintext highlighter-rouge">6000</code> port. So, to fire up a test service of ADDIE, we can execute the following command first,</p>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>docker run <span class="nt">--privileged</span> <span class="nt">-v</span> /home/cloud/.ssh:/root/.ssh/keys <span class="nt">-it</span> <span class="nt">-p</span> 6000:5000 apw247/flask_addie bash
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>docker run <span class="nt">--privileged</span> <span class="nt">-v</span> /home/cloud/.ssh:/root/.ssh/keys <span class="nt">-it</span> <span class="nt">-p</span> 6000:5000 apw247/flask_addie_n bash
 </code></pre></div>    </div>
 
     <p><br /></p>
@@ -716,13 +713,7 @@ we need to push the new docker image to Docker Hub, following the instruction as
     <p>where <code class="language-plaintext highlighter-rouge">[CONTAINER_ID]</code> refers to the ID of the running docker container started in previous step (use <code class="language-plaintext highlighter-rouge">sudo docker ps -a</code> to see all the running containers). Within this interactive shell, we can change the code and it will be directly reflected onto the <code class="language-plaintext highlighter-rouge">addie-dev.ornl.gov</code> server – we may have to kill the <code class="language-plaintext highlighter-rouge">gunicorn</code> job from another shell and restart it if it is the Python source codes that were changed. The changes in template HTML files will be directly reflected without restarting the server, though.</p>
   </li>
   <li>
-    <p>The production version of the server can be fired up using the following command,</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>docker run <span class="nt">--privileged</span> <span class="nt">-v</span> /home/cloud/.ssh:/root/.ssh/keys <span class="nt">-p</span> 5000:5000 <span class="nt">-d</span> apw247/flask_addie:latest
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>While the production docker container is running, we can lanuch an interactive shell in the running container like this,</p>
+    <p>While the docker container is running, we can lanuch an interactive shell in the running container like this,</p>
 
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> CONTAINER_ID /bin/bash
 </code></pre></div>    </div>
