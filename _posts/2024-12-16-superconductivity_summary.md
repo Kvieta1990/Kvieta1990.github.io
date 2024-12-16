@@ -34,7 +34,7 @@ use_math: true
 
 The diagram below is maded out of the nice article in Ref. [1] by Prof. C. Slichter, summarizing the history of the early development of superconductivity. It goes over the discovery of superconducting phenomenon, the early efforts in revealing the reason why such a peculiar phenomenon could ever happen, the building up of those recipes for finally revealing the microscopic origin of the superconductivity at the fundamental level, until the proposition of the BCS theory of superconductivity, by J. Bardeen, L. Cooper and B. Schrieffer.
 
-> Right click on the picture and click on `Open image in new tab` (or something similar in web browsers other than Chrome) to view the full image.
+> Right click on the picture and click on `Open image in new tab` (or something similar in web browsers other than `Chrome`) to view the full image.
 
 <p align='center'>
 <img src="/assets/img/posts/Superconductivity_Development.svg"
