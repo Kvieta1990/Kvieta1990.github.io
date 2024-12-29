@@ -822,6 +822,22 @@ AFFiNE.use('copilot', {
 
 <p>After the manual configuration, we may need to stop the running container by running <code class="language-plaintext highlighter-rouge">sudo docker stop &lt;CONTAINER_ID&gt;</code> and the <code class="language-plaintext highlighter-rouge">&lt;CONTAINER_ID&gt;</code> can be obtained by running <code class="language-plaintext highlighter-rouge">sudo docker ps -a | grep "affine"</code>. Then we can do <code class="language-plaintext highlighter-rouge">sudo docker rm &lt;CONTAINER_ID&gt;</code> to remove the container and run <code class="language-plaintext highlighter-rouge">sudo docker compose up -d</code> in the <code class="language-plaintext highlighter-rouge">Affine</code> application directory mentioned above, namely <code class="language-plaintext highlighter-rouge">/opt/1panel/apps/affine/affine</code>.</p>
 
+<h1 id="issue-15">Issue #15</h1>
+
+<p>The <code class="language-plaintext highlighter-rouge">nextcloud</code> server sometimes may be locked in the <code class="language-plaintext highlighter-rouge">maintenance</code> mode.</p>
+
+<h1 id="solution-15">Solution (#15)</h1>
+
+<p>In this case, we may need to manually disable the <code class="language-plaintext highlighter-rouge">maintenance</code> mode by going into the running docker container,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> <span class="o">[</span>CONTAINER_ID] /bin/bash
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">[CONTAINER_ID]</code> refers to the ID of the running <code class="language-plaintext highlighter-rouge">nextcloud</code> container, which can be obtained by running <code class="language-plaintext highlighter-rouge">sudo docker ps -a | grep "nextcloud"</code>. Once in the interactive container, we can edit the file <code class="language-plaintext highlighter-rouge">/config/www/nextcloud/config/config.php</code> and change <code class="language-plaintext highlighter-rouge">'maintenance' =&gt; true</code> to <code class="language-plaintext highlighter-rouge">'maintenance' =&gt; false</code>. The running service should be able to pick up the change automatically. If not, we may need to restart the docker container,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker restart <span class="o">[</span>CONTAINER_ID]
+</code></pre></div></div>
+
 <p><br /></p>
 
 <h1 id="references">References</h1>

@@ -450,6 +450,26 @@ AFFiNE.use('copilot', {
 
 After the manual configuration, we may need to stop the running container by running `sudo docker stop <CONTAINER_ID>` and the `<CONTAINER_ID>` can be obtained by running `sudo docker ps -a | grep "affine"`. Then we can do `sudo docker rm <CONTAINER_ID>` to remove the container and run `sudo docker compose up -d` in the `Affine` application directory mentioned above, namely `/opt/1panel/apps/affine/affine`.
 
+Issue #15
+===
+
+The `nextcloud` server sometimes may be locked in the `maintenance` mode.
+
+Solution (#15)
+===
+
+In this case, we may need to manually disable the `maintenance` mode by going into the running docker container,
+
+```bash
+sudo docker exec -it [CONTAINER_ID] /bin/bash
+```
+
+where `[CONTAINER_ID]` refers to the ID of the running `nextcloud` container, which can be obtained by running `sudo docker ps -a | grep "nextcloud"`. Once in the interactive container, we can edit the file `/config/www/nextcloud/config/config.php` and change `'maintenance' => true` to `'maintenance' => false`. The running service should be able to pick up the change automatically. If not, we may need to restart the docker container,
+
+```bash
+sudo docker restart [CONTAINER_ID]
+```
+
 <br>
 
 References
