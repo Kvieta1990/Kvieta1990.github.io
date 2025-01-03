@@ -19,13 +19,13 @@
 
   
 
-  <title>A brief summary of the early superconductivity development</title>
+  <title>Description of Magnetic Structure with Propogation Vector</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="The diagram below is maded out of the nice article in Ref. [1] by Prof. C. Slichter, summarizing the history of the early development of superconductivity. It goes over the discovery of superconducting phenomenon, the early efforts in revealing the reason why such a peculiar phenomenon could ever happen, the...">
+  <meta name="description" content="The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus...">
 
   
 
@@ -89,8 +89,8 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="A brief summary of the early superconductivity development">
-  <meta property="og:description" content="The diagram below is maded out of the nice article in Ref. [1] by Prof. C. Slichter, summarizing the history of the early development of superconductivity. It goes over the discovery of superconducting phenomenon, the early efforts in revealing the reason why such a peculiar phenomenon could ever happen, the...">
+  <meta property="og:title" content="Description of Magnetic Structure with Propogation Vector">
+  <meta property="og:description" content="The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -99,9 +99,9 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2024-12-16T00:00:00-05:00">
-  <meta property="og:url" content="http://localhost:4000/2024-12-16-superconductivity_summary/">
-  <link rel="canonical" href="http://localhost:4000/2024-12-16-superconductivity_summary/">
+  <meta property="og:article:published_time" content="2025-01-03T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2025-01-03-prop_vector/">
+  <link rel="canonical" href="http://localhost:4000/2025-01-03-prop_vector/">
   
 
   
@@ -110,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="A brief summary of the early superconductivity development">
-  <meta property="twitter:description" content="The diagram below is maded out of the nice article in Ref. [1] by Prof. C. Slichter, summarizing the history of the early development of superconductivity. It goes over the discovery of superconducting phenomenon, the early efforts in revealing the reason why such a peculiar phenomenon could ever happen, the...">
+  <meta property="twitter:title" content="Description of Magnetic Structure with Propogation Vector">
+  <meta property="twitter:description" content="The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -261,11 +261,11 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>A brief summary of the early superconductivity development</h1>
+						<h1>Description of Magnetic Structure with Propogation Vector</h1>
           
 
           
-					<span class="post-meta">Posted on December 16, 2024, by Yuanpeng Zhang</span>
+					<span class="post-meta">Posted on January 3, 2025, by Yuanpeng Zhang</span>
             
             
           
@@ -313,21 +313,53 @@ if (chromeAgent) {
     }
 </style>
 
-<p>The diagram below is maded out of the nice article in Ref. [1] by Prof. C. Slichter, summarizing the history of the early development of superconductivity. It goes over the discovery of superconducting phenomenon, the early efforts in revealing the reason why such a peculiar phenomenon could ever happen, the building up of those recipes for finally revealing the microscopic origin of the superconductivity at the fundamental level, until the proposition of the BCS theory of superconductivity, by J. Bardeen, L. Cooper and B. Schrieffer.</p>
+<p>The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus structure, just like whatever other types of modulation of the nucleus structure that can happen in practice, such as the occupancy, distortion, etc. Mathematically, modulations of the nucleus structure can be described by the propogation vector in such a way that is pretty much like the tight binding model – starting from a local component in the origin unit cell (which can be chosen arbitrarily), we can build up the component in remote unit cells by knowing how the component propagates through, via plane waves. Formula-wise, this can be written as,</p>
 
-<blockquote>
-  <p>Right click on the picture and click on <code class="language-plaintext highlighter-rouge">Open image in new tab</code> (or something similar in web browsers other than <code class="language-plaintext highlighter-rouge">Chrome</code>) to view the full image.</p>
-</blockquote>
+\[\vec{m}_{lj} = \sum_{\vec{k}}\vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l]\ \ (1)\]
 
-<p align="center">
-<img src="/assets/img/posts/Superconductivity_Development.svg" style="border:none;" width="1000" alt="spcd_dev" title="spcd_dev" />
-</p>
+<p>where \(l\) refers to the index of unit cell and \(j\) labels the atom in the unit cell. \(\vec{R}_l\) is the vector pointing from the origin of the origin unit cell to the origin of the unit cell labeled with \(l\), and \(k\) is just the propagation vector. \(\vec{S}_{\vec{k}j}\) is our ‘local component’ that sits on the atom labeled with \(j\), which is fundamentally just the Fourier component corresponding to a certain propagation vector. It is worthwhile mentioning that \(\vec{S}_{\vec{k}j}\) is a complex vector, which can be written as like,</p>
+
+\[\vec{S}_{\vec{k}j} = \vec{S}_{\vec{k}j}^r + \vec{S}_{\vec{k}j}^i\ \ (2)\]
+
+<p>where both the real and imaginary components are in a vector form and therefore in total the Fourier component vector contains 6 parameters. Also, it should be kept in mind that at the end of the day, the magnetic moment as given in Eqn. (1) should be real. So, there for sure should be a way to guarantee the complex form in Eqn. (1) turns out to give something real. The magic actually goes all the way back to the basic principle of Fourier transform where the negative frequency is introduced to make sure we get back the real function out of the complex form of the Fourier transform [1]. Fundamentally, the negative terms in the Fourier series are not independent terms and it is the relation between the positive and negative terms that guarantee the outcome from the complex Fourier series is giving something real. Specifically in the current context for description of the magnetic structure, we have,</p>
+
+\[\vec{S}_{-\vec{k}j} = \vec{S}_{\vec{k}j}^*\ \ (3)\]
+
+<p>It is the focus of this blog then to show explicitly how, based on Eqn. (3), one can work out the real form of the magnetic moments from its complex form given in Eqn. (1).</p>
+
+<p><br /></p>
+
+<p>First, let’s put the \(\vec{k}\) and \(-\vec{k}\) relevant terms together,</p>
+
+\[\begin{align}
+&amp; \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + \vec{S}_{-\vec{k}j}exp[-2\pi i (-\vec{k})\cdot \vec{R}_ l]\\
+&amp; \hspace{-0.8cm} = \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + (\vec{S}_{\vec{k}j})^*\{exp[-2\pi i \vec{k}\cdot \vec{R}_l]\}^*\\
+&amp; \hspace{-0.8cm} = \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + \{\vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l]\}^*\ \ \ \ \ \ (4)
+\end{align}\]
+
+<p>from which we can already see that the end result will definitely be real as we are adding up a complex number with its own complex conjugate. But we will keep working till we get the final form and here we write down the complex Fourier vector component in its full explicit form, turning Eqn. (4) into,</p>
+
+\[(S_{\vec{k}j}^x e^{i\phi_{\vec{k}}^x}\vec{\hat{x}} + S_{\vec{k}j}^y e^{i\phi_{\vec{k}}^y}\vec{\hat{y}} + S_{\vec{k}j}^z e^{i\phi_{\vec{k}}^z}\vec{\hat{z}})exp[-2\pi i \vec{k}\cdot\vec{R}_l] + c.c.\ \ (5)\]
+
+<p>where \(c.c.\) means the accompanying complex conjugate of the first term. Here, each of the vector component along \(\vec{\hat{x}}\), \(\vec{\hat{y}}\) or \(\vec{\hat{z}}\) direction is specified by the amplitude and the phase, in its Euler form of the complex coefficient. Focusing on the \(\vec{\hat{x}}\) component, we have,</p>
+
+\[\begin{align}
+&amp; S_{\vec{k}j}^x e^{i\phi_{\vec{k}}^x} \vec{\hat{x}} exp[-2\pi i \vec{k}\cdot\vec{R}_l] + c.c.\\
+&amp; \hspace{-0.8cm} = S_{\vec{k}j}^x e^{i(-2\pi\vec{k}\cdot\vec{R}_l + \phi_{\vec{k}}^x)}\vec{\hat{x}} + c.c.\\
+&amp; \hspace{-0.8cm} = 2S_{\vec{k}j}^x cos(-2\pi\vec{k}\cdot\vec{R}_l + \phi_{\vec{k}}^x)\\
+&amp; \hspace{-0.8cm} = 2S_{\vec{k}j}^x cos(2\pi\vec{k}\cdot\vec{R}_l)cos(\phi_{\vec{k}}^x) + 2S_{\vec{k}j}^x sin(2\pi\vec{k}\cdot\vec{R}_l)sin(\phi_{\vec{k}}^x)\\
+&amp; \hspace{-0.8cm} = A_{\vec{k}j\{cos\}}^x cos(2\pi\vec{k}\cdot\vec{R}_l) + A_{\vec{k}j\{sin\}}^x sin(2\pi\vec{k}\cdot\vec{R}_l)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (6)
+\end{align}\]
+
+<p>which basically resembles the usually used form when performing the calculation in practice, e.g., as given by Eqn. (3) in Ref. [2].</p>
 
 <p><br /></p>
 
 <h1 id="references">References</h1>
 
-<p>[1] <a href="https://history.aip.org/exhibits/mod/superconductivity/01.html">https://history.aip.org/exhibits/mod/superconductivity/01.html</a></p>
+<p>[1] <a href="https://iris2020.net/2020-06-28-fourier_transform/">https://iris2020.net/2020-06-28-fourier_transform/</a></p>
+
+<p>[2] <a href="https://doi.org/10.1107/S1600576716015491">S. V. Gallego, et al. J. Appl. Cryst. (2016). 49, 1941–1956.</a></p>
 
       </article>
 
@@ -337,7 +369,7 @@ if (chromeAgent) {
           
             <a href="/tags#solid state physics">solid state physics</a>
           
-            <a href="/tags#superconductivity">superconductivity</a>
+            <a href="/tags#magnetism">magnetism</a>
           
         </div>
       
@@ -354,7 +386,7 @@ if (chromeAgent) {
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=A+brief+summary+of+the+early+superconductivity+development&url=http%3A%2F%2Flocalhost%3A4000%2F2024-12-16-superconductivity_summary%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Description+of+Magnetic+Structure+with+Propogation+Vector&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-03-prop_vector%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -362,7 +394,7 @@ if (chromeAgent) {
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2024-12-16-superconductivity_summary%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-01-03-prop_vector%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -370,7 +402,7 @@ if (chromeAgent) {
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2024-12-16-superconductivity_summary%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-03-prop_vector%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -388,13 +420,9 @@ if (chromeAgent) {
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2024-11-07-n8n_slack_nocodb/" data-toggle="tooltip" data-placement="top" title="Set up workflows for bidirectional connection between NocoDB and Slack">&larr; Previous Post</a>
+          <a class="page-link" href="/2024-12-16-superconductivity_summary/" data-toggle="tooltip" data-placement="top" title="A brief summary of the early superconductivity development">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2025-01-03-prop_vector/" data-toggle="tooltip" data-placement="top" title="Description of Magnetic Structure with Propogation Vector">Next Post &rarr;</a>
-        </li>
         
       </ul>
       
