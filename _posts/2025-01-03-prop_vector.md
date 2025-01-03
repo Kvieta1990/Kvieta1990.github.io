@@ -60,7 +60,7 @@ $$
 \begin{align}
 & \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + \vec{S}_{-\vec{k}j}exp[-2\pi i (-\vec{k})\cdot \vec{R}_ l]\\
 & \hspace{-0.8cm} = \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + (\vec{S}_{\vec{k}j})^*\{exp[-2\pi i \vec{k}\cdot \vec{R}_l]\}^*\\
-& \hspace{-0.8cm} = \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + \{\vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l]\}^*\ \ (4)
+& \hspace{-0.8cm} = \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + \{\vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l]\}^*\ \ \ \ \ \ (4)
 \end{align}
 $$
 
@@ -78,9 +78,11 @@ $$
 & \hspace{-0.8cm} = S_{\vec{k}j}^x e^{i(-2\pi\vec{k}\cdot\vec{R}_l + \phi_{\vec{k}}^x)}\vec{\hat{x}} + c.c.\\
 & \hspace{-0.8cm} = 2S_{\vec{k}j}^x cos(-2\pi\vec{k}\cdot\vec{R}_l + \phi_{\vec{k}}^x)\\
 & \hspace{-0.8cm} = 2S_{\vec{k}j}^x cos(2\pi\vec{k}\cdot\vec{R}_l)cos(\phi_{\vec{k}}^x) + 2S_{\vec{k}j}^x sin(2\pi\vec{k}\cdot\vec{R}_l)sin(\phi_{\vec{k}}^x)\\
-& \hspace{-0.8cm} = A_{\vec{k}j\{cos\}}^x cos(2\pi\vec{k}\cdot\vec{R}_l) + A_{\vec{k}j\{sin\}}^x sin(2\pi\vec{k}\cdot\vec{R}_l)\ \ \ \ \ \ \ \ \ \ (6)
+& \hspace{-0.8cm} = A_{\vec{k}j\{cos\}}^x cos(2\pi\vec{k}\cdot\vec{R}_l) + A_{\vec{k}j\{sin\}}^x sin(2\pi\vec{k}\cdot\vec{R}_l)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (6)
 \end{align}
 $$
+
+which basically resembles the usually used form when performing the calculation in practice, e.g., as given by Eqn. (3) in Ref. [2].
 
 <br>
 
