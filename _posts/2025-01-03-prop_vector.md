@@ -60,7 +60,25 @@ $$
 \begin{align}
 & \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + \vec{S}_{-\vec{k}j}exp[-2\pi i (-\vec{k})\cdot \vec{R}_ l]\\
 & \hspace{-0.8cm} = \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + (\vec{S}_{\vec{k}j})^*{exp[-2\pi i \vec{k}\cdot \vec{R}_l]}^*\\
-& \hspace{-0.8cm} = \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + {\vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l]}^*
+& \hspace{-0.8cm} = \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + {\vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l]}^*\ \ (4)
+\end{align}
+$$
+
+from which we can already see that the end result will definitely be real as we are adding up a complex number with its own complex conjugate. But we will keep working till we get the final form and here we write down the complex Fourier vector component in its full explicit form, turning Eqn. (4) into,
+
+$$
+(S_{\vec{k}j}^x e^{i\phi_{\vec{k}}^x}\vev{\hat{x}} + S_{\vec{k}j}^y e^{i\phi_{\vec{k}}^y}\vev{\hat{y}} + S_{\vec{k}j}^z e^{i\phi_{\vec{k}}^z}\vev{\hat{z}})exp[-2\pi i \vec{k}\cdot\vec{R}_l] + c.c.\ \ (5)
+$$
+
+where $$c.c.$$ means the accompanying complex conjugate of the first term. Here, each of the vector component along $$\vec{\hat{x}}$$, $$\vec{\hat{y}}$$ or $$\vec{\hat{z}}$$ direction is specified by the amplitude and the phase, in its Euler form of the complex coefficient. Focusing on the $$\vec{\hat{x}}$$ component, we have,
+
+$$
+\begin{align}
+& S_{\vec{k}j}^x e^{i\phi_{\vec{k}}^x} \vev{\hat{x}} exp[-2\pi i \vec{k}\cdot\vec{R}_l] + c.c.\\
+& \hspace{-0.8cm} = S_{\vec{k}j}^x e^{i(-2\pi\vec{k}\cdot\vec{R}_l + \phi_{\vec{k}}^x)}\vec{\hat{x}} + c.c.\\
+& \hspace{-0.8cm} = 2S_{\vec{k}j}^x cos(i(-2\pi\vec{k}\cdot\vec{R}_l + \phi_{\vec{k}}^x))\\
+& \hspace{-0.8cm} = 2S_{\vec{k}j}^x cos(2\pi\vec{k}\cdot\vec{R}_l)cos(\phi_{\vec{k}^x}) + 2S_{\vec{k}j}^x sin(2\pi\vec{k}\cdot\vec{R}_l)sin(\phi_{\vec{k}^x})\\
+& \hspace{-0.8cm} = A_{\vec{k}j{cos}}
 \end{align}
 $$
 
