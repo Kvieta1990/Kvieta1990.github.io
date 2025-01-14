@@ -120,6 +120,34 @@ This post is a collection of notes of tips and tricks when trying to set up slur
 
 <p style='text-align: justify'>
 Sometimes, when trying to submit jobs after the server is up running, it may show that the computing node is `drained`. To undrain it, we may need to follow the instruction in Ref. [1]. Also, sometimes we may see the log of the server is complaining about not being able to fine the PID file. This should not matter that much in terms of server running and jobs management.
+<br />
+If the `watch -t squeue` command shows the following status,
+<br />
+<br />
+```
+Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions 
+```
+<br />
+<br />
+we can check the node status by running `sinfo` and we may possibly see the state of `inval`, indicating something going wrong with the slurm service. We can then run `sudo systemctl status slurmctld` to check the `slurmctld` status. It happened to me that after Ubuntu upgrade from 20.04 to 22.04, the original `slurm.conf` file does not work any more, causing the error shown above. In my case, I have to comment out the out-of-date `FastSchedule=0` option. Also, I had to change the `COMPUTE NODES` definition lines, from,
+<br />
+<br />
+```
+NodeName=pc113118 RealMemory=95363 Sockets=2 CoresPerSocket=12 ThreadsPerCore=2 State=UNKNOWN
+PartitionName=batch Nodes=pc113118 Default=YES MaxTime=INFINITE State=UP
+```
+<br />
+<br />
+to,
+<br />
+<br />
+```
+NodeName=pc113118 CPUs=48 Boards=1 SocketsPerBoard=2 CoresPersocket=12 ThreadsPerCore=2 RealMemory=95331
+PartitionName=batch Nodes=pc113118 Default=YES MaxTime=INFINITE State=UP
+```
+<br />
+<br />
+To obtain the information to be put in the node definition, we can use the `slurmd -C` command. Then I needed to copy `/etc/slurm/slurm.conf` to `/etc/slurm-llnl/slurm.conf`, followed by first running `sudo systemctl restart slurmd` then running `sudo systemctl restart slurmctld`.
 </p>
 
 <br />

@@ -408,6 +408,34 @@ This post is a collection of notes of tips and tricks when trying to set up slur
 
 <p style="text-align: justify">
 Sometimes, when trying to submit jobs after the server is up running, it may show that the computing node is <code class="language-plaintext highlighter-rouge">drained</code>. To undrain it, we may need to follow the instruction in Ref. [1]. Also, sometimes we may see the log of the server is complaining about not being able to fine the PID file. This should not matter that much in terms of server running and jobs management.
+<br />
+If the <code class="language-plaintext highlighter-rouge">watch -t squeue</code> command shows the following status,
+<br />
+<br />
+<code class="language-plaintext highlighter-rouge">
+Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions 
+</code>
+<br />
+<br />
+we can check the node status by running <code class="language-plaintext highlighter-rouge">sinfo</code> and we may possibly see the state of <code class="language-plaintext highlighter-rouge">inval</code>, indicating something going wrong with the slurm service. We can then run <code class="language-plaintext highlighter-rouge">sudo systemctl status slurmctld</code> to check the <code class="language-plaintext highlighter-rouge">slurmctld</code> status. It happened to me that after Ubuntu upgrade from 20.04 to 22.04, the original <code class="language-plaintext highlighter-rouge">slurm.conf</code> file does not work any more, causing the error shown above. In my case, I have to comment out the out-of-date <code class="language-plaintext highlighter-rouge">FastSchedule=0</code> option. Also, I had to change the <code class="language-plaintext highlighter-rouge">COMPUTE NODES</code> definition lines, from,
+<br />
+<br />
+<code class="language-plaintext highlighter-rouge">
+NodeName=pc113118 RealMemory=95363 Sockets=2 CoresPerSocket=12 ThreadsPerCore=2 State=UNKNOWN
+PartitionName=batch Nodes=pc113118 Default=YES MaxTime=INFINITE State=UP
+</code>
+<br />
+<br />
+to,
+<br />
+<br />
+<code class="language-plaintext highlighter-rouge">
+NodeName=pc113118 CPUs=48 Boards=1 SocketsPerBoard=2 CoresPersocket=12 ThreadsPerCore=2 RealMemory=95331
+PartitionName=batch Nodes=pc113118 Default=YES MaxTime=INFINITE State=UP
+</code>
+<br />
+<br />
+To obtain the information to be put in the node definition, we can use the <code class="language-plaintext highlighter-rouge">slurmd -C</code> command. Then I needed to copy <code class="language-plaintext highlighter-rouge">/etc/slurm/slurm.conf</code> to <code class="language-plaintext highlighter-rouge">/etc/slurm-llnl/slurm.conf</code>, followed by first running <code class="language-plaintext highlighter-rouge">sudo systemctl restart slurmd</code> then running <code class="language-plaintext highlighter-rouge">sudo systemctl restart slurmctld</code>.
 </p>
 
 <p><br /></p>
