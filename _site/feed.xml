@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Development environment setup for RMCProfile on Windows</title>
+        <description>
+          
+          This blog is for noting down the details about setting up the development environment for RMCProfile on Windows machine. The notes here are still based on the conventional way of compiling using make files. There is some work happening in the background now to transfer the compiling to using cmake....
+        </description>
+        <pubDate>Fri, 17 Jan 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2025-01-17-rmcprofile_dev_env_win/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-01-17-rmcprofile_dev_env_win/</guid>
+      </item>
+    
+      <item>
         <title>Description of Magnetic Structure with Propogation Vector</title>
         <description>
           
@@ -218,24 +229,6 @@
         <pubDate>Mon, 04 Mar 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-03-04-latt_params_to_latt_vecs/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-04-latt_params_to_latt_vecs/</guid>
-      </item>
-    
-      <item>
-        <title>Photoshop基于图层生成动画</title>
-        <description>
-          
-          将一系列图片导入到Photoshop里，然后基于图层生成动画，即每一个图层为生成动画的一帧，下面给出的是详细的操作步骤，
-
-
-   
-      
-   
-
-
-        </description>
-        <pubDate>Sun, 25 Feb 2024 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2024-02-25-ps_make_animation/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-02-25-ps_make_animation/</guid>
       </item>
     
   </channel>

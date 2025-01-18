@@ -19,13 +19,13 @@
 
   
 
-  <title>Description of Magnetic Structure with Propogation Vector</title>
+  <title>Development environment setup for RMCProfile on Windows</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus...">
+  <meta name="description" content="This blog is for noting down the details about setting up the development environment for RMCProfile on Windows machine. The notes here are still based on the conventional way of compiling using make files. There is some work happening in the background now to transfer the compiling to using cmake....">
 
   
 
@@ -89,8 +89,8 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Description of Magnetic Structure with Propogation Vector">
-  <meta property="og:description" content="The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus...">
+  <meta property="og:title" content="Development environment setup for RMCProfile on Windows">
+  <meta property="og:description" content="This blog is for noting down the details about setting up the development environment for RMCProfile on Windows machine. The notes here are still based on the conventional way of compiling using make files. There is some work happening in the background now to transfer the compiling to using cmake....">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -99,9 +99,9 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2025-01-03T00:00:00-05:00">
-  <meta property="og:url" content="http://localhost:4000/2025-01-03-prop_vector/">
-  <link rel="canonical" href="http://localhost:4000/2025-01-03-prop_vector/">
+  <meta property="og:article:published_time" content="2025-01-17T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2025-01-17-rmcprofile_dev_env_win/">
+  <link rel="canonical" href="http://localhost:4000/2025-01-17-rmcprofile_dev_env_win/">
   
 
   
@@ -110,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Description of Magnetic Structure with Propogation Vector">
-  <meta property="twitter:description" content="The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus...">
+  <meta property="twitter:title" content="Development environment setup for RMCProfile on Windows">
+  <meta property="twitter:description" content="This blog is for noting down the details about setting up the development environment for RMCProfile on Windows machine. The notes here are still based on the conventional way of compiling using make files. There is some work happening in the background now to transfer the compiling to using cmake....">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -261,11 +261,11 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>Description of Magnetic Structure with Propogation Vector</h1>
+						<h1>Development environment setup for RMCProfile on Windows</h1>
           
 
           
-					<span class="post-meta">Posted on January 3, 2025, by Yuanpeng Zhang</span>
+					<span class="post-meta">Posted on January 17, 2025, by Yuanpeng Zhang</span>
             
             
           
@@ -313,53 +313,130 @@ if (chromeAgent) {
     }
 </style>
 
-<p>The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus structure, just like whatever other types of modulation of the nucleus structure that can happen in practice, such as the occupancy, distortion, etc. Mathematically, modulations of the nucleus structure can be described by the propogation vector in such a way that is pretty much like the tight binding model – starting from a local component in the origin unit cell (which can be chosen arbitrarily), we can build up the component in remote unit cells by knowing how the component propagates through, via plane waves. Formula-wise, this can be written as,</p>
+<p>This blog is for noting down the details about setting up the development environment for RMCProfile on Windows machine. The notes here are still based on the conventional way of compiling using <code class="language-plaintext highlighter-rouge">make</code> files. There is some work happening in the background now to transfer the compiling to using <code class="language-plaintext highlighter-rouge">cmake</code>. Before the whole pipeline of <code class="language-plaintext highlighter-rouge">cmake</code> is ready, we will still rely on the route as in the current blog. In fact, even the current route is depracated, some of the notes will still apply when setting up the development environment.</p>
 
-\[\vec{m}_{lj} = \sum_{\vec{k}}\vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l]\ \ (1)\]
+<ul>
+  <li>
+    <p>Nowadays, we are pretty much using the intel Fortran compiler which now is free, through the <code class="language-plaintext highlighter-rouge">oneAPI</code> toolkit. To install the compiler, we need to first install <code class="language-plaintext highlighter-rouge">Microsoft Visual Studio</code> (the community version is fine, and it is free). We may need to remove whatever existing old versions of <code class="language-plaintext highlighter-rouge">Microsoft Visual Studio</code> (e.g., the 2019 version may need to be removed, if the we intend to use the 2022 version). I am not sure whether this is the cause for my issue, but in my case, I have been struggling a lot with the <code class="language-plaintext highlighter-rouge">oneAPI</code> setup in the down stream. Anyhow, having a clean version of 2022 turns out to be working fine for me.</p>
+  </li>
+  <li>
+    <p>Then we want to install the <code class="language-plaintext highlighter-rouge">OneAPI</code> toolkit.</p>
 
-<p>where \(l\) refers to the index of unit cell and \(j\) labels the atom in the unit cell. \(\vec{R}_l\) is the vector pointing from the origin of the origin unit cell to the origin of the unit cell labeled with \(l\), and \(k\) is just the propagation vector. \(\vec{S}_{\vec{k}j}\) is our ‘local component’ that sits on the atom labeled with \(j\), which is fundamentally just the Fourier component corresponding to a certain propagation vector. It is worthwhile mentioning that \(\vec{S}_{\vec{k}j}\) is a complex vector, which can be written as like,</p>
+    <blockquote>
+      <p>Here is the official website for download and instructions (as of writing), <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?operatingsystem=windows">oneAPI Base Toolkit download and install</a></p>
+    </blockquote>
 
-\[\vec{S}_{\vec{k}j} = \vec{S}_{\vec{k}j}^r + \vec{S}_{\vec{k}j}^i\ \ (2)\]
+    <blockquote>
+      <p>See the <code class="language-plaintext highlighter-rouge">Run Sample Code to Verify Installation</code> section on the website for the command to run for terminal (e.g., <code class="language-plaintext highlighter-rouge">powershell</code>) initialization.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>To use <code class="language-plaintext highlighter-rouge">make</code> and also for the purpose of back-compatibility for some plotting routines, we need to install <code class="language-plaintext highlighter-rouge">Cygwin</code> and set up the <code class="language-plaintext highlighter-rouge">pgplot</code> library inside the <code class="language-plaintext highlighter-rouge">Cygwin</code> environment (see the section at the very bottom for details about setting up <code class="language-plaintext highlighter-rouge">pgplot</code> in <code class="language-plaintext highlighter-rouge">Cygwin</code>). When installing <code class="language-plaintext highlighter-rouge">Cygwin</code>, the following selections are necessary: <code class="language-plaintext highlighter-rouge">make</code>, <code class="language-plaintext highlighter-rouge">x11</code> and <code class="language-plaintext highlighter-rouge">xorg</code>. Later on when installing the <code class="language-plaintext highlighter-rouge">pgplot</code> library, if some of the <code class="language-plaintext highlighter-rouge">X11</code> stuff are missing, we can Google what we need to include for <code class="language-plaintext highlighter-rouge">X11</code> installation according to the error message we got.</p>
+  </li>
+  <li>
+    <p>We will need to install <code class="language-plaintext highlighter-rouge">nvcc</code> for compiling CUDA codes involved in the <code class="language-plaintext highlighter-rouge">RMCProfile</code> project. As of writing, the offial website for download the installation file is <a href="https://developer.nvidia.com/cuda-downloads">this</a>. In case it is changed, we can just google ‘CUDA nvcc install’ or something relevant to search for information.</p>
+  </li>
+  <li>
+    <p>In preparation for the compiling, we may need to delete unnecessary entries in the <code class="language-plaintext highlighter-rouge">PATH</code> environment variable. Otherwise, the <code class="language-plaintext highlighter-rouge">nvcc</code> command will fail when it is trying to set up the environment on-the-fly. It is something relevant to the running of <code class="language-plaintext highlighter-rouge">vcvars64.bat</code> script which will be running on-the-fly when running <code class="language-plaintext highlighter-rouge">nvcc</code>, and the fundamental reason for the potential failure is the value of the environment variable <code class="language-plaintext highlighter-rouge">PATH</code> is too long. On Windows, we can use <code class="language-plaintext highlighter-rouge">Start</code> to search for ‘environment variable’ to bring up the GUI window for changing the <code class="language-plaintext highlighter-rouge">PATH</code> variable.</p>
+  </li>
+  <li>
+    <p>On <code class="language-plaintext highlighter-rouge">powershell</code>, we need to run</p>
 
-<p>where both the real and imaginary components are in a vector form and therefore in total the Fourier component vector contains 6 parameters. Also, it should be kept in mind that at the end of the day, the magnetic moment as given in Eqn. (1) should be real. So, there for sure should be a way to guarantee the complex form in Eqn. (1) turns out to give something real. The magic actually goes all the way back to the basic principle of Fourier transform where the negative frequency is introduced to make sure we get back the real function out of the complex form of the Fourier transform [1]. Fundamentally, the negative terms in the Fourier series are not independent terms and it is the relation between the positive and negative terms that guarantee the outcome from the complex Fourier series is giving something real. Specifically in the current context for description of the magnetic structure, we have,</p>
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="n">cmd.exe</span><span class="w"> </span><span class="s2">"/K"</span><span class="w"> </span><span class="s1">'"C:\Program Files (x86)\Intel\oneAPI\setvars.bat" &amp;&amp; powershell'</span><span class="w">
+</span></code></pre></div>    </div>
 
-\[\vec{S}_{-\vec{k}j} = \vec{S}_{\vec{k}j}^*\ \ (3)\]
+    <p>to initialize the terminal environment.</p>
 
-<p>It is the focus of this blog then to show explicitly how, based on Eqn. (3), one can work out the real form of the magnetic moments from its complex form given in Eqn. (1).</p>
+    <blockquote>
+      <p>This command needs to be run each time when launching a new <code class="language-plaintext highlighter-rouge">powershell</code> terminal.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>When we see error like this,</p>
+    </blockquote>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> LINK : fatal error LNK1104: cannot open file 'ifconsol.lib'
+</code></pre></div>    </div>
+
+    <p>it infers the <code class="language-plaintext highlighter-rouge">oneAPI</code> environment initializer was not run, in which case we just need to run the command above to initialize the environment and try again the compiling.</p>
+  </li>
+  <li>
+    <p>As a side note, with the latest intel <code class="language-plaintext highlighter-rouge">oneAPI</code> compiler (<code class="language-plaintext highlighter-rouge">ifort</code>), the argument that goes into <code class="language-plaintext highlighter-rouge">c_loc</code> (<code class="language-plaintext highlighter-rouge">the function used in the source codes for fetching the address of a pointer</code>) should be defined as a pointer. The original definition of some of the variables (used as the argument for <code class="language-plaintext highlighter-rouge">c_loc</code>) as allocatable arrays would not work.</p>
+  </li>
+  <li>
+    <p>When encountering the issue with unresolved CUDA symbols, we may need to change the cuda library files to the version that is compatible with the version of <code class="language-plaintext highlighter-rouge">nvcc</code> being used for the compiling. Specifically, two CUDA library files <code class="language-plaintext highlighter-rouge">cublas.lib</code> and <code class="language-plaintext highlighter-rouge">cudart.lib</code> need to be linked while making the <code class="language-plaintext highlighter-rouge">rmcprofile.exe</code> executable. For specific command for linking, etc., refer to those <code class="language-plaintext highlighter-rouge">Makefile</code> files in the <code class="language-plaintext highlighter-rouge">RMCProfile</code> repository – for the moment, the source code is not open source yet. To get access, get in touch with me <a href="https://iris2020.net/contact/" target="_blank">here</a>. We need to copy the proper version of these two files to somewhere (and the path to the two library files will be specified while linking to make <code class="language-plaintext highlighter-rouge">rmcprofile.exe</code>).</p>
+
+    <blockquote>
+      <p>In my case, I was using the <code class="language-plaintext highlighter-rouge">12.6</code> version of <code class="language-plaintext highlighter-rouge">nvcc</code> and my library files could be found here, <code class="language-plaintext highlighter-rouge">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\lib\x64</code>.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p style="text-align: center;">=================I AM A SEPARATOR=================</p>
 
 <p><br /></p>
 
-<p>First, let’s put the \(\vec{k}\) and \(-\vec{k}\) relevant terms together,</p>
+<p>Here follows are the detaild instructions about setting up <code class="language-plaintext highlighter-rouge">pgplot</code> in <code class="language-plaintext highlighter-rouge">Cygwin</code>.</p>
 
-\[\begin{align}
-&amp; \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + \vec{S}_{-\vec{k}j}exp[-2\pi i (-\vec{k})\cdot \vec{R}_ l]\\
-&amp; \hspace{-0.8cm} = \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + (\vec{S}_{\vec{k}j})^*\{exp[-2\pi i \vec{k}\cdot \vec{R}_l]\}^*\\
-&amp; \hspace{-0.8cm} = \vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l] + \{\vec{S}_{\vec{k}j}exp[-2\pi i \vec{k}\cdot \vec{R}_l]\}^*\ \ \ \ \ \ (4)
-\end{align}\]
+<ul>
+  <li>
+    <p>Grab the <code class="language-plaintext highlighter-rouge">pgplot5.2.tar.gz</code> file which has already been included in the main directory of the <code class="language-plaintext highlighter-rouge">RMCProfile</code> repository.</p>
+  </li>
+  <li>
+    <p>Decompress and extract the contents of the distribution file in a source directory. In this sense, I always place <code class="language-plaintext highlighter-rouge">pgplot5.2.tar.gz</code> under /usr/local/src. Then we can do,</p>
 
-<p>from which we can already see that the end result will definitely be real as we are adding up a complex number with its own complex conjugate. But we will keep working till we get the final form and here we write down the complex Fourier vector component in its full explicit form, turning Eqn. (4) into,</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  cd /usr/local/src
+  mv [SOMEWHERE]/pgplot5.2.tar.gz .
+  tar zxvf pgplot5.2.tar.gz
+</code></pre></div>    </div>
 
-\[(S_{\vec{k}j}^x e^{i\phi_{\vec{k}}^x}\vec{\hat{x}} + S_{\vec{k}j}^y e^{i\phi_{\vec{k}}^y}\vec{\hat{y}} + S_{\vec{k}j}^z e^{i\phi_{\vec{k}}^z}\vec{\hat{z}})exp[-2\pi i \vec{k}\cdot\vec{R}_l] + c.c.\ \ (5)\]
+    <p>This will create <code class="language-plaintext highlighter-rouge">/usr/local/src/pgplot</code> and subdirectories.</p>
+  </li>
+  <li>
+    <p>Create the directory where <code class="language-plaintext highlighter-rouge">PGPLOT</code> will be actually installed,</p>
 
-<p>where \(c.c.\) means the accompanying complex conjugate of the first term. Here, each of the vector component along \(\vec{\hat{x}}\), \(\vec{\hat{y}}\) or \(\vec{\hat{z}}\) direction is specified by the amplitude and the phase, in its Euler form of the complex coefficient. Focusing on the \(\vec{\hat{x}}\) component, we have,</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  mkdir /usr/local/pgplot
+  cd /usr/local/pgplot
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Copy the file <code class="language-plaintext highlighter-rouge">drivers.list</code> from the source directory to the installation directory,</p>
 
-\[\begin{align}
-&amp; S_{\vec{k}j}^x e^{i\phi_{\vec{k}}^x} \vec{\hat{x}} exp[-2\pi i \vec{k}\cdot\vec{R}_l] + c.c.\\
-&amp; \hspace{-0.8cm} = S_{\vec{k}j}^x e^{i(-2\pi\vec{k}\cdot\vec{R}_l + \phi_{\vec{k}}^x)}\vec{\hat{x}} + c.c.\\
-&amp; \hspace{-0.8cm} = 2S_{\vec{k}j}^x cos(-2\pi\vec{k}\cdot\vec{R}_l + \phi_{\vec{k}}^x)\\
-&amp; \hspace{-0.8cm} = 2S_{\vec{k}j}^x cos(2\pi\vec{k}\cdot\vec{R}_l)cos(\phi_{\vec{k}}^x) + 2S_{\vec{k}j}^x sin(2\pi\vec{k}\cdot\vec{R}_l)sin(\phi_{\vec{k}}^x)\\
-&amp; \hspace{-0.8cm} = A_{\vec{k}j\{cos\}}^x cos(2\pi\vec{k}\cdot\vec{R}_l) + A_{\vec{k}j\{sin\}}^x sin(2\pi\vec{k}\cdot\vec{R}_l)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (6)
-\end{align}\]
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  cp /usr/local/src/pgplot/drivers.list .
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Edit that file and remove the exclamation mark (first column of each row) in front of the following graphic devices,</p>
 
-<p>which basically resembles the usually used form when performing the calculation in practice, e.g., as given by Eqn. (3) in Ref. [2].</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  /PS, /VPS, /CPS, /VCPS,  /Xserve and /XWindow
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create the makefile. From the installation directory <code class="language-plaintext highlighter-rouge">/usr/local/pgplot</code>, execute,</p>
 
-<p><br /></p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  /usr/local/src/pgplot/makemake /usr/local/src/pgplot linux g77_gcc_aout
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Edit the file makefile and change the line,</p>
 
-<h1 id="references">References</h1>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  FCOMPL=g77
+</code></pre></div>    </div>
 
-<p>[1] <a href="https://iris2020.net/2020-06-28-fourier_transform/">https://iris2020.net/2020-06-28-fourier_transform/</a></p>
+    <p>to</p>
 
-<p>[2] <a href="https://doi.org/10.1107/S1600576716015491">S. V. Gallego, et al. J. Appl. Cryst. (2016). 49, 1941–1956.</a></p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  FCOMPL=gfortran
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Compile the source files,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  make
+  make cpg
+  make clean
+</code></pre></div>    </div>
+  </li>
+</ul>
 
       </article>
 
@@ -367,9 +444,19 @@ if (chromeAgent) {
         <div class="blog-tags">
           <span>Tags:</span>
           
-            <a href="/tags#solid state physics">solid state physics</a>
+            <a href="/tags#RMCProfile">RMCProfile</a>
           
-            <a href="/tags#magnetism">magnetism</a>
+            <a href="/tags#tool">tool</a>
+          
+            <a href="/tags#technical">technical</a>
+          
+            <a href="/tags#dev">dev</a>
+          
+            <a href="/tags#Windows">Windows</a>
+          
+            <a href="/tags#rmc">rmc</a>
+          
+            <a href="/tags#scattering">scattering</a>
           
         </div>
       
@@ -386,7 +473,7 @@ if (chromeAgent) {
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Description+of+Magnetic+Structure+with+Propogation+Vector&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-03-prop_vector%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Development+environment+setup+for+RMCProfile+on+Windows&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-17-rmcprofile_dev_env_win%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -394,7 +481,7 @@ if (chromeAgent) {
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-01-03-prop_vector%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-01-17-rmcprofile_dev_env_win%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -402,7 +489,7 @@ if (chromeAgent) {
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-03-prop_vector%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-17-rmcprofile_dev_env_win%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -420,13 +507,9 @@ if (chromeAgent) {
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2024-12-16-superconductivity_summary/" data-toggle="tooltip" data-placement="top" title="A brief summary of the early superconductivity development">&larr; Previous Post</a>
+          <a class="page-link" href="/2025-01-03-prop_vector/" data-toggle="tooltip" data-placement="top" title="Description of Magnetic Structure with Propogation Vector">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2025-01-17-rmcprofile_dev_env_win/" data-toggle="tooltip" data-placement="top" title="Development environment setup for RMCProfile on Windows">Next Post &rarr;</a>
-        </li>
         
       </ul>
       

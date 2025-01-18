@@ -34,7 +34,7 @@ use_math: true
 
 This blog is for noting down the details about setting up the development environment for RMCProfile on Windows machine. The notes here are still based on the conventional way of compiling using `make` files. There is some work happening in the background now to transfer the compiling to using `cmake`. Before the whole pipeline of `cmake` is ready, we will still rely on the route as in the current blog. In fact, even the current route is depracated, some of the notes will still apply when setting up the development environment.
 
-- Nowadays, we are pretty much using the intel Fortran compiler which now is free, through the `oneAPI` toolkit. To install the compiler, we need to first install `Microsoft Visual Studio` (the community version is fine, which is free). We may need to remove whatever existing old versions of `Microsoft Visual Studio` (e.g., the 2019 version may need to be removed, if the we intend to use the 2022 version). I am not sure whether this is the cause for my issue, but in my case, I have been struggling a lot with the `oneAPI` setup in the down stream. Anyhow, having a clean version of 2022 works turns out to be working fine for me.
+- Nowadays, we are pretty much using the intel Fortran compiler which now is free, through the `oneAPI` toolkit. To install the compiler, we need to first install `Microsoft Visual Studio` (the community version is fine, and it is free). We may need to remove whatever existing old versions of `Microsoft Visual Studio` (e.g., the 2019 version may need to be removed, if the we intend to use the 2022 version). I am not sure whether this is the cause for my issue, but in my case, I have been struggling a lot with the `oneAPI` setup in the down stream. Anyhow, having a clean version of 2022 turns out to be working fine for me.
 
 - Then we want to install the `OneAPI` toolkit.
 
@@ -42,11 +42,11 @@ This blog is for noting down the details about setting up the development enviro
 
    > See the `Run Sample Code to Verify Installation` section on the website for the command to run for terminal (e.g., `powershell`) initialization.
 
-- To use `make` and also for the purpose of back-compatibility for some plotting routines, we need to install `Cygwin` and set up the `pgplot` library there. When installing `Cygwin`, the following selections are necessary: `make`, `x11` and `xorg`. Later on when installing the `pgplot` library, if some of the `X11` stuff are missing, we can Google what we need to include for `X11` installation according to the error message we got.
+- To use `make` and also for the purpose of back-compatibility for some plotting routines, we need to install `Cygwin` and set up the `pgplot` library inside the `Cygwin` environment (see the section at the very bottom for details about setting up `pgplot` in `Cygwin`). When installing `Cygwin`, the following selections are necessary: `make`, `x11` and `xorg`. Later on when installing the `pgplot` library, if some of the `X11` stuff are missing, we can Google what we need to include for `X11` installation according to the error message we got.
 
 - We will need to install `nvcc` for compiling CUDA codes involved in the `RMCProfile` project. As of writing, the offial website for download the installation file is [this](https://developer.nvidia.com/cuda-downloads). In case it is changed, we can just google 'CUDA nvcc install' or something relevant to search for information.
 
-- In preparation for the compiling, we may need to delete unnecessary entries in the environment `path` variable. Otherwise, the `nvcc` command will fail when it is trying to set up the environment on-the-fly. This is something relevant to the running of `vcvars64.bat` script which will be running on-the-fly when running `nvcc` and the fundamental reason for the potential failure is the value of the environment variable `PATH` is too long. On Windows, we can use `Start` to search for 'environment variable' to bring up the GUI window for changing the `PATH` variable.
+- In preparation for the compiling, we may need to delete unnecessary entries in the `PATH` environment variable. Otherwise, the `nvcc` command will fail when it is trying to set up the environment on-the-fly. It is something relevant to the running of `vcvars64.bat` script which will be running on-the-fly when running `nvcc`, and the fundamental reason for the potential failure is the value of the environment variable `PATH` is too long. On Windows, we can use `Start` to search for 'environment variable' to bring up the GUI window for changing the `PATH` variable.
 
 - On `powershell`, we need to run
 
@@ -68,11 +68,13 @@ This blog is for noting down the details about setting up the development enviro
 
 - As a side note, with the latest intel `oneAPI` compiler (`ifort`), the argument that goes into `c_loc` (`the function used in the source codes for fetching the address of a pointer`) should be defined as a pointer. The original definition of some of the variables (used as the argument for `c_loc`) as allocatable arrays would not work.
 
-- When encountering the issue with unresolved CUDA symbols, we may need to change the cuda library files to the version that is compatible with the version of `nvcc` being used for the compiling. Specifically, two CUDA library files `cublas.lib` and `cudart.lib` need to be linked while making the `rmcprofile.exe` executable. For specific command for linking, etc., refer to those `Makefile` files in the `RMCProfile` repository -- for the moment, the source code is not open source yet. To get access, get in touch with me <a href="https://iris2020.net/contact/" target="_blank">here</a>. We need to copy the proper version of these two files to somewhere (which will be specified while linking to make `rmcprofile.exe`).
+- When encountering the issue with unresolved CUDA symbols, we may need to change the cuda library files to the version that is compatible with the version of `nvcc` being used for the compiling. Specifically, two CUDA library files `cublas.lib` and `cudart.lib` need to be linked while making the `rmcprofile.exe` executable. For specific command for linking, etc., refer to those `Makefile` files in the `RMCProfile` repository -- for the moment, the source code is not open source yet. To get access, get in touch with me <a href="https://iris2020.net/contact/" target="_blank">here</a>. We need to copy the proper version of these two files to somewhere (and the path to the two library files will be specified while linking to make `rmcprofile.exe`).
 
    > In my case, I was using the `12.6` version of `nvcc` and my library files could be found here, `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\lib\x64`.
 
 <p style="text-align: center;">=================I AM A SEPARATOR=================</p>
+
+<br />
 
 Here follows are the detaild instructions about setting up `pgplot` in `Cygwin`.
 
