@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Block the annoying ads on slashdot</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="Slashdot is by far my favourite news collection and sharing platform where people were posting a lot of interesting news covering all sorts of areas, from tech to science, from politics to history, etc. I have been checking the daily feeds on Slashdot literatively on a daily base for quite...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Block the annoying ads on slashdot">
+  <meta property="og:description" content="Slashdot is by far my favourite news collection and sharing platform where people were posting a lot of interesting news covering all sorts of areas, from tech to science, from politics to history, etc. I have been checking the daily feeds on Slashdot literatively on a daily base for quite...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2024/03/">
-  <link rel="canonical" href="http://localhost:4000/archive/2024/03/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2025-01-20T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2025-01-20-slashdot_block_ads/">
+  <link rel="canonical" href="http://localhost:4000/2025-01-20-slashdot_block_ads/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Block the annoying ads on slashdot">
+  <meta property="twitter:description" content="Slashdot is by far my favourite news collection and sharing platform where people were posting a lot of interesting news covering all sorts of areas, from tech to science, from politics to history, etc. I have been checking the daily feeds on Slashdot literatively on a daily base for quite...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -258,10 +260,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Block the annoying ads on slashdot</h1>
           
 
+          
+					<span class="post-meta">Posted on January 20, 2025, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -274,445 +280,172 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
+      
 
-<div class="intro-header"></div>
+      
 
-<div role="main" class=" container-md ">
-  
+      <article role="main" class="blog-post">
+        <style>
+    .faq-container {
+        margin: 0 auto;
+    }
+    .faq-question {
+        margin-bottom: 10px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .faq-answer {
+        display: none;
+        margin-bottom: 20px;
+    }
+    .callout {
+        background-color: #e8f4fd; /* Light blue background */
+        border-left: 5px solid #007BFF; /* Blue accent on the left */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        font-family: Arial, sans-serif; /* Ensuring the font is consistent */
+    }
+    .multiline-span {
+        display: block; /* or display: inline-block; */
+    }
+</style>
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>March, 2024</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2024-03-16-aws_s3_notes/"><h3 class="post-title mb0">Amazon AWS S3 setup</h3></a>
-					<p class="post-meta small">March 16, 2024, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#cloud">cloud</a>
-  
-    <a href="/tags#tutorial">tutorial</a>
-  
+<p align="center">
+<img src="/assets/img/posts/Slashdot_logo.png" style="border:none;" width="200" alt="slashdot" title="slashdot" />
 </p>
 
-          </div>
+<p><code class="language-plaintext highlighter-rouge">Slashdot</code> is by far my favourite news collection and sharing platform where people were posting a lot of interesting news covering all sorts of areas, from tech to science, from politics to history, etc. I have been checking the daily feeds on <code class="language-plaintext highlighter-rouge">Slashdot</code> literatively on a daily base for quite a while and have been enjoying it, until recently I found the website is showing a lot of pop-up ads, which is pretty much annoying. Well, I believe it has the mechanism of delivering ads to readers for a long time but because I have been using ads blocker extension like <code class="language-plaintext highlighter-rouge">AdblockPlus</code>, I rarely see those annoying and distracting ads. However, just very recently, the <code class="language-plaintext highlighter-rouge">AdblockPlus</code> no longer works specifically for <code class="language-plaintext highlighter-rouge">Slashdot</code> even I subscribed the premium of <code class="language-plaintext highlighter-rouge">AdblockPlus</code>. <code class="language-plaintext highlighter-rouge">Slashdot</code> does provide its own subscription as well but I never got it working – anytime I visit its subscription page, the checkbox for subscription and the submit button would always be greyed out. Come on…I just need a way to block those ads and I really don’t want to give up <code class="language-plaintext highlighter-rouge">Slashdot</code>.</p>
+
+<p>Fortunately, I came across a not-too-bad solution and I wil put it down in this blog post [1-3]. First, we still need <code class="language-plaintext highlighter-rouge">AdblockPlus</code> installed. Then, we need to install an extension called <code class="language-plaintext highlighter-rouge">Tampermonkey</code> extension. Next, we need to follow the instructions posted in Ref. [1] to install the <code class="language-plaintext highlighter-rouge">tinyShield userscript</code>. Here, I steal the detailed instructions and put it below,</p>
+
+<ul>
+  <li>
+    <p>Open settings of Tampermonkey.</p>
+  </li>
+  <li>
+    <p>Go to <code class="language-plaintext highlighter-rouge">Utilities</code> tab.</p>
+  </li>
+  <li>
+    <p>Input the following URL into <code class="language-plaintext highlighter-rouge">Install from URL</code>:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  https://cdn.jsdelivr.net/npm/@list-kr/tinyshield@latest/dist/tinyShield.user.js
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Click <code class="language-plaintext highlighter-rouge">Install</code> button.</p>
+  </li>
+  <li>
+    <p>Confirm metadata of the userscript and click <code class="language-plaintext highlighter-rouge">Install</code>.</p>
+  </li>
+  <li>
+    <p>Return to a tab opening the website protected by <code class="language-plaintext highlighter-rouge">AdblockPlus</code> and reload the tab by pressing <code class="language-plaintext highlighter-rouge">F5</code> or <code class="language-plaintext highlighter-rouge">Ctrl + R</code> or clicking the reload button.</p>
+  </li>
+</ul>
+
+<p>With this, it seems all the ads on <code class="language-plaintext highlighter-rouge">Slashdot</code> can be blocked, giving us a fresh reading environment. Nice!</p>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://github.com/List-KR/tinyShield">https://github.com/List-KR/tinyShield</a></p>
+
+<p>[2] <a href="https://forum.vivaldi.net/post/800134">https://forum.vivaldi.net/post/800134</a></p>
+
+<p>[3] <a href="https://github.com/AdguardTeam/AdguardFilters/issues/193633">https://github.com/AdguardTeam/AdguardFilters/issues/193633</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#web">web</a>
+          
+            <a href="/tags#tool">tool</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Block+the+annoying+ads+on+slashdot&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-20-slashdot_block_ads%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-01-20-slashdot_block_ads%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-20-slashdot_block_ads%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2025-01-17-rmcprofile_dev_env_win/" data-toggle="tooltip" data-placement="top" title="Development environment setup for RMCProfile on Windows">&larr; Previous Post</a>
         </li>
         
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2024-03-11-mac_mouse_gesture/"><h3 class="post-title mb0">Mouse gesture on Mac</h3></a>
-					<p class="post-meta small">March 11, 2024, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#Mac">Mac</a>
-  
-    <a href="/tags#software">software</a>
-  
-    <a href="/tags#tool">tool</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2024-03-11-vscode_python_debugger/"><h3 class="post-title mb0">Notes on using VSCode</h3></a>
-					<p class="post-meta small">March 11, 2024, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#IDE">IDE</a>
-  
-    <a href="/tags#software">software</a>
-  
-    <a href="/tags#tool">tool</a>
-  
-    <a href="/tags#VSCode">VSCode</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2024-03-07-flarum_setup/"><h3 class="post-title mb0">Set up a Flarum forum on VPS</h3></a>
-					<p class="post-meta small">March 7, 2024, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#web">web</a>
-  
-    <a href="/tags#docker">docker</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2024-03-04-latt_params_to_latt_vecs/"><h3 class="post-title mb0">Construct lattice vectors from lattice parameters</h3></a>
-					<p class="post-meta small">March 4, 2024, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#crystallography">crystallography</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
         
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 

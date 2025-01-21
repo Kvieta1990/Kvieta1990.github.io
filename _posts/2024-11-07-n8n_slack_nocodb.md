@@ -2,7 +2,7 @@
 layout: post
 title: Set up workflows for bidirectional connection between NocoDB and Slack
 subtitle:
-tags: [web, server, tutorial, slack, automation, database]
+tags: [web, server, tutorial, Slack, automation, database]
 author: Yuanpeng Zhang
 comments: true
 use_math: true
