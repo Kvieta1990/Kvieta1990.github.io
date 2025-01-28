@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Notes on the development environment setup for RMCProfile</title>
+        <description>
+          
+          This blog is for noting down the technical details about the RMCProfile package building. This is not intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference. Currently, the source code of RMCProfile are hosted on...
+        </description>
+        <pubDate>Tue, 28 Jan 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2025-01-28-rmcprofile_dev_env_gen/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-01-28-rmcprofile_dev_env_gen/</guid>
+      </item>
+    
+      <item>
         <title>Block the annoying ads on slashdot</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Mon, 11 Mar 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-03-11-mac_mouse_gesture/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-11-mac_mouse_gesture/</guid>
-      </item>
-    
-      <item>
-        <title>Set up a Flarum forum on VPS</title>
-        <description>
-          
-          Set up a VPS and getting a domain for the VPS will not be covered in this blog. Here, I am assuming we have already got our VPS up running. I am using the 1Panel control panel to install the Flarum forum web service, which is one of the most...
-        </description>
-        <pubDate>Thu, 07 Mar 2024 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2024-03-07-flarum_setup/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-03-07-flarum_setup/</guid>
       </item>
     
   </channel>
