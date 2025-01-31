@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Setting up 1panel with Cloudflare</title>
+        <description>
+          
+          1Panel is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with docker as the backend engine). I have my own server hosted on...
+        </description>
+        <pubDate>Thu, 30 Jan 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2025-01-30-1panel_cloudflare/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-01-30-1panel_cloudflare/</guid>
+      </item>
+    
+      <item>
         <title>Notes on the development environment setup for RMCProfile</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Mon, 11 Mar 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-03-11-vscode_python_debugger/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-11-vscode_python_debugger/</guid>
-      </item>
-    
-      <item>
-        <title>Mouse gesture on Mac</title>
-        <description>
-          
-          On Windows, we have software like AutoHotkey with which we can define keyboard shortcut for running various actions in a convenient way. With AutoHotkey, we can also define mouse gestures to execute actions quickly. Here in Ref. [1] is provided a zip file containing the AutoHotkey files for some useful...
-        </description>
-        <pubDate>Mon, 11 Mar 2024 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2024-03-11-mac_mouse_gesture/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-03-11-mac_mouse_gesture/</guid>
       </item>
     
   </channel>
