@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Use local build of Mantid with Python script</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="Here in the blog, I will covering how to build a local version of Mantid and use it with python. For example, we may have a Python script which uses some Mantid algorithm. On ORNL Analysis cluster, a certain version of Mantid framework has been deployed and we can execute...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Use local build of Mantid with Python script">
+  <meta property="og:description" content="Here in the blog, I will covering how to build a local version of Mantid and use it with python. For example, we may have a Python script which uses some Mantid algorithm. On ORNL Analysis cluster, a certain version of Mantid framework has been deployed and we can execute...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2024/11/">
-  <link rel="canonical" href="http://localhost:4000/archive/2024/11/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2025-01-31T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2025-01-31-mantid_local_python/">
+  <link rel="canonical" href="http://localhost:4000/2025-01-31-mantid_local_python/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Use local build of Mantid with Python script">
+  <meta property="twitter:description" content="Here in the blog, I will covering how to build a local version of Mantid and use it with python. For example, we may have a Python script which uses some Mantid algorithm. On ORNL Analysis cluster, a certain version of Mantid framework has been deployed and we can execute...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -258,10 +260,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Use local build of Mantid with Python script</h1>
           
 
+          
+					<span class="post-meta">Posted on January 31, 2025, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -274,439 +280,160 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <style>
+    .faq-container {
+        margin: 0 auto;
+    }
+    .faq-question {
+        margin-bottom: 10px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .faq-answer {
+        display: none;
+        margin-bottom: 20px;
+    }
+    .callout {
+        background-color: #e8f4fd; /* Light blue background */
+        border-left: 5px solid #007BFF; /* Blue accent on the left */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        font-family: Arial, sans-serif; /* Ensuring the font is consistent */
+    }
+    .multiline-span {
+        display: block; /* or display: inline-block; */
+    }
+</style>
+
+<p>Here in the blog, I will covering how to build a local version of <code class="language-plaintext highlighter-rouge">Mantid</code> and use it with <code class="language-plaintext highlighter-rouge">python</code>. For example, we may have a <code class="language-plaintext highlighter-rouge">Python</code> script which uses some <code class="language-plaintext highlighter-rouge">Mantid</code> algorithm. On ORNL Analysis cluster, a certain version of <code class="language-plaintext highlighter-rouge">Mantid</code> framework has been deployed and we can execute a <code class="language-plaintext highlighter-rouge">Python</code> script using the deployed version of <code class="language-plaintext highlighter-rouge">Mantid</code> via, <code class="language-plaintext highlighter-rouge">mantidpython script_name.py</code>. But the local build of <code class="language-plaintext highlighter-rouge">Mantid</code> does not come with something like <code class="language-plaintext highlighter-rouge">mantidpython</code> wrapper so some extra work needs to be done to get it working.</p>
+
+<p>With the up-to-date version of <code class="language-plaintext highlighter-rouge">Mantid</code>, the way of setting up the development <code class="language-plaintext highlighter-rouge">conda</code> environment has been changed to using <code class="language-plaintext highlighter-rouge">mamba</code> and instructions can be found <a href="https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#setup-the-mantid-conda-environment">here</a>. This new way of setup does not seem to work with the legacy version of <code class="language-plaintext highlighter-rouge">Mantid</code>, e.g., <code class="language-plaintext highlighter-rouge">6.8.0</code>. For those legacy versions, we have to set up the <code class="language-plaintext highlighter-rouge">conda</code> environment in the <code class="language-plaintext highlighter-rouge">legacy</code> way. To do that, we <code class="language-plaintext highlighter-rouge">cd</code> into the main directory of the <code class="language-plaintext highlighter-rouge">Mantid</code> repository from the terminal and run,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda <span class="nb">env </span>create <span class="nt">--file</span> mantid-developer-linux.yml
+</code></pre></div></div>
+
+<p>We may need to change the <code class="language-plaintext highlighter-rouge">conda</code> environment name in the first line of the YAML file above, if needed, e.g., when a <code class="language-plaintext highlighter-rouge">conda</code> environment with the default name already exists. Suppose the <code class="language-plaintext highlighter-rouge">conda</code> environment name is <code class="language-plaintext highlighter-rouge">mantid-developer-v6p8p0</code>, to build <code class="language-plaintext highlighter-rouge">Mantid</code>, we do,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda activate mantid-developer-v6p8p0
+cmake <span class="nt">--preset</span><span class="o">=</span>linux
+<span class="nb">cd </span>build
+ninja
+</code></pre></div></div>
+
+<p>Next, we want to create a virtual python environment. First, <code class="language-plaintext highlighter-rouge">cd</code> into a location where we want to create the virtual environment and then execute,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>virtualenv <span class="nt">-p</span> &lt;LOCATION&gt;/mantid-developer-v6p8p0/bin/python <span class="nt">--system-site-packages</span> .venv
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">&lt;LOCATION&gt;</code> refers to the location where the <code class="language-plaintext highlighter-rouge">conda</code> environment lives, and in my case, it is <code class="language-plaintext highlighter-rouge">/SNS/users/y8z/miniconda/envs/</code>. After all the steps, we can execute the following two commands to make <code class="language-plaintext highlighter-rouge">python</code> in our virtual environment being able to access the local build of <code class="language-plaintext highlighter-rouge">Mantid</code>,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> &lt;LOCATION&gt;/.venv/bin/activate <span class="o">&gt;</span> /dev/null 2&gt;&amp;1
+python &lt;MANTID_REPO&gt;/build/bin/AddPythonPath.py <span class="o">&gt;</span> /dev/null 2&gt;&amp;1
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">&lt;LOCATION&gt;</code> refers to the location where <code class="language-plaintext highlighter-rouge">.venv</code> sits and <code class="language-plaintext highlighter-rouge">&lt;MANTID_REPO&gt;</code> refers to the full path to the <code class="language-plaintext highlighter-rouge">Mantid</code> repo. The <code class="language-plaintext highlighter-rouge">&gt; /dev/null 2&gt;&amp;1</code> part of the commands suppress all the terminal printout to keep the output clean.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#Mantid">Mantid</a>
+          
+            <a href="/tags#technical">technical</a>
+          
+            <a href="/tags#dev">dev</a>
+          
+            <a href="/tags#scattering">scattering</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
 
 
-<div class="intro-header"></div>
 
-<div role="main" class=" container-md ">
-  
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>November, 2024</em></h2>
-  </header>
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
 
   
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2024-11-07-n8n_slack_nocodb/"><h3 class="post-title mb0">Set up workflows for bidirectional connection between NocoDB and Slack</h3></a>
-					<p class="post-meta small">November 7, 2024, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Use+local+build+of+Mantid+with+Python+script&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-31-mantid_local_python%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
   
-    <a href="/tags#web">web</a>
-  
-    <a href="/tags#server">server</a>
-  
-    <a href="/tags#tutorial">tutorial</a>
-  
-    <a href="/tags#Slack">Slack</a>
-  
-    <a href="/tags#automation">automation</a>
-  
-    <a href="/tags#database">database</a>
-  
-</p>
 
-          </div>
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-01-31-mantid_local_python%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-31-mantid_local_python%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2025-01-30-1panel_cloudflare/" data-toggle="tooltip" data-placement="top" title="Setting up 1panel with Cloudflare">&larr; Previous Post</a>
         </li>
         
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2024-11-04-n8n_rss_gmail/"><h3 class="post-title mb0">Set up an automated workflow for collecting RSS feeds and send to Gmail</h3></a>
-					<p class="post-meta small">November 4, 2024, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#web">web</a>
-  
-    <a href="/tags#server">server</a>
-  
-    <a href="/tags#tutorial">tutorial</a>
-  
-    <a href="/tags#gmail">gmail</a>
-  
-    <a href="/tags#automation">automation</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2024-11-03-n8n_notion_slack_workflow/"><h3 class="post-title mb0">Set up an automated workflow for Notion & Slack connection with n8n</h3></a>
-					<p class="post-meta small">November 3, 2024, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#web">web</a>
-  
-    <a href="/tags#server">server</a>
-  
-    <a href="/tags#tutorial">tutorial</a>
-  
-    <a href="/tags#Slack">Slack</a>
-  
-    <a href="/tags#automation">automation</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
         
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 

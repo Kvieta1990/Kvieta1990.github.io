@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Use local build of Mantid with Python script</title>
+        <description>
+          
+          Here in the blog, I will covering how to build a local version of Mantid and use it with python. For example, we may have a Python script which uses some Mantid algorithm. On ORNL Analysis cluster, a certain version of Mantid framework has been deployed and we can execute...
+        </description>
+        <pubDate>Fri, 31 Jan 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2025-01-31-mantid_local_python/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-01-31-mantid_local_python/</guid>
+      </item>
+    
+      <item>
         <title>Setting up 1panel with Cloudflare</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sat, 16 Mar 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-03-16-aws_s3_notes/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-03-16-aws_s3_notes/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on using VSCode</title>
-        <description>
-          
-          This post is a collection of notes for useful setups, tricks and utilities in VSCode, as one of the popular IDEs in the market, along with Sublime Text, Atom, JetBrains, and so many to name. Python Debugger Running the debug mode for coding in IDE is a very convenient feature,...
-        </description>
-        <pubDate>Mon, 11 Mar 2024 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2024-03-11-vscode_python_debugger/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-03-11-vscode_python_debugger/</guid>
       </item>
     
   </channel>
