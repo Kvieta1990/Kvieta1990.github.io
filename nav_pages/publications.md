@@ -8,11 +8,13 @@ subtitle: 　
 
 <br />
 
+<u>2025</u>
+
+- Feixiang Long, Yuzhu Song, Hengchao Li, Yuanji Xu, Fuyang Tian, **Yuanpeng Zhang**, Tianyu Li, Hui Liu, Jiazheng Hao, Lunhua He, Xianran Xing, Fengxia Hu, Jun Chen, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2025, 147, 4349-4356.
+
+- Hao Lu, Chang Zhou, Yuzhu Song, **Yuanpeng Zhang**, Yiming Wu, Feixiang Long, Yonghao Yao, Jiazheng Hao, Yan Chen, Dunji Yu, J. Jakob Schwiedrzik, Ke An, Lunhua He, Zhaoping Lu, Jun Chen, <u><b><i>Nat. Commun.</i></b></u> 2025, 16, 211.
+
 <u>2024</u>
-
-- Feixiang Long, Yuzhu Song, Hengchao Li, Yuanji Xu, Fuyang Tian, **Yuanpeng Zhang**, Tianyu Li, Hui Liu, Jiazheng Hao, Lunhua He, Xianran Xing, Fengxia Hu, Jun Chen, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2024, 16, 211.
-
-- Hao Lu, Chang Zhou, Yuzhu Song, **Yuanpeng Zhang**, Yiming Wu, Feixiang Long, Yonghao Yao, Jiazheng Hao, Yan Chen, Dunji Yu, J. Jakob Schwiedrzik, Ke An, Lunhua He, Zhaoping Lu, Jun Chen, <u><b><i>Nat. Commun.</i></b></u> 2024, 16, 211.
 
 - Tsung-Han Yang, Shang Gao, **Yuanpeng Zhang**, Daniel Olds, William R Meier, Matthew B Stone, Brian C Sales, Andrew D Christianson, Qiang Zhang, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2024, 146, 34374-34382.
 
