@@ -10,6 +10,16 @@ subtitle: 　
 
 <u>2024</u>
 
+- Feixiang Long, Yuzhu Song, Hengchao Li, Yuanji Xu, Fuyang Tian, **Yuanpeng Zhang**, Tianyu Li, Hui Liu, Jiazheng Hao, Lunhua He, Xianran Xing, Fengxia Hu, Jun Chen, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2024, 16, 211.
+
+- Hao Lu, Chang Zhou, Yuzhu Song, **Yuanpeng Zhang**, Yiming Wu, Feixiang Long, Yonghao Yao, Jiazheng Hao, Yan Chen, Dunji Yu, J. Jakob Schwiedrzik, Ke An, Lunhua He, Zhaoping Lu, Jun Chen, <u><b><i>Nat. Commun.</i></b></u> 2024, 16, 211.
+
+- Tsung-Han Yang, Shang Gao, **Yuanpeng Zhang**, Daniel Olds, William R Meier, Matthew B Stone, Brian C Sales, Andrew D Christianson, Qiang Zhang, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2024, 146, 34374-34382.
+
+- Paul Cuillier, Matthew G. Tucker, **Yuanpeng Zhang**, <u><b><i>J. Appl. Cryst.</i></b></u> 2024, 57, 19.
+
+- Minjun Ai, Yuzhu Song, Feixiang Long, **Yuanpeng Zhang**, Ke An, Dunji Yu, Yan Chen, Yuki Sakai, Masahito Ikeda, Kazuki Takahashi, Masaki Azuma, Naike Shi, Chang Zhou, Jun Chen, <u><b><i>Adv. Sci.</i></b></u> 2024, 11, 2404838.
+
 - Bernadette Cladek, **Yuanpeng Zhang**, Russell Maier, Bruce Ravel, Matthew G Tucker, Igor Levin, <u><b><i>J. Appl. Cryst.</i></b></u> 2024, 57, 1023-1039.
 
 - Wojciech A. Sławiński, Christopher J. Kerr, **Yuanpeng Zhang**, Helen Y. Playford, Martin T. Dove, Anthony E. Phillips, Matthew G. Tucke, <u><b><i>J. Appl. Cryst.</i></b></u> 2024, 57, 1251-1262.
