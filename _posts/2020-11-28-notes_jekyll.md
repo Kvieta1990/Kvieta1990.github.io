@@ -22,7 +22,7 @@ One can follow Ref. [1] to build up site with Jekyll - it contains quite a few s
 <br />
 <br />
 
-1. Run bundle init - this will create the Gemfile.
+1. Run `bundle init` - this will create the Gemfile.
 
 <br />
 
@@ -38,11 +38,11 @@ gem 'jekyll', '3.9.0'
 
 <br />
 
-4. At this stage if one continues, as instructed in Ref. [1], to execute bundle exec jekyll new ., most likely error will occur, complaining that the directory is not empty (since we created the Gemfile in previous step for installing the right version of Jekyll). In this case, one just executes the following command, bundle exec jekyll new --force ., which will by force overwrite the already existing Gemfile.
+4. At this stage if one continues, as instructed in Ref. [1], to execute `bundle exec jekyll new .`, most likely error will occur, complaining that the directory is not empty (since we created the Gemfile in previous step for installing the right version of Jekyll). In this case, one just executes the following command, `bundle exec jekyll new --force .`, which will by force overwrite the already existing Gemfile.
 
 <br />
 
-5. To test locally, one simply executes the following command, bundle exec jekyll serve to start the service, where one should be able to see the localhost that we need to open in browser to check our template site!
+5. To test locally, one simply executes the following command, `bundle exec jekyll serve` to start the service, where one should be able to see the localhost that we need to open in browser to check our template site!
 
 <br />
 
