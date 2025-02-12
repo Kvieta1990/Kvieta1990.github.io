@@ -19,13 +19,13 @@
 
   
 
-  <title>Notes on implementing search in Jekyll site</title>
+  <title>All Updates</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="The commonly used method for implementing search capability in jekyll site with lunr does not seem to be working specifically in my case (namely the current website that we are staring at now). Trying to Google a bit and tring a few suggested solutions such as changing the version of...">
+  <meta name="description" content="Updates to all services I am maintaining">
 
   
 
@@ -89,19 +89,17 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Notes on implementing search in Jekyll site">
-  <meta property="og:description" content="The commonly used method for implementing search capability in jekyll site with lunr does not seem to be working specifically in my case (namely the current website that we are staring at now). Trying to Google a bit and tring a few suggested solutions such as changing the version of...">
+  <meta property="og:title" content="All Updates">
+  <meta property="og:description" content="Updates to all services I am maintaining">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
   
 
   
-  <meta property="og:type" content="article">
-  <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2023-03-14T00:00:00-05:00">
-  <meta property="og:url" content="http://localhost:4000/2023-03-14-notes_jekyll_search/">
-  <link rel="canonical" href="http://localhost:4000/2023-03-14-notes_jekyll_search/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/updates/">
+  <link rel="canonical" href="http://localhost:4000/updates/">
   
 
   
@@ -110,8 +108,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Notes on implementing search in Jekyll site">
-  <meta property="twitter:description" content="The commonly used method for implementing search capability in jekyll site with lunr does not seem to be working specifically in my case (namely the current website that we are staring at now). Trying to Google a bit and tring a few suggested solutions such as changing the version of...">
+  <meta property="twitter:title" content="All Updates">
+  <meta property="twitter:description" content="Updates to all services I am maintaining">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
@@ -262,14 +260,15 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="post-heading">
-						<h1>Notes on implementing search in Jekyll site</h1>
+        <div class="page-heading">
+						<h1>All Updates</h1>
+          
+            
+              <hr class="small">
+              <span class="page-subheading">Updates to all services I am maintaining</span>
+            
           
 
-          
-					<span class="post-meta">Posted on March 14, 2023, by Yuanpeng Zhang</span>
-            
-            
           
         </div>
       </div>
@@ -282,186 +281,56 @@ if (chromeAgent) {
 
 
 
-<div class=" container-md ">
+<div class=" container-md " role="main">
   <div class="row">
-    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
-
+    <div class=" page_body ">
       
 
-      
+      <style>
+    .thick-line {
+        border: 0;
+        height: 3px; /* Adjust the thickness of the line here */
+        background-color: black; /* Change the color of the line if needed */
+    }
+</style>
 
-      <article role="main" class="blog-post">
-        <p align="center">
-<img src="/assets/img/posts/jekyll.png" style="border:none;" width="300" alt="jekyll" title="jekyll" />
-</p>
+<hr class="thick-line" />
 
-<p>The commonly used method for implementing search capability in jekyll site with
-lunr does not seem to be working specifically in my case (namely the current
-website that we are staring at now). Trying to Google a bit and tring a few
-suggested solutions such as changing the version of jekyll, etc., and still the
-issue is there. Coming across the Ref. [1], there are listed three options to
-encode the search capability in jekyll site – the lunr method is the first one
-in the list. It seems the third option going through Google is working properly.</p>
+<blockquote>
+  <p>In this page, I will posting updates and announcements for all the web services and tools that I am hosting. You can check what is, and what is planned to be, happening for those web-based tools, including,</p>
+</blockquote>
 
 <ul>
   <li>
-    <p>We need to go to Ref. [2] to create a new search engine for our site. We need
-to specify a name for the search engine and put in our domain name (that we
-the Google search engine to search from). That’s it.</p>
+    <p>ADDIE: <a href="https://addie.ornl.gov">https://addie.ornl.gov</a></p>
   </li>
   <li>
-    <p>Clicking on <code class="language-plaintext highlighter-rouge">Create</code> there, we will be prompted with a short piece of
-javascript code which we then need to copy and paste into, e.g., <code class="language-plaintext highlighter-rouge">_includes/search_google.html</code>.
-Then we need to edit the <code class="language-plaintext highlighter-rouge">search.html</code> file to include that file, like this <code class="language-plaintext highlighter-rouge">{ % include search-google.html % }</code>.</p>
-
-    <blockquote>
-      <p>Refer to Ref. [3] (the github page repo for current blog) for code structure
-which the above instructions is based on.</p>
-    </blockquote>
+    <p>Powder Doc: <a href="https://powder.ornl.gov">https://powder.ornl.gov</a></p>
   </li>
   <li>
-    <p>Here follows is the piece of code implemented for current website,</p>
-
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="k">async</span> <span class="nx">src</span><span class="o">=</span><span class="dl">"</span><span class="s2">https://cse.google.com/cse.js?cx=477bd17655d3640c5</span><span class="dl">"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span><span class="o">&lt;</span><span class="nx">div</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">gcse-search</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span></code></pre></div>    </div>
+    <p>RMCProfile Doc: <a href="https://rmcprofile.ornl.gov">https://rmcprofile.ornl.gov</a></p>
+  </li>
+  <li>
+    <p>RMCProfile package: <a href="https://sourceforge.net/projects/rmcprofile/">https://sourceforge.net/projects/rmcprofile/</a></p>
   </li>
 </ul>
 
-<hr />
+<hr class="thick-line" />
 
-<p>If none of the lunr or Google search implementation works, we can refer to the 
-instruction for an alternative method with Google search implementation as
-provided below [4] (cited as is),</p>
+<p>⚠️ - Emergency, sometimes, servers may be down, expectedly or unexpectedly</p>
 
-<ul>
-  <li>Download the file <a href="https://raw.githubusercontent.com/jhvanderschee/jekyllcodex/gh-pages/_includes/search-google.html">search-google.html</a> and change the domain name</li>
-  <li>Save the file in the <code class="language-plaintext highlighter-rouge">_includes</code> directory of your project</li>
-  <li>
-    <p>Add the following statement to your layout where you want the search box to appear,</p>
+<p>📢 - Announcement, planned maintenance of servers</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  
-{% include search-google.html %}
-  
-</code></pre></div>    </div>
+<p>📝 - Update, planned or executed updates to services and tools</p>
 
-    <p><br /></p>
+<hr class="thick-line" />
 
-    <blockquote>
-      <p>Refer to the source code of current post <a href="https://raw.githubusercontent.com/Kvieta1990/Kvieta1990.github.io/master/_posts/2023-03-14-notes_jekyll_search.md" target="_blank">here</a> for the way to include Jekyll Liquid
-codes explicitly in the web page without rendering its contents.</p>
-    </blockquote>
-
-    <blockquote>
-      <p>The solution here was provided by ChatGPT with the prompt of <code class="language-plaintext highlighter-rouge">jekyll include {% as plain text</code>.</p>
-    </blockquote>
-  </li>
-</ul>
-
-<p>Submitting the search will lead us to a Google search page where all the results
-will be presented.</p>
-
-<h1 id="references">References</h1>
-
-<p>[1] <a href="https://longlovemyu.com/search_bar/">https://longlovemyu.com/search_bar/</a></p>
-
-<p>[2] <a href="https://cse.google.com/cse/create/new">https://cse.google.com/cse/create/new</a></p>
-
-<p>[3] <a href="https://github.com/Kvieta1990/Kvieta1990.github.io">https://github.com/Kvieta1990/Kvieta1990.github.io</a></p>
-
-<p>[4] <a href="https://jekyllcodex.org/without-plugin/search-google/">https://jekyllcodex.org/without-plugin/search-google/</a></p>
-
-      </article>
-
-      
-        <div class="blog-tags">
-          <span>Tags:</span>
-          
-            <a href="/tags#programming">programming</a>
-          
-            <a href="/tags#web development">web development</a>
-          
-        </div>
-      
-
-      
-
-      
-        <!-- Check if any share-links are active -->
-
-
-
-
-<section id = "social-share-section">
-  <span class="sr-only">Share: </span>
-
-  
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+implementing+search+in+Jekyll+site&url=http%3A%2F%2Flocalhost%3A4000%2F2023-03-14-notes_jekyll_search%2F"
-      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
-      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
-      <span class="sr-only">Twitter</span>
-    </a>
-  
-
-  
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2023-03-14-notes_jekyll_search%2F"
-      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
-      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
-      <span class="sr-only">Facebook</span>
-    </a>
-  
-
-  
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2023-03-14-notes_jekyll_search%2F"
-      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
-      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
-      <span class="sr-only">LinkedIn</span>
-    </a>
-  
-
-  
-
-</section>
-
+<p>📝 <strong><em>[02/12/2025 00:00:27 EST]</em></strong> A new experiment simulator tool is added for experimental planning purpose at HB-2A and HB-2C instruments at HFIR, ORNL.</p>
 
 
       
 
-      <ul class="pagination blog-pager">
-        
-        <li class="page-item previous">
-          <a class="page-link" href="/2023-03-14-notes_flask_nginx_https/" data-toggle="tooltip" data-placement="top" title="Notes Flask+Nginx+HTTPS setup">&larr; Previous Post</a>
-        </li>
-        
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2023-04-14-notes_fdm/" data-toggle="tooltip" data-placement="top" title="Notes on difference Fourier map">Next Post &rarr;</a>
-        </li>
-        
-      </ul>
       
-  <div id="disqus_thread"></div>
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_shortname = &quot;rmcprofile&quot;;
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://rmcprofile.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
 
     </div>
   </div>
