@@ -34,4 +34,4 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
-📝 ***[02/12/2025 00:00:27 EST]*** A new experiment simulator tool is added for experimental planning purpose at HB-2A and HB-2C instruments at HFIR, ORNL.
+📝 ***[02/12/2025 00:00:27 EST]*** A new experiment simulator tool is added in ADDIE for experimental planning purpose at HB-2A and HB-2C instruments at HFIR, ORNL. URL: [https://addie.ornl.gov/hfirestimate](https://addie.ornl.gov/hfirestimate).
