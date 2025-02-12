@@ -14,7 +14,7 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
-> In this page, I will posting updates and announcements for all the web services and tools that I am hosting. You can check what is, and what is planned to be, happening for those web-based tools, including,
+> In this page, I will be posting **updates and announcements** for all the web services and tools that I am responsible of maintaining. You can check what is (and what is planned to be) happening for those web-based tools, including,
 
 - ADDIE: [https://addie.ornl.gov](https://addie.ornl.gov)
 
