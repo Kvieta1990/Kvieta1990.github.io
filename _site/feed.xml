@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Sample and Container geometry for absorption correction</title>
+        <description>
+          
+          When neutrons interact with a measured sample, scattering is one type of the interaction, while absorption is another type. However, for a scattering measurement, the absorption effect ‘steals’ part of the intensity that should belong to the scattering intensity. Therefore, without the correction for the absorption effect, the measured intensity...
+        </description>
+        <pubDate>Wed, 12 Feb 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2025-02-12-abs_geo/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-02-12-abs_geo/</guid>
+      </item>
+    
+      <item>
         <title>Use local build of Mantid with Python script</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sat, 25 May 2024 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2024-05-25-dirac_equation/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-05-25-dirac_equation/</guid>
-      </item>
-    
-      <item>
-        <title>Amazon AWS S3 setup</title>
-        <description>
-          
-          Introduction Amazon S3 is a cloud service for setting up drives on the cloud, meaning that we can use it for storing and sharing files on the cloud. Compared to the Cloud drives that we commonly see and use every day, such as Dropbox, Google Drive, Proton Drive, Box, and...
-        </description>
-        <pubDate>Sat, 16 Mar 2024 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2024-03-16-aws_s3_notes/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-03-16-aws_s3_notes/</guid>
       </item>
     
   </channel>
