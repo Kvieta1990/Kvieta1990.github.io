@@ -10,6 +10,11 @@ subtitle: Updates to all services I am maintaining
         height: 3px; /* Adjust the thickness of the line here */
         background-color: black; /* Change the color of the line if needed */
     }
+    .thick-line1 {
+        border: 0;
+        height: 1px; /* Adjust the thickness of the line here */
+        background-color: grey; /* Change the color of the line if needed */
+    }
 </style>
 
 <hr class="thick-line">
@@ -27,6 +32,10 @@ subtitle: Updates to all services I am maintaining
 - RMCProfile Doc: [https://rmcprofile.ornl.gov](https://rmcprofile.ornl.gov)
 
 - RMCProfile package: [https://sourceforge.net/projects/rmcprofile/](https://sourceforge.net/projects/rmcprofile/)
+
+<hr class="thick-line1">
+
+***Monitor the services status*** <a href="https://ut.iris-home.net/status/sns-hfir" target="_blank">here</a>.
 
 <hr class="thick-line">
 
