@@ -47,6 +47,8 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
+📝 ***02/18/2025 14:00:45 EST*** Powder diffraction software development roadmap available [here](https://powder.ornl.gov/work_items/roadmap.html).
+
 📝 ***[02/15/2025 00:43:28 EST]*** The server `powder.ornl.gov` is back after an emergency outage. The following three services should all be working now, `powder.ornl.gov`, `powder.ornl.gov/hub` and `powder.ornl.gov/forum`.
 
 ⚠️ ***[02/15/2025 00:33:36 EST]*** The powder diffraction documentation server (powder.ornl.gov), together with two associated directories (powder.ornl.gov/hub and powder.ornl.gov/forum), is currently down due to server-side issue. I will post update once it is back.
