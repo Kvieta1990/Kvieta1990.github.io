@@ -314,7 +314,23 @@ if (chromeAgent) {
 <img src="/assets/img/posts/sam_geo3.png" style="border:none;" width="100" alt="sam_geo" title="sam_geo" />
 </p>
 
-<p>It is, though, possible in Mantid that we can define the so-called gauge volume associated with the sample so that the size of the sample under the beam can be defined [4]. In this case, the absorption correction can be performed in a more rigour way, without the assumption that beam size being the same as the sample size. However, in practice, the impact of such an assumption may not be significant, given the amount of sample beyond the beam.</p>
+<p>It is, though, possible in Mantid that we can define the so-called gauge volume associated with the sample so that the size of the sample under the beam can be defined [4]. In this case, the absorption correction can be performed in a more rigorous way, without the assumption that beam size being the same as the sample size. However, in practice, the impact of such an assumption may not be significant, given the amount of sample beyond the beam. The picture below demonstrates the implementation of the gauge volume in Mantid.</p>
+
+<p align="center">
+<img src="/assets/img/posts/Mantid_Gauge_Volume_Dev.svg" style="border:none;" width="800" alt="ga_vol" title="ga_vol" />
+</p>
+
+<p>The cuboid in the picture refers to the defined gauge volume and the intersection part with the sample (red cylinder) and container (green cylinder) is visible to the beam. The arrows in the middle refers to the Cartesian coordinate axes – red for \(x\)-axis, green for \(y\)-axis and blue for \(z\)-axis. The beam propogates following the blue arrow shown in the right. Follwoing the Mantid way of defining the gauge volume (see the link below), the definition used here is as follows,</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gauge_vol = '''<span class="nt">&lt;cuboid</span> <span class="na">id=</span><span class="s">"shape"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;left-front-bottom-point</span> <span class="na">x=</span><span class="s">"0.02"</span> <span class="na">y=</span><span class="s">"-0.01"</span> <span class="na">z=</span><span class="s">"-0.02"</span>  <span class="nt">/&gt;</span>
+    <span class="nt">&lt;left-front-top-point</span>  <span class="na">x=</span><span class="s">"0.02"</span> <span class="na">y=</span><span class="s">"-0.01"</span> <span class="na">z=</span><span class="s">"0.02"</span>  <span class="nt">/&gt;</span>
+    <span class="nt">&lt;left-back-bottom-point</span>  <span class="na">x=</span><span class="s">"-0.02"</span> <span class="na">y=</span><span class="s">"-0.01"</span> <span class="na">z=</span><span class="s">"-0.02"</span>  <span class="nt">/&gt;</span>
+    <span class="nt">&lt;right-front-bottom-point</span>  <span class="na">x=</span><span class="s">"0.02"</span> <span class="na">y=</span><span class="s">"0.01"</span> <span class="na">z=</span><span class="s">"-0.02"</span>  <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/cuboid&gt;</span>'''
+</code></pre></div></div>
+
+<p>where the length unit is <code class="language-plaintext highlighter-rouge">meter</code>. The container geometry definition is given in Mantid framework as one of the pre-defined container types – see <a href="https://github.com/mantidproject/mantid/blob/f6317224a0a30330ef706568dd3048b0f401ca80/instrument/sampleenvironments/SNS/InAir.xml#L81">here</a>. The several corner points that are used for defining the cuboid volume in Mantid are labeled out in the picture. To clarify the orientation, we will be facing the \(x\)-axis, with the red arrow pointing towards us. In this position, the blue arrow represents the direction from our feet to our head.</p>
 
 <hr />
 
