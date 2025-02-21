@@ -8,7 +8,7 @@ About Me
 ===
 
 <div align='center' class='card' data-tilt data-tilt-scale="0.9">
-<img src="/assets/img/ORNL.png"
+<img src="/assets/img/ornl.jpg"
    alt="SNS"
    title="SNS" />
    <img src="/assets/img/SNS.jpg" class="img-top" alt="ORNL">
@@ -23,30 +23,19 @@ About Me
 </p>
 
 <p style='text-align: justify;'>
-Working as neutron scattering scientist at ORNL, I have been 
-actively involved in software development and scientific research activities.
-The software development part mainly involves the development and maintenance of
-tools for neutron scattering data reduction and analysis, such as ADDIE environment
-for neutron total scattering data reduction, ADDIE web interface for structure
-mining and online Bragg and pair distribution function refinement, RMCProfile package
-for fitting scattering data based on supercell approach. Meanwhile, I am also
-interfacing the beamline scientists team and the software development team at ORNL,
-actively working on the development of Mantid framework for powder diffraction data reduction.
+I am a neutron scattering scientist in the powder diffraction group in the Neutron Scattering Division (NSD) at Oak Ridge National Laboratory (ORNL). My research focuses on the employment of neutron scattering for the atomic level structure studies of functional materials, such as those for energy storage, magnetoelectrics, and among others. I also apply the state-of-the-art AI/ML method, algorithm and framework in the structure-property link studies, such as the combination of neutron diffraction and machine learning force field (MLFF) for structure model refinement, the combination of exhaustive symmetry search and supervised machine learning for phase transition studies. Meanwhile, I have been actively involved in software development to support the neutron powder diffraction data processing and analysis, such as the ADDIE environment for neutron total scattering data reduction, ADDIE web interface for structure mining and web-based Bragg and pair distribution function (PDF) fitting, RMCProfile package for fitting scattering data based on supercell approach.
 </p>
 
 <br />
 
 <p style='text-align: justify;'>
-My research interest mainly focuses on the application of neutron total scattering
-to look at local structure of materials - both nucleus and magnetic. The local environment
-plays an important role in determining properties in a wide range of functional materials,
-e.g., the polarization behavior in ferroelectric materials, ion transportation behavior in
-energy story materials, magnetic anisotropy in low dimensional magnetic systems, etc. My
-research interest at this point is to utilize total scattering technique to reveal local
-structure for energy storage (e.g. Li-ion battery, functional material (high entropy spinel
-materials) and low dimensional magnetic system (e.g. 2D vdWs magnetic materials). For
-futuristic perspective, using machine learning algorithms in phase recognition during
-phase transition is one of the goals to pursue.
+I am a member of American Crystallography Association (ACA) and the International Centre for Diffraction Data (ICDD). I am also serving as the guest editor for the Materials journal and he has been serving as reviewers for various peer review journals such as Advanced Science, Angew Chemie, Physical Review B, Physical Review M, etc.
+</p>
+
+<br />
+
+<p style='text-align: justify;'>
+I joined ORNL in 2020 as a staff scientist and prior to that, he was a postdoctoral research assistance in NSD, ORNL. I received his PhD in condensed matter physics from Queen Mary, University of London in the UK, in 2016, and before that, I was receiving the bachelor degree from Beihang University in China.
 </p>
 
 More
@@ -59,6 +48,8 @@ More
 - <a target="_blank" href="https://orcid.org/0000-0003-4224-3361">Yuanpeng's ORCID</a>
 
 - <a target="_blank" href="https://dh.iris-home.net">Yuanpeng's Dashboard</a>
+
+- <a target="_blank" href="https://page.iris-home.net">Yuanpeng's Collection</a>
 
 - <a target="_blank" href="https://github.com/Kvieta1990">Yuanpeng's GitHub</a>
 

@@ -43,7 +43,8 @@ navbar-links:
 
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/assets/img/avatar-icon.png"
+# avatar: "/assets/img/avatar-icon.png"
+avatar: "/assets/img/mountain.png"
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
@@ -60,8 +61,8 @@ title-img: /assets/img/home.png
 social-network-links:
   email: "zhangy3@ornl.gov"
   github: kvieta1990
-#  reddit: yourname
-#  linkedin: daattali
+  reddit: apw247
+  linkedin: yuanpeng-zhang-11bb503a
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
@@ -74,12 +75,12 @@ social-network-links:
 #  telegram: yourname
 #  calendly: yourname
 #  mastodon: instance.url/@username
-#  ORCID: your ORCID ID
-#  google-scholar: your google scholar
+  ORCID: 0000-0003-4224-3361
+  google-scholar: citations?user=NgqIgO0AAAAJ&hl=en
 
 # If you want to show a link to an RSS in the footer, add the site description here.
 # If you don't want to show an RSS link, remove the following line.
-rss-description: This website is a virtual proof that I'm awesome
+rss-description: Yuanpeng's Blog RSS Feed
 
 # --- General options --- #
 
