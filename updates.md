@@ -47,7 +47,11 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
-⚠️ ***[02/25/2025 20:04:24 EST]*** ORNL network is now suffering some issues and all the services above (and probably beyond) are not stable at this moment. I will post the update once the network is back to normal.
+📝 ***[02/25/2025 22:02:30 EST]*** A simple web-based data plotter tool made available in ADDIE. URL: [https://addie.ornl.gov/plotter](https://addie.ornl.gov/plotter).
+
+<br>
+
+⚠️ ***[02/25/2025 20:04:24 EST]*** ORNL network is now suffering some issues and all the services above (and probably beyond) are not stable at this moment. I will post updates once the network is back to normal.
 
 <br>
 
