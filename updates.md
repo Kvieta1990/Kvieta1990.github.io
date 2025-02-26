@@ -47,7 +47,11 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
-📝 ***[02/25/2025 22:02:30 EST]*** A simple web-based data plotter tool made available in ADDIE. URL: [https://addie.ornl.gov/plotter](https://addie.ornl.gov/plotter).
+📝 ***[02/25/2025 22:37:26 EST]*** A simple web-based data plotter tool made available in ADDIE. URL: [https://addie.ornl.gov/plotter](https://addie.ornl.gov/plotter).
+
+<br>
+
+📝 ***[02/25/2025 22:32:16 EST]*** It seems that the ORNL network is getting back to normal. Will keep watching it and post updates as needed.
 
 <br>
 
