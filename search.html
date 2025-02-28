@@ -5,12 +5,16 @@ layout: default
 </br>
 
 <style>
-.mysearch {
-    width: 100%;
-    margin-left: 420px;
-}
+    .search-container {
+        text-align: center;
+        margin: 0 auto;
+    }
 </style>
 
-<div class="mysearch">
-{% ddg_search_form site:iris2020.net prefill:Search+iris2020.net buttontext:Search %}
+<div class="search-container">
+<form method="get" action="https://duckduckgo.com/">
+    <input type="text" name="q" placeholder="Search iris2020.net">
+    <input type="hidden" name="sites" value="iris2020.net">
+    <input type="submit" value="Search">
+</form>
 </div>

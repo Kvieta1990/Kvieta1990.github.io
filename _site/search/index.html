@@ -25,7 +25,7 @@
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="{% ddg_search_form site:iris2020.net prefill:Search+iris2020.net buttontext:Search %}">
+  <meta name="description" content="">
 
   
 
@@ -90,7 +90,7 @@
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
   <meta property="og:title" content="Yuanpeng&apos;s Blog">
-  <meta property="og:description" content="{% ddg_search_form site:iris2020.net prefill:Search+iris2020.net buttontext:Search %}">
+  <meta property="og:description" content="">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -109,7 +109,7 @@
   <meta name="twitter:creator" content="@">
 
   <meta property="twitter:title" content="Yuanpeng&apos;s Blog">
-  <meta property="twitter:description" content="{% ddg_search_form site:iris2020.net prefill:Search+iris2020.net buttontext:Search %}">
+  <meta property="twitter:description" content="">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -263,20 +263,18 @@ if (chromeAgent) {
   </br>
 
 <style>
-.mysearch {
-    width: 100%;
-    margin-left: 420px;
-}
+    .search-container {
+        text-align: center;
+        margin: 0 auto;
+    }
 </style>
 
-<div class="mysearch">
-<form method="get" id="search" action="http://duckduckgo.com/">
-  <input type="hidden" name="sites" value="iris2020.net"/>
-  <input type="text" name="q" maxlength="255" placeholder="Search iris2020.net"/>
-  <input type="submit" value="Search" />
-  
+<div class="search-container">
+<form method="get" action="https://duckduckgo.com/">
+    <input type="text" name="q" placeholder="Search iris2020.net">
+    <input type="hidden" name="sites" value="iris2020.net">
+    <input type="submit" value="Search">
 </form>
-
 </div>
 
   
