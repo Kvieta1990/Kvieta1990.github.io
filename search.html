@@ -4,4 +4,13 @@ layout: default
 
 </br>
 
-{% include search-google.html %}
+<style>
+.mysearch {
+    width: 100%;
+    margin-left: 420px;
+}
+</style>
+
+<div class="mysearch">
+{% ddg_search_form bgcolor:red site:iris2020.net prefill:Search+iris2020.net buttontext:Search %}
+</div>
