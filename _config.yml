@@ -53,6 +53,7 @@ round-avatar: true
 # then specify the following parameter
 title-img: /assets/img/home.png
 
+safe: false
 
 # --- Footer social media links --- #
 
@@ -245,7 +246,6 @@ url: "https://iris2020.net"
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-ddg_search
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
