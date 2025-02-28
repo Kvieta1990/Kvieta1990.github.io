@@ -262,38 +262,11 @@ if (chromeAgent) {
 
   </br>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-<form method="get" id="yaForm" accept-charset="UTF-8" action="https://ya.iris-home.net/yacysearch.html" target="_blank">
-    <div style="display: flex;">
-        <input type="hidden" name="verify" value="cacheonly" />
-        <input type="hidden" name="maximumRecords" value="10" />
-        <input type="hidden" name="meanCount" value="5" />
-        <input type="hidden" name="resource" value="local" />
-        <input type="hidden" name="urlmaskfilter" value=".*" />
-        <input type="hidden" name="prefermaskfilter" value="" />
-        <input type="hidden" name="display" value="2" />
-        <input type="hidden" name="nav" value="all" />
-        <input type="text" style="border-radius: 20px;" name="query" id="yaInput" maxlength="255" value="" placeholder="Search via Yacy" class="form-control"/>
-        <button type="submit" style="background-color: transparent; border: none;">
-            <i class="fas fa-search"></i>
-        </button>
-    </div>
+<form method="get" id="search-google" action="https://www.google.com/search" target="_blank">
+    <input type="hidden" name="sitesearch" value="iris2020.net" />
+    <input type="text" name="q" maxlength="255" value="" placeholder="Search via Google" class="form-control" />
 </form>
 
-<script>
-    document.getElementById("yaForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        var inputValue = document.getElementById("yaInput").value;
-        var appendString = " site:iris2020.net";
-
-        var newValue = inputValue + appendString;
-
-        document.getElementById("yaInput").value = newValue;
-        this.submit();
-    });
-</script>
 
 
   
