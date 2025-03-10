@@ -17,4 +17,4 @@ jobs:
           sitemap-location: "https://bojieyang.github.io/sitemap.xml"
           since: 1
           since-unit: "day"
-          key: ${{ secrets.INDEXNOW_KEY }}
+          key: f04c280735b24ba3a5fe20b55c654c21
