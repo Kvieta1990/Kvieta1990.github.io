@@ -470,6 +470,32 @@ where `[CONTAINER_ID]` refers to the ID of the running `nextcloud` container, wh
 sudo docker restart [CONTAINER_ID]
 ```
 
+Issue #16
+===
+
+Sometimes, deleting trashed files permanently from the web interface would lead to server crash, in which we may want to delete all trashed files in the `nextcloud` server from the command line.
+
+Solution (#16)
+===
+
+We first need to go into the running docker container,
+
+```bash
+sudo docker exec -it [CONTAINER_ID] /bin/bash
+```
+
+where `[CONTAINER_ID]` refers to the ID of the running `nextcloud` container, which can be obtained by running `sudo docker ps -a | grep "nextcloud"`. Once in the interactive container, we can execute the following command,
+
+```bash
+occ trashbin:cleanup --all-users
+```
+
+which will empty the trash bin for all users. For more options, we can do,
+
+```bash
+occ help trashbin:cleanup
+```
+
 <br>
 
 References
