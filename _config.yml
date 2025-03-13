@@ -37,6 +37,7 @@ navbar-links:
     - Jupyter Binder: "https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master"
     - More Notes: "https://github.com/Kvieta1990/Iris"
   Updates: "updates"
+  Forum: "https://flarum.iris-home.net"
   Contact: "contact"
 
 # --- Logo --- #
