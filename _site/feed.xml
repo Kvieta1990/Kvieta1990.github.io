@@ -23,6 +23,17 @@
       </item>
     
       <item>
+        <title>Dify Server Maintenance</title>
+        <description>
+          
+          In a previous post (here), I was going through the process of setting up the Dify server with docker. To remind ourselves, Dify is a web-based service with which we can set up own AI agent and workflows, through the APIs of various LLM models. Here in this post, I...
+        </description>
+        <pubDate>Sun, 16 Mar 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-03-16-dify_config/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-03-16-dify_config/</guid>
+      </item>
+    
+      <item>
         <title>Sample and Container geometry for absorption correction</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sat, 03 Aug 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-08-03-preferred_orientation_texture/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-03-preferred_orientation_texture/</guid>
-      </item>
-    
-      <item>
-        <title>Notes and Tips for using Docker</title>
-        <description>
-          
-          🏷️ Use git diff in a Docker container Within a Docker container, if we are located in a git repository and try to execute git diff, there will be no problems. However, if the current working directory is not a git repository and we try to execute git diff /full/path/to/git/repo,...
-        </description>
-        <pubDate>Tue, 16 Jul 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-07-16-docker_tips/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-07-16-docker_tips/</guid>
       </item>
     
   </channel>

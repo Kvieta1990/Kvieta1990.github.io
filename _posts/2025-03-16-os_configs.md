@@ -64,16 +64,3 @@ DOSKEY clist=conda env list
 :: Common directories
 :: DOSKEY gd=cd D:\GooDrive
 ```
-
-<br>
-
-References
-===
-
-[1] [https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html](https://powder.ornl.gov/total_scattering/data_reduction/mts_abs_ms.html)
-
-[2] [https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html#algm-setsample](https://docs.mantidproject.org/nightly/algorithms/SetSample-v1.html#algm-setsample)
-
-[3] [https://github.com/mantidproject/mantid/blob/main/instrument/sampleenvironments/SNS/InAir.xml](https://github.com/mantidproject/mantid/blob/main/instrument/sampleenvironments/SNS/InAir.xml)
-
-[4] [https://docs.mantidproject.org/nightly/algorithms/DefineGaugeVolume-v1.html](https://docs.mantidproject.org/nightly/algorithms/DefineGaugeVolume-v1.html)
