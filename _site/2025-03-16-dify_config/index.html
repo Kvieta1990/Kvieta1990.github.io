@@ -304,7 +304,7 @@ if (chromeAgent) {
 <p>With <code class="language-plaintext highlighter-rouge">docker</code>, the upgrade for Dify server is straightforward, by following the instructions in Ref. [1]. The critical step here is to make backups for the docker compose file, the <code class="language-plaintext highlighter-rouge">.env</code> file and the volume directory (which contains all the setups and agents we had in the Dify platform). After we make sure the new version of the server is working fine, we can remove the big volume backup files or save it somewhere safe for future check purposes. Sometimes, we may have some specific configurations that we put into either the docker compose file or the <code class="language-plaintext highlighter-rouge">.env</code> file. In that case, we want to copy over those information into the new version of the relevant files. At this stage, doing a <code class="language-plaintext highlighter-rouge">diff</code> comparison between the old and new version of the docker compose and <code class="language-plaintext highlighter-rouge">.env</code> files will be very helpful.</p>
 
 <p class="box-note"><a id="p2"></a>
-<a href="#p2"><b>#1</b></a>Dify configuration to use Oracle storage object</p>
+<a href="#p2"><b>#2</b></a>Dify configuration to use Oracle storage object</p>
 
 <p>In Dify, we can use the Oracle bucket for storage purpose and here is noted down the setup. First, we need to create an Oracle storage bucket (free if under 20 GB). Detailed instructions can be found in Oracle official documentation in Ref. [2]. Here below are several screenshots for the process,</p>
 

@@ -26,7 +26,7 @@ With `docker`, the upgrade for Dify server is straightforward, by following the 
 
 {: .box-note}
 <a id="p2"></a>
-<a href="#p2"><b>#1</b></a>Dify configuration to use Oracle storage object
+<a href="#p2"><b>#2</b></a>Dify configuration to use Oracle storage object
 
 In Dify, we can use the Oracle bucket for storage purpose and here is noted down the setup. First, we need to create an Oracle storage bucket (free if under 20 GB). Detailed instructions can be found in Oracle official documentation in Ref. [2]. Here below are several screenshots for the process,
 
