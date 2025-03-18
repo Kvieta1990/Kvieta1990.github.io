@@ -35,7 +35,7 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line1">
 
-***Monitor the services status*** <a href="https://ut.iris-home.net/status/sns-hfir" target="_blank">here</a>.
+***Monitor the services status*** <a href="https://uptime.ornl.gov/status/resources" target="_blank">here</a>.
 
 <hr class="thick-line">
 
