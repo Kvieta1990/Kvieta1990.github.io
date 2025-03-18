@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Local Development of GSAS-II</title>
+        <description>
+          
+          GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. It is possible to grab the source codes of GSAS-II, develop and test it locally. This post covers the steps to set up the...
+        </description>
+        <pubDate>Tue, 18 Mar 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-03-18-gsasii_dev/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-03-18-gsasii_dev/</guid>
+      </item>
+    
+      <item>
         <title>Config, Tips and Tricks for Different Operating Systems</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Thu, 15 Aug 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-08-15-stacking_fault/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-15-stacking_fault/</guid>
-      </item>
-    
-      <item>
-        <title>Preferred Orientation and Texture</title>
-        <description>
-          
-          Normally for a powder sample, we are assuming that we have a uniform distribution of orientation of those small crystalline samples, meaning that we have many small crystalline pieces of the sample and their orientation in space is uniform. As such, in the measured powder diffraction pattern, the peak intensities...
-        </description>
-        <pubDate>Sat, 03 Aug 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-08-03-preferred_orientation_texture/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-08-03-preferred_orientation_texture/</guid>
       </item>
     
   </channel>

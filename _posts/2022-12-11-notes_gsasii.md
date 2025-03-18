@@ -9,10 +9,7 @@ use_math: true
 ---
 
 <p style='text-align: justify'>
-GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in
-Python, with some underlying routines in Fortran and C++. It is possible to grab the source codes of GSAS-II, develop
-and test it locally. This post covers the steps to set up the local development environment for GSAS-II. 
-This post is a collection of notes of tips and tricks for using and developing GSAS-II.
+This post is a collection of notes, tips and tricks for using GSAS-II.
 </p>
 
 - Multi-phase refinement
@@ -25,42 +22,8 @@ This post is a collection of notes of tips and tricks for using and developing G
     or [here](/assets/doc/GSASII_Multiphase_setup.pdf). Here it should be noticed that the phase fraction is referred to as `Scale` for each
     phase and this `Scale` should not be confused with that of the overall histogram.
 
-- Development environment setup for GSAS-II
-
-    > Refer to the documentation of GSAS-II for detailed explanation -- see Ref. [2].
-
-    1. Set up the conda environment, using the command below,
-
-        `conda create -n g2python python=3.10 wxpython numpy scipy matplotlib pyopengl  pillow h5py imageio conda requests -c conda-forge`
-
-    2. Check out the GSAS-II source code, using SVN,
-
-        `svn checkout https://subversion.xray.aps.anl.gov/pyGSAS/`
-
-    3. Here follows, the configuration is specific to the PyCharm IDE. First, launch the PyCharm IDE and open the GSAS-II folder (i.e., the one we just checked out, `pyGSAS`).
-
-    4. Go to the top right corner of the interface and click on the drop-down menu as indicated with the green arrow below,
-
-        ![pycharm gsasii](/assets/img/posts/pycharm_gsasii_1.png)
-
-    5. Select `Edit Configurations...` to open up the configuration window where we need to fill in information for the python interpreter, the main python script, etc.
-
-    6. Refer to the screenshot below for detailed configuration as a typical example,
-
-        ![pycharm gsasii](/assets/img/posts/pycharm_gsasii_2.png)
-
-    > Here follows is a recorded video demonstrating the above process,
-
-    <p align='center'>
-       <video width="800" controls>
-          <source src="/assets/img/posts/pycharm_gsasii.mp4" type="video/mp4">
-       </video>
-    </p>
-
 <br />
 
 <b>References</b>
 
 [1] [https://subversion.xray.aps.anl.gov/pyGSAS/Tutorials/SeqRefine/SequentialTutorial.htm](https://subversion.xray.aps.anl.gov/pyGSAS/Tutorials/SeqRefine/SequentialTutorial.htm)
-
-[2] [https://gsas-ii.readthedocs.io/en/latest/packages.html#gui-requirements](https://gsas-ii.readthedocs.io/en/latest/packages.html#gui-requirements)
