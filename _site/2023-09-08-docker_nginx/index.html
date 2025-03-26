@@ -862,6 +862,48 @@ AFFiNE.use('copilot', {
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>occ <span class="nb">help </span>trashbin:cleanup
 </code></pre></div></div>
 
+<h1 id="issue-17">Issue #17</h1>
+
+<p>When setting up <code class="language-plaintext highlighter-rouge">Affine</code> with <code class="language-plaintext highlighter-rouge">docker</code>, initially, the AI feature would not work.</p>
+
+<blockquote>
+  <p>AFFiNE is a workspace with fully merged docs, whiteboards and databases.</p>
+</blockquote>
+
+<h1 id="solution-17">Solution (#17)</h1>
+
+<p>First, we need to grab the ID of the running container for <code class="language-plaintext highlighter-rouge">Affine</code>, by running,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker ps <span class="nt">-a</span> | <span class="nb">grep</span> <span class="s2">"affine"</span>
+</code></pre></div></div>
+
+<p>Then we want to go into the container through an interactive shell, via,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> cb8620cb592f /bin/bash
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">cb8620cb592f</code> is the container ID for <code class="language-plaintext highlighter-rouge">affine</code> in my case. Once inside the container, we want to <code class="language-plaintext highlighter-rouge">cd</code> into the following directory,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /root/.affine/config
+</code></pre></div></div>
+
+<p>and edit the <code class="language-plaintext highlighter-rouge">affine.js</code> file. Initially, editor might not be installed in the <code class="language-plaintext highlighter-rouge">docker</code> container, in which case we want to do,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update
+apt <span class="nb">install </span>vim
+</code></pre></div></div>
+
+<p>to install <code class="language-plaintext highlighter-rouge">vim</code>. In the <code class="language-plaintext highlighter-rouge">affine.js</code> file, we want to change the following bit,</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">AFFiNE</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">copilot</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">openai</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">apiKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">User API keys (Legacy)</span><span class="dl">'</span>
+    <span class="p">},</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>where we need to grab the <code class="language-plaintext highlighter-rouge">legacy</code> OpenAI API key [16]. Exit the interactive shell and now the AI feature in <code class="language-plaintext highlighter-rouge">Affine</code> should be working normally. If not, try to restart the container.</p>
+
 <p><br /></p>
 
 <h1 id="references">References</h1>
@@ -895,6 +937,8 @@ AFFiNE.use('copilot', {
 <p>[14] <a href="https://platform.openai.com/api-keys">https://platform.openai.com/api-keys</a></p>
 
 <p>[15] <a href="https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437">https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437</a></p>
+
+<p>[16] <a href="https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-10718980">https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-10718980</a></p>
 
       </article>
 

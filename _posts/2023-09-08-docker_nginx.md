@@ -496,6 +496,53 @@ which will empty the trash bin for all users. For more options, we can do,
 occ help trashbin:cleanup
 ```
 
+Issue #17
+===
+
+When setting up `Affine` with `docker`, initially, the AI feature would not work.
+
+> AFFiNE is a workspace with fully merged docs, whiteboards and databases.
+
+Solution (#17)
+===
+
+First, we need to grab the ID of the running container for `Affine`, by running,
+
+```bash
+sudo docker ps -a | grep "affine"
+```
+
+Then we want to go into the container through an interactive shell, via,
+
+```bash
+sudo docker exec -it cb8620cb592f /bin/bash
+```
+
+where `cb8620cb592f` is the container ID for `affine` in my case. Once inside the container, we want to `cd` into the following directory,
+
+```bash
+cd /root/.affine/config
+```
+
+and edit the `affine.js` file. Initially, editor might not be installed in the `docker` container, in which case we want to do,
+
+```bash
+apt update
+apt install vim
+```
+
+to install `vim`. In the `affine.js` file, we want to change the following bit,
+
+```js
+AFFiNE.use('copilot', {
+    openai: {
+        apiKey: 'User API keys (Legacy)'
+    },
+})
+```
+
+where we need to grab the `legacy` OpenAI API key [16]. Exit the interactive shell and now the AI feature in `Affine` should be working normally. If not, try to restart the container.
+
 <br>
 
 References
@@ -530,3 +577,5 @@ References
 [14] [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
 
 [15] [https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437](https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437)
+
+[16] [https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-10718980](https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-10718980)
