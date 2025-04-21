@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Local Development of GSAS-II
+title: Local Development of GSAS-II -- Deprecated Instructions
 tags: [scattering, crystallography, programming, dev, technical, diffraction]
 author: Yuanpeng Zhang
 comments: true
