@@ -47,6 +47,8 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
+📝 ***:2025-04-24 17:10:33 EDT*** SNS and HFIR instruments monitor mobile apps are available. See the link [here](https://powder.ornl.gov/collections/mobile_apps.html), thanks to the nice work by [Dr. Jie Xing (ORNL)](https://www.ornl.gov/staff-profile/jie-xing).
+
 📝 ***[02/25/2025 22:37:26 EST]*** A simple web-based data plotter tool made available in ADDIE. URL: [https://addie.ornl.gov/plotter](https://addie.ornl.gov/plotter).
 
 <br>
