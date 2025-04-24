@@ -47,7 +47,7 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
-📝 ***2025-04-24 17:10:33 EDT*** SNS and HFIR instruments monitor mobile apps are available. See the link [here](https://powder.ornl.gov/collections/mobile_apps.html), thanks to the nice work by [Dr. Jie Xing (ORNL)](https://www.ornl.gov/staff-profile/jie-xing).
+📝 ***[04/24/2025 17:10:33 EST]*** SNS and HFIR instruments monitor mobile apps are available. See the link [here](https://powder.ornl.gov/collections/mobile_apps.html), thanks to the nice work by [Dr. Jie Xing (ORNL)](https://www.ornl.gov/staff-profile/jie-xing).
 
 <br>
 
