@@ -34,18 +34,20 @@ use_math: true
 
 This blog is for noting down the technical details about the `RMCProfile` package building. This is `not` intended to be a tutorial so it won't cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference.
 
-Currently, the source code of `RMCProfile` are hosted on `code.ornl.gov` and with the up-to-date authentication mechanism, not all domains can access the repo, using either SSH or HTTPS for connection. So, if the building machine is outside the ORNL firewall, we may need to grab the source codes inside the firewall first and transfer it to the building machine via, e.g., `rsync`. For example, the machine for building the package for ARM architecture is my own VPS hosted on the Oracle cloud and it is outside the firewall and I have to use `rsync` to tranfer the source codes indirectly. Talking about the building on the ARM machine, once the source codes are transferred, we could use `docker` for building RMCProfile. Here follows is the command we could run,
+- The ARM64 package is built on my personal VPS with ARM architecture hosted on Oracle Cloud. The `build_rmcprofile_arm64.sh` script under the `linux-gfortran` can be used for the package building.
 
-```bash
-sudo docker run -v .:/root/Temp/ -it apw247/rmc_arm64 bash
-```
+- For building the package compatible with legacy Linux operating systems (some HPC may be still running some of the legacy OS's, surprisingly), the docker route can be used. Here is the command to run the docker image in an interactive container,
 
-which assumes that the source codes are sitting in the location where this command is to be executed. The command will run the docker image in the interactive mode and inside the running container, we can `cd` into the building directory and run the building script `build_rmcprofile_arm64.sh` to build the package. Before running the command, we may need to create the `distributions` directory in the main directory of the source codes. Then inside the container, we can copy over the compiled package to `/root/Temp/` and it will be available outside the docker container (in the directory where the above command was running).
+    ```bash
+    docker container run -v .:/root/Temp/ -it apw247/rmc_dev:zyp_ubuntu1204_rmc bash
+    ```
 
-For building the package compatible with legacy Linux operating systems (some HPC may be still running some of the legacy OS's, surprisingly), the docker route can be used, just like above. Here is the command to run on local host,
+    Depending on the docker setup, we may or may not need `sudo` prepended to the command above. The `build_rmcprofile_lower.sh` script can be used for the package building.
 
-```bash
-docker container run -v .:/root/Temp/ -it apw247/rmc_dev:zyp_ubuntu1204_rmc bash
-```
+- On Windows, with the Intel OneAPI, execute the following command to activate the OneAPI environment before compiling the package,
 
-Depending on the docker setup, we may or may not need `sudo` prepended to the command above. Then everything else concerning the docker procedures pretty much applies here.
+    ```cmd
+    cmd.exe "/K" '"C:\Program Files (x86)\Intel\oneAPI\setvars.bat" && powershell'
+    ```
+
+- On MacOS, the `conf_viewer` and `rmc_mon` script is different between the Intel and ARM version. In the App package folder, `NEVER` replace the two scripts included in there.
