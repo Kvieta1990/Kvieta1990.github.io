@@ -25,7 +25,7 @@
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="This blog is for noting down the technical details about the RMCProfile package building. This is not intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference. Currently, the source code of RMCProfile are hosted on...">
+  <meta name="description" content="This blog is for noting down the technical details about the RMCProfile package building. This is not intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference. The ARM64 package is built on my personal VPS...">
 
   
 
@@ -90,7 +90,7 @@
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
   <meta property="og:title" content="Notes on the development environment setup for RMCProfile">
-  <meta property="og:description" content="This blog is for noting down the technical details about the RMCProfile package building. This is not intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference. Currently, the source code of RMCProfile are hosted on...">
+  <meta property="og:description" content="This blog is for noting down the technical details about the RMCProfile package building. This is not intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference. The ARM64 package is built on my personal VPS...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -111,7 +111,7 @@
   <meta name="twitter:creator" content="@">
 
   <meta property="twitter:title" content="Notes on the development environment setup for RMCProfile">
-  <meta property="twitter:description" content="This blog is for noting down the technical details about the RMCProfile package building. This is not intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference. Currently, the source code of RMCProfile are hosted on...">
+  <meta property="twitter:description" content="This blog is for noting down the technical details about the RMCProfile package building. This is not intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference. The ARM64 package is built on my personal VPS...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -318,19 +318,28 @@ if (chromeAgent) {
 
 <p>This blog is for noting down the technical details about the <code class="language-plaintext highlighter-rouge">RMCProfile</code> package building. This is <code class="language-plaintext highlighter-rouge">not</code> intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference.</p>
 
-<p>Currently, the source code of <code class="language-plaintext highlighter-rouge">RMCProfile</code> are hosted on <code class="language-plaintext highlighter-rouge">code.ornl.gov</code> and with the up-to-date authentication mechanism, not all domains can access the repo, using either SSH or HTTPS for connection. So, if the building machine is outside the ORNL firewall, we may need to grab the source codes inside the firewall first and transfer it to the building machine via, e.g., <code class="language-plaintext highlighter-rouge">rsync</code>. For example, the machine for building the package for ARM architecture is my own VPS hosted on the Oracle cloud and it is outside the firewall and I have to use <code class="language-plaintext highlighter-rouge">rsync</code> to tranfer the source codes indirectly. Talking about the building on the ARM machine, once the source codes are transferred, we could use <code class="language-plaintext highlighter-rouge">docker</code> for building RMCProfile. Here follows is the command we could run,</p>
+<ul>
+  <li>
+    <p>The ARM64 package is built on my personal VPS with ARM architecture hosted on Oracle Cloud. The <code class="language-plaintext highlighter-rouge">build_rmcprofile_arm64.sh</code> script under the <code class="language-plaintext highlighter-rouge">linux-gfortran</code> can be used for the package building.</p>
+  </li>
+  <li>
+    <p>For building the package compatible with legacy Linux operating systems (some HPC may be still running some of the legacy OS’s, surprisingly), the docker route can be used. Here is the command to run the docker image in an interactive container,</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker run <span class="nt">-v</span> .:/root/Temp/ <span class="nt">-it</span> apw247/rmc_arm64 bash
-</code></pre></div></div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docker container run <span class="nt">-v</span> .:/root/Temp/ <span class="nt">-it</span> apw247/rmc_dev:zyp_ubuntu1204_rmc bash
+</code></pre></div>    </div>
 
-<p>which assumes that the source codes are sitting in the location where this command is to be executed. The command will run the docker image in the interactive mode and inside the running container, we can <code class="language-plaintext highlighter-rouge">cd</code> into the building directory and run the building script <code class="language-plaintext highlighter-rouge">build_rmcprofile_arm64.sh</code> to build the package. Before running the command, we may need to create the <code class="language-plaintext highlighter-rouge">distributions</code> directory in the main directory of the source codes. Then inside the container, we can copy over the compiled package to <code class="language-plaintext highlighter-rouge">/root/Temp/</code> and it will be available outside the docker container (in the directory where the above command was running).</p>
+    <p>Depending on the docker setup, we may or may not need <code class="language-plaintext highlighter-rouge">sudo</code> prepended to the command above. The <code class="language-plaintext highlighter-rouge">build_rmcprofile_lower.sh</code> script can be used for the package building.</p>
+  </li>
+  <li>
+    <p>On Windows, with the Intel OneAPI, execute the following command to activate the OneAPI environment before compiling the package,</p>
 
-<p>For building the package compatible with legacy Linux operating systems (some HPC may be still running some of the legacy OS’s, surprisingly), the docker route can be used, just like above. Here is the command to run on local host,</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run <span class="nt">-v</span> .:/root/Temp/ <span class="nt">-it</span> apw247/rmc_dev:zyp_ubuntu1204_rmc bash
-</code></pre></div></div>
-
-<p>Depending on the docker setup, we may or may not need <code class="language-plaintext highlighter-rouge">sudo</code> prepended to the command above. Then everything else concerning the docker procedures pretty much applies here.</p>
+    <pre><code class="language-cmd">  cmd.exe "/K" '"C:\Program Files (x86)\Intel\oneAPI\setvars.bat" &amp;&amp; powershell'
+</code></pre>
+  </li>
+  <li>
+    <p>On MacOS, the <code class="language-plaintext highlighter-rouge">conf_viewer</code> and <code class="language-plaintext highlighter-rouge">rmc_mon</code> script is different between the Intel and ARM version. In the App package folder, <code class="language-plaintext highlighter-rouge">NEVER</code> replace the two scripts included in there.</p>
+  </li>
+</ul>
 
       </article>
 

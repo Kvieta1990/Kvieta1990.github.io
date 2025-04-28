@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Configure a Local Mantid Live Reduction Service</title>
+        <description>
+          
+          Here in this post, I am writing down notes regarding the configuration of a Mantid live reduction service locally. By ‘locally’, I mean the service can be managed by a local user, instead a system-wise one for which the management would require a sudo privilege. Relevant scripts are stored in...
+        </description>
+        <pubDate>Mon, 21 Apr 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-04-21-mantid_livered/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-04-21-mantid_livered/</guid>
+      </item>
+    
+      <item>
         <title>Local Development of GSAS-II -- New Instructions</title>
         <description>
           
@@ -92,7 +103,7 @@
         <title>Notes on the development environment setup for RMCProfile</title>
         <description>
           
-          This blog is for noting down the technical details about the RMCProfile package building. This is not intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference. Currently, the source code of RMCProfile are hosted on...
+          This blog is for noting down the technical details about the RMCProfile package building. This is not intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference. The ARM64 package is built on my personal VPS...
         </description>
         <pubDate>Tue, 28 Jan 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-01-28-rmcprofile_dev_env_gen/</link>
@@ -218,17 +229,6 @@
         <pubDate>Thu, 22 Aug 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-08-22-van_hove_func/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-22-van_hove_func/</guid>
-      </item>
-    
-      <item>
-        <title>Use SSH key with GitLab</title>
-        <description>
-          
-          This post notes down the procedures to go through for setting up the connection to GitLab using SSH key so that we don’t need to bother with the login credentials, which, sometimes can be tedious due to firewall issues, etc. Here, I am using Unix-like OS for demo for the...
-        </description>
-        <pubDate>Mon, 19 Aug 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-08-19-gitlab_ssh/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-08-19-gitlab_ssh/</guid>
       </item>
     
   </channel>

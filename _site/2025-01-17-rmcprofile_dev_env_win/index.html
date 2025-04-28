@@ -441,6 +441,36 @@ if (chromeAgent) {
   </li>
 </ul>
 
+<p style="text-align: center;">=================I AM A SEPARATOR=================</p>
+
+<p>Here are some random notes on compiling with <code class="language-plaintext highlighter-rouge">cmake</code>.</p>
+
+<ul>
+  <li>
+    <p>In the main <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> file, there is one line <code class="language-plaintext highlighter-rouge">project(RMCProfile LANGUAGES CXX C Fortran)</code> specifying what languages are included in the project. <code class="language-plaintext highlighter-rouge">cmake</code> will perform the necessary configuration checking and testing at the configuration stage for all the included languages. With <code class="language-plaintext highlighter-rouge">CUDA</code>, I found that on my Windows machine, including <code class="language-plaintext highlighter-rouge">CUDA</code> in the language list would never pass the initial configuration stage. However, leaving out <code class="language-plaintext highlighter-rouge">CUDA</code> from the list, thus skipping the <code class="language-plaintext highlighter-rouge">CUDA</code> checking and testing, is still OK – the compiling could still be finished without problems with <code class="language-plaintext highlighter-rouge">CUDA</code> codes compiled successfully. Not sure why, but suspecting whether it is the following line that puts down <code class="language-plaintext highlighter-rouge">CUDA</code> specification explicitly actually did the magic,</p>
+
+    <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">find_package</span><span class="p">(</span>CUDA 11.4 REQUIRED<span class="p">)</span>
+
+  <span class="nb">set</span><span class="p">(</span>CMAKE_CUDA_STANDARD 11<span class="p">)</span>
+  <span class="nb">set</span><span class="p">(</span>CMAKE_CUDA_STANDARD_REQUIRED ON<span class="p">)</span>
+
+  <span class="nb">find_package</span><span class="p">(</span>CUDAToolkit REQUIRED<span class="p">)</span>
+
+  <span class="nb">if</span><span class="p">(</span>CUDAToolkit_VERSION_MAJOR GREATER_EQUAL 12<span class="p">)</span>
+      <span class="nb">set</span><span class="p">(</span>CMAKE_CUDA_ARCHITECTURES <span class="s2">"61;70;75;80;86;89"</span><span class="p">)</span>
+  <span class="nb">else</span><span class="p">()</span>
+      <span class="nb">set</span><span class="p">(</span>CMAKE_CUDA_ARCHITECTURES <span class="s2">"61;70;75;80;86"</span><span class="p">)</span>
+  <span class="nb">endif</span><span class="p">()</span>
+
+  <span class="nb">message</span><span class="p">(</span>STATUS <span class="s2">"Using Nvidia GPU architectures </span><span class="si">${</span><span class="nv">CMAKE_CUDA_ARCHITECTURES</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+  <span class="nb">if</span><span class="p">(</span>CMAKE_BUILD_TYPE STREQUAL <span class="s2">"Debug"</span><span class="p">)</span>
+      <span class="nb">set</span><span class="p">(</span>CMAKE_CUDA_FLAGS <span class="si">${</span><span class="nv">CMAKE_CUDA_FLAGS</span><span class="si">}</span> <span class="s2">"-g -G"</span><span class="p">)</span>  <span class="c1"># enable cuda-gdb</span>
+  <span class="nb">endif</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
       </article>
 
       
