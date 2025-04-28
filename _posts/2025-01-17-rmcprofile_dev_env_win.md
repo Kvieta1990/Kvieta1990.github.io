@@ -134,3 +134,30 @@ Here follows are the detaild instructions about setting up `pgplot` in `Cygwin`.
     make cpg
     make clean
     ```
+
+<p style="text-align: center;">=================I AM A SEPARATOR=================</p>
+
+Here are some random notes on compiling with `cmake`.
+
+- In the main `CMakeLists.txt` file, there is one line `project(RMCProfile LANGUAGES CXX C Fortran)` specifying what languages are included in the project. `cmake` will perform the necessary configuration checking and testing at the configuration stage for all the included languages. With `CUDA`, I found that on my Windows machine, including `CUDA` in the language list would never pass the initial configuration stage. However, leaving out `CUDA` from the list, thus skipping the `CUDA` checking and testing, is still OK -- the compiling could still be finished without problems with `CUDA` codes compiled successfully. Not sure why, but suspecting whether it is the following line that puts down `CUDA` specification explicitly actually did the magic,
+
+```cmake
+find_package(CUDA 11.4 REQUIRED)
+
+set(CMAKE_CUDA_STANDARD 11)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+
+find_package(CUDAToolkit REQUIRED)
+
+if(CUDAToolkit_VERSION_MAJOR GREATER_EQUAL 12)
+    set(CMAKE_CUDA_ARCHITECTURES "61;70;75;80;86;89")
+else()
+    set(CMAKE_CUDA_ARCHITECTURES "61;70;75;80;86")
+endif()
+
+message(STATUS "Using Nvidia GPU architectures ${CMAKE_CUDA_ARCHITECTURES}")
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(CMAKE_CUDA_FLAGS ${CMAKE_CUDA_FLAGS} "-g -G")  # enable cuda-gdb
+endif()
+```
