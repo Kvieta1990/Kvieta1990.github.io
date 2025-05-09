@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Local Development Environment Setup for NOVA</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="This post will go over the steps for setting up the local development for nova, which is a frontend interface platform at ORNL that interacts with the backend Galaxy workflow platform. First, set up the conda environment, [CONDA_SUBDIR=osx-64] conda create -n pdiffvis -c conda-forge -c mantid python=3.10 mantid poetry conda...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Local Development Environment Setup for NOVA">
+  <meta property="og:description" content="This post will go over the steps for setting up the local development for nova, which is a frontend interface platform at ORNL that interacts with the backend Galaxy workflow platform. First, set up the conda environment, [CONDA_SUBDIR=osx-64] conda create -n pdiffvis -c conda-forge -c mantid python=3.10 mantid poetry conda...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2023/02/">
-  <link rel="canonical" href="http://localhost:4000/archive/2023/02/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2025-05-09T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2025-05-09-nova_dev/">
+  <link rel="canonical" href="http://localhost:4000/2025-05-09-nova_dev/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Local Development Environment Setup for NOVA">
+  <meta property="twitter:description" content="This post will go over the steps for setting up the local development for nova, which is a frontend interface platform at ORNL that interacts with the backend Galaxy workflow platform. First, set up the conda environment, [CONDA_SUBDIR=osx-64] conda create -n pdiffvis -c conda-forge -c mantid python=3.10 mantid poetry conda...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -261,10 +263,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Local Development Environment Setup for NOVA</h1>
           
 
+          
+					<span class="post-meta">Posted on May 9, 2025, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -277,434 +283,181 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>This post will go over the steps for setting up the local development for <code class="language-plaintext highlighter-rouge">nova</code>, which is a frontend interface platform at <code class="language-plaintext highlighter-rouge">ORNL</code> that interacts with the backend <code class="language-plaintext highlighter-rouge">Galaxy</code> workflow platform.</p>
+
+<ul>
+  <li>
+    <p>First, set up the <code class="language-plaintext highlighter-rouge">conda</code> environment,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="o">[</span><span class="nv">CONDA_SUBDIR</span><span class="o">=</span>osx-64] conda create <span class="nt">-n</span> pdiffvis <span class="nt">-c</span> conda-forge <span class="nt">-c</span> mantid <span class="nv">python</span><span class="o">=</span>3.10 mantid poetry
+  conda activate pdiffvis
+</code></pre></div>    </div>
+
+    <p><code class="language-plaintext highlighter-rouge">[CONDA_SUBDIR=osx-64]</code> (without the bracket) is only necessary for Mac machines with <code class="language-plaintext highlighter-rouge">ARM</code> architecture.</p>
+  </li>
+  <li>
+    <p>Then run <code class="language-plaintext highlighter-rouge">poetry install</code></p>
+  </li>
+  <li>
+    <p>Next we want to mock the directory structure on ORNL Analysis cluster. On Linux, we can use <code class="language-plaintext highlighter-rouge">sudo</code> privilege to create <code class="language-plaintext highlighter-rouge">/SNS</code> and <code class="language-plaintext highlighter-rouge">/HFIR</code> directories and all the sub-directories. On MacOS, one cannot create directories under <code class="language-plaintext highlighter-rouge">/</code> even with <code class="language-plaintext highlighter-rouge">sudo</code> privilege so one has to use the following trick,</p>
+
+    <ul>
+      <li>Populate the file <code class="language-plaintext highlighter-rouge">/etc/synthetic.conf</code> with</li>
+    </ul>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  SNS	Users/y8z/SNS
+</code></pre></div>    </div>
+
+    <p>where <code class="language-plaintext highlighter-rouge">y8z</code> is my user name.</p>
+
+    <blockquote>
+      <p>Attention: the white space in there is necessarily a <code class="language-plaintext highlighter-rouge">Tab</code>.</p>
+    </blockquote>
+
+    <ul>
+      <li>Run the following command,</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util <span class="nt">-t</span>
+</code></pre></div>    </div>
+
+    <p>Then we need to create a directory <code class="language-plaintext highlighter-rouge">SNS</code> under our home directory. The command above would create a soft link from <code class="language-plaintext highlighter-rouge">/SNS</code> to <code class="language-plaintext highlighter-rouge">/Users/y8z/SNS</code>. Then we can populate with files under <code class="language-plaintext highlighter-rouge">/Users/y8z/SNS</code> following the same structure as on Analysis.</p>
+  </li>
+  <li>
+    <p>Next, run the following command to configure <code class="language-plaintext highlighter-rouge">pre-commit</code> so that any time codes are committed, some actions such as format checking will be triggered automatically before pushing the codes to the repo.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  poetry run pre-commit <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Then it should be ready so we can run,</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  poetry run app
+</code></pre></div>    </div>
+
+    <p>to start the app, which will automatically launch the browser to see the app.</p>
+  </li>
+  <li>
+    <p>Once we are happy with the local changes with the codes, we can push the codes to the repo so that it can be deployed into the <code class="language-plaintext highlighter-rouge">nova</code> test environment. Then the app can be accessed from <a href="https://nova-test.ornl.gov"><code class="language-plaintext highlighter-rouge">nova-test.ornl.gov</code></a>. To deploy, we need,</p>
+
+    <ul>
+      <li>
+        <p>Edit <code class="language-plaintext highlighter-rouge">pyproject.toml</code> to update the version</p>
+      </li>
+      <li>
+        <p>Commit and push the local changes</p>
+      </li>
+      <li>
+        <p>Run <code class="language-plaintext highlighter-rouge">poetry run deploy-tool</code></p>
+
+        <blockquote>
+          <p>docker has to be installed for this command to work.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#dev">dev</a>
+          
+            <a href="/tags#technical">technical</a>
+          
+            <a href="/tags#ORNL">ORNL</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
 
 
-<div class="intro-header"></div>
 
-<div role="main" class=" container-md ">
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Local+Development+Environment+Setup+for+NOVA&url=http%3A%2F%2Flocalhost%3A4000%2F2025-05-09-nova_dev%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
   
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>February, 2023</em></h2>
-  </header>
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-05-09-nova_dev%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
 
   
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2023-02-22-notes_windterm/"><h3 class="post-title mb0">Notes on setting up WindTerm</h3></a>
-					<p class="post-meta small">February 22, 2023, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-05-09-nova_dev%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
   
-    <a href="/tags#tool">tool</a>
-  
-    <a href="/tags#technical">technical</a>
-  
-</p>
 
-          </div>
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2025-04-21-mantid_livered/" data-toggle="tooltip" data-placement="top" title="Configure a Local Mantid Live Reduction Service">&larr; Previous Post</a>
         </li>
         
+        
+      </ul>
       
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2023-02-15-notes_mybb/"><h3 class="post-title mb0">Notes on Forum Setup with MyBB</h3></a>
-					<p class="post-meta small">February 15, 2023, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#tool">tool</a>
-  
-    <a href="/tags#technical">technical</a>
-  
-    <a href="/tags#forum">forum</a>
-  
-    <a href="/tags#PHP">PHP</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 

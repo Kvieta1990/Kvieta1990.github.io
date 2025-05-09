@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Local Development Environment Setup for NOVA</title>
+        <description>
+          
+          This post will go over the steps for setting up the local development for nova, which is a frontend interface platform at ORNL that interacts with the backend Galaxy workflow platform. First, set up the conda environment, [CONDA_SUBDIR=osx-64] conda create -n pdiffvis -c conda-forge -c mantid python=3.10 mantid poetry conda...
+        </description>
+        <pubDate>Fri, 09 May 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-05-09-nova_dev/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-05-09-nova_dev/</guid>
+      </item>
+    
+      <item>
         <title>Configure a Local Mantid Live Reduction Service</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sat, 24 Aug 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-08-24-mantid_faq/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-24-mantid_faq/</guid>
-      </item>
-    
-      <item>
-        <title>Van Hove Function</title>
-        <description>
-          
-          The Van Hove function describes the time dependent pair correlation between atoms, \[G(r, t) = \frac{1}{4\pi \rho_0Nr^2}\sum_{i,j}\delta(r - |\vec{r}_i(0) - \vec{r}_j(t)|)\] \(i\) and \(j\) runs over all the \(N\) atoms in the system. \(\vec{r}_i\) refers to the position of the atom \(i\) at time \(t\). The following formula describes the...
-        </description>
-        <pubDate>Thu, 22 Aug 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-08-22-van_hove_func/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-08-22-van_hove_func/</guid>
       </item>
     
   </channel>
