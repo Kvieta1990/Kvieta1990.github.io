@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Time-Based One-Time Password Generation Programmingly</title>
+        <description>
+          
+          Today is May-20-2025. In Chinese, the pronunciation of ‘May-20’ is similar to ‘I love you’ so today is usually the day to express the love between boyfriend and girlfriend, wife and husband. Love you! My beloved Xin! Nowadays, more and more web services are implementing the two-factor authentication (2FA, or...
+        </description>
+        <pubDate>Tue, 20 May 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-05-20-totp_code_gen/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-05-20-totp_code_gen/</guid>
+      </item>
+    
+      <item>
         <title>Local Development Environment Setup for NOVA</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Fri, 30 Aug 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-08-30-tof_binning/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-08-30-tof_binning/</guid>
-      </item>
-    
-      <item>
-        <title>FAQs about Mantid &amp;ndash; Yuanpeng&apos;s Collection</title>
-        <description>
-          
-          Mantid is framework for processing and analyzing neutron and muon scattering data. Eevery now and then, I found myself having difficulties in using some of the algorithms in Mantid and every time I keep forgetting what the solution is. So, in this blog, I will try to note down the...
-        </description>
-        <pubDate>Sat, 24 Aug 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-08-24-mantid_faq/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-08-24-mantid_faq/</guid>
       </item>
     
   </channel>
