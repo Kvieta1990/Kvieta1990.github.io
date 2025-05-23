@@ -94,9 +94,13 @@ use_math: true
             <br>
             <span class="callout multiline-span">
                 &nbsp; 1. virtualenv -p MANTID-DEVELOPER_ENV_LOCATION/bin/python --system-site-packages .venv
+                &nbsp;    <br>
                 &nbsp; 2. source .venv/bin/activate
+                &nbsp;    <br>
                 &nbsp; 3. python MANTID_REPO_DIR/build/bin/AddPythonPath.py
+                &nbsp;    <br>
                 &nbsp; 4. pip install -r requirements.txt -r requirements-dev.txt
+                &nbsp;    <br>
                 &nbsp; 5. python setup.py develop
             </span>
             Details about the instruction can be found [here](https://github.com/neutrons/mantid_total_scattering?tab=readme-ov-file#development). Usually, we can follow the instructions [here](https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#setup-the-mantid-conda-environment) for building the Mantid framework locally which would work well with the local build of `MTS` as detailed above. However, in the case of having a major upgrade of the Mantid developer environment (e.g., the Python version changed from 3.10 to 3.11), running through the instructions above from scratch (i.e., delete `.venv` and start again) would still not make it working. In this case, we have to remove the Mantid developer environment by running `conda remove -n mantid-developer --all` and re-configure the `mantid-developer` environment and run the instructions above from scratch so everything is synced.
