@@ -86,6 +86,24 @@ use_math: true
     </a>
 </p>
 
+<p class="faq-container">
+    <a class="faq-item">
+        <a class="faq-question" id="faq2">▶️ The local build of Mantid framework sometimes odes not work well with the local build of other callers.</a>
+        <span class="faq-answer">
+            <a href="#faq2"><b># Answer</b></a>: The issue that I frequently encounter is with `MantidTotalScattering (MTS)`. The following steps were followed to set up the local build of `MTS` to use the local build of Mantid framework,
+            <br>
+            <span class="callout multiline-span">
+                &nbsp; 1. virtualenv -p MANTID-DEVELOPER_ENV_LOCATION/bin/python --system-site-packages .venv
+                &nbsp; 2. source .venv/bin/activate
+                &nbsp; 3. python MANTID_REPO_DIR/build/bin/AddPythonPath.py
+                &nbsp; 4. pip install -r requirements.txt -r requirements-dev.txt
+                &nbsp; 5. python setup.py develop
+            </span>
+            Details about the instruction can be found [here](https://github.com/neutrons/mantid_total_scattering?tab=readme-ov-file#development). Usually, we can follow the instructions [here](https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#setup-the-mantid-conda-environment) for building the Mantid framework locally which would work well with the local build of `MTS` as detailed above. However, in the case of having a major upgrade of the Mantid developer environment (e.g., the Python version changed from 3.10 to 3.11), running through the instructions above from scratch (i.e., delete `.venv` and start again) would still not make it working. In this case, we have to remove the Mantid developer environment by running `conda remove -n mantid-developer --all` and re-configure the `mantid-developer` environment and run the instructions above from scratch so everything is synced.
+        </span>
+    </a>
+</p>
+
 <script>
     const faqQuestions = document.querySelectorAll('.faq-question');
     faqQuestions.forEach(question => {
