@@ -47,6 +47,10 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
+📢 ***[05/30/2025 01:48:18 EST]*** We will update the server for [powder.ornl.gov](https://powder.ornl.gov) today and tomorrow. Please expect disconnections of the website during this period. We will announce once it is back normal.
+
+<br>
+
 📝 ***[04/24/2025 17:10:33 EST]*** SNS and HFIR instruments monitor mobile apps are available. See the link [here](https://powder.ornl.gov/collections/mobile_apps.html), thanks to the nice work by [Dr. Jie Xing (ORNL)](https://www.ornl.gov/staff-profile/jie-xing).
 
 <br>
