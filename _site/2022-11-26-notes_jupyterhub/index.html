@@ -834,6 +834,26 @@ restart.</p>
 
 <p><br /></p>
 
+<h2 id="issue-34-scilab-kernel-installation">Issue-34 Scilab kernel installation</h2>
+
+<p><strong>Solution:</strong> Scilab does not come with an installation script - the downloaded package contains executables under the <code class="language-plaintext highlighter-rouge">bin</code> directory and they can be executed directly inside the <code class="language-plaintext highlighter-rouge">scilab</code> directory. For the executables to be found from system-wise, we need to add the full path to those executables to the environment path. Or, we can copy all those binaries into, e.g., <code class="language-plaintext highlighter-rouge">/usr/bin</code>. If we follow the latter approach, not only we need to copy over those executables, but also we need to copy all the folders parallel to the <code class="language-plaintext highlighter-rouge">bin</code> directory, including <code class="language-plaintext highlighter-rouge">share</code>, <code class="language-plaintext highlighter-rouge">thirdparty</code> and <code class="language-plaintext highlighter-rouge">lib</code> into the same destination directory where <code class="language-plaintext highlighter-rouge">bin</code> lives. When installing the jupyter kernel, the command <code class="language-plaintext highlighter-rouge">pip install scilab_kernel</code> will install the kernel spec into the relevant location to which <code class="language-plaintext highlighter-rouge">pip</code> is being executed. For example, if we follow the instruction in Ref. [1] for setting up the jupyterhub, the pip path should be <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/pip</code>. In this case, the scilab kernel spec will be installed into <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/lib/python3.10/site-packages/scilab_kernel</code>. If the kernel does not show up after the installation, we could consider copy over all contents in the <code class="language-plaintext highlighter-rouge">scilab-kernel</code> directory into <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/share/jupyter/kernels/scilab</code> in which <code class="language-plaintext highlighter-rouge">scilab</code> is an arbitrary directory name and the directory needs to be created first before the copying. If the kernel fails to connect, we can check the error message by running <code class="language-plaintext highlighter-rouge">sudo journalctl -u jupyterhub</code> to inspect what is wrong. In my case, it seems that the kernel spec is always trying to look for scilab executables in the <code class="language-plaintext highlighter-rouge">/bin</code> directory. However, my scilab binaries were installed into <code class="language-plaintext highlighter-rouge">/usr/bin</code>. Therefore, in my case, I have to go into <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/lib/python3.10/site-packages/scilab_kernel</code> and edit the <code class="language-plaintext highlighter-rouge">kernel.py</code> file to change the following line,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">executable</span> <span class="o">=</span> <span class="s">'/usr/bin/scilab-adv-cli'</span>
+</code></pre></div></div>
+
+<p>which original was <code class="language-plaintext highlighter-rouge">executable = '/bin/scilab-adv-cli'</code>.</p>
+
+<h2 id="issue-35-installation-of-r-kernel">Issue-35 Installation of <code class="language-plaintext highlighter-rouge">R</code> kernel</h2>
+
+<p>For installation of the latest version of <code class="language-plaintext highlighter-rouge">R</code> on Ubuntu, the instructions in Ref. [23] can be followed. It should be noted that <code class="language-plaintext highlighter-rouge">Secure APT</code> part there should be done first by running,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-qO-</span> https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | <span class="nb">sudo tee</span> <span class="nt">-a</span> /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+</code></pre></div></div>
+
+<p>Then we can go back to the <code class="language-plaintext highlighter-rouge">Installation</code> part for installing <code class="language-plaintext highlighter-rouge">R</code>. Once installed, we can refer to the instructions in Ref. [16] for installation of jupyterlab kernel. While installing <code class="language-plaintext highlighter-rouge">IRkernel</code>, if it says some dependency package nees to be re-installed due to the version issue, we just use the same command, i.e., <code class="language-plaintext highlighter-rouge">install.packages('')</code> to install whatever missing packages. After that, when executing <code class="language-plaintext highlighter-rouge">IRkernel::installspec()</code>, we may have the issue that <code class="language-plaintext highlighter-rouge">jupyter</code> command cannot be found. This is because when following the instructions in Ref. [1] for setting up jupyterhub, the <code class="language-plaintext highlighter-rouge">jupyter</code>, etc. executables are installed in <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin</code> directory which is not in the system environment path. So, we need to <code class="language-plaintext highlighter-rouge">sudo su</code> to change to the <code class="language-plaintext highlighter-rouge">root</code> user and edit the <code class="language-plaintext highlighter-rouge">.bashrc</code> file under the <code class="language-plaintext highlighter-rouge">root</code> home directory after which we want to do <code class="language-plaintext highlighter-rouge">source .bashrc</code> to make it take effect. Then getting back to <code class="language-plaintext highlighter-rouge">R</code> and execute <code class="language-plaintext highlighter-rouge">IRkernel::installspec()</code> should be fine.</p>
+
+<p><br /></p>
+
 <p><b>References</b></p>
 
 <p>[1] <a href="https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html">https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html</a></p>
@@ -879,6 +899,8 @@ restart.</p>
 <p>[21] <a href="https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#gettingstartedcondalinux">https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#gettingstartedcondalinux</a></p>
 
 <p>[22] <a href="https://revealjs.com/themes/">https://revealjs.com/themes/</a></p>
+
+<p>[23] <a href="https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html">https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html</a></p>
 
       </article>
 

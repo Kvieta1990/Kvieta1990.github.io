@@ -546,6 +546,28 @@ This will select the `black` theme for `RISE`, which will show white color text.
 
 <br />
 
+## Issue-34 Scilab kernel installation
+
+**Solution:** Scilab does not come with an installation script - the downloaded package contains executables under the `bin` directory and they can be executed directly inside the `scilab` directory. For the executables to be found from system-wise, we need to add the full path to those executables to the environment path. Or, we can copy all those binaries into, e.g., `/usr/bin`. If we follow the latter approach, not only we need to copy over those executables, but also we need to copy all the folders parallel to the `bin` directory, including `share`, `thirdparty` and `lib` into the same destination directory where `bin` lives. When installing the jupyter kernel, the command `pip install scilab_kernel` will install the kernel spec into the relevant location to which `pip` is being executed. For example, if we follow the instruction in Ref. [1] for setting up the jupyterhub, the pip path should be `/opt/jupyterhub/bin/pip`. In this case, the scilab kernel spec will be installed into `/opt/jupyterhub/lib/python3.10/site-packages/scilab_kernel`. If the kernel does not show up after the installation, we could consider copy over all contents in the `scilab-kernel` directory into `/opt/jupyterhub/share/jupyter/kernels/scilab` in which `scilab` is an arbitrary directory name and the directory needs to be created first before the copying. If the kernel fails to connect, we can check the error message by running `sudo journalctl -u jupyterhub` to inspect what is wrong. In my case, it seems that the kernel spec is always trying to look for scilab executables in the `/bin` directory. However, my scilab binaries were installed into `/usr/bin`. Therefore, in my case, I have to go into `/opt/jupyterhub/lib/python3.10/site-packages/scilab_kernel` and edit the `kernel.py` file to change the following line,
+
+```python
+executable = '/usr/bin/scilab-adv-cli'
+```
+
+which original was `executable = '/bin/scilab-adv-cli'`.
+
+## Issue-35 Installation of `R` kernel
+
+For installation of the latest version of `R` on Ubuntu, the instructions in Ref. [23] can be followed. It should be noted that `Secure APT` part there should be done first by running,
+
+```bash
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+```
+
+Then we can go back to the `Installation` part for installing `R`. Once installed, we can refer to the instructions in Ref. [16] for installation of jupyterlab kernel. While installing `IRkernel`, if it says some dependency package nees to be re-installed due to the version issue, we just use the same command, i.e., `install.packages('')` to install whatever missing packages. After that, when executing `IRkernel::installspec()`, we may have the issue that `jupyter` command cannot be found. This is because when following the instructions in Ref. [1] for setting up jupyterhub, the `jupyter`, etc. executables are installed in `/opt/jupyterhub/bin` directory which is not in the system environment path. So, we need to `sudo su` to change to the `root` user and edit the `.bashrc` file under the `root` home directory after which we want to do `source .bashrc` to make it take effect. Then getting back to `R` and execute `IRkernel::installspec()` should be fine.
+
+<br />
+
 <b>References</b>
 
 [1] [https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html](https://jupyterhub.readthedocs.io/en/1.2.1/installation-guide-hard.html)
@@ -591,3 +613,5 @@ This will select the `black` theme for `RISE`, which will show white color text.
 [21] [https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#gettingstartedcondalinux](https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#gettingstartedcondalinux)
 
 [22] [https://revealjs.com/themes/](https://revealjs.com/themes/)
+
+[23] [https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html](https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html)
