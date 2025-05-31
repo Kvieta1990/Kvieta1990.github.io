@@ -326,21 +326,18 @@ Here follows is a random collection of issues that I came across when trying to 
   <p>N.B. The issues listed here follows are not following a logic order.</p>
 </blockquote>
 
-<blockquote>
-  <p>Issue-1: <code class="language-plaintext highlighter-rouge">jQuery path not found</code>, or something very similar.</p>
-</blockquote>
+<h2 id="issue-1-jquery-path-not-found-or-something-very-similar">Issue-1: <code class="language-plaintext highlighter-rouge">jQuery path not found</code>, or something very similar.</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution: </b>This issue may be due to the version of <code class="language-plaintext highlighter-rouge">jupyterlab_server</code> – too new a version may cause this issue, especially when trying to refresh the page. As of writing, it seems the version of <code class="language-plaintext highlighter-rouge">2.10.0</code> of <code class="language-plaintext highlighter-rouge">jupyterlab_server</code> is working properly.
+<p><strong>Solution:</strong> This issue may be due to the version of <code class="language-plaintext highlighter-rouge">jupyterlab_server</code> – too new a version may cause this issue, especially when trying to refresh the page. As of writing, it seems the version of <code class="language-plaintext highlighter-rouge">2.10.0</code> of <code class="language-plaintext highlighter-rouge">jupyterlab_server</code> is working properly.</p>
 
-<br />
+<p><br /></p>
 
-Here follows is a list of currently properly working versions of packages (which can be obtained via executing <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter --version</code>),
-<br />
-—
+<p>Here follows is a list of currently properly working versions of packages (which can be obtained via executing <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter --version</code>),</p>
 
-<br />
-IPython          : 8.6.0
+<p><br /></p>
+
+<hr />
+<p>IPython          : 8.6.0
 <br />
 ipykernel        : 6.17.1
 <br />
@@ -364,46 +361,35 @@ notebook         : 6.5.2
 <br />
 qtconsole        : not installed
 <br />
-traitlets        : 5.5.0
-<br />
+traitlets        : 5.5.0</p>
 
-—
+<hr />
 
-</p>
+<h2 id="issue-2-plotly-figure-is-not-showing-up">Issue-2: <code class="language-plaintext highlighter-rouge">plotly</code> figure is not showing up.</h2>
 
-<blockquote>
-  <p>Issue-2: <code class="language-plaintext highlighter-rouge">plotly</code> figure is not showing up.</p>
-</blockquote>
+<p><strong>Solution:</strong>  This again is something to do with the package version that is being installed. <code class="language-plaintext highlighter-rouge">ipywidgets</code> version 8.0.2 was found not to be working with <code class="language-plaintext highlighter-rouge">plotly</code> interactive plot. The version <code class="language-plaintext highlighter-rouge">7.7.2</code> should be working, which can be installed via [2],</p>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution: </b> This again is something to do with the package version that is being installed. <code class="language-plaintext highlighter-rouge">ipywidgets</code> version 8.0.2 was found not to be working with <code class="language-plaintext highlighter-rouge">plotly</code> interactive plot. The version <code class="language-plaintext highlighter-rouge">7.7.2</code> should be working, which can be installed via [2],
+<p><br /></p>
 
-<br />
-
-<code>
+<p><code>
 sudo /opt/jupyterhub/bin/python3 -m pip install ipywidgets==7.7.2
-<code></code>
+<code></code></code></p>
 
-</code></p>
+<h2 id="issue-3-jupyter-server-fails-to-build-when-executing-sudo-optjupyterhubbinjupyter-lab-build">Issue-3: Jupyter server fails to build, when executing <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/jupyter lab build</code></h2>
 
-<blockquote>
-  <p>Issue-3: Jupyter server fails to build, when executing <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/jupyter lab build</code></p>
-</blockquote>
+<p><strong>Solution:</strong> Sometimes it may be due to some problematic extension that was installed. In this case, we want to use either <code class="language-plaintext highlighter-rouge">pip</code> or <code class="language-plaintext highlighter-rouge">conda</code> to uninstall or remove the extension that was causing the problem (refer to the log file of the build that will be printed out on terminal). Meanwhile, we also need to uninstall the extension that was installed via the <code class="language-plaintext highlighter-rouge">jupyter labextension</code> command (if it has ever been installed in this way). Also, it seems that the un-installation of the extension should be after the un-installation of the module with <code class="language-plaintext highlighter-rouge">pip</code> or <code class="language-plaintext highlighter-rouge">conda</code>. In the case of the <code class="language-plaintext highlighter-rouge">ipysheet</code> extension, here follows may be the step to follow for the un-installation,</p>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution-1: </b> Sometimes it may be due to some problematic extension that was installed. In this case, we want to use either <code class="language-plaintext highlighter-rouge">pip</code> or <code class="language-plaintext highlighter-rouge">conda</code> to uninstall or remove the extension that was causing the problem (refer to the log file of the build that will be printed out on terminal). Meanwhile, we also need to uninstall the extension that was installed via the <code class="language-plaintext highlighter-rouge">jupyter labextension</code> command (if it has ever been installed in this way). Also, it seems that the un-installation of the extension should be after the un-installation of the module with <code class="language-plaintext highlighter-rouge">pip</code> or <code class="language-plaintext highlighter-rouge">conda</code>. In the case of the <code class="language-plaintext highlighter-rouge">ipysheet</code> extension, here follows may be the step to follow for the un-installation,
+<p><br /></p>
 
-<br />
-<br />
-
-1. <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/python3 -m pip uninstall ipysheet</code>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/python3 -m pip uninstall ipysheet</code>
 <br />
 or
 <br />
 <code class="language-plaintext highlighter-rouge">sudo /opt/conda/bin/conda remove -p /opt/conda/envs/python ipysheet</code>
 <br />
-<br />
-2. <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/jupyter labextension uninstall ipysheet</code>
+<br /></li>
+  <li><code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/jupyter labextension uninstall ipysheet</code>
 <br />
 <br />
 <b>Solution-2: </b> Sometimes it could be due to low memory issue, i.e., the system resource is not enough for building the jupyterlab server. In such a situation, following the prompt on the command line usually does not help. Specifically for Google cloud service, the advantage is that we can freely change the size of our instance allocation. So we can increase the size temporarily and build the jupyterlab server. After that, we can then change the size back to the smaller value as before just to save money – we will be billed based on the actual use of resource, which is very nice! Alternatively, the following command could also be used to build jupyter server to get around with the memory issue, sometimes,
@@ -414,84 +400,64 @@ To get a sort of permanent solution to this issue (i. e., without the need to
 append <code class="language-plaintext highlighter-rouge">--dev-build=False --minimize=False</code> flags to the build command), we can
 edit the <code class="language-plaintext highlighter-rouge">jupyter_config.py</code> file under <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/etc/jupyter</code> (create
 the file if it does not exist under the directory). The directory can be
-obtained via the command <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter --path</code>.
-</p>
+obtained via the command <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter --path</code>.</li>
+</ol>
 
-<blockquote>
-  <p>Issue-4: Installation of <code class="language-plaintext highlighter-rouge">xeus-cling</code> kernel for C++</p>
-</blockquote>
+<h2 id="issue-4-installation-of-xeus-cling-kernel-for-c">Issue-4: Installation of <code class="language-plaintext highlighter-rouge">xeus-cling</code> kernel for C++</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> For installing <code class="language-plaintext highlighter-rouge">xeus-cling</code> kernel for C++, we need to use <code class="language-plaintext highlighter-rouge">mamba</code>, following the steps below,
-<br />
-1. Follow the instruction in Ref. [3] to install <code class="language-plaintext highlighter-rouge">mamba</code> - we need to use the manual way of installation, i.e. using the <code class="language-plaintext highlighter-rouge">curl</code> command. Then we want to copy the <code class="language-plaintext highlighter-rouge">micromamba</code> binary to a central location, e.g., <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin</code>.
+<p><strong>Solution:</strong> For installing <code class="language-plaintext highlighter-rouge">xeus-cling</code> kernel for C++, we need to use <code class="language-plaintext highlighter-rouge">mamba</code>, following the steps below,
+<br /></p>
+<ol>
+  <li>Follow the instruction in Ref. [3] to install <code class="language-plaintext highlighter-rouge">mamba</code> - we need to use the manual way of installation, i.e. using the <code class="language-plaintext highlighter-rouge">curl</code> command. Then we want to copy the <code class="language-plaintext highlighter-rouge">micromamba</code> binary to a central location, e.g., <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin</code>.
 <br />
 <b>N. B. </b> This is the directory that has been used for hosting the central jupyterhub server and I just put <code class="language-plaintext highlighter-rouge">mamba</code> executable there as well just to stay self-consistent. <code class="language-plaintext highlighter-rouge">This may not be necessary.</code>
-<br />
-2. <code class="language-plaintext highlighter-rouge">mamba shell init --shell=bash --prefix=~/.micromamba</code>
+<br /></li>
+  <li><code class="language-plaintext highlighter-rouge">mamba shell init --shell=bash --prefix=~/.micromamba</code>
 <br />
 <b>N. B. </b> This guarantees that all envs and <code class="language-plaintext highlighter-rouge">mamba</code> stuff will be installed to the specified prefix directory.
-<br />
-3. <code class="language-plaintext highlighter-rouge">source .bashrc</code>
+<br /></li>
+  <li><code class="language-plaintext highlighter-rouge">source .bashrc</code>
 <br />
 <b>N. B. </b> This is to make sure that the above added mamba initialization in our bash configuration file is taking effect.
-<br />
-4. Create the <code class="language-plaintext highlighter-rouge">cling</code> env, via <code class="language-plaintext highlighter-rouge">mamba create -n cling</code>.
+<br /></li>
+  <li>Create the <code class="language-plaintext highlighter-rouge">cling</code> env, via <code class="language-plaintext highlighter-rouge">mamba create -n cling</code>.
 <b>N. B. </b> To remove an env, we need <code class="language-plaintext highlighter-rouge">mamba env remove -n cling</code>.
-<br />
-5. <code class="language-plaintext highlighter-rouge">mamba install xeus-cling -c conda-forge --prefix=~/.micromamba</code>
-<br />
-6. The command above will create jupyter kernel under <code class="language-plaintext highlighter-rouge">$PREFIX/share/jupyter/kernels</code>, or on some machines, the kernels may be found in some other places, like <code class="language-plaintext highlighter-rouge">$PREFIX//cling/share/jupyter/kernels</code>. To let our jupyterhub server see our kernels, we need to manually copy the available kernels to the proper directory (where jupyterhub can find). In my case, the target directory is <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/share/jupyter/kernels/</code>.
-</p>
+<br /></li>
+  <li><code class="language-plaintext highlighter-rouge">mamba install xeus-cling -c conda-forge --prefix=~/.micromamba</code>
+<br /></li>
+  <li>The command above will create jupyter kernel under <code class="language-plaintext highlighter-rouge">$PREFIX/share/jupyter/kernels</code>, or on some machines, the kernels may be found in some other places, like <code class="language-plaintext highlighter-rouge">$PREFIX//cling/share/jupyter/kernels</code>. To let our jupyterhub server see our kernels, we need to manually copy the available kernels to the proper directory (where jupyterhub can find). In my case, the target directory is <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/share/jupyter/kernels/</code>.</li>
+</ol>
 
-<blockquote>
-  <p>Issue-5: List of kernels is not complete</p>
-</blockquote>
+<h2 id="issue-5-list-of-kernels-is-not-complete">Issue-5: List of kernels is not complete</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> Sometimes when listing out all kernels using <code class="language-plaintext highlighter-rouge">jupyter kernelspec list</code>, it
-could happen that not all kernels are listed out. That could be because we were using the wrong <code class="language-plaintext highlighter-rouge">jupyter</code>. For example, if there a version of <code class="language-plaintext highlighter-rouge">jupyter</code> installed at <code class="language-plaintext highlighter-rouge">/usr/bin/jupyter</code>, it will always win over other <code class="language-plaintext highlighter-rouge">jupyter</code> versions. If it happens that we follow certain instructions to install the <code class="language-plaintext highlighter-rouge">jupyterhub</code> server into other places (e.g., Ref. [1]), then we will not see all kernels available on our machine by <code class="language-plaintext highlighter-rouge">jupyter ernelspec list</code>. In such a situation, we have to explicitly give the full path to the <code class="language-plaintext highlighter-rouge">jupyter</code> installed in a certain location (where we installed the <code class="language-plaintext highlighter-rouge">jupyterhub</code> server). In my case, the full path is <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter</code>.
-</p>
+<p><strong>Solution:</strong> Sometimes when listing out all kernels using <code class="language-plaintext highlighter-rouge">jupyter kernelspec list</code>, it
+could happen that not all kernels are listed out. That could be because we were using the wrong <code class="language-plaintext highlighter-rouge">jupyter</code>. For example, if there a version of <code class="language-plaintext highlighter-rouge">jupyter</code> installed at <code class="language-plaintext highlighter-rouge">/usr/bin/jupyter</code>, it will always win over other <code class="language-plaintext highlighter-rouge">jupyter</code> versions. If it happens that we follow certain instructions to install the <code class="language-plaintext highlighter-rouge">jupyterhub</code> server into other places (e.g., Ref. [1]), then we will not see all kernels available on our machine by <code class="language-plaintext highlighter-rouge">jupyter ernelspec list</code>. In such a situation, we have to explicitly give the full path to the <code class="language-plaintext highlighter-rouge">jupyter</code> installed in a certain location (where we installed the <code class="language-plaintext highlighter-rouge">jupyterhub</code> server). In my case, the full path is <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter</code>.</p>
 
-<blockquote>
-  <p>Issue-6: Installation of Juka kernel</p>
-</blockquote>
+<h2 id="issue-6-installation-of-juka-kernel">Issue-6: Installation of Juka kernel</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> To install the <code class="language-plaintext highlighter-rouge">juka</code> kernel, for sure, initially, we need to install <code class="language-plaintext highlighter-rouge">Juka</code> - see Ref. [4]. Then execute <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/pip install juka-kernel</code>, followed by <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/python -m juka-kernel.install</code>. Finally, we need to go to the <code class="language-plaintext highlighter-rouge">juka_kernel</code> installation location (e.g. <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/lib/python3.8/site-packages/juka/</code>) and execute, <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/python install.py --user</code>.
-</p>
+<p><strong>Solution:</strong> To install the <code class="language-plaintext highlighter-rouge">juka</code> kernel, for sure, initially, we need to install <code class="language-plaintext highlighter-rouge">Juka</code> - see Ref. [4]. Then execute <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/pip install juka-kernel</code>, followed by <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/python -m juka-kernel.install</code>. Finally, we need to go to the <code class="language-plaintext highlighter-rouge">juka_kernel</code> installation location (e.g. <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/lib/python3.8/site-packages/juka/</code>) and execute, <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/python install.py --user</code>.</p>
 
-<blockquote>
-  <p>Issue-7: Installation of SSH kernel</p>
-</blockquote>
+<h2 id="issue-7-installation-of-ssh-kernel">Issue-7: Installation of SSH kernel</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> When installing the SSH kernel following the instruction in Ref. [5], by default, the kernel is installed into <code class="language-plaintext highlighter-rouge">/root/.local/share/jupyter/kernels/ssh</code>. It seems that Jupyter has difficulty in finding the installed kernel in the location above. So, we may need to manually copy the whole directory above to our local area, such as <code class="language-plaintext highlighter-rouge">~/.local/share/jupyter/kernels/ssh</code>. A restart of the
-server is needed to be able to see the copied kernel.
-</p>
+<p><strong>Solution:</strong> When installing the SSH kernel following the instruction in Ref. [5], by default, the kernel is installed into <code class="language-plaintext highlighter-rouge">/root/.local/share/jupyter/kernels/ssh</code>. It seems that Jupyter has difficulty in finding the installed kernel in the location above. So, we may need to manually copy the whole directory above to our local area, such as <code class="language-plaintext highlighter-rouge">~/.local/share/jupyter/kernels/ssh</code>. A restart of the
+server is needed to be able to see the copied kernel.</p>
 
-<blockquote>
-  <p>Issue-8: Installation of C kernel</p>
-</blockquote>
+<h2 id="issue-8-installation-of-c-kernel">Issue-8: Installation of C kernel</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b> Solution:</b> When installing the C kernel following Ref. [6], the execution of the kernel installation command may require <code class="language-plaintext highlighter-rouge">sudo</code> privilege,
-in which case the kernel will be installed to the root directory (i.e. <code class="language-plaintext highlighter-rouge">/root/.local/share/jupyter/kernels/c</code>). In that case, we then need to    manually copy the directory <code class="language-plaintext highlighter-rouge">c</code> to our local area, i.e., <code class="language-plaintext highlighter-rouge">$HOME/.local/share/jupyter/kernels/c</code>.
-</p>
+<p><strong>Solution:</strong> When installing the C kernel following Ref. [6], the execution of the kernel installation command may require <code class="language-plaintext highlighter-rouge">sudo</code> privilege,
+in which case the kernel will be installed to the root directory (i.e. <code class="language-plaintext highlighter-rouge">/root/.local/share/jupyter/kernels/c</code>). In that case, we then need to    manually copy the directory <code class="language-plaintext highlighter-rouge">c</code> to our local area, i.e., <code class="language-plaintext highlighter-rouge">$HOME/.local/share/jupyter/kernels/c</code>.</p>
 
-<blockquote>
-  <p>Issue-9: Installation of Fortran kernel</p>
-</blockquote>
+<h2 id="issue-9-installation-of-fortran-kernel">Issue-9: Installation of Fortran kernel</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution-1:</b> For installing the <code class="language-plaintext highlighter-rouge">Coarray Fotran</code> kernel, we can following Ref. [7]. One of the prerequisite package for installing this kernel is <code class="language-plaintext highlighter-rouge">opencoarrays</code>. For the installation of this package, if we are on Ubuntu higher than 18.04, we may need to follow the instruction in Ref. [8] to install it manually.
+<p><strong>Solution:</strong> For installing the <code class="language-plaintext highlighter-rouge">Coarray Fotran</code> kernel, we can following Ref. [7]. One of the prerequisite package for installing this kernel is <code class="language-plaintext highlighter-rouge">opencoarrays</code>. For the installation of this package, if we are on Ubuntu higher than 18.04, we may need to follow the instruction in Ref. [8] to install it manually.
 <br />
 <b> Solution-2:</b> If the <code class="language-plaintext highlighter-rouge">Coarrays Fortran</code> kernel fails to execute any commands (complaining about libraries issues),
 try to execute the followings commands,
-<br />
-—
-<br />
-$ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/mpich/lib/* /usr/lib/x86_64-linux-gnu/
+<br /></p>
+
+<hr />
+
+<p>$ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/mpich/lib/* /usr/lib/x86_64-linux-gnu/
 <br />
 $ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/openmpi/lib/* /usr/lib/x86_64-linux-gnu/
 <br />
@@ -520,46 +486,36 @@ $ sudo ln -s libhwloc.so.15 libhwloc.so
 $ sudo mkdir -p  /usr/include/OpenCoarrays-2.0.0-rc1_GNU-7.3.0
 <br />
 $ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/include
-<br />
-—
-</p>
+<br /></p>
 
-<blockquote>
-  <p>Issue-10: conda environment as jupyter kernel</p>
-</blockquote>
+<hr />
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> When following Ref. [1] to install the jupyterhub server, a conda environment was set up to become a kernel environment. In the future if we want to install packages to that environment to make certain modules available in that kernel, we need to use the conda <code class="language-plaintext highlighter-rouge">--prefix</code> flag to specify the full path to the conda environment where we are going to install certain modules.
+<h2 id="issue-10-conda-environment-as-jupyter-kernel">Issue-10: conda environment as jupyter kernel</h2>
 
-<br />
+<p><strong>Solution:</strong> When following Ref. [1] to install the jupyterhub server, a conda environment was set up to become a kernel environment. In the future if we want to install packages to that environment to make certain modules available in that kernel, we need to use the conda <code class="language-plaintext highlighter-rouge">--prefix</code> flag to specify the full path to the conda environment where we are going to install certain modules.</p>
 
-A typical command would be,
+<p><br /></p>
 
-<code class="language-plaintext highlighter-rouge">sudo /home/cloud/.conda/envs/mantid-developer/bin/python -m ipykernel install --prefix=/opt/jupyterhub/ --name 'mantid-developer' --display-name "Mantid"</code>
+<p>A typical command would be,</p>
 
-<br />
+<p><code class="language-plaintext highlighter-rouge">sudo /home/cloud/.conda/envs/mantid-developer/bin/python -m ipykernel install --prefix=/opt/jupyterhub/ --name 'mantid-developer' --display-name "Mantid"</code></p>
 
-Using the command above, the local conda environment located at <code class="language-plaintext highlighter-rouge">/home/cloud/.conda/envs/mantid-developer</code> will be registered as a jupyter kernel. The kernel will be installed into <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/share/jupyter/kernels/mantid-developer</code>.
-</p>
+<p><br /></p>
 
-<blockquote>
-  <p>Issue-11: Installation of Lua kernel</p>
-</blockquote>
+<p>Using the command above, the local conda environment located at <code class="language-plaintext highlighter-rouge">/home/cloud/.conda/envs/mantid-developer</code> will be registered as a jupyter kernel. The kernel will be installed into <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/share/jupyter/kernels/mantid-developer</code>.</p>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> The <code class="language-plaintext highlighter-rouge">Lua</code> kernel can be easily installed following Ref. [9], in which the <code class="language-plaintext highlighter-rouge">iLua</code> kernel will be installed. Also, one needs to install <code class="language-plaintext highlighter-rouge">lua</code> separately to make the <code class="language-plaintext highlighter-rouge">lua</code> command system-wide available.
-</p>
+<h2 id="issue-11-installation-of-lua-kernel">Issue-11: Installation of Lua kernel</h2>
 
-<blockquote>
-  <p>Issue-12: Installation of <code class="language-plaintext highlighter-rouge">diffpy-cmi</code> &amp; <code class="language-plaintext highlighter-rouge">mpdf</code> kernel</p>
-</blockquote>
+<p><strong>Solution:</strong> The <code class="language-plaintext highlighter-rouge">Lua</code> kernel can be easily installed following Ref. [9], in which the <code class="language-plaintext highlighter-rouge">iLua</code> kernel will be installed. Also, one needs to install <code class="language-plaintext highlighter-rouge">lua</code> separately to make the <code class="language-plaintext highlighter-rouge">lua</code> command system-wide available.</p>
 
-<p style="text-align: justify; margin-left: 50px">
-<b> Solution:</b> To install <code class="language-plaintext highlighter-rouge">diffpy</code>, <code class="language-plaintext highlighter-rouge">diffpy-CMI</code> and <code class="language-plaintext highlighter-rouge">mpdf</code> packages into a single conda environment and make it available in a dedicated kernel, follow the steps below,
-<br />
-—
-<br />
-$ sudo /opt/conda/bin/conda create –prefix /opt/conda/envs/diffpy python=3.7 ipykernel
+<h2 id="issue-12-installation-of-diffpy-cmi--mpdf-kernel">Issue-12: Installation of <code class="language-plaintext highlighter-rouge">diffpy-cmi</code> &amp; <code class="language-plaintext highlighter-rouge">mpdf</code> kernel</h2>
+
+<p><strong>Solution:</strong> To install <code class="language-plaintext highlighter-rouge">diffpy</code>, <code class="language-plaintext highlighter-rouge">diffpy-CMI</code> and <code class="language-plaintext highlighter-rouge">mpdf</code> packages into a single conda environment and make it available in a dedicated kernel, follow the steps below,
+<br /></p>
+
+<hr />
+
+<p>$ sudo /opt/conda/bin/conda create –prefix /opt/conda/envs/diffpy python=3.7 ipykernel
 <br />
 $ sudo /opt/conda/envs/diffpy/bin/python -m ipykernel install –prefix=/opt/jupyterhub/ –name ‘diffpy’ –display-name “Python (diffpy)”
 <br />
@@ -569,169 +525,135 @@ $ git clone https://github.com/FrandsenGroup/diffpy.mpdf.git
 <br />
 $ mv diffpy.mpdf ~/.diffpy.mpdf &amp;&amp; cd ~/.diffpy.mpdf
 <br />
-$ sudo /opt/conda/envs/diffpy/bin/python setup.py install
+$ sudo /opt/conda/envs/diffpy/bin/python setup.py install</p>
+
+<hr />
+
+<h2 id="issue-13-installation-of-sagemath-kernel">Issue-13: Installation of <code class="language-plaintext highlighter-rouge">sagemath</code> kernel</h2>
+
+<p><strong>Solution:</strong> To install the <code class="language-plaintext highlighter-rouge">sagemath</code> kernel, we need to follow the instructions below,
+<br /></p>
+
+<hr />
+<p>Step-1: Ref. [10]
 <br />
-—
-</p>
+Step-2: Ref. [11]</p>
 
-<blockquote>
-  <p>Issue-13: Installation of <code class="language-plaintext highlighter-rouge">sagemath</code> kernel</p>
-</blockquote>
+<hr />
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> To install the <code class="language-plaintext highlighter-rouge">sagemath</code> kernel, we need to follow the instructions below,
-<br />
-—
-<br />
-Step-1: Ref. [10]
-<br />
-Step-2: Ref. [11]
-<br />
-—
-</p>
+<h2 id="issue-14-installation-of-the-jupyter-language-server">Issue-14: Installation of the jupyter language server</h2>
 
-<blockquote>
-  <p>Issue-14: Installation of the jupyter language server</p>
-</blockquote>
+<p><b>Solution:</b> Follow the instruction in Ref. [12] for installation and refer to Ref. [13] for configuration of the service.</p>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> Follow the instruction in Ref. [12] for installation and refer to Ref. [13] for configuration of the service.
-</p>
+<h2 id="issue-15-code-format">Issue-15: Code format</h2>
 
-<blockquote>
-  <p>Issue-15: Code format</p>
-</blockquote>
+<p><b> Solution:</b> Jupyterlab code format needs <code class="language-plaintext highlighter-rouge">black</code> to be installed. Refer to Ref. [14] for more details.</p>
 
-<p style="text-align: justify; margin-left: 50px">
-<b> Solution:</b> Jupyterlab code format needs <code class="language-plaintext highlighter-rouge">black</code> to be installed. Refer to Ref. [14] for more details.
-</p>
+<h2 id="issue-16-execution-of-commands-in-cell-within-jupyter-server-takes-forever">Issue-16: Execution of commands in cell within Jupyter server takes forever</h2>
 
-<blockquote>
-  <p>Issue-16: Execution of commands in cell within Jupyter server takes forever</p>
-</blockquote>
-
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> Sometimes a kernel may be launched successfully, but when trying to execute some commands within jupyterlab, it might fail. In this case, we can take a look at the kernel specification file (the JSON file) and see whether it is a problem with the improper command being executed when launching the kernel. Here follows is an example with the <code class="language-plaintext highlighter-rouge">scilab</code> kernel.
-<br />
-1. First, we can list out all the available kernels and get an idea about where the corresponding kernel file is located,
+<p><b>Solution:</b> Sometimes a kernel may be launched successfully, but when trying to execute some commands within jupyterlab, it might fail. In this case, we can take a look at the kernel specification file (the JSON file) and see whether it is a problem with the improper command being executed when launching the kernel. Here follows is an example with the <code class="language-plaintext highlighter-rouge">scilab</code> kernel.
+<br /></p>
+<ol>
+  <li>First, we can list out all the available kernels and get an idea about where the corresponding kernel file is located,
 <br />
 <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/jupyter kernelspec list</code>
 <br />
 <b>N. B. </b> In the case of <code class="language-plaintext highlighter-rouge">scilab</code>, the kernel file is here,
 <br />
 <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/share/jupyter/kernels/scilab</code>
-<br />
-2. Then cd into the kernel directory identified above and edit the <code class="language-plaintext highlighter-rouge">kernel.json</code> file. In the case of <code class="language-plaintext highlighter-rouge">scilab</code>, the default kernel file reads,
-</p>
+<br /></li>
+  <li>
+    <p>Then cd into the kernel directory identified above and edit the <code class="language-plaintext highlighter-rouge">kernel.json</code> file. In the case of <code class="language-plaintext highlighter-rouge">scilab</code>, the default kernel file reads,</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">   </span><span class="p">{</span><span class="w">
-       </span><span class="nl">"argv"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"-m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"scilab_kernel"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"-f"</span><span class="p">,</span><span class="w"> </span><span class="s2">"{connection_file}"</span><span class="p">],</span><span class="w">
-       </span><span class="nl">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scilab"</span><span class="p">,</span><span class="w">
-       </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scilab"</span><span class="p">,</span><span class="w">
-       </span><span class="nl">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/x-octave"</span><span class="p">,</span><span class="w">
-       </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scilab"</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-<p style="text-align: justify; margin-left: 50px">
-3. Then we know that the actual command being executed at each time of the kernel launching is the system-wise version of <code class="language-plaintext highlighter-rouge">python</code>. In my case, this will fail, since we need the version of <code class="language-plaintext highlighter-rouge">python</code> corresponding to our Jupyterhub server, which is located at <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/python</code>. So, we need to change the <code class="language-plaintext highlighter-rouge">kernel.json</code> file to be like this,
-</p>
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nl">"argv"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"-m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"scilab_kernel"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"-f"</span><span class="p">,</span><span class="w"> </span><span class="s2">"{connection_file}"</span><span class="p">],</span><span class="w">
+     </span><span class="nl">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scilab"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scilab"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/x-octave"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scilab"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Then we know that the actual command being executed at each time of the kernel launching is the system-wise version of <code class="language-plaintext highlighter-rouge">python</code>. In my case, this will fail, since we need the version of <code class="language-plaintext highlighter-rouge">python</code> corresponding to our Jupyterhub server, which is located at <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/python</code>. So, we need to change the <code class="language-plaintext highlighter-rouge">kernel.json</code> file to be like this,</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">   </span><span class="p">{</span><span class="w">
-       </span><span class="nl">"argv"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"/opt/jupyterhub/bin/python"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"-m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"scilab_kernel"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"-f"</span><span class="p">,</span><span class="w"> </span><span class="s2">"{connection_file}"</span><span class="p">],</span><span class="w">
-       </span><span class="nl">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scilab"</span><span class="p">,</span><span class="w">
-       </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scilab"</span><span class="p">,</span><span class="w">
-       </span><span class="nl">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/x-octave"</span><span class="p">,</span><span class="w">
-       </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scilab"</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nl">"argv"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"/opt/jupyterhub/bin/python"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"-m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"scilab_kernel"</span><span class="p">,</span><span class="w">
+             </span><span class="s2">"-f"</span><span class="p">,</span><span class="w"> </span><span class="s2">"{connection_file}"</span><span class="p">],</span><span class="w">
+     </span><span class="nl">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scilab"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scilab"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text/x-octave"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scilab"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ol>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-17: <code class="language-plaintext highlighter-rouge">scilab</code> kernel log file</p>
-</blockquote>
+<h2 id="issue-17-scilab-kernel-log-file">Issue-17: <code class="language-plaintext highlighter-rouge">scilab</code> kernel log file</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> By default, running the <code class="language-plaintext highlighter-rouge">scilab</code> kernel will create a <code class="language-plaintext highlighter-rouge">test.log</code> file under home directory. To avoid this behavior, we can edit the corresponding <code class="language-plaintext highlighter-rouge">kernel.py</code> file and comment out relevant lines – line 97-98 in <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/lib/python3.8/site-packages/scilab_kernel/kernel.py</code>, i.e., the following two lines,
-</p>
+<p><b>Solution:</b> By default, running the <code class="language-plaintext highlighter-rouge">scilab</code> kernel will create a <code class="language-plaintext highlighter-rouge">test.log</code> file under home directory. To avoid this behavior, we can edit the corresponding <code class="language-plaintext highlighter-rouge">kernel.py</code> file and comment out relevant lines – line 97-98 in <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/lib/python3.8/site-packages/scilab_kernel/kernel.py</code>, i.e., the following two lines,</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">'~/test.log'</span><span class="p">),</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
-      <span class="n">fid</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">'executable: '</span> <span class="o">+</span> <span class="n">executable</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">'~/test.log'</span><span class="p">),</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
+    <span class="n">fid</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">'executable: '</span> <span class="o">+</span> <span class="n">executable</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-18: <code class="language-plaintext highlighter-rouge">wolfram</code> kernel documentation file location</p>
-</blockquote>
+<h2 id="issue-18-wolfram-kernel-documentation-file-location">Issue-18: <code class="language-plaintext highlighter-rouge">wolfram</code> kernel documentation file location</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> By default, the installed wolfram player kernel will use the home directory as the user documentation directory (which can be printed out within either jupyterlab cell execution or from within <code class="language-plaintext highlighter-rouge">wolframscript</code> CLI, by executing <code class="language-plaintext highlighter-rouge">$UserDocumentsDirectory</code>). This will create a <code class="language-plaintext highlighter-rouge">Wolfram Player</code> folder at each time when launching the kernel. To move this directory to another location, we need [15],
-<br />
-1. <code class="language-plaintext highlighter-rouge">xdg-user-dirs-update --set DOCUMENTS /home/cloud/.wolfram_doc</code> (from command line)
+<p><b>Solution:</b> By default, the installed wolfram player kernel will use the home directory as the user documentation directory (which can be printed out within either jupyterlab cell execution or from within <code class="language-plaintext highlighter-rouge">wolframscript</code> CLI, by executing <code class="language-plaintext highlighter-rouge">$UserDocumentsDirectory</code>). This will create a <code class="language-plaintext highlighter-rouge">Wolfram Player</code> folder at each time when launching the kernel. To move this directory to another location, we need [15],
+<br /></p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">xdg-user-dirs-update --set DOCUMENTS /home/cloud/.wolfram_doc</code> (from command line)
 <br />
 <b>N. B.</b> The directory specified at the end of the command can be anywhere we would like it to be.
-<br />
-2. Rebuild jupyterhub, by running <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/jupyter lab build</code>.
-<br />
-3. Restart jupyterhub service, by running <code class="language-plaintext highlighter-rouge">sudo systemctl restart jupyterhub</code>
-</p>
+<br /></li>
+  <li>Rebuild jupyterhub, by running <code class="language-plaintext highlighter-rouge">sudo /opt/jupyterhub/bin/jupyter lab build</code>.
+<br /></li>
+  <li>Restart jupyterhub service, by running <code class="language-plaintext highlighter-rouge">sudo systemctl restart jupyterhub</code></li>
+</ol>
 
-<blockquote>
-  <p>Issue-19: <code class="language-plaintext highlighter-rouge">go</code> kernel creates a <code class="language-plaintext highlighter-rouge">go</code> folder under home directory</p>
-</blockquote>
+<h2 id="issue-19-go-kernel-creates-a-go-folder-under-home-directory">Issue-19: <code class="language-plaintext highlighter-rouge">go</code> kernel creates a <code class="language-plaintext highlighter-rouge">go</code> folder under home directory</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> By default, the <code class="language-plaintext highlighter-rouge">go</code> kernel will use the <code class="language-plaintext highlighter-rouge">go</code> directory under home directory as the main working directory and therefore <code class="language-plaintext highlighter-rouge">$HOME/go</code> directory has to be there. To move the <code class="language-plaintext highlighter-rouge">go</code> directory to another location (e.g., <code class="language-plaintext highlighter-rouge">$HOME/.go</code>), we may want to put the following line in our <code class="language-plaintext highlighter-rouge">.bashrc</code> and <code class="language-plaintext highlighter-rouge">.bash_profile</code> file, <code class="language-plaintext highlighter-rouge">export GOPATH=$HOME/.go</code> and edit the <code class="language-plaintext highlighter-rouge">go</code> kernel JSON file to,
-</p>
+<p><b>Solution:</b> By default, the <code class="language-plaintext highlighter-rouge">go</code> kernel will use the <code class="language-plaintext highlighter-rouge">go</code> directory under home directory as the main working directory and therefore <code class="language-plaintext highlighter-rouge">$HOME/go</code> directory has to be there. To move the <code class="language-plaintext highlighter-rouge">go</code> directory to another location (e.g., <code class="language-plaintext highlighter-rouge">$HOME/.go</code>), we may want to put the following line in our <code class="language-plaintext highlighter-rouge">.bashrc</code> and <code class="language-plaintext highlighter-rouge">.bash_profile</code> file, <code class="language-plaintext highlighter-rouge">export GOPATH=$HOME/.go</code> and edit the <code class="language-plaintext highlighter-rouge">go</code> kernel JSON file to,</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">   </span><span class="p">{</span><span class="w">
-       </span><span class="nl">"argv"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-           </span><span class="s2">"/home/cloud/.go/bin/gophernotes"</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"{connection_file}"</span><span class="w">
-       </span><span class="p">],</span><span class="w">
-       </span><span class="nl">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Go"</span><span class="p">,</span><span class="w">
-       </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"go"</span><span class="p">,</span><span class="w">
-       </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"go"</span><span class="w">
-   </span><span class="p">}</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"argv"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"/home/cloud/.go/bin/gophernotes"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"{connection_file}"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Go"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"go"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"go"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p style="text-align: left; margin-left: 50px">
-<b>N. B.</b> The location of <code class="language-plaintext highlighter-rouge">kernel.json</code> to be edited is, <code class="language-plaintext highlighter-rouge">/home/cloud/.local/share/jupyter/kernels/gophernotes/kernel.json</code>.
-</p>
-
-<blockquote>
-  <p>Issue-20: <code class="language-plaintext highlighter-rouge">R</code> kernel creates an <code class="language-plaintext highlighter-rouge">R</code> folder under home directory</p>
-</blockquote>
-
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> When following the instructions in Ref. [16] to install the <code class="language-plaintext highlighter-rouge">IRkernel</code> for R, the installed relevant R packages will be put under <code class="language-plaintext highlighter-rouge">$HOME/R</code> directory. Those installed packages can actually be moved to the default package installation location of <code class="language-plaintext highlighter-rouge">R</code>, e.g., <code class="language-plaintext highlighter-rouge">/usr/lib/R/library</code> so that the <code class="language-plaintext highlighter-rouge">R</code> folder under home directory can be removed. To do that, we can execute, <code class="language-plaintext highlighter-rouge">sudo cp -av $HOME/R/x86_64-pc-linux-gnu-library/3.6/* /usr/lib/R/library/</code>.
-</p>
+<p><b>N. B.</b> The location of <code class="language-plaintext highlighter-rouge">kernel.json</code> to be edited is, <code class="language-plaintext highlighter-rouge">/home/cloud/.local/share/jupyter/kernels/gophernotes/kernel.json</code>.</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-21: Installation of <code class="language-plaintext highlighter-rouge">jupyterlab-latex</code> extension</p>
-</blockquote>
+<h2 id="issue-20-r-kernel-creates-an-r-folder-under-home-directory">Issue-20: <code class="language-plaintext highlighter-rouge">R</code> kernel creates an <code class="language-plaintext highlighter-rouge">R</code> folder under home directory</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> To make sure the extension works properly, we need to install
+<p><b>Solution:</b> When following the instructions in Ref. [16] to install the <code class="language-plaintext highlighter-rouge">IRkernel</code> for R, the installed relevant R packages will be put under <code class="language-plaintext highlighter-rouge">$HOME/R</code> directory. Those installed packages can actually be moved to the default package installation location of <code class="language-plaintext highlighter-rouge">R</code>, e.g., <code class="language-plaintext highlighter-rouge">/usr/lib/R/library</code> so that the <code class="language-plaintext highlighter-rouge">R</code> folder under home directory can be removed. To do that, we can execute, <code class="language-plaintext highlighter-rouge">sudo cp -av $HOME/R/x86_64-pc-linux-gnu-library/3.6/* /usr/lib/R/library/</code>.</p>
+
+<p><br /></p>
+
+<h2 id="issue-21-installation-of-jupyterlab-latex-extension">Issue-21: Installation of <code class="language-plaintext highlighter-rouge">jupyterlab-latex</code> extension</h2>
+
+<p><b>Solution:</b> To make sure the extension works properly, we need to install
 <code class="language-plaintext highlighter-rouge">xelatex</code> first. Refer to Ref. [17] for information about the installation of
-<code class="language-plaintext highlighter-rouge">xelatex</code>.
-</p>
+<code class="language-plaintext highlighter-rouge">xelatex</code>.</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-22: Issue with multiline editing</p>
-</blockquote>
+<h2 id="issue-22-issue-with-multiline-editing">Issue-22: Issue with multiline editing</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> Sometimes we may find that using <code class="language-plaintext highlighter-rouge">Alt</code> + left mouse dragging is
+<p><b>Solution:</b> Sometimes we may find that using <code class="language-plaintext highlighter-rouge">Alt</code> + left mouse dragging is
 not able to perform the multiline editing (i.e., vertical selection). In this
 case, we can go to the settings and search for <code class="language-plaintext highlighter-rouge">code jump</code> and we will be able
 to see <code class="language-plaintext highlighter-rouge">Modifier key</code> in the settings. We can try to change it to <code class="language-plaintext highlighter-rouge">AltGraph</code> –
@@ -740,23 +662,18 @@ editing fail (the cursor will change shape but not functioning). This tip can be
 found in Ref. [18], where it is suggested to change this key to <code class="language-plaintext highlighter-rouge">Control</code>.
 However, it seems that changing it to <code class="language-plaintext highlighter-rouge">Control</code> will disable the multi-cursor
 editing (i.e., <code class="language-plaintext highlighter-rouge">Control</code> + left click on multiple locations). Finally, it seems
-that changing it to <code class="language-plaintext highlighter-rouge">AltGraph</code> will enable both functionalities.
-
-<br />
-
-<b>N. B.</b> Changing it to <code class="language-plaintext highlighter-rouge">Shift</code> would then diable the <code class="language-plaintext highlighter-rouge">Shift + Left Click</code> for
-block selection. 
-
-</p>
+that changing it to <code class="language-plaintext highlighter-rouge">AltGraph</code> will enable both functionalities.</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-23: Installation of SoS for working with multiple kernels in one notebook in a convenient manner</p>
-</blockquote>
+<p><b>N. B.</b> Changing it to <code class="language-plaintext highlighter-rouge">Shift</code> would then diable the <code class="language-plaintext highlighter-rouge">Shift + Left Click</code> for
+block selection.</p>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> SoS notebook is actually a jupyter kernel that allows up to
+<p><br /></p>
+
+<h2 id="issue-23-installation-of-sos-for-working-with-multiple-kernels-in-one-notebook-in-a-convenient-manner">Issue-23: Installation of SoS for working with multiple kernels in one notebook in a convenient manner</h2>
+
+<p><b>Solution:</b> SoS notebook is actually a jupyter kernel that allows up to
 select different sub-kernels inside the notebook. So that if we want to run
 multiple kernels in a single notebook without the necessity to changing kernels
 manually, this is the tool for us. Also, it has the capability to share
@@ -767,23 +684,19 @@ One little issue we should notice is that during the installation, there is a
 step to execute <code class="language-plaintext highlighter-rouge">python -m sos_notebook.install</code>. At this stage, it may complain
 about not being able to find the <code class="language-plaintext highlighter-rouge">jupyter-contrib-core</code> module. In this case, we
 can use <code class="language-plaintext highlighter-rouge">pip install jupyter-contrib-core</code> [20] to install the module and rerun the
-step and it should work.
-
-<br />
-
-<b>N. B. </b>We should prepend the two commands mentioned with the full path of
-the executables, just like what we have been doing across the whole note here,
-<code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/</code>.
-</p>
+step and it should work.</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-24: Jupyter on Windows – 1</p>
-</blockquote>
+<p><b>N. B. </b>We should prepend the two commands mentioned with the full path of
+the executables, just like what we have been doing across the whole note here,
+<code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin/</code>.</p>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b>  With my local Windows jupyter server, for some reason, it
+<p><br /></p>
+
+<h2 id="issue-24-jupyter-on-windows--1">Issue-24: Jupyter on Windows – 1</h2>
+
+<p><b>Solution:</b>  With my local Windows jupyter server, for some reason, it
 fails to load the <code class="language-plaintext highlighter-rouge">jupyter_ntoebook_config.py</code> configuration file which sets up
 the port, password, etc. Not sure why but suspect this could be due to the
 package version issue  – some of the packages might be updated or downgraded
@@ -792,128 +705,115 @@ specify the port number when launching the jupyter lab server, by <code class="l
 --no-browser --port 8000</code>. For password setup (once for all), we can run the
 command <code class="language-plaintext highlighter-rouge">jupyter lab password</code> followed by inputting the password twice. A
 configuration file containing the password will be saved to the config folder,
-which will be discussed in next issue.
+which will be discussed in next issue.</p>
 
-<br />
+<p><br /></p>
 
-<b>N. B.</b> A bit of Googling seems to suggest that the jupyter lab
+<p><b>N. B.</b> A bit of Googling seems to suggest that the jupyter lab
 configuration file is <code class="language-plaintext highlighter-rouge">jupyter_lab_config.py</code> which can be generated by
-<code class="language-plaintext highlighter-rouge">jupyter-lab --generate-config</code>. Not sure why previously using <code class="language-plaintext highlighter-rouge">jupyter_ntoebook_config.py</code> just worked out.
-
-</p>
+<code class="language-plaintext highlighter-rouge">jupyter-lab --generate-config</code>. Not sure why previously using <code class="language-plaintext highlighter-rouge">jupyter_ntoebook_config.py</code> just worked out.</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-25: Jupyter on Windows – 2</p>
-</blockquote>
+<h2 id="issue-25-jupyter-on-windows--2">Issue-25: Jupyter on Windows – 2</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-The configuration file is usually located in the <code class="language-plaintext highlighter-rouge">.jupyter</code> under user’s home directory. To obtain the location where the configuration file is stored, we can run <code class="language-plaintext highlighter-rouge">jupyter --config-dir</code>.
-</p>
+<p>The configuration file is usually located in the <code class="language-plaintext highlighter-rouge">.jupyter</code> under user’s home directory. To obtain the location where the configuration file is stored, we can run <code class="language-plaintext highlighter-rouge">jupyter --config-dir</code>.</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-26: Jupyter on Windows – 3</p>
-</blockquote>
+<h2 id="issue-26-jupyter-on-windows--3">Issue-26: Jupyter on Windows – 3</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> To make the jupyter server an automatically loaded service when the machine starts, we can create a startup VBS script to launch the server. This may not be the optimal way, but it should work for the personal use. Here follows is attached the VBS script, for which we can make a shortcut, and we can put the shortcut into the startup folder (<code class="language-plaintext highlighter-rouge">Start + R</code> to launch the <code class="language-plaintext highlighter-rouge">Run</code> box, and type <code class="language-plaintext highlighter-rouge">shell:startup</code> to bring up the startup folder),
-</p>
+<p><strong>Solution:</strong> To make the jupyter server an automatically loaded service when the machine starts, we can create a startup VBS script to launch the server. This may not be the optimal way, but it should work for the personal use. Here follows is attached the VBS script, for which we can make a shortcut, and we can put the shortcut into the startup folder (<code class="language-plaintext highlighter-rouge">Start + R</code> to launch the <code class="language-plaintext highlighter-rouge">Run</code> box, and type <code class="language-plaintext highlighter-rouge">shell:startup</code> to bring up the startup folder),</p>
+
+<p><br /></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set shell = CreateObject("WScript.Shell")
 shell.CurrentDirectory = "C:\Users\yuanp\OneDrive\One_Documents\JupyterLab"
 shell.Run "cmd /c jupyter lab --no-browser --port 8000 --ip 0.0.0.0", 0, false
 </code></pre></div></div>
-<p style="text-align: justify; margin-left: 50px">
-By doing this, we can then access the server via <code class="language-plaintext highlighter-rouge">localhost:8000</code> (or via the internet if the port forwarding is configured properly) at any time after the machine starts, without the need to start up the server manually.
-
-<b>N. B.</b> The second line here specifies the working directory. The ‘–ip 0.0.0.0’ flag tells the server to accept connections from the internet but not only the local host. The <code class="language-plaintext highlighter-rouge">0, false</code> flag tells the script not to keep the terminal running after launching the server.
-</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-27: Console Log for <code class="language-plaintext highlighter-rouge">ipywidgets</code> debug</p>
-</blockquote>
-
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> When developing <code class="language-plaintext highlighter-rouge">ipywidgets</code> interface in Jupyterlab, sometime we will find that the widgets interface is not functioning as expected but there is no error message printed out. To get a knowledge about the error message in case of any for debugging purpose, we need to enable the console log view in Jupyterlab. To do that, we need to go to <code class="language-plaintext highlighter-rouge">View</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Show Console Log</code> from the menu and then at the bottom of the page, we should be able to see all the console logs.
-</p>
+<p>By doing this, we can then access the server via <code class="language-plaintext highlighter-rouge">localhost:8000</code> (or via the internet if the port forwarding is configured properly) at any time after the machine starts, without the need to start up the server manually.</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-28: <code class="language-plaintext highlighter-rouge">matplotlib</code> and <code class="language-plaintext highlighter-rouge">plotly</code> interactive plot</p>
-</blockquote>
+<p><b>N. B.</b> The second line here specifies the working directory. The ‘–ip 0.0.0.0’ flag tells the server to accept connections from the internet but not only the local host. The <code class="language-plaintext highlighter-rouge">0, false</code> flag tells the script not to keep the terminal running after launching the server.</p>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> When there are some issues with either <code class="language-plaintext highlighter-rouge">%matplotlib widget</code> or
+<p><br /></p>
+
+<h2 id="issue-27-console-log-for-ipywidgets-debug">Issue-27: Console Log for <code class="language-plaintext highlighter-rouge">ipywidgets</code> debug</h2>
+
+<p><b>Solution:</b> When developing <code class="language-plaintext highlighter-rouge">ipywidgets</code> interface in Jupyterlab, sometime we will find that the widgets interface is not functioning as expected but there is no error message printed out. To get a knowledge about the error message in case of any for debugging purpose, we need to enable the console log view in Jupyterlab. To do that, we need to go to <code class="language-plaintext highlighter-rouge">View</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Show Console Log</code> from the menu and then at the bottom of the page, we should be able to see all the console logs.</p>
+
+<p><br /></p>
+
+<h2 id="issue-28-matplotlib-and-plotly-interactive-plot">Issue-28: <code class="language-plaintext highlighter-rouge">matplotlib</code> and <code class="language-plaintext highlighter-rouge">plotly</code> interactive plot</h2>
+
+<p><b>Solution:</b> When there are some issues with either <code class="language-plaintext highlighter-rouge">%matplotlib widget</code> or
 some javascript error in showing the interactive plot or widgets, it could be
 something to do with the version of <code class="language-plaintext highlighter-rouge">ipywidgets</code> installed. Try the following
-steps,
-</p>
+steps,</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> /opt/conda/envs/python/bin/pip uninstall ipywidgets
 <span class="nb">sudo</span> /opt/conda/envs/python/bin/pip <span class="nb">install </span>ipywidgets
 </code></pre></div></div>
 
-<p style="text-align: justify; margin-left: 50px">
-It seems that installing the version of <code class="language-plaintext highlighter-rouge">8.0.4</code> for <code class="language-plaintext highlighter-rouge">ipywidgets</code> does solve the
+<p>It seems that installing the version of <code class="language-plaintext highlighter-rouge">8.0.4</code> for <code class="language-plaintext highlighter-rouge">ipywidgets</code> does solve the
 issue. As a side note, on my local jupyter server on a Windows machine, I found
-only the version of <code class="language-plaintext highlighter-rouge">7.6.5</code> for <code class="language-plaintext highlighter-rouge">ipywidgets</code> will work.
-</p>
+only the version of <code class="language-plaintext highlighter-rouge">7.6.5</code> for <code class="language-plaintext highlighter-rouge">ipywidgets</code> will work.</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-29: Installation of <code class="language-plaintext highlighter-rouge">Mantid</code> kernel</p>
-</blockquote>
+<h2 id="issue-29-installation-of-mantid-kernel">Issue-29: Installation of <code class="language-plaintext highlighter-rouge">Mantid</code> kernel</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> First, we need to follow the instruction in Ref. [21] to install
+<p><b>Solution:</b> First, we need to follow the instruction in Ref. [21] to install
 the conda environment for <code class="language-plaintext highlighter-rouge">Mantid</code>. After setting up the conda environment, we
 need to run the following command to add a certain build of <code class="language-plaintext highlighter-rouge">Mantid</code> into the
 conda environment path so that the corresponding version of <code class="language-plaintext highlighter-rouge">python</code> can find
-all <code class="language-plaintext highlighter-rouge">Mantid</code> relevant modules,
-</p>
+all <code class="language-plaintext highlighter-rouge">Mantid</code> relevant modules,</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda activate mantid-developer
 python MANTID_REPO_DIR/build/bin/AddPythonPath.py
 </code></pre></div></div>
 
-<p style="text-align: justify; margin-left: 50px">
-where <code class="language-plaintext highlighter-rouge">MANTID_REPO_DIR</code> refers to the full path of the <code class="language-plaintext highlighter-rouge">mantid</code> repo directory
+<p>where <code class="language-plaintext highlighter-rouge">MANTID_REPO_DIR</code> refers to the full path of the <code class="language-plaintext highlighter-rouge">mantid</code> repo directory
 and we are assuming that the conda environment for <code class="language-plaintext highlighter-rouge">Mantid</code> is called <code class="language-plaintext highlighter-rouge">mantid-developer</code>.
 Then we can refer to the instruction presented in <code class="language-plaintext highlighter-rouge">Issue-10</code> above to register
-the corresponding conda environment as a kernel of Jupyter.
-</p>
+the corresponding conda environment as a kernel of Jupyter.</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-30: Use the classic interface</p>
-</blockquote>
+<h2 id="issue-30-use-the-classic-interface">Issue-30: Use the classic interface</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> Sometimes, we may need to use the classic interface instead of the
+<p><b>Solution:</b> Sometimes, we may need to use the classic interface instead of the
 jupyterlab interface. For example, the <code class="language-plaintext highlighter-rouge">RISE</code> extension that can turn the notebook into
 slides will not work with the jupyterlab interface. To enable the classic interface, we
 need to remove <code class="language-plaintext highlighter-rouge">lab</code> from the URL. Suppose the jupyterlab URL is <code class="language-plaintext highlighter-rouge">https://powder.ornl.gov/hub/user/cloud/lab/tree/Temp/mp_api_trying.ipynb</code>, the
-URL for using the classic interface will be <code class="language-plaintext highlighter-rouge">https://powder.ornl.gov/hub/user/cloud/tree/Temp/mp_api_trying.ipynb</code>.
-</p>
+URL for using the classic interface will be <code class="language-plaintext highlighter-rouge">https://powder.ornl.gov/hub/user/cloud/tree/Temp/mp_api_trying.ipynb</code>.</p>
 
 <p><br /></p>
 
-<blockquote>
-  <p>Issue-31: Plotly plots not showing in classic interface</p>
-</blockquote>
+<h2 id="issue-31-plotly-plots-not-showing-in-classic-interface">Issue-31: Plotly plots not showing in classic interface</h2>
 
-<p style="text-align: justify; margin-left: 50px">
-<b>Solution:</b> If plotly plots are not showing in the classic interface, consider shutdown the kernel and
-restart.
-</p>
+<p><b>Solution:</b> If plotly plots are not showing in the classic interface, consider shutdown the kernel and
+restart.</p>
+
+<p><br /></p>
+
+<h2 id="issue-32-change-the-log-for-kernel">Issue-32: Change the log for kernel</h2>
+
+<p><strong>Solution:</strong> To change the logo for a kernel, we need to find the kernel spec directory first. Run the following command,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/jupyterhub/bin/jupyter kernelspec list
+</code></pre></div></div>
+
+<p>Here, I am assuming the instructions in Ref. [1] was followed for the Jupyterhub setup. We will see the list of kernels and their spec locations, e.g.,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/jupyterhub/share/jupyter/kernels/python_pdfgetxn
+</code></pre></div></div>
+
+<p>Inside the directory, there is a <code class="language-plaintext highlighter-rouge">kernel.json</code> file which contains the kernel configurations, together with several <code class="language-plaintext highlighter-rouge">.png</code> files used as the logo of the kernel. We can copy a suitable <code class="language-plaintext highlighter-rouge">.png</code> file to replace the <code class="language-plaintext highlighter-rouge">logo-64x64.png</code> file to be used as the logo of the kernel. <code class="language-plaintext highlighter-rouge">Though, my finding is probably due to the improper image size, sometimes the new logo would not work.</code></p>
 
 <p><br /></p>
 

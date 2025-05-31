@@ -47,6 +47,8 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
+📢 ***[05/31/2025 00:23:44 EST]*** The maintenance for [powder.ornl.gov](https://powder.ornl.gov) has been completed. All services are back to normal, including `Powder Doc`, `Powder JupyterHub` and `Powder Forum`.
+
 📢 ***[05/30/2025 01:48:18 EST]*** We will update the server for [powder.ornl.gov](https://powder.ornl.gov) today and tomorrow. Please expect disconnections of the website during this period. We will announce once it is back normal.
 
 <br>
