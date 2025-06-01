@@ -570,6 +570,29 @@ Then we can go back to the `Installation` part for installing `R`. Once installe
 
 **Solution:** The instructions in Ref. [24] can be followed to install the almond `Scala` kernel. One thing to notice is that the `--use-bootstrap` flag in the instruction no longer works, and I found removing the flag works just fine.
 
+## Issue-37 Installation of `dot` kernel
+
+**Solution:** First we need to install `graphiz` -- on Ubuntu, this cna be done via,
+
+```bash
+sudo apt install graphviz
+```
+
+Then we do,
+
+```bash
+/opt/jupyterhub/bin/pip install dot_kernel
+```
+
+In Ref. [25], there is an extra step to install the `dot` kernel spec so that Jupyterlab knows how to launch the kernel. However, I am not sure what the `install-dot-kernel` command there is supposed to be executed. In my case, I was manually creating the `dot` directory under `/opt/jupyterhub/share/jupyter/kernels` and put the following contents into the `kernel.json` file under the directory,
+
+```json
+{
+    "argv": ["python", "-m", "dot_kernel", "-f", "{connection_file}"],
+    "display_name": "dot"
+}
+```
+
 <br />
 
 <b>References</b>
@@ -621,3 +644,5 @@ Then we can go back to the `Installation` part for installing `R`. Once installe
 [23] [https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html](https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html)
 
 [24] [https://almond.sh/docs/quick-start-install](https://almond.sh/docs/quick-start-install)
+
+[25] [https://github.com/laixintao/jupyter-dot-kernel](https://github.com/laixintao/jupyter-dot-kernel)

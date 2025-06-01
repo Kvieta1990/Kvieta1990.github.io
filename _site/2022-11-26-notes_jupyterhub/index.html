@@ -856,6 +856,26 @@ restart.</p>
 
 <p><strong>Solution:</strong> The instructions in Ref. [24] can be followed to install the almond <code class="language-plaintext highlighter-rouge">Scala</code> kernel. One thing to notice is that the <code class="language-plaintext highlighter-rouge">--use-bootstrap</code> flag in the instruction no longer works, and I found removing the flag works just fine.</p>
 
+<h2 id="issue-37-installation-of-dot-kernel">Issue-37 Installation of <code class="language-plaintext highlighter-rouge">dot</code> kernel</h2>
+
+<p><strong>Solution:</strong> First we need to install <code class="language-plaintext highlighter-rouge">graphiz</code> – on Ubuntu, this cna be done via,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>graphviz
+</code></pre></div></div>
+
+<p>Then we do,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/jupyterhub/bin/pip <span class="nb">install </span>dot_kernel
+</code></pre></div></div>
+
+<p>In Ref. [25], there is an extra step to install the <code class="language-plaintext highlighter-rouge">dot</code> kernel spec so that Jupyterlab knows how to launch the kernel. However, I am not sure what the <code class="language-plaintext highlighter-rouge">install-dot-kernel</code> command there is supposed to be executed. In my case, I was manually creating the <code class="language-plaintext highlighter-rouge">dot</code> directory under <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/share/jupyter/kernels</code> and put the following contents into the <code class="language-plaintext highlighter-rouge">kernel.json</code> file under the directory,</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"argv"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"-m"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dot_kernel"</span><span class="p">,</span><span class="w"> </span><span class="s2">"-f"</span><span class="p">,</span><span class="w"> </span><span class="s2">"{connection_file}"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dot"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
 <p><br /></p>
 
 <p><b>References</b></p>
@@ -907,6 +927,8 @@ restart.</p>
 <p>[23] <a href="https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html">https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html</a></p>
 
 <p>[24] <a href="https://almond.sh/docs/quick-start-install">https://almond.sh/docs/quick-start-install</a></p>
+
+<p>[25] <a href="https://github.com/laixintao/jupyter-dot-kernel">https://github.com/laixintao/jupyter-dot-kernel</a></p>
 
       </article>
 
