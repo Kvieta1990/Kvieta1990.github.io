@@ -852,6 +852,10 @@ restart.</p>
 
 <p>Then we can go back to the <code class="language-plaintext highlighter-rouge">Installation</code> part for installing <code class="language-plaintext highlighter-rouge">R</code>. Once installed, we can refer to the instructions in Ref. [16] for installation of jupyterlab kernel. While installing <code class="language-plaintext highlighter-rouge">IRkernel</code>, if it says some dependency package nees to be re-installed due to the version issue, we just use the same command, i.e., <code class="language-plaintext highlighter-rouge">install.packages('')</code> to install whatever missing packages. After that, when executing <code class="language-plaintext highlighter-rouge">IRkernel::installspec()</code>, we may have the issue that <code class="language-plaintext highlighter-rouge">jupyter</code> command cannot be found. This is because when following the instructions in Ref. [1] for setting up jupyterhub, the <code class="language-plaintext highlighter-rouge">jupyter</code>, etc. executables are installed in <code class="language-plaintext highlighter-rouge">/opt/jupyterhub/bin</code> directory which is not in the system environment path. So, we need to <code class="language-plaintext highlighter-rouge">sudo su</code> to change to the <code class="language-plaintext highlighter-rouge">root</code> user and edit the <code class="language-plaintext highlighter-rouge">.bashrc</code> file under the <code class="language-plaintext highlighter-rouge">root</code> home directory after which we want to do <code class="language-plaintext highlighter-rouge">source .bashrc</code> to make it take effect. Then getting back to <code class="language-plaintext highlighter-rouge">R</code> and execute <code class="language-plaintext highlighter-rouge">IRkernel::installspec()</code> should be fine.</p>
 
+<h2 id="issue-36-installation-of-scala-kernel">Issue-36 Installation of <code class="language-plaintext highlighter-rouge">Scala</code> kernel</h2>
+
+<p><strong>Solution:</strong> The instructions in Ref. [24] can be followed to install the almond <code class="language-plaintext highlighter-rouge">Scala</code> kernel. One thing to notice is that the <code class="language-plaintext highlighter-rouge">--use-bootstrap</code> flag in the instruction no longer works, and I found removing the flag works just fine.</p>
+
 <p><br /></p>
 
 <p><b>References</b></p>
@@ -901,6 +905,8 @@ restart.</p>
 <p>[22] <a href="https://revealjs.com/themes/">https://revealjs.com/themes/</a></p>
 
 <p>[23] <a href="https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html">https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html</a></p>
+
+<p>[24] <a href="https://almond.sh/docs/quick-start-install">https://almond.sh/docs/quick-start-install</a></p>
 
       </article>
 

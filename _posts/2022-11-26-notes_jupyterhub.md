@@ -566,6 +566,10 @@ wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sud
 
 Then we can go back to the `Installation` part for installing `R`. Once installed, we can refer to the instructions in Ref. [16] for installation of jupyterlab kernel. While installing `IRkernel`, if it says some dependency package nees to be re-installed due to the version issue, we just use the same command, i.e., `install.packages('')` to install whatever missing packages. After that, when executing `IRkernel::installspec()`, we may have the issue that `jupyter` command cannot be found. This is because when following the instructions in Ref. [1] for setting up jupyterhub, the `jupyter`, etc. executables are installed in `/opt/jupyterhub/bin` directory which is not in the system environment path. So, we need to `sudo su` to change to the `root` user and edit the `.bashrc` file under the `root` home directory after which we want to do `source .bashrc` to make it take effect. Then getting back to `R` and execute `IRkernel::installspec()` should be fine.
 
+## Issue-36 Installation of `Scala` kernel
+
+**Solution:** The instructions in Ref. [24] can be followed to install the almond `Scala` kernel. One thing to notice is that the `--use-bootstrap` flag in the instruction no longer works, and I found removing the flag works just fine.
+
 <br />
 
 <b>References</b>
@@ -615,3 +619,5 @@ Then we can go back to the `Installation` part for installing `R`. Once installe
 [22] [https://revealjs.com/themes/](https://revealjs.com/themes/)
 
 [23] [https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html](https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html)
+
+[24] [https://almond.sh/docs/quick-start-install](https://almond.sh/docs/quick-start-install)
