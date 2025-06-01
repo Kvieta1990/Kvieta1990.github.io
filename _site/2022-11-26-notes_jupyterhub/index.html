@@ -876,6 +876,27 @@ restart.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
+<h2 id="issue-38-installation-of-jupyterlab-templates">Issue-38 Installation of Jupyterlab templates</h2>
+
+<p><strong>Solution:</strong> The instructions in Ref. [26] can be followed to install the Jupyterlab templates extension which is a really useful utility for storing some templates notebooks for a quick start. Basically, the steps would be,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/jupyterhub/bin/pip <span class="nb">install </span>jupyterlab_templates
+/opt/jupyterhub/bin/jupyter labextension <span class="nb">install </span>jupyterlab_templates
+/opt/jupyterhub/bin/jupyter server extension <span class="nb">enable</span> <span class="nt">--py</span> jupyterlab_templates
+</code></pre></div></div>
+
+<p>During the second step, Jupyterlab would be rebuilt and therefore after all the three steps above, we have to restart the Jupyterlab service. In my case, I was following the instructions in Ref. [1] for the Jupyterhub setup and therefore I had to do,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart jupyterhub
+</code></pre></div></div>
+
+<p>After the installation, all templates will be stored in a dedicated location and by default it will be set to a location similar to below,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/opt/jupyterhub/lib/python3.12/site-packages/jupyterlab_templates/templates
+</code></pre></div></div>
+
+<p>We can then put our templates in there so they can be seen and loaded from the <code class="language-plaintext highlighter-rouge">Template</code> launcher in the Jupyterlab interface.</p>
+
 <p><br /></p>
 
 <p><b>References</b></p>
@@ -929,6 +950,8 @@ restart.</p>
 <p>[24] <a href="https://almond.sh/docs/quick-start-install">https://almond.sh/docs/quick-start-install</a></p>
 
 <p>[25] <a href="https://github.com/laixintao/jupyter-dot-kernel">https://github.com/laixintao/jupyter-dot-kernel</a></p>
+
+<p>[26] <a href="https://pypi.org/project/jupyterlab-templates/">https://pypi.org/project/jupyterlab-templates/</a></p>
 
       </article>
 

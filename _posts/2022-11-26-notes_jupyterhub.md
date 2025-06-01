@@ -593,6 +593,30 @@ In Ref. [25], there is an extra step to install the `dot` kernel spec so that Ju
 }
 ```
 
+## Issue-38 Installation of Jupyterlab templates
+
+**Solution:** The instructions in Ref. [26] can be followed to install the Jupyterlab templates extension which is a really useful utility for storing some templates notebooks for a quick start. Basically, the steps would be,
+
+```bash
+/opt/jupyterhub/bin/pip install jupyterlab_templates
+/opt/jupyterhub/bin/jupyter labextension install jupyterlab_templates
+/opt/jupyterhub/bin/jupyter server extension enable --py jupyterlab_templates
+```
+
+During the second step, Jupyterlab would be rebuilt and therefore after all the three steps above, we have to restart the Jupyterlab service. In my case, I was following the instructions in Ref. [1] for the Jupyterhub setup and therefore I had to do,
+
+```bash
+sudo systemctl restart jupyterhub
+```
+
+After the installation, all templates will be stored in a dedicated location and by default it will be set to a location similar to below,
+
+```
+/opt/jupyterhub/lib/python3.12/site-packages/jupyterlab_templates/templates
+```
+
+We can then put our templates in there so they can be seen and loaded from the `Template` launcher in the Jupyterlab interface.
+
 <br />
 
 <b>References</b>
@@ -646,3 +670,5 @@ In Ref. [25], there is an extra step to install the `dot` kernel spec so that Ju
 [24] [https://almond.sh/docs/quick-start-install](https://almond.sh/docs/quick-start-install)
 
 [25] [https://github.com/laixintao/jupyter-dot-kernel](https://github.com/laixintao/jupyter-dot-kernel)
+
+[26] [https://pypi.org/project/jupyterlab-templates/](https://pypi.org/project/jupyterlab-templates/)
