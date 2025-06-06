@@ -311,26 +311,38 @@ if (chromeAgent) {
     <p>Next we want to mock the directory structure on ORNL Analysis cluster. On Linux, we can use <code class="language-plaintext highlighter-rouge">sudo</code> privilege to create <code class="language-plaintext highlighter-rouge">/SNS</code> and <code class="language-plaintext highlighter-rouge">/HFIR</code> directories and all the sub-directories. On MacOS, one cannot create directories under <code class="language-plaintext highlighter-rouge">/</code> even with <code class="language-plaintext highlighter-rouge">sudo</code> privilege so one has to use the following trick,</p>
 
     <ul>
-      <li>Populate the file <code class="language-plaintext highlighter-rouge">/etc/synthetic.conf</code> with</li>
+      <li>
+        <p>Populate the file <code class="language-plaintext highlighter-rouge">/etc/synthetic.conf</code> with</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  SNS	Users/y8z/SNS
+</code></pre></div>        </div>
+
+        <p>where <code class="language-plaintext highlighter-rouge">y8z</code> is my user name.</p>
+
+        <blockquote>
+          <p>Attention: the white space in there is necessarily a <code class="language-plaintext highlighter-rouge">Tab</code>.</p>
+        </blockquote>
+
+        <blockquote>
+          <p>There is NO <code class="language-plaintext highlighter-rouge">/</code> in front of <code class="language-plaintext highlighter-rouge">Users/y8z/SNS</code>.</p>
+        </blockquote>
+      </li>
+      <li>
+        <p>Create the <code class="language-plaintext highlighter-rouge">SNS</code> directory under our home directory.</p>
+      </li>
+      <li>
+        <p>Run the following command,</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util <span class="nt">-t</span>
+</code></pre></div>        </div>
+
+        <p>The command above would create a soft link from <code class="language-plaintext highlighter-rouge">/SNS</code> to <code class="language-plaintext highlighter-rouge">/Users/y8z/SNS</code>. Then we can populate with files under <code class="language-plaintext highlighter-rouge">/Users/y8z/SNS</code> following the same structure as on Analysis.</p>
+
+        <blockquote>
+          <p>If the command above for some reason fails, we can try to reboot the machine after which the soft link should have been created automatically.</p>
+        </blockquote>
+      </li>
     </ul>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  SNS	Users/y8z/SNS
-</code></pre></div>    </div>
-
-    <p>where <code class="language-plaintext highlighter-rouge">y8z</code> is my user name.</p>
-
-    <blockquote>
-      <p>Attention: the white space in there is necessarily a <code class="language-plaintext highlighter-rouge">Tab</code>.</p>
-    </blockquote>
-
-    <ul>
-      <li>Run the following command,</li>
-    </ul>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util <span class="nt">-t</span>
-</code></pre></div>    </div>
-
-    <p>Then we need to create a directory <code class="language-plaintext highlighter-rouge">SNS</code> under our home directory. The command above would create a soft link from <code class="language-plaintext highlighter-rouge">/SNS</code> to <code class="language-plaintext highlighter-rouge">/Users/y8z/SNS</code>. Then we can populate with files under <code class="language-plaintext highlighter-rouge">/Users/y8z/SNS</code> following the same structure as on Analysis.</p>
   </li>
   <li>
     <p>Next, run the following command to configure <code class="language-plaintext highlighter-rouge">pre-commit</code> so that any time codes are committed, some actions such as format checking will be triggered automatically before pushing the codes to the repo.</p>
