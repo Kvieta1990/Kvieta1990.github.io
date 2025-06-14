@@ -338,15 +338,16 @@ to expand the volume [4],</p>
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> /usr/libexec/oci-growfs <span class="nt">-y</span>
 </code></pre></div>    </div>
   </li>
+  <li>
+    <p>On Ubuntu, the <code class="language-plaintext highlighter-rouge">oci-growfs</code> tool may not be available, in which case we can follow the following steps for the volume extension,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo fdisk -l /dev/sda
+sudo growpart /dev/sda 1  # Replace 3 with our won partition number
+sudo fdisk /dev/sda
+sudo resize2fs /dev/sda1  # or the appropriate partition
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<p>3-1. On Ubuntu, the <code class="language-plaintext highlighter-rouge">oci-growfs</code> tool may not be available, in which case we can follow the following steps for the volume extension,</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   sudo fdisk -l /dev/sda
-   sudo growpart /dev/sda 1  # Replace 3 with our won partition number
-   sudo fdisk /dev/sda
-   sudo resize2fs /dev/sda1  # or the appropriate partition
-</code></pre></div></div>
 
 <p><br /></p>
 

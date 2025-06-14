@@ -48,7 +48,7 @@ to expand the volume [4],
    sudo /usr/libexec/oci-growfs -y
    ```
 
-3-1. On Ubuntu, the `oci-growfs` tool may not be available, in which case we can follow the following steps for the volume extension,
+4. On Ubuntu, the `oci-growfs` tool may not be available, in which case we can follow the following steps for the volume extension,
 
    ```
    sudo fdisk -l /dev/sda
