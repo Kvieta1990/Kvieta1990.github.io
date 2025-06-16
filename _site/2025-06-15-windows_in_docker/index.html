@@ -19,13 +19,13 @@
 
   
 
-  <title>Setting up 1panel with Cloudflare</title>
+  <title>Windows in Docker</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="1Panel is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with docker as the backend engine). I have my own server hosted on...">
+  <meta name="description" content="Yes, now we can run Windows in a docker container. That means we can access the Windows operating system from the web, thanks to the Windows docker image provided in Ref. [1]. Based on the instructions provided in Ref. [1], here follows is my docker compose file to start up...">
 
   
 
@@ -89,8 +89,8 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Setting up 1panel with Cloudflare">
-  <meta property="og:description" content="1Panel is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with docker as the backend engine). I have my own server hosted on...">
+  <meta property="og:title" content="Windows in Docker">
+  <meta property="og:description" content="Yes, now we can run Windows in a docker container. That means we can access the Windows operating system from the web, thanks to the Windows docker image provided in Ref. [1]. Based on the instructions provided in Ref. [1], here follows is my docker compose file to start up...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -99,9 +99,9 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2025-01-30T00:00:00-04:00">
-  <meta property="og:url" content="http://localhost:4000/2025-01-30-1panel_cloudflare/">
-  <link rel="canonical" href="http://localhost:4000/2025-01-30-1panel_cloudflare/">
+  <meta property="og:article:published_time" content="2025-06-15T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2025-06-15-windows_in_docker/">
+  <link rel="canonical" href="http://localhost:4000/2025-06-15-windows_in_docker/">
   
 
   
@@ -110,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Setting up 1panel with Cloudflare">
-  <meta property="twitter:description" content="1Panel is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with docker as the backend engine). I have my own server hosted on...">
+  <meta property="twitter:title" content="Windows in Docker">
+  <meta property="twitter:description" content="Yes, now we can run Windows in a docker container. That means we can access the Windows operating system from the web, thanks to the Windows docker image provided in Ref. [1]. Based on the instructions provided in Ref. [1], here follows is my docker compose file to start up...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -264,11 +264,11 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>Setting up 1panel with Cloudflare</h1>
+						<h1>Windows in Docker</h1>
           
 
           
-					<span class="post-meta">Posted on January 30, 2025, by Yuanpeng Zhang</span>
+					<span class="post-meta">Posted on June 15, 2025, by Yuanpeng Zhang</span>
             
             
           
@@ -292,62 +292,135 @@ if (chromeAgent) {
       
 
       <article role="main" class="blog-post">
-        <style>
-    .faq-container {
-        margin: 0 auto;
-    }
-    .faq-question {
-        margin-bottom: 10px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    .faq-answer {
-        display: none;
-        margin-bottom: 20px;
-    }
-    .callout {
-        background-color: #e8f4fd; /* Light blue background */
-        border-left: 5px solid #007BFF; /* Blue accent on the left */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-        font-family: Arial, sans-serif; /* Ensuring the font is consistent */
-    }
-    .multiline-span {
-        display: block; /* or display: inline-block; */
-    }
-</style>
+        <p>Yes, now we can run Windows in a docker container. That means we can access the Windows operating system from the web, thanks to the Windows docker image provided in Ref. [1]. Based on the instructions provided in Ref. [1], here follows is my docker compose file to start up the Windows service,</p>
 
-<p align="center">
-<img src="/assets/img/posts/1panel_cf.png" style="border:none;" width="500" alt="wordpress" title="wordpress" />
-</p>
-
-<p><code class="language-plaintext highlighter-rouge">1Panel</code> is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with <code class="language-plaintext highlighter-rouge">docker</code> as the backend engine). I have my own server hosted on Oracle cloud and I have several blog posts regarding the setup of the server and those running web-based applications [1, 2].</p>
-
-<p>Setting up the <code class="language-plaintext highlighter-rouge">1panel</code> service on our server is as simple as running the command below,</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-sSL</span> https://resource.1panel.hk/quick_start.sh <span class="nt">-o</span> quick_start.sh <span class="o">&amp;&amp;</span> bash quick_start.sh
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">windows</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">dockurr/windows</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">windows</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">VERSION</span><span class="pi">:</span> <span class="s2">"</span><span class="s">2025"</span>
+      <span class="na">DISK_SIZE</span><span class="pi">:</span> <span class="s2">"</span><span class="s">80G"</span>
+      <span class="na">RAM_SIZE</span><span class="pi">:</span> <span class="s2">"</span><span class="s">16G"</span>
+      <span class="na">CPU_CORES</span><span class="pi">:</span> <span class="s2">"</span><span class="s">4"</span>
+      <span class="na">USERNAME</span><span class="pi">:</span> <span class="s2">"</span><span class="s">USER_NAME"</span>
+      <span class="na">PASSWORD</span><span class="pi">:</span> <span class="s2">"</span><span class="s">PASSWORD"</span>
+      <span class="na">REGION</span><span class="pi">:</span> <span class="s2">"</span><span class="s">en-US"</span>
+      <span class="na">KEYBOARD</span><span class="pi">:</span> <span class="s2">"</span><span class="s">en-US"</span>
+      <span class="na">EDITION</span><span class="pi">:</span> <span class="s2">"</span><span class="s">desktop"</span>
+      <span class="na">USER</span><span class="pi">:</span> <span class="s2">"</span><span class="s">USER_NAME_VNC"</span>
+      <span class="na">PASS</span><span class="pi">:</span> <span class="s2">"</span><span class="s">PASSWORD_VNC"</span>
+    <span class="na">devices</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/dev/kvm</span>
+      <span class="pi">-</span> <span class="s">/dev/net/tun</span>
+    <span class="na">cap_add</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">NET_ADMIN</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">8006:8006</span>
+      <span class="pi">-</span> <span class="s">3389:3389/tcp</span>
+      <span class="pi">-</span> <span class="s">3389:3389/udp</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./windows:/storage</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">stop_grace_period</span><span class="pi">:</span> <span class="s">2m</span>
 </code></pre></div></div>
 
-<p>After the initial setup, we can visit the service through the preset port, like this <code class="language-plaintext highlighter-rouge">http://localhost:&lt;PORT&gt;/&lt;RANDOM_ENTRY_POINT&gt;</code>, where <code class="language-plaintext highlighter-rouge">&lt;PORT&gt;</code> refers to the port number and <code class="language-plaintext highlighter-rouge">&lt;RANDOM_ENTRY_POINT&gt;</code> is a random string for the entrance. Both of them would be with some default value when initially setting up <code class="language-plaintext highlighter-rouge">1panel</code>. After the setup, we can obtain the information by running,</p>
+<p>Here follows are serveral things to specifically pay attention,</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>1pctl user-info
+<ul>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">VERSION</code> entry should be one of those available versions of Windows OS given in Ref. [1].</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">EDITION</code> entry specifies what specific version of Windows to install. For example, the configuration above specifies we want to install Windows server 2025 and the <code class="language-plaintext highlighter-rouge">EDITION</code> then specifies that we want to install the desktop edition for which we have the GUI interface.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">USERNAME</code> and <code class="language-plaintext highlighter-rouge">PASSWORD</code> is the user name and password for the Windows OS itself.</p>
+  </li>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">USER</code> and <code class="language-plaintext highlighter-rouge">PASS</code> is the user name and password for the VNC connection, since the frontend interface is provided by the VNC (Virtual Network Computing) technique.</p>
+  </li>
+  <li>
+    <p>The operating system on which we will be running the Windows docker image should support <code class="language-plaintext highlighter-rouge">KVM</code> (Kernel-based Virtual Machine) [2] and have it enabled. If it is not supported or disabled, when running the Windows docker container, we would encounter errors. I am not familiar with the <code class="language-plaintext highlighter-rouge">KVM</code> technique and not sure generally how we enable it. When trying to enable it on my Google Cloud computing instance, I got instructions in Ref. [3, 4] provided by Google.</p>
+  </li>
+</ul>
+
+<p>Once the docker container is up running, we should be able to access the Windows OS from the web by visiting the port of our server, e.g., <code class="language-plaintext highlighter-rouge">8006</code> in the example above. If we are using <code class="language-plaintext highlighter-rouge">nginx</code> for the reverse proxy, we can refer to the following server configuration to point a secondary domain name to the local <code class="language-plaintext highlighter-rouge">8006</code> port so that we can always use the externally facing <code class="language-plaintext highlighter-rouge">https</code> port (the <code class="language-plaintext highlighter-rouge">443</code> port) for a secure connection,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    listen       443 ssl;
+    server_name  vwindows.ornl.gov;
+    root         /usr/share/nginx/html;
+
+    add_header Strict-Transport-Security 'max-age=31536000; includeSubDomains; preload;' always;
+    add_header X-Frame-Options "DENY";
+
+    ssl_certificate "/home/cloud/packages/windows/windows.pem";
+    ssl_certificate_key "/home/cloud/packages/windows/windows.key";
+
+    location / {
+        proxy_pass http://localhost:8006;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass_request_headers on;
+        add_header Strict-Transport-Security 'max-age=31536000; includeSubDomains; preload;' always;
+        add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate" always;
+        add_header Pragma "no-cache" always;
+        add_header Expires "0" always;
+        add_header X-Frame-Options "SAMEORIGIN";
+        add_header X-Frame-Options "DENY" always;
+        proxy_set_header X-Frame-Options "SAMEORIGIN";
+        client_max_body_size 50M;
+        proxy_set_header Connection "";
+        proxy_set_header Host $http_host;
+        proxy_buffers 256 16k;
+        proxy_buffer_size 16k;
+        proxy_read_timeout 600s;
+        proxy_cache_revalidate on;
+        proxy_cache_min_uses 2;
+        proxy_cache_use_stale timeout;
+        proxy_cache_lock on;
+        proxy_http_version 1.1;
+    }
+
+    location /websockify {
+        proxy_http_version 1.1;
+        proxy_pass http://localhost:8006;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+        proxy_read_timeout 61s;
+        proxy_buffering off;
+    }
+
+    error_page 404 /404.html;
+        location = /404.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+    }
+}
 </code></pre></div></div>
 
-<p>With the default setup, we can visit the service through <code class="language-plaintext highlighter-rouge">http</code> like above, which is not secure. To set up a secure connection, we can use the free <code class="language-plaintext highlighter-rouge">cloudflare</code> service (running remotely) together with the <code class="language-plaintext highlighter-rouge">nginx</code> service (running locally on the server). Notes about setting up <code class="language-plaintext highlighter-rouge">cloudflare</code> with our own registered domain can be found <a href="https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/">here</a>. The local setup for <code class="language-plaintext highlighter-rouge">nginx</code> is very similar to <code class="language-plaintext highlighter-rouge">Issue #3</code> in Ref. [1] and we only need to replace the <code class="language-plaintext highlighter-rouge">server_name</code> with the sub-domain that we registered on <code class="language-plaintext highlighter-rouge">cloudflare</code> and replace the port number that <code class="language-plaintext highlighter-rouge">1panel</code> service is running on. The only special setup for <code class="language-plaintext highlighter-rouge">1panel</code> is about the entrance. By default, <code class="language-plaintext highlighter-rouge">1panel</code> enables the secure entrance, i.e., <code class="language-plaintext highlighter-rouge">&lt;RANDOM_ENTRY_POINT&gt;</code> above. This means every time when we try to access <code class="language-plaintext highlighter-rouge">1panel</code>, we need to append <code class="language-plaintext highlighter-rouge">/&lt;RANDOM_ENTRY_POINT&gt;</code> to the domain name and this is not so convenient. To solve the issue, my solution is to remove the entrance, by running [3],</p>
+<p>The <code class="language-plaintext highlighter-rouge">websockify</code> section is provided by the <code class="language-plaintext highlighter-rouge">noVNC</code> reference [5] for the configuration with <code class="language-plaintext highlighter-rouge">nginx</code> – <code class="language-plaintext highlighter-rouge">noVNC</code> is a web-based client for running the VNC application so that we don’t have to install the VNC client like <code class="language-plaintext highlighter-rouge">realVNC</code> for connecting to the <code class="language-plaintext highlighter-rouge">VNC</code> service.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>1pctl reset entrance
-</code></pre></div></div>
-
-<p>With this, no <code class="language-plaintext highlighter-rouge">&lt;RANDOM_ENTRY_POINT&gt;</code> will be needed for the visiting url.</p>
-
-<p><br /></p>
+<p>After the Windows container starting up, the installed Windows OS will be the evaluation version, and we can follow the instructions provided in Ref. [6] for the activation (using the activation key provided by Microsoft).</p>
 
 <h1 id="references">References</h1>
 
-<p>[1] <a href="https://iris2020.net/2023-09-08-docker_nginx/">https://iris2020.net/2023-09-08-docker_nginx/</a></p>
+<p>[1] <a href="https://github.com/dockur/windows">https://github.com/dockur/windows</a></p>
 
-<p>[2] <a href="https://iris2020.net/2024-01-28-oracle_vps_vol_expand/">https://iris2020.net/2024-01-28-oracle_vps_vol_expand/</a></p>
+<p>[2] <a href="https://www.redhat.com/en/topics/virtualization/what-is-KVM">https://www.redhat.com/en/topics/virtualization/what-is-KVM</a></p>
 
-<p>[3] <a href="https://docs.1panel.hk/user_manual/settings/#security">https://docs.1panel.hk/user_manual/settings/#security</a></p>
+<p>[3] <a href="https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint">https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint</a></p>
+
+<p>[4] <a href="https://cloud.google.com/compute/docs/instances/nested-virtualization/enabling">https://cloud.google.com/compute/docs/instances/nested-virtualization/enabling</a></p>
+
+<p>[5] <a href="https://github.com/novnc/noVNC/wiki/Proxying-with-nginx">https://github.com/novnc/noVNC/wiki/Proxying-with-nginx</a></p>
+
+<p>[6] <a href="https://www.freedidi.com/19562.html">https://www.freedidi.com/19562.html</a></p>
 
       </article>
 
@@ -355,9 +428,9 @@ if (chromeAgent) {
         <div class="blog-tags">
           <span>Tags:</span>
           
-            <a href="/tags#web">web</a>
+            <a href="/tags#dev">dev</a>
           
-            <a href="/tags#tool">tool</a>
+            <a href="/tags#technical">technical</a>
           
         </div>
       
@@ -374,7 +447,7 @@ if (chromeAgent) {
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Setting+up+1panel+with+Cloudflare&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-30-1panel_cloudflare%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Windows+in+Docker&url=http%3A%2F%2Flocalhost%3A4000%2F2025-06-15-windows_in_docker%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -382,7 +455,7 @@ if (chromeAgent) {
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-01-30-1panel_cloudflare%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-06-15-windows_in_docker%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -390,7 +463,7 @@ if (chromeAgent) {
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-30-1panel_cloudflare%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-06-15-windows_in_docker%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -408,13 +481,9 @@ if (chromeAgent) {
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2025-01-28-rmcprofile_dev_env_gen/" data-toggle="tooltip" data-placement="top" title="Notes on the development environment setup for RMCProfile">&larr; Previous Post</a>
+          <a class="page-link" href="/2025-05-20-totp_code_gen/" data-toggle="tooltip" data-placement="top" title="Time-Based One-Time Password Generation Programmingly">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2025-01-31-mantid_local_python/" data-toggle="tooltip" data-placement="top" title="Use local build of Mantid with Python script">Next Post &rarr;</a>
-        </li>
         
       </ul>
       
