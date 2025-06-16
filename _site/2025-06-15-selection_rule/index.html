@@ -25,7 +25,7 @@
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="When a physical system is absorption or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
+  <meta name="description" content="When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
 
   
 
@@ -90,7 +90,7 @@
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
   <meta property="og:title" content="Notes on Selection Rule for Transition between Energy Levels">
-  <meta property="og:description" content="When a physical system is absorption or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
+  <meta property="og:description" content="When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -111,7 +111,7 @@
   <meta name="twitter:creator" content="@">
 
   <meta property="twitter:title" content="Notes on Selection Rule for Transition between Energy Levels">
-  <meta property="twitter:description" content="When a physical system is absorption or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
+  <meta property="twitter:description" content="When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -292,9 +292,9 @@ if (chromeAgent) {
       
 
       <article role="main" class="blog-post">
-        <p>When a physical system is absorption or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the intention of this blog to note down nitty-gritties of the whole topic. Instead, I will just put down my basic understanding of the selection rule from the high level, which can help us establish an overall picture about the selection rule.</p>
+        <p>When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the intention of this blog to note down nitty-gritties of the whole topic. Instead, I will just put down my basic understanding of the selection rule from the high level, which can help us establish an overall picture about the selection rule.</p>
 
-<p>First, there is the so-called <strong>gross selection rule</strong> [1], which specifies the general requirements for atoms or molecules to exhibit a particular type of spectrum, such as infrared (IR) or microwave spectroscopy. This rule determines whether a transition is fundamentally allowed based on properties like the presence of a permanent dipole moment (for microwave radiation) or a change in dipole moment during vibration (for IR). Here below is a table summarizing several selection rules for different types of electromagnetic radiation,</p>
+<p>First, there is the so-called <strong>gross selection rule</strong> [1], which specifies the general requirements for atoms or molecules to exhibit a particular type of spectrum, such as infrared (IR) or microwave spectroscopy. This rule determines whether a transition is fundamentally allowed based on properties like the presence of a permanent dipole moment (for microwave radiation) or a change in dipole moment during vibration (for IR). Here below is a table summarizing the <strong>gross several selection rules</strong> for different types of electromagnetic radiation,</p>
 
 <table>
   <thead>
@@ -318,14 +318,14 @@ if (chromeAgent) {
       <td>IR</td>
       <td>Vibration</td>
       <td>Change in dipole moment as change in vibration</td>
-      <td>Ref transforms similar to any one of the Cartesian coordinates x,y, or z.</td>
+      <td>Rep transforms similar to any one of the Cartesian coordinates x,y, or z.</td>
       <td>[3]</td>
     </tr>
     <tr>
       <td>Raman</td>
       <td>Vibration</td>
       <td>Change in polarizibility as change in vibration</td>
-      <td>Ref transforms similarly to the direct products of any one of the x, y, or z coordinates. That includes any of the functions: xy, xz, yz, x2, y2, z2, or any combination.</td>
+      <td>Rep transforms similarly to the direct products of any one of the x, y, or z coordinates. That includes any of the functions: xy, xz, yz, x2, y2, z2, or any combination.</td>
       <td>[3]</td>
     </tr>
   </tbody>
@@ -333,15 +333,15 @@ if (chromeAgent) {
 
 <h1 id="microwave-rotational-spectroscopy">Microwave Rotational Spectroscopy</h1>
 
-<p>The microwave rotation spectroscopy refers to the interaction between the microwave radiation and the rotation degree of freedom of molecules. It is basically a process of momentum transfer between photons and molecules. To allow such a process, the electromagnetic radiation should be able to exert a torque on molecules through the electromagnetic interaction and therefore it is not difficult to imagine that we require the molecule to carry a permanent dipole moment for such a type of interaction. Also, due to the momentum conservation law, the <strong>specific selection rule</strong> (here, we come across the other type of <code class="language-plaintext highlighter-rouge">selection rule</code> which specifies the specifically allowed transition for a certain type of interaction) is \(\Delta J = \pm 1\), where $J$ refers to the rotational quantum number of the underlying physical system. This is because photons carry the angular moment of <code class="language-plaintext highlighter-rouge">1</code> and therefore it can only take in or give the angular moment of unit <code class="language-plaintext highlighter-rouge">1</code>.</p>
+<p>The microwave rotation spectroscopy refers to the interaction between the microwave radiation and the rotation degree of freedom of molecules. It is basically a process of momentum transfer between photons and molecules. To allow such a process, the electromagnetic radiation should be able to exert a torque on molecules through the electromagnetic interaction and therefore it is not difficult to imagine that we require the molecule to carry a permanent dipole moment for such a type of interaction. Also, due to the momentum conservation law, the <strong>specific selection rule</strong> (here, we come across the other type of <code class="language-plaintext highlighter-rouge">selection rule</code> which specifies the specifically allowed transition for a certain type of interaction) is \(\Delta J = \pm 1\), where \(J\) refers to the rotational quantum number of the underlying physical system. This is because photons carry the angular moment of <code class="language-plaintext highlighter-rouge">1</code> and therefore it can only take in or give away the angular moment of unit <code class="language-plaintext highlighter-rouge">1</code>.</p>
 
 <h1 id="ir--raman">IR &amp; Raman</h1>
 
-<p>In Ref. [3], details about these two types of spectroscopy are presented very nicely and here I don’t want to reproduce. Instead, I will just present a typical example for each, and it should be pointed out that the examples here are provided by Google AI search,</p>
+<p>In Ref. [3], details about these two types of spectroscopy are presented very nicely and here I don’t want to reproduce. Instead, I will just present a typical example for each, and it should be pointed out that the examples here are <code class="language-plaintext highlighter-rouge">provided by Google AI search</code>,</p>
 
-<p><em>IR</em>: Consider the asymmetric stretch of a CO\(_2\) molecule. In this vibration, one C=O bond stretches while the other compresses. This creates a temporary dipole moment along the axis of the molecule, making the vibration infrared active.</p>
+<p><strong><em>IR</em></strong>: Consider the asymmetric stretch of a CO\(_2\) molecule. In this vibration, one C=O bond stretches while the other compresses. This creates a temporary dipole moment along the axis of the molecule, making the vibration infrared active.</p>
 
-<p><em>Raman</em>: Again, with the CO\(_2\) example, one of the ways of the molecule vibration is the symmetric stretching. In this mode, the oxygen atoms move away from and then back towards the central carbon atom in a symmetrical way. The molecule remains linear throughout this vibration. The polarizability changes during this vibration. As the oxygen atoms move away from the carbon, the electron cloud is less concentrated, and the polarizability decreases. When the oxygen atoms move closer, the electron cloud becomes more concentrated, and the polarizability increases. This change in polarizability occurs along the molecular axis (the z-axis). This is represented by the \(z^{2}\) component of the polarizability tensor.</p>
+<p><strong><em>Raman</em></strong>: Again, with the CO\(_2\) example, one of the ways of the molecule vibration is the symmetric stretching. In this mode, the oxygen atoms move away from and then back towards the central carbon atom in a symmetrical way. The molecule remains linear throughout this vibration. The polarizability changes during this vibration. As the oxygen atoms move away from the carbon, the electron cloud is less concentrated, and the polarizability decreases. When the oxygen atoms move closer, the electron cloud becomes more concentrated, and the polarizability increases. This change in polarizability occurs along the molecular axis (the \(z\)-axis). This is represented by the \(z^{2}\) component of the polarizability tensor.</p>
 
 <h1 id="transition-among-atomic-levels-or-orbitals">Transition among Atomic Levels or Orbitals</h1>
 
