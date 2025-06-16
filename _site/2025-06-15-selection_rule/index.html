@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Notes on Selection Rule for Transition between Energy Levels</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="When a physical system is absorption or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Notes on Selection Rule for Transition between Energy Levels">
+  <meta property="og:description" content="When a physical system is absorption or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2024/07/">
-  <link rel="canonical" href="http://localhost:4000/archive/2024/07/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2025-06-15T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2025-06-15-selection_rule/">
+  <link rel="canonical" href="http://localhost:4000/2025-06-15-selection_rule/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Notes on Selection Rule for Transition between Energy Levels">
+  <meta property="twitter:description" content="When a physical system is absorption or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -261,10 +263,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Notes on Selection Rule for Transition between Energy Levels</h1>
           
 
+          
+					<span class="post-meta">Posted on June 15, 2025, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -277,425 +283,196 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>When a physical system is absorption or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the intention of this blog to note down nitty-gritties of the whole topic. Instead, I will just put down my basic understanding of the selection rule from the high level, which can help us establish an overall picture about the selection rule.</p>
+
+<p>First, there is the so-called <strong>gross selection rule</strong> [1], which specifies the general requirements for atoms or molecules to exhibit a particular type of spectrum, such as infrared (IR) or microwave spectroscopy. This rule determines whether a transition is fundamentally allowed based on properties like the presence of a permanent dipole moment (for microwave radiation) or a change in dipole moment during vibration (for IR). Here below is a table summarizing several selection rules for different types of electromagnetic radiation,</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Interaction</th>
+      <th>Selection Rule</th>
+      <th>Rep Indication</th>
+      <th>References</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Microwave</td>
+      <td>Rotation</td>
+      <td>Permanent dipole moment</td>
+      <td>-</td>
+      <td>[2]</td>
+    </tr>
+    <tr>
+      <td>IR</td>
+      <td>Vibration</td>
+      <td>Change in dipole moment as change in vibration</td>
+      <td>Ref transforms similar to any one of the Cartesian coordinates x,y, or z.</td>
+      <td>[3]</td>
+    </tr>
+    <tr>
+      <td>Raman</td>
+      <td>Vibration</td>
+      <td>Change in polarizibility as change in vibration</td>
+      <td>Ref transforms similarly to the direct products of any one of the x, y, or z coordinates. That includes any of the functions: xy, xz, yz, x2, y2, z2, or any combination.</td>
+      <td>[3]</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="microwave-rotational-spectroscopy">Microwave Rotational Spectroscopy</h1>
+
+<p>The microwave rotation spectroscopy refers to the interaction between the microwave radiation and the rotation degree of freedom of molecules. It is basically a process of momentum transfer between photons and molecules. To allow such a process, the electromagnetic radiation should be able to exert a torque on molecules through the electromagnetic interaction and therefore it is not difficult to imagine that we require the molecule to carry a permanent dipole moment for such a type of interaction. Also, due to the momentum conservation law, the <strong>specific selection rule</strong> (here, we come across the other type of <code class="language-plaintext highlighter-rouge">selection rule</code> which specifies the specifically allowed transition for a certain type of interaction) is \(\Delta J = \pm 1\), where $J$ refers to the rotational quantum number of the underlying physical system. This is because photons carry the angular moment of <code class="language-plaintext highlighter-rouge">1</code> and therefore it can only take in or give the angular moment of unit <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<h1 id="ir--raman">IR &amp; Raman</h1>
+
+<p>In Ref. [3], details about these two types of spectroscopy are presented very nicely and here I don’t want to reproduce. Instead, I will just present a typical example for each, and it should be pointed out that the examples here are provided by Google AI search,</p>
+
+<p><em>IR</em>: Consider the asymmetric stretch of a CO\(_2\) molecule. In this vibration, one C=O bond stretches while the other compresses. This creates a temporary dipole moment along the axis of the molecule, making the vibration infrared active.</p>
+
+<p><em>Raman</em>: Again, with the CO\(_2\) example, one of the ways of the molecule vibration is the symmetric stretching. In this mode, the oxygen atoms move away from and then back towards the central carbon atom in a symmetrical way. The molecule remains linear throughout this vibration. The polarizability changes during this vibration. As the oxygen atoms move away from the carbon, the electron cloud is less concentrated, and the polarizability decreases. When the oxygen atoms move closer, the electron cloud becomes more concentrated, and the polarizability increases. This change in polarizability occurs along the molecular axis (the z-axis). This is represented by the \(z^{2}\) component of the polarizability tensor.</p>
+
+<h1 id="transition-among-atomic-levels-or-orbitals">Transition among Atomic Levels or Orbitals</h1>
+
+<p>The selecton rule applied here refers to the transitions between the different energy levels corresponding to either the atomic levels or moculelar orbitals. In this context, we normally see the notion of <code class="language-plaintext highlighter-rouge">dipole selection rule</code>. Regarding this, we have quite a lot useful resources to learn about, and here I am just giving several of them in Ref. [4-7]. Again, I am not going to note down the detailed derivation of the selection rule here – derivation and discussions can refer to those references. Simply, the dipole selection rule is,</p>
+
+\[\begin{equation}
+\begin{aligned}
+l' &amp; = l \pm 1\\
+m' &amp; = m,\ m \pm 1
+\end{aligned}
+\end{equation}\]
+
+<p>where \(l\) and \(m\) are the angular moment quantum number and magnetic quantum number, respectively.</p>
+
+<p>A naive question that I want to talk a bit about here is, what does the <code class="language-plaintext highlighter-rouge">dipole selection rule</code> really mean? We know what a dipole is – simple a positive and negative charge forming a dipole and we have the electric field established from such a dipole arrangement of charges. But how is <code class="language-plaintext highlighter-rouge">dipole</code> associated with the quantum level transition problem that we are talking about here? In fact, a very direct physics picture for answering such a question is, when we have the transition between different energy levels (say, from low to high level), electrons get promoted from a lower level to a higher energy level, leaving a <code class="language-plaintext highlighter-rouge">hole</code> in the original level. The core <code class="language-plaintext highlighter-rouge">hole</code> then can be effectively treated as a positive charge and therefore the interaction between the core <code class="language-plaintext highlighter-rouge">hole</code> and the excited electron naturally form a <code class="language-plaintext highlighter-rouge">dipole</code>. As for the fundamental association between the quantum transition and the electronic dipole (or quadrupole, etc.), it goes all the way back to the electromagnetic transition probability constructed from the Fermi’s golden rule. From Ref. [5, 6], we can clearly see the emergence of the electronic dipole moment \(\hat{\epsilon}\cdot\vec{r}\) in the calculation of the transition probability. In fact, the dipole transition is only an approximation for the actual transition, which, in fact, could involve higher order transitions such as the quadrupole transition – see Ref. [8, 9] for what a quadrupole means and what the selection rule is for a quadrupole transition.</p>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Spectroscopy/Fundamentals_of_Spectroscopy/Selection_Rules">Physical_and_Theoretical_Chemistry_Textbook - Selection_Rules</a></p>
+
+<p>[2] <a href="https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Spectroscopy/Rotational_Spectroscopy/Microwave_Rotational_Spectroscopy">Physical_and_Theoretical_Chemistry_Textbook - Microwave_Rotational_Spectroscopy</a></p>
+
+<p>[3] <a href="https://chem.libretexts.org/Bookshelves/Inorganic_Chemistry/Supplemental_Modules_and_Websites_(Inorganic_Chemistry)/Advanced_Inorganic_Chemistry_(Wikibook)/01%3A_Chapters/1.13%3A_Selection_Rules_for_IR_and_Raman_Spectroscopy">Physical_and_Theoretical_Chemistry_Textbook - Selection_Rules_for_IR_and_Raman_Spectroscopy</a></p>
+
+<p>[4] <a href="/assets/files/Selection_rules_for_Electric_Dipole_Transitions.pdf">Selection_rules_for_Electric_Dipole_Transitions.pdf</a></p>
+
+<p>[5] <a href="https://quantummechanics.ucsd.edu/ph130a/130_notes/node421.html">https://quantummechanics.ucsd.edu/ph130a/130_notes/node421.html</a></p>
+
+<p>[6] <a href="https://quantummechanics.ucsd.edu/ph130a/130_notes/node422.html">https://quantummechanics.ucsd.edu/ph130a/130_notes/node422.html</a></p>
+
+<p>[7] <a href="https://phys.libretexts.org/Bookshelves/Quantum_Mechanics/Introductory_Quantum_Mechanics_(Fitzpatrick)/12%3A_Time-Dependent_Perturbation_Theory/12.10%3A_Selection_Rules_(Hydrogen_Atoms)">Introductory_Quantum_Mechanics - Selection_Rules_(Hydrogen_Atoms)</a></p>
+
+<p>[8] <a href="https://www.youtube.com/watch?v=uPkoK3vIRhc&amp;t=21s">https://www.youtube.com/watch?v=uPkoK3vIRhc&amp;t=21s</a></p>
+
+<p>[9] <a href="https://farside.ph.utexas.edu/teaching/qm/Quantum/node89.html">https://farside.ph.utexas.edu/teaching/qm/Quantum/node89.html</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#Quantum Mechanics">Quantum Mechanics</a>
+          
+            <a href="/tags#quantum physics">quantum physics</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
 
 
-<div class="intro-header"></div>
 
-<div role="main" class=" container-md ">
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Selection+Rule+for+Transition+between+Energy+Levels&url=http%3A%2F%2Flocalhost%3A4000%2F2025-06-15-selection_rule%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
   
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>July, 2024</em></h2>
-  </header>
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-06-15-selection_rule%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
 
   
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2024-07-16-docker_tips/"><h3 class="post-title mb0">Notes and Tips for using Docker</h3></a>
-					<p class="post-meta small">July 16, 2024, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-06-15-selection_rule%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
   
-    <a href="/tags#docker">docker</a>
-  
-    <a href="/tags#dev">dev</a>
-  
-</p>
 
-          </div>
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2025-05-20-totp_code_gen/" data-toggle="tooltip" data-placement="top" title="Time-Based One-Time Password Generation Programmingly">&larr; Previous Post</a>
         </li>
         
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
         
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+        <li class="page-item next">
+          <a class="page-link" href="/2025-06-15-windows_in_docker/" data-toggle="tooltip" data-placement="top" title="Windows in Docker">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 

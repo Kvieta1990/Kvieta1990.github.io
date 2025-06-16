@@ -117,6 +117,8 @@ The `websockify` section is provided by the `noVNC` reference [5] for the config
 
 After the Windows container starting up, the installed Windows OS will be the evaluation version, and we can follow the instructions provided in Ref. [6] for the activation (using the activation key provided by Microsoft).
 
+<br>
+
 References
 ===
 

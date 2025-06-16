@@ -23,6 +23,17 @@
       </item>
     
       <item>
+        <title>Notes on Selection Rule for Transition between Energy Levels</title>
+        <description>
+          
+          When a physical system is absorption or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...
+        </description>
+        <pubDate>Sun, 15 Jun 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-06-15-selection_rule/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-06-15-selection_rule/</guid>
+      </item>
+    
+      <item>
         <title>Time-Based One-Time Password Generation Programmingly</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sun, 03 Nov 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-11-03-n8n_notion_slack_workflow/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-11-03-n8n_notion_slack_workflow/</guid>
-      </item>
-    
-      <item>
-        <title>Tips on Wordpress Setup</title>
-        <description>
-          
-          Wordpress is commonly used framework for setting up website without directly and heavily working with HTML or CSS. Here in this blog, I will note down tips for using Wordpress – it keeps record of my problem solving along the way so the whole blog does not come in a...
-        </description>
-        <pubDate>Tue, 03 Sep 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-09-03-wordpress_tips/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-09-03-wordpress_tips/</guid>
       </item>
     
   </channel>
