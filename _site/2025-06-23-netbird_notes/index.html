@@ -19,13 +19,13 @@
 
   
 
-  <title>Notes on Selection Rule for Transition between Energy Levels</title>
+  <title>Use Netbird for Setting up a Peer-to-Peer Private Network</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
+  <meta name="description" content="Before we dive into the topic, I am sharing several of my typical needs that lead me to learn about something like netbird. From my home network, I want to connect to the machines inside the firewall of my work place. For some companies, it may be possible to install...">
 
   
 
@@ -89,8 +89,8 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Notes on Selection Rule for Transition between Energy Levels">
-  <meta property="og:description" content="When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
+  <meta property="og:title" content="Use Netbird for Setting up a Peer-to-Peer Private Network">
+  <meta property="og:description" content="Before we dive into the topic, I am sharing several of my typical needs that lead me to learn about something like netbird. From my home network, I want to connect to the machines inside the firewall of my work place. For some companies, it may be possible to install...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -99,9 +99,9 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2025-06-15T00:00:00-04:00">
-  <meta property="og:url" content="http://localhost:4000/2025-06-15-selection_rule/">
-  <link rel="canonical" href="http://localhost:4000/2025-06-15-selection_rule/">
+  <meta property="og:article:published_time" content="2025-06-23T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2025-06-23-netbird_notes/">
+  <link rel="canonical" href="http://localhost:4000/2025-06-23-netbird_notes/">
   
 
   
@@ -110,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Notes on Selection Rule for Transition between Energy Levels">
-  <meta property="twitter:description" content="When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...">
+  <meta property="twitter:title" content="Use Netbird for Setting up a Peer-to-Peer Private Network">
+  <meta property="twitter:description" content="Before we dive into the topic, I am sharing several of my typical needs that lead me to learn about something like netbird. From my home network, I want to connect to the machines inside the firewall of my work place. For some companies, it may be possible to install...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -264,11 +264,11 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>Notes on Selection Rule for Transition between Energy Levels</h1>
+						<h1>Use Netbird for Setting up a Peer-to-Peer Private Network</h1>
           
 
           
-					<span class="post-meta">Posted on June 15, 2025, by Yuanpeng Zhang</span>
+					<span class="post-meta">Posted on June 23, 2025, by Yuanpeng Zhang</span>
             
             
           
@@ -292,93 +292,65 @@ if (chromeAgent) {
       
 
       <article role="main" class="blog-post">
-        <p>When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the intention of this blog to note down nitty-gritties of the whole topic. Instead, I will just put down my basic understanding of the selection rule from the high level, which can help us establish an overall picture about the selection rule.</p>
+        <p align="center">
+<img src="/assets/img/posts/netbird-full.bc0e7c3f.svg" style="border:none;" width="600" alt="nb" title="nb" />
+</p>
 
-<p>First, there is the so-called <strong>gross selection rule</strong> [1], which specifies the general requirements for atoms or molecules to exhibit a particular type of spectrum, such as infrared (IR) or microwave spectroscopy. This rule determines whether a transition is fundamentally allowed based on properties like the presence of a permanent dipole moment (for microwave radiation) or a change in dipole moment during vibration (for IR). Here below is a table summarizing the <strong>gross several selection rules</strong> for different types of electromagnetic radiation,</p>
+<p><br /></p>
 
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>Interaction</th>
-      <th>Selection Rule</th>
-      <th>Rep Indication</th>
-      <th>References</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Microwave</td>
-      <td>Rotation</td>
-      <td>Permanent dipole moment</td>
-      <td>-</td>
-      <td>[2]</td>
-    </tr>
-    <tr>
-      <td>IR</td>
-      <td>Vibration</td>
-      <td>Change in dipole moment as change in vibration</td>
-      <td>Rep transforms similar to any one of the Cartesian coordinates x,y, or z.</td>
-      <td>[3]</td>
-    </tr>
-    <tr>
-      <td>Raman</td>
-      <td>Vibration</td>
-      <td>Change in polarizibility as change in vibration</td>
-      <td>Rep transforms similarly to the direct products of any one of the x, y, or z coordinates. That includes any of the functions: xy, xz, yz, x2, y2, z2, or any combination.</td>
-      <td>[3]</td>
-    </tr>
-  </tbody>
-</table>
+<p>Before we dive into the topic, I am sharing several of my typical needs that lead me to learn about something like <code class="language-plaintext highlighter-rouge">netbird</code>.</p>
 
-<h1 id="microwave-rotational-spectroscopy">Microwave Rotational Spectroscopy</h1>
+<ul>
+  <li>
+    <p>From my home network, I want to connect to the machines inside the firewall of my work place. For some companies, it may be possible to install the oraganization VPN service on the home computer with which one can connect to the internal network through the VPN. However, in my case, my organization VPN can only be used on the organization-owned machines and therefore there is no way I can use VPN on my home computer for the organization devices connection. My organization support the Citrix connection, but it is often very slow.</p>
+  </li>
+  <li>
+    <p>I have some virtual Windows machines (see <a href="https://iris2020.net/2025-06-14-windows_in_docker/">this blog post</a> for instructions about setting a virtual Windows server inside a docker container) inside my organization firewall and I want to use Windows remote desktop (RDP) to connect to the virtual machine. However, Windows RDP can only connect to machines that are in the same local network with the client machine. Again, VPN is usually used to let the client machine (e.g., the home computer) connect to the remote machine inside the firewall through the VPN. In my case, as I said above, this is also not possible.</p>
+  </li>
+  <li>
+    <p>I want to visit some web services that are only accessible through my organization. For example, the email service can only be accessed from within my organization firewall. Another typical need is to access those non-open-access journal publications. Once again, not being able to use the organization VPN on my home machines prevents me from doing such a simple job in a convenient way, unless I am patient enough to go with the very slow Citrix connection.</p>
+  </li>
+</ul>
 
-<p>The microwave rotation spectroscopy refers to the interaction between the microwave radiation and the rotation degree of freedom of molecules. It is basically a process of momentum transfer between photons and molecules. To allow such a process, the electromagnetic radiation should be able to exert a torque on molecules through the electromagnetic interaction and therefore it is not difficult to imagine that we require the molecule to carry a permanent dipole moment for such a type of interaction. Also, due to the momentum conservation law, the <strong>specific selection rule</strong> (here, we come across the other type of <code class="language-plaintext highlighter-rouge">selection rule</code> which specifies the specifically allowed transition for a certain type of interaction) is \(\Delta J = \pm 1\), where \(J\) refers to the rotational quantum number of the underlying physical system. This is because photons carry the angular moment of <code class="language-plaintext highlighter-rouge">1</code> and therefore it can only take in or give away the angular moment of unit <code class="language-plaintext highlighter-rouge">1</code>.</p>
+<p>Having those practical needs for quite a while, I came across a YouTube video the other day introducing some interesting projects on GitHub and one of them is the main topic today – <code class="language-plaintext highlighter-rouge">netbird</code>. Since I am not a technical nerd and I don’t have any ideas about <code class="language-plaintext highlighter-rouge">netbird</code> and the technique behind it. But it just sounds interesting to me from the YouTube video and I just gave it a check out of curiosity. Checking it out, I found this is just the tool I need for quite a while. Though, I am still not fully into the technical world of the technique behind the scene (which actually seems to be a huge computer science scope from a non CS-major person like myself), I know how the technique is going to fill in my pocket regarding the several typical needs listed above. I think that is enough for me. As for what really is Network Address Translation (NAT) and how the NAT Traversal reall works, I probably will never have the capacity to learn about.</p>
 
-<h1 id="ir--raman">IR &amp; Raman</h1>
+<p>So, in this blog post, I will only cover how I use <code class="language-plaintext highlighter-rouge">netbird</code> to meet my practical needs as listed above. At the end of the day, I realized,</p>
 
-<p>In Ref. [3], details about these two types of spectroscopy are presented very nicely and here I don’t want to reproduce. Instead, I will just present a typical example for each, and it should be pointed out that the examples here are <code class="language-plaintext highlighter-rouge">provided by Google AI search</code>,</p>
+<ul>
+  <li>
+    <p>SSH into the machines inside my organization firewall, without using VPN or Citrix, from my home computer.</p>
+  </li>
+  <li>
+    <p>Connect to the virtual Windows machine inside my oraganization firewall using Windows RDP from my home computer.</p>
+  </li>
+  <li>
+    <p>Visit some (unfortunately, not all) of the web services hosted inside my organization firewall, like the email server. Also, I am able to access those paywall protected journal publications, from my home computer.</p>
+  </li>
+</ul>
 
-<p><strong><em>IR</em></strong>: Consider the asymmetric stretch of a CO\(_2\) molecule. In this vibration, one C=O bond stretches while the other compresses. This creates a temporary dipole moment along the axis of the molecule, making the vibration infrared active.</p>
+<p>Now let’s start. First, we need to create a <code class="language-plaintext highlighter-rouge">netbird</code> account. Just go the website <a href="https://app.netbird.io/">https://app.netbird.io/</a> and we can use Google, Microsoft or Github account to log in. For sure, we can also register an account with an email, either way.</p>
 
-<p><strong><em>Raman</em></strong>: Again, with the CO\(_2\) example, one of the ways of the molecule vibration is the symmetric stretching. In this mode, the oxygen atoms move away from and then back towards the central carbon atom in a symmetrical way. The molecule remains linear throughout this vibration. The polarizability changes during this vibration. As the oxygen atoms move away from the carbon, the electron cloud is less concentrated, and the polarizability decreases. When the oxygen atoms move closer, the electron cloud becomes more concentrated, and the polarizability increases. This change in polarizability occurs along the molecular axis (the \(z\)-axis). This is represented by the \(z^{2}\) component of the polarizability tensor.</p>
+<p align="center">
+<img src="/assets/img/posts/nb_login.png" style="border:none;" width="300" alt="nb_login" title="nb_login" />
+</p>
 
-<h1 id="transition-among-atomic-levels-or-orbitals">Transition among Atomic Levels or Orbitals</h1>
+<p>Once the account is ready and we successfull log in, we will be presented with the <code class="language-plaintext highlighter-rouge">Peers</code> interface in the dashboard. If it is the first time of login, we will be prompted with the installation instructions and we should follow the instructions there to install the <code class="language-plaintext highlighter-rouge">netbird</code> software on the machines that we want to inter-connect. In my case, I have my home desktop machine and several machines that I am in charge of (meaning I can install software on them) inside my organization firewall. For each of the machines, I need to install the <code class="language-plaintext highlighter-rouge">netbird</code> software and the installation instructions can be found in Ref. [1, 2] – Ref. [1] is just the prompted interface for the first-time login. Once the <code class="language-plaintext highlighter-rouge">netbird</code> software is installed on my machines, we need to log in with the <code class="language-plaintext highlighter-rouge">netbird</code> account. Usually, this is the email address associated with the <code class="language-plaintext highlighter-rouge">netbird</code> account. On different operating systems, the login procedure may be different but it is straightforward to follow – usually, we need to visit some redirected URL for the login purpose. Once logged in locally on our machines, the corresponding machines will appear in the <code class="language-plaintext highlighter-rouge">Peers</code> list in the <code class="language-plaintext highlighter-rouge">netbird</code> dashboard,</p>
 
-<p>The selecton rule applied here refers to the transitions between the different energy levels corresponding to either the atomic levels or moculelar orbitals. In this context, we normally see the notion of <code class="language-plaintext highlighter-rouge">dipole selection rule</code>. Regarding this, we have quite a lot useful resources to learn about, and here I am just giving several of them in Ref. [4-7]. Again, I am not going to note down the detailed derivation of the selection rule here – derivation and discussions can refer to those references. Simply, the dipole selection rule is,</p>
+<p align="center">
+<img src="/assets/img/posts/nb_peers.png" style="border:none;" width="800" alt="nb_peers" title="nb_peers" />
+</p>
 
-\[\begin{equation}
-\begin{aligned}
-l' &amp; = l \pm 1\\
-m' &amp; = m,\ m \pm 1
-\end{aligned}
-\end{equation}\]
+<p>Now, all the machines appearing in the list form a ‘local’ network and they can now connect to each other directly, in a <code class="language-plaintext highlighter-rouge">peer-to-peer</code> manner. Each peer in the list is assigned a ‘local’ IP address and we can connect to each of those ‘local’ IP addresses from any of the machines in the list. Also, we can edit those machines to give them some meaningful name and the name will become part of the secondary domain name which can also be used for the connection (again, among machines inside such a ‘local’ network). Here I include <code class="language-plaintext highlighter-rouge">local</code> inside the quotatin mark since it is not really a local network, but the way they can connect to each other seems just like a local network.</p>
 
-<p>where \(l\) and \(m\) are the angular moment quantum number and magnetic quantum number, respectively.</p>
-
-<p>A naive question that I want to talk a bit about here is, what does the <code class="language-plaintext highlighter-rouge">dipole selection rule</code> really mean? We know what a dipole is – simple a positive and negative charge forming a dipole and we have the electric field established from such a dipole arrangement of charges. But how is <code class="language-plaintext highlighter-rouge">dipole</code> associated with the quantum level transition problem that we are talking about here? In fact, a very direct physics picture for answering such a question is, when we have the transition between different energy levels (say, from low to high level), electrons get promoted from a lower level to a higher energy level, leaving a <code class="language-plaintext highlighter-rouge">hole</code> in the original level. The core <code class="language-plaintext highlighter-rouge">hole</code> then can be effectively treated as a positive charge and therefore the interaction between the core <code class="language-plaintext highlighter-rouge">hole</code> and the excited electron naturally form a <code class="language-plaintext highlighter-rouge">dipole</code>. As for the fundamental association between the quantum transition and the electronic dipole (or quadrupole, etc.), it goes all the way back to the electromagnetic transition probability constructed from the Fermi’s golden rule. From Ref. [5, 6], we can clearly see the emergence of the electronic dipole moment \(\hat{\epsilon}\cdot\vec{r}\) in the calculation of the transition probability. In fact, the dipole transition is only an approximation for the actual transition, which, in fact, could involve higher order transitions such as the quadrupole transition – see Ref. [8, 9] for what a quadrupole means and what the selection rule is for a quadrupole transition.</p>
+<p>…to continue</p>
 
 <p><br /></p>
 
 <h1 id="references">References</h1>
 
-<p>[1] <a href="https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Spectroscopy/Fundamentals_of_Spectroscopy/Selection_Rules">Physical_and_Theoretical_Chemistry_Textbook - Selection_Rules</a></p>
+<p>[1] <a href="https://app.netbird.io/install">https://app.netbird.io/install</a></p>
 
-<p>[2] <a href="https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Spectroscopy/Rotational_Spectroscopy/Microwave_Rotational_Spectroscopy">Physical_and_Theoretical_Chemistry_Textbook - Microwave_Rotational_Spectroscopy</a></p>
-
-<p>[3] <a href="https://chem.libretexts.org/Bookshelves/Inorganic_Chemistry/Supplemental_Modules_and_Websites_(Inorganic_Chemistry)/Advanced_Inorganic_Chemistry_(Wikibook)/01%3A_Chapters/1.13%3A_Selection_Rules_for_IR_and_Raman_Spectroscopy">Physical_and_Theoretical_Chemistry_Textbook - Selection_Rules_for_IR_and_Raman_Spectroscopy</a></p>
-
-<p>[4] <a href="/assets/files/Selection_rules_for_Electric_Dipole_Transitions.pdf">Selection_rules_for_Electric_Dipole_Transitions.pdf</a></p>
-
-<p>[5] <a href="https://quantummechanics.ucsd.edu/ph130a/130_notes/node421.html">https://quantummechanics.ucsd.edu/ph130a/130_notes/node421.html</a></p>
-
-<p>[6] <a href="https://quantummechanics.ucsd.edu/ph130a/130_notes/node422.html">https://quantummechanics.ucsd.edu/ph130a/130_notes/node422.html</a></p>
-
-<p>[7] <a href="https://phys.libretexts.org/Bookshelves/Quantum_Mechanics/Introductory_Quantum_Mechanics_(Fitzpatrick)/12%3A_Time-Dependent_Perturbation_Theory/12.10%3A_Selection_Rules_(Hydrogen_Atoms)">Introductory_Quantum_Mechanics - Selection_Rules_(Hydrogen_Atoms)</a></p>
-
-<p>[8] <a href="https://www.youtube.com/watch?v=uPkoK3vIRhc&amp;t=21s">https://www.youtube.com/watch?v=uPkoK3vIRhc&amp;t=21s</a></p>
-
-<p>[9] <a href="https://farside.ph.utexas.edu/teaching/qm/Quantum/node89.html">https://farside.ph.utexas.edu/teaching/qm/Quantum/node89.html</a></p>
+<p>[2] <a href="https://docs.netbird.io/how-to/installation">https://docs.netbird.io/how-to/installation</a></p>
 
       </article>
 
@@ -386,9 +358,11 @@ m' &amp; = m,\ m \pm 1
         <div class="blog-tags">
           <span>Tags:</span>
           
-            <a href="/tags#Quantum Mechanics">Quantum Mechanics</a>
+            <a href="/tags#network">network</a>
           
-            <a href="/tags#quantum physics">quantum physics</a>
+            <a href="/tags#dev">dev</a>
+          
+            <a href="/tags#utils">utils</a>
           
         </div>
       
@@ -405,7 +379,7 @@ m' &amp; = m,\ m \pm 1
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Notes+on+Selection+Rule+for+Transition+between+Energy+Levels&url=http%3A%2F%2Flocalhost%3A4000%2F2025-06-15-selection_rule%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Use+Netbird+for+Setting+up+a+Peer-to-Peer+Private+Network&url=http%3A%2F%2Flocalhost%3A4000%2F2025-06-23-netbird_notes%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -413,7 +387,7 @@ m' &amp; = m,\ m \pm 1
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-06-15-selection_rule%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-06-23-netbird_notes%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -421,7 +395,7 @@ m' &amp; = m,\ m \pm 1
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-06-15-selection_rule%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-06-23-netbird_notes%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -439,13 +413,9 @@ m' &amp; = m,\ m \pm 1
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2025-06-14-windows_in_docker/" data-toggle="tooltip" data-placement="top" title="Windows in Docker">&larr; Previous Post</a>
+          <a class="page-link" href="/2025-06-15-selection_rule/" data-toggle="tooltip" data-placement="top" title="Notes on Selection Rule for Transition between Energy Levels">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2025-06-23-netbird_notes/" data-toggle="tooltip" data-placement="top" title="Use Netbird for Setting up a Peer-to-Peer Private Network">Next Post &rarr;</a>
-        </li>
         
       </ul>
       

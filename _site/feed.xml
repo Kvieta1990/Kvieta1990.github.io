@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Use Netbird for Setting up a Peer-to-Peer Private Network</title>
+        <description>
+          
+          Before we dive into the topic, I am sharing several of my typical needs that lead me to learn about something like netbird. From my home network, I want to connect to the machines inside the firewall of my work place. For some companies, it may be possible to install...
+        </description>
+        <pubDate>Mon, 23 Jun 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-06-23-netbird_notes/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-06-23-netbird_notes/</guid>
+      </item>
+    
+      <item>
         <title>Notes on Selection Rule for Transition between Energy Levels</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Mon, 04 Nov 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-11-04-n8n_rss_gmail/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-11-04-n8n_rss_gmail/</guid>
-      </item>
-    
-      <item>
-        <title>Set up an automated workflow for Notion &amp; Slack connection with n8n</title>
-        <description>
-          
-          n8n is a web platform for setting up automated workflows. There are hundreds of apps and software integrations in the platform so that they can be embedded in the automated workflow through APIs. This post goes over the process of setting up a workflow for automatically fetching the to-do list...
-        </description>
-        <pubDate>Sun, 03 Nov 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-11-03-n8n_notion_slack_workflow/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-11-03-n8n_notion_slack_workflow/</guid>
       </item>
     
   </channel>
