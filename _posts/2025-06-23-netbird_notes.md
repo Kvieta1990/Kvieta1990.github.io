@@ -80,6 +80,8 @@ curl -L https://gist.github.com/christopher-hopper/c8033839ef927a201feb8a8e8d256
 ./netskope-stop.sh
 ```
 
+> In case the link above is not working, here is the backed-up script, [netskope-stop.sh](/assets/files/netskope-stop.sh).
+
 Also, if initial installation and setup ever failed, e.g., due to the `netskope` issue, we may encounter the following error (or something similar) when executing `netbird up` after disabling `netskope`,
 
 ```
