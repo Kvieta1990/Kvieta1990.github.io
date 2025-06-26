@@ -32,9 +32,9 @@ Here I am specifically referring to the Windows remote desktop (RDP) service wit
 <p align='center'>
 <img src="/assets/img/posts/rdp_credential.png"
    style="border:none;"
-   width="800"
-   alt="remote"
-   title="remote" />
+   width="400"
+   alt="rdp_interface"
+   title="rdp_interface" />
 </p>
 
 - As pointed out above, the Windows RDP client cannot remember sessions. To save the effort of manually inputting different domain names for each different connection, we can use the command line interface (CLI) of the Windows RDP client, `mstsc`. We can create a batch script to embed the command for connecting to a certain remote. Here down below is a typical example,
@@ -67,6 +67,14 @@ Here I am specifically referring to the Windows remote desktop (RDP) service wit
 ## MacOS
 
 On MacOS, we have the `Windows App` app which previously was the `Microsoft Remote Desktop` app (the previously installed `Microsoft Remote Desktop` app still works).
+
+<p align='center'>
+<img src="/assets/img/posts/macos_win_app.png"
+   style="border:none;"
+   width="800"
+   alt="macos_win_app"
+   title="macos_win_app" />
+</p>
 
 <br />
 
