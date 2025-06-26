@@ -27,7 +27,34 @@ Here I am specifically referring to the Windows remote desktop (RDP) service wit
 
 ## Windows
 
-- The Windows client for RDP connection is with a very simple interface. It does not have the functionality to save multiple sessions. We have to put in the destination to connect to, for each connection. For sure, if we always have one destination, it will remember that. Though, as will be detailed below, there is a way to hand craft some scripts and shortcuts for connecting to different machines.
+- The Windows client for RDP connection is with a very simple interface. It does not have the functionality to save multiple sessions. We have to put in the destination to connect to, for each connection. For sure, if we always have one destination, it will remember that. Though, as will be detailed below, there is a way to hand craft some scripts and shortcuts for connecting to different machines. One thing to note here is, the Windows RDP client does have the functionality to remember the credential. As shown in the screenshot below, we can click on the `Edit` link to edit the credential for the domain name that we want to connect to and then the client will remember the credential until we click on the `Delete` link.
+
+- As pointed out above, the Windows RDP client cannot remember sessions. To save the effort of manually inputting different domain names for each different connection, we can use the command line interface (CLI) of the Windows RDP client, `mstsc`. We can create a batch script to embed the command for connecting to a certain remote. Here down below is a typical example,
+
+   ```dos
+   @echo off
+   mstsc /v:<remote_domain_or_IP>
+   ```
+
+   We save the script as `.bat` file and we can launch it by double clicking. If we do not want to see a terminal popping up while executing the script, we can then created VB script to call the script in a terminal-less way, and here down below is a typical example to call the batch script above,
+
+   ```
+   Set WshShell = CreateObject("WScript.Shell")
+   WshShell.Run "c:\<HERE_GOES_THE_PATH>\vwindows.bat", 0
+   Set WshShell = Nothing
+   ```
+
+   The script should be saved as `.vbs` file and we can double click to launch it. Further, we can create a shortcut for the VB script by right clicking on the file and choose `More options` $$\rightarrow$$ `Send to` $$\rightarrow$$ `Desktop (create shortcut)`. This will create a shortcut on the desktop for the script. Even further, we can go to the Windows `Start` and right click on an application there and click on `Open file location` to bring up the location in `Explorer` where Windows saves shortcuts appearing in `Start`. Usually it is,
+
+   ```
+   C:\ProgramData\Microsoft\Windows\Start Menu\Programs
+   ```
+
+   Then we copy/cut and paste the desktop shortcut into the folder and the shortcut will be available in `Start`.
+
+   > The `<>` here is only for quotation purpose and should not be included in the command.
+
+- We can add a shared drive for the RDP connection so that the connected remote will mount the specified folder remotely and can therefore get access to files on the local machine. To do it, on the RDP client interface, we click on `Show Options` in the bottom-left corner, then go to the `Local Resouces` tab, then `Local devices and resources`, and then click on the `More...` button down at the bottom. In the pop-up windows, we can choose the folder we want to mount onto the remote machine. Then we can find the local folder mounted in the remote machine -- see the `Redirected drives and folders` group in `Explorer`.
 
 <br />
 
