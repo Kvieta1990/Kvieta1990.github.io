@@ -307,9 +307,14 @@ if (chromeAgent) {
 <h2 id="windows">Windows</h2>
 
 <ul>
-  <li>
-    <p>The Windows client for RDP connection is with a very simple interface. It does not have the functionality to save multiple sessions. We have to put in the destination to connect to, for each connection. For sure, if we always have one destination, it will remember that. Though, as will be detailed below, there is a way to hand craft some scripts and shortcuts for connecting to different machines. One thing to note here is, the Windows RDP client does have the functionality to remember the credential. As shown in the screenshot below, we can click on the <code class="language-plaintext highlighter-rouge">Edit</code> link to edit the credential for the domain name that we want to connect to and then the client will remember the credential until we click on the <code class="language-plaintext highlighter-rouge">Delete</code> link.</p>
-  </li>
+  <li>The Windows client for RDP connection is with a very simple interface. It does not have the functionality to save multiple sessions. We have to put in the destination to connect to, for each connection. For sure, if we always have one destination, it will remember that. Though, as will be detailed below, there is a way to hand craft some scripts and shortcuts for connecting to different machines. One thing to note here is, the Windows RDP client does have the functionality to remember the credential. As shown in the screenshot below, we can click on the <code class="language-plaintext highlighter-rouge">Edit</code> link to edit the credential for the domain name that we want to connect to and then the client will remember the credential until we click on the <code class="language-plaintext highlighter-rouge">Delete</code> link.</li>
+</ul>
+
+<p align="center">
+<img src="/assets/img/posts/rdp_credential.png" style="border:none;" width="400" alt="rdp_interface" title="rdp_interface" />
+</p>
+
+<ul>
   <li>
     <p>As pointed out above, the Windows RDP client cannot remember sessions. To save the effort of manually inputting different domain names for each different connection, we can use the command line interface (CLI) of the Windows RDP client, <code class="language-plaintext highlighter-rouge">mstsc</code>. We can create a batch script to embed the command for connecting to a certain remote. Here down below is a typical example,</p>
 
@@ -339,6 +344,14 @@ if (chromeAgent) {
     <p>We can add a shared drive for the RDP connection so that the connected remote will mount the specified folder remotely and can therefore get access to files on the local machine. To do it, on the RDP client interface, we click on <code class="language-plaintext highlighter-rouge">Show Options</code> in the bottom-left corner, then go to the <code class="language-plaintext highlighter-rouge">Local Resouces</code> tab, then <code class="language-plaintext highlighter-rouge">Local devices and resources</code>, and then click on the <code class="language-plaintext highlighter-rouge">More...</code> button down at the bottom. In the pop-up windows, we can choose the folder we want to mount onto the remote machine. Then we can find the local folder mounted in the remote machine – see the <code class="language-plaintext highlighter-rouge">Redirected drives and folders</code> group in <code class="language-plaintext highlighter-rouge">Explorer</code>.</p>
   </li>
 </ul>
+
+<h2 id="macos">MacOS</h2>
+
+<p>On MacOS, we have the <code class="language-plaintext highlighter-rouge">Windows App</code> app which previously was the <code class="language-plaintext highlighter-rouge">Microsoft Remote Desktop</code> app (the previously installed <code class="language-plaintext highlighter-rouge">Microsoft Remote Desktop</code> app still works).</p>
+
+<p align="center">
+<img src="/assets/img/posts/macos_win_app.png" style="border:none;" width="800" alt="macos_win_app" title="macos_win_app" />
+</p>
 
 <p><br /></p>
 
