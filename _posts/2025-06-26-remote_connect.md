@@ -31,7 +31,7 @@ Here I am specifically referring to the Windows remote desktop (RDP) service wit
 
 - As pointed out above, the Windows RDP client cannot remember sessions. To save the effort of manually inputting different domain names for each different connection, we can use the command line interface (CLI) of the Windows RDP client, `mstsc`. We can create a batch script to embed the command for connecting to a certain remote. Here down below is a typical example,
 
-   ```dos
+   ```
    @echo off
    mstsc /v:<remote_domain_or_IP>
    ```

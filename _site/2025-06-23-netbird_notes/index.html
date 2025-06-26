@@ -312,7 +312,7 @@ if (chromeAgent) {
   </li>
 </ul>
 
-<p>Having those practical needs for quite a while, I came across a YouTube video the other day introducing some interesting projects on GitHub and one of them is the main topic today – <code class="language-plaintext highlighter-rouge">netbird</code>. Since I am not a technical nerd and I don’t have any ideas about <code class="language-plaintext highlighter-rouge">netbird</code> and the technique behind it. But it just sounds interesting to me from the YouTube video and I just gave it a check out of curiosity. Checking it out, I found this is just the tool I need for quite a while. Though, I am still not fully into the technical world of the technique behind the scene (which actually seems to be a huge computer science scope from a non CS-major person like myself), I know how the technique is going to fill in my pocket regarding the several typical needs listed above. I think that is enough for me. As for what really is Network Address Translation (NAT) and how the NAT Traversal reall works, I probably will never have the capacity to learn about.</p>
+<p>Having those practical needs for quite a while, I came across a YouTube video the other day introducing some interesting projects on GitHub and one of them is the main topic today – <code class="language-plaintext highlighter-rouge">netbird</code>. Since I am not a technical nerd and I don’t have any ideas about <code class="language-plaintext highlighter-rouge">netbird</code> and the technique behind it. But it just sounds interesting to me from the YouTube video and I just gave it a check out of curiosity. Checking it out, I found this is just the tool I need for quite a while. Though, I am still not fully into the technical world of the technique behind the scene (which actually seems to be a huge computer science scope from a non CS-major person like myself), I know how the technique is going to fill in my pocket regarding the several typical needs listed above. I think that is enough for me. As for what really is Network Address Translation (NAT) and how the NAT Traversal reall works, I probably will never have the capacity to learn about them.</p>
 
 <p>So, in this blog post, I will only cover how I use <code class="language-plaintext highlighter-rouge">netbird</code> to meet my practical needs as listed above. At the end of the day, I realized,</p>
 
@@ -342,7 +342,47 @@ if (chromeAgent) {
 
 <p>Now, all the machines appearing in the list form a ‘local’ network and they can now connect to each other directly, in a <code class="language-plaintext highlighter-rouge">peer-to-peer</code> manner. Each peer in the list is assigned a ‘local’ IP address and we can connect to each of those ‘local’ IP addresses from any of the machines in the list. Also, we can edit those machines to give them some meaningful name and the name will become part of the secondary domain name which can also be used for the connection (again, among machines inside such a ‘local’ network). Here I include <code class="language-plaintext highlighter-rouge">local</code> inside the quotatin mark since it is not really a local network, but the way they can connect to each other seems just like a local network.</p>
 
-<p>…to continue</p>
+<p>Now we achieve the first goal – to allow the inter-connection among those peers no matter whether they are inside or outside firewalls. But still it does not solve the second and third problem and that is where the <code class="language-plaintext highlighter-rouge">network route</code> and/or <code class="language-plaintext highlighter-rouge">exit node</code> is coming to help. The basic idea here is to redirect all the network traffic through a certain peer inside the <code class="language-plaintext highlighter-rouge">netbird</code> network. With <code class="language-plaintext highlighter-rouge">network route</code>, we can define a range of local IP addresses in the same local network (the real local network) where the peer to be used as the route, belongs. Once set up, let’s call our home machine <code class="language-plaintext highlighter-rouge">Alice</code>, the peer machine inside the firewall as <code class="language-plaintext highlighter-rouge">Bob</code> and the server machine (where, e.g., the internal web service we want to visit is hosted) inside the firewall as <code class="language-plaintext highlighter-rouge">Charlie</code>. In this case, even though we don’t have <code class="language-plaintext highlighter-rouge">netbird</code> configured on <code class="language-plaintext highlighter-rouge">Charlie</code> (therefore we cannot directly connect <code class="language-plaintext highlighter-rouge">Alice</code> and <code class="language-plaintext highlighter-rouge">Charlie</code>), the connection can still be established since the network traffic will be routed through <code class="language-plaintext highlighter-rouge">Bob</code> and <code class="language-plaintext highlighter-rouge">Bob</code> has no problem connecting to <code class="language-plaintext highlighter-rouge">Charlie</code> since they are both behind the same firewall. In the <code class="language-plaintext highlighter-rouge">netbird</code> dashboard, the network route can be configured through the <code class="language-plaintext highlighter-rouge">Network Routes</code> entry, or we can click on the peer to be used as the route and the setup can be done in the bottom section of the interface,</p>
+
+<p align="center">
+<img src="/assets/img/posts/nb_group_exit_node.png" style="border:none;" width="800" alt="nb_peers" title="nb_peers" />
+</p>
+
+<p>In this way, <code class="language-plaintext highlighter-rouge">Alice</code> can visit limited resources as specified the range of IP addressed while configuring the network route. Though we can define multiple routes, there is another sort of once-for-all solution, by setting a certain peer as the <code class="language-plaintext highlighter-rouge">exit node</code>. This means all the network traffic will be going through the selected peer (as the <code class="language-plaintext highlighter-rouge">exit node</code>) and in principle all the peers can visit whatever services that the <code class="language-plaintext highlighter-rouge">exit node</code> can visit. In practice, there may still exist some limitations with the <code class="language-plaintext highlighter-rouge">exit node</code>. For example, in my case, I was using one of the machines inside my organization firewall as the <code class="language-plaintext highlighter-rouge">exit node</code> but still I could not visit some of the web services hosted inside my organization firewall. I am not sure what the fundamental cause but I suspect it is some security routine configured on those servers that is blocking the traffic. Anyways, for me, the email service and access to those paywall-protected journals at least are working the <code class="language-plaintext highlighter-rouge">exit node</code> and that is good enough for me.</p>
+
+<blockquote>
+  <p>When setting up either <code class="language-plaintext highlighter-rouge">network route</code> or <code class="language-plaintext highlighter-rouge">exit node</code>, we can choose which peers to apply to. We can assign peers into different groups and select the group to apply the <code class="language-plaintext highlighter-rouge">network route</code> or <code class="language-plaintext highlighter-rouge">exit node</code> to. The group assignment can be done in the <code class="language-plaintext highlighter-rouge">Assigned Groups</code> box in the picture above.</p>
+</blockquote>
+
+<p>On Windows and Linux OS, setting up <code class="language-plaintext highlighter-rouge">network</code> is usually straightforward. On MacOS specifically, we may encounter some issues. In my case, my organization is installing <code class="language-plaintext highlighter-rouge">netskope</code> security service on the Mac machines and <code class="language-plaintext highlighter-rouge">netskope</code> seems to be blocking the <code class="language-plaintext highlighter-rouge">netbird</code> traffic. So, in my case, I have to disable the <code class="language-plaintext highlighter-rouge">netskope</code> service to get <code class="language-plaintext highlighter-rouge">netbird</code> working. To do this, the following command can be used,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ~/Downloads
+curl <span class="nt">-L</span> https://gist.github.com/christopher-hopper/c8033839ef927a201feb8a8e8d256ed7/raw/netskope-stop.sh <span class="nt">-o</span> netskope-stop.sh <span class="o">&amp;&amp;</span> <span class="nb">chmod </span>ug+x netskope-stop.sh
+./netskope-stop.sh
+</code></pre></div></div>
+
+<blockquote>
+  <p>In case the link above is not working, here is the backed-up script, <a href="/assets/files/netskope-stop.sh">netskope-stop.sh</a>.</p>
+</blockquote>
+
+<p>Also, if initial installation and setup ever failed, e.g., due to the <code class="language-plaintext highlighter-rouge">netskope</code> issue, we may encounter the following error (or something similar) when executing <code class="language-plaintext highlighter-rouge">netbird up</code> after disabling <code class="language-plaintext highlighter-rouge">netskope</code>,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: unable to get daemon status: rpc error: code = FailedPrecondition desc = failed while getting Management Service public key: failed while getting Management Service public key
+</code></pre></div></div>
+
+<p>In this case, we may need to uninstall <code class="language-plaintext highlighter-rouge">netbird</code> and reinstall it. If it was installed via the pkg file or the manual way using <code class="language-plaintext highlighter-rouge">curl</code>, we need to manually delete the <code class="language-plaintext highlighter-rouge">netbird</code> app from the <code class="language-plaintext highlighter-rouge">/Applciations</code> directory. Or, if it was installed with <code class="language-plaintext highlighter-rouge">homebrew</code>, see Ref. [3] for instructions about uninstall and reinstall. After the reinstallation, we may need to execute the following extra steps to clear the previous configuration,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>su  <span class="c"># becomes root</span>
+bash  <span class="c"># use the bash shell</span>
+<span class="nb">rm</span> <span class="nt">-rf</span> /etc/netbird/config.json
+<span class="nb">exit</span>  <span class="c"># exit bash</span>
+<span class="nb">exit</span>  <span class="c"># exit root user</span>
+<span class="nb">sudo </span>netbird service stop
+<span class="nb">sudo </span>netbird service start
+netbird up
+</code></pre></div></div>
+
+<p>Then it should be working just fine.</p>
 
 <p><br /></p>
 
@@ -351,6 +391,8 @@ if (chromeAgent) {
 <p>[1] <a href="https://app.netbird.io/install">https://app.netbird.io/install</a></p>
 
 <p>[2] <a href="https://docs.netbird.io/how-to/installation">https://docs.netbird.io/how-to/installation</a></p>
+
+<p>[3] <a href="https://docs.netbird.io/how-to/installation#mac-os">https://docs.netbird.io/how-to/installation#mac-os</a></p>
 
       </article>
 
@@ -416,6 +458,10 @@ if (chromeAgent) {
           <a class="page-link" href="/2025-06-15-selection_rule/" data-toggle="tooltip" data-placement="top" title="Notes on Selection Rule for Transition between Energy Levels">&larr; Previous Post</a>
         </li>
         
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2025-06-26-remote_connect/" data-toggle="tooltip" data-placement="top" title="Technical Notes on Remote Connection with Thinlinc, Windows RDP and SSH">Next Post &rarr;</a>
+        </li>
         
       </ul>
       

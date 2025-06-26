@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Technical Notes on Remote Connection with Thinlinc, Windows RDP and SSH</title>
+        <description>
+          
+          In this post, I will put together the technical notes about several tools for remote connection. This is just a record of my strugglings with each of them while setting them up on different operating systems. Some of the notes may be very specific to my case but some of...
+        </description>
+        <pubDate>Thu, 26 Jun 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-06-26-remote_connect/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-06-26-remote_connect/</guid>
+      </item>
+    
+      <item>
         <title>Use Netbird for Setting up a Peer-to-Peer Private Network</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Thu, 07 Nov 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-11-07-n8n_slack_nocodb/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-11-07-n8n_slack_nocodb/</guid>
-      </item>
-    
-      <item>
-        <title>Set up an automated workflow for collecting RSS feeds and send to Gmail</title>
-        <description>
-          
-          Following previous post at Ref. [1], we get a feel about the procedures for setting up an automated workflow with n8n. Here in this post, we try to build another simple workflow and the assumption here is that we have already gone through the post in Ref. [1] for all...
-        </description>
-        <pubDate>Mon, 04 Nov 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-11-04-n8n_rss_gmail/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-11-04-n8n_rss_gmail/</guid>
       </item>
     
   </channel>
