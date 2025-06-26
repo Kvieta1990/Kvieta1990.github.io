@@ -76,6 +76,24 @@ On MacOS, we have the `Windows App` app which previously was the `Microsoft Remo
    title="macos_win_app" />
 </p>
 
+- To add in a remote, we go to `Devices` and then click on the `+` dropdown in the top-right corner and select `Add PC...`. For the `PC name`, we put in the domain name or the IP address to the remote to connec to. We can give it a friendly name for the remote for us to recognize easily. Compared to the Windows simple interface of the RDP client, the capability of saving sessions is very useful.
+
+- The client can also remember credentials, in a more oragnized way. We can pre-enter credentials and give them some meaningful name and for a certain saved session, we can choose from those pre-entered credentials to be used for the saved session. To do this, in the `Add PC...` interface, we go to the dropdown for `Credentials` and at the bottom of the dropdown, we have the option to `Add Credentials...`. Clicking on it, we can then add the credendial and give it a friendly name for us to remember. The saved session will then be attached to the added credential and it saves the effort of manually inputting the credential for the connection. Also, the added credential can be used for creating another new connection -- when setting up a new connection, just select the previously added credential from the `Credentials` dropdown.
+
+<p align='center'>
+<img src="/assets/img/posts/macos_win_app_1.png"
+   style="border:none;"
+   width="800"
+   alt="macos_win_app"
+   title="macos_win_app" />
+</p>
+
+- It is also possible to use shared folder with the app. When setting up a new connection (or editing an existing one, by right clicking on the saved session and select `Edit...`), we go to the `Folders` tab and check the `Redirect folders` box and then click on `+` in the bottom-left corner to select a local folder to share with the remote. Again, the remote machine will mount the folder in the `Redirected drives and folders` group in `Explorer`.
+
+- The new `Windows App` app does work very smoothly and it looks nice. Just as a side note, I was having some troubles with the previous version of the app, i.e., `Microsoft Remote Desktop` -- when using spotlight or `Alfred` for launching the app, it will launch but it will always hide behind other windows and I needed to click on the icon on the dock to bring it up to the front. As a workaround, I created an `Alfred` workflow。
+
+... to continue ...
+
 <br />
 
 References
