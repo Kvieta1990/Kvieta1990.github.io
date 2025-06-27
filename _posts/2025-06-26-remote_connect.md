@@ -135,7 +135,48 @@ Thinlinc is a very useful tool for remote connection to Linux servers with the G
 
 - When setting up the Thinlinc server, we are actually expected to set up two things -- the `master` node and the `agent` node. The `master` node is responsible for taking in the request for connection and it will transfer the request to the `agent` node which is the actual node that we will be finally connected to (i.e., to see the remote desktop). If we are only having one VPS and we are trying to set up the Thinlinc server on it, the single server will be used as the `master` and the `agent` node simultaneously. Regarding this, there is one thing we need to specifically pay attention for the setup. If we are trying to connec to the Thinlinc server from internal network using the internal IP or domain name, we might be able to just connect fine without any special settings on the server. However, if we are trying to connect from externally -- for example, if we are using `netbird` to form a private network (see my another post [here](https://iris2020.net/2025-06-23-netbird_notes/)) and using the `netbird` IP address or domain name for the Thinlinc connection, we would fail to connect and there is a key to set up here. On the Linux server, we want to edit the file `/opt/thinlinc/etc/conf.d/vsmagent.hconf` and look for the line containing `agent_hostname=` and change it to `agent_hostname=<NETBIRD_DOMAIN>` (without the bracket), where `<NETBIRD_DOMAIN>` is just the domain name we will use for the Thinlinc connection. What this does is to specify the domain name for the agent explicitly so the `master` node knows how to find the `agent` node specifically in the case of such external connections.
 
-... to continue ...
+- Thinlinc provides the CLI way to start the connection, with `tlclient`. On MacOS, The CLI is located at `/Applications/ThinLinc\ Client.app/Contents/MacOS/tlclient`. On Wndows, the CLI can be found by going to `Start`, searching for `Thinlinc` and right clicking on it to select `Open file location`. This will bring us to the folder where the `Start` item for `Thinlinc` is located. Then right click on `Thinlinc client` to select `Open file location` which will bring us to the location where the `tlclient.exe` executable file is located.
+
+- The `tlclient` documentation can be found in Ref. [7]. With the client, however, it seems that we cannot provide the private key for the passwordless connection. The only way I found to use the private key for the `tlclient` connection is to specify the configuration file with the `-C` flag (see Ref. [7] for the instruction) and we can specify the private key file to use in the configuration file. The question is then how to prepare the configuration file. The way I go with is this. First, I started the `Thinlinc` GUI and put in all the configuration as usual, including the selection of using the private key file for the connection, the port to use (usually, it is the `22` prot but sometimes it can be a different port), etc. Then Thinlinc will create a configuration file in the background for the connection just initialized with the GUI. Then we can find the configuration file created by Thinlinc, make a copy of it and make whatever needed changes to the file, e.g., change the private key file to use. On both MacOS and Linux, the configuration file created by Thinlinc is located at `~/.thinlinc` where `~` represents the user home directory.
+
+   > It should be noticed that even we specify the configuration file to use, we may still need to specify the `-P` flag (for the specification of the password). Though, we don't have to give it the real password since we are going to use the private key for the connection. It is just that if we don't include the `-P` flag, it seems `tlclient` will not initialize the connection automatically and we need to manually click on the `Connect` button once the client interface is brought up. So, as a little trick, we can provide the `-P` flag with a dummy password string like 'ddd' or whatever.
+
+   > On Windows, it seems that Thinlinc created configuration file will be written into the registry directly and I am not sure whether it is possible to output the configuration to a local file on Windows to be used for later connection. However, if we have a Linux or MacOS machine, we can copy the configuration file created on those machines to Windows and the Windows client can read in those configuration files created from other operating systems without any problems. Here I am backing up the configuration which we can grab and adapt to our needs. The entries included inside the `<>` bracket (including the bracket itself) need to be replaced with their real values -- [click me](/assets/files/tlclient.conf).
+
+- Thinlinc does not support session saving. But given the `tlclient` CLI tool, we can create our own scripts for connecting to different servers. On Windows, we can create batch files and use the same trick as presented above to use the VB scripts for launching the `tlclient` without an explicit terminal showing up. Here I am sharing the batch script and VB script for connecting to the ORNL Analysis cluster with `tlclient` -- [click me](/assets/files/tlclient_win_scripts.zip). On MacOS, we can use `Alfred` to create a workflow for initializing the `tlclient` connection. The procedure would be very similar to the one presented above for the `Microsoft Remote Desktop` launching. The idea is the same -- we use keyword to initialize the workflow to start the `tlclient` connection and we use another node to activate the GUI to bring it up to the front. Also, we need to give the program a little bit delay so that the window activation part of the script can find the window to activate. Here below I am putting down the scripts that I am using for the `Alfred` workflow for connecting to the ORNL Analysis Thinlinc server.
+
+   ```bash
+   cd /Users/y8z/Packages/thinlinc
+   /Applications/ThinLinc\ Client.app/Contents/MacOS/tlclient analysis.sns.gov:2222 -C ~/.thinlinc/tlclient_analysis.conf -u y8z -p PLACE_HOLDER --minimize
+   cd -
+   ```
+
+   and
+
+   ```
+   delay 2.0
+
+   tell application "ThinLinc Client"
+      activate
+   end tell
+   ```
+
+   > The workflow organization will be exactly the same as the one detailed above for `Microsoft Remote Desktop` -- the only major difference is that the `Launch Apps/Files` action in the workflow above needs to be replaced with the action of `Run Script` for which we need to select the script language as `/bin/bash` and paste in the bash script shared above (the first one).
+
+   > In the bash script shared above, we have two `cd` commands executed before and after the `tlclient` call. This is to take care of the running log created by `tlclient` while running -- the program will create a running log file at the location where the command is being executed. If we are using the `Alfred` way to start `tlclient`, it will put the running log file to our home directory, which can be a bit annoying if we want to keep things clean and organized. That is what the `cd` command is for -- change to a dedicated location before executing `tlclient` so the running log file can be saved into that dedicated place to keep things clean and organized.
+
+   > In my case, for the delay, I found using `2.0` is probably necessary. In fact, even with the long delay as 2 seconds, still randomly, it takes longer for the `tlclient` initialization so to cause that the Thinlinc window is not activated automatically.
+
+   > The reason why we need to do such a trick of delay and window activation is because if we don't do this, the Thinlinc window will hide itself behind other windows and the connection will never be initialized until we manually bring the Thinlinc window up to the front.
+
+- Even specifying the configuration file to use and the file actually contains the specification of the key file to use for the connection, still some of the connection is not picking up the specified key file in the configuration file. It seems that `tlclient` tends to always pick up the same key file for all the connections to different servers. In this case, I guess we have to add the same key to all the servers that we want to connect to.
+
+---
+
+File Transfer via SSH, SFTP, etc.
+===
+
+If we have SSH access to a server, we can use tools based on the `SCP` (Secure Copy Protocol, e.g., `scp` -- it is the tool with the same name as the protocol) or `SFTP` (SSH File Transfer Protocol, e.g., `rsync`, `WinSCP` and `CyberDuck`), for file transfer. Normally, using those tools is pretty much routine and works the same way as for the SSH connection, using either the password or private key file for the connection. However, here I am putting down a little problem with my file transfer connection. So, initially, I could SSH into my MacOS server without any problems but I just could not use whichever tools mentioned here for file transfer. After struggling a bit with this, I found the problem is specific to my Mac shell configuration. These days, MacOS uses `zsh` shell as the default shell (cannot remember when they started to do this) instead of the `bash` shell. Initially, this caused some trouble to me since some tools are still initializign the `bash` shell (but I do want to use the `zsh` shell) and my original solution for such problems was to include the `zsh` command in the `.bashrc` and `.bash_profile` files to automatically switch to the `zsh` shell when the `bash` shell is initializing. This was working fine but I never realized this was causing the failure with establishing the file transfer channel through `SCP` or `SFTP` tools. The phenomemon was that any time when I used, e.g., the `rsync` tool for file transfer, the commmand would just hang there for forever without any error message or logs (which is the reason why I could not figure out the reason for the hanging, for quite a while). Same phenomemon happens for the `WinSCP` and `MobaXTerm` as well. Later on, I realized that the `zsh` command included in the `bash` initialization configuration files caused the hanging. Not sure exactly why, but anyhow the shell switching is confusing those file transfer tools and after removing the `zsh` command in those `bash` initialization configuration files, the issue is gone. In fact, since by default we will be using the `zsh` shell anyhow, it is probably beneficial to remove all configurations in those `bash` initialization configuration files just in case any of those configuration are messing things up.
 
 <br />
 
@@ -153,3 +194,5 @@ References
 [5] [https://www.cendio.com/thinlinc/docs/install/](https://www.cendio.com/thinlinc/docs/install/)
 
 [6] [https://www.cendio.com/thinlinc/docs/install/simple-nat/](https://www.cendio.com/thinlinc/docs/install/simple-nat/)
+
+[7] [https://www.cendio.com/resources/docs/tag/client_cmdline.html](https://www.cendio.com/resources/docs/tag/client_cmdline.html)
