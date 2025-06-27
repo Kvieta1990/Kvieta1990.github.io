@@ -147,3 +147,7 @@ References
 [3] [https://docs.netbird.io/how-to/installation#mac-os](https://docs.netbird.io/how-to/installation#mac-os)
 
 [4] [https://www.alfredapp.com/](https://www.alfredapp.com/)
+
+[5] [https://www.cendio.com/thinlinc/docs/install/](https://www.cendio.com/thinlinc/docs/install/)
+
+[6] [https://www.cendio.com/thinlinc/docs/install/simple-nat/](https://www.cendio.com/thinlinc/docs/install/simple-nat/)
