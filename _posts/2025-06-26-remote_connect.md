@@ -124,6 +124,8 @@ Nowadays, Windows uses the Microsoft account on the computer -- the Microsoft ac
 
 To disable `Microsoft Hello` and `PIN` login, go to `Start` $$\rightarrow$$ `Settings` $$\rightarrow$$ `Accounts` $$\rightarrow$$ `Sign-in options`. In the `Additional settings` section, disable the option `For improved security, only allow Windows Hello sign-in for Microsoft accounts on this device (Recommended)`. Then in the top `Ways to sign in` section, click on `PIN (Windows Hello)` to expand and then click on `Remove` (or something similar -- on my computer, I already disable it so cannot see originally what the button says before being disabled) to disable the `PIN` login. Then we may need to log out and log back in to let the configuration take effect, after which we should be able to use the Microsoft account and the corresponding password for the RDP connection.
 
+---
+
 Thinlinc
 ===
 
