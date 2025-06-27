@@ -353,6 +353,85 @@ if (chromeAgent) {
 <img src="/assets/img/posts/macos_win_app.png" style="border:none;" width="800" alt="macos_win_app" title="macos_win_app" />
 </p>
 
+<ul>
+  <li>
+    <p>To add in a remote, we go to <code class="language-plaintext highlighter-rouge">Devices</code> and then click on the <code class="language-plaintext highlighter-rouge">+</code> dropdown in the top-right corner and select <code class="language-plaintext highlighter-rouge">Add PC...</code>. For the <code class="language-plaintext highlighter-rouge">PC name</code>, we put in the domain name or the IP address to the remote to connec to. We can give it a friendly name for the remote for us to recognize easily. Compared to the Windows simple interface of the RDP client, the capability of saving sessions is very useful.</p>
+  </li>
+  <li>
+    <p>The client can also remember credentials, in a more oragnized way. We can pre-enter credentials and give them some meaningful name and for a certain saved session, we can choose from those pre-entered credentials to be used for the saved session. To do this, in the <code class="language-plaintext highlighter-rouge">Add PC...</code> interface, we go to the dropdown for <code class="language-plaintext highlighter-rouge">Credentials</code> and at the bottom of the dropdown, we have the option to <code class="language-plaintext highlighter-rouge">Add Credentials...</code>. Clicking on it, we can then add the credendial and give it a friendly name for us to remember. The saved session will then be attached to the added credential and it saves the effort of manually inputting the credential for the connection. Also, the added credential can be used for creating another new connection – when setting up a new connection, just select the previously added credential from the <code class="language-plaintext highlighter-rouge">Credentials</code> dropdown.</p>
+  </li>
+</ul>
+
+<p align="center">
+<img src="/assets/img/posts/macos_win_app_1.png" style="border:none;" width="800" alt="macos_win_app" title="macos_win_app" />
+</p>
+
+<ul>
+  <li>
+    <p>It is also possible to use shared folder with the app. When setting up a new connection (or editing an existing one, by right clicking on the saved session and select <code class="language-plaintext highlighter-rouge">Edit...</code>), we go to the <code class="language-plaintext highlighter-rouge">Folders</code> tab and check the <code class="language-plaintext highlighter-rouge">Redirect folders</code> box and then click on <code class="language-plaintext highlighter-rouge">+</code> in the bottom-left corner to select a local folder to share with the remote. Again, the remote machine will mount the folder in the <code class="language-plaintext highlighter-rouge">Redirected drives and folders</code> group in <code class="language-plaintext highlighter-rouge">Explorer</code>.</p>
+  </li>
+  <li>
+    <p>The new <code class="language-plaintext highlighter-rouge">Windows App</code> app does work very smoothly and it looks nice. Just as a side note, I was having some troubles with the previous version of the app, i.e., <code class="language-plaintext highlighter-rouge">Microsoft Remote Desktop</code> – when using spotlight or <code class="language-plaintext highlighter-rouge">Alfred</code> for launching the app, it will launch but it will always hide behind other windows and I needed to click on the icon on the dock to bring it up to the front. As a workaround, I created an <code class="language-plaintext highlighter-rouge">Alfred</code> workflow [4], following the step below,</p>
+
+    <ul>
+      <li>
+        <p>Bring up the <code class="language-plaintext highlighter-rouge">Alfred </code> main window by either clicking on the icon in the top task bar and selecting <code class="language-plaintext highlighter-rouge">Preferences</code> or using the shortcut (in my case, <code class="language-plaintext highlighter-rouge">Super+Space</code>) to bring up the <code class="language-plaintext highlighter-rouge">Alfred</code> search box and then right clicking on the <code class="language-plaintext highlighter-rouge">Alfred</code> icon to the right of the search box to select <code class="language-plaintext highlighter-rouge">Preferences</code>.</p>
+      </li>
+      <li>
+        <p>Click on <code class="language-plaintext highlighter-rouge">Workflows</code>, followed by clicking on <code class="language-plaintext highlighter-rouge">+</code> at the bottom to create a new <code class="language-plaintext highlighter-rouge">Blank Workflow</code>.</p>
+      </li>
+      <li>
+        <p>Right click on the canvas to select <code class="language-plaintext highlighter-rouge">Inputs</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Keyword</code> and the put in the keyword to use. This will be the characters we will type in the search box to call the workflow. In the dropdown selection to the right, select <code class="language-plaintext highlighter-rouge">No Argument</code>. Give the node a friendly title in the <code class="language-plaintext highlighter-rouge">Title</code> box. Also, we can drag an icon to the icon box.</p>
+      </li>
+      <li>
+        <p>Right click on the canvas to select <code class="language-plaintext highlighter-rouge">Actions</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Launch Apps/Files</code> and then browse and select the <code class="language-plaintext highlighter-rouge">Microsoft Remote Desktop</code> app from the <code class="language-plaintext highlighter-rouge">/Applications</code> directory.</p>
+      </li>
+      <li>
+        <p>Drag to connect the input node to the app launch node.</p>
+      </li>
+      <li>
+        <p>Right click on the canvas to select <code class="language-plaintext highlighter-rouge">Actions</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Run Script</code>. In the language dropdown selection, select <code class="language-plaintext highlighter-rouge">/usr/bin/osascript (AppleScript)</code> and put in the following contents,</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> delay 0.5
+
+ tell application "Microsoft Remote Desktop"
+    activate
+ end tell
+</code></pre></div>        </div>
+
+        <p>and then click on <code class="language-plaintext highlighter-rouge">Save</code>.</p>
+      </li>
+      <li>
+        <p>Then drag to connect the input node to the <code class="language-plaintext highlighter-rouge">Run Script</code> node.</p>
+      </li>
+      <li>
+        <p>With this setup, typing in the specified keyword will start the workflow and it will do two things in parallel – launch the <code class="language-plaintext highlighter-rouge">Microsoft Remote Desktop</code> and run the <code class="language-plaintext highlighter-rouge">AppleScript</code>. In the <code class="language-plaintext highlighter-rouge">AppleScript</code> above, the first line <code class="language-plaintext highlighter-rouge">delay 0.5</code> sleeps for 0.5 second to wait for the app launching. Then after the 0.5 second waiting, the app should already be launched and the <code class="language-plaintext highlighter-rouge">AppleScript</code> will then continue to activate the app, i.e., bring it up to the front.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="using-microsoft-account">Using Microsoft Account</h2>
+
+<p>Nowadays, Windows uses the Microsoft account on the computer – the Microsoft account is the cloud account with which we log in the Office 365 service. With this capability, we can then set up the <code class="language-plaintext highlighter-rouge">Windows Hello</code> login and use PIN instead of the password to log in the computer. This is indeed very convenient, but for the remote desktop connection purpose, the <code class="language-plaintext highlighter-rouge">Windows Hello</code> + <code class="language-plaintext highlighter-rouge">PIN</code> login mechanism would not work. We have to disable the <code class="language-plaintext highlighter-rouge">Windows Hello</code> and <code class="language-plaintext highlighter-rouge">PIN</code> login to use the Microsoft account for RDP connection. For example, in my case, my Microsoft account user name is the email address associated with my Microsoft account and that is just my user name which we will use as the user name for the RDP connection. The password is just the cloud account login password, i.e., the one used for logging into the Office 365 service.</p>
+
+<p>To disable <code class="language-plaintext highlighter-rouge">Microsoft Hello</code> and <code class="language-plaintext highlighter-rouge">PIN</code> login, go to <code class="language-plaintext highlighter-rouge">Start</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Settings</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Accounts</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Sign-in options</code>. In the <code class="language-plaintext highlighter-rouge">Additional settings</code> section, disable the option <code class="language-plaintext highlighter-rouge">For improved security, only allow Windows Hello sign-in for Microsoft accounts on this device (Recommended)</code>. Then in the top <code class="language-plaintext highlighter-rouge">Ways to sign in</code> section, click on <code class="language-plaintext highlighter-rouge">PIN (Windows Hello)</code> to expand and then click on <code class="language-plaintext highlighter-rouge">Remove</code> (or something similar – on my computer, I already disable it so cannot see originally what the button says before being disabled) to disable the <code class="language-plaintext highlighter-rouge">PIN</code> login. Then we may need to log out and log back in to let the configuration take effect, after which we should be able to use the Microsoft account and the corresponding password for the RDP connection.</p>
+
+<h1 id="thinlinc">Thinlinc</h1>
+
+<p>Thinlinc is a very useful tool for remote connection to Linux servers with the GUI support. For personal use, we can set up our own Thinlinc server on our VPS and use the Thinlinc client for remote connecting to our Linux server. Instructions given in Ref. [5, 6] could be referred to and it should be straightforward to set up, given some special attention to some of the following bullet points.</p>
+
+<ul>
+  <li>
+    <p>If we connect to the remote Linux server in a headless way (e.g., using <code class="language-plaintext highlighter-rouge">SSH</code>), we may not be able to install the thinlinc server successfully, even with the X11 graphics support.</p>
+  </li>
+  <li>
+    <p>When setting up the Thinlinc server, we are actually expected to set up two things – the <code class="language-plaintext highlighter-rouge">master</code> node and the <code class="language-plaintext highlighter-rouge">agent</code> node. The <code class="language-plaintext highlighter-rouge">master</code> node is responsible for taking in the request for connection and it will transfer the request to the <code class="language-plaintext highlighter-rouge">agent</code> node which is the actual node that we will be finally connected to (i.e., to see the remote desktop). If we are only having one VPS and we are trying to set up the Thinlinc server on it, the single server will be used as the <code class="language-plaintext highlighter-rouge">master</code> and the <code class="language-plaintext highlighter-rouge">agent</code> node simultaneously. Regarding this, there is one thing we need to specifically pay attention for the setup. If we are trying to connec to the Thinlinc server from internal network using the internal IP or domain name, we might be able to just connect fine without any special settings on the server. However, if we are trying to connect from externally – for example, if we are using <code class="language-plaintext highlighter-rouge">netbird</code> to form a private network (see my another post <a href="https://iris2020.net/2025-06-23-netbird_notes/">here</a>) and using the <code class="language-plaintext highlighter-rouge">netbird</code> IP address or domain name for the Thinlinc connection, we would fail to connect and there is a key to set up here. On the Linux server, we want to edit the file <code class="language-plaintext highlighter-rouge">/opt/thinlinc/etc/conf.d/vsmagent.hconf</code> and look for the line containing <code class="language-plaintext highlighter-rouge">agent_hostname=</code> and change it to <code class="language-plaintext highlighter-rouge">agent_hostname=&lt;NETBIRD_DOMAIN&gt;</code> (without the bracket), where <code class="language-plaintext highlighter-rouge">&lt;NETBIRD_DOMAIN&gt;</code> is just the domain name we will use for the Thinlinc connection. What this does is to specify the domain name for the agent explicitly so the <code class="language-plaintext highlighter-rouge">master</code> node knows how to find the <code class="language-plaintext highlighter-rouge">agent</code> node specifically in the case of such external connections.</p>
+  </li>
+</ul>
+
+<p>… to continue …</p>
+
 <p><br /></p>
 
 <h1 id="references">References</h1>
@@ -362,6 +441,8 @@ if (chromeAgent) {
 <p>[2] <a href="https://docs.netbird.io/how-to/installation">https://docs.netbird.io/how-to/installation</a></p>
 
 <p>[3] <a href="https://docs.netbird.io/how-to/installation#mac-os">https://docs.netbird.io/how-to/installation#mac-os</a></p>
+
+<p>[4] <a href="https://www.alfredapp.com/">https://www.alfredapp.com/</a></p>
 
       </article>
 
