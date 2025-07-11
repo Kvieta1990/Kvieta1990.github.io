@@ -27,21 +27,33 @@ Click on `Run and Debug` in the VSCode side bar,
 <img src="/assets/img/posts/vscode_debug.png"
    style="border:none;"
    width="500"
-   alt="abs_geo"
-   title="abs_geo" />
+   alt="vscode_debug"
+   title="vscode_debug" />
 </p>
 
-Then click on the gear setting icon on the top to bring up the JSON configuration file,
+If the `Run and Debug` has never been configured for the currently opened folder, we should be able to see a link `create a launch.json file` as shown in the picture below,
+
+<p align='center'>
+<img src="/assets/img/posts/vscode_debug_config_init.png"
+   style="border:none;"
+   width="500"
+   alt="vscode_debug_config_init"
+   title="vscode_debug_config_init" />
+</p>
+
+Click on the link and VSCode will prompt to ask where to save the configuration file. Depending on the VSCode settings, we can either select to save to the cloud (if we ever logged in with our `GitHub` account in VSCode) or to a local file inside the current workspace (VSCode can save the current working directory and relevant configurations into a `workspace`). Either should be fine. The next prompt will ask us to select a debugger and here we want to choose `Python Debugger`. If asked to select the `Debug Configuration`, we want to select `Python File` (the first option in the list).
+
+If a json file was ever initialized before, then click on the gear setting icon on the top to bring up the JSON configuration file,
 
 <p align='center'>
 <img src="/assets/img/posts/vscode_debug_config.png"
    style="border:none;"
    width="500"
-   alt="abs_geo"
-   title="abs_geo" />
+   alt="vscode_debug_config"
+   title="vscode_debug_config" />
 </p>
 
-and populate with the following contents,
+In either situation, we want to populate the configuration file with the following contents,
 
 ```json
 {
@@ -63,14 +75,16 @@ and populate with the following contents,
 
 > Change the python path to wherever your conda python is located.
 
+> For Unix-like OSs, the path is supposed to contain the forward slash `/` instead of the `\\` for Windows as shown above.
+
 Press `F5` or click on the run button as shown below,
 
 <p align='center'>
 <img src="/assets/img/posts/vscode_debug_run.png"
    style="border:none;"
    width="500"
-   alt="abs_geo"
-   title="abs_geo" />
+   alt="vscode_debug_run"
+   title="vscode_debug_run" />
 </p>
 
 to launch the GSAS-II GUI.
