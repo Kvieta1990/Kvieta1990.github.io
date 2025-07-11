@@ -306,16 +306,24 @@ conda <span class="nb">install </span>python numpy matplotlib wxpython pyopengl 
 <p>Click on <code class="language-plaintext highlighter-rouge">Run and Debug</code> in the VSCode side bar,</p>
 
 <p align="center">
-<img src="/assets/img/posts/vscode_debug.png" style="border:none;" width="500" alt="abs_geo" title="abs_geo" />
+<img src="/assets/img/posts/vscode_debug.png" style="border:none;" width="500" alt="vscode_debug" title="vscode_debug" />
 </p>
 
-<p>Then click on the gear setting icon on the top to bring up the JSON configuration file,</p>
+<p>If the <code class="language-plaintext highlighter-rouge">Run and Debug</code> has never been configured for the currently opened folder, we should be able to see a link <code class="language-plaintext highlighter-rouge">create a launch.json file</code> as shown in the picture below,</p>
 
 <p align="center">
-<img src="/assets/img/posts/vscode_debug_config.png" style="border:none;" width="500" alt="abs_geo" title="abs_geo" />
+<img src="/assets/img/posts/vscode_debug_config_init.png" style="border:none;" width="500" alt="vscode_debug_config_init" title="vscode_debug_config_init" />
 </p>
 
-<p>and populate with the following contents,</p>
+<p>Click on the link and VSCode will prompt to ask where to save the configuration file. Depending on the VSCode settings, we can either select to save to the cloud (if we ever logged in with our <code class="language-plaintext highlighter-rouge">GitHub</code> account in VSCode) or to a local file inside the current workspace (VSCode can save the current working directory and relevant configurations into a <code class="language-plaintext highlighter-rouge">workspace</code>). Either should be fine. The next prompt will ask us to select a debugger and here we want to choose <code class="language-plaintext highlighter-rouge">Python Debugger</code>. If asked to select the <code class="language-plaintext highlighter-rouge">Debug Configuration</code>, we want to select <code class="language-plaintext highlighter-rouge">Python File</code> (the first option in the list).</p>
+
+<p>If a json file was ever initialized before, then click on the gear setting icon on the top to bring up the JSON configuration file,</p>
+
+<p align="center">
+<img src="/assets/img/posts/vscode_debug_config.png" style="border:none;" width="500" alt="vscode_debug_config" title="vscode_debug_config" />
+</p>
+
+<p>In either situation, we want to populate the configuration file with the following contents,</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2.0"</span><span class="p">,</span><span class="w">
@@ -338,10 +346,14 @@ conda <span class="nb">install </span>python numpy matplotlib wxpython pyopengl 
   <p>Change the python path to wherever your conda python is located.</p>
 </blockquote>
 
+<blockquote>
+  <p>For Unix-like OSs, the path is supposed to contain the forward slash <code class="language-plaintext highlighter-rouge">/</code> instead of the <code class="language-plaintext highlighter-rouge">\\</code> for Windows as shown above.</p>
+</blockquote>
+
 <p>Press <code class="language-plaintext highlighter-rouge">F5</code> or click on the run button as shown below,</p>
 
 <p align="center">
-<img src="/assets/img/posts/vscode_debug_run.png" style="border:none;" width="500" alt="abs_geo" title="abs_geo" />
+<img src="/assets/img/posts/vscode_debug_run.png" style="border:none;" width="500" alt="vscode_debug_run" title="vscode_debug_run" />
 </p>
 
 <p>to launch the GSAS-II GUI.</p>
