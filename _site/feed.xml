@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Publish Apps on MacOS</title>
+        <description>
+          
+          In this post, I will be covering the application packaging on MacOS. It involves multiple stage of efforts, concerning the library path configuration, application folder packaging, release package preparation, and application notarization &amp;amp; signature. Here I am taking our RMCProfile package (a package for neutron total scattering data analysis, see...
+        </description>
+        <pubDate>Fri, 11 Jul 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-07-11-mac_app_distribution/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-07-11-mac_app_distribution/</guid>
+      </item>
+    
+      <item>
         <title>Technical Notes on Remote Connection with Thinlinc, Windows RDP and SSH</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Mon, 16 Dec 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2024-12-16-superconductivity_summary/</link>
         <guid isPermaLink="true">http://localhost:4000/2024-12-16-superconductivity_summary/</guid>
-      </item>
-    
-      <item>
-        <title>Set up workflows for bidirectional connection between NocoDB and Slack</title>
-        <description>
-          
-          NocoDB is a web-based platform that allows building no-code database, with a spreadsheet-like interface, allowing convenient interaction with the database. Here in this post, I am going to walk through the setup of workflows that connects the NocoDB database with Slack, in a bidirectional manner. Namely, we can build a...
-        </description>
-        <pubDate>Thu, 07 Nov 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-11-07-n8n_slack_nocodb/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-11-07-n8n_slack_nocodb/</guid>
       </item>
     
   </channel>
