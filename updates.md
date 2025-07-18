@@ -47,6 +47,10 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
+📝 ***[07/18/2025 12:33:54 EST]*** Analysis cluster monitor tool for monitoring the available system resources on available nodes, [https://addie.ornl.gov/analysis_mon](https://addie.ornl.gov/analysis_mon).
+
+<br>
+
 📢 ***[05/31/2025 00:23:44 EST]*** The maintenance for [powder.ornl.gov](https://powder.ornl.gov) has been completed. All services are back to normal, including `Powder Doc`, `Powder JupyterHub` and `Powder Forum`.
 
 <br>
