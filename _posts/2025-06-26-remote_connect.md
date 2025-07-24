@@ -171,6 +171,8 @@ Thinlinc is a very useful tool for remote connection to Linux servers with the G
 
 - Even specifying the configuration file to use and the file actually contains the specification of the key file to use for the connection, still some of the connection is not picking up the specified key file in the configuration file. It seems that `tlclient` tends to always pick up the same key file for all the connections to different servers. In this case, I guess we have to add the same key to all the servers that we want to connect to.
 
+- When setting up the `thinlinc` service on a server with GUI interface (i.e., non-headless), sometimes we may have issues in connecting to the service while the user trying to connect to the server via `thinlinc` is already logged in graphically on the server. In such cases, we would see a blank screen while trying to connect via `thinlinc` and we may have to log out the user from the graphical interface on the server.
+
 ---
 
 File Transfer via SSH, SFTP, etc.
