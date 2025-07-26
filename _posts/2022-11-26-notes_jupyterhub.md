@@ -617,6 +617,16 @@ After the installation, all templates will be stored in a dedicated location and
 
 We can then put our templates in there so they can be seen and loaded from the `Template` launcher in the Jupyterlab interface.
 
+## Issue-39 Jupyterlab upgrade
+
+**Solution:** Follow the steps below to upgrade `jupyterlab`,
+
+```
+sudo /opt/jupyterhub/bin/python3 -m pip install jupyterlab==4.4.5
+sudo /opt/jupyterhub/bin/jupyter lab build
+sudo systemctl restart jupyterhub
+```
+
 <br />
 
 <b>References</b>

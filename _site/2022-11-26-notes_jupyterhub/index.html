@@ -897,6 +897,15 @@ restart.</p>
 
 <p>We can then put our templates in there so they can be seen and loaded from the <code class="language-plaintext highlighter-rouge">Template</code> launcher in the Jupyterlab interface.</p>
 
+<h2 id="issue-39-jupyterlab-upgrade">Issue-39 Jupyterlab upgrade</h2>
+
+<p><strong>Solution:</strong> Follow the steps below to upgrade <code class="language-plaintext highlighter-rouge">jupyterlab</code>,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo /opt/jupyterhub/bin/python3 -m pip install jupyterlab==4.4.5
+sudo /opt/jupyterhub/bin/jupyter lab build
+sudo systemctl restart jupyterhub
+</code></pre></div></div>
+
 <p><br /></p>
 
 <p><b>References</b></p>
