@@ -47,6 +47,8 @@ subtitle: Updates to all services I am maintaining
 
 ***Monitor the services status*** <a href="https://uptime.ornl.gov/status/resources" target="_blank">here</a>.
 
+***Check the maintenance schedule*** <a href="https://powder.ornl.gov/forum/calendar.php" target="_blank">here</a>.
+
 <hr class="thick-line">
 
 ⚠️ - Emergency, sometimes, servers may be down, expectedly or unexpectedly
