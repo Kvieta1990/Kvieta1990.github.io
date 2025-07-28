@@ -35,6 +35,16 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line1">
 
+✅ - Up, ❌ - Down
+
+|                   | Status | Details |
+|-------------------|--------|---------|
+| ADDIE             | ✅      |         |
+| Powder Doc        | ✅      |         |
+| Powder JupyterHub | ✅      |         |
+| Powder Forum      | ✅      |         |
+| RMCProfile        | ✅      |         |
+
 ***Monitor the services status*** <a href="https://uptime.ornl.gov/status/resources" target="_blank">here</a>.
 
 <hr class="thick-line">
