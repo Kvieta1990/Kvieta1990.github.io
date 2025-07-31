@@ -103,6 +103,8 @@ netbird up
 
 Then it should be working just fine.
 
+> For upgrading `netbird` to the latest version using `brew`, we need to run the command `brew install netbirdio/tap/netbird`, followed by running the series of commands above.
+
 <br />
 
 References
