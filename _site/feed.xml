@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Installation of GSAS-II on Linux</title>
+        <description>
+          
+          GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. Here I am sharing my working pipeline to get GSAS-II working on my Linux machine of Ubuntu distro. FYI, here below is listed my...
+        </description>
+        <pubDate>Fri, 01 Aug 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-08-01-gsasii_on_linux/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-08-01-gsasii_on_linux/</guid>
+      </item>
+    
+      <item>
         <title>Publish Apps on MacOS</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Fri, 03 Jan 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-01-03-prop_vector/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-01-03-prop_vector/</guid>
-      </item>
-    
-      <item>
-        <title>A brief summary of the early superconductivity development</title>
-        <description>
-          
-          The diagram below is maded out of the nice article in Ref. [1] by Prof. C. Slichter, summarizing the history of the early development of superconductivity. It goes over the discovery of superconducting phenomenon, the early efforts in revealing the reason why such a peculiar phenomenon could ever happen, the...
-        </description>
-        <pubDate>Mon, 16 Dec 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2024-12-16-superconductivity_summary/</link>
-        <guid isPermaLink="true">http://localhost:4000/2024-12-16-superconductivity_summary/</guid>
       </item>
     
   </channel>
