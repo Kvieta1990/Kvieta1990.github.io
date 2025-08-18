@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Set up a Budget VPS on CloudCone</title>
+        <description>
+          
+          CloudCone is one of the companies providing cheap-access VPS for personal usage to host web services that do not require high-end computations. Here in this note, I will put down some setup notes on configuring a budget VPS on CloudCone and use it for hosting some web services. First, we...
+        </description>
+        <pubDate>Mon, 18 Aug 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-08-18-cloudcone_setup/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-08-18-cloudcone_setup/</guid>
+      </item>
+    
+      <item>
         <title>Installation of GSAS-II on Linux</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Fri, 17 Jan 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-01-17-rmcprofile_dev_env_win/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-01-17-rmcprofile_dev_env_win/</guid>
-      </item>
-    
-      <item>
-        <title>Description of Magnetic Structure with Propogation Vector</title>
-        <description>
-          
-          The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus...
-        </description>
-        <pubDate>Fri, 03 Jan 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2025-01-03-prop_vector/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-01-03-prop_vector/</guid>
       </item>
     
   </channel>

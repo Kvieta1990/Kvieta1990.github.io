@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Set up a Budget VPS on CloudCone</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="CloudCone is one of the companies providing cheap-access VPS for personal usage to host web services that do not require high-end computations. Here in this note, I will put down some setup notes on configuring a budget VPS on CloudCone and use it for hosting some web services. First, we...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Set up a Budget VPS on CloudCone">
+  <meta property="og:description" content="CloudCone is one of the companies providing cheap-access VPS for personal usage to host web services that do not require high-end computations. Here in this note, I will put down some setup notes on configuring a budget VPS on CloudCone and use it for hosting some web services. First, we...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2025/03/">
-  <link rel="canonical" href="http://localhost:4000/archive/2025/03/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2025-08-18T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2025-08-18-cloudcone_setup/">
+  <link rel="canonical" href="http://localhost:4000/2025-08-18-cloudcone_setup/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Set up a Budget VPS on CloudCone">
+  <meta property="twitter:description" content="CloudCone is one of the companies providing cheap-access VPS for personal usage to host web services that do not require high-end computations. Here in this note, I will put down some setup notes on configuring a budget VPS on CloudCone and use it for hosting some web services. First, we...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -261,10 +263,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Set up a Budget VPS on CloudCone</h1>
           
 
+          
+					<span class="post-meta">Posted on August 18, 2025, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -277,493 +283,163 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
+      
 
-<div class="intro-header"></div>
+      
 
-<div role="main" class=" container-md ">
-  
-
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>March, 2025</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2025-03-18-gsasii_dev/"><h3 class="post-title mb0">Local Development of GSAS-II -- Deprecated Instructions</h3></a>
-					<p class="post-meta small">March 18, 2025, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#scattering">scattering</a>
-  
-    <a href="/tags#crystallography">crystallography</a>
-  
-    <a href="/tags#programming">programming</a>
-  
-    <a href="/tags#dev">dev</a>
-  
-    <a href="/tags#technical">technical</a>
-  
-    <a href="/tags#diffraction">diffraction</a>
-  
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/ccone_logo.png" style="border:none;" width="300" alt="cloudcone" title="cloudcone" />
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2025-03-16-dify_config/"><h3 class="post-title mb0">Dify Server Maintenance</h3></a>
-					<p class="post-meta small">March 16, 2025, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#gpt">gpt</a>
-  
-    <a href="/tags#LLM">LLM</a>
-  
-    <a href="/tags#web">web</a>
-  
-    <a href="/tags#docker">docker</a>
-  
+<p><br /></p>
+
+<p>CloudCone is one of the companies providing cheap-access VPS for personal usage to host web services that do not require high-end computations. Here in this note, I will put down some setup notes on configuring a budget VPS on CloudCone and use it for hosting some web services. First, we visit the front page of the CloudCone platform and we will see the interface as below (register an account if we don’t already have one),</p>
+
+<p align="center">
+<img src="/assets/img/posts/cloudcone_opts.png" style="border:none;" width="800" alt="cloudcone_opt" title="cloudcone_opt" />
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2025-03-16-os_configs/"><h3 class="post-title mb0">Config, Tips and Tricks for Different Operating Systems</h3></a>
-					<p class="post-meta small">March 16, 2025, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#Windows">Windows</a>
-  
-    <a href="/tags#Mac">Mac</a>
-  
-    <a href="/tags#Linux">Linux</a>
-  
+<p><br /></p>
+
+<p>We can choose the <code class="language-plaintext highlighter-rouge">Budget VPS</code> from the list as shown in the picture above and follow the instructions to set up the VPS. In my case, I am running a Ubuntu 24.04 OS on the VPS with 4 CPUs and 4 GB memeory. This should be enough for hosting several web services, and in my case, I am running,</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">StirlingPDF</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Dash</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Homarr</code></li>
+  <li><code class="language-plaintext highlighter-rouge">LinkWarden</code></li>
+  <li><code class="language-plaintext highlighter-rouge">homepage</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Glances</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Teable</code></li>
+  <li><code class="language-plaintext highlighter-rouge">CallMe</code></li>
+</ul>
+
+<p>And roughly they are altogether taking ~70-80% of the memory.</p>
+
+<p>Once we set up the VPS, we grab the IP address and want to set up a domain name for it. CloudCone provides its own domain name registration service and for sure we can register a domain there. However, in my case, I always prefer to manage the domain on <code class="language-plaintext highlighter-rouge">CloudFlare</code> so those web services can be proxied through <code class="language-plaintext highlighter-rouge">CloudFlare</code>. If we register the domain through CloudCone and want to use <code class="language-plaintext highlighter-rouge">CloudFlare</code> to manage the domain, we want to go to <code class="language-plaintext highlighter-rouge">Domains</code> in CloudCone and further go to <code class="language-plaintext highlighter-rouge">Manage Domains</code>. Then click on the <code class="language-plaintext highlighter-rouge">Manage</code> button for the domain we want to configure. In the <code class="language-plaintext highlighter-rouge">Nameservers</code> setting, we want to use the nameservers from <code class="language-plaintext highlighter-rouge">CloudFlare</code> like below,</p>
+
+<p align="center">
+<img src="/assets/img/posts/ccone_dns.png" style="border:none;" width="800" alt="ccone_dns" title="ccone_dns" />
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+<p><br /></p>
 
+<p>Then we can configure the DNS records in <code class="language-plaintext highlighter-rouge">CloudFlare</code>. To do the configuration, we go to <code class="language-plaintext highlighter-rouge">CloudFlare</code> dashboard, click on the <code class="language-plaintext highlighter-rouge">Onboard a domain</code> and follow the instructions to add the registered domain in CloudCone into <code class="language-plaintext highlighter-rouge">CloudFlare</code>. Notes for a similar situation can be found in Ref. [1]. Then we want to click on the domain name we just added and go to <code class="language-plaintext highlighter-rouge">DNS</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Records</code> and add in records for the DNS in there. First, we want to add in the <code class="language-plaintext highlighter-rouge">A</code> record to point the root domain name (put in <code class="language-plaintext highlighter-rouge">@</code> in the <code class="language-plaintext highlighter-rouge">name</code> box) to the IP address of the server, and we want to disable the proxy. The second one we want to add in is the <code class="language-plaintext highlighter-rouge">A</code> record for <code class="language-plaintext highlighter-rouge">www</code> (for this one, we can enable the proxy). That is pretty much all the basic setups. For web service hosting, we can add in other secondary domain names (i.e., give a meaningful name in the <code class="language-plaintext highlighter-rouge">name</code> box to point the domain name like <code class="language-plaintext highlighter-rouge">spdf.iris-2020.net</code> to the IP address of the server). Here, <code class="language-plaintext highlighter-rouge">spdf</code> is the name I have in the <code class="language-plaintext highlighter-rouge">name</code> box and <code class="language-plaintext highlighter-rouge">iris-2020.net</code> is my registered domain name. Detailed notes about setting <code class="language-plaintext highlighter-rouge">docker container + nginx + CloudFlare</code> to host web services on the VPS and proxying through <code class="language-plaintext highlighter-rouge">CloudFlare</code> to make sure a secure connection with the outside world can be found in Refs. [2, 3] and I won’t reproduce them here.</p>
+
+<p>One thing I do want to note down is, by default, the port access is not enabled on the VPS with CloudCone. For the VPS other than <code class="language-plaintext highlighter-rouge">Budget VPS</code>, we may be able to get access to the firewall control in the web dashboard of CloudCone, but for the <code class="language-plaintext highlighter-rouge">Budget VPS</code> instances, we don’t have access to the firewall control through the web interface. But we do need to enable the firewall control for the VPS, which then we have to do on the VPS server. In my case, I am using <code class="language-plaintext highlighter-rouge">ufw</code>, and I need to execute the following commands to enable the traffic through the <code class="language-plaintext highlighter-rouge">80</code> port on the server,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>ufw
+<span class="nb">sudo </span>ufw <span class="nb">enable
+sudo </span>ufw allow 22
+<span class="nb">sudo </span>ufw allow 80
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">22</code> one may not be necessary but the <code class="language-plaintext highlighter-rouge">80</code> port configuration is necessary, since otherwise <code class="language-plaintext highlighter-rouge">CloudFlare</code> cannot talk to the VPS server. Regarding this, what happens when a browser is requesting a web service running on the VPS, e.g., <code class="language-plaintext highlighter-rouge">spdf.iris-2020.net</code>, is this – the user browser will talk to <code class="language-plaintext highlighter-rouge">CloudFlare</code> first through the domain <code class="language-plaintext highlighter-rouge">spdf.iris-2020.net</code>, then <code class="language-plaintext highlighter-rouge">CloudFlare</code> will talk to the VPS server through the <code class="language-plaintext highlighter-rouge">80</code> port. Then on the VPS server, we configure the <code class="language-plaintext highlighter-rouge">nginx</code> service as such that the traffic through the <code class="language-plaintext highlighter-rouge">80</code> port will be redirected to other ports and such a redirection of traffic only happens locally on the VPS server. Also, because it is <code class="language-plaintext highlighter-rouge">CloudFlare</code> that is talking to the VPS through the <code class="language-plaintext highlighter-rouge">80</code> port, this is still deemed as secure since we trust <code class="language-plaintext highlighter-rouge">CloudFlare</code> and the outside world never directly talk to the server through the <code class="language-plaintext highlighter-rouge">80</code> port. With this regard, we need to make the <code class="language-plaintext highlighter-rouge">80</code> port accessible so at least <code class="language-plaintext highlighter-rouge">CloudFlare</code> can talk to the server through the port and this is why we need to configure the firewall as above. If we don’t do it, we would encounter the <code class="language-plaintext highlighter-rouge">CloudFlare 502 error</code>, meaning that <code class="language-plaintext highlighter-rouge">CloudFlare</code> cannot talk to the server.</p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/">https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/</a></p>
+
+<p>[2] <a href="https://iris2020.net/2023-09-08-docker_nginx/">https://iris2020.net/2023-09-08-docker_nginx/</a></p>
+
+<p>[3] <a href="https://iris2020.net/2024-01-15-yourls_docker/">https://iris2020.net/2024-01-15-yourls_docker/</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#Linux">Linux</a>
+          
+            <a href="/tags#server">server</a>
+          
+            <a href="/tags#vps">vps</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
 
   
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+a+Budget+VPS+on+CloudCone&url=http%3A%2F%2Flocalhost%3A4000%2F2025-08-18-cloudcone_setup%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-08-18-cloudcone_setup%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-08-18-cloudcone_setup%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2025-08-01-gsasii_on_linux/" data-toggle="tooltip" data-placement="top" title="Installation of GSAS-II on Linux">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
 </div>
 
 
