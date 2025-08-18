@@ -2,7 +2,7 @@
 layout: post
 title: Publish Apps on MacOS
 subtitle:
-tags: [network, remote, utils]
+tags: [dev, utils, Mac]
 author: Yuanpeng Zhang
 comments: true
 use_math: true
