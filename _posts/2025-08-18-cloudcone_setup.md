@@ -55,9 +55,13 @@ Once we set up the VPS, we grab the IP address and want to set up a domain name 
 
 <br />
 
-Then we can configure the DNS records in `CloudFlare`. To do the configuration, we go to `CloudFlare` dashboard, click on the `Onboard a domain` and follow the instructions to add the registered domain in CloudCone into `CloudFlare`. Notes for a similar situation can be found in Ref. [1].
+Then we can configure the DNS records in `CloudFlare`. To do the configuration, we go to `CloudFlare` dashboard, click on the `Onboard a domain` and follow the instructions to add the registered domain in CloudCone into `CloudFlare`. Notes for a similar situation can be found in Ref. [1]. Then we want to click on the domain name we just added and go to `DNS` $\rightarrow$ `Records` and add in records for the DNS in there. First, we want to add in the `A` record to point the root domain name (put in `@` in the `name` box) to the IP address of the server, and we want to disable the proxy. The second one we want to add in is the `A` record for `www` (for this one, we can enable the proxy). That is pretty much all the basic setups. For web service hosting, we can add in other secondary domain names (i.e., give a meaningful name in the `name` box to point the domain name like `spdf.iris-2020.net` to the IP address of the server). Here, `spdf` is the name I have in the `name` box and `iris-2020.net` is my registered domain name.
 
 References
 ===
 
 [1] [https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/](https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/)
+
+[2] [https://iris2020.net/2023-09-08-docker_nginx/](https://iris2020.net/2023-09-08-docker_nginx/)
+
+[3] [https://iris2020.net/2024-01-15-yourls_docker/](https://iris2020.net/2024-01-15-yourls_docker/)
