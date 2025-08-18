@@ -36,7 +36,7 @@ systemctl --user daemon-reload
 where `--user` flag is telling `systemctl` to run as the local user. After this, the local service can be executed and managed by the local user, such as,
 
 ```bash
-systemctl --user sstart livereduce_zyp.service
+systemctl --user start livereduce_zyp.service
 systemctl --user stop livereduce_zyp.service
 systemctl --user restart livereduce_zyp.service
 systemctl --user status livereduce_zyp.service

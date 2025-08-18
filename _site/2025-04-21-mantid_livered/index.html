@@ -318,7 +318,7 @@ WantedBy=default.target
 
 <p>where <code class="language-plaintext highlighter-rouge">--user</code> flag is telling <code class="language-plaintext highlighter-rouge">systemctl</code> to run as the local user. After this, the local service can be executed and managed by the local user, such as,</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl <span class="nt">--user</span> sstart livereduce_zyp.service
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl <span class="nt">--user</span> start livereduce_zyp.service
 systemctl <span class="nt">--user</span> stop livereduce_zyp.service
 systemctl <span class="nt">--user</span> restart livereduce_zyp.service
 systemctl <span class="nt">--user</span> status livereduce_zyp.service
