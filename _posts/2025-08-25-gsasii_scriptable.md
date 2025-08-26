@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Installation of GSAS-II on Linux
+title: Running GSAS-II Scriptable Refinement
 subtitle:
 tags: [scattering, crystallography, programming, dev, technical, diffraction]
 author: Yuanpeng Zhang

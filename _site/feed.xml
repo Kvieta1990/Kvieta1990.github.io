@@ -12,7 +12,7 @@
     
     
       <item>
-        <title>Installation of GSAS-II on Linux</title>
+        <title>Running GSAS-II Scriptable Refinement</title>
         <description>
           
           GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. Conveniently, it provides the scriptable interface so that we can perform the refinement in a programming way. This is pretty handy when some batch...
