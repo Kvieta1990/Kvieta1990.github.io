@@ -62,6 +62,24 @@ scripts/utilities/finddata/publish_plot.py
 
 The live reduction scrip is using the Mantid `StartLiveData` [1] framework. With my current configuration, the `StartLiveData` service is configured with `FromNow=False` and `FromStartOfRun=True`. This means, the live reduction will `record live data, but go back to the start of the run and process all data since then`. For example, during the data collection, if the live reduction service fails for some reason and the service gets restarted, the service will go back to the start of the run and process all data since then so that we don't have the worry of losing data in case of live reduction service failure. If no failure, the live service will keep processing each streamed chunk (by default, every 30 s forms a chunk, which can be changed in the `livereduce_zyp.conf` configuration file) and accumulating the chunks. Also, it is worth mentioning that the actual length of the chunk is the larger one between the defined value (e.g., 30 s) and the actual processing time of the previous chunk. For example, if the processing of the previous chunk only takes 20 s, the next chunk to be processed will be the data streamed in 30 s right after the previous chunk. However, if the processing of the previous chunk takes 40 s, the data streamed in 40 s right after the previous chunk will be taken as the next chunk to process.
 
+---
+
+New Notes on 09/13/2025
+
+---
+
+In some cases, we may have multiple machines mounting the same drive to the same path and therefore the user level services configuration file will be seen on all those machines. In such a situation, the services will be running on all the machines which may cause some issues in many potentially different ways (file writing conflicts, etc.). We do want to set a flag in the configuration file to let the service only run on a certain machine and to do that, we want to put in a conditional check in the configuration file like follows,
+
+```
+[Unit]
+Description=My Unique Service
+ConditionHost=my-specific-hostname
+...
+...
+```
+
+Then the `My unique Service` will be only running on the machine with the hostname of `my-specific-hostname`. To obtain the hostname of a machine, just run `hostname` from the terminal.
+
 References
 ===
 
