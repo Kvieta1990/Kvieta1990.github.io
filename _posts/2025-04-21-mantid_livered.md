@@ -64,7 +64,7 @@ The live reduction scrip is using the Mantid `StartLiveData` [1] framework. With
 
 ---
 
-<div align="center">New Notes on 09/13/2025</div>
+<span style="display:block; text-align:center;">New Notes on 09/13/2025</span>
 
 ---
 
