@@ -362,6 +362,49 @@ ConditionHost=my-specific-hostname
 
 <p>Then the <code class="language-plaintext highlighter-rouge">My unique Service</code> will be only running on the machine with the hostname of <code class="language-plaintext highlighter-rouge">my-specific-hostname</code>. To obtain the hostname of a machine, just run <code class="language-plaintext highlighter-rouge">hostname</code> from the terminal.</p>
 
+<hr />
+
+<p><span style="display:block; text-align:center;">New Notes on 09/14/2025</span></p>
+
+<hr />
+
+<p>Sometimes the live reduction service would encounter some errors and if such errors are not handled with proper exception raising in the live reduction script, the service would be hanging without automatic restarting. To cope with such situations, we can put in a cronjob on the machine where the live reduction service is running to monitor the log file of the service. If errors are found to the end of the log file and if they are still there after a few round of checking, we can force the live reduction service to restart itself. Here below is the script,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">service_name</span><span class="o">=</span><span class="s2">"livereduce_zyp"</span>
+<span class="nv">max_checks</span><span class="o">=</span>3
+<span class="nv">delay</span><span class="o">=</span>10
+<span class="nv">log_file</span><span class="o">=</span><span class="s2">"/SNS/NOM/shared/log_files/livereduce.log"</span>
+
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>1<span class="p">;</span> i&lt;<span class="o">=</span><span class="nv">$max_checks</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do
+    </span><span class="nv">service_status</span><span class="o">=</span><span class="si">$(</span>systemctl <span class="nt">--user</span> is-active <span class="nv">$service_name</span><span class="si">)</span>
+    <span class="nv">check_error</span><span class="o">=</span><span class="si">$(</span><span class="nb">tail</span> <span class="nt">-n</span> 10 <span class="nv">$log_file</span> | <span class="nb">grep</span> <span class="s2">"Error"</span><span class="si">)</span>
+
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$service_status</span><span class="s2">"</span> <span class="o">!=</span> <span class="s2">"active"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$check_error</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        if</span> <span class="o">[</span> <span class="nv">$i</span> <span class="nt">-lt</span> <span class="nv">$max_checks</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$service_name</span><span class="s2"> is inactive. Checking again in </span><span class="nv">$delay</span><span class="s2"> seconds..."</span>
+            <span class="nb">sleep</span> <span class="nv">$delay</span>
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$service_name</span><span class="s2"> is still inactive after </span><span class="nv">$max_checks</span><span class="s2"> checks. Restarting the service."</span>
+            systemctl <span class="nt">--user</span> restart <span class="nv">$service_name</span>
+        <span class="k">fi
+    else
+        </span><span class="nb">echo</span> <span class="s2">"Success: </span><span class="nv">$service_name</span><span class="s2"> is active."</span>
+        <span class="nb">exit </span>0
+    <span class="k">fi
+done</span>
+</code></pre></div></div>
+
+<p>Then the following cronjob enetry can be used to run the script every minute,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /usr/bin/bash /SNS/users/y8z/Utilities/nom_live/live_monitor.sh
+</code></pre></div></div>
+
+<blockquote>
+  <p>Use <code class="language-plaintext highlighter-rouge">crontab -e</code> to call out the cron job configuration.</p>
+</blockquote>
+
 <h1 id="references">References</h1>
 
 <p>[1] <a href="https://docs.mantidproject.org/nightly/algorithms/StartLiveData-v1.html">https://docs.mantidproject.org/nightly/algorithms/StartLiveData-v1.html</a></p>

@@ -80,6 +80,49 @@ ConditionHost=my-specific-hostname
 
 Then the `My unique Service` will be only running on the machine with the hostname of `my-specific-hostname`. To obtain the hostname of a machine, just run `hostname` from the terminal.
 
+---
+
+<span style="display:block; text-align:center;">New Notes on 09/14/2025</span>
+
+---
+
+Sometimes the live reduction service would encounter some errors and if such errors are not handled with proper exception raising in the live reduction script, the service would be hanging without automatic restarting. To cope with such situations, we can put in a cronjob on the machine where the live reduction service is running to monitor the log file of the service. If errors are found to the end of the log file and if they are still there after a few round of checking, we can force the live reduction service to restart itself. Here below is the script,
+
+```bash
+#!/bin/bash
+
+service_name="livereduce_zyp"
+max_checks=3
+delay=10
+log_file="/SNS/NOM/shared/log_files/livereduce.log"
+
+for ((i=1; i<=$max_checks; i++)); do
+    service_status=$(systemctl --user is-active $service_name)
+    check_error=$(tail -n 10 $log_file | grep "Error")
+
+    if [ "$service_status" != "active" ] || [ -n "$check_error" ]; then
+        if [ $i -lt $max_checks ]; then
+            echo "$service_name is inactive. Checking again in $delay seconds..."
+            sleep $delay
+        else
+            echo "$service_name is still inactive after $max_checks checks. Restarting the service."
+            systemctl --user restart $service_name
+        fi
+    else
+        echo "Success: $service_name is active."
+        exit 0
+    fi
+done
+```
+
+Then the following cronjob enetry can be used to run the script every minute,
+
+```bash
+* * * * * /usr/bin/bash /SNS/users/y8z/Utilities/nom_live/live_monitor.sh
+```
+
+> Use `crontab -e` to call out the cron job configuration.
+
 References
 ===
 
