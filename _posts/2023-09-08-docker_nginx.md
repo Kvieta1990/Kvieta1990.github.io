@@ -558,7 +558,7 @@ Issue #19
 
 Access `SFTPGo` through `WebDav`.
 
-Solution (#18)
+Solution (#19)
 ===
 
 The `SFTPGo` service can also be accessed through `WebDabv`. First, we need to know the `WebDAV` port that the `SFTPGo` service is using. In my case, I was installing the service through `1Panle` and I can see the `WebDAV` port in the `1Panel` installed app interface. Clicking on the `Edit` button for the `SFTPGo` service, we will see the port being used for different interfaces, including the `WebDAV` interface. Once we know the port, we can set up a secondary domain name on `CloudFlare` and configure the `nginx` service running on our server to point the domain name to the port where the `WebDAV` interface of the `SFTPGo` service is running on. Here below I put my my `nginx` server configuration,
