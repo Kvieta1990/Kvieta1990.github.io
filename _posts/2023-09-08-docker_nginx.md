@@ -579,6 +579,16 @@ server {
 
 where the `WebDAV` port is `10080` and the secondary domain name registered with `CloudFlare` is `wd` (primary domain name is `iris-home.net`). Regarding setting up the secondary domain name on `CloudFlare`, `Issue #3` in the current post and Ref. [17, 18] can be useful references. Then at the client side when trying to map the `SFTPGo` service through `WebDAV`, we can use the URL `https://wd.iris-home.net`. For the user name and password, we can use the the combo we use for logging in the web interface.
 
+Issue #20
+===
+
+`NextCloud` service sometimes shows the `Update Needed` error.
+
+Solution (#20)
+===
+
+First, we can refer to `Issue #16` in the current post to go into to the docker container running the `NextCloud` service. Then we execute the command `occ upgrade` [19] and the then exit the container. Then the issue should be gone (maybe a restart of the docker container is needed).
+
 <br>
 
 References
@@ -619,3 +629,5 @@ References
 [17] [https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/](https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/)
 
 [18] [https://iris2020.net/2025-08-18-cloudcone_setup/](https://iris2020.net/2025-08-18-cloudcone_setup/)
+
+[19] [https://help.nextcloud.com/t/update-needed-error/198234/7](https://help.nextcloud.com/t/update-needed-error/198234/7)
