@@ -543,6 +543,42 @@ AFFiNE.use('copilot', {
 
 where we need to grab the `legacy` OpenAI API key [16]. Exit the interactive shell and now the AI feature in `Affine` should be working normally. If not, try to restart the container.
 
+Issue #18
+===
+
+Access `NextCloud` through `WebDav`.
+
+Solution (#18)
+===
+
+We can map the `NextCloud` as a network drive through `WebDav`. To do this, we need to first obtain the `WebDav` URL. First, we go to `Files` in the `NextCloud` web interface and go to `Files settings` on the bottom-left corner of the page. From there, we can see the `WebDav` URL to use for the network drive mapping.
+
+Issue #19
+===
+
+Access `SFTPGo` through `WebDav`.
+
+Solution (#18)
+===
+
+The `SFTPGo` service can also be accessed through `WebDabv`. First, we need to know the `WebDAV` port that the `SFTPGo` service is using. In my case, I was installing the service through `1Panle` and I can see the `WebDAV` port in the `1Panel` installed app interface. Clicking on the `Edit` button for the `SFTPGo` service, we will see the port being used for different interfaces, including the `WebDAV` interface. Once we know the port, we can set up a secondary domain name on `CloudFlare` and configure the `nginx` service running on our server to point the domain name to the port where the `WebDAV` interface of the `SFTPGo` service is running on. Here below I put my my `nginx` server configuration,
+
+```
+server {
+    listen 80;
+    server_name wd.iris-home.net;
+    location / {
+            proxy_pass         http://localhost:10080;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection "upgrade";
+            proxy_set_header   Host $host;
+    }
+}
+```
+
+where the `WebDAV` port is `10080` and the secondary domain name registered with `CloudFlare` is `wd` (primary domain name is `iris-home.net`). Regarding setting up the secondary domain name on `CloudFlare`, `Issue #3` in the current post and Ref. [17, 18] can be useful references. Then at the client side when trying to map the `SFTPGo` service through `WebDAV`, we can use the URL `https://wd.iris-home.net`. For the user name and password, we can use the the combo we use for logging in the web interface.
+
 <br>
 
 References
@@ -579,3 +615,7 @@ References
 [15] [https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437](https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437)
 
 [16] [https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-10718980](https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-10718980)
+
+[17] [https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/](https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/)
+
+[18] [https://iris2020.net/2025-08-18-cloudcone_setup/](https://iris2020.net/2025-08-18-cloudcone_setup/)
