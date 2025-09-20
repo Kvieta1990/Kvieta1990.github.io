@@ -405,6 +405,32 @@ done</span>
   <p>Use <code class="language-plaintext highlighter-rouge">crontab -e</code> to call out the cron job configuration.</p>
 </blockquote>
 
+<hr />
+
+<p><span style="display:block; text-align:center;">New Notes on 09/20/2025</span></p>
+
+<hr />
+
+<p>In the live reduction service configuration, we can provide an argument to the bash script <code class="language-plaintext highlighter-rouge">livereduce_zyp.sh</code> as the configuration file. If the argument is not provided, the configuration file will be default to <code class="language-plaintext highlighter-rouge">/etc/livereduce.conf</code>. Following is an example service configuration file for POWGEN live reduction.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Live processing service
+StartLimitInterval=8640
+StartLimitBurst=1000
+ConditionHost=bl11a-analysis2.sns.gov
+
+[Service]
+WorkingDirectory=/SNS/users/y8z/Utilities/pg3_live
+ExecStart=/SNS/users/y8z/Utilities/pg3_live/livereduce_zyp.sh livereduce_zyp.conf
+Restart=always
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=5
+
+[Install]
+WantedBy=default.target
+</code></pre></div></div>
+
 <h1 id="references">References</h1>
 
 <p>[1] <a href="https://docs.mantidproject.org/nightly/algorithms/StartLiveData-v1.html">https://docs.mantidproject.org/nightly/algorithms/StartLiveData-v1.html</a></p>

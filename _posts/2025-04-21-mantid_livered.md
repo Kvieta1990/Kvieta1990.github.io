@@ -123,6 +123,33 @@ Then the following cronjob enetry can be used to run the script every minute,
 
 > Use `crontab -e` to call out the cron job configuration.
 
+---
+
+<span style="display:block; text-align:center;">New Notes on 09/20/2025</span>
+
+---
+
+In the live reduction service configuration, we can provide an argument to the bash script `livereduce_zyp.sh` as the configuration file. If the argument is not provided, the configuration file will be default to `/etc/livereduce.conf`. Following is an example service configuration file for POWGEN live reduction.
+
+```
+[Unit]
+Description=Live processing service
+StartLimitInterval=8640
+StartLimitBurst=1000
+ConditionHost=bl11a-analysis2.sns.gov
+
+[Service]
+WorkingDirectory=/SNS/users/y8z/Utilities/pg3_live
+ExecStart=/SNS/users/y8z/Utilities/pg3_live/livereduce_zyp.sh livereduce_zyp.conf
+Restart=always
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=5
+
+[Install]
+WantedBy=default.target
+```
+
 References
 ===
 

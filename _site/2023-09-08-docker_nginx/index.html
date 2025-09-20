@@ -904,6 +904,45 @@ apt <span class="nb">install </span>vim
 
 <p>where we need to grab the <code class="language-plaintext highlighter-rouge">legacy</code> OpenAI API key [16]. Exit the interactive shell and now the AI feature in <code class="language-plaintext highlighter-rouge">Affine</code> should be working normally. If not, try to restart the container.</p>
 
+<h1 id="issue-18">Issue #18</h1>
+
+<p>Access <code class="language-plaintext highlighter-rouge">NextCloud</code> through <code class="language-plaintext highlighter-rouge">WebDav</code>.</p>
+
+<h1 id="solution-18">Solution (#18)</h1>
+
+<p>We can map the <code class="language-plaintext highlighter-rouge">NextCloud</code> as a network drive through <code class="language-plaintext highlighter-rouge">WebDav</code>. To do this, we need to first obtain the <code class="language-plaintext highlighter-rouge">WebDav</code> URL. First, we go to <code class="language-plaintext highlighter-rouge">Files</code> in the <code class="language-plaintext highlighter-rouge">NextCloud</code> web interface and go to <code class="language-plaintext highlighter-rouge">Files settings</code> on the bottom-left corner of the page. From there, we can see the <code class="language-plaintext highlighter-rouge">WebDav</code> URL to use for the network drive mapping.</p>
+
+<h1 id="issue-19">Issue #19</h1>
+
+<p>Access <code class="language-plaintext highlighter-rouge">SFTPGo</code> through <code class="language-plaintext highlighter-rouge">WebDav</code>.</p>
+
+<h1 id="solution-19">Solution (#19)</h1>
+
+<p>The <code class="language-plaintext highlighter-rouge">SFTPGo</code> service can also be accessed through <code class="language-plaintext highlighter-rouge">WebDabv</code>. First, we need to know the <code class="language-plaintext highlighter-rouge">WebDAV</code> port that the <code class="language-plaintext highlighter-rouge">SFTPGo</code> service is using. In my case, I was installing the service through <code class="language-plaintext highlighter-rouge">1Panle</code> and I can see the <code class="language-plaintext highlighter-rouge">WebDAV</code> port in the <code class="language-plaintext highlighter-rouge">1Panel</code> installed app interface. Clicking on the <code class="language-plaintext highlighter-rouge">Edit</code> button for the <code class="language-plaintext highlighter-rouge">SFTPGo</code> service, we will see the port being used for different interfaces, including the <code class="language-plaintext highlighter-rouge">WebDAV</code> interface. Once we know the port, we can set up a secondary domain name on <code class="language-plaintext highlighter-rouge">CloudFlare</code> and configure the <code class="language-plaintext highlighter-rouge">nginx</code> service running on our server to point the domain name to the port where the <code class="language-plaintext highlighter-rouge">WebDAV</code> interface of the <code class="language-plaintext highlighter-rouge">SFTPGo</code> service is running on. Here below I put my my <code class="language-plaintext highlighter-rouge">nginx</code> server configuration,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    listen 80;
+    server_name wd.iris-home.net;
+    location / {
+            proxy_pass         http://localhost:10080;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection "upgrade";
+            proxy_set_header   Host $host;
+    }
+}
+</code></pre></div></div>
+
+<p>where the <code class="language-plaintext highlighter-rouge">WebDAV</code> port is <code class="language-plaintext highlighter-rouge">10080</code> and the secondary domain name registered with <code class="language-plaintext highlighter-rouge">CloudFlare</code> is <code class="language-plaintext highlighter-rouge">wd</code> (primary domain name is <code class="language-plaintext highlighter-rouge">iris-home.net</code>). Regarding setting up the secondary domain name on <code class="language-plaintext highlighter-rouge">CloudFlare</code>, <code class="language-plaintext highlighter-rouge">Issue #3</code> in the current post and Ref. [17, 18] can be useful references. Then at the client side when trying to map the <code class="language-plaintext highlighter-rouge">SFTPGo</code> service through <code class="language-plaintext highlighter-rouge">WebDAV</code>, we can use the URL <code class="language-plaintext highlighter-rouge">https://wd.iris-home.net</code>. For the user name and password, we can use the the combo we use for logging in the web interface.</p>
+
+<h1 id="issue-20">Issue #20</h1>
+
+<p><code class="language-plaintext highlighter-rouge">NextCloud</code> service sometimes shows the <code class="language-plaintext highlighter-rouge">Update Needed</code> error.</p>
+
+<h1 id="solution-20">Solution (#20)</h1>
+
+<p>First, we can refer to <code class="language-plaintext highlighter-rouge">Issue #16</code> in the current post to go into to the docker container running the <code class="language-plaintext highlighter-rouge">NextCloud</code> service. Then we execute the command <code class="language-plaintext highlighter-rouge">occ upgrade</code> [19] and the then exit the container. Then the issue should be gone (maybe a restart of the docker container is needed).</p>
+
 <p><br /></p>
 
 <h1 id="references">References</h1>
@@ -939,6 +978,12 @@ apt <span class="nb">install </span>vim
 <p>[15] <a href="https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437">https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437</a></p>
 
 <p>[16] <a href="https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-10718980">https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-10718980</a></p>
+
+<p>[17] <a href="https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/">https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/</a></p>
+
+<p>[18] <a href="https://iris2020.net/2025-08-18-cloudcone_setup/">https://iris2020.net/2025-08-18-cloudcone_setup/</a></p>
+
+<p>[19] <a href="https://help.nextcloud.com/t/update-needed-error/198234/7">https://help.nextcloud.com/t/update-needed-error/198234/7</a></p>
 
       </article>
 
