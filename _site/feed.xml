@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Instrument Geometry in Mantid Framework</title>
+        <description>
+          
+          For time of flight (TOF) neutorn diffractometers, the raw data are recorded in events – an event means a certain detector is having a neutron hitting at a certain time point. Sayting this, to pin down an event, we need two pieces of basic information, namely time and location, defining...
+        </description>
+        <pubDate>Fri, 17 Oct 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-10-17-mantid_geometry/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-10-17-mantid_geometry/</guid>
+      </item>
+    
+      <item>
         <title>Running GSAS-II Scriptable Refinement</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Tue, 28 Jan 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-01-28-rmcprofile_dev_env_gen/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-01-28-rmcprofile_dev_env_gen/</guid>
-      </item>
-    
-      <item>
-        <title>Block the annoying ads on slashdot</title>
-        <description>
-          
-          Slashdot is by far my favourite news collection and sharing platform where people were posting a lot of interesting news covering all sorts of areas, from tech to science, from politics to history, etc. I have been checking the daily feeds on Slashdot literatively on a daily base for quite...
-        </description>
-        <pubDate>Mon, 20 Jan 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2025-01-20-slashdot_block_ads/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-01-20-slashdot_block_ads/</guid>
       </item>
     
   </channel>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Instrument Geometry in Mantid Framework</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="For time of flight (TOF) neutorn diffractometers, the raw data are recorded in events – an event means a certain detector is having a neutron hitting at a certain time point. Sayting this, to pin down an event, we need two pieces of basic information, namely time and location, defining...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Instrument Geometry in Mantid Framework">
+  <meta property="og:description" content="For time of flight (TOF) neutorn diffractometers, the raw data are recorded in events – an event means a certain detector is having a neutron hitting at a certain time point. Sayting this, to pin down an event, we need two pieces of basic information, namely time and location, defining...">
+
+  
+  <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2025-10-17T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2025-10-17-mantid_geometry/">
+  <link rel="canonical" href="http://localhost:4000/2025-10-17-mantid_geometry/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Instrument Geometry in Mantid Framework">
+  <meta property="twitter:description" content="For time of flight (TOF) neutorn diffractometers, the raw data are recorded in events – an event means a certain detector is having a neutron hitting at a certain time point. Sayting this, to pin down an event, we need two pieces of basic information, namely time and location, defining...">
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-home.net/script.js" data-website-id="f40cd621-831a-49d1-b675-c998d596eb96"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.iris-home.net/script.js" data-website-id="f40cd621-831a-49d1-b675-c998d596eb96"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Instrument Geometry in Mantid Framework</h1>
+          
+
+          
+					<span class="post-meta">Posted on October 17, 2025, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/mantid_logo_light.png" style="border:none;" width="300" alt="mantid" title="mantid" />
+</p>
+
+<p>For time of flight (TOF) neutorn diffractometers, the raw data are recorded in <code class="language-plaintext highlighter-rouge">events</code> – an <code class="language-plaintext highlighter-rouge">event</code> means a certain detector is having a neutron hitting at a certain time point. Sayting this, to pin down an event, we need two pieces of basic information, namely <code class="language-plaintext highlighter-rouge">time</code> and <code class="language-plaintext highlighter-rouge">location</code>, defining <code class="language-plaintext highlighter-rouge">when</code> and <code class="language-plaintext highlighter-rouge">where</code> the event was happening, respectively. So, the raw TOF diffraction data is nothing but a full record of all such events. In the upstream while collecting data, such event information would be written into the raw data file (these days, the NeXus format is often used). Then in the downstream, we load in the event information and construct the TOF diffraction pattern for each single detector. This may be followed by properly converting TOF to <code class="language-plaintext highlighter-rouge">d</code> or <code class="language-plaintext highlighter-rouge">Q</code> and focusing patterns from individual detectors in a certain manner to accumulate statistics. Regarding the writting and reading of those neutron events, the pivot point of connection is the insturment geometry which is something we want to talk a bit about here in the post.</p>
+
+<p>At Spallation Neutron Source (SNS), ORNL, the nexus raw data file records events by time offset &amp; zero point (from which we can figure out the time of flight, which is not something we want to discuss here) and event ID (which is basically just the detector ID). That means no detector location information would be recorded in the raw nexus data file. There comes the necessity to have an instrument definition file (IDF) which maps those detector IDs to the actual physical location of detectors. In the downstream data loading process, we then know where events are happening. Meanwhile, it is necessary to guarantee the consistent IDF is being used for both the upstream data acquisition and downstream data loading. Otherwise, it is possible that the downstream data loading process maps detector IDs to locations different from what the upstream data collection was assuming, in which case everything will be messed up.</p>
+
+<p>At SNS, ORNL, most of the time, the Mantid framework would be used for data processing, where the IDF files are in the <code class="language-plaintext highlighter-rouge">XML</code> format. Ref. [1] is the GitHub respository hosting the IDF files (and scripts used for creating them) for neutron instruments that are using the Mantid framework for their data processing. Ref. [2] is the forked repo originally from Dr. <a href="https://www.ornl.gov/staff-profile/bogdan-vacaliuc">Bogdan Vacaliuc</a>. The forked repo contains the script for creating the IDF for the POWGEN detector upgrade test. For example, the script <a href="https://github.com/Kvieta1990/mantidgeometry/blob/powgen_gen2/nowd_geometry_154x7.py">here</a> can be used to generate the IDF for the <code class="language-plaintext highlighter-rouge">154x7</code> pixelization for a single detector panel – in the POWGEN instrument view presented below, each single rectangle region is what we mean by a ‘panel’ here.</p>
+
+<p align="center">
+<img src="/assets/img/posts/powgen_instrument_view.png" style="border:none;" width="1000" alt="powgen" title="powgen" />
+</p>
+
+<p>In fact, the panel does not actually have physical pixels – instead it is just a region of detectors and it is realy on us to decide how we want to pixelize the whole detector panel. The script mentioned above does the <code class="language-plaintext highlighter-rouge">154x7</code> pixelization and in Ref. [2], we can also find the script for other types of pixelization, e.g., <code class="language-plaintext highlighter-rouge">525x28</code>. Checking the IDF generation script, we can see that the script is reading in some CSV files containing some coordinates, like <a href="https://github.com/Kvieta1990/mantidgeometry/blob/2897d2cfbec19ea997d8f5b8b0d692efcfbda086/nowd_geometry_154x7.py#L168">here</a>. Those coordinates are the XYZ coordinates of the four corners for panels, given in a certain order. If we look from the negative to positive z direction, the order <code class="language-plaintext highlighter-rouge">1-4</code> goes like <code class="language-plaintext highlighter-rouge">bottom-left</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">buttom-right</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">top-right</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">top-left</code>, as shown below,</p>
+
+<p align="center">
+<img src="/assets/img/posts/view_direction.png" style="border:none;" width="400" alt="panel_view" title="panel_view" />
+</p>
+
+<p>Then the script will figure out the location of each single pixel according to the intended pixelization scheme and properly number them. To change the pixelization scheme, we want to go to the lines <a href="https://github.com/Kvieta1990/mantidgeometry/blob/2897d2cfbec19ea997d8f5b8b0d692efcfbda086/nowd_geometry_154x7.py#L10-L16">here</a> in the script and change the intended number of pixels along each direction, together with the pixel size. The obvious principle is that the overall panel size should not change no matter what pixelization scheme is to be used. So, depending on the pixelization scheme to use, we may have to recalculate the pixel size according to the existing values in the script. To run the script, we want to first have <code class="language-plaintext highlighter-rouge">mamba</code> installed [3]. Then we want to run,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/Kvieta1990/mantidgeometry.git
+<span class="nb">cd </span>mantidgeometry
+mamba <span class="nb">env </span>create <span class="nt">-f</span> mantidgeometry.yml
+mamba activate mantidgeometry
+python nowd_geometry_154x7.py
+</code></pre></div></div>
+
+<p>which will create the IDF file <code class="language-plaintext highlighter-rouge">NOWD_Definition_154x7.xml</code>, where <code class="language-plaintext highlighter-rouge">NOWD</code> is the instrument name for detector testing purpose. Unfortunately we have to manually make some changes to the generated XML file to make it working with Mantid. To demonstrate, here I will be using a simpler case, where we only have a single panel from POWGEN (bank-64 belonging to column-19 on the North side of the POWGEN instrument). For such a purpose, I simply go to the CSV file <a href="https://github.com/Kvieta1990/mantidgeometry/blob/powgen_gen2/SNS/POWGEN/NOWD_geom_left_2025A.csv">here</a>, delete all those panel lines, except those corresponding to the <code class="language-plaintext highlighter-rouge">D573</code> panel (<a href="https://github.com/Kvieta1990/mantidgeometry/blob/2897d2cfbec19ea997d8f5b8b0d692efcfbda086/SNS/POWGEN/NOWD_geom_left_2025A.csv#L10C1-L13">here</a>) and run <code class="language-plaintext highlighter-rouge">nowd_geometry_154x7.py</code> script. What I want to do here is to load an existing nexus data collected on POWGEN using the IDF we just generated here. Before proceeding, there is some background knowledge to mention. In the nexus raw data collected on SNS diffractometers, there is an embedded IDF file which would be used by default Mantid will be using it while loading the data. This does make a lot of sense since the simple assumption would be that the embedded IDF should be the one that was used upstream while writting events into the nexus data file. Though, Mantid does provide the flexibilty to load in the nexus data file while using a separate IDF. To use a separate IDF in Mantid for data loading, we can use the <a href="https://docs.mantidproject.org/nightly/algorithms/LoadEventNexus-v1.html"><code class="language-plaintext highlighter-rouge">LoadEventNexus</code></a> algorithm while setting <code class="language-plaintext highlighter-rouge">LoadNexusInstrumentXML=False</code>, telling the program not to use the embedded IDF in the nexus file to be loaded. When doing this, Mantid will then try to find the proper IDF to use for a specific instrument the name of which is hard coded in the nexus file. The first location in the search list will be the <code class="language-plaintext highlighter-rouge">instrument</code> directory in the Mantid code base. Depending on the Mantid framework being used, the location could vary. For example, on ORNL Analysis nodes, if the <code class="language-plaintext highlighter-rouge">Mantid Workbench</code> is being used and is to be launched via the <code class="language-plaintext highlighter-rouge">mantidworkbench</code> command, the <code class="language-plaintext highlighter-rouge">instrument</code> directory will be located at <code class="language-plaintext highlighter-rouge">/opt/anaconda/envs/mantid/instrument</code>. The location in the search list will be <code class="language-plaintext highlighter-rouge">~/.mantid/instrument</code> where <code class="language-plaintext highlighter-rouge">~</code> represents our home directory. The second search location will only be used if a proper IDF cannot be found in the first search location, e.g., the defined instrument in the nexus file is not defined in any of the IDF inside the first search location. Another possibility is the time stamp in any of the existing IDFs in the first search location does not match the time stamp of the nexus data file. In a valid IDF, one of the header lines should specify the range of time period that the IDF should be applied – see <a href="https://github.com/Kvieta1990/mantidgeometry/blob/2897d2cfbec19ea997d8f5b8b0d692efcfbda086/NOWD_Definition_154x7.chk#L2">here</a>.</p>
+
+<p>In a moment, I will be talking about replacing the <code class="language-plaintext highlighter-rouge">NOWD</code> instrument name with <code class="language-plaintext highlighter-rouge">PG3</code> (the short name for POWGEN, at SNS). But before that, there is something worthwhile mentioning. If we are going to work with the instrument name <code class="language-plaintext highlighter-rouge">NOWD</code> (which, as mentioned above, is created only for the testing purpose), the Mantid framework will not be able to find the IDF for the instrument no matter where we put it since the instrument name is not defined yet in Mantid. To get around with this, here is the trick. First, we want to put the IDF in the second search location mentioned above, i.e., <code class="language-plaintext highlighter-rouge">~/.mantid/instrument</code>, as <code class="language-plaintext highlighter-rouge">NOWD_Definition.xml</code>.</p>
+
+<blockquote>
+  <p>My observation is that file names like <code class="language-plaintext highlighter-rouge">NOWD_Definition_2020-05-05.xml</code> would also be accepted but the front part <code class="language-plaintext highlighter-rouge">NOWD_Definition</code> should necessarily be there.</p>
+</blockquote>
+
+<p>Then in our Mantid script, we want to use the following codes for data loading,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">mantid</span>
+<span class="n">mantid</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">updateFacilities</span><span class="p">(</span><span class="s">'~/.mantid/instrument/Facilities.xml'</span><span class="p">)</span>
+<span class="n">LoadEventNexus</span><span class="p">(</span>
+    <span class="n">Filename</span><span class="o">=</span><span class="s">"Full_path_to_nexus_data_file.nxs.h5"</span><span class="p">,</span>
+    <span class="n">LoadNexusInstrumentXML</span><span class="o">=</span><span class="bp">False</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>What we are doing here is to define a new instrument called <code class="language-plaintext highlighter-rouge">NOWD</code> in <code class="language-plaintext highlighter-rouge">~/.mantid/instrument/Facilities.xml</code> and update the facility definition through <code class="language-plaintext highlighter-rouge">mantid.config.updateFacilities</code>.</p>
+
+<blockquote>
+  <p>Somewhere in the <code class="language-plaintext highlighter-rouge">Facilities.xml</code> file, we want to put in the following section sitting parallel to the existing instrument definitions,</p>
+</blockquote>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;instrument</span> <span class="na">name=</span><span class="s">"NOWD"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;technique&gt;</span>Neutron Diffraction<span class="nt">&lt;/technique&gt;</span>
+<span class="nt">&lt;/instrument&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>One thing I noticed, which I am not sure is something accidentally happening or related to the facility updating above, is that the data loading in Mantid with something like <code class="language-plaintext highlighter-rouge">Load("PG3_61233")</code> may stop working (failed to find the data) after running the code above to update facilities. Anyhow, in case this is happening, we can try to reset the Mantid configuration. First, remove all files under <code class="language-plaintext highlighter-rouge">~/.mantid/instrument</code>, or we can just do <code class="language-plaintext highlighter-rouge">mv ~/.mantid ~/.mantid_backup</code>. Second, and probably optionally, we do <code class="language-plaintext highlighter-rouge">mv ~/.config/mantidproject ~/.config/mantidproject_backup</code>. Then we launch Mantid Workbench and set the facility (and probably the instrument) selection like shown below (in Mantid Workbench, we go to <code class="language-plaintext highlighter-rouge">Files</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">Settings</code>),</p>
+</blockquote>
+
+<p align="center">
+<img src="/assets/img/posts/mantid_settings.png" style="border:none;" width="800" alt="mantid_settings" title="mantid_settings" />
+</p>
+
+<p>Getting back to our business – as mentioned, I want to load in an existing POWGEN nexus data file but with the IDF generated by the script above, just to make sure that the generated IDF guarantees a reasonable output. By ‘reasonable’, I mean, we know the embedded IDF in an existing normal POWGEN run (e.g., diamond run <code class="language-plaintext highlighter-rouge">61233</code> from cycle <code class="language-plaintext highlighter-rouge">2025B</code>) is working well with the data processing routines. We want to check whether the IDF generation script mentioned in the current post which was created dedicatedly for testing out the new detectors to be installed would generate consistent output for the same panel with the same pixelization as what POWGEN is currently having. For such a testing, we cannot use the trick above, i.e., create a new instrument since as mentioned earlier, the instrument name is hard coded into the nexus raw data file. Therefore, we can only change the instrument name inside the nexus raw data, which may be possible but I don’t know how. In fact, we don’t have to do that. Similar trick can be used here – while loading the data, we use the flag <code class="language-plaintext highlighter-rouge">LoadNexusInstrumentXML=False</code> for <code class="language-plaintext highlighter-rouge">LoadEventNexus</code>. Then we can replace the existing IDF for POWGEN in the primary search location for Mantid. For such a purpose, the deployed Mantid on ORNL Analysis nodes cannot be used since we don’t have the write permission to the central IDF file. Instead, we have to build our own version of Mantid so we can replace the existing instrument IDF. To build Mantid locally, we first clone the source code from Ref. [4]. Then <code class="language-plaintext highlighter-rouge">cd</code> into the <code class="language-plaintext highlighter-rouge">mantid</code> source code directory and follow the steps below to build Mantid,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mamba create <span class="nt">-n</span> mantid-developer mantid/label/nightly::mantid-developer <span class="nt">-c</span> neutrons
+mamba activate mantid-developer
+cmake <span class="nt">--preset</span><span class="o">=</span>linux
+ninja
+</code></pre></div></div>
+
+<p>where we are assuming that <code class="language-plaintext highlighter-rouge">mamba</code> has already been installed. After the <code class="language-plaintext highlighter-rouge">ninja</code> step, the built Mantid Workbench can be launched via,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./build/bin/launch_mantidworkbench.sh
+</code></pre></div></div>
+
+<p>where I am assuming we are still located in the <code class="language-plaintext highlighter-rouge">mantid</code> source code directory. In this case, we can find the IDF files for instruments definition inside the <code class="language-plaintext highlighter-rouge">mantid/instrument</code> directory. We can then copy the IDF file generated above into this directory and name it as <code class="language-plaintext highlighter-rouge">POWGEN_Definition.xml</code>. Now, we get back to the issue mentioned at the very beginning – while running the script above to generate the IDF file, the generated version has some issues in the header part and also is inconsistent with what Mantid would read in naming convensions. We can refer to the following working version for a single POWGEN panel as a template and see how we can make changes on top of the generated version to make it compatible with Mantid.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?xml version='1.0' encoding='ASCII'?&gt;
+&lt;instrument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.mantidproject.org/IDF/1.0" last-modified="2019-05-03 11:30:00" name="PG3" valid-from="2018-05-05 00:00:01" valid-to="2100-01-31 23:59:59" xsi:schemaLocation="http://www.mantidproject.org/IDF/1.0 http://schema.mantidproject.org/IDF/1.0/IDFSchema.xsd"&gt;
+  &lt;!--Created by Peter Peterson, Stuart Campbell, Vickie Lynch, Janik Zikovsky--&gt;
+  &lt;!--DEFAULTS--&gt;
+  &lt;defaults&gt;
+    &lt;length unit="metre"/&gt;
+    &lt;angle unit="degree"/&gt;
+    &lt;reference-frame&gt;
+      &lt;along-beam axis="z"/&gt;
+      &lt;pointing-up axis="y"/&gt;
+      &lt;handedness val="right"/&gt;
+      &lt;theta-sign axis="x"/&gt;
+    &lt;/reference-frame&gt;
+  &lt;/defaults&gt;
+  &lt;!--SOURCE--&gt;
+  &lt;component type="moderator"&gt;
+    &lt;location z="-60.0"/&gt;
+  &lt;/component&gt;
+  &lt;type is="Source" name="moderator"/&gt;
+  &lt;!--SAMPLE--&gt;
+  &lt;component type="sample-position"&gt;
+    &lt;location x="0.0" y="0.0" z="0.0"/&gt;
+  &lt;/component&gt;
+  &lt;type is="SamplePos" name="sample-position"/&gt;
+  &lt;!--MONITORS--&gt;
+  &lt;component idlist="monitors" type="monitors"&gt;
+    &lt;location/&gt;
+  &lt;/component&gt;
+  &lt;type name="monitors"&gt;
+    &lt;component type="monitor"&gt;
+      &lt;location name="monitor1" z="-1.5077"/&gt;
+    &lt;/component&gt;
+  &lt;/type&gt;
+  &lt;component type="North"&gt;
+    &lt;location/&gt;
+  &lt;/component&gt;
+  &lt;type name="North"&gt;
+    &lt;component type="Column19"&gt;
+      &lt;location/&gt;
+    &lt;/component&gt;
+  &lt;/type&gt;
+  &lt;type name="Column19"&gt;
+    &lt;component type="panel_v2" idstart="945000" idfillbyfirst="y" idstepbyrow="7"&gt;
+      &lt;location x="3.12909225" y="-0.002533500000000001" z="1.4632537499999998" name="bank64"&gt;
+        &lt;rot val="-227.86240522620878" axis-x="0" axis-y="1" axis-z="0"&gt;
+          &lt;rot val="-0.03482584795584898"&gt;
+            &lt;rot val="-231.36366852720275" axis-x="0" axis-y="1" axis-z="0"/&gt;
+          &lt;/rot&gt;
+        &lt;/rot&gt;
+      &lt;/location&gt;
+    &lt;/component&gt;
+  &lt;/type&gt;
+  &lt;!-- Gen2 Detector Panel (7x154)--&gt;
+  &lt;type name="panel_v2" is="rectangular_detector" type="pixel_v2" xpixels="154" xstart="-0.3825" xstep="0.005" ypixels="7" ystart="-0.1629" ystep="0.0543"&gt;
+    &lt;properties/&gt;
+  &lt;/type&gt;
+  &lt;!-- Shape for Monitors--&gt;
+  &lt;!-- TODO: Update to real shape --&gt;
+  &lt;type name="monitor" is="monitor"&gt;
+    &lt;cylinder id="cyl-approx"&gt;
+      &lt;centre-of-bottom-base p="0.0" r="0.0" t="0.0"/&gt;
+      &lt;axis x="0.0" y="0.0" z="1.0"/&gt;
+      &lt;radius val="0.01"/&gt;
+      &lt;height val="0.03"/&gt;
+    &lt;/cylinder&gt;
+    &lt;algebra val="cyl-approx"/&gt;
+  &lt;/type&gt;
+  &lt;!-- Pixel for Gen2 Detectors (7x154)--&gt;
+  &lt;type name="pixel_v2" is="detector"&gt;
+    &lt;cuboid id="pixel-shape"&gt;
+      &lt;left-front-bottom-point x="-0.0025" y="-0.02715" z="0.0"/&gt;
+      &lt;left-front-top-point x="-0.0025" y="0.02715" z="0.0"/&gt;
+      &lt;left-back-bottom-point x="-0.0025" y="-0.02715" z="-0.0001"/&gt;
+      &lt;right-front-bottom-point x="0.0025" y="-0.02715" z="0.0"/&gt;
+    &lt;/cuboid&gt;
+    &lt;algebra val="pixel-shape"/&gt;
+  &lt;/type&gt;
+  &lt;!--MONITOR IDs--&gt;
+  &lt;idlist idname="monitors"&gt;
+    &lt;id val="-1"/&gt;
+  &lt;/idlist&gt;
+&lt;/instrument&gt;
+</code></pre></div></div>
+
+<p>Basically, we can replace the whole top part (contents above the <code class="language-plaintext highlighter-rouge">&lt;type name="Column19"&gt;</code> line) in the generated IDF with the top part shared above. Then if we load the nexus data like this,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">LoadEventNexus</span><span class="p">(</span>
+    <span class="n">Filename</span><span class="o">=</span><span class="s">"Full_path_to_nexus_data_file.nxs.h5"</span><span class="p">,</span>
+    <span class="n">LoadNexusInstrumentXML</span><span class="o">=</span><span class="bp">False</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Only the events collected on the single panel will be loaded and all the other events will be ignored.</p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://github.com/mantidproject/mantidgeometry/tree/main">https://github.com/mantidproject/mantidgeometry/tree/main</a></p>
+
+<p>[2] <a href="https://github.com/Kvieta1990/mantidgeometry/tree/powgen_gen2">https://github.com/Kvieta1990/mantidgeometry/tree/powgen_gen2</a></p>
+
+<p>[3] <a href="https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html">https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html</a></p>
+
+<p>[4] <a href="https://github.com/mantidproject/mantid">https://github.com/mantidproject/mantid</a></p>
+
+<p>[5] <a href="https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#setup-the-mantid-conda-environment">https://developer.mantidproject.org/GettingStarted/GettingStartedCondaLinux.html#setup-the-mantid-conda-environment</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#scattering">scattering</a>
+          
+            <a href="/tags#dev">dev</a>
+          
+            <a href="/tags#technical">technical</a>
+          
+            <a href="/tags#diffraction">diffraction</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Instrument+Geometry+in+Mantid+Framework&url=http%3A%2F%2Flocalhost%3A4000%2F2025-10-17-mantid_geometry%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-10-17-mantid_geometry%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-10-17-mantid_geometry%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2025-08-25-gsasii_scriptable/" data-toggle="tooltip" data-placement="top" title="Running GSAS-II Scriptable Refinement">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
