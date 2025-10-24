@@ -39,10 +39,10 @@ subtitle: Updates to all services I am maintaining
 
 |                   | Status | Details |
 |-------------------|--------|---------|
-| ADDIE             | ✅      |         |
-| Powder Doc        | ✅      |         |
-| Powder JupyterHub | ✅      |         |
-| Powder Forum      | ✅      |         |
+| ADDIE             |       | ❌        |
+| Powder Doc        |       | ❌        |
+| Powder JupyterHub |       | ❌        |
+| Powder Forum      |       | ❌        |
 | RMCProfile        | ✅      |         |
 
 ***Monitor the services status*** <a href="https://uptime.ornl.gov/status/resources" target="_blank">here</a>.
@@ -58,6 +58,10 @@ subtitle: Updates to all services I am maintaining
 📝 - Update, planned or executed updates to services and tools
 
 <hr class="thick-line">
+
+⚠️ ***[10/24/2025 09:47:53 EDT]*** Cloud instances for hosting the services are running into issues. Working in progress to restore the service as soon as we can.
+
+<br>
 
 📝 ***[07/18/2025 12:33:54 EST]*** Analysis cluster monitor tool for monitoring the available system resources on available nodes, [https://addie.ornl.gov/analysis_mon](https://addie.ornl.gov/analysis_mon).
 
