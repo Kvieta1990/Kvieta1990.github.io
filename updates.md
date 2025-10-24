@@ -59,7 +59,7 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
-⚠️ ***[10/24/2025 13:47:51 EDT]*** Issues for all the servers are now solved. All services back to normal.
+📝 ***[10/24/2025 13:47:51 EDT]*** Issues for all the servers are now solved. All services back to normal.
 
 <br>
 
