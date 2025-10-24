@@ -39,10 +39,10 @@ subtitle: Updates to all services I am maintaining
 
 |                   | Status | Details |
 |-------------------|--------|---------|
-| ADDIE             |       | ❌        |
-| Powder Doc        |       | ❌        |
-| Powder JupyterHub |       | ❌        |
-| Powder Forum      |       | ❌        |
+| ADDIE             | ✅      |         |
+| Powder Doc        | ✅      |         |
+| Powder JupyterHub | ✅      |         |
+| Powder Forum      | ✅      |         |
 | RMCProfile        | ✅      |         |
 
 ***Monitor the services status*** <a href="https://uptime.ornl.gov/status/resources" target="_blank">here</a>.
@@ -58,6 +58,10 @@ subtitle: Updates to all services I am maintaining
 📝 - Update, planned or executed updates to services and tools
 
 <hr class="thick-line">
+
+⚠️ ***[10/24/2025 13:47:51 EDT]*** Issues for all the servers are now solved. All services back to normal.
+
+<br>
 
 ⚠️ ***[10/24/2025 13:23:19 EDT]*** Seems it is not a quick fix on the server side. Temporarily, the powder diffraction doc site can be accessed via, [https://powder.iris-home.net](https://powder.iris-home.net).
 
