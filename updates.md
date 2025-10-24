@@ -59,6 +59,10 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
+⚠️ ***[10/24/2025 13:23:19 EDT]*** Seems it is not a quick fix on the server side. Temporarily, the powder diffraction doc site can be accessed via, [https://powder.iris-home.net](https://powder.iris-home.net).
+
+<br>
+
 ⚠️ ***[10/24/2025 09:47:53 EDT]*** Cloud instances for hosting the services are running into issues. Working in progress to restore the service as soon as we can.
 
 <br>
