@@ -30,7 +30,7 @@ Regarding the construction of the ion diffusion pathway from a structure configu
 
 - The ion diffusion pathway is then just the isosurface corresponding to a pre-defined energy value.
 
-Such a theoretical framework based on the BV method for ion diffusion pathway construction is implemented in the `BondStr` program in the `Fullprof Suite` [3, 4]. Using the program is straightforward, but still there are some technical details to pay attention to get it working. First, we need to install the `Fullprof Suite`, which can be downloaded from their website [5]. The program is available on all Windows, Linux and MacOS -- I am only using its Windows version and am not sure how robust it is working on Linux or MacOS. Once installed and launched, we should see the following interface of the program,
+Such a theoretical framework based on the BV method for ion diffusion pathway construction is implemented in the `BondStr` program in the `Fullprof Suite` [3, 4]. Using the program is straightforward, but still there are some technical details to pay attention to get it working. First, we need to install the `Fullprof Suite`, which can be downloaded from their website [6]. The program is available on all Windows, Linux and MacOS -- I am only using its Windows version and am not sure how robust it is working on Linux or MacOS. Once installed and launched, we should see the following interface of the program,
 
 <p align='center'>
 <img src="/assets/img/posts/fullprof_bondstr.png"
@@ -50,7 +50,7 @@ Regarding the purpose here, we want to click on the button as indicated by the r
    title="fullprof_bondstr_gui" />
 </p>
 
-To use the program, there may be multiple workflow and here I am only putting down the one that I believe should be most common one. To start, we need a CIF file for the structure we want to analyze, and here I am using the example used in Ref. [4] and the CIF file can be downloaded [here](../assets/files/LiFePO4.cif). In the GUI, we go to `File` $$\Rightarrow$$ `Import CIF`, and select the CIF we want to analyze. With the example CIF file here, the interface will now look like,
+To use the program, there may be multiple workflow and here I am only putting down the one that I believe should be most common one. To start, we need a CIF file for the structure we want to analyze, and here I am using the example used in Ref. [4] and the CIF file can be downloaded [here](../assets/files/LiFePO4.cif) [5]. In the GUI, we go to `File` $$\Rightarrow$$ `Import CIF`, and select the CIF we want to analyze. With the example CIF file here, the interface will now look like,
 
 <p align='center'>
 <img src="/assets/img/posts/fullprof_bondstr_gui_loaded.png"
@@ -133,4 +133,6 @@ References
 
 [4] [BondStr presentation](../assets/files/6-BVEL-BVS-BondStr.pdf)
 
-[5] [https://www.ill.eu/sites/fullprof/](https://www.ill.eu/sites/fullprof/)
+[5] [https://code.ill.eu/scientific-software/crysfml/-/tree/Thierry/Program_Examples/BondStr/Examples](https://code.ill.eu/scientific-software/crysfml/-/tree/Thierry/Program_Examples/BondStr/Examples)
+
+[6] [https://www.ill.eu/sites/fullprof/](https://www.ill.eu/sites/fullprof/)
