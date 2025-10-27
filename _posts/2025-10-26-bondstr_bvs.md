@@ -127,7 +127,7 @@ As a technical note, here I also want to put down the problem and solution that 
 <p align='center'>
 <img src="/assets/img/posts/vesta_compatibility.png"
    style="border:none;"
-   width="800"
+   width="500"
    alt="vesta_compatibility"
    title="vesta_compatibility" />
 </p>
