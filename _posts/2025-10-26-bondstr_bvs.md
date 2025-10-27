@@ -122,6 +122,16 @@ A demonstration video covering the basic procedures discussed in current post ca
   </a>
 </div>
 
+As a technical note, here I also want to put down the problem and solution that I recently found with the `VESTA` program. With the most recent Windows 11 system, `VESTA` would not launch normally -- sometimes I had to launch the program multiple times before it can load in the CIF file or open the `.vesta` file without crashing. Not sure exactly from which version of Windows did the problem start to show up, but at least my current version of Windows 11 (Windows 11 Pro, Version 25H2, OS build 2600.6901) does show the issue with `VESTA`. In case the problem does happen, we can press `[Enter]` to bring up the start menu, search for `vesta` and right click on the icon to further click on `Open file location`. Then we should see the `VESTA` shortcut in the appearing folder. Right click on the shortcut, click on `Show more options` and then click on `Properties`. Then go to the `Compatibility` tab and check `Run this program in Compatibility mode for:`. In the dropdown selection, we can choose `Windows 8` (see the image below). This does solve the `VESTA` crashing issue for me.
+
+<p align='center'>
+<img src="/assets/img/posts/vesta_compatibility.png"
+   style="border:none;"
+   width="800"
+   alt="vesta_compatibility"
+   title="vesta_compatibility" />
+</p>
+
 References
 ===
 
