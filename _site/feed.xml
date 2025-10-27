@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Bond Valence Energy Landscape Calculation with the BondStr Program in Fullprof Suite</title>
+        <description>
+          
+          Understanding ion diffusion is essential in battery materials research and characterizing diffusion pathways is critical for rational materials design and optimization. While using the diffraction technique for the characterization of battery materials, we could obtain the refined structure configuration via fitting the diffraction data, with the small-box or big-box approach,...
+        </description>
+        <pubDate>Sun, 26 Oct 2025 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2025-10-26-bondstr_bvs/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-10-26-bondstr_bvs/</guid>
+      </item>
+    
+      <item>
         <title>Instrument Geometry in Mantid Framework</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Thu, 30 Jan 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-01-30-1panel_cloudflare/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-01-30-1panel_cloudflare/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on the development environment setup for RMCProfile</title>
-        <description>
-          
-          This blog is for noting down the technical details about the RMCProfile package building. This is not intended to be a tutorial so it won’t cover all the nitty-gritties. Instead, only some key aspects will be noted down for future reference. The ARM64 package is built on my personal VPS...
-        </description>
-        <pubDate>Tue, 28 Jan 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2025-01-28-rmcprofile_dev_env_gen/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-01-28-rmcprofile_dev_env_gen/</guid>
       </item>
     
   </channel>
