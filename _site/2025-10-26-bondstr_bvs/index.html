@@ -99,7 +99,7 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2025-10-26T00:00:00-04:00">
+  <meta property="og:article:published_time" content="2025-10-26T00:00:00-05:00">
   <meta property="og:url" content="http://localhost:4000/2025-10-26-bondstr_bvs/">
   <link rel="canonical" href="http://localhost:4000/2025-10-26-bondstr_bvs/">
   
@@ -395,6 +395,72 @@ if (chromeAgent) {
   </a></p>
 </div>
 
+<p>As a technical note, here I also want to put down the problem and solution that I recently found with the <code class="language-plaintext highlighter-rouge">VESTA</code> program. With the most recent Windows 11 system, <code class="language-plaintext highlighter-rouge">VESTA</code> would not launch normally – sometimes I had to launch the program multiple times before it can load in the CIF file or open the <code class="language-plaintext highlighter-rouge">.vesta</code> file without crashing. Not sure exactly from which version of Windows did the problem start to show up, but at least my current version of Windows 11 (Windows 11 Pro, Version 25H2, OS build 2600.6901) does show the issue with <code class="language-plaintext highlighter-rouge">VESTA</code>. In case the problem does happen, we can press <code class="language-plaintext highlighter-rouge">[Enter]</code> to bring up the start menu, search for <code class="language-plaintext highlighter-rouge">vesta</code> and right click on the icon to further click on <code class="language-plaintext highlighter-rouge">Open file location</code>. Then we should see the <code class="language-plaintext highlighter-rouge">VESTA</code> shortcut in the appearing folder. Right click on the shortcut, click on <code class="language-plaintext highlighter-rouge">Show more options</code> and then click on <code class="language-plaintext highlighter-rouge">Properties</code>. Then go to the <code class="language-plaintext highlighter-rouge">Compatibility</code> tab and check <code class="language-plaintext highlighter-rouge">Run this program in Compatibility mode for:</code>. In the dropdown selection, we can choose <code class="language-plaintext highlighter-rouge">Windows 8</code> (see the image below). This does solve the <code class="language-plaintext highlighter-rouge">VESTA</code> crashing issue for me.</p>
+
+<p align="center">
+<img src="/assets/img/posts/vesta_compatibility.png" style="border:none;" width="500" alt="vesta_compatibility" title="vesta_compatibility" />
+</p>
+
+<hr />
+
+<p align="center">
+Updates @ 11/03/2025 22:50:37 EST
+</p>
+
+<hr />
+
+<p>The <code class="language-plaintext highlighter-rouge">Bond_Str</code> GUI sometimes would fail to handle CIF files. Even though, it is still hopeful that the backend executable can be used for the calculation. It is just that we need some more manual configurations. Initially, we can still try to import a CIF file following the instruction above. Ignoring whatever error message popping up, we can then go to the saving directory of the imported CIF file and there we will find a <code class="language-plaintext highlighter-rouge">.cfl</code> file with the same stem name as the import CIF file being generated in the same directory. Some of the contents in the generated <code class="language-plaintext highlighter-rouge">.cfl</code> file may be problematic blocking the BVS calculation. However, the atom lines can still be used. Next, we want to go back to the <code class="language-plaintext highlighter-rouge">Bond_Str</code> GUI, import a working CIF (e.g., the example CIF given above), follow the instructions above to make changes to atom labels, fill in necessary calculation parameters, perform the calculation, and then check out the accordingly generated <code class="language-plaintext highlighter-rouge">.cfl</code> file. Here, we want to save the working <code class="language-plaintext highlighter-rouge">.cfl</code> file to another file (to be used for our own sample configuration), go back to the previouly generated problematic <code class="language-plaintext highlighter-rouge">.cfl</code> file, copy the atom lines into the just saved new <code class="language-plaintext highlighter-rouge">.cfl</code> file to replace those atom lines originating from the working CIF. Then we also need to update the title, cell parameters, space group and those <code class="language-plaintext highlighter-rouge">BVEL</code> parameters to be consistent with our sample configuration. This way, we just manually make a working version of <code class="language-plaintext highlighter-rouge">.cfl</code> file which can be run with the <code class="language-plaintext highlighter-rouge">bond_str</code> executable from the command line. On Windows, if we right click on the <code class="language-plaintext highlighter-rouge">FullProf_Suite</code> shortcut from the start menu and trace all the way to the installation directory of the program by selecting <code class="language-plaintext highlighter-rouge">Open file location</code>, we should be able to find the <code class="language-plaintext highlighter-rouge">bond_str</code> executable. Not sure about MacOS or Linux but I guess it should not be super difficult to find the executable somewhere in the <code class="language-plaintext highlighter-rouge">FullProf_Suite</code> installation directory, e.g., on MacOS, if we choose to <code class="language-plaintext highlighter-rouge">Show Contents</code> by right clicking on the <code class="language-plaintext highlighter-rouge">FullProf_Suite</code> app inside the <code class="language-plaintext highlighter-rouge">/Applications</code> directory, we can launch the terminal app there in the directory and use the <code class="language-plaintext highlighter-rouge">find</code> command to look for <code class="language-plaintext highlighter-rouge">bond_str</code>, like <code class="language-plaintext highlighter-rouge">find . -name 'bond_str'</code>. Once we have the <code class="language-plaintext highlighter-rouge">bond_str</code> executable located, it can be executed from the terminal like,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/path/to/bond_str &lt;name&gt;.cfl
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">&lt;name&gt;.cfl</code> refers to the previously hand-crafted <code class="language-plaintext highlighter-rouge">.cfl</code> file. In fact, before running the program, for sure we need to manually add in charges of elements by editing the <code class="language-plaintext highlighter-rouge">Species</code> column in those atom lines (usually it is the 3rd column) to make it something like <code class="language-plaintext highlighter-rouge">Li+1</code>, <code class="language-plaintext highlighter-rouge">Fe+2</code>, <code class="language-plaintext highlighter-rouge">O-2</code>, etc.</p>
+
+<p>Sometimes, we would still have issues with the calculation due to, e.g., potential parameters not defined in the database. For example, the <code class="language-plaintext highlighter-rouge">Fe+2-N-3</code> pair potential is not defined, in which case we need to manually put in the parameters for those missing parameters for certain pairs. The potential parameter line should be like this,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BVELPAR FE+2 N-3 6 1.76 5 4.4621 1.96 1.59
+</code></pre></div></div>
+
+<p>The parameters come in the following order,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cation Anion CN R0 Cutoff D0 Rmin Alpha
+</code></pre></div></div>
+
+<p>where the <code class="language-plaintext highlighter-rouge">CN</code> (for coordination number) and <code class="language-plaintext highlighter-rouge">Cutoff</code> parameters are not used for the potential calculation – they should still be provided for maintaining the format of the information provided in the output file [3]. The <code class="language-plaintext highlighter-rouge">R0</code> parameter is just the <code class="language-plaintext highlighter-rouge">R0</code> parameter in the BVS calculation [7]. The <code class="language-plaintext highlighter-rouge">D0</code>, <code class="language-plaintext highlighter-rouge">Rmin</code> and <code class="language-plaintext highlighter-rouge">Alpha</code> parameters are those in the Morse potential given in the following form,</p>
+
+\[E = D_0 \big[[e^{Alpha \cdot (R_{min} - d)} - 1]^2 - 1\big]\]
+
+<p><strong><em>N.B.</em></strong> We need to find the Morse potential parameters for a specific atom pair from the literature pool. Also, we need to pay attention to the unit of those parameters – <code class="language-plaintext highlighter-rouge">bond_str</code> is expecting <code class="language-plaintext highlighter-rouge">D0</code> with the unit of <code class="language-plaintext highlighter-rouge">eV</code>, \(Å^{-1}\) for <code class="language-plaintext highlighter-rouge">Alpha</code>, and <code class="language-plaintext highlighter-rouge">Å</code> for <code class="language-plaintext highlighter-rouge">Rmin</code>. It should be noted that sometimes in the literature, the <code class="language-plaintext highlighter-rouge">D0</code> parameter would be given in the unit of <code class="language-plaintext highlighter-rouge">kcal/mol</code> – refer to Ref. [8] for the conversion between energy units.</p>
+
+<p>As the last step (hopefully), we also need to include potential parameters for those atom pairs of which the parameters already exist in the database (hard coded into the program) – the thing is, it seems that the program is expect the manual input for all pairs once the <code class="language-plaintext highlighter-rouge">BVELPAR</code> line is given in the <code class="language-plaintext highlighter-rouge">.cfl</code> file. Here comes a little trick – in the hand-crafted <code class="language-plaintext highlighter-rouge">.cfl</code> file, we can remove all those atoms involved in the pair for which the potential parameters are not defined, save the <code class="language-plaintext highlighter-rouge">.cfl</code> to a temporary version and run <code class="language-plaintext highlighter-rouge">bond_str</code> with the temporary <code class="language-plaintext highlighter-rouge">.cfl</code> file. Once the calculation is done, we will be brought up with an output window from which we can find the potential parameters for atom pairs, like shown below,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+
+Bond-Valence Energy parameters (D0,Rmin,alpha) for Morse Potential:  D0*[{exp(alpha(Rmin-d))-1}^2-1]
+   (data read from internal table, provided by the user or calculated from softBVS parameters)
+
+ Morse parameters obtained from internal table
+
+   Type  1: FE+2 with type  4: O-2 
+    D0  =  1.69269       Rmin =  1.96005  Alpha =  2.08333
+  Av. Coord.=  5.74300    R0  =  1.57911   R-cutoff =  5.50000   =&gt; Reference: S. Adams and R. Prasada Rao, (2011) Phys. Status Solidi A 208, No. 8, 1746-1753
+   Cation (Eff. radius): FE+2( 1.260)      Anion  (Eff. radius): O-2 ( 1.330)
+
+   Type  2: LI+1 with type  4: O-2 
+    D0  =  0.98816       Rmin =  1.94001  Alpha =  1.93798
+  Av. Coord.=  5.02100    R0  =  1.17096   R-cutoff =  5.50000   =&gt; Reference: S. Adams and R. Prasada Rao, (2011) Phys. Status Solidi A 208, No. 8, 1746-1753
+   Cation (Eff. radius): LI+1( 1.310)      Anion  (Eff. radius): O-2 ( 1.330)
+
+   Type  3: P+5  with type  4: O-2 
+    D0  =  3.89635       Rmin =  1.44066  Alpha =  2.28833
+  Av. Coord.=  4.00000    R0  =  1.62038   R-cutoff =  5.00000   =&gt; Reference: S. Adams and R. Prasada Rao, (2011) Phys. Status Solidi A 208, No. 8, 1746-1753
+   Cation (Eff. radius): P+5 ( 1.100)      Anion  (Eff. radius): O-2 ( 1.330)
+
+...
+</code></pre></div></div>
+
+<p>Grabbing the potential parameters from the output, we can then put in the <code class="language-plaintext highlighter-rouge">BVELPAR</code> line for all atom pairs. Then, <code class="language-plaintext highlighter-rouge">bond_str</code> should be able to run with the hand-crafted <code class="language-plaintext highlighter-rouge">.cfl</code> file.</p>
+
 <h1 id="references">References</h1>
 
 <p>[1] <a href="https://doi.org/10.1107/S0021889812032906">M. Sale and M. Avdeev, <em>J. Appl. Cryst.</em> (2012). <strong>45</strong>, 1054–1056.</a></p>
@@ -408,6 +474,10 @@ if (chromeAgent) {
 <p>[5] <a href="https://code.ill.eu/scientific-software/crysfml/-/tree/Thierry/Program_Examples/BondStr/Examples">https://code.ill.eu/scientific-software/crysfml/-/tree/Thierry/Program_Examples/BondStr/Examples</a></p>
 
 <p>[6] <a href="https://www.ill.eu/sites/fullprof/">https://www.ill.eu/sites/fullprof/</a></p>
+
+<p>[7] <a href="https://www.iucr.org/resources/data/datasets/bond-valence-parameters">https://www.iucr.org/resources/data/datasets/bond-valence-parameters</a></p>
+
+<p>[8] <a href="https://wild.life.nctu.edu.tw/class/common/energy-unit-conv-table.html">https://wild.life.nctu.edu.tw/class/common/energy-unit-conv-table.html</a></p>
 
       </article>
 

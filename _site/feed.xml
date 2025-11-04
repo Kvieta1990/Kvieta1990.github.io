@@ -17,7 +17,7 @@
           
           Understanding ion diffusion is essential in battery materials research and characterizing diffusion pathways is critical for rational materials design and optimization. While using the diffraction technique for the characterization of battery materials, we could obtain the refined structure configuration via fitting the diffraction data, with the small-box or big-box approach,...
         </description>
-        <pubDate>Sun, 26 Oct 2025 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 26 Oct 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-10-26-bondstr_bvs/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-10-26-bondstr_bvs/</guid>
       </item>
@@ -28,7 +28,7 @@
           
           For time of flight (TOF) neutorn diffractometers, the raw data are recorded in events – an event means a certain detector is having a neutron hitting at a certain time point. Sayting this, to pin down an event, we need two pieces of basic information, namely time and location, defining...
         </description>
-        <pubDate>Fri, 17 Oct 2025 00:00:00 -0400</pubDate>
+        <pubDate>Fri, 17 Oct 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-10-17-mantid_geometry/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-10-17-mantid_geometry/</guid>
       </item>
@@ -39,7 +39,7 @@
           
           GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. Conveniently, it provides the scriptable interface so that we can perform the refinement in a programming way. This is pretty handy when some batch...
         </description>
-        <pubDate>Mon, 25 Aug 2025 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 25 Aug 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-08-25-gsasii_scriptable/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-08-25-gsasii_scriptable/</guid>
       </item>
@@ -50,7 +50,7 @@
           
           CloudCone is one of the companies providing cheap-access VPS for personal usage to host web services that do not require high-end computations. Here in this note, I will put down some setup notes on configuring a budget VPS on CloudCone and use it for hosting some web services. First, we...
         </description>
-        <pubDate>Mon, 18 Aug 2025 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 18 Aug 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-08-18-cloudcone_setup/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-08-18-cloudcone_setup/</guid>
       </item>
@@ -61,7 +61,7 @@
           
           GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. Here I am sharing my working pipeline to get GSAS-II working on my Linux machine of Ubuntu distro. FYI, here below is listed my...
         </description>
-        <pubDate>Fri, 01 Aug 2025 00:00:00 -0400</pubDate>
+        <pubDate>Fri, 01 Aug 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-08-01-gsasii_on_linux/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-08-01-gsasii_on_linux/</guid>
       </item>
@@ -72,7 +72,7 @@
           
           In this post, I will be covering the application packaging on MacOS. It involves multiple stage of efforts, concerning the library path configuration, application folder packaging, release package preparation, and application notarization &amp;amp; signature. Here I am taking our RMCProfile package (a package for neutron total scattering data analysis, see...
         </description>
-        <pubDate>Fri, 11 Jul 2025 00:00:00 -0400</pubDate>
+        <pubDate>Fri, 11 Jul 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-07-11-mac_app_distribution/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-07-11-mac_app_distribution/</guid>
       </item>
@@ -83,7 +83,7 @@
           
           In this post, I will put together the technical notes about several tools for remote connection. This is just a record of my strugglings with each of them while setting them up on different operating systems. Some of the notes may be very specific to my case but some of...
         </description>
-        <pubDate>Thu, 26 Jun 2025 00:00:00 -0400</pubDate>
+        <pubDate>Thu, 26 Jun 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-06-26-remote_connect/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-06-26-remote_connect/</guid>
       </item>
@@ -94,7 +94,7 @@
           
           Before we dive into the topic, I am sharing several of my typical needs that lead me to learn about something like netbird. From my home network, I want to connect to the machines inside the firewall of my work place. For some companies, it may be possible to install...
         </description>
-        <pubDate>Mon, 23 Jun 2025 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 23 Jun 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-06-23-netbird_notes/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-06-23-netbird_notes/</guid>
       </item>
@@ -105,7 +105,7 @@
           
           When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...
         </description>
-        <pubDate>Sun, 15 Jun 2025 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 15 Jun 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-06-15-selection_rule/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-06-15-selection_rule/</guid>
       </item>
@@ -116,7 +116,7 @@
           
           Yes, now we can run Windows in a docker container. That means we can access the Windows operating system from the web, thanks to the Windows docker image provided in Ref. [1]. Based on the instructions provided in Ref. [1], here follows is my docker compose file to start up...
         </description>
-        <pubDate>Sat, 14 Jun 2025 00:00:00 -0400</pubDate>
+        <pubDate>Sat, 14 Jun 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-06-14-windows_in_docker/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-06-14-windows_in_docker/</guid>
       </item>
@@ -127,7 +127,7 @@
           
           Today is May-20-2025. In Chinese, the pronunciation of ‘May-20’ is similar to ‘I love you’ so today is usually the day to express the love between boyfriend and girlfriend, wife and husband. Love you! My beloved Xin! Nowadays, more and more web services are implementing the two-factor authentication (2FA, or...
         </description>
-        <pubDate>Tue, 20 May 2025 00:00:00 -0400</pubDate>
+        <pubDate>Tue, 20 May 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-05-20-totp_code_gen/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-05-20-totp_code_gen/</guid>
       </item>
@@ -138,7 +138,7 @@
           
           This post will go over the steps for setting up the local development for nova, which is a frontend interface platform at ORNL that interacts with the backend Galaxy workflow platform. First, set up the conda environment, [CONDA_SUBDIR=osx-64] conda create -n pdiffvis -c conda-forge -c mantid python=3.10 mantid poetry conda...
         </description>
-        <pubDate>Fri, 09 May 2025 00:00:00 -0400</pubDate>
+        <pubDate>Fri, 09 May 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-05-09-nova_dev/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-05-09-nova_dev/</guid>
       </item>
@@ -149,7 +149,7 @@
           
           Here in this post, I am writing down notes regarding the configuration of a Mantid live reduction service locally. By ‘locally’, I mean the service can be managed by a local user, instead a system-wise one for which the management would require a sudo privilege. Relevant scripts are stored in...
         </description>
-        <pubDate>Mon, 21 Apr 2025 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 21 Apr 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-04-21-mantid_livered/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-04-21-mantid_livered/</guid>
       </item>
@@ -160,7 +160,7 @@
           
           Here in this post, I will put down the instructions for setting up the local developing environment for GSAS-II. See the legacy instructions in my previous post here for the old version of the source codes. Conda Environment Setup conda create -n gsasii_dev conda activate gsasii_dev conda install python numpy...
         </description>
-        <pubDate>Mon, 21 Apr 2025 00:00:00 -0400</pubDate>
+        <pubDate>Mon, 21 Apr 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-04-21-gsasii_dev_new/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-04-21-gsasii_dev_new/</guid>
       </item>
@@ -171,7 +171,7 @@
           
           GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. It is possible to grab the source codes of GSAS-II, develop and test it locally. This post covers the steps to set up the...
         </description>
-        <pubDate>Tue, 18 Mar 2025 00:00:00 -0400</pubDate>
+        <pubDate>Tue, 18 Mar 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-03-18-gsasii_dev/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-03-18-gsasii_dev/</guid>
       </item>
@@ -182,7 +182,7 @@
           
           In this blog, I will be noting down some useful configurations, tips and tricks for all the operating systems that I have been using along the way. I am a big fan of nothing, but at the same time I am also a big fan of everything. So in my...
         </description>
-        <pubDate>Sun, 16 Mar 2025 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 16 Mar 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-03-16-os_configs/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-03-16-os_configs/</guid>
       </item>
@@ -193,7 +193,7 @@
           
           In a previous post (here), I was going through the process of setting up the Dify server with docker. To remind ourselves, Dify is a web-based service with which we can set up own AI agent and workflows, through the APIs of various LLM models. Here in this post, I...
         </description>
-        <pubDate>Sun, 16 Mar 2025 00:00:00 -0400</pubDate>
+        <pubDate>Sun, 16 Mar 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-03-16-dify_config/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-03-16-dify_config/</guid>
       </item>
@@ -204,7 +204,7 @@
           
           When neutrons interact with a measured sample, scattering is one type of the interaction, while absorption is another type. However, for a scattering measurement, the absorption effect ‘steals’ part of the intensity that should belong to the scattering intensity. Therefore, without the correction for the absorption effect, the measured intensity...
         </description>
-        <pubDate>Wed, 12 Feb 2025 00:00:00 -0400</pubDate>
+        <pubDate>Wed, 12 Feb 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-02-12-abs_geo/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-02-12-abs_geo/</guid>
       </item>
@@ -215,7 +215,7 @@
           
           Here in the blog, I will covering how to build a local version of Mantid and use it with python. For example, we may have a Python script which uses some Mantid algorithm. On ORNL Analysis cluster, a certain version of Mantid framework has been deployed and we can execute...
         </description>
-        <pubDate>Fri, 31 Jan 2025 00:00:00 -0400</pubDate>
+        <pubDate>Fri, 31 Jan 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-01-31-mantid_local_python/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-01-31-mantid_local_python/</guid>
       </item>
@@ -226,7 +226,7 @@
           
           1Panel is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with docker as the backend engine). I have my own server hosted on...
         </description>
-        <pubDate>Thu, 30 Jan 2025 00:00:00 -0400</pubDate>
+        <pubDate>Thu, 30 Jan 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-01-30-1panel_cloudflare/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-01-30-1panel_cloudflare/</guid>
       </item>

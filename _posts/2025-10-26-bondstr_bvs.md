@@ -132,6 +132,72 @@ As a technical note, here I also want to put down the problem and solution that 
    title="vesta_compatibility" />
 </p>
 
+---
+
+<p align='center'>
+Updates @ 11/03/2025 22:50:37 EST
+</p>
+
+---
+
+The `Bond_Str` GUI sometimes would fail to handle CIF files. Even though, it is still hopeful that the backend executable can be used for the calculation. It is just that we need some more manual configurations. Initially, we can still try to import a CIF file following the instruction above. Ignoring whatever error message popping up, we can then go to the saving directory of the imported CIF file and there we will find a `.cfl` file with the same stem name as the import CIF file being generated in the same directory. Some of the contents in the generated `.cfl` file may be problematic blocking the BVS calculation. However, the atom lines can still be used. Next, we want to go back to the `Bond_Str` GUI, import a working CIF (e.g., the example CIF given above), follow the instructions above to make changes to atom labels, fill in necessary calculation parameters, perform the calculation, and then check out the accordingly generated `.cfl` file. Here, we want to save the working `.cfl` file to another file (to be used for our own sample configuration), go back to the previouly generated problematic `.cfl` file, copy the atom lines into the just saved new `.cfl` file to replace those atom lines originating from the working CIF. Then we also need to update the title, cell parameters, space group and those `BVEL` parameters to be consistent with our sample configuration. This way, we just manually make a working version of `.cfl` file which can be run with the `bond_str` executable from the command line. On Windows, if we right click on the `FullProf_Suite` shortcut from the start menu and trace all the way to the installation directory of the program by selecting `Open file location`, we should be able to find the `bond_str` executable. Not sure about MacOS or Linux but I guess it should not be super difficult to find the executable somewhere in the `FullProf_Suite` installation directory, e.g., on MacOS, if we choose to `Show Contents` by right clicking on the `FullProf_Suite` app inside the `/Applications` directory, we can launch the terminal app there in the directory and use the `find` command to look for `bond_str`, like `find . -name 'bond_str'`. Once we have the `bond_str` executable located, it can be executed from the terminal like,
+
+```
+/path/to/bond_str <name>.cfl
+```
+
+where `<name>.cfl` refers to the previously hand-crafted `.cfl` file. In fact, before running the program, for sure we need to manually add in charges of elements by editing the `Species` column in those atom lines (usually it is the 3rd column) to make it something like `Li+1`, `Fe+2`, `O-2`, etc.
+
+Sometimes, we would still have issues with the calculation due to, e.g., potential parameters not defined in the database. For example, the `Fe+2-N-3` pair potential is not defined, in which case we need to manually put in the parameters for those missing parameters for certain pairs. The potential parameter line should be like this,
+
+```
+BVELPAR FE+2 N-3 6 1.76 5 4.4621 1.96 1.59
+```
+
+The parameters come in the following order,
+
+```
+Cation Anion CN R0 Cutoff D0 Rmin Alpha
+```
+
+where the `CN` (for coordination number) and `Cutoff` parameters are not used for the potential calculation -- they should still be provided for maintaining the format of the information provided in the output file [3]. The `R0` parameter is just the `R0` parameter in the BVS calculation [7]. The `D0`, `Rmin` and `Alpha` parameters are those in the Morse potential given in the following form,
+
+$$
+E = D_0 \big[[e^{Alpha \cdot (R_{min} - d)} - 1]^2 - 1\big]
+$$
+
+***N.B.*** We need to find the Morse potential parameters for a specific atom pair from the literature pool. Also, we need to pay attention to the unit of those parameters -- `bond_str` is expecting `D0` with the unit of `eV`, $$Å^{-1}$$ for `Alpha`, and `Å` for `Rmin`. It should be noted that sometimes in the literature, the `D0` parameter would be given in the unit of `kcal/mol` -- refer to Ref. [8] for the conversion between energy units.
+
+As the last step (hopefully), we also need to include potential parameters for those atom pairs of which the parameters already exist in the database (hard coded into the program) -- the thing is, it seems that the program is expect the manual input for all pairs once the `BVELPAR` line is given in the `.cfl` file. Here comes a little trick -- in the hand-crafted `.cfl` file, we can remove all those atoms involved in the pair for which the potential parameters are not defined, save the `.cfl` to a temporary version and run `bond_str` with the temporary `.cfl` file. Once the calculation is done, we will be brought up with an output window from which we can find the potential parameters for atom pairs, like shown below,
+
+```
+...
+
+Bond-Valence Energy parameters (D0,Rmin,alpha) for Morse Potential:  D0*[{exp(alpha(Rmin-d))-1}^2-1]
+   (data read from internal table, provided by the user or calculated from softBVS parameters)
+
+ Morse parameters obtained from internal table
+
+   Type  1: FE+2 with type  4: O-2 
+    D0  =  1.69269       Rmin =  1.96005  Alpha =  2.08333
+  Av. Coord.=  5.74300    R0  =  1.57911   R-cutoff =  5.50000   => Reference: S. Adams and R. Prasada Rao, (2011) Phys. Status Solidi A 208, No. 8, 1746-1753
+   Cation (Eff. radius): FE+2( 1.260)      Anion  (Eff. radius): O-2 ( 1.330)
+
+   Type  2: LI+1 with type  4: O-2 
+    D0  =  0.98816       Rmin =  1.94001  Alpha =  1.93798
+  Av. Coord.=  5.02100    R0  =  1.17096   R-cutoff =  5.50000   => Reference: S. Adams and R. Prasada Rao, (2011) Phys. Status Solidi A 208, No. 8, 1746-1753
+   Cation (Eff. radius): LI+1( 1.310)      Anion  (Eff. radius): O-2 ( 1.330)
+
+   Type  3: P+5  with type  4: O-2 
+    D0  =  3.89635       Rmin =  1.44066  Alpha =  2.28833
+  Av. Coord.=  4.00000    R0  =  1.62038   R-cutoff =  5.00000   => Reference: S. Adams and R. Prasada Rao, (2011) Phys. Status Solidi A 208, No. 8, 1746-1753
+   Cation (Eff. radius): P+5 ( 1.100)      Anion  (Eff. radius): O-2 ( 1.330)
+
+...
+```
+
+Grabbing the potential parameters from the output, we can then put in the `BVELPAR` line for all atom pairs. Then, `bond_str` should be able to run with the hand-crafted `.cfl` file.
+
 References
 ===
 
@@ -146,3 +212,7 @@ References
 [5] [https://code.ill.eu/scientific-software/crysfml/-/tree/Thierry/Program_Examples/BondStr/Examples](https://code.ill.eu/scientific-software/crysfml/-/tree/Thierry/Program_Examples/BondStr/Examples)
 
 [6] [https://www.ill.eu/sites/fullprof/](https://www.ill.eu/sites/fullprof/)
+
+[7] [https://www.iucr.org/resources/data/datasets/bond-valence-parameters](https://www.iucr.org/resources/data/datasets/bond-valence-parameters)
+
+[8] [https://wild.life.nctu.edu.tw/class/common/energy-unit-conv-table.html](https://wild.life.nctu.edu.tw/class/common/energy-unit-conv-table.html)
