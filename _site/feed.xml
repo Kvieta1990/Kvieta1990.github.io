@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Set up workflows for bidirectional connection between NocoDB and Slack</title>
+        <description>
+          
+          In this post, I will put down the notes for configuring the postgres connection in n8n. At the end of the day, the purpose is to create a workflow for the Retrieval Augmented Generation (RAG). In Ref. [1], we can find a workflow template for scraping the n8n documentation, embedding...
+        </description>
+        <pubDate>Wed, 19 Nov 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2025-11-19-n8n_postgres_embed/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-11-19-n8n_postgres_embed/</guid>
+      </item>
+    
+      <item>
         <title>Bond Valence Energy Landscape Calculation with the BondStr Program in Fullprof Suite</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Fri, 31 Jan 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-01-31-mantid_local_python/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-01-31-mantid_local_python/</guid>
-      </item>
-    
-      <item>
-        <title>Setting up 1panel with Cloudflare</title>
-        <description>
-          
-          1Panel is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with docker as the backend engine). I have my own server hosted on...
-        </description>
-        <pubDate>Thu, 30 Jan 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2025-01-30-1panel_cloudflare/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-01-30-1panel_cloudflare/</guid>
       </item>
     
   </channel>

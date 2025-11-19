@@ -320,7 +320,7 @@ if (chromeAgent) {
         <p>where <code class="language-plaintext highlighter-rouge">y8z</code> is my user name.</p>
 
         <blockquote>
-          <p>Attention: the white space in there is necessarily a <code class="language-plaintext highlighter-rouge">Tab</code>.</p>
+          <p>Attention: the white space in there is necessarily a <code class="language-plaintext highlighter-rouge">Tab</code>. If using <code class="language-plaintext highlighter-rouge">vim</code>, in the <code class="language-plaintext highlighter-rouge">Insert</code> mode, we should press <code class="language-plaintext highlighter-rouge">Ctrl+V</code> first, then followed by typing <code class="language-plaintext highlighter-rouge">Tab</code>. Not sure about other editors.</p>
         </blockquote>
 
         <blockquote>
@@ -333,13 +333,17 @@ if (chromeAgent) {
       <li>
         <p>Run the following command,</p>
 
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util <span class="nt">-t</span>
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">sudo</span> /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util <span class="nt">-t</span>
 </code></pre></div>        </div>
 
         <p>The command above would create a soft link from <code class="language-plaintext highlighter-rouge">/SNS</code> to <code class="language-plaintext highlighter-rouge">/Users/y8z/SNS</code>. Then we can populate with files under <code class="language-plaintext highlighter-rouge">/Users/y8z/SNS</code> following the same structure as on Analysis.</p>
 
         <blockquote>
           <p>If the command above for some reason fails, we can try to reboot the machine after which the soft link should have been created automatically.</p>
+        </blockquote>
+
+        <blockquote>
+          <p>To remove the soft link, we need to either delete the entry in <code class="language-plaintext highlighter-rouge">/etc/synthetic.conf</code> or remove the file completely, followed by a restart of the computer.</p>
         </blockquote>
       </li>
     </ul>
