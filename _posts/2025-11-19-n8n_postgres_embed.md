@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Set up workflows for bidirectional connection between NocoDB and Slack
+title: Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database
 subtitle:
-tags: [web, server, tutorial, Slack, automation, database]
+tags: [web, server, LLM, database, RAG]
 author: Yuanpeng Zhang
 comments: true
 use_math: true
@@ -264,7 +264,7 @@ Now, we have both docker container up running and next we want to worry about th
 <p align='center'>
 <img src="/assets/img/posts/n8n_postgres.png"
    style="border:none;"
-   width="200"
+   width="1000"
    alt="n8n_postgres"
    title="n8n_postgres" />
 </p>
