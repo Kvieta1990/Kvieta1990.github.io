@@ -92,7 +92,7 @@ Later on, we can worry about getting rid of `sudo` from the command, which may n
 
 Next, we want to set up `n8n`. Here below is the `docker-compose.yml` file being used,
 
-```YAML
+```yaml
 networks:
     n8n_local:
         external: true
