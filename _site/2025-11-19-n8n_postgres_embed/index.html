@@ -19,7 +19,7 @@
 
   
 
-  <title>Set up workflows for bidirectional connection between NocoDB and Slack</title>
+  <title>Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
@@ -89,7 +89,7 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Set up workflows for bidirectional connection between NocoDB and Slack">
+  <meta property="og:title" content="Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database">
   <meta property="og:description" content="In this post, I will put down the notes for configuring the postgres connection in n8n. At the end of the day, the purpose is to create a workflow for the Retrieval Augmented Generation (RAG). In Ref. [1], we can find a workflow template for scraping the n8n documentation, embedding...">
 
   
@@ -110,7 +110,7 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Set up workflows for bidirectional connection between NocoDB and Slack">
+  <meta property="twitter:title" content="Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database">
   <meta property="twitter:description" content="In this post, I will put down the notes for configuring the postgres connection in n8n. At the end of the day, the purpose is to create a workflow for the Retrieval Augmented Generation (RAG). In Ref. [1], we can find a workflow template for scraping the n8n documentation, embedding...">
 
   
@@ -264,7 +264,7 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>Set up workflows for bidirectional connection between NocoDB and Slack</h1>
+						<h1>Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database</h1>
           
 
           
@@ -369,33 +369,33 @@ CREATE TABLE items (
 
 <p>Next, we want to set up <code class="language-plaintext highlighter-rouge">n8n</code>. Here below is the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file being used,</p>
 
-<pre><code class="language-YAML">networks:
-    n8n_local:
-        external: true
-services:
-    n8n:
-        container_name: ${CONTAINER_NAME}
-        deploy:
-            resources:
-                limits:
-                    cpus: ${CPUS}
-                    memory: ${MEMORY_LIMIT}
-        environment:
-            N8N_SECURE_COOKIE: false
-            N8N_EDITOR_BASE_URL: "https://nen.ornl.gov"
-            WEBHOOK_URL: "https://nen.ornl.gov"
-        networks:
-            - n8n_local
-        image: n8nio/n8n:1.120.3
-        labels:
-            createdBy: Apps
-        ports:
-            - ${HOST_IP}:${PANEL_APP_PORT_HTTP}:5678
-        restart: always
-        volumes:
-            - ./data:/home/node/.n8n
-            - ./local-files:/files
-</code></pre>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">networks</span><span class="pi">:</span>
+    <span class="na">n8n_local</span><span class="pi">:</span>
+        <span class="na">external</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">services</span><span class="pi">:</span>
+    <span class="na">n8n</span><span class="pi">:</span>
+        <span class="na">container_name</span><span class="pi">:</span> <span class="s">${CONTAINER_NAME}</span>
+        <span class="na">deploy</span><span class="pi">:</span>
+            <span class="na">resources</span><span class="pi">:</span>
+                <span class="na">limits</span><span class="pi">:</span>
+                    <span class="na">cpus</span><span class="pi">:</span> <span class="s">${CPUS}</span>
+                    <span class="na">memory</span><span class="pi">:</span> <span class="s">${MEMORY_LIMIT}</span>
+        <span class="na">environment</span><span class="pi">:</span>
+            <span class="na">N8N_SECURE_COOKIE</span><span class="pi">:</span> <span class="no">false</span>
+            <span class="na">N8N_EDITOR_BASE_URL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://nen.ornl.gov"</span>
+            <span class="na">WEBHOOK_URL</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://nen.ornl.gov"</span>
+        <span class="na">networks</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">n8n_local</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">n8nio/n8n:1.120.3</span>
+        <span class="na">labels</span><span class="pi">:</span>
+            <span class="na">createdBy</span><span class="pi">:</span> <span class="s">Apps</span>
+        <span class="na">ports</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">${HOST_IP}:${PANEL_APP_PORT_HTTP}:5678</span>
+        <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+        <span class="na">volumes</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">./data:/home/node/.n8n</span>
+            <span class="pi">-</span> <span class="s">./local-files:/files</span>
+</code></pre></div></div>
 
 <p>Parallel to the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, we need to create the <code class="language-plaintext highlighter-rouge">.env</code> file and populate it with the following contents,</p>
 
@@ -534,7 +534,7 @@ proxy_set_header Connection "upgrade";
 <p>Now, we have both docker container up running and next we want to worry about the connection between the two – our <code class="language-plaintext highlighter-rouge">n8n</code> instance need to talk to the <code class="language-plaintext highlighter-rouge">postgres</code> database for vector database insertion and query. If it is possible to open the port for <code class="language-plaintext highlighter-rouge">postgres</code> (by default, it is <code class="language-plaintext highlighter-rouge">5432</code>) on our server, we can configure the connection in <code class="language-plaintext highlighter-rouge">n8n</code> by using the out-facing address (domain name or IP address) of our server and the port (e.g., <code class="language-plaintext highlighter-rouge">5432</code>), in the <code class="language-plaintext highlighter-rouge">Credentials</code> configuration interface as shown below (the <code class="language-plaintext highlighter-rouge">Host</code> box should be replaced by the domain name or IP address of our server hosting the <code class="language-plaintext highlighter-rouge">postgres</code> database),</p>
 
 <p align="center">
-<img src="/assets/img/posts/n8n_postgres.png" style="border:none;" width="200" alt="n8n_postgres" title="n8n_postgres" />
+<img src="/assets/img/posts/n8n_postgres.png" style="border:none;" width="1000" alt="n8n_postgres" title="n8n_postgres" />
 </p>
 
 <p>However, if we cannot open the port for <code class="language-plaintext highlighter-rouge">postgres</code> on our server like in my case, we can go with the local connection – basically, we have both the <code class="language-plaintext highlighter-rouge">n8n</code> and <code class="language-plaintext highlighter-rouge">postgres</code> docker containers running on the same server and then we can let them talk to each other locally. To do this, we need to first set up a docker network,</p>
@@ -603,13 +603,11 @@ docker compose up <span class="nt">-d</span>
           
             <a href="/tags#server">server</a>
           
-            <a href="/tags#tutorial">tutorial</a>
-          
-            <a href="/tags#Slack">Slack</a>
-          
-            <a href="/tags#automation">automation</a>
+            <a href="/tags#LLM">LLM</a>
           
             <a href="/tags#database">database</a>
+          
+            <a href="/tags#RAG">RAG</a>
           
         </div>
       
@@ -626,7 +624,7 @@ docker compose up <span class="nt">-d</span>
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+workflows+for+bidirectional+connection+between+NocoDB+and+Slack&url=http%3A%2F%2Flocalhost%3A4000%2F2025-11-19-n8n_postgres_embed%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+n8n+and+postgres+for+Retrieval+Augmented+Generation+%28RAG%29+using+the+local+vector+database&url=http%3A%2F%2Flocalhost%3A4000%2F2025-11-19-n8n_postgres_embed%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -663,6 +661,10 @@ docker compose up <span class="nt">-d</span>
           <a class="page-link" href="/2025-10-26-bondstr_bvs/" data-toggle="tooltip" data-placement="top" title="Bond Valence Energy Landscape Calculation with the BondStr Program in Fullprof Suite">&larr; Previous Post</a>
         </li>
         
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2025-11-30-metropolis_monte_carlo/" data-toggle="tooltip" data-placement="top" title="About the Metropolis Monte Carlo Method">Next Post &rarr;</a>
+        </li>
         
       </ul>
       

@@ -12,7 +12,18 @@
     
     
       <item>
-        <title>Set up workflows for bidirectional connection between NocoDB and Slack</title>
+        <title>About the Metropolis Monte Carlo Method</title>
+        <description>
+          
+          When we have a high-dimension configuration space, e.g., a system containing hundreds of thousands of atoms with each atom carrying 3 degrees of freedom (DOF), it becomes difficult to sample the system. For example, if we want to sample the configuration with low energy (thus considered as energetically stable) or...
+        </description>
+        <pubDate>Sun, 30 Nov 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2025-11-30-metropolis_monte_carlo/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-11-30-metropolis_monte_carlo/</guid>
+      </item>
+    
+      <item>
+        <title>Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database</title>
         <description>
           
           In this post, I will put down the notes for configuring the postgres connection in n8n. At the end of the day, the purpose is to create a workflow for the Retrieval Augmented Generation (RAG). In Ref. [1], we can find a workflow template for scraping the n8n documentation, embedding...
@@ -218,17 +229,6 @@
         <pubDate>Wed, 12 Feb 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-02-12-abs_geo/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-02-12-abs_geo/</guid>
-      </item>
-    
-      <item>
-        <title>Use local build of Mantid with Python script</title>
-        <description>
-          
-          Here in the blog, I will covering how to build a local version of Mantid and use it with python. For example, we may have a Python script which uses some Mantid algorithm. On ORNL Analysis cluster, a certain version of Mantid framework has been deployed and we can execute...
-        </description>
-        <pubDate>Fri, 31 Jan 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2025-01-31-mantid_local_python/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-01-31-mantid_local_python/</guid>
       </item>
     
   </channel>
