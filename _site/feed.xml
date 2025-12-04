@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Einstein and Debye Model for Specific Heat</title>
+        <description>
+          
+          In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region (see Ref. [1] for...
+        </description>
+        <pubDate>Thu, 04 Dec 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2025-12-04-einstein_debye_model/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-12-04-einstein_debye_model/</guid>
+      </item>
+    
+      <item>
         <title>About the Metropolis Monte Carlo Method</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sun, 16 Mar 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-03-16-dify_config/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-03-16-dify_config/</guid>
-      </item>
-    
-      <item>
-        <title>Sample and Container geometry for absorption correction</title>
-        <description>
-          
-          When neutrons interact with a measured sample, scattering is one type of the interaction, while absorption is another type. However, for a scattering measurement, the absorption effect ‘steals’ part of the intensity that should belong to the scattering intensity. Therefore, without the correction for the absorption effect, the measured intensity...
-        </description>
-        <pubDate>Wed, 12 Feb 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2025-02-12-abs_geo/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-02-12-abs_geo/</guid>
       </item>
     
   </channel>
