@@ -137,8 +137,16 @@ $$
 Then the system energy can be calculated as,
 
 $$
-E = \int d\omega D(\omega)n_E(\omega)\hbar\omega
+E = \int d\omega D(\omega)n_E(\omega)\hbar\omega = \int_0^\omega_D d\omega\frac{V\omega^2}{2\pi^2v_s^3}\frac{\hbar\omega}{e^{\frac{\hbar\omega}{k_BT}} - 1}
 $$
+
+By replacing variables $$x = \hbar\omega/k_BT$$ and $$x_D  T_D/T$$, the integration above can be evaluated and the specific heat can be calculated as,
+
+$$
+C_V = \frac{\partial E}{\partial T} = 9Nk_B(\frac{T}{T_D})^3\int_0^x_D dx\frac{x^4e^x}{(e^x - 1)^2}
+$$
+
+which reproduces the experimental $$T^3$$ behavior in the low temperature region. Further discussions about the low and high temperature limits can be found in Ref. [1]. Before ending, it should be mentioned that on top of the energy result presented above, the actual actual has a multiplicative factor of 3, which compensates the missing factor of 3 while deriving the total number of modes as discussed above.
 
 <br />
 
