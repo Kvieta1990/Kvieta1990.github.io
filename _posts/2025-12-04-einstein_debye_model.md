@@ -146,11 +146,11 @@ $$
 C_V = \frac{\partial E}{\partial T} = 9Nk_B(\frac{T}{T_D})^3\int_0^{x_D} dx\frac{x^4e^x}{(e^x - 1)^2}
 $$
 
-which reproduces the experimental $$T^3$$ behavior in the low temperature region. Further discussions about the low and high temperature limits can be found in Ref. [1]. Before ending, it should be mentioned that on top of the energy result presented above, the actual actual has a multiplicative factor of 3, which compensates the missing factor of 3 while deriving the total number of modes as discussed above.
+Further discussions about the low and high temperature limits can be found in Ref. [1], where it can be seen that the model reproduces the experimentally observed $$T_3$$ behavior in the low temperature region. Before ending, it should be mentioned that on top of the energy result presented above, the actual actual has a multiplicative factor of 3, which compensates the missing factor of 3 while deriving the total number of modes as discussed above.
 
 <br />
 
 References
 ===
 
-[1] [https://eng.libretexts.org/Bookshelves/Materials_Science/Supplemental_Modules_(Materials_Science)/Electronic_Properties/Debye_Model_For_Specific_Heat](https://eng.libretexts.org/Bookshelves/Materials_Science/Supplemental_Modules_(Materials_Science)/Electronic_Properties/Debye_Model_For_Specific_Heat)
+[1] [Debye model for specific heat](https://eng.libretexts.org/Bookshelves/Materials_Science/Supplemental_Modules_(Materials_Science)/Electronic_Properties/Debye_Model_For_Specific_Heat)
