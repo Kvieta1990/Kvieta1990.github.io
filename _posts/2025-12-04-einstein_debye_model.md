@@ -68,9 +68,9 @@ $$
 \begin{equation}\begin{aligned}E & = \hbar \omega\\\hbar & = \frac{h}{2\pi}\\ \omega & = 2\pi \nu\\ q & = \frac{2\pi}{\lambda}\\ v_s & = \frac{\lambda}{T} = \lambda \nu = \lambda \frac{\omega}{2\pi} = \frac{\omega}{q} \\ n_E & = \frac{1}{e^{\frac{E}{k_BT}} - 1} = \frac{1}{e^{\frac{\hbar\omega}{k_BT}} - 1}\end{aligned}\end{equation}
 $$
 
-$$q$$ refers to the wave vector, hich can be interpreted as the 'angular velocity' in real space, just like the angular velocity in time space can be written as $$\omega = \frac{2\pi}{T}$$. The $$v_s$$ here refers to the velocity of the sound wave (just the wave mentioned above). The expression in the last line gives the expected number of Bosons (phonon follows the Bose-Einstein statistics) for a certain state.
+Here, $$q$$ refers to the wave vector, hich can be interpreted as the 'angular velocity' in real space, just like the angular velocity in time space can be written as $$\omega = \frac{2\pi}{T}$$. The $$v_s$$ here refers to the velocity of the sound wave (just the wave mentioned above). The expression in the last line gives the expected number of Bosons (phonon follows the Bose-Einstein statistics) for a certain state.
 
-Given the relations presented here, we now can move ahead deriving the Debye version of the specific heat. First, we start with what values that the wave vector $$$q$ are supposed to take. Say we have the wave here as plain waves, formulated simply as,
+Given the relations presented here, we now can move ahead deriving the Debye version of the specific heat. First, we start with what values that the wave vector $$q$$ are supposed to take. Say we have the wave here as plain waves, formulated simply as,
 
 $$
 e^{iqx}
@@ -137,13 +137,13 @@ $$
 Then the system energy can be calculated as,
 
 $$
-E = \int d\omega D(\omega)n_E(\omega)\hbar\omega = \int_0^\omega_D d\omega\frac{V\omega^2}{2\pi^2v_s^3}\frac{\hbar\omega}{e^{\frac{\hbar\omega}{k_BT}} - 1}
+E = \int d\omega D(\omega)n_E(\omega)\hbar\omega = \int_0^{\omega_D} d\omega\frac{V\omega^2}{2\pi^2v_s^3}\frac{\hbar\omega}{e^{\frac{\hbar\omega}{k_BT}} - 1}
 $$
 
 By replacing variables $$x = \hbar\omega/k_BT$$ and $$x_D  T_D/T$$, the integration above can be evaluated and the specific heat can be calculated as,
 
 $$
-C_V = \frac{\partial E}{\partial T} = 9Nk_B(\frac{T}{T_D})^3\int_0^x_D dx\frac{x^4e^x}{(e^x - 1)^2}
+C_V = \frac{\partial E}{\partial T} = 9Nk_B(\frac{T}{T_D})^3\int_0^{x_D} dx\frac{x^4e^x}{(e^x - 1)^2}
 $$
 
 which reproduces the experimental $$T^3$$ behavior in the low temperature region. Further discussions about the low and high temperature limits can be found in Ref. [1]. Before ending, it should be mentioned that on top of the energy result presented above, the actual actual has a multiplicative factor of 3, which compensates the missing factor of 3 while deriving the total number of modes as discussed above.
