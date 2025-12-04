@@ -45,7 +45,7 @@ which reproduces the Dulong-Petit result.
 The average presented above is for a single degree-of-freedom of a single partilce and in a system, if we have 1 $$mole$$ particles (i.e., $$N_A$$ of them), the total energy of the system will be,
 
 $$
-E = 3N_A\langle E \rangle \frac{h\nu}{e^{-\frac{h\nu}{k_BT}}}
+E = 3N_A\langle E \rangle \frac{h\nu}{e^{-\frac{h\nu}{k_BT}} - 1}
 $$
 
 The specific heat $$C_V$$ then can be calculated as,
@@ -68,7 +68,77 @@ $$
 \begin{equation}\begin{aligned}E & = \hbar \omega\\\hbar & = \frac{h}{2\pi}\\ \omega & = 2\pi \nu\\ q & = \frac{2\pi}{\lambda}\\ v_s & = \frac{\lambda}{T} = \lambda \nu = \lambda \frac{\omega}{2\pi} = \frac{\omega}{q} \\ n_E & = \frac{1}{e^{\frac{E}{k_BT}} - 1} = \frac{1}{e^{\frac{\hbar\omega}{k_BT}} - 1}\end{aligned}\end{equation}
 $$
 
+$$q$$ refers to the wave vector, hich can be interpreted as the 'angular velocity' in real space, just like the angular velocity in time space can be written as $$\omega = \frac{2\pi}{T}$$. The $$v_s$$ here refers to the velocity of the sound wave (just the wave mentioned above). The expression in the last line gives the expected number of Bosons (phonon follows the Bose-Einstein statistics) for a certain state.
 
+Given the relations presented here, we now can move ahead deriving the Debye version of the specific heat. First, we start with what values that the wave vector $$$q$ are supposed to take. Say we have the wave here as plain waves, formulated simply as,
+
+$$
+e^{iqx}
+$$
+
+For simplicity, we deal with the 1D situation but the idea can be generalized to 3D. If the size of the system is $$L$$, the periodic boundary condition assumes that beyond the size $$L$$, the system just repeats itself. This means,
+
+$$
+e^{iq(x + L)} = e^{iqx}
+$$
+
+from which we know,
+
+$$
+e^{iql} = 1 \Rightarrow q = \frac{2\pi n}{L}
+$$
+
+where $$n = 0, 1, 2, 3, \dots$$. The space that each single $$q$$ takes, is then given as,
+
+$$
+\frac{2\pi (n + 1)}{L} - \frac{2\pi n}{L} = \frac{2\pi}{L}
+$$
+
+In 3D-space, we simply have the volume that each allowed $$q$$ value takes, is given as,
+
+$$
+(\frac{2\pi}{L})^3 = \frac{8\pi^3}{V}
+$$
+
+Each $$q$$ value corresponds to a certain mode, i.e., a certain way of collective motion of particles in the system, with a certain wavelength of the wave (remember that $$q = 2\pi/\lambda$$). Taking the 1D case as an example (we can always extend it to 3D by a factor of 3), if we have $$N$$ primitive unit cell (the repeating unit in real space), we know that in total we have $$N$$ degree-of-freedom. We also know that the degree-of-freedom should not depend on how we describe the system, either in real space (which is intuitively more straightforward, by number counting) or in the wave vector space (i.e., the reciprocal space). In the $$q$$-space, each $$q$$ value carries one degree-of-freedom, and therefore, we know that in total, we should have $$N$$ modes in $$q$$-space. For practical systems, the system size is always finite and therefore $$N$$ (again, initially given as the number of primitive cells) should be finite. This further means that in $$q$$-space, the number of modes is also finite. From the derivation above, we already know the volume taken by each $$q$$ value, and accordingly, we should have a certain upper limit for the $$q$$ values to take. Mathematically, we have,
+
+$$
+N = \frac{\frac{4}{3}\pi q_D^3}{\frac{8\pi^3}{V}}
+$$
+
+Accordingly, we have,
+
+$$
+\begin{equation}\begin{aligned}q_D & = (6\pi^2\frac{N}{V})^{\frac{1}{3}}\\\omega_D & = v_sq_D = v_s(6\pi^2\frac{N}{V})^{\frac{1}{3}}\end{aligned}\end{equation}
+$$
+
+from which the Debye temperature can be defined,
+
+$$
+T_D = \frac{\hbar\omega_D}{k_B} = \frac{\hbar v_s}{k_B}(6\pi^2\frac{N}{V})^{\frac{1}{3}}
+$$
+
+To calculate the specific heat, we need to calculate the system energy and from the relation presented above, we know that each mode $$\omega$$ carries the energy of $$\hbar\omega$$. So to obtain the overall energy, we need to integrate over $$\omega$$. Further, there are three recipes for the integration,
+
+- The phonon energy corresponding to a certain mode, namely, $$\hbar\omega$$.
+
+- The number of modes of which the energy falls into the range $$\hbar\omega \rightarrow \hbar(\omega + d\omega)$$ -- this is just the density of states (DOS).
+
+- The number of phonons that each mode can host -- that is the $$n_E$$ as presented above, given by the Bose–Einstein statistics for Bosons.
+
+First, the DOS can be evaluated as,
+
+$$
+D(\omega) = \frac{dN}{d\omega} = \frac{V\omega^2}{2\pi^2v_s^3}
+$$
+
+> In Debye model, the sound velocity $$v_s$$ of a certain system is assumed to be a constant.
+
+Then the system energy can be calculated as,
+
+$$
+E = \int d\omega D(\omega)n_E(\omega)\hbar\omega
+$$
 
 <br />
 
