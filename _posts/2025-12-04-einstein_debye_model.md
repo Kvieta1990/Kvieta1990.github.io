@@ -60,13 +60,15 @@ $$
 C_V \approx 3N_Ak_B(\frac{h\nu}{k_BT})^2e^{-\frac{h\nu}{k_BT}}
 $$
 
-The middle term $$(\frac{h\nu}{k_BT})^2$$ will approach infinity when $$T$$ approaches 0. However, the exponential term will approach 0 more quickly, and therefore, altogether, $$C_V$$ in this case will approach 0 as $$T$$ approaches 0. Such an asymptotic value is indeed consistent with the experimental result, but the asymptotic behavior (i.e., how $$C_V$$ approaches 0 at low temperature) is inconsistent with the experimental observation. Experimentally, at low temperature, we have $$C_V \prop T^3$$ [1]. This is the limitation of the Einstein model and fundamentally, it is due to the over-simplified assumption that all particles in the system vibrate independently. Also, the Einstein model does not say anything about the frequency -- it is just something there playing the role of a constant scaling factor.
+The middle term $$(\frac{h\nu}{k_BT})^2$$ will approach infinity when $$T$$ approaches 0. However, the exponential term will approach 0 more quickly, and therefore, altogether, $$C_V$$ in this case will approach 0 as $$T$$ approaches 0. Such an asymptotic value is indeed consistent with the experimental result, but the asymptotic behavior (i.e., how $$C_V$$ approaches 0 at low temperature) is inconsistent with the experimental observation. Experimentally, at low temperature, we have $$C_V \propto T^3$$ [1]. This is the limitation of the Einstein model and fundamentally, it is due to the over-simplified assumption that all particles in the system vibrate independently. Also, the Einstein model does not say anything about the frequency -- it is just something there playing the role of a constant scaling factor.
 
 The Debye model takes a step further, by saying that, instead of particles vibrating independently, they are actually vibrating in a collective manner. Although, this is in fact a quantum effect but we can classically imagine such a collective vibration of particles as a wave propogating in the system. So we may have different waves propogating in the solid simultaneously and each of them may be with different frequency. In quantum mechanics, such waves are described as phonons (i.e., particles corresponding to the wave picture, in the wave-particle duality context). In the phonon context, several relevant quantities/properties are presented below,
 
 $$
-\begin{equation}\begin{aligned}E & = \hbar \omega\\\hbar & = \frac{h}{2\pi}\\ \oemga & = 2\pi \nu\\ q & = \frac{2\pi}{\lambda} v_s & = \frac{\lambda}{T} = \lambda \nu = \lambda \omega / 2\pi = \omega / q \\ n_E & = \frac{1}{e^{\frac{E}{k_BT}} - 1} = \frac{1}{e^{\frac{\hbar\omega}{k_BT}} - 1}\end{aligned}\end{equation}
+\begin{equation}\begin{aligned}E & = \hbar \omega\\\hbar & = \frac{h}{2\pi}\\ \omega & = 2\pi \nu\\ q & = \frac{2\pi}{\lambda}\\ v_s & = \frac{\lambda}{T} = \lambda \nu = \lambda \frac{\omega}{2\pi} = \frac{\omega}{q} \\ n_E & = \frac{1}{e^{\frac{E}{k_BT}} - 1} = \frac{1}{e^{\frac{\hbar\omega}{k_BT}} - 1}\end{aligned}\end{equation}
 $$
+
+
 
 <br />
 
