@@ -140,7 +140,7 @@ $$
 E = \int d\omega D(\omega)n_E(\omega)\hbar\omega = \int_0^{\omega_D} d\omega\frac{V\omega^2}{2\pi^2v_s^3}\frac{\hbar\omega}{e^{\frac{\hbar\omega}{k_BT}} - 1}
 $$
 
-By replacing variables $$x = \hbar\omega/k_BT$$ and $$x_D \equiv \T_D/T$$, the integration above can be evaluated and the specific heat can be calculated as,
+By replacing variables $$x = \hbar\omega/k_BT$$ and $$x_D \equiv T_D/T$$, the integration above can be evaluated and the specific heat can be calculated as,
 
 $$
 C_V = \frac{\partial E}{\partial T} = 9Nk_B(\frac{T}{T_D})^3\int_0^{x_D} dx\frac{x^4e^x}{(e^x - 1)^2}
