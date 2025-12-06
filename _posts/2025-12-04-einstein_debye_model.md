@@ -8,7 +8,7 @@ comments: true
 use_math: true
 ---
 
-In the low temperature region, the Dulong-Petit describing the specific heat $$C_V$$ as $$3R$$ fails -- $$C_V$$ will approach 0 while $$3R$$ stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region (see Ref. [1] for a nice summary). Einstein gave the problem the first shot, according to Planck's quantization of system energy. With Planck's derivation, the system energy average takes a discrete form and should be calculated as follows,
+In the low temperature region, the Dulong-Petit describing the specific heat $$C_V$$ as $$3R$$ fails -- $$C_V$$ will approach 0 while $$3R$$ stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region. Einstein gave the problem the first shot, according to Planck's quantization of system energy. With Planck's derivation, the system energy average takes a discrete form and should be calculated as follows,
 
 $$
 \langle E \rangle = \frac{\sum_{n=0}^{\infty} E_n e^{-E_n / k_B T}}{\sum_{n=0}^{\infty} e^{-E_n / k_B T}}
