@@ -61,6 +61,8 @@ According to the Chern number formulation discussed above, it is fundamentally r
 <br />
 Image reproduced from Ref. [1].
 
+<br />
+
 To see why the winding of Berry connection infers magnetic field, we can stare at the Fig. 3 in Ref. [1]. The figure is reproduced here with some further annotations to demonstrate the emergence of magnetic field. The figure shows the Brillouin zone in the momentum (i.e., reciprocal) space. Therefore the actual indication for the rotation of electrons in real space may not be as straightforward as shown in the figure, since visual rotation of arrows (the back ones) in the figure is happening in the the momentum space. To get an idea about the indication of rotation in the real space, we can map the figure onto the real space (with x and y as the axis), as shown in the bottom-right inset of the figure. Here we can pick two representative points in the momentum space ($$\vec{p}_1$$ and $$\vec{p}_2$$ in the figure). The corresponding Berry connection (i.e., the average position of the corresponding wavefunction) is shown to be $$\vec{x}_1$$ and $$\vec{x}_2$$, respectively. Then we can transfer all those vectors (both the momentum and position vectors) onto the coordinate system in the real space (again, the bottom-right inset), and now the indication of the rotation behavior is intuitively clear. Another way of looking at this may be a bit more mathematical -- any vector field with non-zero curl infers some rotation behavior. For example, a paddlewheel in the flowing water will not rotate if the water is all uniformly flowing in the same direction (i.e., no curl). Once the curl is non-zero, the water flow will become non-uniform, leading to the rotation of the paddlewheel [4].
 </p>
 
