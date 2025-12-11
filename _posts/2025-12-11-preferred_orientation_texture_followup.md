@@ -35,6 +35,12 @@ With the `pole figure`, we can get a feel about the distribution of the crystall
 
 Each point on the sphere surface represents a certain crystallite orientation -- a certain set of Euler angles is associated with a point on the surface and such a set of Euler angles is the angles that the sample reference coordinate system (the `ND`, `RD` and `TD` directions) takes to rotate to the crystallographic coordinate system. The color represents the probability density -- those 'hot spots' on the surface means we have higher probability to find crystallites orienting in a certain way. Fundamentally, the ODF and `pole figures` are associated with each other. Going from the ODF to pole figures is relatively straightforward but going the other way round is not as so. It is beyond the scope of this post and my capacity to comprehend the details about the construction of the PDF from multiple pole figures. Details can be found in Ref. [3] (see Chapter 3).
 
+---
+
+In Ref. [4], I include some Mathematica files with which I generated the figures used in the current post.
+
+---
+
 <br />
 
 References
@@ -45,3 +51,5 @@ References
 [2] [https://www.doitpoms.ac.uk/tlplib/crystallographic_texture/codf.php](https://www.doitpoms.ac.uk/tlplib/crystallographic_texture/codf.php)
 
 [3] [Texture and anisotropy: preferred orientations in polycrystals and their effect on materials properties](https://seismo.berkeley.edu/~wenk/TexturePage/Publications/2000-Kocks-Tome-Wenk.pdf)
+
+[4] [Useful utilities](../assets/files/pole_figure_ODF.zip)
