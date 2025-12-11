@@ -28,7 +28,36 @@ In the case of preferred orientation, althogh we can still do the measurement ju
 
 <br>
 
-***Inverse pole figure*** is another way to characterize the preferred orientation or texture. In this case, again, we select a certain sample direction, say, the normal direction (ND), then we measure the intensity of each lattice plane and project the distrubtion of scattering intensities of each lattice plane in a stereographic manner onto a 2D plane. For example, we can align the ND to $$\vec{Q}$$ and by changing the scattering angle, we can measure the distribution of scattering intensity as the function of different lattice planes being measured. For a `inverse pole figure`, it is usually presented with a triangle with three corners representing different HKL planes on the steregrpahic projection plane.
+***Inverse pole figure*** is another way to characterize the preferred orientation or texture. For the `pole figure`, we are looking towards the sample reference coordinate system, e.g., the pole direction (the direction pointing from inside the paper to outside) presented at the center of the `pole figure` could be the normal direction (ND) of the sample. For the `inverser pole figure`, it is the other way round -- we are looking towards one of the crystal axes and check how the sample reference directions (ND, RD and TD) are distributing, and for sure, usually such a distribution is presented on a 2D plane through, e.g., stereographic projection.
+
+<p align='center'>
+<img src="/assets/img/posts/inversepolefig.jpg"
+   style="border:none;"
+   alt="inserver pole figure"
+   title="inverse pole figure" />
+<br />
+Image reproduced from Ref. [6].
+</p>
+
+The figure above shows the three poles, namely the one for ND, RD and TD, respectively. The way to read the figure will be something like this,
+
+- RD Plot (Rolling Direction):
+
+    - The contours peak at level 4 near the bottom-right corner.
+
+    - Meaning: The crystal's [101] direction is strongly aligned with the Rolling Direction.
+
+- ND Plot (Normal Direction):
+
+    - The contours peak at level 4 near the top corner.
+
+    - Meaning: The crystal's [111] direction is strongly aligned with the Normal Direction (perpendicular to the sheet).
+
+- TD Plot (Transverse Direction):
+
+    - The contours show a peak (level 2) near the bottom-left corner.
+
+    - Meaning: The crystal's [001] direction is aligned with the Transverse Direction.
 
 <br />
 
@@ -44,3 +73,5 @@ References
 [4] <a href="https://www.dropbox.com/scl/fi/ntva24jlnljxhpqjpf4or/Pole_Figure-Texture_Experiment-JIAM_Diffraction_Facility.mp4?rlkey=srrgcih9smlt67sq6l2hd4ae8&dl=0" target="_blank">Pole Figure-Texture Experiment - JIAM Diffraction Facility</a>
 
 [5] <a href="https://www.dropbox.com/scl/fi/013gzyv55mki26oyoqpo9/Inverse_Pole_Figures.mp4?rlkey=5to67irzw868vbjc29x62mq8p&dl=0" target="_blank">Inverse Pole Figures</a>
+
+[6] [https://www.doitpoms.ac.uk/tlplib/crystallographic_texture/texture_representation.php](https://www.doitpoms.ac.uk/tlplib/crystallographic_texture/texture_representation.php)

@@ -25,7 +25,7 @@
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region (see Ref. [1] for...">
+  <meta name="description" content="In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region. Einstein gave the problem...">
 
   
 
@@ -90,7 +90,7 @@
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
   <meta property="og:title" content="Einstein and Debye Model for Specific Heat">
-  <meta property="og:description" content="In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region (see Ref. [1] for...">
+  <meta property="og:description" content="In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region. Einstein gave the problem...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -111,7 +111,7 @@
   <meta name="twitter:creator" content="@">
 
   <meta property="twitter:title" content="Einstein and Debye Model for Specific Heat">
-  <meta property="twitter:description" content="In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region (see Ref. [1] for...">
+  <meta property="twitter:description" content="In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region. Einstein gave the problem...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -292,7 +292,7 @@ if (chromeAgent) {
       
 
       <article role="main" class="blog-post">
-        <p>In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region (see Ref. [1] for a nice summary). Einstein gave the problem the first shot, according to Planck’s quantization of system energy. With Planck’s derivation, the system energy average takes a discrete form and should be calculated as follows,</p>
+        <p>In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region. Einstein gave the problem the first shot, according to Planck’s quantization of system energy. With Planck’s derivation, the system energy average takes a discrete form and should be calculated as follows,</p>
 
 \[\langle E \rangle = \frac{\sum_{n=0}^{\infty} E_n e^{-E_n / k_B T}}{\sum_{n=0}^{\infty} e^{-E_n / k_B T}}\]
 
@@ -396,11 +396,11 @@ if (chromeAgent) {
 
 \[E = \int d\omega D(\omega)n_E(\omega)\hbar\omega = \int_0^{\omega_D} d\omega\frac{V\omega^2}{2\pi^2v_s^3}\frac{\hbar\omega}{e^{\frac{\hbar\omega}{k_BT}} - 1}\]
 
-<p>By replacing variables \(x = \hbar\omega/k_BT\) and \(x_D  T_D/T\), the integration above can be evaluated and the specific heat can be calculated as,</p>
+<p>By replacing variables \(x = \hbar\omega/k_BT\) and \(x_D \equiv T_D/T\), the integration above can be evaluated and the specific heat can be calculated as,</p>
 
 \[C_V = \frac{\partial E}{\partial T} = 9Nk_B(\frac{T}{T_D})^3\int_0^{x_D} dx\frac{x^4e^x}{(e^x - 1)^2}\]
 
-<p>Further discussions about the low and high temperature limits can be found in Ref. [1], where it can be seen that the model reproduces the experimentally observed \(T_3\) behavior in the low temperature region. Before ending, it should be mentioned that on top of the energy result presented above, the actual actual has a multiplicative factor of 3, which compensates the missing factor of 3 while deriving the total number of modes as discussed above.</p>
+<p>Further discussions about the low and high temperature limits can be found in Ref. [1], where it can be seen that the model reproduces the experimentally observed \(T^3\) behavior in the low temperature region. Before ending, it should be mentioned that on top of the energy result presented above, the actual actual has a multiplicative factor of 3, which compensates the missing factor of 3 while deriving the total number of modes as discussed above.</p>
 
 <p><br /></p>
 
@@ -470,6 +470,10 @@ if (chromeAgent) {
           <a class="page-link" href="/2025-11-30-metropolis_monte_carlo/" data-toggle="tooltip" data-placement="top" title="About the Metropolis Monte Carlo Method">&larr; Previous Post</a>
         </li>
         
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2025-12-11-preferred_orientation_texture_followup/" data-toggle="tooltip" data-placement="top" title="Some Follow-up Notes on Preferred Orientation and Texture">Next Post &rarr;</a>
+        </li>
         
       </ul>
       

@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Some Follow-up Notes on Preferred Orientation and Texture</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="In one of my previous posts, I had some notes about the preferred orientation and texture and the two typical ways to represent them [1]. In this post, I am trying to put down some follow-up notes about the topic, hoping to add some more understanding of the topic. Preferred...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Some Follow-up Notes on Preferred Orientation and Texture">
+  <meta property="og:description" content="In one of my previous posts, I had some notes about the preferred orientation and texture and the two typical ways to represent them [1]. In this post, I am trying to put down some follow-up notes about the topic, hoping to add some more understanding of the topic. Preferred...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:4000/archive/2025/10/">
-  <link rel="canonical" href="http://localhost:4000/archive/2025/10/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2025-12-11T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2025-12-11-preferred_orientation_texture_followup/">
+  <link rel="canonical" href="http://localhost:4000/2025-12-11-preferred_orientation_texture_followup/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Some Follow-up Notes on Preferred Orientation and Texture">
+  <meta property="twitter:description" content="In one of my previous posts, I had some notes about the preferred orientation and texture and the two typical ways to represent them [1]. In this post, I am trying to put down some follow-up notes about the topic, hoping to add some more understanding of the topic. Preferred...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -261,10 +263,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Some Follow-up Notes on Preferred Orientation and Texture</h1>
           
 
+          
+					<span class="post-meta">Posted on December 11, 2025, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -277,496 +283,134 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
+      
 
-<div class="intro-header"></div>
+      
 
-<div role="main" class=" container-md ">
-  
+      <article role="main" class="blog-post">
+        <p>In one of my previous posts, I had some notes about the preferred orientation and texture and the two typical ways to represent them [1]. In this post, I am trying to put down some follow-up notes about the topic, hoping to add some more understanding of the topic.</p>
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>October, 2025</em></h2>
-  </header>
+<p>Preferred orientation or texture, either one, means that we have a non-uniform distribution of those crystalline regions/domains. This is the fundamental physics. For practical life, we need some way to represent such fundamental physics, either using some functions or plots. The latter one (i.e., the plot) is what the <code class="language-plaintext highlighter-rouge">pole figure</code> and <code class="language-plaintext highlighter-rouge">inverse pole figure</code> is for. For the <code class="language-plaintext highlighter-rouge">pole figure</code>, refer to the figure below,</p>
 
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2025-10-26-bondstr_bvs/"><h3 class="post-title mb0">Bond Valence Energy Landscape Calculation with the BondStr Program in Fullprof Suite</h3></a>
-					<p class="post-meta small">October 26, 2025, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#technical">technical</a>
-  
-    <a href="/tags#diffraction">diffraction</a>
-  
-    <a href="/tags#ion diffusion">ion diffusion</a>
-  
+<p align="center">
+<img src="/assets/img/posts/pole_figure.png" style="border:none;" alt="pole_figure" title="pole_figure" />
+<br />
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2025-10-17-mantid_geometry/"><h3 class="post-title mb0">Instrument Geometry in Mantid Framework</h3></a>
-					<p class="post-meta small">October 17, 2025, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#scattering">scattering</a>
-  
-    <a href="/tags#dev">dev</a>
-  
-    <a href="/tags#technical">technical</a>
-  
-    <a href="/tags#diffraction">diffraction</a>
-  
+<p>The blue cuboid represents the sample where three directions are defined, namely normal direction (ND), rolling direction (RD) and transverse direction (TD). Those magenta arrows represent the orientation of different crystallites. The direction of those arrows could be, say, the crystallographic [001] direction. So we can see that with respect to the sample reference system (defined by <code class="language-plaintext highlighter-rouge">ND</code>, etc.), the orientation of those crystallites are distributed. In practice, <code class="language-plaintext highlighter-rouge">pole figure</code> is used to represent such a distribution, and it is projected onto a 2D plane. What we do is to look towards the <code class="language-plaintext highlighter-rouge">ND</code> direction (the arrow points to our eyes) and project those magenta arrows to a plane perpendicular to the <code class="language-plaintext highlighter-rouge">ND</code> direction. The top-right image shows the result of such a projection where each magenta arrow becomes a point in the projection plane. Further, if we many of those crystallites orienting differently, we will have a continuous distribution and when projected onto the plane, we have the heat map distribution as shown in the bottom-left image. This is just the pole figure, e.g., for the [001] crystallographic direction.</p>
+
+<p>With the <code class="language-plaintext highlighter-rouge">pole figure</code>, we can get a feel about the distribution of the crystallites orientation but it is not the full picture. For example, if we take any of the yellow cubes (representing a certain crystallite) and we again assume that the magenta arrow represents the [001] direction of the crystal. Then having the [001] direction pointing along the magenta arrow direction, we can have the crystal rotating around the magenta arrow direction for any angle so that the [001] direction of the crystal still points along the magenta arrow direction. Therefore, independent from such an arbitrary rotation, although the orientation of the crystal changes, the corresponding [001] <code class="language-plaintext highlighter-rouge">pole figure</code> will not change at all. Going beyond, we have the Orientation Distribution Function (ODF). Again, taking any of the yellow cube as an example, if we agree upon a set of orthogonal crystallographic directions as the crystallographic coordinate system, we can rotate the sample reference system in a certain manner (through, e.g., three Euler angles – see Ref. [2] for a nice demonstration) to match the crystallographic directions. Then the distribution of crystallites orientation will be come the distribution over the three Euler angles. Here below I am showing an illustration figure for the ODF,</p>
+
+<p align="center">
+<img src="/assets/img/posts/odf.png" style="border:none;" width="500" alt="ODF" title="ODF" />
+<br />
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+<p>Each point on the sphere surface represents a certain crystallite orientation – a certain set of Euler angles is associated with a point on the surface and such a set of Euler angles is the angles that the sample reference coordinate system (the <code class="language-plaintext highlighter-rouge">ND</code>, <code class="language-plaintext highlighter-rouge">RD</code> and <code class="language-plaintext highlighter-rouge">TD</code> directions) takes to rotate to the crystallographic coordinate system. The color represents the probability density – those ‘hot spots’ on the surface means we have higher probability to find crystallites orienting in a certain way. Fundamentally, the ODF and <code class="language-plaintext highlighter-rouge">pole figures</code> are associated with each other. Going from the ODF to pole figures is relatively straightforward but going the other way round is not as so. It is beyond the scope of this post and my capacity to comprehend the details about the construction of the PDF from multiple pole figures. Details can be found in Ref. [3] (see Chapter 3).</p>
 
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://iris2020.net/2024-08-03-preferred_orientation_texture/">Preferred Orientation and Texture</a></p>
+
+<p>[2] <a href="https://www.doitpoms.ac.uk/tlplib/crystallographic_texture/codf.php">https://www.doitpoms.ac.uk/tlplib/crystallographic_texture/codf.php</a></p>
+
+<p>[3] <a href="https://seismo.berkeley.edu/~wenk/TexturePage/Publications/2000-Kocks-Tome-Wenk.pdf">Texture and anisotropy: preferred orientations in polycrystals and their effect on materials properties</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#physics">physics</a>
+          
+            <a href="/tags#solid state physics">solid state physics</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
 
   
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Some+Follow-up+Notes+on+Preferred+Orientation+and+Texture&url=http%3A%2F%2Flocalhost%3A4000%2F2025-12-11-preferred_orientation_texture_followup%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-12-11-preferred_orientation_texture_followup%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-12-11-preferred_orientation_texture_followup%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2025-12-04-einstein_debye_model/" data-toggle="tooltip" data-placement="top" title="Einstein and Debye Model for Specific Heat">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
 </div>
 
 
