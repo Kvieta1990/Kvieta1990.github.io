@@ -209,7 +209,6 @@ Here follows are the domain names corresponding to the services,
 | VPSScheduler   | ql.iris-home.net        |
 | ITTools   | it.iris-home.net        |
 | Bitwarden   | bw.iris-home.net        |
-| Umami   | umm.iris-home.net        |
 | PhotoPrism   | pg.iris-home.net        |
 | FlatNotes   | fn.iris-home.net        |
 | StirlingPDF   | sp.iris-home.net        |
