@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Remotely Wake up MacOS from Sleeping</title>
+        <description>
+          
+          When MacOS goes into the sleep mode, the connection to outside is nearly all broken, including the SSH connection and the remote control (e.g., with AnyDesk), etc. This post is about how we can work around this – when we are remote, to connect to the sleeping MacOS, we need...
+        </description>
+        <pubDate>Fri, 12 Dec 2025 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2025-12-12-wakeup_macos/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025-12-12-wakeup_macos/</guid>
+      </item>
+    
+      <item>
         <title>Some Follow-up Notes on Preferred Orientation and Texture</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Tue, 18 Mar 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-03-18-gsasii_dev/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-03-18-gsasii_dev/</guid>
-      </item>
-    
-      <item>
-        <title>Config, Tips and Tricks for Different Operating Systems</title>
-        <description>
-          
-          In this blog, I will be noting down some useful configurations, tips and tricks for all the operating systems that I have been using along the way. I am a big fan of nothing, but at the same time I am also a big fan of everything. So in my...
-        </description>
-        <pubDate>Sun, 16 Mar 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2025-03-16-os_configs/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-03-16-os_configs/</guid>
       </item>
     
   </channel>
