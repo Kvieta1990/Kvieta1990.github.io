@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Goldstone Mode and Spontaneous Symmetry Broken</title>
+        <description>
+          
+          In the age of AI, is it really making any real sense to write blogs to put down something that AI can probably generate in a flash? In fact, when I was writing this blog, initially I was using the phrase ‘in a blinking time’ but as a non-native English...
+        </description>
+        <pubDate>Thu, 01 Jan 2026 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2026-01-01-goldstone_mode_symmetry/</link>
+        <guid isPermaLink="true">http://localhost:4000/2026-01-01-goldstone_mode_symmetry/</guid>
+      </item>
+    
+      <item>
         <title>Remotely Wake up MacOS from Sleeping</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Mon, 21 Apr 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-04-21-gsasii_dev_new/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-04-21-gsasii_dev_new/</guid>
-      </item>
-    
-      <item>
-        <title>Local Development of GSAS-II -- Deprecated Instructions</title>
-        <description>
-          
-          GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. It is possible to grab the source codes of GSAS-II, develop and test it locally. This post covers the steps to set up the...
-        </description>
-        <pubDate>Tue, 18 Mar 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2025-03-18-gsasii_dev/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-03-18-gsasii_dev/</guid>
       </item>
     
   </channel>
