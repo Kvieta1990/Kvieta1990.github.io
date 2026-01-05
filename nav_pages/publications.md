@@ -8,7 +8,27 @@ subtitle: 　
 
 <br />
 
+<u>2026</u>
+
+- Invited book chapter entitled ***Neutron Total Scattering and Pair Distribution Function Analysis for Local Structure Determination of Inorganic Materials*** in the book entitled ***Applications of Neutron Scattering for Inorganic Materials*** by Royal Socienty of Chemistry in the UK. ***under preparation***.
+
+- I. Nielsen, M. Eremenko, **Yuanpeng Zhang**, M. G. Tucker and W. R. Brant, <u><b><i>J. Mater. Chem. C</i></b></u> 2026, Advance Article.
+
 <u>2025</u>
+
+- H. Cein Mandujano, Sajjan Sheoran, **Yuanpeng Zhang**, Tianyu Li, Stephanie J. Hong, Pratibha Dev and Efrain E. Rodriguez, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2025, 147 (49), 44926-44940.
+
+- Joseph A. M. Paddison, Stuart Calder, Danielle R. Yahne, Malcolm J. Cochran, Si Athena Chen, Matthias D. Frontzek, **Yuanpeng Zhang**, <u><b><i>Rev. Sci. Instrum.</i></b></u> 2025, 96, 113901.
+
+- Yonghao Yao, Hui Liu, Yihao Hu, Kaustuv Datta, Jiagang Wu, **Yuanpeng Zhang**, Matthew G. Tucker, Shi Liu, Joerg C. Neuefeind, Shujun Zhang and Jun Chen, <u><b><i>Nat. Commun.</i></b></u> 2025, 16, 7442.
+
+- Jiali Zhou, Xingyu Chen, **Yuanpeng Zhang**, Maxim Avdeev, Jiawei Zhang, Xun Shi, <u><b><i>Adv. Funct. Mater.</i></b></u> 2025, e15882.
+
+- Jingyu Li, Zheng Ma, Hao Wang, Lanwei Li, Jianbo Zhu, Huaican Chen, **Yuanpeng Zhang**, Zhuoyang Ti, Jiajun Zhong, Yuanguang Xia, Peng-Fei Liu, Yongsheng Zhang and Wen Yin, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2025, 147 (45), 41629-41638.
+
+- Xin Wang, Cameron S. Jorgensen, Corisa Kons, Peter C. Metz, Joshua Safin, William R. Meier, Dustin A. Gilbert, Katharine Page, **Yuanpeng Zhang**, Jue Liu and Eleonora Calì, <u><b><i>Phys. Rev. B</i></b></u> 2025, 112, 184413.
+
+- Hao Wang, Yuanji Xu, Yuzhu Song, Andrea Sanson, **Yuanpeng Zhang**, Yonghao Yao, Hui Liu, Takeshi Watanabe, Jianrong Zeng, Naike Shi and Jun Chen, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2025, 147 (38), 34697-34705.
 
 - Feixiang Long, Yuzhu Song, Hengchao Li, Yuanji Xu, Fuyang Tian, **Yuanpeng Zhang**, Tianyu Li, Hui Liu, Jiazheng Hao, Lunhua He, Xianran Xing, Fengxia Hu, Jun Chen, <u><b><i>J. Am. Chem. Soc.</i></b></u> 2025, 147, 4349-4356.
 
