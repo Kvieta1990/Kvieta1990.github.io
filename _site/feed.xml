@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Real Spherical Harmonics Visualization</title>
+        <description>
+          
+          Taking the \(Y_4^3\) function as the example, the full mathematical form of the function is, \[Y_4^3 = \frac{3}{4}\sqrt{\frac{35}{\pi}}sin^3\theta cos\theta cos(3\phi)\] To visualize the function, we first need to make it clear what we are trying to visualize. First, physically, this functions gives the distribution of, e.g., the electron density, as...
+        </description>
+        <pubDate>Mon, 05 Jan 2026 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2026-01-05-spherical_harmonics_viz/</link>
+        <guid isPermaLink="true">http://localhost:4000/2026-01-05-spherical_harmonics_viz/</guid>
+      </item>
+    
+      <item>
         <title>Goldstone Mode and Spontaneous Symmetry Broken</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Mon, 21 Apr 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-04-21-mantid_livered/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-04-21-mantid_livered/</guid>
-      </item>
-    
-      <item>
-        <title>Local Development of GSAS-II -- New Instructions</title>
-        <description>
-          
-          Here in this post, I will put down the instructions for setting up the local developing environment for GSAS-II. See the legacy instructions in my previous post here for the old version of the source codes. Conda Environment Setup conda create -n gsasii_dev conda activate gsasii_dev conda install python numpy...
-        </description>
-        <pubDate>Mon, 21 Apr 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2025-04-21-gsasii_dev_new/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-04-21-gsasii_dev_new/</guid>
       </item>
     
   </channel>
