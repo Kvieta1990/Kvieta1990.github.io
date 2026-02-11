@@ -49,7 +49,9 @@ More
 
 - <a target="_blank" href="https://dh.iris-home.net">Yuanpeng's Dashboard</a>
 
-- <a target="_blank" href="https://page.iris-home.net">Yuanpeng's Collection</a>
+- <a target="_blank" href="https://ha.iris-2020.us">Yuanpeng's Collection</a>
+
+- <a target="_blank" href="https://glance.iris-2020.us">Yuanpeng's Glance</a>
 
 - <a target="_blank" href="https://github.com/Kvieta1990">Yuanpeng's GitHub</a>
 
