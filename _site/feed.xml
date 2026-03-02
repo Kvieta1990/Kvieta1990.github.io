@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>OpenClaw Installation &amp; Configuration on Linux</title>
+        <description>
+          
+          Here in this post, I am noting down the installation and configuration for OpenClaw. First, we follow the installation instructions here and carefully go through each step. Below is presented the whole input/output during my installation, where all the API keys and configuration tokens, etc. are omitted. 🦞 OpenClaw Installer...
+        </description>
+        <pubDate>Sun, 01 Mar 2026 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2026-03-01-openclaw_install_config/</link>
+        <guid isPermaLink="true">http://localhost:4000/2026-03-01-openclaw_install_config/</guid>
+      </item>
+    
+      <item>
         <title>Real Spherical Harmonics Visualization</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Fri, 09 May 2025 00:00:00 -0500</pubDate>
         <link>http://localhost:4000/2025-05-09-nova_dev/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-05-09-nova_dev/</guid>
-      </item>
-    
-      <item>
-        <title>Configure a Local Mantid Live Reduction Service</title>
-        <description>
-          
-          Here in this post, I am writing down notes regarding the configuration of a Mantid live reduction service locally. By ‘locally’, I mean the service can be managed by a local user, instead a system-wise one for which the management would require a sudo privilege. Relevant scripts are stored in...
-        </description>
-        <pubDate>Mon, 21 Apr 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2025-04-21-mantid_livered/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-04-21-mantid_livered/</guid>
       </item>
     
   </channel>

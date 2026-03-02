@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>OpenClaw Installation &amp; Configuration on Linux</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Here in this post, I am noting down the installation and configuration for OpenClaw. First, we follow the installation instructions here and carefully go through each step. Below is presented the whole input/output during my installation, where all the API keys and configuration tokens, etc. are omitted. 🦞 OpenClaw Installer...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="OpenClaw Installation &amp; Configuration on Linux">
+  <meta property="og:description" content="Here in this post, I am noting down the installation and configuration for OpenClaw. First, we follow the installation instructions here and carefully go through each step. Below is presented the whole input/output during my installation, where all the API keys and configuration tokens, etc. are omitted. 🦞 OpenClaw Installer...">
+
+  
+  <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-03-01T00:00:00-05:00">
+  <meta property="og:url" content="http://localhost:4000/2026-03-01-openclaw_install_config/">
+  <link rel="canonical" href="http://localhost:4000/2026-03-01-openclaw_install_config/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="OpenClaw Installation &amp; Configuration on Linux">
+  <meta property="twitter:description" content="Here in this post, I am noting down the installation and configuration for OpenClaw. First, we follow the installation instructions here and carefully go through each step. Below is presented the whole input/output during my installation, where all the API keys and configuration tokens, etc. are omitted. 🦞 OpenClaw Installer...">
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>OpenClaw Installation & Configuration on Linux</h1>
+          
+
+          
+					<span class="post-meta">Posted on March 1, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>Here in this post, I am noting down the installation and configuration for <code class="language-plaintext highlighter-rouge">OpenClaw</code>. First, we follow the installation instructions <a href="https://docs.openclaw.ai/install#macos-%2F-linux-%2F-wsl2">here</a> and carefully go through each step. Below is presented the whole input/output during my installation, where all the API keys and configuration tokens, etc. are omitted.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  🦞 OpenClaw Installer
+  Hot reload for config, cold sweat for deploys.
+
+✓ Detected: linux
+
+Install plan
+OS: linux
+Install method: npm
+Requested version: latest
+
+[1/3] Preparing environment
+· Node.js not found, installing it now
+· Installing Node.js via NodeSource
+· Installing Linux build tools (make/g++/cmake/python3)
+✓ Build tools installed
+✓ Node.js v22 installed
+· Active Node.js: v22.22.0 (/usr/bin/node)
+· Active npm: 10.9.4 (/usr/bin/npm)
+
+[2/3] Installing OpenClaw
+✓ Git already installed
+· Configuring npm for user-local installs
+✓ npm configured for user installs
+· Installing OpenClaw v2026.2.26
+✓ OpenClaw npm package installed
+✓ OpenClaw installed
+
+[3/3] Finalizing setup
+
+! PATH missing npm global bin dir: /home/ubuntu/.npm-global/bin
+  This can make openclaw show as "command not found" in new terminals.
+  Fix (zsh: ~/.zshrc, bash: ~/.bashrc):
+    export PATH="/home/ubuntu/.npm-global/bin:$PATH"
+
+🦞 OpenClaw installed successfully (2026.2.26)!
+Settled in. Time to automate your life whether you're ready or not.
+
+· Starting setup
+
+
+🦞 OpenClaw 2026.2.26 (bc50708) — curl for conversations.
+
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██░▄▄▄░██░▄▄░██░▄▄▄██░▀██░██░▄▄▀██░████░▄▄▀██░███░██
+██░███░██░▀▀░██░▄▄▄██░█░█░██░█████░████░▀▀░██░█░█░██
+██░▀▀▀░██░█████░▀▀▀██░██▄░██░▀▀▄██░▀▀░█░██░██▄▀▄▀▄██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+                  🦞 OPENCLAW 🦞
+
+┌  OpenClaw onboarding
+│
+◇  Security ─────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                            │
+│  Security warning — please read.                                                           │
+│                                                                                            │
+│  OpenClaw is a hobby project and still in beta. Expect sharp edges.                        │
+│  By default, OpenClaw is a personal agent: one trusted operator boundary.                  │
+│  This bot can read files and run actions if tools are enabled.                             │
+│  A bad prompt can trick it into doing unsafe things.                                       │
+│                                                                                            │
+│  OpenClaw is not a hostile multi-tenant boundary by default.                               │
+│  If multiple users can message one tool-enabled agent, they share that delegated tool      │
+│  authority.                                                                                │
+│                                                                                            │
+│  If you’re not comfortable with security hardening and access control, don’t run           │
+│  OpenClaw.                                                                                 │
+│  Ask someone experienced to help before enabling tools or exposing it to the internet.     │
+│                                                                                            │
+│  Recommended baseline:                                                                     │
+│  - Pairing/allowlists + mention gating.                                                    │
+│  - Multi-user/shared inbox: split trust boundaries (separate gateway/credentials, ideally  │
+│    separate OS users/hosts).                                                               │
+│  - Sandbox + least-privilege tools.                                                        │
+│  - Shared inboxes: isolate DM sessions (`session.dmScope: per-channel-peer`) and keep      │
+│    tool access minimal.                                                                    │
+│  - Keep secrets out of the agent’s reachable filesystem.                                   │
+│  - Use the strongest available model for any bot with tools or untrusted inboxes.          │
+│                                                                                            │
+│  Run regularly:                                                                            │
+│  openclaw security audit --deep                                                            │
+│  openclaw security audit --fix                                                             │
+│                                                                                            │
+│  Must read: https://docs.openclaw.ai/gateway/security                                      │
+│                                                                                            │
+├────────────────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  I understand this is personal-by-default and shared/multi-user use requires lock-down. Continue?
+│  Yes
+│
+◇  Onboarding mode
+│  Manual
+│
+◇  What do you want to set up?
+│  Local gateway (this machine)
+│
+◇  Workspace directory
+│  /home/ubuntu/.openclaw/workspace
+│
+◇  Model/auth provider
+│  Anthropic
+│
+◇  Anthropic auth method
+│  Anthropic API key
+│
+◇  How do you want to provide this API key?
+│  Paste API key now
+│
+◇  Enter Anthropic API key
+│  &lt;paste_api_key_here&gt;
+│
+◇  Default model
+│  Keep current (anthropic/claude-sonnet-4-6)
+│
+◇  Gateway port
+│  18789
+│
+◇  Gateway bind
+│  Loopback (127.0.0.1)
+│
+◇  Gateway auth
+│  Token
+│
+◇  Tailscale exposure
+│  Off
+│
+◇  Gateway token (blank to generate)
+│
+│
+◇  Channel status ────────────────────────────╮
+│                                             │
+│  Telegram: needs token                      │
+│  WhatsApp (default): not linked             │
+│  Discord: needs token                       │
+│  Slack: needs tokens                        │
+│  Signal: needs setup                        │
+│  signal-cli: missing (signal-cli)           │
+│  iMessage: needs setup                      │
+│  imsg: missing (imsg)                       │
+│  IRC: not configured                        │
+│  Google Chat: not configured                │
+│  Feishu: install plugin to enable           │
+│  Google Chat: install plugin to enable      │
+│  Nostr: install plugin to enable            │
+│  Microsoft Teams: install plugin to enable  │
+│  Mattermost: install plugin to enable       │
+│  Nextcloud Talk: install plugin to enable   │
+│  Matrix: install plugin to enable           │
+│  BlueBubbles: install plugin to enable      │
+│  LINE: install plugin to enable             │
+│  Zalo: install plugin to enable             │
+│  Zalo Personal: install plugin to enable    │
+│  Synology Chat: install plugin to enable    │
+│  Tlon: install plugin to enable             │
+│                                             │
+├─────────────────────────────────────────────╯
+│
+◇  Configure chat channels now?
+│  Yes
+│
+◇  How channels work ───────────────────────────────────────────────────────────────────────╮
+│                                                                                           │
+│  DM security: default is pairing; unknown DMs get a pairing code.                         │
+│  Approve with: openclaw pairing approve &lt;channel&gt; &lt;code&gt;                                  │
+│  Public DMs require dmPolicy="open" + allowFrom=["*"].                                    │
+│  Multi-user DMs: run: openclaw config set session.dmScope "per-channel-peer" (or          │
+│  "per-account-channel-peer" for multi-account channels) to isolate sessions.              │
+│  Docs: channels/pairing              │
+│                                                                                           │
+│  Telegram: simplest way to get started — register a bot with @BotFather and get going.    │
+│  WhatsApp: works with your own number; recommend a separate phone + eSIM.                 │
+│  Discord: very well supported right now.                                                  │
+│  IRC: classic IRC networks with DM/channel routing and pairing controls.                  │
+│  Google Chat: Google Workspace Chat app with HTTP webhook.                                │
+│  Slack: supported (Socket Mode).                                                          │
+│  Signal: signal-cli linked device; more setup (David Reagans: "Hop on Discord.").         │
+│  iMessage: this is still a work in progress.                                              │
+│  Feishu: 飞书/Lark enterprise messaging with doc/wiki/drive tools.                        │
+│  Nostr: Decentralized protocol; encrypted DMs via NIP-04.                                 │
+│  Microsoft Teams: Bot Framework; enterprise support.                                      │
+│  Mattermost: self-hosted Slack-style chat; install the plugin to enable.                  │
+│  Nextcloud Talk: Self-hosted chat via Nextcloud Talk webhook bots.                        │
+│  Matrix: open protocol; install the plugin to enable.                                     │
+│  BlueBubbles: iMessage via the BlueBubbles mac app + REST API.                            │
+│  LINE: LINE Messaging API bot for Japan/Taiwan/Thailand markets.                          │
+│  Zalo: Vietnam-focused messaging platform with Bot API.                                   │
+│  Zalo Personal: Zalo personal account via QR code login.                                  │
+│  Synology Chat: Connect your Synology NAS Chat to OpenClaw with full agent capabilities.  │
+│  Tlon: decentralized messaging on Urbit; install the plugin to enable.                    │
+│                                                                                           │
+├───────────────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Select a channel
+│  Slack (Socket Mode)
+│
+◇  Slack bot display name (used for manifest)
+│  OpenClaw
+│
+◇  Slack socket mode tokens ─────────────────────────────────────────────╮
+│                                                                        │
+│  1) Slack API → Create App → From scratch                              │
+│  2) Add Socket Mode + enable it to get the app-level token (xapp-...)  │
+│  3) OAuth &amp; Permissions → install app to workspace (xoxb- bot token)   │
+│  4) Enable Event Subscriptions (socket) for message events             │
+│  5) App Home → enable the Messages tab for DMs                         │
+│  Tip: set SLACK_BOT_TOKEN + SLACK_APP_TOKEN in your env.               │
+│  Docs: slack                 │
+│                                                                        │
+│  Manifest (JSON):                                                      │
+│  {                                                                     │
+│    "display_information": {                                            │
+│      "name": "OpenClaw",                                               │
+│      "description": "OpenClaw connector for OpenClaw"                  │
+│    },                                                                  │
+│    "features": {                                                       │
+│      "bot_user": {                                                     │
+│        "display_name": "OpenClaw",                                     │
+│        "always_online": false                                          │
+│      },                                                                │
+│      "app_home": {                                                     │
+│        "messages_tab_enabled": true,                                   │
+│        "messages_tab_read_only_enabled": false                         │
+│      },                                                                │
+│      "slash_commands": [                                               │
+│        {                                                               │
+│          "command": "/openclaw",                                       │
+│          "description": "Send a message to OpenClaw",                  │
+│          "should_escape": false                                        │
+│        }                                                               │
+│      ]                                                                 │
+│    },                                                                  │
+│    "oauth_config": {                                                   │
+│      "scopes": {                                                       │
+│        "bot": [                                                        │
+│          "chat:write",                                                 │
+│          "channels:history",                                           │
+│          "channels:read",                                              │
+│          "groups:history",                                             │
+│          "im:history",                                                 │
+│          "mpim:history",                                               │
+│          "users:read",                                                 │
+│          "app_mentions:read",                                          │
+│          "reactions:read",                                             │
+│          "reactions:write",                                            │
+│          "pins:read",                                                  │
+│          "pins:write",                                                 │
+│          "emoji:read",                                                 │
+│          "commands",                                                   │
+│          "files:read",                                                 │
+│          "files:write"                                                 │
+│        ]                                                               │
+│      }                                                                 │
+│    },                                                                  │
+│    "settings": {                                                       │
+│      "socket_mode_enabled": true,                                      │
+│      "event_subscriptions": {                                          │
+│        "bot_events": [                                                 │
+│          "app_mention",                                                │
+│          "message.channels",                                           │
+│          "message.groups",                                             │
+│          "message.im",                                                 │
+│          "message.mpim",                                               │
+│          "reaction_added",                                             │
+│          "reaction_removed",                                           │
+│          "member_joined_channel",                                      │
+│          "member_left_channel",                                        │
+│          "channel_rename",                                             │
+│          "pin_added",                                                  │
+│          "pin_removed"                                                 │
+│        ]                                                               │
+│      }                                                                 │
+│    }                                                                   │
+│  }                                                                     │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
+│
+◇  Enter Slack bot token (xoxb-...)
+│  &lt;paste_api_key_here&gt;
+│
+◇  Enter Slack app token (xapp-...)
+│  &lt;paste_api_key_here&gt;
+│
+◇  Configure Slack channels access?
+│  Yes
+│
+◇  Slack channels access
+│  Allowlist (recommended)
+│
+◇  Slack channels allowlist (comma-separated)
+│  zyp-agent
+│
+◇  Slack channels ─────────────────────────────────────────────────────────────────╮
+│                                                                                  │
+│  Channel lookup failed; keeping entries as typed. Error: An API error occurred:  │
+│  missing_scope                                                                   │
+│                                                                                  │
+├──────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Select a channel
+│  Finished
+│
+◇  Selected channels ────────────────────────────────────────╮
+│                                                            │
+│  Slack — supported (Socket Mode). Docs:                    │
+│  slack  │
+│                                                            │
+├────────────────────────────────────────────────────────────╯
+│
+◇  Configure DM access policies now? (default: pairing)
+│  No
+Updated ~/.openclaw/openclaw.json
+Workspace OK: ~/.openclaw/workspace
+Sessions OK: ~/.openclaw/agents/main/sessions
+│
+◇  Skills status ─────────────╮
+│                             │
+│  Eligible: 5                │
+│  Missing requirements: 39   │
+│  Unsupported on this OS: 7  │
+│  Blocked by allowlist: 0    │
+│                             │
+├─────────────────────────────╯
+│
+◇  Configure skills now? (recommended)
+│  Yes
+│
+◇  Install missing skill dependencies
+│  🧩 clawhub, 🎛️ eightctl, 🧲 gifgrep, 🐙 github, 🎮 gog, 🧿 oracle, 🧾 summarize
+│
+◇  Homebrew recommended ──────────────────────────────────────────────────────────╮
+│                                                                                 │
+│  Many skill dependencies are shipped via Homebrew.                              │
+│  Without brew, you'll need to build from source or download releases manually.  │
+│                                                                                 │
+├─────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Show Homebrew install command?
+│  Yes
+│
+◇  Homebrew install ─────────────────────────────────────────────────────╮
+│                                                                        │
+│  Run:                                                                  │
+│  /bin/bash -c "$(curl -fsSL                                            │
+│  https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  │
+│                                                                        │
+├────────────────────────────────────────────────────────────────────────╯
+│
+◇  Preferred node manager for skill installs
+│  npm
+│
+◇  Installed clawhub
+│
+◇  Installed eightctl
+│
+◇  Installed gifgrep
+│
+◇  Install failed: github — brew not installed — Homebrew is not installed. Install it from https://brew.sh or install "gh" manually using your system package manager …
+Tip: run `openclaw doctor` to review skills + requirements.
+Docs: https://docs.openclaw.ai/skills
+│
+◇  Install failed: gog — brew not installed — Homebrew is not installed. Install it from https://brew.sh or install "steipete/tap/gogcli" manually using your system…
+Tip: run `openclaw doctor` to review skills + requirements.
+Docs: https://docs.openclaw.ai/skills
+│
+◇  Installed oracle
+│
+◇  Install failed: summarize — brew not installed — Homebrew is not installed. Install it from https://brew.sh or install "steipete/tap/summarize" manually using your sys…
+Tip: run `openclaw doctor` to review skills + requirements.
+Docs: https://docs.openclaw.ai/skills
+│
+◇  Set GOOGLE_PLACES_API_KEY for goplaces?
+│  Yes
+│
+◇  Enter GOOGLE_PLACES_API_KEY
+│  &lt;paste_api_key_here&gt;
+│
+◇  Set GEMINI_API_KEY for nano-banana-pro?
+│  Yes
+│
+◇  Enter GEMINI_API_KEY
+│  &lt;paste_api_key_here&gt;
+│
+◇  Set NOTION_API_KEY for notion?
+│  Yes
+│
+◇  Enter NOTION_API_KEY
+│  &lt;paste_api_key_here&gt;
+│
+◇  Set OPENAI_API_KEY for openai-image-gen?
+│  Yes
+│
+◇  Enter OPENAI_API_KEY
+│  &lt;paste_api_key_here&gt;
+│
+◇  Set OPENAI_API_KEY for openai-whisper-api?
+│  Yes
+│
+◇  Enter OPENAI_API_KEY
+│  &lt;paste_api_key_here&gt;
+│
+◇  Set ELEVENLABS_API_KEY for sag?
+│  Yes
+│
+◇  Enter ELEVENLABS_API_KEY
+│  &lt;paste_api_key_here&gt;
+│
+◇  Hooks ──────────────────────────────────────────────────────────────────╮
+│                                                                          │
+│  Hooks let you automate actions when agent commands are issued.          │
+│  Example: Save session context to memory when you issue /new or /reset.  │
+│                                                                          │
+│  Learn more: https://docs.openclaw.ai/automation/hooks                   │
+│                                                                          │
+├──────────────────────────────────────────────────────────────────────────╯
+│
+◇  Enable hooks?
+│  📝 command-logger, 💾 session-memory
+│
+◇  Hooks Configured ────────────────────────────────╮
+│                                                   │
+│  Enabled 2 hooks: session-memory, command-logger  │
+│                                                   │
+│  You can manage hooks later with:                 │
+│    openclaw hooks list                            │
+│    openclaw hooks enable &lt;name&gt;                   │
+│    openclaw hooks disable &lt;name&gt;                  │
+│                                                   │
+├───────────────────────────────────────────────────╯
+Config overwrite: /home/ubuntu/.openclaw/openclaw.json (sha256 577695db522d902816785f62712c0420ae3bf94d4e8c9aa2e415ac1170076f05 -&gt; 58ac884d7a30136ec51abb7056946a7943db5e36943d5c0ba5fa971a38b49ed2, backup=/home/ubuntu/.openclaw/openclaw.json.bak)
+│
+◇  Systemd ────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                          │
+│  Linux installs use a systemd user service by default. Without lingering, systemd stops  │
+│  the user session on logout/idle and kills the Gateway.                                  │
+│  Enabling lingering now (may require sudo; writes /var/lib/systemd/linger).              │
+│                                                                                          │
+├──────────────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Systemd ───────────────────────────────╮
+│                                         │
+│  Enabled systemd lingering for ubuntu.  │
+│                                         │
+├─────────────────────────────────────────╯
+│
+◇  Install Gateway service (recommended)
+│  Yes
+│
+◇  Gateway service runtime
+│  Node (recommended)
+│
+◐  Installing Gateway service…
+Installed systemd service: /home/ubuntu/.config/systemd/user/openclaw-gateway.service
+◇  Gateway service installed.
+│
+◇
+Slack: ok (942ms)
+Agents: main (default)
+Heartbeat interval: 30m (main)
+Session store (main): /home/ubuntu/.openclaw/agents/main/sessions/sessions.json (0 entries)
+│
+◇  Optional apps ────────────────────────╮
+│                                        │
+│  Add nodes for extra features:         │
+│  - macOS app (system + notifications)  │
+│  - iOS app (camera/canvas)             │
+│  - Android app (camera/canvas)         │
+│                                        │
+├────────────────────────────────────────╯
+│
+◇  Control UI ─────────────────────────────────────────────────────────────────────╮
+│                                                                                  │
+│  Web UI: http://127.0.0.1:18789/                                                 │
+│  Web UI (with token):                                                            │
+│  http://127.0.0.1:18789/#token=&lt;generated_token_shown_here&gt;                      │
+│  Gateway WS: ws://127.0.0.1:18789                                                │
+│  Gateway: reachable                                                              │
+│  Docs: https://docs.openclaw.ai/web/control-ui                                   │
+│                                                                                  │
+├──────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  Start TUI (best option!) ─────────────────────────────────╮
+│                                                            │
+│  This is the defining action that makes your agent you.    │
+│  Please take your time.                                    │
+│  The more you tell it, the better the experience will be.  │
+│  We will send: "Wake up, my friend!"                       │
+│                                                            │
+├────────────────────────────────────────────────────────────╯
+│
+◇  Token ─────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                         │
+│  Gateway token: shared auth for the Gateway + Control UI.                               │
+│  Stored in: ~/.openclaw/openclaw.json (gateway.auth.token) or OPENCLAW_GATEWAY_TOKEN.   │
+│  View token: openclaw config get gateway.auth.token                                     │
+│  Generate token: openclaw doctor --generate-gateway-token                               │
+│  Web UI stores a copy in this browser's localStorage (openclaw.control.settings.v1).    │
+│  Open the dashboard anytime: openclaw dashboard --no-open                               │
+│  If prompted: paste the token into Control UI settings (or use the tokenized dashboard  │
+│  URL).                                                                                  │
+│                                                                                         │
+├─────────────────────────────────────────────────────────────────────────────────────────╯
+│
+◇  How do you want to hatch your bot?
+│  Hatch in TUI (recommended)
+ openclaw tui - ws://127.0.0.1:18789 - agent main - session main
+
+ session agent:main:main
+
+
+ Wake up, my friend!
+
+
+ Hey! Good to meet you. I just came online — fresh start, blank slate, no memory yet.
+
+ Looks like we haven't been introduced. So let's fix that.
+
+ Who am I? That's kind of up to us. I need a name, a vibe, maybe an emoji. I have some ideas if you want suggestions, or you can just tell me what feels right.
+
+ And who are you? What should I call you?
+</code></pre></div></div>
+
+<p>N.B. I was installing <code class="language-plaintext highlighter-rouge">OpenClaw</code> on my Linux server so actually the answer to the question <code class="language-plaintext highlighter-rouge">Show Homebrew install command?</code> should be <code class="language-plaintext highlighter-rouge">No</code> but the initial answer I gave during the installation is <code class="language-plaintext highlighter-rouge">Yes</code> as shown above. This turns out to be fine – just some installation failure while trying installing those brew relevant Skills. For the API keys configurations for various tools/Skills, most of them are straightforward to obtain. The only one that needs a special mention here is the <code class="language-plaintext highlighter-rouge">Notion API key</code>. To get it, we need to go to <a href="https://www.notion.so/profile/integrations/public">https://www.notion.so/profile/integrations/public</a> and then go to <code class="language-plaintext highlighter-rouge">Internal integration</code> under <code class="language-plaintext highlighter-rouge">Build</code> (see the left-hand side items in the page) and create a new integration there.</p>
+
+<p>After the successful installation, the web UI is accessible from <code class="language-plaintext highlighter-rouge">http://localhost:18789</code>. Here, I am using <code class="language-plaintext highlighter-rouge">nginx + Cloudflare</code> for the secure connection. Refer to the instructions in Ref. [1-3] for the setup. In my case, after the configuration, the web UI can be accessed via <a href="htts://openclaw.iris-home.net">htts://openclaw.iris-home.net</a>. First time visiting the web UI, we are expected to see some errors on the web interface saying the <code class="language-plaintext highlighter-rouge">Status</code> is <code class="language-plaintext highlighter-rouge">Offline</code>. This is probably because we haven’t set up the <code class="language-plaintext highlighter-rouge">Gateway Token</code>. To obtain the token, we can refer to the <code class="language-plaintext highlighter-rouge">Control UI</code> session in the installation process as presented  above. Or, on terminal, we can do <code class="language-plaintext highlighter-rouge">openclaw dashboard --no-open</code> to see the token. Then we go to the web UI and paste the token in <code class="language-plaintext highlighter-rouge">Gateway Token</code>, followed by clicking on the <code class="language-plaintext highlighter-rouge">Connect</code> button. If error occurs, we can go to the OpenClaw configuration file located at <code class="language-plaintext highlighter-rouge">~/.openclaw/openclaw.json</code> and look for <code class="language-plaintext highlighter-rouge">allowedOrigins</code> under the <code class="language-plaintext highlighter-rouge">gateway/controlUI</code> session. Then we can put in the domain like below,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18789",
+        "https://openclaw.iris-2020.us"
+      ]
+    },
+...
+</code></pre></div></div>
+
+<p>After making the change, we run <code class="language-plaintext highlighter-rouge">openclaw gateway restart</code> to restart the OpenClaw gateway. Now going back to the web UI, we should see something different – still there is expected error message but the message should now specify how we should move forward. Fundamentally, this is the security mechanism implemented with OpenClaw – as we will notice, there is no login mechanism coming with the web UI so there has to be a security mechanism in place to prevent unauthorized access to the web UI. So, every time we try a new browser to get access to the web UI, we are expected to see the same error message telling us what to do. Basically, a fresh new access to the web UI will trigger a request to the server and on the server side, we can run <code class="language-plaintext highlighter-rouge">openclaw devices list</code> on the terminal to see the request. Then we can copy the request ID from the table (see the first column from the left) and run <code class="language-plaintext highlighter-rouge">openclaw devices approve [here_we_put_down_the_request_id_without_the_square_bracket]</code>. Now going back to the web UI, we should see that everything is OK.</p>
+
+<p>During the installation, we were asked to set up channels (Slack, iMessage, etc.) for communicating with <code class="language-plaintext highlighter-rouge">OpenClaw</code>. I am using <code class="language-plaintext highlighter-rouge">Slack</code> here. To set up the <code class="language-plaintext highlighter-rouge">Slack</code> connection, we would need the app and bot API keys. Here we can follow the steps as following for the setup. First, go to api.slack.com/apps and click “Create New App” → “From scratch”, and then give it a name and select the workspace for the app. <code class="language-plaintext highlighter-rouge">OpenClaw</code> supports two modes for the <code class="language-plaintext highlighter-rouge">Slack</code> connection and here I am going with the <code class="language-plaintext highlighter-rouge">Socket Mode</code>. Go to <code class="language-plaintext highlighter-rouge">Socket Mode</code> in the <code class="language-plaintext highlighter-rouge">Slack api</code> page and enable the socket mode by clicking on the switch. Then we need to give it a name and confirm to bring up the API key window where we can copy the API key – this is the app API needed by <code class="language-plaintext highlighter-rouge">OpenClaw</code>. Then we go to <code class="language-plaintext highlighter-rouge">OAuth &amp; Permissions</code>, and in the <code class="language-plaintext highlighter-rouge">Scopes</code> session, select the <code class="language-plaintext highlighter-rouge">Bot Token Scopes</code>, including <code class="language-plaintext highlighter-rouge">chat:write</code>, <code class="language-plaintext highlighter-rouge">channels:history</code>, <code class="language-plaintext highlighter-rouge">channels:read</code>, <code class="language-plaintext highlighter-rouge">im:write</code>, <code class="language-plaintext highlighter-rouge">im:history</code>, <code class="language-plaintext highlighter-rouge">im:read</code>, <code class="language-plaintext highlighter-rouge">users:read</code>, <code class="language-plaintext highlighter-rouge">reactions:read</code>, <code class="language-plaintext highlighter-rouge">reactions:write</code>, <code class="language-plaintext highlighter-rouge">files:read</code>, <code class="language-plaintext highlighter-rouge">files:write</code>, etc. Then go to the <code class="language-plaintext highlighter-rouge">OAuth Tokens</code> session in the page to install the app to the workspace and get the <code class="language-plaintext highlighter-rouge">xoxb-...</code> Bot Token – this is the bot API required by <code class="language-plaintext highlighter-rouge">OpenClaw</code>. Finally, we need to go to <code class="language-plaintext highlighter-rouge">Event Subscriptions</code> in the <code class="language-plaintext highlighter-rouge">Slack api</code> page and add the following events subscription in the <code class="language-plaintext highlighter-rouge">Subscribe to bot events</code> session, <code class="language-plaintext highlighter-rouge">app_mention</code>, <code class="language-plaintext highlighter-rouge">message.channels</code>, <code class="language-plaintext highlighter-rouge">message.groups</code>, <code class="language-plaintext highlighter-rouge">message.im</code>, <code class="language-plaintext highlighter-rouge">message.mpim</code>. In principle, we should do this <code class="language-plaintext highlighter-rouge">Slack</code> setup before installing <code class="language-plaintext highlighter-rouge">OpenClaw</code> so when asked during the installation we can directly put in the required API keys. However in practice, even we do this, initially, it is possible the <code class="language-plaintext highlighter-rouge">Slack</code> integration would not work. In that case, we just follow the steps here for the <code class="language-plaintext highlighter-rouge">Slack</code> setup and obtain the app and bot API keys. Then, we can edit the <code class="language-plaintext highlighter-rouge">OpenClaw</code> configuration file (again, located at <code class="language-plaintext highlighter-rouge">~/.openclaw/openclaw.json</code> on the server) and edit the <code class="language-plaintext highlighter-rouge">channels</code> session to be like this,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+  "channels": {
+    "slack": {
+      "mode": "socket",
+      "webhookPath": "/slack/events",
+      "enabled": true,
+      "botToken": "xoxb-......",
+      "appToken": "xapp-......",
+      "userTokenReadOnly": true,
+      "allowBots": true,
+      "groupPolicy": "allowlist",
+      "streaming": "partial",
+      "nativeStreaming": true,
+      "channels": {
+        "zyp-agent": {
+          "enabled": true,
+          "allow": true,
+          "requireMention": false,
+          "allowBots": true
+        }
+      }
+    }
+  },
+...
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">zyp-agent</code> is my <code class="language-plaintext highlighter-rouge">Slack</code> channel name to incorporate the <code class="language-plaintext highlighter-rouge">OpenClaw</code> app (this is the name I gave for the app) we just created.</p>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://iris2020.net/2023-12-25-vps_docker_services/">https://iris2020.net/2023-12-25-vps_docker_services/</a></p>
+
+<p>[2] <a href="https://iris2020.net/2025-08-18-cloudcone_setup/">https://iris2020.net/2025-08-18-cloudcone_setup/</a></p>
+
+<p>[3] <a href="https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/">https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/</a></p>
+
+<p>[4] <a href="https://www.reddit.com/r/clawdbot/comments/1qrwovq/unauthorized_gateway/">https://www.reddit.com/r/clawdbot/comments/1qrwovq/unauthorized_gateway/</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#technical">technical</a>
+          
+            <a href="/tags#AI">AI</a>
+          
+            <a href="/tags#agent">agent</a>
+          
+            <a href="/tags#LLM">LLM</a>
+          
+            <a href="/tags#Slack">Slack</a>
+          
+            <a href="/tags#automation">automation</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=OpenClaw+Installation+%26+Configuration+on+Linux&url=http%3A%2F%2Flocalhost%3A4000%2F2026-03-01-openclaw_install_config%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2026-03-01-openclaw_install_config%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2026-03-01-openclaw_install_config%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-01-05-spherical_harmonics_viz/" data-toggle="tooltip" data-placement="top" title="Real Spherical Harmonics Visualization">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
