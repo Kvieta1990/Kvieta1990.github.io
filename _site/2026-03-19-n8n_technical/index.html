@@ -19,13 +19,13 @@
 
   
 
-  <title>Setting up 1panel with Cloudflare</title>
+  <title>Some Technical Notes on n8n setup</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="1Panel is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with docker as the backend engine). I have my own server hosted on...">
+  <meta name="description" content="I had some previous posting covering some specific technical notes on the n8n setup [1, 2]. The current post covers the general technical notes on n8n setup, in a laundary list form, meaning that items are not coming in a logical order. Authentication for MCP Tools in n8n We can...">
 
   
 
@@ -89,8 +89,8 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Setting up 1panel with Cloudflare">
-  <meta property="og:description" content="1Panel is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with docker as the backend engine). I have my own server hosted on...">
+  <meta property="og:title" content="Some Technical Notes on n8n setup">
+  <meta property="og:description" content="I had some previous posting covering some specific technical notes on the n8n setup [1, 2]. The current post covers the general technical notes on n8n setup, in a laundary list form, meaning that items are not coming in a logical order. Authentication for MCP Tools in n8n We can...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -99,9 +99,9 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2025-01-30T00:00:00-04:00">
-  <meta property="og:url" content="http://localhost:4000/2025-01-30-1panel_cloudflare/">
-  <link rel="canonical" href="http://localhost:4000/2025-01-30-1panel_cloudflare/">
+  <meta property="og:article:published_time" content="2026-03-19T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2026-03-19-n8n_technical/">
+  <link rel="canonical" href="http://localhost:4000/2026-03-19-n8n_technical/">
   
 
   
@@ -110,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Setting up 1panel with Cloudflare">
-  <meta property="twitter:description" content="1Panel is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with docker as the backend engine). I have my own server hosted on...">
+  <meta property="twitter:title" content="Some Technical Notes on n8n setup">
+  <meta property="twitter:description" content="I had some previous posting covering some specific technical notes on the n8n setup [1, 2]. The current post covers the general technical notes on n8n setup, in a laundary list form, meaning that items are not coming in a logical order. Authentication for MCP Tools in n8n We can...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -264,11 +264,11 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>Setting up 1panel with Cloudflare</h1>
+						<h1>Some Technical Notes on n8n setup</h1>
           
 
           
-					<span class="post-meta">Posted on January 30, 2025, by Yuanpeng Zhang</span>
+					<span class="post-meta">Posted on March 19, 2026, by Yuanpeng Zhang</span>
             
             
           
@@ -292,62 +292,72 @@ if (chromeAgent) {
       
 
       <article role="main" class="blog-post">
-        <style>
-    .faq-container {
-        margin: 0 auto;
-    }
-    .faq-question {
-        margin-bottom: 10px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    .faq-answer {
-        display: none;
-        margin-bottom: 20px;
-    }
-    .callout {
-        background-color: #e8f4fd; /* Light blue background */
-        border-left: 5px solid #007BFF; /* Blue accent on the left */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-        font-family: Arial, sans-serif; /* Ensuring the font is consistent */
-    }
-    .multiline-span {
-        display: block; /* or display: inline-block; */
-    }
-</style>
+        <p>I had some previous posting covering some specific technical notes on the <code class="language-plaintext highlighter-rouge">n8n</code> setup [1, 2]. The current post covers the general technical notes on <code class="language-plaintext highlighter-rouge">n8n</code> setup, in a laundary list form, meaning that items are not coming in a logical order.</p>
+
+<h2 id="authentication-for-mcp-tools-in-n8n">Authentication for MCP Tools in <code class="language-plaintext highlighter-rouge">n8n</code></h2>
+
+<p>We can host MCP tools in <code class="language-plaintext highlighter-rouge">n8n</code> and inside <code class="language-plaintext highlighter-rouge">n8n</code>, we can call the internal MCP tools. Though this is internal call, still we need an authentication mechanism. For example, here I am using the <code class="language-plaintext highlighter-rouge">Header Auth</code>. To get this work, we first need to set up a credential for this inside <code class="language-plaintext highlighter-rouge">n8n</code>. When trying to set up the credential, we want to select the <code class="language-plaintext highlighter-rouge">Header Auth</code> following which we will see the following interface,</p>
 
 <p align="center">
-<img src="/assets/img/posts/1panel_cf.png" style="border:none;" width="500" alt="wordpress" title="wordpress" />
+<img src="/assets/img/posts/n8n_header_auth.png" style="border:none;" width="800" alt="n8n_ha" title="n8n_ha" />
 </p>
 
-<p><code class="language-plaintext highlighter-rouge">1Panel</code> is an open-source web-based control panel for Linux server management. With 1panel, we can manager our server in a visual and convenient manner. Also, it provides application store to install a wide range of web-based applications (with <code class="language-plaintext highlighter-rouge">docker</code> as the backend engine). I have my own server hosted on Oracle cloud and I have several blog posts regarding the setup of the server and those running web-based applications [1, 2].</p>
+<p>Here we need to fill in the <code class="language-plaintext highlighter-rouge">Name</code> and <code class="language-plaintext highlighter-rouge">Value</code>. To obtain the entries, we need to set up the token for our <code class="language-plaintext highlighter-rouge">n8n</code> instance. So, go to <code class="language-plaintext highlighter-rouge">Settings</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">n8n API</code> and create an API key from there. Then we can fill in the name and the API key created there to the interface above.</p>
 
-<p>Setting up the <code class="language-plaintext highlighter-rouge">1panel</code> service on our server is as simple as running the command below,</p>
+<h2 id="calling-tools-on-the-host-machine">Calling Tools on the Host Machine</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-sSL</span> https://resource.1panel.hk/quick_start.sh <span class="nt">-o</span> quick_start.sh <span class="o">&amp;&amp;</span> bash quick_start.sh
+<p>The python code node inside <code class="language-plaintext highlighter-rouge">n8n</code> can do some basic python code execution but it may not have the modules installed for our analysis purposes. Therefore, we need a way to access python environment with those needed modules installed. Though, we can create custom image from the <code class="language-plaintext highlighter-rouge">n8n</code> image that we will be running with, this is not the optimal way to do it. The best way is probably to run a local service on the host machine and inside the <code class="language-plaintext highlighter-rouge">n8n</code> workflow, we just call the tool on-the-fly through HTTP node. For example, on the host machine, we can set up a virtual environment and have the following server running,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/run'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">run_script</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[</span><span class="s">'/home/cloud/miniconda3/envs/n8n-analysis/bin/python'</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s">'script'</span><span class="p">]],</span>
+        <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+        <span class="s">'stdout'</span><span class="p">:</span> <span class="n">result</span><span class="p">.</span><span class="n">stdout</span><span class="p">,</span>
+        <span class="s">'stderr'</span><span class="p">:</span> <span class="n">result</span><span class="p">.</span><span class="n">stderr</span><span class="p">,</span>
+        <span class="s">'returncode'</span><span class="p">:</span> <span class="n">result</span><span class="p">.</span><span class="n">returncode</span>
+    <span class="p">})</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6001</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>After the initial setup, we can visit the service through the preset port, like this <code class="language-plaintext highlighter-rouge">http://localhost:&lt;PORT&gt;/&lt;RANDOM_ENTRY_POINT&gt;</code>, where <code class="language-plaintext highlighter-rouge">&lt;PORT&gt;</code> refers to the port number and <code class="language-plaintext highlighter-rouge">&lt;RANDOM_ENTRY_POINT&gt;</code> is a random string for the entrance. Both of them would be with some default value when initially setting up <code class="language-plaintext highlighter-rouge">1panel</code>. After the setup, we can obtain the information by running,</p>
+<p>Then inside <code class="language-plaintext highlighter-rouge">n8n</code>, we can generate the python script to be run on-the-fly and call the tool above through a HTTP node. Mechanism-wise, this is something similar to the following command to call the service above,</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>1pctl user-info
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node -e "
+fetch('http://172.21.0.1:6001/run', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ script: '/home/cloud/packages/n8n/scripts/test.py' })
+}).then(r =&gt; r.json()).then(d =&gt; console.log(JSON.stringify(d, null, 2)))
+"
 </code></pre></div></div>
 
-<p>With the default setup, we can visit the service through <code class="language-plaintext highlighter-rouge">http</code> like above, which is not secure. To set up a secure connection, we can use the free <code class="language-plaintext highlighter-rouge">cloudflare</code> service (running remotely) together with the <code class="language-plaintext highlighter-rouge">nginx</code> service (running locally on the server). Notes about setting up <code class="language-plaintext highlighter-rouge">cloudflare</code> with our own registered domain can be found <a href="https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/">here</a>. The local setup for <code class="language-plaintext highlighter-rouge">nginx</code> is very similar to <code class="language-plaintext highlighter-rouge">Issue #3</code> in Ref. [1] and we only need to replace the <code class="language-plaintext highlighter-rouge">server_name</code> with the sub-domain that we registered on <code class="language-plaintext highlighter-rouge">cloudflare</code> and replace the port number that <code class="language-plaintext highlighter-rouge">1panel</code> service is running on. The only special setup for <code class="language-plaintext highlighter-rouge">1panel</code> is about the entrance. By default, <code class="language-plaintext highlighter-rouge">1panel</code> enables the secure entrance, i.e., <code class="language-plaintext highlighter-rouge">&lt;RANDOM_ENTRY_POINT&gt;</code> above. This means every time when we try to access <code class="language-plaintext highlighter-rouge">1panel</code>, we need to append <code class="language-plaintext highlighter-rouge">/&lt;RANDOM_ENTRY_POINT&gt;</code> to the domain name and this is not so convenient. To solve the issue, my solution is to remove the entrance, by running [3],</p>
+<p>The script <code class="language-plaintext highlighter-rouge">/home/cloud/packages/n8n/scripts/test.py</code> to be run is supposed to be on the host machine. So, when generating the script inside the <code class="language-plaintext highlighter-rouge">n8n</code> container, we want to make sure to write the script to a mounted drive so that the host machine can get access to it. The <code class="language-plaintext highlighter-rouge">172.21.0.1</code> is the local host IP which can be found out by running,</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>1pctl reset entrance
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip route | <span class="nb">grep </span>default | <span class="nb">awk</span> <span class="s1">'{print $3}'</span>
 </code></pre></div></div>
 
-<p>With this, no <code class="language-plaintext highlighter-rouge">&lt;RANDOM_ENTRY_POINT&gt;</code> will be needed for the visiting url.</p>
+<p>from inside the <code class="language-plaintext highlighter-rouge">n8n</code> docker container. To get into the interactive shell of the running <code class="language-plaintext highlighter-rouge">n8n</code> container, we can do something like,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> &lt;n8n_container_id&gt; sh
+</code></pre></div></div>
 
 <p><br /></p>
 
 <h1 id="references">References</h1>
 
-<p>[1] <a href="https://iris2020.net/2023-09-08-docker_nginx/">https://iris2020.net/2023-09-08-docker_nginx/</a></p>
+<p>[1] <a href="https://iris2020.net/2025-11-19-n8n_postgres_embed/">https://iris2020.net/2025-11-19-n8n_postgres_embed/</a></p>
 
-<p>[2] <a href="https://iris2020.net/2024-01-28-oracle_vps_vol_expand/">https://iris2020.net/2024-01-28-oracle_vps_vol_expand/</a></p>
-
-<p>[3] <a href="https://docs.1panel.hk/user_manual/settings/#security">https://docs.1panel.hk/user_manual/settings/#security</a></p>
+<p>[2] <a href="https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/">https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/</a></p>
 
       </article>
 
@@ -355,9 +365,11 @@ if (chromeAgent) {
         <div class="blog-tags">
           <span>Tags:</span>
           
-            <a href="/tags#web">web</a>
+            <a href="/tags#LLM">LLM</a>
           
-            <a href="/tags#tool">tool</a>
+            <a href="/tags#technical">technical</a>
+          
+            <a href="/tags#dev">dev</a>
           
         </div>
       
@@ -374,7 +386,7 @@ if (chromeAgent) {
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Setting+up+1panel+with+Cloudflare&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-30-1panel_cloudflare%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Some+Technical+Notes+on+n8n+setup&url=http%3A%2F%2Flocalhost%3A4000%2F2026-03-19-n8n_technical%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -382,7 +394,7 @@ if (chromeAgent) {
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2025-01-30-1panel_cloudflare%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2026-03-19-n8n_technical%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -390,7 +402,7 @@ if (chromeAgent) {
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2025-01-30-1panel_cloudflare%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2026-03-19-n8n_technical%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -408,13 +420,9 @@ if (chromeAgent) {
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2025-01-28-rmcprofile_dev_env_gen/" data-toggle="tooltip" data-placement="top" title="Notes on the development environment setup for RMCProfile">&larr; Previous Post</a>
+          <a class="page-link" href="/2026-03-01-openclaw_install_config/" data-toggle="tooltip" data-placement="top" title="OpenClaw Installation & Configuration on Linux">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2025-01-31-mantid_local_python/" data-toggle="tooltip" data-placement="top" title="Use local build of Mantid with Python script">Next Post &rarr;</a>
-        </li>
         
       </ul>
       

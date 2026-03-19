@@ -12,12 +12,23 @@
     
     
       <item>
+        <title>Some Technical Notes on n8n setup</title>
+        <description>
+          
+          I had some previous posting covering some specific technical notes on the n8n setup [1, 2]. The current post covers the general technical notes on n8n setup, in a laundary list form, meaning that items are not coming in a logical order. Authentication for MCP Tools in n8n We can...
+        </description>
+        <pubDate>Thu, 19 Mar 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2026-03-19-n8n_technical/</link>
+        <guid isPermaLink="true">http://localhost:4000/2026-03-19-n8n_technical/</guid>
+      </item>
+    
+      <item>
         <title>OpenClaw Installation &amp; Configuration on Linux</title>
         <description>
           
           Here in this post, I am noting down the installation and configuration for OpenClaw. First, we follow the installation instructions here and carefully go through each step. Below is presented the whole input/output during my installation, where all the API keys and configuration tokens, etc. are omitted. 🦞 OpenClaw Installer...
         </description>
-        <pubDate>Sun, 01 Mar 2026 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 01 Mar 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2026-03-01-openclaw_install_config/</link>
         <guid isPermaLink="true">http://localhost:4000/2026-03-01-openclaw_install_config/</guid>
       </item>
@@ -28,7 +39,7 @@
           
           Taking the \(Y_4^3\) function as the example, the full mathematical form of the function is, \[Y_4^3 = \frac{3}{4}\sqrt{\frac{35}{\pi}}sin^3\theta cos\theta cos(3\phi)\] To visualize the function, we first need to make it clear what we are trying to visualize. First, physically, this functions gives the distribution of, e.g., the electron density, as...
         </description>
-        <pubDate>Mon, 05 Jan 2026 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 05 Jan 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2026-01-05-spherical_harmonics_viz/</link>
         <guid isPermaLink="true">http://localhost:4000/2026-01-05-spherical_harmonics_viz/</guid>
       </item>
@@ -39,7 +50,7 @@
           
           In the age of AI, is it really making any real sense to write blogs to put down something that AI can probably generate in a flash? In fact, when I was writing this blog, initially I was using the phrase ‘in a blinking time’ but as a non-native English...
         </description>
-        <pubDate>Thu, 01 Jan 2026 00:00:00 -0500</pubDate>
+        <pubDate>Thu, 01 Jan 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2026-01-01-goldstone_mode_symmetry/</link>
         <guid isPermaLink="true">http://localhost:4000/2026-01-01-goldstone_mode_symmetry/</guid>
       </item>
@@ -50,7 +61,7 @@
           
           When MacOS goes into the sleep mode, the connection to outside is nearly all broken, including the SSH connection and the remote control (e.g., with AnyDesk), etc. This post is about how we can work around this – when we are remote, to connect to the sleeping MacOS, we need...
         </description>
-        <pubDate>Fri, 12 Dec 2025 00:00:00 -0500</pubDate>
+        <pubDate>Fri, 12 Dec 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-12-12-wakeup_macos/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-12-12-wakeup_macos/</guid>
       </item>
@@ -61,7 +72,7 @@
           
           In one of my previous posts, I had some notes about the preferred orientation and texture and the two typical ways to represent them [1]. In this post, I am trying to put down some follow-up notes about the topic, hoping to add some more understanding of the topic. Preferred...
         </description>
-        <pubDate>Thu, 11 Dec 2025 00:00:00 -0500</pubDate>
+        <pubDate>Thu, 11 Dec 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-12-11-preferred_orientation_texture_followup/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-12-11-preferred_orientation_texture_followup/</guid>
       </item>
@@ -72,7 +83,7 @@
           
           In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region. Einstein gave the problem...
         </description>
-        <pubDate>Thu, 04 Dec 2025 00:00:00 -0500</pubDate>
+        <pubDate>Thu, 04 Dec 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-12-04-einstein_debye_model/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-12-04-einstein_debye_model/</guid>
       </item>
@@ -83,7 +94,7 @@
           
           When we have a high-dimension configuration space, e.g., a system containing hundreds of thousands of atoms with each atom carrying 3 degrees of freedom (DOF), it becomes difficult to sample the system. For example, if we want to sample the configuration with low energy (thus considered as energetically stable) or...
         </description>
-        <pubDate>Sun, 30 Nov 2025 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 30 Nov 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-11-30-metropolis_monte_carlo/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-11-30-metropolis_monte_carlo/</guid>
       </item>
@@ -94,7 +105,7 @@
           
           In this post, I will put down the notes for configuring the postgres connection in n8n. At the end of the day, the purpose is to create a workflow for the Retrieval Augmented Generation (RAG). In Ref. [1], we can find a workflow template for scraping the n8n documentation, embedding...
         </description>
-        <pubDate>Wed, 19 Nov 2025 00:00:00 -0500</pubDate>
+        <pubDate>Wed, 19 Nov 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-11-19-n8n_postgres_embed/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-11-19-n8n_postgres_embed/</guid>
       </item>
@@ -105,7 +116,7 @@
           
           Understanding ion diffusion is essential in battery materials research and characterizing diffusion pathways is critical for rational materials design and optimization. While using the diffraction technique for the characterization of battery materials, we could obtain the refined structure configuration via fitting the diffraction data, with the small-box or big-box approach,...
         </description>
-        <pubDate>Sun, 26 Oct 2025 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 26 Oct 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-10-26-bondstr_bvs/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-10-26-bondstr_bvs/</guid>
       </item>
@@ -116,7 +127,7 @@
           
           For time of flight (TOF) neutorn diffractometers, the raw data are recorded in events – an event means a certain detector is having a neutron hitting at a certain time point. Sayting this, to pin down an event, we need two pieces of basic information, namely time and location, defining...
         </description>
-        <pubDate>Fri, 17 Oct 2025 00:00:00 -0500</pubDate>
+        <pubDate>Fri, 17 Oct 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-10-17-mantid_geometry/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-10-17-mantid_geometry/</guid>
       </item>
@@ -127,7 +138,7 @@
           
           GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. Conveniently, it provides the scriptable interface so that we can perform the refinement in a programming way. This is pretty handy when some batch...
         </description>
-        <pubDate>Mon, 25 Aug 2025 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 25 Aug 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-08-25-gsasii_scriptable/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-08-25-gsasii_scriptable/</guid>
       </item>
@@ -138,7 +149,7 @@
           
           CloudCone is one of the companies providing cheap-access VPS for personal usage to host web services that do not require high-end computations. Here in this note, I will put down some setup notes on configuring a budget VPS on CloudCone and use it for hosting some web services. First, we...
         </description>
-        <pubDate>Mon, 18 Aug 2025 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 18 Aug 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-08-18-cloudcone_setup/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-08-18-cloudcone_setup/</guid>
       </item>
@@ -149,7 +160,7 @@
           
           GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. Here I am sharing my working pipeline to get GSAS-II working on my Linux machine of Ubuntu distro. FYI, here below is listed my...
         </description>
-        <pubDate>Fri, 01 Aug 2025 00:00:00 -0500</pubDate>
+        <pubDate>Fri, 01 Aug 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-08-01-gsasii_on_linux/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-08-01-gsasii_on_linux/</guid>
       </item>
@@ -160,7 +171,7 @@
           
           In this post, I will be covering the application packaging on MacOS. It involves multiple stage of efforts, concerning the library path configuration, application folder packaging, release package preparation, and application notarization &amp;amp; signature. Here I am taking our RMCProfile package (a package for neutron total scattering data analysis, see...
         </description>
-        <pubDate>Fri, 11 Jul 2025 00:00:00 -0500</pubDate>
+        <pubDate>Fri, 11 Jul 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-07-11-mac_app_distribution/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-07-11-mac_app_distribution/</guid>
       </item>
@@ -171,7 +182,7 @@
           
           In this post, I will put together the technical notes about several tools for remote connection. This is just a record of my strugglings with each of them while setting them up on different operating systems. Some of the notes may be very specific to my case but some of...
         </description>
-        <pubDate>Thu, 26 Jun 2025 00:00:00 -0500</pubDate>
+        <pubDate>Thu, 26 Jun 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-06-26-remote_connect/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-06-26-remote_connect/</guid>
       </item>
@@ -182,7 +193,7 @@
           
           Before we dive into the topic, I am sharing several of my typical needs that lead me to learn about something like netbird. From my home network, I want to connect to the machines inside the firewall of my work place. For some companies, it may be possible to install...
         </description>
-        <pubDate>Mon, 23 Jun 2025 00:00:00 -0500</pubDate>
+        <pubDate>Mon, 23 Jun 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-06-23-netbird_notes/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-06-23-netbird_notes/</guid>
       </item>
@@ -193,7 +204,7 @@
           
           When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...
         </description>
-        <pubDate>Sun, 15 Jun 2025 00:00:00 -0500</pubDate>
+        <pubDate>Sun, 15 Jun 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-06-15-selection_rule/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-06-15-selection_rule/</guid>
       </item>
@@ -204,7 +215,7 @@
           
           Yes, now we can run Windows in a docker container. That means we can access the Windows operating system from the web, thanks to the Windows docker image provided in Ref. [1]. Based on the instructions provided in Ref. [1], here follows is my docker compose file to start up...
         </description>
-        <pubDate>Sat, 14 Jun 2025 00:00:00 -0500</pubDate>
+        <pubDate>Sat, 14 Jun 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-06-14-windows_in_docker/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-06-14-windows_in_docker/</guid>
       </item>
@@ -215,20 +226,9 @@
           
           Today is May-20-2025. In Chinese, the pronunciation of ‘May-20’ is similar to ‘I love you’ so today is usually the day to express the love between boyfriend and girlfriend, wife and husband. Love you! My beloved Xin! Nowadays, more and more web services are implementing the two-factor authentication (2FA, or...
         </description>
-        <pubDate>Tue, 20 May 2025 00:00:00 -0500</pubDate>
+        <pubDate>Tue, 20 May 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-05-20-totp_code_gen/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-05-20-totp_code_gen/</guid>
-      </item>
-    
-      <item>
-        <title>Local Development Environment Setup for NOVA</title>
-        <description>
-          
-          This post will go over the steps for setting up the local development for nova, which is a frontend interface platform at ORNL that interacts with the backend Galaxy workflow platform. First, set up the conda environment, [CONDA_SUBDIR=osx-64] conda create -n pdiffvis -c conda-forge -c mantid python=3.10 mantid poetry conda...
-        </description>
-        <pubDate>Fri, 09 May 2025 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2025-05-09-nova_dev/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-05-09-nova_dev/</guid>
       </item>
     
   </channel>
