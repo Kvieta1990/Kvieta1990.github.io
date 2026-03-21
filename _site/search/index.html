@@ -25,7 +25,7 @@
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="&amp;#9888;&amp;#65039; Could not connect to the search server. Please check back later.">
 
   
 
@@ -90,7 +90,7 @@
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
   <meta property="og:title" content="Yuanpeng&apos;s Blog">
-  <meta property="og:description" content="">
+  <meta property="og:description" content="&amp;#9888;&amp;#65039; Could not connect to the search server. Please check back later.">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -109,7 +109,7 @@
   <meta name="twitter:creator" content="@">
 
   <meta property="twitter:title" content="Yuanpeng&apos;s Blog">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:description" content="&amp;#9888;&amp;#65039; Could not connect to the search server. Please check back later.">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -262,26 +262,352 @@ if (chromeAgent) {
 <div role="main" class=" container-md ">
   
 
-  </br>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8/themes/reset-min.css" />
 
 <style>
-    .search-container {
-        text-align: center;
-        margin: 0 auto;
-    }
-    
-    .search-container input[type="text"] {
-        width: 800px;
-    }
+  .search-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 0 40px;
+  }
+
+  .ais-SearchBox {
+    margin-bottom: 16px;
+  }
+
+  .ais-SearchBox-form {
+    display: flex;
+    gap: 8px;
+  }
+
+  .ais-SearchBox-input {
+    flex: 1;
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .ais-SearchBox-input:focus {
+    border-color: #008AFF;
+    box-shadow: 0 0 0 2px rgba(0,138,255,0.18);
+  }
+
+  .ais-SearchBox-submit,
+  .ais-SearchBox-reset {
+    padding: 10px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #f5f5f5;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .ais-SearchBox-submit:hover,
+  .ais-SearchBox-reset:hover {
+    background: #e8e8e8;
+  }
+
+  .ais-Stats {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 12px;
+  }
+
+  .ais-Hits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ais-Hits-item {
+    padding: 18px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .ais-Hits-item:last-child {
+    border-bottom: none;
+  }
+
+  .hit-title {
+    margin: 0 0 6px 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .hit-title a {
+    color: #008AFF;
+    text-decoration: none;
+  }
+
+  .hit-title a:hover {
+    text-decoration: underline;
+  }
+
+  .hit-subtitle {
+    margin: 0 0 6px 0;
+    font-size: 14px;
+    color: #444;
+    font-style: italic;
+  }
+
+  .hit-excerpt {
+    margin: 0 0 8px 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .hit-meta {
+    font-size: 12px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .hit-tag {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #555;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+
+  .ais-Highlight-highlighted,
+  .ais-Snippet-highlighted {
+    background: #fff3cd;
+    font-style: normal;
+    font-weight: bold;
+    padding: 0 1px;
+  }
+
+  .ais-Pagination-list {
+    display: flex;
+    list-style: none;
+    padding: 24px 0 0;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .ais-Pagination-item a,
+  .ais-Pagination-item span {
+    display: block;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #008AFF;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .ais-Pagination-item--selected a {
+    background: #008AFF;
+    color: white;
+    border-color: #008AFF;
+  }
+
+  .ais-Pagination-item--disabled span {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .search-empty {
+    text-align: center;
+    color: #999;
+    padding: 40px 0;
+    font-size: 15px;
+  }
+
+  .meilisearch-error {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    display: none;
+  }
 </style>
 
-<div class="search-container">
-<form method="get" action="https://duckduckgo.com/">
-    <input type="text" name="q" placeholder="Search the site with duckduckgo">
-    <input type="hidden" name="sites" value="iris2020.net">
-    <input type="submit" value="Search">
-</form>
+<div class="search-wrapper">
+  <div id="meilisearch-error" class="meilisearch-error">
+    &#9888;&#65039; Could not connect to the search server. Please check back later.
+  </div>
+  <div id="searchbox"></div>
+  <div id="stats"></div>
+  <div id="hits"></div>
+  <div id="pagination"></div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@meilisearch/instant-meilisearch/dist/instant-meilisearch.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+
+<script>
+  (function () {
+    var msHost = 'https://meili.iris-2020.us';
+    var msKey  = 'ad41af0fe4dcdb7ac1de937637d01c8a574982fd1a76064535fcd4fc824ca978';
+
+    if (!msHost || msHost === '') {
+      document.getElementById('meilisearch-error').style.display = 'block';
+      return;
+    }
+
+    var searchClient;
+    try {
+      searchClient = instantMeiliSearch(msHost, msKey, {
+        meiliSearchParams: {
+          attributesToCrop: ['content'],
+          cropLength: 25,
+        },
+      }).searchClient;
+    } catch (e) {
+      document.getElementById('meilisearch-error').style.display = 'block';
+      return;
+    }
+
+    var search = instantsearch({
+      indexName: 'posts:date:desc',
+      searchClient: searchClient,
+    });
+
+    // Shared state: real total hits populated by stats, used by pagination
+    var _totalHits = 0;
+    var _hitsPerPage = 20; // default instant-meilisearch page size
+    var _currentQuery = '';
+
+    function setResultsVisible(visible) {
+      var display = visible ? '' : 'none';
+      document.getElementById('stats').style.display      = display;
+      document.getElementById('hits').style.display       = display;
+      document.getElementById('pagination').style.display = display;
+    }
+
+    // Hide results area on load
+    setResultsVisible(false);
+
+    search.addWidgets([
+      instantsearch.widgets.searchBox({
+        container: '#searchbox',
+        placeholder: 'Search posts\u2026',
+        autofocus: true,
+        showLoadingIndicator: true,
+      }),
+
+      instantsearch.connectors.connectStats(function (data) {
+        _totalHits = data.nbHits;
+        _currentQuery = data.query;
+        setResultsVisible(_currentQuery.length > 0);
+        var el = document.getElementById('stats');
+        if (!el) return;
+        if (data.nbHits > 1) {
+          el.textContent = data.nbHits + ' results found in ' + data.processingTimeMS + 'ms';
+        } else if (data.nbHits === 1) {
+          el.textContent = '1 result found in ' + data.processingTimeMS + 'ms';
+        } else {
+          el.textContent = 'No results';
+        }
+      })({}),
+
+      instantsearch.widgets.hits({
+        container: '#hits',
+        templates: {
+          item: function (hit) {
+            var tagsHtml = '';
+            if (hit.tags && hit.tags.length) {
+              tagsHtml = hit.tags.map(function (t) {
+                return '<span class="hit-tag">' + t + '</span>';
+              }).join('');
+            }
+            var subtitleHtml = hit.subtitle
+              ? '<p class="hit-subtitle">' + hit.subtitle + '</p>'
+              : '';
+            return '<div>' +
+              '<h3 class="hit-title"><a href="' + hit.url + '">' +
+                instantsearch.highlight({ attribute: 'title', hit: hit }) +
+              '</a></h3>' +
+              subtitleHtml +
+              '<p class="hit-excerpt">' +
+                (hit._snippetResult && hit._snippetResult.content
+                  ? instantsearch.snippet({ attribute: 'content', hit: hit })
+                  : (hit.content || '').substring(0, 150) + '…') +
+              '</p>' +
+              '<div class="hit-meta"><span>' + (hit.date || '') + '</span>' + tagsHtml + '</div>' +
+            '</div>';
+          },
+          empty: function (results) {
+            return '<div class="search-empty">No results for <strong>' +
+              results.query + '</strong></div>';
+          },
+        },
+      }),
+
+      instantsearch.connectors.connectPagination(function (renderOptions, isFirstRender) {
+        var container = document.getElementById('pagination');
+        var currentPage = renderOptions.currentRefinement;
+        var realLastPage = Math.max(0, Math.ceil(_totalHits / _hitsPerPage) - 1);
+        var isFirstPage  = currentPage === 0;
+        var isLastPage   = currentPage >= realLastPage;
+
+        function btn(label, page, disabled) {
+          var el = document.createElement('li');
+          el.className = 'ais-Pagination-item' +
+            (disabled ? ' ais-Pagination-item--disabled' : '');
+          if (disabled) {
+            el.innerHTML = '<span>' + label + '</span>';
+          } else {
+            el.innerHTML = '<a href="#">' + label + '</a>';
+            el.querySelector('a').addEventListener('click', function (e) {
+              e.preventDefault();
+              renderOptions.refine(page);
+              window.scrollTo(0, 0);
+            });
+          }
+          return el;
+        }
+
+        var ul = document.createElement('ul');
+        ul.className = 'ais-Pagination-list';
+
+        // First page <<
+        ul.appendChild(btn('&laquo;', 0, isFirstPage));
+        // Prev <
+        ul.appendChild(btn('&lsaquo;', currentPage - 1, isFirstPage));
+
+        // Numbered pages around current
+        var padding = 2;
+        var start = Math.max(0, currentPage - padding);
+        var end   = Math.min(realLastPage, currentPage + padding);
+        for (var p = start; p <= end; p++) {
+          var li = btn(p + 1, p, false);
+          if (p === currentPage) {
+            li.className += ' ais-Pagination-item--selected';
+          }
+          ul.appendChild(li);
+        }
+
+        // Next >
+        ul.appendChild(btn('&rsaquo;', currentPage + 1, isLastPage));
+        // Last page >>
+        ul.appendChild(btn('&raquo;', realLastPage, isLastPage));
+
+        container.innerHTML = '';
+        container.appendChild(ul);
+      })({ container: '#pagination' }),
+    ]);
+
+    search.on('error', function () {
+      document.getElementById('meilisearch-error').style.display = 'block';
+    });
+
+    search.start();
+  }());
+</script>
 
   
 </div>

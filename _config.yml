@@ -248,5 +248,13 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
 
+# --- Meilisearch --- #
+# meilisearch_host is the URL of your Meilisearch instance.
+# meilisearch_public_key is a search-only API key safe to expose in the browser.
+# The admin key for indexing should be stored exclusively in GitHub Secrets
+# as MEILISEARCH_API_KEY — never commit it here.
+meilisearch_host: "https://meili.iris-2020.us"
+meilisearch_public_key: "ad41af0fe4dcdb7ac1de937637d01c8a574982fd1a76064535fcd4fc824ca978"
+
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189

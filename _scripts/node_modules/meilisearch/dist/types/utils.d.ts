@@ -1,0 +1,5 @@
+declare function sleep(ms: number): Promise<void>;
+declare function addProtocolIfNotPresent(host: string): string;
+declare function addTrailingSlash(url: string): string;
+export { sleep, addProtocolIfNotPresent, addTrailingSlash };
+//# sourceMappingURL=utils.d.ts.map
