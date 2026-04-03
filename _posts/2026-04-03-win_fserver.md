@@ -8,7 +8,7 @@ comments: true
 use_math: true
 ---
 
-In this post, I will be noting down how to use `Dufs` [1] for setting a file server on Windows 11. Originally, I was using `gohttpserver` which is no longer maintained, and `Dufs` is one of the recommended options on the `gohttpserver` GitHub [2]. First, we need to install `cargo`, following Ref. [3]. Then install `Dufs` with `cargo`,
+In this post, I will be noting down how to use `Dufs` [1] for setting up a file server on Windows 11. Originally, I was using `gohttpserver` which is no longer maintained, and `Dufs` is one of the recommended options on the `gohttpserver` GitHub [2]. First, we need to install `cargo`, following Ref. [3]. Then install `Dufs` with `cargo`,
 
 ```bash
 cargo install dufs
@@ -44,7 +44,7 @@ compress: low
 
 where `admin` is the user name I chose and `*****` is the placeholder for the password I set for the user. In this way, only the authenticated user `admin` will have access to the file server. The service is running on the localhost on the port `80` so it can be accessed locally via `localhost` from a local browser. The `serve-path: 'D:\'` entry specifies that `D:\` (the whole D-drive) will be hosted through the server. Here below is another service running in parallel,
 
-```YAML
+```yaml
 serve-path: 'D:\Sharing'
 bind: 0.0.0.0
 port: 8088
