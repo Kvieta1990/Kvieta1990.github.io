@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Set up a File Server on Windows</title>
+        <description>
+          
+          In this post, I will be noting down how to use Dufs [1] for setting a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install cargo,...
+        </description>
+        <pubDate>Fri, 03 Apr 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2026-04-03-win_fserver/</link>
+        <guid isPermaLink="true">http://localhost:4000/2026-04-03-win_fserver/</guid>
+      </item>
+    
+      <item>
         <title>Some Technical Notes on n8n setup</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sat, 14 Jun 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-06-14-windows_in_docker/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-06-14-windows_in_docker/</guid>
-      </item>
-    
-      <item>
-        <title>Time-Based One-Time Password Generation Programmingly</title>
-        <description>
-          
-          Today is May-20-2025. In Chinese, the pronunciation of ‘May-20’ is similar to ‘I love you’ so today is usually the day to express the love between boyfriend and girlfriend, wife and husband. Love you! My beloved Xin! Nowadays, more and more web services are implementing the two-factor authentication (2FA, or...
-        </description>
-        <pubDate>Tue, 20 May 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2025-05-20-totp_code_gen/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-05-20-totp_code_gen/</guid>
       </item>
     
   </channel>

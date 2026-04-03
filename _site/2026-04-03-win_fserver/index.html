@@ -19,13 +19,13 @@
 
   
 
-  <title>Some Technical Notes on n8n setup</title>
+  <title>Set up a File Server on Windows</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="I had some previous posting covering some specific technical notes on the n8n setup [1, 2]. The current post covers the general technical notes on n8n setup, in a laundary list form, meaning that items are not coming in a logical order. Authentication for MCP Tools in n8n We can...">
+  <meta name="description" content="In this post, I will be noting down how to use Dufs [1] for setting a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install cargo,...">
 
   
 
@@ -89,8 +89,8 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Some Technical Notes on n8n setup">
-  <meta property="og:description" content="I had some previous posting covering some specific technical notes on the n8n setup [1, 2]. The current post covers the general technical notes on n8n setup, in a laundary list form, meaning that items are not coming in a logical order. Authentication for MCP Tools in n8n We can...">
+  <meta property="og:title" content="Set up a File Server on Windows">
+  <meta property="og:description" content="In this post, I will be noting down how to use Dufs [1] for setting a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install cargo,...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -99,9 +99,9 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2026-03-19T00:00:00-04:00">
-  <meta property="og:url" content="http://localhost:4000/2026-03-19-n8n_technical/">
-  <link rel="canonical" href="http://localhost:4000/2026-03-19-n8n_technical/">
+  <meta property="og:article:published_time" content="2026-04-03T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2026-04-03-win_fserver/">
+  <link rel="canonical" href="http://localhost:4000/2026-04-03-win_fserver/">
   
 
   
@@ -110,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Some Technical Notes on n8n setup">
-  <meta property="twitter:description" content="I had some previous posting covering some specific technical notes on the n8n setup [1, 2]. The current post covers the general technical notes on n8n setup, in a laundary list form, meaning that items are not coming in a logical order. Authentication for MCP Tools in n8n We can...">
+  <meta property="twitter:title" content="Set up a File Server on Windows">
+  <meta property="twitter:description" content="In this post, I will be noting down how to use Dufs [1] for setting a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install cargo,...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -264,11 +264,11 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>Some Technical Notes on n8n setup</h1>
+						<h1>Set up a File Server on Windows</h1>
           
 
           
-					<span class="post-meta">Posted on March 19, 2026, by Yuanpeng Zhang</span>
+					<span class="post-meta">Posted on April 3, 2026, by Yuanpeng Zhang</span>
             
             
           
@@ -292,72 +292,147 @@ if (chromeAgent) {
       
 
       <article role="main" class="blog-post">
-        <p>I had some previous posting covering some specific technical notes on the <code class="language-plaintext highlighter-rouge">n8n</code> setup [1, 2]. The current post covers the general technical notes on <code class="language-plaintext highlighter-rouge">n8n</code> setup, in a laundary list form, meaning that items are not coming in a logical order.</p>
+        <p>In this post, I will be noting down how to use <code class="language-plaintext highlighter-rouge">Dufs</code> [1] for setting a file server on Windows 11. Originally, I was using <code class="language-plaintext highlighter-rouge">gohttpserver</code> which is no longer maintained, and <code class="language-plaintext highlighter-rouge">Dufs</code> is one of the recommended options on the <code class="language-plaintext highlighter-rouge">gohttpserver</code> GitHub [2]. First, we need to install <code class="language-plaintext highlighter-rouge">cargo</code>, following Ref. [3]. Then install <code class="language-plaintext highlighter-rouge">Dufs</code> with <code class="language-plaintext highlighter-rouge">cargo</code>,</p>
 
-<h2 id="authentication-for-mcp-tools-in-n8n">Authentication for MCP Tools in <code class="language-plaintext highlighter-rouge">n8n</code></h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cargo <span class="nb">install </span>dufs
+</code></pre></div></div>
 
-<p>We can host MCP tools in <code class="language-plaintext highlighter-rouge">n8n</code> and inside <code class="language-plaintext highlighter-rouge">n8n</code>, we can call the internal MCP tools. Though this is internal call, still we need an authentication mechanism. For example, here I am using the <code class="language-plaintext highlighter-rouge">Header Auth</code>. To get this work, we first need to set up a credential for this inside <code class="language-plaintext highlighter-rouge">n8n</code>. When trying to set up the credential, we want to select the <code class="language-plaintext highlighter-rouge">Header Auth</code> following which we will see the following interface,</p>
+<p>Once installed, we can refer to Ref. [1] for instructions about how to use the tool for setting up the server, which is very straightforward. For my setup, I am referring to the <code class="language-plaintext highlighter-rouge">Advanced Topics</code> section in Ref. [1] and was using a configuration file to run the server. Here below is my YAML configuration file,</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">serve-path</span><span class="pi">:</span> <span class="s1">'</span><span class="s">D:\'</span>
+<span class="na">bind</span><span class="pi">:</span> <span class="s">0.0.0.0</span>
+<span class="na">port</span><span class="pi">:</span> <span class="m">80</span>
+<span class="na">hidden</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">tmp</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">*.log'</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">*.lock'</span>
+<span class="na">auth</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">admin:*****@/:rw</span>
+<span class="na">allow-all</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-upload</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-delete</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-search</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-symlink</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-archive</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-hash</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">enable-cors</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">render-index</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">render-try-index</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">render-spa</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">log-format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">$remote_addr</span><span class="nv"> </span><span class="s">"$request"</span><span class="nv"> </span><span class="s">$status</span><span class="nv"> </span><span class="s">$http_user_agent'</span>
+<span class="na">log-file</span><span class="pi">:</span> <span class="s">E:\Programs\file_server\dufs.log</span>
+<span class="na">compress</span><span class="pi">:</span> <span class="s">low</span>
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">admin</code> is the user name I chose and <code class="language-plaintext highlighter-rouge">*****</code> is the placeholder for the password I set for the user. In this way, only the authenticated user <code class="language-plaintext highlighter-rouge">admin</code> will have access to the file server. The service is running on the localhost on the port <code class="language-plaintext highlighter-rouge">80</code> so it can be accessed locally via <code class="language-plaintext highlighter-rouge">localhost</code> from a local browser. The <code class="language-plaintext highlighter-rouge">serve-path: 'D:\'</code> entry specifies that <code class="language-plaintext highlighter-rouge">D:\</code> (the whole D-drive) will be hosted through the server. Here below is another service running in parallel,</p>
+
+<pre><code class="language-YAML">serve-path: 'D:\Sharing'
+bind: 0.0.0.0
+port: 8088
+hidden:
+  - tmp
+  - '*.lock'
+allow-all: false
+allow-upload: false
+allow-delete: false
+allow-search: true
+allow-symlink: false
+allow-archive: false
+allow-hash: false
+enable-cors: false
+render-index: true
+render-try-index: true
+render-spa: true
+log-format: '$remote_addr "$request" $status $http_user_agent'
+log-file: E:\Programs\file_server\dufs_1.log
+compress: low
+</code></pre>
+
+<p>Saving the configuration files somewhere on my system, I can then create a <code class="language-plaintext highlighter-rouge">vbscript</code> like below to start both services,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set wshShell = WScript.CreateObject("WScript.Shell")
+wshShell.Run "cmd /c dufs --config E:\Programs\file_server\dufs_config.yaml &gt; NUL 2&gt;&amp;1", 0, False
+wshShell.Run "cmd /c dufs --config E:\Programs\file_server\dufs_config_1.yaml &gt; NUL 2&gt;&amp;1", 0, False
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">E:\Programs\file_server\dufs_config.yaml</code> and <code class="language-plaintext highlighter-rouge">E:\Programs\file_server\dufs_config_1.yaml</code> are apparently where I saved those two configuration files. To start the server, we can double click on the <code class="language-plaintext highlighter-rouge">vbscript</code> created above. Further, we can create a shortcut for the script and put it under <code class="language-plaintext highlighter-rouge">C:\Users\&lt;user_name&gt;\AppData\Roaming\Microsoft\Windows\Start Menu\Programs</code> to make it available in the Windows start menu – <code class="language-plaintext highlighter-rouge">&lt;user_name&gt;</code> refers to our Windows user name. Even further, we can press <code class="language-plaintext highlighter-rouge">&lt;Windows&gt;+R</code> to bring up the run box and type in <code class="language-plaintext highlighter-rouge">shell:startup</code> to bring up the file explorer to the startup folder. We can then copy the shortcut for the <code class="language-plaintext highlighter-rouge">vbscript</code> to the startup folder so it can start with the system.</p>
+
+<p>Now we successfully set up the file server running locally but still only locally. To bring the server to the public so to be accessible from the internet, there are multiple ways. For example, we can set up the <code class="language-plaintext highlighter-rouge">nginx</code> service on the same Windows machine to serve the reverse proxy on port <code class="language-plaintext highlighter-rouge">80</code> and <code class="language-plaintext highlighter-rouge">8088</code> and then we may need to forward the port from the router (for serving the home Wifi) to the Windows machine. Then to make the connection secure, either we set up the SSL sertificate ourselves or use <code class="language-plaintext highlighter-rouge">Cloudflare</code> to have another layer of reverse proxy so that when users hit the domain name that we suppose to have for our file server, the inbound traffic goes like <code class="language-plaintext highlighter-rouge">DNS</code> =&gt; <code class="language-plaintext highlighter-rouge">Cloudflare</code> =&gt; <code class="language-plaintext highlighter-rouge">Home Router</code> =&gt; <code class="language-plaintext highlighter-rouge">nginx on Windows</code> =&gt; <code class="language-plaintext highlighter-rouge">Dufs service on Windows</code>. This is doable but is a bit tedious. Here I am noting down a more conveninent approach, still using <code class="language-plaintext highlighter-rouge">Cloudflare</code> but this time using the <code class="language-plaintext highlighter-rouge">tunnel</code>. First, we need to install the <code class="language-plaintext highlighter-rouge">cloudflared</code> util, by following the instructions in Ref. [4]. Next, open <code class="language-plaintext highlighter-rouge">powershell</code> and execute the following command,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cloudflared tunnel login
+</code></pre></div></div>
+
+<p>which will open a browser to authorize the tunnel. Then create a tunnel,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cloudflared tunnel create hwin11-tunnel
+</code></pre></div></div>
+
+<p>This generates a tunnel ID and credentials file. The credentials file will be saved into <code class="language-plaintext highlighter-rouge">c:\Users\&lt;user_name&gt;\.cloudflared\</code> where <code class="language-plaintext highlighter-rouge">&lt;user_name&gt;</code> is our Windows user name, and the name of the credentials file will be <code class="language-plaintext highlighter-rouge">&lt;tunnel_id&gt;.json</code> where <code class="language-plaintext highlighter-rouge">&lt;tunnel_id&gt;</code> refers to the <code class="language-plaintext highlighter-rouge">tunnel ID</code> generated while running the command above. Next, create the tunnel configuration file as <code class="language-plaintext highlighter-rouge">c:\Users\&lt;user_name&gt;\.cloudflared\config.yml</code>, like below,</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">tunnel</span><span class="pi">:</span> <span class="s">d906a963-6cce-4b82-9472-b7357de029d1</span>
+<span class="na">credentials-file</span><span class="pi">:</span> <span class="s">C:\Users\kviet\.cloudflared\d906a963-6cce-4b82-9472-b7357de029d1.json</span>
+
+<span class="na">ingress</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">tube.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">http://localhost:5556</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">files.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">http://localhost</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">share.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">http://localhost:8088</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">media.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">http://localhost:8096</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">sync.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">http://localhost:8888</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">rdp.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">tcp://localhost:3389</span>
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">http_status:404</span>
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">tunnel</code> and <code class="language-plaintext highlighter-rouge">credentials-file</code> needs to be populated with the tunnel ID and the credentials file, respectively. The <code class="language-plaintext highlighter-rouge">hostname</code> under <code class="language-plaintext highlighter-rouge">ingress</code> is something we need to create. Basically, we need to add in a proper DNS record for the domain name maintained via <code class="language-plaintext highlighter-rouge">Cloudflare</code>. To create the record, we run something like below,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cloudflared tunnel route dns hwin11-tunnel tube.iris-home.day
+</code></pre></div></div>
+
+<p>Now, if we go to <code class="language-plaintext highlighter-rouge">Cloudflare</code> and further go to the domain name =&gt; <code class="language-plaintext highlighter-rouge">DNS</code> =&gt; <code class="language-plaintext highlighter-rouge">Records</code>, we will see something like below,</p>
 
 <p align="center">
-<img src="/assets/img/posts/n8n_header_auth.png" style="border:none;" width="800" alt="n8n_ha" title="n8n_ha" />
+<img src="/assets/img/posts/cloudflare_tunnel.png" style="border:none;" width="1000" alt="ctunnel" title="ctunnel" />
 </p>
 
-<p>Here we need to fill in the <code class="language-plaintext highlighter-rouge">Name</code> and <code class="language-plaintext highlighter-rouge">Value</code>. To obtain the entries, we need to set up the token for our <code class="language-plaintext highlighter-rouge">n8n</code> instance. So, go to <code class="language-plaintext highlighter-rouge">Settings</code> \(\rightarrow\) <code class="language-plaintext highlighter-rouge">n8n API</code> and create an API key from there. Then we can fill in the name and the API key created there to the interface above.</p>
+<p>To see all the tunnels associated with the domain name, in the interface shown above, we click on the tunnel name, e.g., <code class="language-plaintext highlighter-rouge">hwin11-tunnel</code>. Now going back to the <code class="language-plaintext highlighter-rouge">cloudflared</code> configuration file above, we just need to put in the proper entry to point the <code class="language-plaintext highlighter-rouge">hostname</code> to the local service. For example, for the file server with <code class="language-plaintext highlighter-rouge">Dufs</code>, the hostname <code class="language-plaintext highlighter-rouge">files.iris-home.day</code> points to <code class="language-plaintext highlighter-rouge">localhost</code> (the one running on the port <code class="language-plaintext highlighter-rouge">80</code>) and <code class="language-plaintext highlighter-rouge">share.iris-home.day</code> points to <code class="language-plaintext highlighter-rouge">localhost:8088</code>.</p>
 
-<h2 id="calling-tools-on-the-host-machine">Calling Tools on the Host Machine</h2>
+<p>Finally, we just need to start the tunnel by running,</p>
 
-<p>The python code node inside <code class="language-plaintext highlighter-rouge">n8n</code> can do some basic python code execution but it may not have the modules installed for our analysis purposes. Therefore, we need a way to access python environment with those needed modules installed. Though, we can create custom image from the <code class="language-plaintext highlighter-rouge">n8n</code> image that we will be running with, this is not the optimal way to do it. The best way is probably to run a local service on the host machine and inside the <code class="language-plaintext highlighter-rouge">n8n</code> workflow, we just call the tool on-the-fly through HTTP node. For example, on the host machine, we can set up a virtual environment and have the following server running,</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/run'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">run_script</span><span class="p">():</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span>
-        <span class="p">[</span><span class="s">'/home/cloud/miniconda3/envs/n8n-analysis/bin/python'</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s">'script'</span><span class="p">]],</span>
-        <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
-        <span class="s">'stdout'</span><span class="p">:</span> <span class="n">result</span><span class="p">.</span><span class="n">stdout</span><span class="p">,</span>
-        <span class="s">'stderr'</span><span class="p">:</span> <span class="n">result</span><span class="p">.</span><span class="n">stderr</span><span class="p">,</span>
-        <span class="s">'returncode'</span><span class="p">:</span> <span class="n">result</span><span class="p">.</span><span class="n">returncode</span>
-    <span class="p">})</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6001</span><span class="p">)</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cloudflared tunnel run
 </code></pre></div></div>
 
-<p>Then inside <code class="language-plaintext highlighter-rouge">n8n</code>, we can generate the python script to be run on-the-fly and call the tool above through a HTTP node. Mechanism-wise, this is something similar to the following command to call the service above,</p>
+<p>We can create a batch file for this,</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node -e "
-fetch('http://172.21.0.1:6001/run', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ script: '/home/cloud/packages/n8n/scripts/test.py' })
-}).then(r =&gt; r.json()).then(d =&gt; console.log(JSON.stringify(d, null, 2)))
-"
+<div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@echo <span class="na">off</span>
+
+<span class="kd">cloudflared</span> <span class="kd">tunnel</span> <span class="nb">run</span>
 </code></pre></div></div>
 
-<p>The script <code class="language-plaintext highlighter-rouge">/home/cloud/packages/n8n/scripts/test.py</code> to be run is supposed to be on the host machine. So, when generating the script inside the <code class="language-plaintext highlighter-rouge">n8n</code> container, we want to make sure to write the script to a mounted drive so that the host machine can get access to it. The <code class="language-plaintext highlighter-rouge">172.21.0.1</code> is the local host IP which can be found out by running,</p>
+<p>and then we can create a <code class="language-plaintext highlighter-rouge">vbscript</code> to run the batch file without bringing up the terminal,</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip route | <span class="nb">grep </span>default | <span class="nb">awk</span> <span class="s1">'{print $3}'</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run "c:\Users\&lt;user_name&gt;\OneDrive\One_Documents\Cloudflared\tube.bat", 0
+Set WshShell = Nothing
 </code></pre></div></div>
 
-<p>from inside the <code class="language-plaintext highlighter-rouge">n8n</code> docker container. To get into the interactive shell of the running <code class="language-plaintext highlighter-rouge">n8n</code> container, we can do something like,</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> &lt;n8n_container_id&gt; sh
-</code></pre></div></div>
+<p>where, again, <code class="language-plaintext highlighter-rouge">&lt;user_name&gt;</code> refers to our Windows user name. Then we can create the shortcut for the <code class="language-plaintext highlighter-rouge">vbscript</code>, put it in the <code class="language-plaintext highlighter-rouge">Start</code> menu and further put it into the startup folder, as all be described above.</p>
 
 <p><br /></p>
 
 <h1 id="references">References</h1>
 
-<p>[1] <a href="https://iris2020.net/2025-11-19-n8n_postgres_embed/">https://iris2020.net/2025-11-19-n8n_postgres_embed/</a></p>
+<p>[1] <a href="https://github.com/sigoden/dufs">https://github.com/sigoden/dufs</a></p>
 
-<p>[2] <a href="https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/">https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/</a></p>
+<p>[2] <a href="https://github.com/codeskyblue/gohttpserver">https://github.com/codeskyblue/gohttpserver</a></p>
+
+<p>[3] <a href="https://forge.rust-lang.org/infra/other-installation-methods.html">https://forge.rust-lang.org/infra/other-installation-methods.html</a></p>
+
+<p>[4] <a href="https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/">https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/</a></p>
 
       </article>
 
@@ -365,11 +440,9 @@ fetch('http://172.21.0.1:6001/run', {
         <div class="blog-tags">
           <span>Tags:</span>
           
-            <a href="/tags#LLM">LLM</a>
+            <a href="/tags#server">server</a>
           
-            <a href="/tags#technical">technical</a>
-          
-            <a href="/tags#dev">dev</a>
+            <a href="/tags#Windows">Windows</a>
           
         </div>
       
@@ -386,7 +459,7 @@ fetch('http://172.21.0.1:6001/run', {
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Some+Technical+Notes+on+n8n+setup&url=http%3A%2F%2Flocalhost%3A4000%2F2026-03-19-n8n_technical%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+a+File+Server+on+Windows&url=http%3A%2F%2Flocalhost%3A4000%2F2026-04-03-win_fserver%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -394,7 +467,7 @@ fetch('http://172.21.0.1:6001/run', {
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2026-03-19-n8n_technical%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2026-04-03-win_fserver%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -402,7 +475,7 @@ fetch('http://172.21.0.1:6001/run', {
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2026-03-19-n8n_technical%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2026-04-03-win_fserver%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -420,13 +493,9 @@ fetch('http://172.21.0.1:6001/run', {
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2026-03-01-openclaw_install_config/" data-toggle="tooltip" data-placement="top" title="OpenClaw Installation & Configuration on Linux">&larr; Previous Post</a>
+          <a class="page-link" href="/2026-03-19-n8n_technical/" data-toggle="tooltip" data-placement="top" title="Some Technical Notes on n8n setup">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2026-04-03-win_fserver/" data-toggle="tooltip" data-placement="top" title="Set up a File Server on Windows">Next Post &rarr;</a>
-        </li>
         
       </ul>
       
