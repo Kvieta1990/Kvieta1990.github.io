@@ -54,6 +54,14 @@ botocore.errorfactory.ResourceNotFoundException: An error occurred (ResourceNotF
 
 This is due to that the first time AWS Bedrock models use requires approval by us manually in the AWS console. Again, in the model catalog console, we expect to see some warning message at the top part of the page guiding us to approve the AWS Bedrock models usage. We just need to follow the instructions there to approve the access and after a short while we expect to receive an email notifying that we have got the access. After that, the Strands agent script should be able to run.
 
+---
+
+***asynchronous applications***: streaming the response from agent process without blocking the main process. This is very useful and is commonly seen with LLM chat services where the response to our prompt will be printed out continuously like a typewritter.
+
+***callback***: function to call while a task is completed.
+
+---
+
 <br />
 
 References
