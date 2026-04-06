@@ -12,10 +12,21 @@
     
     
       <item>
+        <title>Strands Agent Episode-1 — Setup</title>
+        <description>
+          
+          This is the first post in the series of using Strands agent SDK for agent development. The walkthrough can be found in the official quick start documentation with Python [1]. This post serves as the side note for the documentation, noting down some technical details that we may need regarding...
+        </description>
+        <pubDate>Sun, 05 Apr 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2026-04-05-strand_agent/</link>
+        <guid isPermaLink="true">http://localhost:4000/2026-04-05-strand_agent/</guid>
+      </item>
+    
+      <item>
         <title>Set up a File Server on Windows</title>
         <description>
           
-          In this post, I will be noting down how to use Dufs [1] for setting a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install cargo,...
+          In this post, I will be noting down how to use Dufs [1] for setting up a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install...
         </description>
         <pubDate>Fri, 03 Apr 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2026-04-03-win_fserver/</link>
@@ -218,17 +229,6 @@
         <pubDate>Sun, 15 Jun 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2025-06-15-selection_rule/</link>
         <guid isPermaLink="true">http://localhost:4000/2025-06-15-selection_rule/</guid>
-      </item>
-    
-      <item>
-        <title>Windows in Docker</title>
-        <description>
-          
-          Yes, now we can run Windows in a docker container. That means we can access the Windows operating system from the web, thanks to the Windows docker image provided in Ref. [1]. Based on the instructions provided in Ref. [1], here follows is my docker compose file to start up...
-        </description>
-        <pubDate>Sat, 14 Jun 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2025-06-14-windows_in_docker/</link>
-        <guid isPermaLink="true">http://localhost:4000/2025-06-14-windows_in_docker/</guid>
       </item>
     
   </channel>

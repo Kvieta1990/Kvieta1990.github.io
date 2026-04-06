@@ -25,7 +25,7 @@
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="In this post, I will be noting down how to use Dufs [1] for setting a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install cargo,...">
+  <meta name="description" content="In this post, I will be noting down how to use Dufs [1] for setting up a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install...">
 
   
 
@@ -90,7 +90,7 @@
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
   <meta property="og:title" content="Set up a File Server on Windows">
-  <meta property="og:description" content="In this post, I will be noting down how to use Dufs [1] for setting a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install cargo,...">
+  <meta property="og:description" content="In this post, I will be noting down how to use Dufs [1] for setting up a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -111,7 +111,7 @@
   <meta name="twitter:creator" content="@">
 
   <meta property="twitter:title" content="Set up a File Server on Windows">
-  <meta property="twitter:description" content="In this post, I will be noting down how to use Dufs [1] for setting a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install cargo,...">
+  <meta property="twitter:description" content="In this post, I will be noting down how to use Dufs [1] for setting up a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
@@ -292,7 +292,7 @@ if (chromeAgent) {
       
 
       <article role="main" class="blog-post">
-        <p>In this post, I will be noting down how to use <code class="language-plaintext highlighter-rouge">Dufs</code> [1] for setting a file server on Windows 11. Originally, I was using <code class="language-plaintext highlighter-rouge">gohttpserver</code> which is no longer maintained, and <code class="language-plaintext highlighter-rouge">Dufs</code> is one of the recommended options on the <code class="language-plaintext highlighter-rouge">gohttpserver</code> GitHub [2]. First, we need to install <code class="language-plaintext highlighter-rouge">cargo</code>, following Ref. [3]. Then install <code class="language-plaintext highlighter-rouge">Dufs</code> with <code class="language-plaintext highlighter-rouge">cargo</code>,</p>
+        <p>In this post, I will be noting down how to use <code class="language-plaintext highlighter-rouge">Dufs</code> [1] for setting up a file server on Windows 11. Originally, I was using <code class="language-plaintext highlighter-rouge">gohttpserver</code> which is no longer maintained, and <code class="language-plaintext highlighter-rouge">Dufs</code> is one of the recommended options on the <code class="language-plaintext highlighter-rouge">gohttpserver</code> GitHub [2]. First, we need to install <code class="language-plaintext highlighter-rouge">cargo</code>, following Ref. [3]. Then install <code class="language-plaintext highlighter-rouge">Dufs</code> with <code class="language-plaintext highlighter-rouge">cargo</code>,</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cargo <span class="nb">install </span>dufs
 </code></pre></div></div>
@@ -326,27 +326,27 @@ if (chromeAgent) {
 
 <p>where <code class="language-plaintext highlighter-rouge">admin</code> is the user name I chose and <code class="language-plaintext highlighter-rouge">*****</code> is the placeholder for the password I set for the user. In this way, only the authenticated user <code class="language-plaintext highlighter-rouge">admin</code> will have access to the file server. The service is running on the localhost on the port <code class="language-plaintext highlighter-rouge">80</code> so it can be accessed locally via <code class="language-plaintext highlighter-rouge">localhost</code> from a local browser. The <code class="language-plaintext highlighter-rouge">serve-path: 'D:\'</code> entry specifies that <code class="language-plaintext highlighter-rouge">D:\</code> (the whole D-drive) will be hosted through the server. Here below is another service running in parallel,</p>
 
-<pre><code class="language-YAML">serve-path: 'D:\Sharing'
-bind: 0.0.0.0
-port: 8088
-hidden:
-  - tmp
-  - '*.lock'
-allow-all: false
-allow-upload: false
-allow-delete: false
-allow-search: true
-allow-symlink: false
-allow-archive: false
-allow-hash: false
-enable-cors: false
-render-index: true
-render-try-index: true
-render-spa: true
-log-format: '$remote_addr "$request" $status $http_user_agent'
-log-file: E:\Programs\file_server\dufs_1.log
-compress: low
-</code></pre>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">serve-path</span><span class="pi">:</span> <span class="s1">'</span><span class="s">D:\Sharing'</span>
+<span class="na">bind</span><span class="pi">:</span> <span class="s">0.0.0.0</span>
+<span class="na">port</span><span class="pi">:</span> <span class="m">8088</span>
+<span class="na">hidden</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">tmp</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">*.lock'</span>
+<span class="na">allow-all</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-upload</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-delete</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-search</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-symlink</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-archive</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-hash</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">enable-cors</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">render-index</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">render-try-index</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">render-spa</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">log-format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">$remote_addr</span><span class="nv"> </span><span class="s">"$request"</span><span class="nv"> </span><span class="s">$status</span><span class="nv"> </span><span class="s">$http_user_agent'</span>
+<span class="na">log-file</span><span class="pi">:</span> <span class="s">E:\Programs\file_server\dufs_1.log</span>
+<span class="na">compress</span><span class="pi">:</span> <span class="s">low</span>
+</code></pre></div></div>
 
 <p>Saving the configuration files somewhere on my system, I can then create a <code class="language-plaintext highlighter-rouge">vbscript</code> like below to start both services,</p>
 
@@ -496,6 +496,10 @@ Set WshShell = Nothing
           <a class="page-link" href="/2026-03-19-n8n_technical/" data-toggle="tooltip" data-placement="top" title="Some Technical Notes on n8n setup">&larr; Previous Post</a>
         </li>
         
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2026-04-05-strand_agent/" data-toggle="tooltip" data-placement="top" title="Strands Agent Episode-1 — Setup">Next Post &rarr;</a>
+        </li>
         
       </ul>
       
