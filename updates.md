@@ -39,7 +39,7 @@ subtitle: Updates to all services I am maintaining
 
 |                   | Status | Details |
 |-------------------|--------|---------|
-| ADDIE             | ✅      |         |
+| ADDIE             | ❌      | Server Upgrade        |
 | Powder Doc        | ✅      |         |
 | Powder JupyterHub | ✅      |         |
 | Powder Forum      | ✅      |         |
@@ -58,6 +58,10 @@ subtitle: Updates to all services I am maintaining
 📝 - Update, planned or executed updates to services and tools
 
 <hr class="thick-line">
+
+⚠️ ***[04/07/2026 11:21:07 EDT]*** The ADDIE server is upgrading. We will post updates once it is done.
+
+<br>
 
 📝 ***[10/24/2025 13:47:51 EDT]*** Issues for all the servers are now solved. All services back to normal.
 
