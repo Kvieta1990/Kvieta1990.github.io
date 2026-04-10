@@ -19,6 +19,12 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
+Subscribe to the mailing list for the web-based powder diffraction services hosted at ORNL [here](https://elist.ornl.gov/mailman/listinfo/powdercloud-ornl).
+
+Subscribe to the RMCProfile mailing list [here](https://elist.ornl.gov/mailman/listinfo/rmcprofile).
+
+<hr class="thick-line1">
+
 > In this page, I will be posting **updates and announcements** for all the web services and tools that I am responsible of maintaining. You can check what is (and what is planned to be) happening for those web-based tools, including,
 
 - ADDIE: [https://addie.ornl.gov](https://addie.ornl.gov)
