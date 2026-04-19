@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>VNC and noVNC for remote connection</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="VNC, Virtual Network Computing, is one of the ways for setting up connections to remote computers/servers. Nearly all operating systems support the VNC connection. Here, I am noting down the setup for Windows and Linux (specifically, Ubuntu). MacOS natively support the VNC remote connection. However, in my case, may Mac...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="VNC and noVNC for remote connection">
+  <meta property="og:description" content="VNC, Virtual Network Computing, is one of the ways for setting up connections to remote computers/servers. Nearly all operating systems support the VNC connection. Here, I am noting down the setup for Windows and Linux (specifically, Ubuntu). MacOS natively support the VNC remote connection. However, in my case, may Mac...">
+
+  
+  <meta property="og:image" content="http://localhost:4000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-04-18T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:4000/2026-04-18-vnc_novnc/">
+  <link rel="canonical" href="http://localhost:4000/2026-04-18-vnc_novnc/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="VNC and noVNC for remote connection">
+  <meta property="twitter:description" content="VNC, Virtual Network Computing, is one of the ways for setting up connections to remote computers/servers. Nearly all operating systems support the VNC connection. Here, I am noting down the setup for Windows and Linux (specifically, Ubuntu). MacOS natively support the VNC remote connection. However, in my case, may Mac...">
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>VNC and noVNC for remote connection</h1>
+          
+
+          
+					<span class="post-meta">Posted on April 18, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/vnc_logo.svg" style="border:none;" width="400" alt="vnc" title="vnc" />
+</p>
+
+<p>VNC, Virtual Network Computing, is one of the ways for setting up connections to remote computers/servers. Nearly all operating systems support the VNC connection. Here, I am noting down the setup for Windows and Linux (specifically, Ubuntu). MacOS natively support the VNC remote connection. However, in my case, may Mac machine is owned by the employer and the remote conneciton functionality is disabled by admin. So, I am not going to worry about MacOS specifically. But I believe the mechanism for VNC connections is pretty much shared across platforms so notes here on Windows and Linux should still be somewhat useful for MacOS.</p>
+
+<p>To connect to the remote machine via VNC, we need to run the VNC server on the remote machine. My remote server is a Ubuntu VPS and here below is presented the procedure to set up the VNC server. First, for most of the remote VPS, the desktop environment by default would not be installed, and therefore the first thing we want to do is to install the light-weight desktop environment for the VNC connection,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>xfce4 xfce4-goodies
+</code></pre></div></div>
+
+<p>Next, we need to install the VNC server and here I am using TigerVNC. I tried TightVNC but found that it is not dealing with the display as well as TigerVNC – with TightVNC, the remote display is not so adaptable to different size of screen on the client side.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>tigervnc-standalone-server <span class="nt">-y</span>
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>tigervnc-tools  <span class="c"># Password tool</span>
+</code></pre></div></div>
+
+<p>After installation, run,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vncserver
+</code></pre></div></div>
+
+<p>and set up the password for the VNC connection when prompted to do so. Next, let’s create the startup script for VNC, which will be executed when the VNC conections is established,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> <span class="o">&gt;</span> ~/.vnc/xstartup <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/sh
+export XKL_XMODMAP_DISABLE=1
+export HOME=/home/y8z
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+exec startxfce4
+</span><span class="no">EOF
+
+</span><span class="nb">chmod</span> +x ~/.vnc/xstartup
+</code></pre></div></div>
+
+<p>Now, restart the VNC server,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vncserver <span class="nt">-kill</span> :1
+vncserver :1 <span class="nt">-localhost</span> no
+</code></pre></div></div>
+
+<p>The first command kills the running VNC server and the second one start it. Here, <code class="language-plaintext highlighter-rouge">:1</code> refers to the display number which is very much like an ID for the VNC server session. Usually, <code class="language-plaintext highlighter-rouge">:1</code> would work if no other VNC services running on the same server. In case of failing, change <code class="language-plaintext highlighter-rouge">:1</code> to <code class="language-plaintext highlighter-rouge">:2</code> or something else. The <code class="language-plaintext highlighter-rouge">-localhost no</code> is to tell the VNC server not to bind the service specifically to the <code class="language-plaintext highlighter-rouge">localhost</code>. In normal cases, e.g., when we are using <code class="language-plaintext highlighter-rouge">noVNC</code> that runs on the same server to connect to the VNC server, the flag <code class="language-plaintext highlighter-rouge">-localhost no</code> won’t be needed (we will see the reason why this is the case when later we discuss the <code class="language-plaintext highlighter-rouge">noVNC</code> connection). However, in some cases, we will need this flag, e.g., when using <code class="language-plaintext highlighter-rouge">netbird</code> for connection among the local network constructed with <code class="language-plaintext highlighter-rouge">netbird</code> – we will talk about this in details later in the post.</p>
+
+<p>In some cases, starting the VNC server with the command above should be just working. Even after the session logout, still the VNC server would be running in the background. However, in some cases, it seems that the VNC server will only be active while the login session is active. Once logging out from the connected session, the initially started VNC server would be killed. In such cases, we may need to set up the system service for the VNC server so that it can keep running in the background independent of session login/logout. Here below is the system service file to be put at, <code class="language-plaintext highlighter-rouge">/etc/systemd/system/vncserver.service</code> (the service file name, of which the stem name will be the service name, can be changed),</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=TigerVNC Server
+After=network.target
+
+[Service]
+Type=forking
+User=y8z
+ExecStart=/usr/bin/vncserver :1 -localhost no
+ExecStop=/usr/bin/vncserver -kill :1
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p>Then run,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl daemon-reload
+sudo systemctl enable vncserver
+sudo systemctl start vncserver
+sudo systemctl status vncserver
+</code></pre></div></div>
+
+<p>Now the VNC service should be running on the server, ready for connection, listening on port <code class="language-plaintext highlighter-rouge">5901</code> – normally it would <code class="language-plaintext highlighter-rouge">5901</code> by default. If the <code class="language-plaintext highlighter-rouge">:1</code> was ever changed to a different value, the port number will also be changed accordingly, e.g., <code class="language-plaintext highlighter-rouge">:2</code> would then listen on port <code class="language-plaintext highlighter-rouge">5902</code>. To find out the VNC port, run,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ss <span class="nt">-tlnp</span> | <span class="nb">grep </span>590
+</code></pre></div></div>
+
+<p>The steps above for setting up the VNC server applies to Linux OS. On Windows, we can install the TightVNC server following link Ref. [1]. Here below is shown the typical parameters in the TightVNC GUI on Windows,</p>
+
+<p align="center">
+<img src="/assets/img/posts/tvnserver.png" style="border:none;" width="800" alt="tvnserver" title="tvnserver" />
+</p>
+
+<p>In my case here, the VNC server is running on the port <code class="language-plaintext highlighter-rouge">5900</code>.</p>
+
+<p>Now, we have the VNC server running and on the client side, we want to have a way to connect to the VNC server. Multiple choices are available on the client side and here I am noting down two of them. One is using <code class="language-plaintext highlighter-rouge">noVNC</code> and the other is using <code class="language-plaintext highlighter-rouge">Apache Guacamole</code>. For <code class="language-plaintext highlighter-rouge">noVNC</code>, in fact we can set up the <code class="language-plaintext highlighter-rouge">noVNC</code> service running on the same server as VNC is running on. To start, we can run the following commands on the server,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>novnc python3-websockify
+websockify <span class="nt">--web</span><span class="o">=</span>/usr/share/novnc 6080 localhost:5901
+</code></pre></div></div>
+
+<p>where the first command install the <code class="language-plaintext highlighter-rouge">noVNC</code> service and <code class="language-plaintext highlighter-rouge">python3-websockify</code> is the WebSocket-to-TCP proxy that bridges noVNC (browser) with the VNC server. The <code class="language-plaintext highlighter-rouge">websockify</code> process stays in the foreground and then we can go to a browser on the client side to connect to the <code class="language-plaintext highlighter-rouge">noVNC</code> service running on the server (which will further connect to the <code class="language-plaintext highlighter-rouge">VNC</code> server running on the same server through <code class="language-plaintext highlighter-rouge">websockify</code>). Suppose the domain name of the server is <code class="language-plaintext highlighter-rouge">my_domain.com</code>, we can connect to the <code class="language-plaintext highlighter-rouge">noVNC</code> service via <code class="language-plaintext highlighter-rouge">http://my_domain.com:6080</code>. If successful, we will need to put in the password that we earlier set for the <code class="language-plaintext highlighter-rouge">VNC</code> server and then we will see the remote server graphical interface. Once making sure it is working, we can cancel the <code class="language-plaintext highlighter-rouge">websockify</code> command and set up another system service so it can run in the background as a service. To do this, create a file at <code class="language-plaintext highlighter-rouge">/etc/systemd/system/novnc.service</code> and put in the contents below,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=noVNC WebSocket Proxy
+After=network.target
+
+[Service]
+Type=simple
+User=cloud
+ExecStart=/usr/bin/websockify --web=/usr/share/novnc 6080 localhost:5901
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p>Then run,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl daemon-reload
+sudo systemctl enable novnc
+sudo systemctl start novnc
+sudo systemctl status novnc
+</code></pre></div></div>
+
+<p>To connect to the <code class="language-plaintext highlighter-rouge">noVNC</code> service at this stage, we need the port <code class="language-plaintext highlighter-rouge">6080</code> to be open on the server. To set up a secure connection via <code class="language-plaintext highlighter-rouge">https</code>, I am using <code class="language-plaintext highlighter-rouge">nginx</code> + <code class="language-plaintext highlighter-rouge">Cloudflare</code> to do the reverse proxy whereby <code class="language-plaintext highlighter-rouge">Cloudflare</code> is mainly responsible for facing the external traffic securely. To do that, refer to the instructions in Refs. [2-4].</p>
+
+<p>Further, the <code class="language-plaintext highlighter-rouge">noVNC</code> can be used to connect to the <code class="language-plaintext highlighter-rouge">VNC</code> server running on another machine. For example, from above, we set up the <code class="language-plaintext highlighter-rouge">VNC</code> server on our Windows 11 machine. In my case, I installed <code class="language-plaintext highlighter-rouge">netbird</code> on both the Windows 11 machine and the remote VPS where the <code class="language-plaintext highlighter-rouge">noVNC</code> service is installed. Therefore, I can set up another <code class="language-plaintext highlighter-rouge">noVNC</code> system service to connect to the Windows 11 machine VNC server through the <code class="language-plaintext highlighter-rouge">netbird</code> network. To do this, basically, I only need to replace the <code class="language-plaintext highlighter-rouge">localhost</code> in the system service file above, to the <code class="language-plaintext highlighter-rouge">netbird</code> domain name of my Windows 11 machine. For sure, if the <code class="language-plaintext highlighter-rouge">noVNC</code> service for connecting to the VNC server running on the same VPS already exists, we need to change the <code class="language-plaintext highlighter-rouge">noVNC</code> port from <code class="language-plaintext highlighter-rouge">6080</code> to another not-in-use port for the Windows 11 connection.</p>
+
+<p>Another convenient way to set up web-based connection to the VNC server is to use <code class="language-plaintext highlighter-rouge">Apache Guacamole</code>. First, we need to install <code class="language-plaintext highlighter-rouge">Guacamole</code> as a service on the server [5],</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="s2">"https://github.com/boschkundendienst/guacamole-docker-compose.git"</span>
+<span class="nb">cd </span>guacamole-docker-compose
+./prepare.sh
+<span class="nb">sudo </span>docker compose up <span class="nt">-d</span>
+</code></pre></div></div>
+
+<p>In some cases, we may need to change the port on the host to be used for the service – in my case, I had to change the host port to <code class="language-plaintext highlighter-rouge">8811</code>. Here below is the full version of the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code>,</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">networks</span><span class="pi">:</span>
+  <span class="na">guacnetwork_compose</span><span class="pi">:</span>
+    <span class="na">driver</span><span class="pi">:</span> <span class="s">bridge</span>
+
+<span class="c1"># services</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="c1"># guacd</span>
+  <span class="na">guacd</span><span class="pi">:</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">guacd_compose</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">guacamole/guacd:1.6.0</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">guacnetwork_compose</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">./drive:/drive:rw</span>
+    <span class="pi">-</span> <span class="s">./record:/record:rw</span>
+  <span class="c1"># postgres</span>
+  <span class="na">postgres</span><span class="pi">:</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">postgres_guacamole_compose</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">PGDATA</span><span class="pi">:</span> <span class="s">/var/lib/postgresql/data/guacamole</span>
+      <span class="na">POSTGRES_DB</span><span class="pi">:</span> <span class="s">guacamole_db</span>
+      <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s1">'</span><span class="s">QzE3H5eUXjvAXec6NivVYGEoQn52J94APbC63Cxe92ApaedtDx'</span>
+      <span class="na">POSTGRES_USER</span><span class="pi">:</span> <span class="s">guacamole_user</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:15.2-alpine</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">guacnetwork_compose</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">./init:/docker-entrypoint-initdb.d:z</span>
+    <span class="pi">-</span> <span class="s">./data:/var/lib/postgresql/data:Z</span>
+
+  <span class="c1"># guacamole</span>
+  <span class="na">guacamole</span><span class="pi">:</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">guacamole_compose</span>
+    <span class="na">group_add</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">1000"</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">guacd</span>
+    <span class="pi">-</span> <span class="s">postgres</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">GUACD_HOSTNAME</span><span class="pi">:</span> <span class="s">guacd</span>
+      <span class="na">POSTGRESQL_DATABASE</span><span class="pi">:</span> <span class="s">guacamole_db</span>
+      <span class="na">POSTGRESQL_HOSTNAME</span><span class="pi">:</span> <span class="s">postgres</span>
+      <span class="na">POSTGRESQL_PASSWORD</span><span class="pi">:</span> <span class="s1">'</span><span class="s">QzE3H5eUXjvAXec6NivVYGEoQn52J94APbC63Cxe92ApaedtDx'</span>
+      <span class="na">POSTGRESQL_USERNAME</span><span class="pi">:</span> <span class="s">guacamole_user</span>
+      <span class="na">RECORDING_SEARCH_PATH</span><span class="pi">:</span> <span class="s">/record</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">guacamole/guacamole:1.6.0</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">guacnetwork_compose</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./record:/record:rw</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">8811:8080/tcp</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+</code></pre></div></div>
+
+<p>Following the same way as mentioned in Refs. [2-4], we can set up a secure connection to the <code class="language-plaintext highlighter-rouge">Guacamole</code> service with <code class="language-plaintext highlighter-rouge">nginx</code> + <code class="language-plaintext highlighter-rouge">Cloudflare</code>. Once the <code class="language-plaintext highlighter-rouge">Guacamole</code> service is up running, we can connect to it through the web browser and inside it, we can set up connections with <code class="language-plaintext highlighter-rouge">VNC</code> by putting in the <code class="language-plaintext highlighter-rouge">VNC</code> hostname and port. The <code class="language-plaintext highlighter-rouge">VNC</code> port on the server that we are trying to connect to, from the <code class="language-plaintext highlighter-rouge">Guacamole</code> service, should be open to take inbound traffic. If the port is not open, the connection cannot be established through the public domain or IP address. In my case, I have the <code class="language-plaintext highlighter-rouge">netbird</code> service [6] running on both of the two machines running the <code class="language-plaintext highlighter-rouge">Guacamole</code> service and the one running the <code class="language-plaintext highlighter-rouge">VNC</code> server. Then I can put in the <code class="language-plaintext highlighter-rouge">netbird</code> domain name as the host for <code class="language-plaintext highlighter-rouge">VNC</code>, in <code class="language-plaintext highlighter-rouge">Guacamole</code>, and the connection can be set up through the <code class="language-plaintext highlighter-rouge">local</code> network established with <code class="language-plaintext highlighter-rouge">netbird</code> among the different machines (all of which have <code class="language-plaintext highlighter-rouge">netbird</code> installed). As for the port, for sure, we will use the <code class="language-plaintext highlighter-rouge">VNC</code> port for the connection.</p>
+
+<p>In fact, <code class="language-plaintext highlighter-rouge">Guacamole</code> is a very useful platform for remote connections and not only it supports the VNC protocol but also it support other protocols like <code class="language-plaintext highlighter-rouge">SSH</code> and <code class="language-plaintext highlighter-rouge">RDP</code> (Remote Desktop Protocol). That means we can set up SSH connection to a lot of our servers, using a browser. Same thing for <code class="language-plaintext highlighter-rouge">RDP</code> with which we can get access to our Windows machine using a browser, very handy.</p>
+
+<hr />
+
+<p>Sometimes we may have some issues with icons display (e.g., icons of folders, etc. are not shown properly or even missing) on the VNC desktop environment, in which case we can run the following command to install the icon theme,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>gnome-icon-theme hicolor-icon-theme <span class="nt">-y</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://www.tightvnc.com/download.php">https://www.tightvnc.com/download.php</a></p>
+
+<p>[2] <a href="https://iris2020.net/2024-01-15-yourls_docker/">https://iris2020.net/2024-01-15-yourls_docker/</a></p>
+
+<p>[3] <a href="https://iris2020.net/2023-09-08-docker_nginx/">https://iris2020.net/2023-09-08-docker_nginx/</a></p>
+
+<p>[4] <a href="https://iris2020.net/2023-12-25-vps_docker_services/">https://iris2020.net/2023-12-25-vps_docker_services/</a></p>
+
+<p>[5] <a href="https://github.com/boschkundendienst/guacamole-docker-compose">https://github.com/boschkundendienst/guacamole-docker-compose</a></p>
+
+<p>[6] <a href="https://iris2020.net/2025-06-23-netbird_notes/">https://iris2020.net/2025-06-23-netbird_notes/</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#remote">remote</a>
+          
+            <a href="/tags#web">web</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=VNC+and+noVNC+for+remote+connection&url=http%3A%2F%2Flocalhost%3A4000%2F2026-04-18-vnc_novnc%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2026-04-18-vnc_novnc%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2026-04-18-vnc_novnc%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-04-05-strand_agent/" data-toggle="tooltip" data-placement="top" title="Strands Agent Episode-1 — Setup">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
