@@ -27,7 +27,7 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
-<span class="flash">📢</span> Server for hosting some of the services will be down for maintenance from 15:00 EDT 05-15-2026 to 18:00 EDT 05-17-2026. Impacted services include ADDIE, Powder Doc, Powder JupyterHub and Powder Forum. <span class="flash">📢</span>
+<span class="flash">📢</span> Server for hosting some of the services will be down for maintenance from 15:00 EDT 05-14-2026 to 18:00 EDT 05-17-2026. Impacted services include ADDIE, Powder Doc, Powder JupyterHub and Powder Forum. <span class="flash">📢</span>
 
 <hr class="thick-line1">
 
