@@ -15,9 +15,21 @@ subtitle: Updates to all services I am maintaining
         height: 1px; /* Adjust the thickness of the line here */
         background-color: grey; /* Change the color of the line if needed */
     }
+    @keyframes flash-emoji {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+    .flash {
+        display: inline-block;
+        animation: flash-emoji 0.8s step-start infinite;
+    }
 </style>
 
 <hr class="thick-line">
+
+<span class="flash">📢</span> Server for hosting some of the services will be down for maintenance from 15:00 EDT 05-15-2026 to 18:00 EDT 05-17-2026. Impacted services include ADDIE, Powder Doc, Powder JupyterHub and Powder Forum. <span class="flash">📢</span>
+
+<hr class="thick-line1">
 
 Subscribe to the mailing list for the web-based powder diffraction services hosted at ORNL [here](https://elist.ornl.gov/mailman/listinfo/powdercloud-ornl).
 
