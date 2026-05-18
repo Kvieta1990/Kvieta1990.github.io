@@ -57,11 +57,11 @@ Subscribe to the RMCProfile mailing list [here](https://elist.ornl.gov/mailman/l
 
 |                   | Status | Details |
 |-------------------|--------|---------|
-| ADDIE             | ✅      |         |
-| Powder Doc        | ✅      |         |
-| Powder JupyterHub | ✅      |         |
-| Powder Forum      | ✅      |         |
-| RMCProfile        | ✅      |         |
+| ADDIE             | ❌      | Server down for maintenance        |
+| Powder Doc        | ❌      | Server down for maintenance        |
+| Powder JupyterHub | ❌      | Server down for maintenance        |
+| Powder Forum      | ❌      | Server down for maintenance        |
+| RMCProfile        | ❌      | Server down for maintenance        |
 
 ***Monitor the services status*** <a href="https://uptime.ornl.gov/status/resources" target="_blank">here</a>.
 
@@ -76,6 +76,10 @@ Subscribe to the RMCProfile mailing list [here](https://elist.ornl.gov/mailman/l
 📝 - Update, planned or executed updates to services and tools
 
 <hr class="thick-line">
+
+⚠️ ***[05/14/2026 15:43:58 EST]*** As announced, servers for all services are down for maintance and are expected to come back online around 18:00 EST May-17-2026.
+
+<br>
 
 📝 ***[04/07/2026 12:13:37 EST]*** Upgrade to the ADDIE server done. The service is now back online.
 
