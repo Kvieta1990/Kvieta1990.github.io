@@ -27,9 +27,11 @@ subtitle: Updates to all services I am maintaining
 
 <hr class="thick-line">
 
+<!--
 <span class="flash">📢</span> Server for hosting some of the services will be down for maintenance from 15:00 EDT 05-14-2026 to 18:00 EDT 05-17-2026. Impacted services include ADDIE, Powder Doc, Powder JupyterHub and Powder Forum. <span class="flash">📢</span>
 
 <hr class="thick-line1">
+-->
 
 Subscribe to the mailing list for the web-based powder diffraction services hosted at ORNL [here](https://elist.ornl.gov/mailman/listinfo/powdercloud-ornl).
 
@@ -57,11 +59,11 @@ Subscribe to the RMCProfile mailing list [here](https://elist.ornl.gov/mailman/l
 
 |                   | Status | Details |
 |-------------------|--------|---------|
-| ADDIE             | ❌      | Server down for maintenance        |
-| Powder Doc        | ❌      | Server down for maintenance        |
-| Powder JupyterHub | ❌      | Server down for maintenance        |
-| Powder Forum      | ❌      | Server down for maintenance        |
-| RMCProfile        | ❌      | Server down for maintenance        |
+| ADDIE             | ✅      |  |
+| Powder Doc        | ✅      |  |
+| Powder JupyterHub | ✅      |  |
+| Powder Forum      | ✅      |  |
+| RMCProfile        | ✅      |  |
 
 ***Monitor the services status*** <a href="https://uptime.ornl.gov/status/resources" target="_blank">here</a>.
 
@@ -76,6 +78,10 @@ Subscribe to the RMCProfile mailing list [here](https://elist.ornl.gov/mailman/l
 📝 - Update, planned or executed updates to services and tools
 
 <hr class="thick-line">
+
+📢 ***[05/19/2026 12:18:39 EST]*** The server maintenance is done and all the services are coming back online.
+
+<br>
 
 ⚠️ ***[05/14/2026 15:43:58 EST]*** As announced, servers for all services are down for maintance and are expected to come back online around 18:00 EST May-17-2026.
 
