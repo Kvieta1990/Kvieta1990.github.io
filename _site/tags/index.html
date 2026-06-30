@@ -1,0 +1,2405 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Tag Index</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="{% assign date_format = site.date_format | default: &quot;%B %-d, %Y&quot; %} {%- capture site_tags -%} {%- for tag in site.tags -%} {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%} {%- endfor -%} {%- endcapture -%} {%- assign tags_list = site_tags | split:&apos;,&apos; | sort -%} {%- for tag...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Tag Index">
+  <meta property="og:description" content="{% assign date_format = site.date_format | default: &quot;%B %-d, %Y&quot; %} {%- capture site_tags -%} {%- for tag in site.tags -%} {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%} {%- endfor -%} {%- endcapture -%} {%- assign tags_list = site_tags | split:&apos;,&apos; | sort -%} {%- for tag...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:8000/tags/">
+  <link rel="canonical" href="http://localhost:8000/tags/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Tag Index">
+  <meta property="twitter:description" content="{% assign date_format = site.date_format | default: &quot;%B %-d, %Y&quot; %} {%- capture site_tags -%} {%- for tag in site.tags -%} {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%} {%- endfor -%} {%- endcapture -%} {%- assign tags_list = site_tags | split:&apos;,&apos; | sort -%} {%- for tag...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="page-heading">
+						<h1>Tag Index</h1>
+          
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md " role="main">
+  <div class="row">
+    <div class=" page_body ">
+      
+
+      <a href="#AI" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;AI&nbsp;(2)</a><a href="#GPU" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;GPU&nbsp;(2)</a><a href="#IDE" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;IDE&nbsp;(2)</a><a href="#LAMMPS" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;LAMMPS&nbsp;(1)</a><a href="#LLM" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;LLM&nbsp;(5)</a><a href="#Linux" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Linux&nbsp;(2)</a><a href="#Mac" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Mac&nbsp;(3)</a><a href="#Mantid" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Mantid&nbsp;(1)</a><a href="#ORNL" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;ORNL&nbsp;(1)</a><a href="#PHP" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;PHP&nbsp;(1)</a><a href="#Python" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Python&nbsp;(1)</a><a href="#Quantum Mechanics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Quantum Mechanics&nbsp;(2)</a><a href="#RAG" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;RAG&nbsp;(1)</a><a href="#RMCProfile" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;RMCProfile&nbsp;(4)</a><a href="#Relativity" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Relativity&nbsp;(1)</a><a href="#Research" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Research&nbsp;(1)</a><a href="#Slack" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Slack&nbsp;(4)</a><a href="#VPS" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;VPS&nbsp;(2)</a><a href="#VSCode" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;VSCode&nbsp;(1)</a><a href="#Windows" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;Windows&nbsp;(4)</a><a href="#agent" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;agent&nbsp;(2)</a><a href="#automation" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;automation&nbsp;(4)</a><a href="#classical physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;classical physics&nbsp;(1)</a><a href="#cloud" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;cloud&nbsp;(1)</a><a href="#conda" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;conda&nbsp;(1)</a><a href="#crystallography" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;crystallography&nbsp;(16)</a><a href="#data analysis" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;data analysis&nbsp;(1)</a><a href="#data reduction" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;data reduction&nbsp;(2)</a><a href="#data_proc" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;data_proc&nbsp;(1)</a><a href="#database" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;database&nbsp;(2)</a><a href="#design" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;design&nbsp;(1)</a><a href="#dev" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;dev&nbsp;(15)</a><a href="#diffraction" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;diffraction&nbsp;(8)</a><a href="#docker" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;docker&nbsp;(7)</a><a href="#dynamic PDF" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;dynamic PDF&nbsp;(1)</a><a href="#forum" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;forum&nbsp;(1)</a><a href="#general" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;general&nbsp;(1)</a><a href="#general physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;general physics&nbsp;(3)</a><a href="#gmail" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;gmail&nbsp;(1)</a><a href="#gpt" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;gpt&nbsp;(2)</a><a href="#ion diffusion" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;ion diffusion&nbsp;(1)</a><a href="#jekyll" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;jekyll&nbsp;(2)</a><a href="#jupyter" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;jupyter&nbsp;(2)</a><a href="#magnetism" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;magnetism&nbsp;(5)</a><a href="#maths" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;maths&nbsp;(5)</a><a href="#nano" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;nano&nbsp;(1)</a><a href="#netword" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;netword&nbsp;(1)</a><a href="#network" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;network&nbsp;(1)</a><a href="#oracle" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;oracle&nbsp;(1)</a><a href="#package" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;package&nbsp;(2)</a><a href="#physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;physics&nbsp;(5)</a><a href="#programming" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;programming&nbsp;(23)</a><a href="#python" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;python&nbsp;(2)</a><a href="#quantum physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;quantum physics&nbsp;(2)</a><a href="#relativity" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;relativity&nbsp;(2)</a><a href="#remote" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;remote&nbsp;(3)</a><a href="#rmc" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;rmc&nbsp;(3)</a><a href="#scattering" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;scattering&nbsp;(16)</a><a href="#search" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;search&nbsp;(1)</a><a href="#server" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;server&nbsp;(11)</a><a href="#slurm" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;slurm&nbsp;(1)</a><a href="#software" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;software&nbsp;(4)</a><a href="#software installation" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;software installation&nbsp;(2)</a><a href="#solid state physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;solid state physics&nbsp;(15)</a><a href="#statistical physics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;statistical physics&nbsp;(1)</a><a href="#statistics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;statistics&nbsp;(2)</a><a href="#superconductivity" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;superconductivity&nbsp;(1)</a><a href="#symmetry" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;symmetry&nbsp;(1)</a><a href="#technical" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;technical&nbsp;(22)</a><a href="#theory" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;theory&nbsp;(3)</a><a href="#thermodynamics" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;thermodynamics&nbsp;(3)</a><a href="#tool" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;tool&nbsp;(16)</a><a href="#total scattering" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;total scattering&nbsp;(6)</a><a href="#tutorial" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;tutorial&nbsp;(4)</a><a href="#utils" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;utils&nbsp;(2)</a><a href="#vps" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;vps&nbsp;(1)</a><a href="#web" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;web&nbsp;(18)</a><a href="#web development" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;web development&nbsp;(12)</a><a href="#yourls" class="btn btn-primary tag-btn"><i class="fas fa-tag" aria-hidden="true"></i>&nbsp;yourls&nbsp;(1)</a><div id="full-tags-list"><h2 id="AI" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;AI&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-04-05-strand_agent/">Strands Agent Episode-1 — Setup</a>
+                <div class="entry-date">
+										<time datetime="2026-04-05T00:00:00-04:00">April 5, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2026-03-01-openclaw_install_config/">OpenClaw Installation & Configuration on Linux</a>
+                <div class="entry-date">
+										<time datetime="2026-03-01T00:00:00-04:00">March 1, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="GPU" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;GPU&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2020-04-19-cuda_note_II/">Notes on CUDA programming II</a>
+                <div class="entry-date">
+										<time datetime="2020-04-19T00:00:00-04:00">April 19, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-04-19-cuda_note_I/">Notes on CUDA programming I</a>
+                <div class="entry-date">
+										<time datetime="2020-04-19T00:00:00-04:00">April 19, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="IDE" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;IDE&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-03-11-vscode_python_debugger/">Notes on using VSCode</a>
+                <div class="entry-date">
+										<time datetime="2024-03-11T00:00:00-04:00">March 11, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-07-04-sublime/">Notes on Sublime Text 3</a>
+                <div class="entry-date">
+										<time datetime="2020-07-04T00:00:00-04:00">July 4, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="LAMMPS" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;LAMMPS&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2023-06-11-rmc_lammps/">RMCProfile + LAMMPS Implementation</a>
+                <div class="entry-date">
+										<time datetime="2023-06-11T00:00:00-04:00">June 11, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="LLM" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;LLM&nbsp;(5)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-05-17-zgx_sparks/">HP ZGX Nano AI Station Setup</a>
+                <div class="entry-date">
+										<time datetime="2026-05-17T00:00:00-04:00">May 17, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2026-03-19-n8n_technical/">Some Technical Notes on n8n setup</a>
+                <div class="entry-date">
+										<time datetime="2026-03-19T00:00:00-04:00">March 19, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2026-03-01-openclaw_install_config/">OpenClaw Installation & Configuration on Linux</a>
+                <div class="entry-date">
+										<time datetime="2026-03-01T00:00:00-04:00">March 1, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-11-19-n8n_postgres_embed/">Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database</a>
+                <div class="entry-date">
+										<time datetime="2025-11-19T00:00:00-04:00">November 19, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-16-dify_config/">Dify Server Maintenance</a>
+                <div class="entry-date">
+										<time datetime="2025-03-16T00:00:00-04:00">March 16, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="Linux" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;Linux&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-08-18-cloudcone_setup/">Set up a Budget VPS on CloudCone</a>
+                <div class="entry-date">
+										<time datetime="2025-08-18T00:00:00-04:00">August 18, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-16-os_configs/">Config, Tips and Tricks for Different Operating Systems</a>
+                <div class="entry-date">
+										<time datetime="2025-03-16T00:00:00-04:00">March 16, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="Mac" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;Mac&nbsp;(3)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-07-11-mac_app_distribution/">Publish Apps on MacOS</a>
+                <div class="entry-date">
+										<time datetime="2025-07-11T00:00:00-04:00">July 11, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-16-os_configs/">Config, Tips and Tricks for Different Operating Systems</a>
+                <div class="entry-date">
+										<time datetime="2025-03-16T00:00:00-04:00">March 16, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-03-11-mac_mouse_gesture/">Mouse gesture on Mac</a>
+                <div class="entry-date">
+										<time datetime="2024-03-11T00:00:00-04:00">March 11, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="Mantid" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;Mantid&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-01-31-mantid_local_python/">Use local build of Mantid with Python script</a>
+                <div class="entry-date">
+										<time datetime="2025-01-31T00:00:00-04:00">January 31, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="ORNL" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;ORNL&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-05-09-nova_dev/">Local Development Environment Setup for NOVA</a>
+                <div class="entry-date">
+										<time datetime="2025-05-09T00:00:00-04:00">May 9, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="PHP" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;PHP&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2023-02-15-notes_mybb/">Notes on Forum Setup with MyBB</a>
+                <div class="entry-date">
+										<time datetime="2023-02-15T00:00:00-04:00">February 15, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="Python" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;Python&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2022-12-30-notes_slack_msg/">Notes on Slack App Setup</a>
+                <div class="entry-date">
+										<time datetime="2022-12-30T00:00:00-04:00">December 30, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="Quantum Mechanics" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;Quantum Mechanics&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-06-15-selection_rule/">Notes on Selection Rule for Transition between Energy Levels</a>
+                <div class="entry-date">
+										<time datetime="2025-06-15T00:00:00-04:00">June 15, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-05-25-dirac_equation/">Dirac Equation</a>
+                <div class="entry-date">
+										<time datetime="2024-05-25T00:00:00-04:00">May 25, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="RAG" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;RAG&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-11-19-n8n_postgres_embed/">Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database</a>
+                <div class="entry-date">
+										<time datetime="2025-11-19T00:00:00-04:00">November 19, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="RMCProfile" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;RMCProfile&nbsp;(4)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-01-28-rmcprofile_dev_env_gen/">Notes on the development environment setup for RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2025-01-28T00:00:00-04:00">January 28, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-17-rmcprofile_dev_env_win/">Development environment setup for RMCProfile on Windows</a>
+                <div class="entry-date">
+										<time datetime="2025-01-17T00:00:00-04:00">January 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-08-11-rmc_papers/">Typical Science Papers with RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2023-08-11T00:00:00-04:00">August 11, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-06-11-rmc_lammps/">RMCProfile + LAMMPS Implementation</a>
+                <div class="entry-date">
+										<time datetime="2023-06-11T00:00:00-04:00">June 11, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="Relativity" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;Relativity&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-05-25-dirac_equation/">Dirac Equation</a>
+                <div class="entry-date">
+										<time datetime="2024-05-25T00:00:00-04:00">May 25, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="Research" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;Research&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2023-08-11-rmc_papers/">Typical Science Papers with RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2023-08-11T00:00:00-04:00">August 11, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="Slack" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;Slack&nbsp;(4)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-03-01-openclaw_install_config/">OpenClaw Installation & Configuration on Linux</a>
+                <div class="entry-date">
+										<time datetime="2026-03-01T00:00:00-04:00">March 1, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-07-n8n_slack_nocodb/">Set up workflows for bidirectional connection between NocoDB and Slack</a>
+                <div class="entry-date">
+										<time datetime="2024-11-07T00:00:00-04:00">November 7, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-03-n8n_notion_slack_workflow/">Set up an automated workflow for Notion & Slack connection with n8n</a>
+                <div class="entry-date">
+										<time datetime="2024-11-03T00:00:00-04:00">November 3, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-12-30-notes_slack_msg/">Notes on Slack App Setup</a>
+                <div class="entry-date">
+										<time datetime="2022-12-30T00:00:00-04:00">December 30, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="VPS" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;VPS&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-01-28-oracle_vps_vol_expand/">Resize Oracle VPS volume</a>
+                <div class="entry-date">
+										<time datetime="2024-01-28T00:00:00-04:00">January 28, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-09-08-docker_nginx/">Set up a self-hosted web server on Oracle VPS</a>
+                <div class="entry-date">
+										<time datetime="2023-09-08T00:00:00-04:00">September 8, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="VSCode" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;VSCode&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-03-11-vscode_python_debugger/">Notes on using VSCode</a>
+                <div class="entry-date">
+										<time datetime="2024-03-11T00:00:00-04:00">March 11, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="Windows" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;Windows&nbsp;(4)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-04-03-win_fserver/">Set up a File Server on Windows</a>
+                <div class="entry-date">
+										<time datetime="2026-04-03T00:00:00-04:00">April 3, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-16-os_configs/">Config, Tips and Tricks for Different Operating Systems</a>
+                <div class="entry-date">
+										<time datetime="2025-03-16T00:00:00-04:00">March 16, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-17-rmcprofile_dev_env_win/">Development environment setup for RMCProfile on Windows</a>
+                <div class="entry-date">
+										<time datetime="2025-01-17T00:00:00-04:00">January 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-12-11-notes_total_commander/">Notes on Total Commander Setups</a>
+                <div class="entry-date">
+										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="agent" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;agent&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-04-05-strand_agent/">Strands Agent Episode-1 — Setup</a>
+                <div class="entry-date">
+										<time datetime="2026-04-05T00:00:00-04:00">April 5, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2026-03-01-openclaw_install_config/">OpenClaw Installation & Configuration on Linux</a>
+                <div class="entry-date">
+										<time datetime="2026-03-01T00:00:00-04:00">March 1, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="automation" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;automation&nbsp;(4)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-03-01-openclaw_install_config/">OpenClaw Installation & Configuration on Linux</a>
+                <div class="entry-date">
+										<time datetime="2026-03-01T00:00:00-04:00">March 1, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-07-n8n_slack_nocodb/">Set up workflows for bidirectional connection between NocoDB and Slack</a>
+                <div class="entry-date">
+										<time datetime="2024-11-07T00:00:00-04:00">November 7, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-04-n8n_rss_gmail/">Set up an automated workflow for collecting RSS feeds and send to Gmail</a>
+                <div class="entry-date">
+										<time datetime="2024-11-04T00:00:00-04:00">November 4, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-03-n8n_notion_slack_workflow/">Set up an automated workflow for Notion & Slack connection with n8n</a>
+                <div class="entry-date">
+										<time datetime="2024-11-03T00:00:00-04:00">November 3, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="classical physics" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;classical physics&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2020-03-08-coriolis_force/">About Coriolis force</a>
+                <div class="entry-date">
+										<time datetime="2020-03-08T00:00:00-04:00">March 8, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="cloud" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;cloud&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-03-16-aws_s3_notes/">Amazon AWS S3 setup</a>
+                <div class="entry-date">
+										<time datetime="2024-03-16T00:00:00-04:00">March 16, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="conda" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;conda&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2020-06-27-conda_build/">Build package with conda recipe</a>
+                <div class="entry-date">
+										<time datetime="2020-06-27T00:00:00-04:00">June 27, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="crystallography" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;crystallography&nbsp;(16)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-08-25-gsasii_scriptable/">Running GSAS-II Scriptable Refinement</a>
+                <div class="entry-date">
+										<time datetime="2025-08-25T00:00:00-04:00">August 25, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-01-gsasii_on_linux/">Installation of GSAS-II on Linux</a>
+                <div class="entry-date">
+										<time datetime="2025-08-01T00:00:00-04:00">August 1, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-04-21-gsasii_dev_new/">Local Development of GSAS-II -- New Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-04-21T00:00:00-04:00">April 21, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-18-gsasii_dev/">Local Development of GSAS-II -- Deprecated Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-03-18T00:00:00-04:00">March 18, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-02-12-abs_geo/">Sample and Container geometry for absorption correction</a>
+                <div class="entry-date">
+										<time datetime="2025-02-12T00:00:00-04:00">February 12, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-08-30-tof_binning/">Output of the Reduced Time-of-Flight Powder Diffraction Bragg Data</a>
+                <div class="entry-date">
+										<time datetime="2024-08-30T00:00:00-04:00">August 30, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-08-22-van_hove_func/">Van Hove Function</a>
+                <div class="entry-date">
+										<time datetime="2024-08-22T00:00:00-04:00">August 22, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-08-15-stacking_fault/">Stacking Faults</a>
+                <div class="entry-date">
+										<time datetime="2024-08-15T00:00:00-04:00">August 15, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-08-03-preferred_orientation_texture/">Preferred Orientation and Texture</a>
+                <div class="entry-date">
+										<time datetime="2024-08-03T00:00:00-04:00">August 3, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-03-04-latt_params_to_latt_vecs/">Construct lattice vectors from lattice parameters</a>
+                <div class="entry-date">
+										<time datetime="2024-03-04T00:00:00-04:00">March 4, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-04-14-notes_fdm/">Notes on difference Fourier map</a>
+                <div class="entry-date">
+										<time datetime="2023-04-14T00:00:00-04:00">April 14, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-12-11-notes_gsasii/">Notes on GSAS-II</a>
+                <div class="entry-date">
+										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-06-20-iso_subg/">Notes On Isotropy Subgroup</a>
+                <div class="entry-date">
+										<time datetime="2022-06-20T00:00:00-04:00">June 20, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-07-09-coh_incoh_sl/">Derivation of neutron incoherent scattering length</a>
+                <div class="entry-date">
+										<time datetime="2021-07-09T00:00:00-04:00">July 9, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-07-06-occ_order/">Notes on occupational short-range ordering in crystal</a>
+                <div class="entry-date">
+										<time datetime="2020-07-06T00:00:00-04:00">July 6, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-06-28-fourier_transform/">When Fourier transform meets total scattering</a>
+                <div class="entry-date">
+										<time datetime="2020-06-28T00:00:00-04:00">June 28, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="data analysis" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;data analysis&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2020-12-01-rmc_configure/">Configure RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2020-12-01T00:00:00-04:00">December 1, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="data reduction" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;data reduction&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-02-12-abs_geo/">Sample and Container geometry for absorption correction</a>
+                <div class="entry-date">
+										<time datetime="2025-02-12T00:00:00-04:00">February 12, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-08-30-tof_binning/">Output of the Reduced Time-of-Flight Powder Diffraction Bragg Data</a>
+                <div class="entry-date">
+										<time datetime="2024-08-30T00:00:00-04:00">August 30, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="data_proc" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;data_proc&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-04-21-mantid_livered/">Configure a Local Mantid Live Reduction Service</a>
+                <div class="entry-date">
+										<time datetime="2025-04-21T00:00:00-04:00">April 21, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="database" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;database&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-11-19-n8n_postgres_embed/">Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database</a>
+                <div class="entry-date">
+										<time datetime="2025-11-19T00:00:00-04:00">November 19, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-07-n8n_slack_nocodb/">Set up workflows for bidirectional connection between NocoDB and Slack</a>
+                <div class="entry-date">
+										<time datetime="2024-11-07T00:00:00-04:00">November 7, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="design" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;design&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-02-25-ps_make_animation/">Photoshop基于图层生成动画</a>
+                <div class="entry-date">
+										<time datetime="2024-02-25T00:00:00-04:00">February 25, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="dev" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;dev&nbsp;(15)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-03-19-n8n_technical/">Some Technical Notes on n8n setup</a>
+                <div class="entry-date">
+										<time datetime="2026-03-19T00:00:00-04:00">March 19, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-10-17-mantid_geometry/">Instrument Geometry in Mantid Framework</a>
+                <div class="entry-date">
+										<time datetime="2025-10-17T00:00:00-04:00">October 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-25-gsasii_scriptable/">Running GSAS-II Scriptable Refinement</a>
+                <div class="entry-date">
+										<time datetime="2025-08-25T00:00:00-04:00">August 25, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-01-gsasii_on_linux/">Installation of GSAS-II on Linux</a>
+                <div class="entry-date">
+										<time datetime="2025-08-01T00:00:00-04:00">August 1, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-07-11-mac_app_distribution/">Publish Apps on MacOS</a>
+                <div class="entry-date">
+										<time datetime="2025-07-11T00:00:00-04:00">July 11, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-06-14-windows_in_docker/">Windows in Docker</a>
+                <div class="entry-date">
+										<time datetime="2025-06-14T00:00:00-04:00">June 14, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-05-20-totp_code_gen/">Time-Based One-Time Password Generation Programmingly</a>
+                <div class="entry-date">
+										<time datetime="2025-05-20T00:00:00-04:00">May 20, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-05-09-nova_dev/">Local Development Environment Setup for NOVA</a>
+                <div class="entry-date">
+										<time datetime="2025-05-09T00:00:00-04:00">May 9, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-04-21-mantid_livered/">Configure a Local Mantid Live Reduction Service</a>
+                <div class="entry-date">
+										<time datetime="2025-04-21T00:00:00-04:00">April 21, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-04-21-gsasii_dev_new/">Local Development of GSAS-II -- New Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-04-21T00:00:00-04:00">April 21, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-18-gsasii_dev/">Local Development of GSAS-II -- Deprecated Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-03-18T00:00:00-04:00">March 18, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-31-mantid_local_python/">Use local build of Mantid with Python script</a>
+                <div class="entry-date">
+										<time datetime="2025-01-31T00:00:00-04:00">January 31, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-28-rmcprofile_dev_env_gen/">Notes on the development environment setup for RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2025-01-28T00:00:00-04:00">January 28, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-17-rmcprofile_dev_env_win/">Development environment setup for RMCProfile on Windows</a>
+                <div class="entry-date">
+										<time datetime="2025-01-17T00:00:00-04:00">January 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-07-16-docker_tips/">Notes and Tips for using Docker</a>
+                <div class="entry-date">
+										<time datetime="2024-07-16T00:00:00-04:00">July 16, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="diffraction" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;diffraction&nbsp;(8)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-10-26-bondstr_bvs/">Bond Valence Energy Landscape Calculation with the BondStr Program in Fullprof Suite</a>
+                <div class="entry-date">
+										<time datetime="2025-10-26T00:00:00-04:00">October 26, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-10-17-mantid_geometry/">Instrument Geometry in Mantid Framework</a>
+                <div class="entry-date">
+										<time datetime="2025-10-17T00:00:00-04:00">October 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-25-gsasii_scriptable/">Running GSAS-II Scriptable Refinement</a>
+                <div class="entry-date">
+										<time datetime="2025-08-25T00:00:00-04:00">August 25, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-01-gsasii_on_linux/">Installation of GSAS-II on Linux</a>
+                <div class="entry-date">
+										<time datetime="2025-08-01T00:00:00-04:00">August 1, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-04-21-gsasii_dev_new/">Local Development of GSAS-II -- New Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-04-21T00:00:00-04:00">April 21, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-18-gsasii_dev/">Local Development of GSAS-II -- Deprecated Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-03-18T00:00:00-04:00">March 18, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-08-03-preferred_orientation_texture/">Preferred Orientation and Texture</a>
+                <div class="entry-date">
+										<time datetime="2024-08-03T00:00:00-04:00">August 3, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-10-09-diff_size_strain/">Size & strain effect and preferred orientation in diffraction</a>
+                <div class="entry-date">
+										<time datetime="2023-10-09T00:00:00-04:00">October 9, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="docker" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;docker&nbsp;(7)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-03-16-dify_config/">Dify Server Maintenance</a>
+                <div class="entry-date">
+										<time datetime="2025-03-16T00:00:00-04:00">March 16, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-07-16-docker_tips/">Notes and Tips for using Docker</a>
+                <div class="entry-date">
+										<time datetime="2024-07-16T00:00:00-04:00">July 16, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-03-07-flarum_setup/">Set up a Flarum forum on VPS</a>
+                <div class="entry-date">
+										<time datetime="2024-03-07T00:00:00-04:00">March 7, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-01-27-docker_dify/">Set up Dify server on VPS with docker</a>
+                <div class="entry-date">
+										<time datetime="2024-01-27T00:00:00-04:00">January 27, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-01-15-yourls_docker/">Set up YOURLS on VPS with docker</a>
+                <div class="entry-date">
+										<time datetime="2024-01-15T00:00:00-04:00">January 15, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-01-13-dockerize_addie/">Dockerize the ADDIE service</a>
+                <div class="entry-date">
+										<time datetime="2024-01-13T00:00:00-04:00">January 13, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-12-25-vps_docker_services/">Setting up services on VPS using docker</a>
+                <div class="entry-date">
+										<time datetime="2023-12-25T00:00:00-04:00">December 25, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="dynamic PDF" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;dynamic PDF&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-08-22-van_hove_func/">Van Hove Function</a>
+                <div class="entry-date">
+										<time datetime="2024-08-22T00:00:00-04:00">August 22, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="forum" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;forum&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2023-02-15-notes_mybb/">Notes on Forum Setup with MyBB</a>
+                <div class="entry-date">
+										<time datetime="2023-02-15T00:00:00-04:00">February 15, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="general" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;general&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-11-30-metropolis_monte_carlo/">About the Metropolis Monte Carlo Method</a>
+                <div class="entry-date">
+										<time datetime="2025-11-30T00:00:00-04:00">November 30, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="general physics" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;general physics&nbsp;(3)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2022-10-30-twin_paradox/">Notes on twin paradox</a>
+                <div class="entry-date">
+										<time datetime="2022-10-30T00:00:00-04:00">October 30, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2019-12-10-special_relativity/">Notes on special relativity</a>
+                <div class="entry-date">
+										<time datetime="2019-12-10T00:00:00-04:00">December 10, 2019</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2019-12-08-einstein_fridge/">A silent refrigerator</a>
+                <div class="entry-date">
+										<time datetime="2019-12-08T00:00:00-04:00">December 8, 2019</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="gmail" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;gmail&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-11-04-n8n_rss_gmail/">Set up an automated workflow for collecting RSS feeds and send to Gmail</a>
+                <div class="entry-date">
+										<time datetime="2024-11-04T00:00:00-04:00">November 4, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="gpt" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;gpt&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-03-16-dify_config/">Dify Server Maintenance</a>
+                <div class="entry-date">
+										<time datetime="2025-03-16T00:00:00-04:00">March 16, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-01-27-docker_dify/">Set up Dify server on VPS with docker</a>
+                <div class="entry-date">
+										<time datetime="2024-01-27T00:00:00-04:00">January 27, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="ion diffusion" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;ion diffusion&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-10-26-bondstr_bvs/">Bond Valence Energy Landscape Calculation with the BondStr Program in Fullprof Suite</a>
+                <div class="entry-date">
+										<time datetime="2025-10-26T00:00:00-04:00">October 26, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="jekyll" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;jekyll&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2022-10-09-jekyll_maths/">Math equation in Jekyll</a>
+                <div class="entry-date">
+										<time datetime="2022-10-09T00:00:00-04:00">October 9, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-10-09-jekyll_code_snippet_copy/">Copy of code snippet in Jekyll</a>
+                <div class="entry-date">
+										<time datetime="2022-10-09T00:00:00-04:00">October 9, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="jupyter" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;jupyter&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2023-04-15-notes_jbook/">Notes on using Jupyter book</a>
+                <div class="entry-date">
+										<time datetime="2023-04-15T00:00:00-04:00">April 15, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-11-26-notes_jupyterhub/">Notes on Jupyterhub server setup</a>
+                <div class="entry-date">
+										<time datetime="2022-11-26T00:00:00-04:00">November 26, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="magnetism" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;magnetism&nbsp;(5)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-01-03-prop_vector/">Description of Magnetic Structure with Propogation Vector</a>
+                <div class="entry-date">
+										<time datetime="2025-01-03T00:00:00-04:00">January 3, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-10-25-notes_mag_IV/">Notes on magnetism - IV</a>
+                <div class="entry-date">
+										<time datetime="2022-10-25T00:00:00-04:00">October 25, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-12-21-notes_mag_III/">Notes on magnetism - III</a>
+                <div class="entry-date">
+										<time datetime="2020-12-21T00:00:00-04:00">December 21, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-03-29-notes_mag_II/">Notes on magnetism - II</a>
+                <div class="entry-date">
+										<time datetime="2020-03-29T00:00:00-04:00">March 29, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-03-18-notes_mag_I/">Notes on magnetism - I</a>
+                <div class="entry-date">
+										<time datetime="2020-03-18T00:00:00-04:00">March 18, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="maths" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;maths&nbsp;(5)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-01-05-spherical_harmonics_viz/">Real Spherical Harmonics Visualization</a>
+                <div class="entry-date">
+										<time datetime="2026-01-05T00:00:00-04:00">January 5, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-11-30-metropolis_monte_carlo/">About the Metropolis Monte Carlo Method</a>
+                <div class="entry-date">
+										<time datetime="2025-11-30T00:00:00-04:00">November 30, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-06-20-iso_subg/">Notes On Isotropy Subgroup</a>
+                <div class="entry-date">
+										<time datetime="2022-06-20T00:00:00-04:00">June 20, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-11-22-kde/">Notes on kernel density estimation</a>
+                <div class="entry-date">
+										<time datetime="2020-11-22T00:00:00-04:00">November 22, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-06-28-fourier_transform/">When Fourier transform meets total scattering</a>
+                <div class="entry-date">
+										<time datetime="2020-06-28T00:00:00-04:00">June 28, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="nano" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;nano&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2021-08-25-nano_rmc/">Size effect in RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2021-08-25T00:00:00-04:00">August 25, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="netword" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;netword&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-12-12-wakeup_macos/">Remotely Wake up MacOS from Sleeping</a>
+                <div class="entry-date">
+										<time datetime="2025-12-12T00:00:00-04:00">December 12, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="network" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;network&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-06-26-remote_connect/">Technical Notes on Remote Connection with Thinlinc, Windows RDP and SSH</a>
+                <div class="entry-date">
+										<time datetime="2025-06-26T00:00:00-04:00">June 26, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="oracle" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;oracle&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-01-28-oracle_vps_vol_expand/">Resize Oracle VPS volume</a>
+                <div class="entry-date">
+										<time datetime="2024-01-28T00:00:00-04:00">January 28, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="package" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;package&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2023-10-12-token_github_anaconda/">Anaconda token setup for GitHub action</a>
+                <div class="entry-date">
+										<time datetime="2023-10-12T00:00:00-04:00">October 12, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-06-27-conda_build/">Build package with conda recipe</a>
+                <div class="entry-date">
+										<time datetime="2020-06-27T00:00:00-04:00">June 27, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="physics" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;physics&nbsp;(5)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-01-05-spherical_harmonics_viz/">Real Spherical Harmonics Visualization</a>
+                <div class="entry-date">
+										<time datetime="2026-01-05T00:00:00-04:00">January 5, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2026-01-01-goldstone_mode_symmetry/">Goldstone Mode and Spontaneous Symmetry Broken</a>
+                <div class="entry-date">
+										<time datetime="2026-01-01T00:00:00-04:00">January 1, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-12-11-preferred_orientation_texture_followup/">Some Follow-up Notes on Preferred Orientation and Texture</a>
+                <div class="entry-date">
+										<time datetime="2025-12-11T00:00:00-04:00">December 11, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-12-04-einstein_debye_model/">Einstein and Debye Model for Specific Heat</a>
+                <div class="entry-date">
+										<time datetime="2025-12-04T00:00:00-04:00">December 4, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-11-30-metropolis_monte_carlo/">About the Metropolis Monte Carlo Method</a>
+                <div class="entry-date">
+										<time datetime="2025-11-30T00:00:00-04:00">November 30, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="programming" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;programming&nbsp;(23)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-08-25-gsasii_scriptable/">Running GSAS-II Scriptable Refinement</a>
+                <div class="entry-date">
+										<time datetime="2025-08-25T00:00:00-04:00">August 25, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-01-gsasii_on_linux/">Installation of GSAS-II on Linux</a>
+                <div class="entry-date">
+										<time datetime="2025-08-01T00:00:00-04:00">August 1, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-04-21-gsasii_dev_new/">Local Development of GSAS-II -- New Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-04-21T00:00:00-04:00">April 21, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-18-gsasii_dev/">Local Development of GSAS-II -- Deprecated Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-03-18T00:00:00-04:00">March 18, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-08-24-mantid_faq/">FAQs about Mantid &ndash; Yuanpeng's Collection</a>
+                <div class="entry-date">
+										<time datetime="2024-08-24T00:00:00-04:00">August 24, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-08-19-gitlab_ssh/">Use SSH key with GitLab</a>
+                <div class="entry-date">
+										<time datetime="2024-08-19T00:00:00-04:00">August 19, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-10-12-token_github_anaconda/">Anaconda token setup for GitHub action</a>
+                <div class="entry-date">
+										<time datetime="2023-10-12T00:00:00-04:00">October 12, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-09-08-docker_nginx/">Set up a self-hosted web server on Oracle VPS</a>
+                <div class="entry-date">
+										<time datetime="2023-09-08T00:00:00-04:00">September 8, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-06-11-rmc_lammps/">RMCProfile + LAMMPS Implementation</a>
+                <div class="entry-date">
+										<time datetime="2023-06-11T00:00:00-04:00">June 11, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-04-15-notes_jbook/">Notes on using Jupyter book</a>
+                <div class="entry-date">
+										<time datetime="2023-04-15T00:00:00-04:00">April 15, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-03-14-notes_jekyll_search/">Notes on implementing search in Jekyll site</a>
+                <div class="entry-date">
+										<time datetime="2023-03-14T00:00:00-04:00">March 14, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-03-14-notes_flask_nginx_https/">Notes Flask+Nginx+HTTPS setup</a>
+                <div class="entry-date">
+										<time datetime="2023-03-14T00:00:00-04:00">March 14, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-10-13-css_javascript_img_effect/">Image effect in web page</a>
+                <div class="entry-date">
+										<time datetime="2022-10-13T00:00:00-04:00">October 13, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-10-09-jekyll_maths/">Math equation in Jekyll</a>
+                <div class="entry-date">
+										<time datetime="2022-10-09T00:00:00-04:00">October 9, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-10-09-jekyll_code_snippet_copy/">Copy of code snippet in Jekyll</a>
+                <div class="entry-date">
+										<time datetime="2022-10-09T00:00:00-04:00">October 9, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-06-24-man_jupyter_kernel/">Management of Jupyter kernels</a>
+                <div class="entry-date">
+										<time datetime="2021-06-24T00:00:00-04:00">June 24, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-05-17-sphinx/">Intro to Sphinx</a>
+                <div class="entry-date">
+										<time datetime="2021-05-17T00:00:00-04:00">May 17, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-05-17-jup_kernel/">Jupyterlab kernel setup</a>
+                <div class="entry-date">
+										<time datetime="2021-05-17T00:00:00-04:00">May 17, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-11-28-notes_jekyll/">Notes on Jekyll</a>
+                <div class="entry-date">
+										<time datetime="2020-11-28T00:00:00-04:00">November 28, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-11-20-flask/">Notes on Flask</a>
+                <div class="entry-date">
+										<time datetime="2020-11-20T00:00:00-04:00">November 20, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-06-27-conda_build/">Build package with conda recipe</a>
+                <div class="entry-date">
+										<time datetime="2020-06-27T00:00:00-04:00">June 27, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-04-19-cuda_note_II/">Notes on CUDA programming II</a>
+                <div class="entry-date">
+										<time datetime="2020-04-19T00:00:00-04:00">April 19, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-04-19-cuda_note_I/">Notes on CUDA programming I</a>
+                <div class="entry-date">
+										<time datetime="2020-04-19T00:00:00-04:00">April 19, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="python" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;python&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2021-05-17-sphinx/">Intro to Sphinx</a>
+                <div class="entry-date">
+										<time datetime="2021-05-17T00:00:00-04:00">May 17, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-06-27-conda_build/">Build package with conda recipe</a>
+                <div class="entry-date">
+										<time datetime="2020-06-27T00:00:00-04:00">June 27, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="quantum physics" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;quantum physics&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-06-15-selection_rule/">Notes on Selection Rule for Transition between Energy Levels</a>
+                <div class="entry-date">
+										<time datetime="2025-06-15T00:00:00-04:00">June 15, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-12-18-spin/">About electron spin</a>
+                <div class="entry-date">
+										<time datetime="2020-12-18T00:00:00-04:00">December 18, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="relativity" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;relativity&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2022-10-30-twin_paradox/">Notes on twin paradox</a>
+                <div class="entry-date">
+										<time datetime="2022-10-30T00:00:00-04:00">October 30, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2019-12-10-special_relativity/">Notes on special relativity</a>
+                <div class="entry-date">
+										<time datetime="2019-12-10T00:00:00-04:00">December 10, 2019</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="remote" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;remote&nbsp;(3)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-04-18-vnc_novnc/">VNC and noVNC for remote connection</a>
+                <div class="entry-date">
+										<time datetime="2026-04-18T00:00:00-04:00">April 18, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-12-12-wakeup_macos/">Remotely Wake up MacOS from Sleeping</a>
+                <div class="entry-date">
+										<time datetime="2025-12-12T00:00:00-04:00">December 12, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-06-26-remote_connect/">Technical Notes on Remote Connection with Thinlinc, Windows RDP and SSH</a>
+                <div class="entry-date">
+										<time datetime="2025-06-26T00:00:00-04:00">June 26, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="rmc" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;rmc&nbsp;(3)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-01-28-rmcprofile_dev_env_gen/">Notes on the development environment setup for RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2025-01-28T00:00:00-04:00">January 28, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-17-rmcprofile_dev_env_win/">Development environment setup for RMCProfile on Windows</a>
+                <div class="entry-date">
+										<time datetime="2025-01-17T00:00:00-04:00">January 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-08-25-nano_rmc/">Size effect in RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2021-08-25T00:00:00-04:00">August 25, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="scattering" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;scattering&nbsp;(16)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-10-17-mantid_geometry/">Instrument Geometry in Mantid Framework</a>
+                <div class="entry-date">
+										<time datetime="2025-10-17T00:00:00-04:00">October 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-25-gsasii_scriptable/">Running GSAS-II Scriptable Refinement</a>
+                <div class="entry-date">
+										<time datetime="2025-08-25T00:00:00-04:00">August 25, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-01-gsasii_on_linux/">Installation of GSAS-II on Linux</a>
+                <div class="entry-date">
+										<time datetime="2025-08-01T00:00:00-04:00">August 1, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-04-21-mantid_livered/">Configure a Local Mantid Live Reduction Service</a>
+                <div class="entry-date">
+										<time datetime="2025-04-21T00:00:00-04:00">April 21, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-04-21-gsasii_dev_new/">Local Development of GSAS-II -- New Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-04-21T00:00:00-04:00">April 21, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-18-gsasii_dev/">Local Development of GSAS-II -- Deprecated Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-03-18T00:00:00-04:00">March 18, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-02-12-abs_geo/">Sample and Container geometry for absorption correction</a>
+                <div class="entry-date">
+										<time datetime="2025-02-12T00:00:00-04:00">February 12, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-31-mantid_local_python/">Use local build of Mantid with Python script</a>
+                <div class="entry-date">
+										<time datetime="2025-01-31T00:00:00-04:00">January 31, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-28-rmcprofile_dev_env_gen/">Notes on the development environment setup for RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2025-01-28T00:00:00-04:00">January 28, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-17-rmcprofile_dev_env_win/">Development environment setup for RMCProfile on Windows</a>
+                <div class="entry-date">
+										<time datetime="2025-01-17T00:00:00-04:00">January 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-01-13-dockerize_addie/">Dockerize the ADDIE service</a>
+                <div class="entry-date">
+										<time datetime="2024-01-13T00:00:00-04:00">January 13, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-10-29-findsym/">Find out symmetry from RMC fitted supercell</a>
+                <div class="entry-date">
+										<time datetime="2023-10-29T00:00:00-04:00">October 29, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-10-09-diff_size_strain/">Size & strain effect and preferred orientation in diffraction</a>
+                <div class="entry-date">
+										<time datetime="2023-10-09T00:00:00-04:00">October 9, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-12-11-notes_gsasii/">Notes on GSAS-II</a>
+                <div class="entry-date">
+										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-07-09-coh_incoh_sl/">Derivation of neutron incoherent scattering length</a>
+                <div class="entry-date">
+										<time datetime="2021-07-09T00:00:00-04:00">July 9, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-06-28-fourier_transform/">When Fourier transform meets total scattering</a>
+                <div class="entry-date">
+										<time datetime="2020-06-28T00:00:00-04:00">June 28, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="search" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;search&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-02-04-yacy_setup/">Set up our own search engine with Yacy</a>
+                <div class="entry-date">
+										<time datetime="2024-02-04T00:00:00-04:00">February 4, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="server" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;server&nbsp;(11)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-05-17-zgx_sparks/">HP ZGX Nano AI Station Setup</a>
+                <div class="entry-date">
+										<time datetime="2026-05-17T00:00:00-04:00">May 17, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2026-04-03-win_fserver/">Set up a File Server on Windows</a>
+                <div class="entry-date">
+										<time datetime="2026-04-03T00:00:00-04:00">April 3, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-12-12-wakeup_macos/">Remotely Wake up MacOS from Sleeping</a>
+                <div class="entry-date">
+										<time datetime="2025-12-12T00:00:00-04:00">December 12, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-11-19-n8n_postgres_embed/">Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database</a>
+                <div class="entry-date">
+										<time datetime="2025-11-19T00:00:00-04:00">November 19, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-18-cloudcone_setup/">Set up a Budget VPS on CloudCone</a>
+                <div class="entry-date">
+										<time datetime="2025-08-18T00:00:00-04:00">August 18, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-07-n8n_slack_nocodb/">Set up workflows for bidirectional connection between NocoDB and Slack</a>
+                <div class="entry-date">
+										<time datetime="2024-11-07T00:00:00-04:00">November 7, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-04-n8n_rss_gmail/">Set up an automated workflow for collecting RSS feeds and send to Gmail</a>
+                <div class="entry-date">
+										<time datetime="2024-11-04T00:00:00-04:00">November 4, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-03-n8n_notion_slack_workflow/">Set up an automated workflow for Notion & Slack connection with n8n</a>
+                <div class="entry-date">
+										<time datetime="2024-11-03T00:00:00-04:00">November 3, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-09-10-rustdesk_server/">Rustdesk server setup</a>
+                <div class="entry-date">
+										<time datetime="2023-09-10T00:00:00-04:00">September 10, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-11-29-notes_slurm/">Notes on slurm server setup</a>
+                <div class="entry-date">
+										<time datetime="2022-11-29T00:00:00-04:00">November 29, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-12-21-owncloud_setup/">OwnCloud Server Setup</a>
+                <div class="entry-date">
+										<time datetime="2021-12-21T00:00:00-04:00">December 21, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="slurm" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;slurm&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2022-11-29-notes_slurm/">Notes on slurm server setup</a>
+                <div class="entry-date">
+										<time datetime="2022-11-29T00:00:00-04:00">November 29, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="software" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;software&nbsp;(4)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-03-11-vscode_python_debugger/">Notes on using VSCode</a>
+                <div class="entry-date">
+										<time datetime="2024-03-11T00:00:00-04:00">March 11, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-03-11-mac_mouse_gesture/">Mouse gesture on Mac</a>
+                <div class="entry-date">
+										<time datetime="2024-03-11T00:00:00-04:00">March 11, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-09-10-rustdesk_server/">Rustdesk server setup</a>
+                <div class="entry-date">
+										<time datetime="2023-09-10T00:00:00-04:00">September 10, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-12-11-notes_total_commander/">Notes on Total Commander Setups</a>
+                <div class="entry-date">
+										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="software installation" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;software installation&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2021-06-24-man_jupyter_kernel/">Management of Jupyter kernels</a>
+                <div class="entry-date">
+										<time datetime="2021-06-24T00:00:00-04:00">June 24, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-06-26-discus_install/">Install DISCUS version 6 on Windows 10</a>
+                <div class="entry-date">
+										<time datetime="2020-06-26T00:00:00-04:00">June 26, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="solid state physics" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;solid state physics&nbsp;(15)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-01-01-goldstone_mode_symmetry/">Goldstone Mode and Spontaneous Symmetry Broken</a>
+                <div class="entry-date">
+										<time datetime="2026-01-01T00:00:00-04:00">January 1, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-12-11-preferred_orientation_texture_followup/">Some Follow-up Notes on Preferred Orientation and Texture</a>
+                <div class="entry-date">
+										<time datetime="2025-12-11T00:00:00-04:00">December 11, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-12-04-einstein_debye_model/">Einstein and Debye Model for Specific Heat</a>
+                <div class="entry-date">
+										<time datetime="2025-12-04T00:00:00-04:00">December 4, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-03-prop_vector/">Description of Magnetic Structure with Propogation Vector</a>
+                <div class="entry-date">
+										<time datetime="2025-01-03T00:00:00-04:00">January 3, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-12-16-superconductivity_summary/">A brief summary of the early superconductivity development</a>
+                <div class="entry-date">
+										<time datetime="2024-12-16T00:00:00-04:00">December 16, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-10-29-findsym/">Find out symmetry from RMC fitted supercell</a>
+                <div class="entry-date">
+										<time datetime="2023-10-29T00:00:00-04:00">October 29, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-10-09-diff_size_strain/">Size & strain effect and preferred orientation in diffraction</a>
+                <div class="entry-date">
+										<time datetime="2023-10-09T00:00:00-04:00">October 9, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-09-10-pdf_thermal_bkg/">Thermal background in pair distrubtion function (PDF)</a>
+                <div class="entry-date">
+										<time datetime="2023-09-10T00:00:00-04:00">September 10, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-10-25-notes_mag_IV/">Notes on magnetism - IV</a>
+                <div class="entry-date">
+										<time datetime="2022-10-25T00:00:00-04:00">October 25, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-07-09-coh_incoh_sl/">Derivation of neutron incoherent scattering length</a>
+                <div class="entry-date">
+										<time datetime="2021-07-09T00:00:00-04:00">July 9, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-07-08-top_physics/">Notes on topological physics</a>
+                <div class="entry-date">
+										<time datetime="2021-07-08T00:00:00-04:00">July 8, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-07-07-ising_sol/">Notes on Ising model</a>
+                <div class="entry-date">
+										<time datetime="2021-07-07T00:00:00-04:00">July 7, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-12-21-notes_mag_III/">Notes on magnetism - III</a>
+                <div class="entry-date">
+										<time datetime="2020-12-21T00:00:00-04:00">December 21, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-03-29-notes_mag_II/">Notes on magnetism - II</a>
+                <div class="entry-date">
+										<time datetime="2020-03-29T00:00:00-04:00">March 29, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-03-18-notes_mag_I/">Notes on magnetism - I</a>
+                <div class="entry-date">
+										<time datetime="2020-03-18T00:00:00-04:00">March 18, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="statistical physics" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;statistical physics&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2021-07-07-ising_sol/">Notes on Ising model</a>
+                <div class="entry-date">
+										<time datetime="2021-07-07T00:00:00-04:00">July 7, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="statistics" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;statistics&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-11-30-metropolis_monte_carlo/">About the Metropolis Monte Carlo Method</a>
+                <div class="entry-date">
+										<time datetime="2025-11-30T00:00:00-04:00">November 30, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-11-22-kde/">Notes on kernel density estimation</a>
+                <div class="entry-date">
+										<time datetime="2020-11-22T00:00:00-04:00">November 22, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="superconductivity" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;superconductivity&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-12-16-superconductivity_summary/">A brief summary of the early superconductivity development</a>
+                <div class="entry-date">
+										<time datetime="2024-12-16T00:00:00-04:00">December 16, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="symmetry" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;symmetry&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-01-01-goldstone_mode_symmetry/">Goldstone Mode and Spontaneous Symmetry Broken</a>
+                <div class="entry-date">
+										<time datetime="2026-01-01T00:00:00-04:00">January 1, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="technical" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;technical&nbsp;(22)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-03-19-n8n_technical/">Some Technical Notes on n8n setup</a>
+                <div class="entry-date">
+										<time datetime="2026-03-19T00:00:00-04:00">March 19, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2026-03-01-openclaw_install_config/">OpenClaw Installation & Configuration on Linux</a>
+                <div class="entry-date">
+										<time datetime="2026-03-01T00:00:00-04:00">March 1, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-10-26-bondstr_bvs/">Bond Valence Energy Landscape Calculation with the BondStr Program in Fullprof Suite</a>
+                <div class="entry-date">
+										<time datetime="2025-10-26T00:00:00-04:00">October 26, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-10-17-mantid_geometry/">Instrument Geometry in Mantid Framework</a>
+                <div class="entry-date">
+										<time datetime="2025-10-17T00:00:00-04:00">October 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-25-gsasii_scriptable/">Running GSAS-II Scriptable Refinement</a>
+                <div class="entry-date">
+										<time datetime="2025-08-25T00:00:00-04:00">August 25, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-08-01-gsasii_on_linux/">Installation of GSAS-II on Linux</a>
+                <div class="entry-date">
+										<time datetime="2025-08-01T00:00:00-04:00">August 1, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-06-14-windows_in_docker/">Windows in Docker</a>
+                <div class="entry-date">
+										<time datetime="2025-06-14T00:00:00-04:00">June 14, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-05-20-totp_code_gen/">Time-Based One-Time Password Generation Programmingly</a>
+                <div class="entry-date">
+										<time datetime="2025-05-20T00:00:00-04:00">May 20, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-05-09-nova_dev/">Local Development Environment Setup for NOVA</a>
+                <div class="entry-date">
+										<time datetime="2025-05-09T00:00:00-04:00">May 9, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-04-21-mantid_livered/">Configure a Local Mantid Live Reduction Service</a>
+                <div class="entry-date">
+										<time datetime="2025-04-21T00:00:00-04:00">April 21, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-04-21-gsasii_dev_new/">Local Development of GSAS-II -- New Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-04-21T00:00:00-04:00">April 21, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-18-gsasii_dev/">Local Development of GSAS-II -- Deprecated Instructions</a>
+                <div class="entry-date">
+										<time datetime="2025-03-18T00:00:00-04:00">March 18, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-31-mantid_local_python/">Use local build of Mantid with Python script</a>
+                <div class="entry-date">
+										<time datetime="2025-01-31T00:00:00-04:00">January 31, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-28-rmcprofile_dev_env_gen/">Notes on the development environment setup for RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2025-01-28T00:00:00-04:00">January 28, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-17-rmcprofile_dev_env_win/">Development environment setup for RMCProfile on Windows</a>
+                <div class="entry-date">
+										<time datetime="2025-01-17T00:00:00-04:00">January 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-10-12-token_github_anaconda/">Anaconda token setup for GitHub action</a>
+                <div class="entry-date">
+										<time datetime="2023-10-12T00:00:00-04:00">October 12, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-02-22-notes_windterm/">Notes on setting up WindTerm</a>
+                <div class="entry-date">
+										<time datetime="2023-02-22T00:00:00-04:00">February 22, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-02-15-notes_mybb/">Notes on Forum Setup with MyBB</a>
+                <div class="entry-date">
+										<time datetime="2023-02-15T00:00:00-04:00">February 15, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-12-30-notes_slack_msg/">Notes on Slack App Setup</a>
+                <div class="entry-date">
+										<time datetime="2022-12-30T00:00:00-04:00">December 30, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-12-11-notes_total_commander/">Notes on Total Commander Setups</a>
+                <div class="entry-date">
+										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-05-17-jup_kernel/">Jupyterlab kernel setup</a>
+                <div class="entry-date">
+										<time datetime="2021-05-17T00:00:00-04:00">May 17, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-09-25-rsa/">Notes on RSA algorithm</a>
+                <div class="entry-date">
+										<time datetime="2020-09-25T00:00:00-04:00">September 25, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="theory" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;theory&nbsp;(3)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2023-10-09-diff_size_strain/">Size & strain effect and preferred orientation in diffraction</a>
+                <div class="entry-date">
+										<time datetime="2023-10-09T00:00:00-04:00">October 9, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-09-10-pdf_thermal_bkg/">Thermal background in pair distrubtion function (PDF)</a>
+                <div class="entry-date">
+										<time datetime="2023-09-10T00:00:00-04:00">September 10, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-08-25-nano_rmc/">Size effect in RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2021-08-25T00:00:00-04:00">August 25, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="thermodynamics" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;thermodynamics&nbsp;(3)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2021-07-07-ising_sol/">Notes on Ising model</a>
+                <div class="entry-date">
+										<time datetime="2021-07-07T00:00:00-04:00">July 7, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-07-27-thermo_2nd/">为什么不能通过让海水不断降温从而获取无尽的能量？</a>
+                <div class="entry-date">
+										<time datetime="2020-07-27T00:00:00-04:00">July 27, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-07-22-temperature/">Notes On Temperature</a>
+                <div class="entry-date">
+										<time datetime="2020-07-22T00:00:00-04:00">July 22, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="tool" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;tool&nbsp;(16)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-01-30-1panel_cloudflare/">Setting up 1panel with Cloudflare</a>
+                <div class="entry-date">
+										<time datetime="2025-01-30T00:00:00-04:00">January 30, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-28-rmcprofile_dev_env_gen/">Notes on the development environment setup for RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2025-01-28T00:00:00-04:00">January 28, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-20-slashdot_block_ads/">Block the annoying ads on slashdot</a>
+                <div class="entry-date">
+										<time datetime="2025-01-20T00:00:00-04:00">January 20, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-17-rmcprofile_dev_env_win/">Development environment setup for RMCProfile on Windows</a>
+                <div class="entry-date">
+										<time datetime="2025-01-17T00:00:00-04:00">January 17, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-09-03-wordpress_tips/">Tips on Wordpress Setup</a>
+                <div class="entry-date">
+										<time datetime="2024-09-03T00:00:00-04:00">September 3, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-08-24-mantid_faq/">FAQs about Mantid &ndash; Yuanpeng's Collection</a>
+                <div class="entry-date">
+										<time datetime="2024-08-24T00:00:00-04:00">August 24, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-08-19-gitlab_ssh/">Use SSH key with GitLab</a>
+                <div class="entry-date">
+										<time datetime="2024-08-19T00:00:00-04:00">August 19, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-03-11-vscode_python_debugger/">Notes on using VSCode</a>
+                <div class="entry-date">
+										<time datetime="2024-03-11T00:00:00-04:00">March 11, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-03-11-mac_mouse_gesture/">Mouse gesture on Mac</a>
+                <div class="entry-date">
+										<time datetime="2024-03-11T00:00:00-04:00">March 11, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-02-22-notes_windterm/">Notes on setting up WindTerm</a>
+                <div class="entry-date">
+										<time datetime="2023-02-22T00:00:00-04:00">February 22, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-02-15-notes_mybb/">Notes on Forum Setup with MyBB</a>
+                <div class="entry-date">
+										<time datetime="2023-02-15T00:00:00-04:00">February 15, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-12-30-notes_slack_msg/">Notes on Slack App Setup</a>
+                <div class="entry-date">
+										<time datetime="2022-12-30T00:00:00-04:00">December 30, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-12-11-notes_total_commander/">Notes on Total Commander Setups</a>
+                <div class="entry-date">
+										<time datetime="2022-12-11T00:00:00-04:00">December 11, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-12-01-rmc_configure/">Configure RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2020-12-01T00:00:00-04:00">December 1, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-07-04-sublime/">Notes on Sublime Text 3</a>
+                <div class="entry-date">
+										<time datetime="2020-07-04T00:00:00-04:00">July 4, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-06-26-discus_install/">Install DISCUS version 6 on Windows 10</a>
+                <div class="entry-date">
+										<time datetime="2020-06-26T00:00:00-04:00">June 26, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="total scattering" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;total scattering&nbsp;(6)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-08-22-van_hove_func/">Van Hove Function</a>
+                <div class="entry-date">
+										<time datetime="2024-08-22T00:00:00-04:00">August 22, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-10-29-findsym/">Find out symmetry from RMC fitted supercell</a>
+                <div class="entry-date">
+										<time datetime="2023-10-29T00:00:00-04:00">October 29, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-09-10-pdf_thermal_bkg/">Thermal background in pair distrubtion function (PDF)</a>
+                <div class="entry-date">
+										<time datetime="2023-09-10T00:00:00-04:00">September 10, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-07-09-coh_incoh_sl/">Derivation of neutron incoherent scattering length</a>
+                <div class="entry-date">
+										<time datetime="2021-07-09T00:00:00-04:00">July 9, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-12-01-rmc_configure/">Configure RMCProfile</a>
+                <div class="entry-date">
+										<time datetime="2020-12-01T00:00:00-04:00">December 1, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-06-28-fourier_transform/">When Fourier transform meets total scattering</a>
+                <div class="entry-date">
+										<time datetime="2020-06-28T00:00:00-04:00">June 28, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="tutorial" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;tutorial&nbsp;(4)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-11-07-n8n_slack_nocodb/">Set up workflows for bidirectional connection between NocoDB and Slack</a>
+                <div class="entry-date">
+										<time datetime="2024-11-07T00:00:00-04:00">November 7, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-04-n8n_rss_gmail/">Set up an automated workflow for collecting RSS feeds and send to Gmail</a>
+                <div class="entry-date">
+										<time datetime="2024-11-04T00:00:00-04:00">November 4, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-03-n8n_notion_slack_workflow/">Set up an automated workflow for Notion & Slack connection with n8n</a>
+                <div class="entry-date">
+										<time datetime="2024-11-03T00:00:00-04:00">November 3, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-03-16-aws_s3_notes/">Amazon AWS S3 setup</a>
+                <div class="entry-date">
+										<time datetime="2024-03-16T00:00:00-04:00">March 16, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="utils" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;utils&nbsp;(2)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-07-11-mac_app_distribution/">Publish Apps on MacOS</a>
+                <div class="entry-date">
+										<time datetime="2025-07-11T00:00:00-04:00">July 11, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-06-26-remote_connect/">Technical Notes on Remote Connection with Thinlinc, Windows RDP and SSH</a>
+                <div class="entry-date">
+										<time datetime="2025-06-26T00:00:00-04:00">June 26, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="vps" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;vps&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2025-08-18-cloudcone_setup/">Set up a Budget VPS on CloudCone</a>
+                <div class="entry-date">
+										<time datetime="2025-08-18T00:00:00-04:00">August 18, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="web" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;web&nbsp;(18)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2026-04-18-vnc_novnc/">VNC and noVNC for remote connection</a>
+                <div class="entry-date">
+										<time datetime="2026-04-18T00:00:00-04:00">April 18, 2026</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-11-19-n8n_postgres_embed/">Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database</a>
+                <div class="entry-date">
+										<time datetime="2025-11-19T00:00:00-04:00">November 19, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-03-16-dify_config/">Dify Server Maintenance</a>
+                <div class="entry-date">
+										<time datetime="2025-03-16T00:00:00-04:00">March 16, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-30-1panel_cloudflare/">Setting up 1panel with Cloudflare</a>
+                <div class="entry-date">
+										<time datetime="2025-01-30T00:00:00-04:00">January 30, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2025-01-20-slashdot_block_ads/">Block the annoying ads on slashdot</a>
+                <div class="entry-date">
+										<time datetime="2025-01-20T00:00:00-04:00">January 20, 2025</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-07-n8n_slack_nocodb/">Set up workflows for bidirectional connection between NocoDB and Slack</a>
+                <div class="entry-date">
+										<time datetime="2024-11-07T00:00:00-04:00">November 7, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-04-n8n_rss_gmail/">Set up an automated workflow for collecting RSS feeds and send to Gmail</a>
+                <div class="entry-date">
+										<time datetime="2024-11-04T00:00:00-04:00">November 4, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-11-03-n8n_notion_slack_workflow/">Set up an automated workflow for Notion & Slack connection with n8n</a>
+                <div class="entry-date">
+										<time datetime="2024-11-03T00:00:00-04:00">November 3, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-09-03-wordpress_tips/">Tips on Wordpress Setup</a>
+                <div class="entry-date">
+										<time datetime="2024-09-03T00:00:00-04:00">September 3, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-03-07-flarum_setup/">Set up a Flarum forum on VPS</a>
+                <div class="entry-date">
+										<time datetime="2024-03-07T00:00:00-04:00">March 7, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-02-04-yacy_setup/">Set up our own search engine with Yacy</a>
+                <div class="entry-date">
+										<time datetime="2024-02-04T00:00:00-04:00">February 4, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-01-28-oracle_vps_vol_expand/">Resize Oracle VPS volume</a>
+                <div class="entry-date">
+										<time datetime="2024-01-28T00:00:00-04:00">January 28, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-01-27-docker_dify/">Set up Dify server on VPS with docker</a>
+                <div class="entry-date">
+										<time datetime="2024-01-27T00:00:00-04:00">January 27, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-01-15-yourls_docker/">Set up YOURLS on VPS with docker</a>
+                <div class="entry-date">
+										<time datetime="2024-01-15T00:00:00-04:00">January 15, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2024-01-13-dockerize_addie/">Dockerize the ADDIE service</a>
+                <div class="entry-date">
+										<time datetime="2024-01-13T00:00:00-04:00">January 13, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-12-25-vps_docker_services/">Setting up services on VPS using docker</a>
+                <div class="entry-date">
+										<time datetime="2023-12-25T00:00:00-04:00">December 25, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-09-10-rustdesk_server/">Rustdesk server setup</a>
+                <div class="entry-date">
+										<time datetime="2023-09-10T00:00:00-04:00">September 10, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-09-08-docker_nginx/">Set up a self-hosted web server on Oracle VPS</a>
+                <div class="entry-date">
+										<time datetime="2023-09-08T00:00:00-04:00">September 8, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="web development" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;web development&nbsp;(12)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2023-03-14-notes_jekyll_search/">Notes on implementing search in Jekyll site</a>
+                <div class="entry-date">
+										<time datetime="2023-03-14T00:00:00-04:00">March 14, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2023-03-14-notes_flask_nginx_https/">Notes Flask+Nginx+HTTPS setup</a>
+                <div class="entry-date">
+										<time datetime="2023-03-14T00:00:00-04:00">March 14, 2023</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-11-26-notes_jupyterhub/">Notes on Jupyterhub server setup</a>
+                <div class="entry-date">
+										<time datetime="2022-11-26T00:00:00-04:00">November 26, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-10-13-css_javascript_img_effect/">Image effect in web page</a>
+                <div class="entry-date">
+										<time datetime="2022-10-13T00:00:00-04:00">October 13, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-10-09-jekyll_maths/">Math equation in Jekyll</a>
+                <div class="entry-date">
+										<time datetime="2022-10-09T00:00:00-04:00">October 9, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2022-10-09-jekyll_code_snippet_copy/">Copy of code snippet in Jekyll</a>
+                <div class="entry-date">
+										<time datetime="2022-10-09T00:00:00-04:00">October 9, 2022</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-12-21-owncloud_setup/">OwnCloud Server Setup</a>
+                <div class="entry-date">
+										<time datetime="2021-12-21T00:00:00-04:00">December 21, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-06-24-man_jupyter_kernel/">Management of Jupyter kernels</a>
+                <div class="entry-date">
+										<time datetime="2021-06-24T00:00:00-04:00">June 24, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-05-17-sphinx/">Intro to Sphinx</a>
+                <div class="entry-date">
+										<time datetime="2021-05-17T00:00:00-04:00">May 17, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2021-05-17-jup_kernel/">Jupyterlab kernel setup</a>
+                <div class="entry-date">
+										<time datetime="2021-05-17T00:00:00-04:00">May 17, 2021</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-11-28-notes_jekyll/">Notes on Jekyll</a>
+                <div class="entry-date">
+										<time datetime="2020-11-28T00:00:00-04:00">November 28, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div><div class="tag-entry">
+                <a href="/2020-11-20-flask/">Notes on Flask</a>
+                <div class="entry-date">
+										<time datetime="2020-11-20T00:00:00-04:00">November 20, 2020</time>, by Yuanpeng Zhang
+                </div>
+            </div></div><h2 id="yourls" class="linked-section">
+        <i class="fas fa-tag" aria-hidden="true"></i>
+        &nbsp;yourls&nbsp;(1)
+    </h2>
+    <div class="post-list"><div class="tag-entry">
+                <a href="/2024-01-15-yourls_docker/">Set up YOURLS on VPS with docker</a>
+                <div class="entry-date">
+										<time datetime="2024-01-15T00:00:00-04:00">January 15, 2024</time>, by Yuanpeng Zhang
+                </div>
+            </div></div></div>
+
+
+      
+
+      
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

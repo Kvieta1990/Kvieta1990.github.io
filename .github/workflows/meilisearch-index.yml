@@ -1,0 +1,33 @@
+name: Index Posts to Meilisearch
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '_posts/**'
+  # Also allow manual runs from the Actions tab (useful for initial indexing)
+  workflow_dispatch:
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install indexing dependencies
+        working-directory: _scripts
+        run: npm install meilisearch front-matter
+
+      - name: Index posts to Meilisearch
+        working-directory: .
+        env:
+          MEILISEARCH_HOST: ${{ secrets.MEILISEARCH_HOST }}
+          MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
+        run: node _scripts/index_meilisearch.js

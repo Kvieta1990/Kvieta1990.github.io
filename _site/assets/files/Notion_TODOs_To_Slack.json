@@ -1,0 +1,229 @@
+{
+  "name": "Notion TODOs To Slack",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 9
+            }
+          ]
+        }
+      },
+      "name": "Cron",
+      "type": "n8n-nodes-base.cron",
+      "position": [
+        60,
+        -40
+      ],
+      "typeVersion": 1,
+      "id": "51b150e7-2406-4567-8a03-b68e19dda847"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "f9db3dea-e401-4cc5-a9a7-eb13e099ff6e",
+          "mode": "list",
+          "cachedResultName": "Daily Checkout",
+          "cachedResultUrl": "https://www.notion.so/f9db3deae4014cc5a9a7eb13e099ff6e"
+        },
+        "returnAll": true,
+        "filterType": "manual",
+        "filters": {
+          "conditions": [
+            {
+              "key": "Archive|checkbox",
+              "condition": "equals"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "af13ffab-6da0-406b-a907-2c2bf133d7e3",
+      "name": "Daily Checkout",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        -40
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "wWxIZuhXX16cGQhO",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "url = _json.url\nreturn {\"url\": url}"
+      },
+      "id": "39579e9b-c13f-4717-8d92-c1a4093da36d",
+      "name": "Daily Routine URL",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "block",
+        "operation": "getAll",
+        "blockId": {
+          "__rl": true,
+          "value": "={{ $json.url }}",
+          "mode": "url"
+        },
+        "returnAll": true,
+        "fetchNestedBlocks": true
+      },
+      "id": "a9f84332-c336-4047-8237-47f35ccdb3a7",
+      "name": "TO-DO Blocks",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        800,
+        -40
+      ],
+      "credentials": {
+        "notionApi": {
+          "id": "wWxIZuhXX16cGQhO",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let myString = \"\";\nfor (const item of $input.all()) {\n  let str_tmp = \"\";\n  if (item.json.type !== \"unsupported\") {\n    if (item.json.type === \"to_do\") {\n      str_tmp = \"• \" + item.json.content;\n    } else {\n      str_tmp = item.json.content;\n    }\n    myString += str_tmp;\n    myString += \"\\n\";\n  }\n}\n\nreturn {\"output\": myString};"
+      },
+      "id": "6d26032e-c929-48cd-9dc9-f819529dd982",
+      "name": "Prepare Slack Msg",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "channel": "to-do",
+        "text": "={{ $json.output }}",
+        "otherOptions": {},
+        "attachments": []
+      },
+      "name": "Send Slack Msg",
+      "type": "n8n-nodes-base.slack",
+      "position": [
+        1280,
+        -40
+      ],
+      "executeOnce": false,
+      "typeVersion": 1,
+      "id": "2da6fb0f-578a-41bb-b36e-436645615e36",
+      "credentials": {
+        "slackApi": {
+          "id": "r5QUn6Ta6QHLD1SR",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "a745807a-a160-4cee-b071-4f3badbfaf63",
+      "name": "Stop",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        -40
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Cron": {
+      "main": [
+        [
+          {
+            "node": "Daily Checkout",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Checkout": {
+      "main": [
+        [
+          {
+            "node": "Daily Routine URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Routine URL": {
+      "main": [
+        [
+          {
+            "node": "TO-DO Blocks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TO-DO Blocks": {
+      "main": [
+        [
+          {
+            "node": "Prepare Slack Msg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Slack Msg": {
+      "main": [
+        [
+          {
+            "node": "Send Slack Msg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Slack Msg": {
+      "main": [
+        [
+          {
+            "node": "Stop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {},
+  "versionId": "acb1da09-b9a9-4aaf-ac59-3bc911d98952",
+  "meta": {
+    "templateId": "1105",
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9e6efd9c28e47e03fa73d79f6052f3d2285b9e1b0a145f29726d9ca1f764930c"
+  },
+  "id": "zmGW0a6GXiG8trWM",
+  "tags": []
+}

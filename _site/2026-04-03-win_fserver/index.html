@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Set up a File Server on Windows</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="In this post, I will be noting down how to use Dufs [1] for setting up a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Set up a File Server on Windows">
+  <meta property="og:description" content="In this post, I will be noting down how to use Dufs [1] for setting up a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-04-03T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-04-03-win_fserver/">
+  <link rel="canonical" href="http://localhost:8000/2026-04-03-win_fserver/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Set up a File Server on Windows">
+  <meta property="twitter:description" content="In this post, I will be noting down how to use Dufs [1] for setting up a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Set up a File Server on Windows</h1>
+          
+
+          
+					<span class="post-meta">Posted on April 3, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>In this post, I will be noting down how to use <code class="language-plaintext highlighter-rouge">Dufs</code> [1] for setting up a file server on Windows 11. Originally, I was using <code class="language-plaintext highlighter-rouge">gohttpserver</code> which is no longer maintained, and <code class="language-plaintext highlighter-rouge">Dufs</code> is one of the recommended options on the <code class="language-plaintext highlighter-rouge">gohttpserver</code> GitHub [2]. First, we need to install <code class="language-plaintext highlighter-rouge">cargo</code>, following Ref. [3]. Then install <code class="language-plaintext highlighter-rouge">Dufs</code> with <code class="language-plaintext highlighter-rouge">cargo</code>,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cargo <span class="nb">install </span>dufs
+</code></pre></div></div>
+
+<p>Once installed, we can refer to Ref. [1] for instructions about how to use the tool for setting up the server, which is very straightforward. For my setup, I am referring to the <code class="language-plaintext highlighter-rouge">Advanced Topics</code> section in Ref. [1] and was using a configuration file to run the server. Here below is my YAML configuration file,</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">serve-path</span><span class="pi">:</span> <span class="s1">'</span><span class="s">D:\'</span>
+<span class="na">bind</span><span class="pi">:</span> <span class="s">0.0.0.0</span>
+<span class="na">port</span><span class="pi">:</span> <span class="m">80</span>
+<span class="na">hidden</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">tmp</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">*.log'</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">*.lock'</span>
+<span class="na">auth</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">admin:*****@/:rw</span>
+<span class="na">allow-all</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-upload</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-delete</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-search</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-symlink</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-archive</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-hash</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">enable-cors</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">render-index</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">render-try-index</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">render-spa</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">log-format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">$remote_addr</span><span class="nv"> </span><span class="s">"$request"</span><span class="nv"> </span><span class="s">$status</span><span class="nv"> </span><span class="s">$http_user_agent'</span>
+<span class="na">log-file</span><span class="pi">:</span> <span class="s">E:\Programs\file_server\dufs.log</span>
+<span class="na">compress</span><span class="pi">:</span> <span class="s">low</span>
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">admin</code> is the user name I chose and <code class="language-plaintext highlighter-rouge">*****</code> is the placeholder for the password I set for the user. In this way, only the authenticated user <code class="language-plaintext highlighter-rouge">admin</code> will have access to the file server. The service is running on the localhost on the port <code class="language-plaintext highlighter-rouge">80</code> so it can be accessed locally via <code class="language-plaintext highlighter-rouge">localhost</code> from a local browser. The <code class="language-plaintext highlighter-rouge">serve-path: 'D:\'</code> entry specifies that <code class="language-plaintext highlighter-rouge">D:\</code> (the whole D-drive) will be hosted through the server. Here below is another service running in parallel,</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">serve-path</span><span class="pi">:</span> <span class="s1">'</span><span class="s">D:\Sharing'</span>
+<span class="na">bind</span><span class="pi">:</span> <span class="s">0.0.0.0</span>
+<span class="na">port</span><span class="pi">:</span> <span class="m">8088</span>
+<span class="na">hidden</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">tmp</span>
+  <span class="pi">-</span> <span class="s1">'</span><span class="s">*.lock'</span>
+<span class="na">allow-all</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-upload</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-delete</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-search</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">allow-symlink</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-archive</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">allow-hash</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">enable-cors</span><span class="pi">:</span> <span class="no">false</span>
+<span class="na">render-index</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">render-try-index</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">render-spa</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">log-format</span><span class="pi">:</span> <span class="s1">'</span><span class="s">$remote_addr</span><span class="nv"> </span><span class="s">"$request"</span><span class="nv"> </span><span class="s">$status</span><span class="nv"> </span><span class="s">$http_user_agent'</span>
+<span class="na">log-file</span><span class="pi">:</span> <span class="s">E:\Programs\file_server\dufs_1.log</span>
+<span class="na">compress</span><span class="pi">:</span> <span class="s">low</span>
+</code></pre></div></div>
+
+<p>Saving the configuration files somewhere on my system, I can then create a <code class="language-plaintext highlighter-rouge">vbscript</code> like below to start both services,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set wshShell = WScript.CreateObject("WScript.Shell")
+wshShell.Run "cmd /c dufs --config E:\Programs\file_server\dufs_config.yaml &gt; NUL 2&gt;&amp;1", 0, False
+wshShell.Run "cmd /c dufs --config E:\Programs\file_server\dufs_config_1.yaml &gt; NUL 2&gt;&amp;1", 0, False
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">E:\Programs\file_server\dufs_config.yaml</code> and <code class="language-plaintext highlighter-rouge">E:\Programs\file_server\dufs_config_1.yaml</code> are apparently where I saved those two configuration files. To start the server, we can double click on the <code class="language-plaintext highlighter-rouge">vbscript</code> created above. Further, we can create a shortcut for the script and put it under <code class="language-plaintext highlighter-rouge">C:\Users\&lt;user_name&gt;\AppData\Roaming\Microsoft\Windows\Start Menu\Programs</code> to make it available in the Windows start menu – <code class="language-plaintext highlighter-rouge">&lt;user_name&gt;</code> refers to our Windows user name. Even further, we can press <code class="language-plaintext highlighter-rouge">&lt;Windows&gt;+R</code> to bring up the run box and type in <code class="language-plaintext highlighter-rouge">shell:startup</code> to bring up the file explorer to the startup folder. We can then copy the shortcut for the <code class="language-plaintext highlighter-rouge">vbscript</code> to the startup folder so it can start with the system.</p>
+
+<p>Now we successfully set up the file server running locally but still only locally. To bring the server to the public so to be accessible from the internet, there are multiple ways. For example, we can set up the <code class="language-plaintext highlighter-rouge">nginx</code> service on the same Windows machine to serve the reverse proxy on port <code class="language-plaintext highlighter-rouge">80</code> and <code class="language-plaintext highlighter-rouge">8088</code> and then we may need to forward the port from the router (for serving the home Wifi) to the Windows machine. Then to make the connection secure, either we set up the SSL sertificate ourselves or use <code class="language-plaintext highlighter-rouge">Cloudflare</code> to have another layer of reverse proxy so that when users hit the domain name that we suppose to have for our file server, the inbound traffic goes like <code class="language-plaintext highlighter-rouge">DNS</code> =&gt; <code class="language-plaintext highlighter-rouge">Cloudflare</code> =&gt; <code class="language-plaintext highlighter-rouge">Home Router</code> =&gt; <code class="language-plaintext highlighter-rouge">nginx on Windows</code> =&gt; <code class="language-plaintext highlighter-rouge">Dufs service on Windows</code>. This is doable but is a bit tedious. Here I am noting down a more conveninent approach, still using <code class="language-plaintext highlighter-rouge">Cloudflare</code> but this time using the <code class="language-plaintext highlighter-rouge">tunnel</code>. First, we need to install the <code class="language-plaintext highlighter-rouge">cloudflared</code> util, by following the instructions in Ref. [4]. Next, open <code class="language-plaintext highlighter-rouge">powershell</code> and execute the following command,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cloudflared tunnel login
+</code></pre></div></div>
+
+<p>which will open a browser to authorize the tunnel. Then create a tunnel,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cloudflared tunnel create hwin11-tunnel
+</code></pre></div></div>
+
+<p>This generates a tunnel ID and credentials file. The credentials file will be saved into <code class="language-plaintext highlighter-rouge">c:\Users\&lt;user_name&gt;\.cloudflared\</code> where <code class="language-plaintext highlighter-rouge">&lt;user_name&gt;</code> is our Windows user name, and the name of the credentials file will be <code class="language-plaintext highlighter-rouge">&lt;tunnel_id&gt;.json</code> where <code class="language-plaintext highlighter-rouge">&lt;tunnel_id&gt;</code> refers to the <code class="language-plaintext highlighter-rouge">tunnel ID</code> generated while running the command above. Next, create the tunnel configuration file as <code class="language-plaintext highlighter-rouge">c:\Users\&lt;user_name&gt;\.cloudflared\config.yml</code>, like below,</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">tunnel</span><span class="pi">:</span> <span class="s">d906a963-6cce-4b82-9472-b7357de029d1</span>
+<span class="na">credentials-file</span><span class="pi">:</span> <span class="s">C:\Users\kviet\.cloudflared\d906a963-6cce-4b82-9472-b7357de029d1.json</span>
+
+<span class="na">ingress</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">tube.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">http://localhost:5556</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">files.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">http://localhost</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">share.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">http://localhost:8088</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">media.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">http://localhost:8096</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">sync.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">http://localhost:8888</span>
+  <span class="pi">-</span> <span class="na">hostname</span><span class="pi">:</span> <span class="s">rdp.iris-home.day</span>
+    <span class="na">service</span><span class="pi">:</span> <span class="s">tcp://localhost:3389</span>
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">http_status:404</span>
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">tunnel</code> and <code class="language-plaintext highlighter-rouge">credentials-file</code> needs to be populated with the tunnel ID and the credentials file, respectively. The <code class="language-plaintext highlighter-rouge">hostname</code> under <code class="language-plaintext highlighter-rouge">ingress</code> is something we need to create. Basically, we need to add in a proper DNS record for the domain name maintained via <code class="language-plaintext highlighter-rouge">Cloudflare</code>. To create the record, we run something like below,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cloudflared tunnel route dns hwin11-tunnel tube.iris-home.day
+</code></pre></div></div>
+
+<p>Now, if we go to <code class="language-plaintext highlighter-rouge">Cloudflare</code> and further go to the domain name =&gt; <code class="language-plaintext highlighter-rouge">DNS</code> =&gt; <code class="language-plaintext highlighter-rouge">Records</code>, we will see something like below,</p>
+
+<p align="center">
+<img src="/assets/img/posts/cloudflare_tunnel.png" style="border:none;" width="1000" alt="ctunnel" title="ctunnel" />
+</p>
+
+<p>To see all the tunnels associated with the domain name, in the interface shown above, we click on the tunnel name, e.g., <code class="language-plaintext highlighter-rouge">hwin11-tunnel</code>. Now going back to the <code class="language-plaintext highlighter-rouge">cloudflared</code> configuration file above, we just need to put in the proper entry to point the <code class="language-plaintext highlighter-rouge">hostname</code> to the local service. For example, for the file server with <code class="language-plaintext highlighter-rouge">Dufs</code>, the hostname <code class="language-plaintext highlighter-rouge">files.iris-home.day</code> points to <code class="language-plaintext highlighter-rouge">localhost</code> (the one running on the port <code class="language-plaintext highlighter-rouge">80</code>) and <code class="language-plaintext highlighter-rouge">share.iris-home.day</code> points to <code class="language-plaintext highlighter-rouge">localhost:8088</code>.</p>
+
+<p>Finally, we just need to start the tunnel by running,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cloudflared tunnel run
+</code></pre></div></div>
+
+<p>We can create a batch file for this,</p>
+
+<div class="language-batch highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@echo <span class="na">off</span>
+
+<span class="kd">cloudflared</span> <span class="kd">tunnel</span> <span class="nb">run</span>
+</code></pre></div></div>
+
+<p>and then we can create a <code class="language-plaintext highlighter-rouge">vbscript</code> to run the batch file without bringing up the terminal,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run "c:\Users\&lt;user_name&gt;\OneDrive\One_Documents\Cloudflared\tube.bat", 0
+Set WshShell = Nothing
+</code></pre></div></div>
+
+<p>where, again, <code class="language-plaintext highlighter-rouge">&lt;user_name&gt;</code> refers to our Windows user name. Then we can create the shortcut for the <code class="language-plaintext highlighter-rouge">vbscript</code>, put it in the <code class="language-plaintext highlighter-rouge">Start</code> menu and further put it into the startup folder, as all be described above.</p>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://github.com/sigoden/dufs">https://github.com/sigoden/dufs</a></p>
+
+<p>[2] <a href="https://github.com/codeskyblue/gohttpserver">https://github.com/codeskyblue/gohttpserver</a></p>
+
+<p>[3] <a href="https://forge.rust-lang.org/infra/other-installation-methods.html">https://forge.rust-lang.org/infra/other-installation-methods.html</a></p>
+
+<p>[4] <a href="https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/">https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#server">server</a>
+          
+            <a href="/tags#Windows">Windows</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+a+File+Server+on+Windows&url=http%3A%2F%2Flocalhost%3A8000%2F2026-04-03-win_fserver%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-04-03-win_fserver%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-04-03-win_fserver%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-03-19-n8n_technical/" data-toggle="tooltip" data-placement="top" title="Some Technical Notes on n8n setup">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2026-04-05-strand_agent/" data-toggle="tooltip" data-placement="top" title="Strands Agent Episode-1 — Setup">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

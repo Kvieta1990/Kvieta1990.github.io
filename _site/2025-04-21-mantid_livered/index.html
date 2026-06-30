@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Configure a Local Mantid Live Reduction Service</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Here in this post, I am writing down notes regarding the configuration of a Mantid live reduction service locally. By ‘locally’, I mean the service can be managed by a local user, instead a system-wise one for which the management would require a sudo privilege. Relevant scripts are stored in...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Configure a Local Mantid Live Reduction Service">
+  <meta property="og:description" content="Here in this post, I am writing down notes regarding the configuration of a Mantid live reduction service locally. By ‘locally’, I mean the service can be managed by a local user, instead a system-wise one for which the management would require a sudo privilege. Relevant scripts are stored in...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2025-04-21T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2025-04-21-mantid_livered/">
+  <link rel="canonical" href="http://localhost:8000/2025-04-21-mantid_livered/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Configure a Local Mantid Live Reduction Service">
+  <meta property="twitter:description" content="Here in this post, I am writing down notes regarding the configuration of a Mantid live reduction service locally. By ‘locally’, I mean the service can be managed by a local user, instead a system-wise one for which the management would require a sudo privilege. Relevant scripts are stored in...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Configure a Local Mantid Live Reduction Service</h1>
+          
+
+          
+					<span class="post-meta">Posted on April 21, 2025, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>Here in this post, I am writing down notes regarding the configuration of a Mantid live reduction service locally. By ‘locally’, I mean the service can be managed by a local user, instead a system-wise one for which the management would require a <code class="language-plaintext highlighter-rouge">sudo</code> privilege. Relevant scripts are stored in the following repo, <a href="https://code.ornl.gov/y8z/nom_livered_local">https://code.ornl.gov/y8z/nom_livered_local</a>. Since some of the scripts involved here contain sensitive information, the repo is kept as a private script. To get access to the repo, please reach out to me at <a href="https://iris2020.net/contact/">https://iris2020.net/contact</a>.</p>
+
+<p>First, we need to create a service file, e.g., <code class="language-plaintext highlighter-rouge">livereduce_zyp.service</code> and put it under <code class="language-plaintext highlighter-rouge">${HOME}/.config/systemd/user/</code>. This way, the created service can be executed and managed by the local user without the need for  a <code class="language-plaintext highlighter-rouge">sudo</code> privilege. Here below is the contents to be populated into the service file,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Live processing service
+StartLimitInterval=8640
+StartLimitBurst=1000
+
+[Service]
+WorkingDirectory=/SNS/users/y8z/Utilities/nom_live
+ExecStart=/SNS/users/y8z/Utilities/nom_live/livereduce_zyp.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
+</code></pre></div></div>
+
+<p>Once the service file created in place (it has to be exactly under the directory mentioned above), run the following command to reload the daemon,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl <span class="nt">--user</span> daemon-reload
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">--user</code> flag is telling <code class="language-plaintext highlighter-rouge">systemctl</code> to run as the local user. After this, the local service can be executed and managed by the local user, such as,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl <span class="nt">--user</span> start livereduce_zyp.service
+systemctl <span class="nt">--user</span> stop livereduce_zyp.service
+systemctl <span class="nt">--user</span> restart livereduce_zyp.service
+systemctl <span class="nt">--user</span> status livereduce_zyp.service
+</code></pre></div></div>
+
+<p>In the service file template above, the working directory is set to <code class="language-plaintext highlighter-rouge">/SNS/users/y8z/Utilities/nom_live</code> and we do want to put all the relevant scripts regarding the service running under the working directory. The main script is given in the service file, i.e., <code class="language-plaintext highlighter-rouge">livereduce_zyp.sh</code>, which further calls a Python script <code class="language-plaintext highlighter-rouge">livereduce_zyp.py</code> which should be placed under the working directory. The service running will also require a configuration file <code class="language-plaintext highlighter-rouge">livereduce_zyp.conf</code> (the name of which can be changed in the Python script <code class="language-plaintext highlighter-rouge">livereduce_zyp.py</code>). The configuration file defines the instrument, the Mantid environment to use, the system memory limit, and live reduction stream interval. Depending on the specific codes in the Python script <code class="language-plaintext highlighter-rouge">livereduce_zyp.py</code>, the actual Python scripts for the data processing and post-processing may be different. For my version here, the processing and post-processing scripts are <code class="language-plaintext highlighter-rouge">/SNS/NOM/shared/livereduce/reduce_NOM_live_proc_zyp.py</code> and <code class="language-plaintext highlighter-rouge">/SNS/NOM/shared/livereduce/reduce_NOM_live_post_proc_zyp.py</code>, respectively.</p>
+
+<blockquote>
+  <p>For the live reduction, the setup is to use the processing script for processing the live stream data and the post-processing script is responsible for accumulating the processed data so that we can keep accumulating the processing history.</p>
+</blockquote>
+
+<p>At the end of the <code class="language-plaintext highlighter-rouge">post-processing</code>, the script (again, <code class="language-plaintext highlighter-rouge">/SNS/NOM/shared/livereduce/reduce_NOM_live_post_proc_zyp.py</code> in my case), will post the resulted workspace to the data monitor (<a href="https://monitor.sns.gov">monitor.sns.gov</a>). This will require the authentication information stored locally. In my case, the <code class="language-plaintext highlighter-rouge">post-processing</code> script imports a local Python module (see <code class="language-plaintext highlighter-rouge">scripts/utilities/finddata/publish_plot.py</code> in  the repo) which imports the authentication information from a local configuration file (see <code class="language-plaintext highlighter-rouge">post-processing.conf</code> in the repo). The live reduction log file, with my configuration, will be saved to the working directory as <code class="language-plaintext highlighter-rouge">livereduce.log</code> (the working directory is defined in the service file above).</p>
+
+<p>The following files mentioned in current post can all be found in the repo,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>livereduce_zyp.sh
+livereduce_zyp.py
+livereduce_zyp.conf
+post-processing.conf
+scripts/reduce_NOM_live_proc_zyp.py
+scripts/reduce_NOM_live_post_proc_zyp.py
+scripts/utilities/finddata/publish_plot.py
+</code></pre></div></div>
+
+<p>The live reduction scrip is using the Mantid <code class="language-plaintext highlighter-rouge">StartLiveData</code> [1] framework. With my current configuration, the <code class="language-plaintext highlighter-rouge">StartLiveData</code> service is configured with <code class="language-plaintext highlighter-rouge">FromNow=False</code> and <code class="language-plaintext highlighter-rouge">FromStartOfRun=True</code>. This means, the live reduction will <code class="language-plaintext highlighter-rouge">record live data, but go back to the start of the run and process all data since then</code>. For example, during the data collection, if the live reduction service fails for some reason and the service gets restarted, the service will go back to the start of the run and process all data since then so that we don’t have the worry of losing data in case of live reduction service failure. If no failure, the live service will keep processing each streamed chunk (by default, every 30 s forms a chunk, which can be changed in the <code class="language-plaintext highlighter-rouge">livereduce_zyp.conf</code> configuration file) and accumulating the chunks. Also, it is worth mentioning that the actual length of the chunk is the larger one between the defined value (e.g., 30 s) and the actual processing time of the previous chunk. For example, if the processing of the previous chunk only takes 20 s, the next chunk to be processed will be the data streamed in 30 s right after the previous chunk. However, if the processing of the previous chunk takes 40 s, the data streamed in 40 s right after the previous chunk will be taken as the next chunk to process.</p>
+
+<hr />
+
+<p><span style="display:block; text-align:center;">New Notes on 09/13/2025</span></p>
+
+<hr />
+
+<p>In some cases, we may have multiple machines mounting the same drive to the same path and therefore the user level services configuration file will be seen on all those machines. In such a situation, the services will be running on all the machines which may cause some issues in many potentially different ways (file writing conflicts, etc.). We do want to set a flag in the configuration file to let the service only run on a certain machine and to do that, we want to put in a conditional check in the configuration file like follows,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=My Unique Service
+ConditionHost=my-specific-hostname
+...
+...
+</code></pre></div></div>
+
+<p>Then the <code class="language-plaintext highlighter-rouge">My unique Service</code> will be only running on the machine with the hostname of <code class="language-plaintext highlighter-rouge">my-specific-hostname</code>. To obtain the hostname of a machine, just run <code class="language-plaintext highlighter-rouge">hostname</code> from the terminal.</p>
+
+<hr />
+
+<p><span style="display:block; text-align:center;">New Notes on 09/14/2025</span></p>
+
+<hr />
+
+<p>Sometimes the live reduction service would encounter some errors and if such errors are not handled with proper exception raising in the live reduction script, the service would be hanging without automatic restarting. To cope with such situations, we can put in a cronjob on the machine where the live reduction service is running to monitor the log file of the service. If errors are found to the end of the log file and if they are still there after a few round of checking, we can force the live reduction service to restart itself. Here below is the script,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">service_name</span><span class="o">=</span><span class="s2">"livereduce_zyp"</span>
+<span class="nv">max_checks</span><span class="o">=</span>3
+<span class="nv">delay</span><span class="o">=</span>10
+<span class="nv">log_file</span><span class="o">=</span><span class="s2">"/SNS/NOM/shared/log_files/livereduce.log"</span>
+
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>1<span class="p">;</span> i&lt;<span class="o">=</span><span class="nv">$max_checks</span><span class="p">;</span> i++<span class="o">))</span><span class="p">;</span> <span class="k">do
+    </span><span class="nv">service_status</span><span class="o">=</span><span class="si">$(</span>systemctl <span class="nt">--user</span> is-active <span class="nv">$service_name</span><span class="si">)</span>
+    <span class="nv">check_error</span><span class="o">=</span><span class="si">$(</span><span class="nb">tail</span> <span class="nt">-n</span> 10 <span class="nv">$log_file</span> | <span class="nb">grep</span> <span class="s2">"Error"</span><span class="si">)</span>
+
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$service_status</span><span class="s2">"</span> <span class="o">!=</span> <span class="s2">"active"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$check_error</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        if</span> <span class="o">[</span> <span class="nv">$i</span> <span class="nt">-lt</span> <span class="nv">$max_checks</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$service_name</span><span class="s2"> is inactive. Checking again in </span><span class="nv">$delay</span><span class="s2"> seconds..."</span>
+            <span class="nb">sleep</span> <span class="nv">$delay</span>
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$service_name</span><span class="s2"> is still inactive after </span><span class="nv">$max_checks</span><span class="s2"> checks. Restarting the service."</span>
+            systemctl <span class="nt">--user</span> restart <span class="nv">$service_name</span>
+        <span class="k">fi
+    else
+        </span><span class="nb">echo</span> <span class="s2">"Success: </span><span class="nv">$service_name</span><span class="s2"> is active."</span>
+        <span class="nb">exit </span>0
+    <span class="k">fi
+done</span>
+</code></pre></div></div>
+
+<p>Then the following cronjob enetry can be used to run the script every minute,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /usr/bin/bash /SNS/users/y8z/Utilities/nom_live/live_monitor.sh
+</code></pre></div></div>
+
+<blockquote>
+  <p>Use <code class="language-plaintext highlighter-rouge">crontab -e</code> to call out the cron job configuration.</p>
+</blockquote>
+
+<hr />
+
+<p><span style="display:block; text-align:center;">New Notes on 09/20/2025</span></p>
+
+<hr />
+
+<p>In the live reduction service configuration, we can provide an argument to the bash script <code class="language-plaintext highlighter-rouge">livereduce_zyp.sh</code> as the configuration file. If the argument is not provided, the configuration file will be default to <code class="language-plaintext highlighter-rouge">/etc/livereduce.conf</code>. Following is an example service configuration file for POWGEN live reduction.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Live processing service
+StartLimitInterval=8640
+StartLimitBurst=1000
+ConditionHost=bl11a-analysis2.sns.gov
+
+[Service]
+WorkingDirectory=/SNS/users/y8z/Utilities/pg3_live
+ExecStart=/SNS/users/y8z/Utilities/pg3_live/livereduce_zyp.sh livereduce_zyp.conf
+Restart=always
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=5
+
+[Install]
+WantedBy=default.target
+</code></pre></div></div>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://docs.mantidproject.org/nightly/algorithms/StartLiveData-v1.html">https://docs.mantidproject.org/nightly/algorithms/StartLiveData-v1.html</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#scattering">scattering</a>
+          
+            <a href="/tags#dev">dev</a>
+          
+            <a href="/tags#technical">technical</a>
+          
+            <a href="/tags#data_proc">data_proc</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Configure+a+Local+Mantid+Live+Reduction+Service&url=http%3A%2F%2Flocalhost%3A8000%2F2025-04-21-mantid_livered%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2025-04-21-mantid_livered%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2025-04-21-mantid_livered%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2025-04-21-gsasii_dev_new/" data-toggle="tooltip" data-placement="top" title="Local Development of GSAS-II -- New Instructions">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2025-05-09-nova_dev/" data-toggle="tooltip" data-placement="top" title="Local Development Environment Setup for NOVA">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

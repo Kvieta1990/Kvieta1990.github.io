@@ -1,0 +1,3 @@
+var git = require('./lib/git.js');
+
+module.exports = git;

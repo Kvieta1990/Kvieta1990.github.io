@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    
+    <title>Yuanpeng&apos;s Blog</title>
+    
+    
+    <description>This website is a virtual proof that I&apos;m awesome</description>
+    
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+      <item>
+        <title>About Coriolis force</title>
+        <description>
+          
+          
+First, a comprehensive GIF animation demonstrating the basic ideas of Coriolis force is presented.
+
+
+
+
+
+
+
+
+
+
+
+
+Detailed explanation and derivation is presented in the following embedded document.
+
+
+
+
+
+
+
+
+        </description>
+        <pubDate>Fri, 07 Oct 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022-10-07-coriolis_force/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-07-coriolis_force/</guid>
+      </item>
+    
+      <item>
+        <title>Notes on magnetism - III</title>
+        <description>
+          Various physical quantities describing magnetic field - 
+          Talking about magnetic field, we have three relevant physical quantities - magnetic field \(\vec{H}\), magnetic induction field \(\vec{B}\) and magnetization field \(\vec{M}\). It is straightforward to understand \(\vec{M}\) - when applying magnetic field (here, by ‘magnetic field’, we mean something in general, but not specifically refer to \(\vec{H}\)), we use...
+        </description>
+        <pubDate>Thu, 06 Oct 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022-10-06-notes_mag_III/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-06-notes_mag_III/</guid>
+      </item>
+    
+      <item>
+        <title>Notes on magnetism - II</title>
+        <description>
+          Magnetic ions in crystals - 
+          Talking about the magnetism of ions in crystals naturally brings us out of the atomic physics picture which we previously based ourselves in when discussing the free atom and ions (see previous note by clicking me!). Also, for sure we should turn to the many-electron scheme instead of a single-electron...
+        </description>
+        <pubDate>Thu, 06 Oct 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022-10-06-notes_mag_II/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-06-notes_mag_II/</guid>
+      </item>
+    
+      <item>
+        <title>Notes on magnetism - I</title>
+        <description>
+          Magnetism of free atoms and ions - 
+          To understand the magnetism of free atoms and ions, we may go through several stages, as follows, Hartree approximation - electrons are treated in a non-interactive manner. Beyond Hartree - interaction between electrons is taken into account. Spin-orbital coupling. Hyperfine interaction - the interaction between electrons and nucleus. Stage-1 At...
+        </description>
+        <pubDate>Thu, 06 Oct 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022-10-06-notes_mag_I/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-06-notes_mag_I/</guid>
+      </item>
+    
+      <item>
+        <title>Notes on Ising model</title>
+        <description>
+          
+          Ernst Ising (Left) and Wilhelm Lenz (Right) - Ising was Lenz’s student and the Ising model was claimed (by Ising himself) to be originated by Lenz but named after Ising. Ising model was originally proposed for ferromagnetism and owing to its simplicity in describing the system interaction, it has been...
+        </description>
+        <pubDate>Thu, 06 Oct 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022-10-06-ising_sol/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-06-ising_sol/</guid>
+      </item>
+    
+      <item>
+        <title>Notes on topological physics</title>
+        <description>
+          
+          Image reproduced from Ref. [5]. In this blog, I will put down my learning notes as reading through the article on topological electrons by A. P. Ramirez and B. Skinner [1]. Basically, I will follow the story flow in Ref. [1] and therefore, first, I will note down the main...
+        </description>
+        <pubDate>Wed, 05 Oct 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022-10-05-top_physics/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-05-top_physics/</guid>
+      </item>
+    
+      <item>
+        <title>Derivation of neutron incoherent scattering length</title>
+        <description>
+          
+          Figure. 1. Neutron scattering length table by NIST [1]. When we do calculations relevant to neutron scattering, it is unavoidable that we will come across either coherent, incoherent or total scattering length of elements, which describes the strength of scattering neutrons by different elements, either coherently, incoherently or both. In...
+        </description>
+        <pubDate>Wed, 05 Oct 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022-10-05-coh_incoh_sl/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-05-coh_incoh_sl/</guid>
+      </item>
+    
+      <item>
+        <title>OwnCloud Server Setup</title>
+        <description>
+          Set up OwnCloud server on Windows with WSL - 
+          👉 Ports configuration Refer to the following links to gist for configuration files concerning the ports configuration, /etc/apache2/ports.conf /etc/apache2/sites-enabled/000-default.conf 👉 Connection to WSL Apache server from outside (i.e., beyond localhost) This link provide detailed explanation about the IP address assignment scheme for WSL 2 and we need to follow the...
+        </description>
+        <pubDate>Tue, 04 Oct 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022-10-04-owncloud_setup/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-04-owncloud_setup/</guid>
+      </item>
+    
+      <item>
+        <title>Size effect in RMCProfile</title>
+        <description>
+          Implementation of nano-size effect correction for modeling PDF - 
+          Figure. 1. Simulation box for bulk (left) and nano (right) systems. In Ref. [1], we discussed the theoretical principles for correcting the nano-size effect when modeling the pair distribution function (PDF). The fundamental idea is to bring back the uncorrelated pairings in between atoms belong to different nanoparticles, based on...
+        </description>
+        <pubDate>Tue, 04 Oct 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022-10-04-nano_rmc/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-04-nano_rmc/</guid>
+      </item>
+    
+      <item>
+        <title>Notes On Isotropy Subgroup</title>
+        <description>
+          Key notes for reading the lecture notes by Stokes on isotropy subgroup - 
+          Figure. 1. Isotropy subgroup [1]. This blog contains some key notes for reading the lecture notes by H. Stokes, et al. [1] on isotropy subgroup. Details about the lecture notes will not be reproduced here and instead we will just put down some key understanding as below, Two subspaces are...
+        </description>
+        <pubDate>Tue, 04 Oct 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022-10-04-iso_subg/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022-10-04-iso_subg/</guid>
+      </item>
+    
+      <item>
+        <title>Configure RMCProfile</title>
+        <description>
+          Some tips for configuring RMCProfile on Unix/Linux system - 
+          Configuration on Linux system rmcprofile on cluster To run rmcprofile on cluster, the following bash script may be helpful, #!/bin/bash ulimit -s unlimited export OMP_NUM_THREADS=12 RMCProfile_PATH=WHEREVER_RMCProfile_FOLDER_IS_LOCATED export PGPLOT_DIR=$RMCProfile_PATH/exe/libs export LD_LIBRARY_PATH=$RMCProfile_PATH/exe/libs export LIBRARY_PATH=$RMCProfile_PATH/exe/libs export PATH=$PATH:$RMCProfile_PATH/exe $RMCProfile_PATH/exe/rmcprofile stem_name where WHEREVER_RMCProfile_FOLDER_IS_LOCATED refers to the main RMCProfile directory within which the exe and tutorial...
+        </description>
+        <pubDate>Tue, 01 Dec 2020 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2020-12-01-rmc_configure/</link>
+        <guid isPermaLink="true">http://localhost:4000/2020-12-01-rmc_configure/</guid>
+      </item>
+    
+  </channel>
+</rss>

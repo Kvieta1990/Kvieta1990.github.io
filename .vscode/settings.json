@@ -1,0 +1,29 @@
+{
+    "cSpell.words": [
+        "archicture",
+        "Debye",
+        "hbbr",
+        "hbbs",
+        "procerssing",
+        "rustdesk",
+        "Rustdesk",
+        "rustdeskrelay",
+        "rustdesksignal",
+        "teamviewer",
+        "Teamviewer",
+        "Yuanpeng",
+        "Zhang"
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    }
+}

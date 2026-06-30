@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Set up a self-hosted web server on Oracle VPS</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture, Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb RAM. We can refer to Ref. [1-3] for more information...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Set up a self-hosted web server on Oracle VPS">
+  <meta property="og:description" content="It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture, Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb RAM. We can refer to Ref. [1-3] for more information...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2023-09-08T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2023-09-08-docker_nginx/">
+  <link rel="canonical" href="http://localhost:8000/2023-09-08-docker_nginx/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Set up a self-hosted web server on Oracle VPS">
+  <meta property="twitter:description" content="It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture, Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb RAM. We can refer to Ref. [1-3] for more information...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Set up a self-hosted web server on Oracle VPS</h1>
+          
+
+          
+					<span class="post-meta">Posted on September 8, 2023, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/vps_1panel_docker_nginx_setup.png" style="border:none;" width="600" alt="setup" title="setup" />
+</p>
+
+<p><br /></p>
+
+<p>It is possible to get a always-free VPS service on Oracle cloud and especially for the ARM architecture,
+Oracle is providing a very good deal with which one can set up an always-free VPS with 4 CPUs and 24 Gb
+RAM. We can refer to Ref. [1-3] for more information (in Chinese only). Once the VPS is up
+running, we can use the <code class="language-plaintext highlighter-rouge">1Panel</code> tool [4] to set up an admin service available through the web interface
+for setting up and managing web services on our VPS to make it really useful, taking full advantage of the
+always-free resource.</p>
+
+<p>With <code class="language-plaintext highlighter-rouge">1Panle</code>, all the web services will be deployed using <code class="language-plaintext highlighter-rouge">Docker</code>, making it very easy to set up and
+manage. It is possible to deploy our own chatgpt service using docker as well – it is not included in
+the <code class="language-plaintext highlighter-rouge">1Panle</code> app store, but one can refer to Ref. [5] for detailed instructions about how-to.</p>
+
+<p>Here follows are listed several issues and the corresponding solution while I was setting up those services.</p>
+
+<h1 id="issue-1"><strong>Issue #1</strong></h1>
+
+<p>For some reason, the docker for hosting the <code class="language-plaintext highlighter-rouge">sftpgo</code> service would stop running from time to time, making
+the service not available frequently, in which case we need to manually restart the docker container all
+the time.</p>
+
+<h1 id="solution-1"><strong>Solution (#1):</strong></h1>
+
+<p>We can write a bash script like this,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nb">sudo </span>docker container ps <span class="nt">-a</span> <span class="nt">-f</span> <span class="s2">"id=652ff545ce6c"</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"Up"</span> <span class="o">&amp;&amp;</span> <span class="nv">a</span><span class="o">=</span>1 <span class="o">||</span> <span class="nv">a</span><span class="o">=</span>0
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$a</span> <span class="o">=</span> 0 <span class="o">]</span> <span class="p">;</span> <span class="k">then
+    </span><span class="nb">sudo </span>docker container start 652ff545ce6c
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>and make it executable (<code class="language-plaintext highlighter-rouge">chmod a+x check_sftpgo.sh</code>) and add it to the cron job to run it, e.g.,
+every minute so that the system will check the status of the docker container and restart it automatically
+if not running.</p>
+
+<h1 id="issue-2"><strong>Issue #2</strong></h1>
+
+<p>To make the connection to our web server secure, we need to set up SSL certificate and enable the HTTPS
+connection. We can do this by buying some SSL certificate and set up the HTTPS connection using the certificate
+using. e.g., <code class="language-plaintext highlighter-rouge">nginx</code> reverse proxy service. But we do need to pay for the certificate and it is probably not
+cheap.</p>
+
+<h1 id="solution-2"><strong>Solution (#2):</strong></h1>
+
+<p>To get a free, secure and easy-to-configure certificate service, we can use <code class="language-plaintext highlighter-rouge">CloudFlare</code> with which we can even
+use the domain name from other DNS provider (I am using Google domain and it was working perfectly). We can also use
+the <code class="language-plaintext highlighter-rouge">Page Rules</code> service provided by CloudFlare to force the visit to our web server following a certain rule, e.g.,
+always to use the HTTPS connection instead of HTTP – however, we can set up three free rules and beyond that we need
+to pay.</p>
+
+<h1 id="issue-3"><strong>Issue #3</strong></h1>
+
+<p>Let’s say we have a domain name <code class="language-plaintext highlighter-rouge">example.net</code> and we followed the <code class="language-plaintext highlighter-rouge">CloudFlare</code> way of setting up a secure connection via
+HTTPS. We are now facing the problem of having multiple services on a single VPS. For sure, we can directly use the port
+number like <code class="language-plaintext highlighter-rouge">example.net:9999</code> to point to the corresponding service on the server but this is probably not optimal in
+terms of both security and convenience.</p>
+
+<h1 id="solution-3"><strong>Solution (#3):</strong></h1>
+
+<p>An alternative option is to use nginx and specify a <code class="language-plaintext highlighter-rouge">location</code> for a server which then points to a certain port number
+via local connection – something like follows,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    listen 80;
+    server_name example.net;
+
+    location / {
+            proxy_pass         http://localhost:9999;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection "upgrade";
+            proxy_set_header   Host $host;
+    }
+}
+</code></pre></div></div>
+
+<p>This will work, but only for a single instance. For example, if I have another service hosted vai port 8888 and I tried
+to assign another location to it, it won’t work (not sure why, but in practice it did not work out).</p>
+
+<p>So, in this case, we can create subdomains, e.g., <code class="language-plaintext highlighter-rouge">sd.example.net</code> where <code class="language-plaintext highlighter-rouge">sd</code> can be with any arbitrary value and all
+those domains are considered as the subdomain of <code class="language-plaintext highlighter-rouge">example.net</code> and we are free to use them all – sometimes they are
+also called aliases but referring to the same thing. Then using <code class="language-plaintext highlighter-rouge">nginx</code>, we can create multiple configuration files,
+put them under <code class="language-plaintext highlighter-rouge">sites-enabled</code> directory (under <code class="language-plaintext highlighter-rouge">/etc/nginx</code>) and include them in the main <code class="language-plaintext highlighter-rouge">nginx</code> configuration file
+(<code class="language-plaintext highlighter-rouge">/etc/nginx/nginx.conf</code>), like this <code class="language-plaintext highlighter-rouge">include /etc/nginx/sites-enabled/*;</code> (within the <code class="language-plaintext highlighter-rouge">http</code> section). Here follows is
+a typical example file of such a configuration,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    listen 80;
+    server_name mm.iris-home.net;
+    location / {
+        proxy_pass         http://localhost:5230;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection "upgrade";
+        proxy_set_header   Host $host;
+    }
+}
+</code></pre></div></div>
+
+<p>Two things to note down,</p>
+
+<ol>
+  <li>
+    <p>For any of the configuration above for <code class="language-plaintext highlighter-rouge">nginx</code>, we only need to specify the <code class="language-plaintext highlighter-rouge">80</code> port (which is actually the
+http port) since the security part will be taken care of by <code class="language-plaintext highlighter-rouge">CloudFlare</code> following the notes above.</p>
+  </li>
+  <li>
+    <p>Quite often, people prefers to put the extra configuration files into the <code class="language-plaintext highlighter-rouge">sites-available</code> (also under
+<code class="language-plaintext highlighter-rouge">/etc/nginx</code>) and create soft link in the <code class="language-plaintext highlighter-rouge">sites-enabled</code> just for those to be enabled.</p>
+  </li>
+</ol>
+
+<h1 id="issue-4"><strong>Issue #4</strong></h1>
+
+<p>When hosting file sharing service such as <code class="language-plaintext highlighter-rouge">SFTPGo</code> or <code class="language-plaintext highlighter-rouge">KOD Cloud</code>, etc., the backend web interface will highly likely
+be configured via <code class="language-plaintext highlighter-rouge">nginx</code>. With the default settings of <code class="language-plaintext highlighter-rouge">nginx</code>, there will be upper limit of <code class="language-plaintext highlighter-rouge">1 Mb</code> for the file
+uploading. Then if the file to be uploaded exceeds the size limit, we will encounter with server error.</p>
+
+<h1 id="solution-4"><strong>Solution (#4):</strong></h1>
+
+<p>Open the <code class="language-plaintext highlighter-rouge">/etc/nginx/nginx.conf</code> file (as <code class="language-plaintext highlighter-rouge">root</code>) and add in the following configuration in the <code class="language-plaintext highlighter-rouge">http</code>, <code class="language-plaintext highlighter-rouge">server</code>, and
+<code class="language-plaintext highlighter-rouge">location</code> section,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```
+client_max_body_size 100M;
+```
+</code></pre></div></div>
+
+<p>Then restart the <code class="language-plaintext highlighter-rouge">nginx</code> server, e.g., via <code class="language-plaintext highlighter-rouge">sudo systemctl restart nginx</code>.</p>
+
+<h1 id="issue-5"><strong>Issue #5</strong></h1>
+
+<p>When setting up the <code class="language-plaintext highlighter-rouge">nextcloud</code> app with <code class="language-plaintext highlighter-rouge">1Panel</code>, there is a small thing we should
+pay attention to.</p>
+
+<h1 id="solution-5"><strong>Solution (#5):</strong></h1>
+
+<p>Following the setup of the nginx+cloudflare proxy step, the <code class="language-plaintext highlighter-rouge">nginx</code> configuration should look like,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    listen 80;
+    server_name nc.iris-home.net;
+    location / {
+        proxy_pass         https://localhost:40069;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade $http_upgrade;
+        proxy_set_header   Connection "upgrade";
+        proxy_set_header   Host $host;
+    }
+}
+</code></pre></div></div>
+
+<p>The subdomain <code class="language-plaintext highlighter-rouge">nc.iris-home.net</code> should be configured in <code class="language-plaintext highlighter-rouge">Cloudflare</code> and it should be noticed that
+the local <code class="language-plaintext highlighter-rouge">https</code> connection is used instead of <code class="language-plaintext highlighter-rouge">http</code> – see the <code class="language-plaintext highlighter-rouge">proxy_pass</code> setting above.</p>
+
+<h1 id="issue-6">Issue #6</h1>
+
+<p>Docker services backup</p>
+
+<h1 id="solution-6">Solution (#6)</h1>
+
+<p>All the docker services installed via the <code class="language-plaintext highlighter-rouge">1Panel</code> interface were not backed up here. Those manually
+installed services were backed up to include their docker compose files – click <a href="/assets/files/oraclel_docker_backups_01222024.zip">here</a> to download the backup package.</p>
+
+<p>Here follows are the domain names corresponding to the services,</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Domain Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Homepage</td>
+      <td>me.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>Dify</td>
+      <td>dify.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>Gemini</td>
+      <td>gm.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>SFTPGo</td>
+      <td>gg.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>KODCloud</td>
+      <td>kd.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>nextCloud</td>
+      <td>nc.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>Pingvin</td>
+      <td>pv.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>Memos</td>
+      <td>mm.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>UptimeKuma</td>
+      <td>ut.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>VPSScheduler</td>
+      <td>ql.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>ITTools</td>
+      <td>it.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>Bitwarden</td>
+      <td>bw.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>PhotoPrism</td>
+      <td>pg.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>FlatNotes</td>
+      <td>fn.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>StirlingPDF</td>
+      <td>sp.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>Grampsy</td>
+      <td>gs.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>TeamMapper</td>
+      <td>tm.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>Drawio</td>
+      <td>di.iris-home.net</td>
+    </tr>
+    <tr>
+      <td>YOURLS</td>
+      <td>yr.iris-home.net</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <code class="language-plaintext highlighter-rouge">nginx</code> configuration files were backed up <a href="/assets/files/oracle_nginx_backups_01222024.zip">here</a>.</p>
+
+<h1 id="issue-7">Issue #7</h1>
+
+<p><code class="language-plaintext highlighter-rouge">YOURLS</code> installation.</p>
+
+<h1 id="solution-7">Solution (#7)</h1>
+
+<p>When installing <code class="language-plaintext highlighter-rouge">YOURLS</code> (e.g., with <code class="language-plaintext highlighter-rouge">1Panel</code> interface), we need to follow up the installation by visiting the <code class="language-plaintext highlighter-rouge">domain_name/admin</code> to finish up the installation. Here we just need to replace <code class="language-plaintext highlighter-rouge">domain_name</code> with our own domain name and in my case, it is <code class="language-plaintext highlighter-rouge">yr.iris-home.net</code>. Also, after the installation, the domain name, e.g., <code class="language-plaintext highlighter-rouge">yr.iris-home.net</code> cannot be directly visited – we still need to visit the <code class="language-plaintext highlighter-rouge">admin</code> page to define new short URLs.</p>
+
+<h1 id="issue-8">Issue #8</h1>
+
+<p>Restart docker services manually after VPS host machine restart.</p>
+
+<h1 id="solution-8">Solution (#8)</h1>
+
+<p>For the moment, there are several docker services that have to be started manually after the host
+VPS machine is restarted. Here below is a summary for the service folder where we need to to to start the corresponding docker service manually.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Directory</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dify</td>
+      <td>/home/ubuntu/packages/dify/docker</td>
+    </tr>
+    <tr>
+      <td>Pingvin</td>
+      <td>/home/ubuntu/packages/pingvin</td>
+    </tr>
+    <tr>
+      <td>PhotoPrism</td>
+      <td>/home/ubuntu/packages/photoprism</td>
+    </tr>
+    <tr>
+      <td>TeamMapper</td>
+      <td>/home/ubuntu/packages/teammapper</td>
+    </tr>
+    <tr>
+      <td>HRConvert2</td>
+      <td>/home/ubuntu/packages/HRConvert2-Docker</td>
+    </tr>
+    <tr>
+      <td>Yacy</td>
+      <td>/home/ubuntu/packages/yacy</td>
+    </tr>
+    <tr>
+      <td>WBO</td>
+      <td>/home/ubuntu/packages/wbo</td>
+    </tr>
+    <tr>
+      <td>Paperless</td>
+      <td>/home/ubuntu/packages/paperless-ngx_docker</td>
+    </tr>
+    <tr>
+      <td>Wikijs</td>
+      <td>/home/ubuntu/packages/wikijs</td>
+    </tr>
+    <tr>
+      <td>yopass</td>
+      <td>/home/ubuntu/packages/yopass/deploy/docker-compose/insecure</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The command we need to run is <code class="language-plaintext highlighter-rouge">sudo docker-compose up -d</code>, assuming we have changed directory to those listed in the table above, respectively.</p>
+
+<blockquote>
+  <p>For <code class="language-plaintext highlighter-rouge">Yacy</code> and <code class="language-plaintext highlighter-rouge">wbo</code>, we need to run the <code class="language-plaintext highlighter-rouge">start.sh</code> script in their corresponding directories.</p>
+</blockquote>
+
+<h1 id="issue-9">Issue #9</h1>
+
+<p>Installation of <code class="language-plaintext highlighter-rouge">dashy</code> as a self-hosted web-based personal dashboard.</p>
+
+<h1 id="solution-9">Solution (#9)</h1>
+
+<ol>
+  <li>
+    <p>The docker compose file can be found in the backup file <a href="/assets/files/oraclel_docker_backups_01222024.zip">here</a>.</p>
+  </li>
+  <li>
+    <p>We also need a configuration file which is the backend control of the frontend dashboard layout. The configuration can also be found in the backup file above.</p>
+  </li>
+  <li>
+    <p>In the configuration, I also included the configuration for widgets and we can just use such a configuration as the starting template to continue.</p>
+
+    <blockquote>
+      <p>Information for widgets installation can also be found <a href="https://wiki.opensourceisawesome.com/books/self-hosted-dashboards/page/adding-widgets-to-the-dashy-dashboard">here</a> and <a href="https://github.com/Lissy93/dashy/blob/master/docs/widgets.md">here</a>.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>By default, after installation, the dashboard does not come with any authentication mechanism and everyone can change the configuration. To add in the authentication mechanism, refer to the configuration backup file mentioned above, or the link <a href="https://dashy.to/docs/authentication/">here</a>.</p>
+  </li>
+  <li>
+    <p>There are quite a few resources for icons that can be used in <code class="language-plaintext highlighter-rouge">dashy</code>,</p>
+
+    <ul>
+      <li>
+        <p><a href="https://github.com/Lissy93/dashy/wiki/icons/12b2d497821e3849c50bbe982950659c887b298b">https://github.com/Lissy93/dashy/wiki/icons/12b2d497821e3849c50bbe982950659c887b298b</a></p>
+      </li>
+      <li>
+        <p><a href="https://github.com/walkxcode/dashboard-icons/blob/main/ICONS.md">https://github.com/walkxcode/dashboard-icons/blob/main/ICONS.md</a></p>
+      </li>
+      <li>
+        <p><a href="https://github.com/NX211/homer-icons?tab=readme-ov-file">https://github.com/NX211/homer-icons?tab=readme-ov-file</a></p>
+      </li>
+      <li>
+        <p><a href="https://github.com/walkxcode/dashboard-icons">https://github.com/walkxcode/dashboard-icons</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>We can configure to use the <code class="language-plaintext highlighter-rouge">Code::stats</code> widgets to track the coding history on various machines. To do this, we need to configure <code class="language-plaintext highlighter-rouge">Code:stats</code> at <a href="https://codestats.net/">https://codestats.net/</a>. We need to add in our machines in the <code class="language-plaintext highlighter-rouge">Machines</code> menu to obtain the API for a certain machine. Then we need to install editor plugins to enable the connection to the <code class="language-plaintext highlighter-rouge">Code::stats</code> to track our coding within certain editors. Specially,</p>
+
+    <blockquote>
+      <p>If we are using <code class="language-plaintext highlighter-rouge">neovim</code> and are using <code class="language-plaintext highlighter-rouge">LazyVim</code> for managing the plugins, we need to refer to Ref. [6] for a usable plugin. For the installation of the plugin, we need to create a plugin file under <code class="language-plaintext highlighter-rouge">~/.config/nvim/lua/plugins/</code> and give it a name, e.g., <code class="language-plaintext highlighter-rouge">codestats.lua</code>. Then put can put in the following contents in the file,</p>
+    </blockquote>
+
+    <div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">return</span> <span class="p">{</span>
+     <span class="s2">"YannickFricke/codestats.nvim"</span><span class="p">,</span>
+     <span class="n">config</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+         <span class="nb">require</span><span class="p">(</span><span class="s2">"codestats-nvim"</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+             <span class="n">token</span> <span class="o">=</span> <span class="s2">"CODESTATS_API"</span><span class="p">,</span>
+         <span class="p">})</span>
+     <span class="k">end</span><span class="p">,</span>
+     <span class="n">requires</span> <span class="o">=</span> <span class="p">{</span> <span class="p">{</span> <span class="s2">"nvim-lua/plenary.nvim"</span> <span class="p">}</span> <span class="p">},</span>
+ <span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p>where we want to replace <code class="language-plaintext highlighter-rouge">CODESTATS_API</code> with our <code class="language-plaintext highlighter-rouge">Code::stats</code> API.</p>
+
+    <blockquote>
+      <p>We can also configure <code class="language-plaintext highlighter-rouge">zsh</code> to update to <code class="language-plaintext highlighter-rouge">Code::stats</code>. Information can be found in Ref. [7]. We can use the manual method mentioned there to install the plugin, by first downloading the plugin file <a href="https://gitlab.com/code-stats/code-stats-zsh/-/raw/master/codestats.plugin.zsh?ref_type=heads">here</a>. We can put the plugin file somewhere in our system, e.g., <code class="language-plaintext highlighter-rouge">~/.zsh/codestats.plugin.zsh</code> and change directory there to execute <code class="language-plaintext highlighter-rouge">source codestats.plugin.zsh</code> to install the plugin. We need to put <code class="language-plaintext highlighter-rouge">export CODESTATS_API_KEY="&lt;api key here&gt;"</code> in our <code class="language-plaintext highlighter-rouge">.zshrc</code> file where we can populate the place holder with our own <code class="language-plaintext highlighter-rouge">Code::stats</code> API. To make sure each time the plugin will be sourced when launching <code class="language-plaintext highlighter-rouge">neovim</code>, we can add the source command such as <code class="language-plaintext highlighter-rouge">source ~/.zsh/codestats.plugin.zsh</code> to our <code class="language-plaintext highlighter-rouge">.zshrc</code> (or <code class="language-plaintext highlighter-rouge">.zshenv</code>) file.</p>
+    </blockquote>
+  </li>
+</ol>
+
+<h1 id="issue-10">Issue #10</h1>
+
+<p>Installation of HRConvert2, which is an open source online service for file format conversion.</p>
+
+<h1 id="solution-10">Solution (#10)</h1>
+
+<p>The source codes of <code class="language-plaintext highlighter-rouge">HRConvert2</code> are available <a href="https://github.com/zelon88/HRConvert2">here</a> on GitHub. There, we have the link to the docker way of installation. We can specifically follow the instruction for <a href="https://github.com/dwaaan/HRConvert2-Docker?tab=readme-ov-file#docker-compose-setup">Docker Compose Setup</a> for details. A simple input would be the configuration for the <code class="language-plaintext highlighter-rouge">config.php</code> file, where on the top we need to fill in several randomly generated strings, with. e.g., BitWarded generator tool. Normally, this will work out. However, in some cases, we may need to build our own image – typically in my case, I was trying to deploy the service on my oracle VPS with <code class="language-plaintext highlighter-rouge">ARM64</code> architecture and the existing docker compose file which would use the existing docker image for <code class="language-plaintext highlighter-rouge">HRConvert2</code> does not support the <code class="language-plaintext highlighter-rouge">ARM64</code> architecture. So, I had to build my own image. To do this, I could use the following commands,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/dwaaan/HRConvert2-Docker
+<span class="nb">cd </span>HRConvert2-Docker
+vim config.php
+vim Dockerfile
+<span class="nb">sudo </span>docker image build <span class="nt">-t</span> hrconvert2 <span class="nb">.</span>
+vim docker-compose.yml
+<span class="nb">sudo </span>docker-compose up <span class="nt">-d</span>
+</code></pre></div></div>
+
+<p>Instructions for editing the <code class="language-plaintext highlighter-rouge">config.php</code> file has been given above. For the <code class="language-plaintext highlighter-rouge">Dockerfile</code> file, we need to remove <code class="language-plaintext highlighter-rouge">rar</code> and <code class="language-plaintext highlighter-rouge">unrar</code> from the docker <code class="language-plaintext highlighter-rouge">RUN apt-get</code> list as <code class="language-plaintext highlighter-rouge">rar</code> is not available on ARM64 architecture – <code class="language-plaintext highlighter-rouge">unrar</code> can be installed but I would remove the support for <code class="language-plaintext highlighter-rouge">rar</code>, though, I did not spend efforts in getting rid of the <code class="language-plaintext highlighter-rouge">rar</code> part in the web GUI, which requires dealing with those PHP files. For the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file, we want to change docker image to <code class="language-plaintext highlighter-rouge">image: hrconvert2:latest</code> to use our locally built version. After that, actually we could log in docker and push our local image to the <code class="language-plaintext highlighter-rouge">dockerhub</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker login <span class="nt">--username</span><span class="o">=</span>apw247
+docker tag IMAGE_ID apw247/hrconvert2:latest
+docker push apw247/hrconvert2
+</code></pre></div></div>
+
+<p>after which we could then change the image to <code class="language-plaintext highlighter-rouge">apw247/hrconvert2:latest</code> in the docker compose file.</p>
+
+<h1 id="issue-11">Issue #11</h1>
+
+<p>Hosting a QR code generator.</p>
+
+<h1 id="solution-11">Solution (#11)</h1>
+
+<p>There are multiple available choices for hosting a web based QR code generator, as listed in Ref. [8]. However, on ARM64 architecture, we need to rebuild the docker image on our ARM64 machine. As such, I tried several of them and had no luck. The one that I ended up with working is this one in Ref. [9]. In their GitHub repo, the <code class="language-plaintext highlighter-rouge">Dockerfile</code> is provided from which we can build a docker image on our ARM64 machine,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> &lt;GITHUB_REPO&gt;
+<span class="nb">sudo </span>docker image build <span class="nt">-t</span> qrcode <span class="nb">.</span>
+<span class="nb">sudo </span>docker login <span class="nt">--username</span><span class="o">=</span>apw247
+<span class="nb">sudo </span>docker tag IMAGE_ID apw247/qrcode:latest
+<span class="nb">sudo </span>docker push apw247/qrcode
+vim docker-compose.yml
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">&lt;GITHUB_REPO&gt;</code> refers to the GitHub repo directory for <code class="language-plaintext highlighter-rouge">bizzycola/qrcode-generator</code> in Ref. [9]. <code class="language-plaintext highlighter-rouge">IMAGE_ID</code> refers to the ID of the docker image that was built in previous step. At the last step, we need to edit the <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file to change the image to be used to the one we just built and pushed. Also, we need to change the port if necessary, e.g., when the default port is already in use. Here is my version,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>version: "3.9"
+services:
+  web:
+    image: apw247/qrcode:latest
+    ports:
+      - "5580:80"
+</code></pre></div></div>
+
+<h1 id="issue-12">Issue #12</h1>
+
+<p>Installation of <code class="language-plaintext highlighter-rouge">Wiki.js</code> – a self-hosted Wiki.</p>
+
+<h1 id="solution-12">Solution (#12)</h1>
+
+<p>Through the <code class="language-plaintext highlighter-rouge">1Panel</code> interface, we could easily install the <code class="language-plaintext highlighter-rouge">Wiki.js</code> Wiki system. However, I found that after the installation, from time to time, we would encounter errors here and there. Not sure what exactly the reason is, though. Alternatively, we could install the service directly using the docker compose approach, following the instruction provided in their official documentation [10].</p>
+
+<h1 id="issue-13">Issue #13</h1>
+
+<p>Website set up with <code class="language-plaintext highlighter-rouge">Wordpress</code> stuck in the <code class="language-plaintext highlighter-rouge">maintenance</code> mode after upgrading.</p>
+
+<h1 id="solution-13">Solution (#13)</h1>
+
+<p>In case of the <code class="language-plaintext highlighter-rouge">Wordpress</code> hosted website is stuck in the <code class="language-plaintext highlighter-rouge">maintenance</code> mode, we may need to manually remove the <code class="language-plaintext highlighter-rouge">.maintenance</code> file under the root directory of the <code class="language-plaintext highlighter-rouge">Wordpress</code> web server. In case of the <code class="language-plaintext highlighter-rouge">Wordpress</code> is hosted via <code class="language-plaintext highlighter-rouge">Docker</code>, we need to launch the running <code class="language-plaintext highlighter-rouge">Wordpress</code> docker container in the interactive mode, by running,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> <span class="o">[</span>CONTAINER_ID] /bin/bash
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">[CONTAINER_ID]</code> refers to the ID of the running <code class="language-plaintext highlighter-rouge">Wordpress</code> container, which can be obtained by running <code class="language-plaintext highlighter-rouge">sudo docker ps -a | grep "wordpress"</code>. Once in the interactive container, we can go to the root directory of the web service which is usually <code class="language-plaintext highlighter-rouge">/var/www/html</code> and remove the <code class="language-plaintext highlighter-rouge">.maintenance</code> file manually and exit the container by running <code class="language-plaintext highlighter-rouge">exit</code>. We may then need to restart the container, via <code class="language-plaintext highlighter-rouge">sudo docker container restart [CONTAINER_ID]</code>.</p>
+
+<h1 id="issue-14">Issue #14</h1>
+
+<p>Set up <code class="language-plaintext highlighter-rouge">Affine</code> service, which is a workspace with fully merged docs, whiteboards and databases [11].</p>
+
+<h1 id="solution-14">Solution (#14)</h1>
+
+<p>Here, I am using <code class="language-plaintext highlighter-rouge">1panel</code> [12] to set up the <code class="language-plaintext highlighter-rouge">Affine</code> service and the installation is just a click-and-go operation, very straightforward – just find the app in the app store in the <code class="language-plaintext highlighter-rouge">1panel</code> interface and install the app by filling in some necessary parameters. After the successful installation, we need to do some post configuration to enable the email verification and the AI features. By default, such two features would not be enabled when following the normal way of installation, e.g., using <code class="language-plaintext highlighter-rouge">1panel</code>. In my case, my <code class="language-plaintext highlighter-rouge">Affine</code> app will be installed to the <code class="language-plaintext highlighter-rouge">1panel</code> app list, which can be found here, <code class="language-plaintext highlighter-rouge">/opt/1panel/apps/affine/affine</code>. To enable the email verification feature, we need to edit the <code class="language-plaintext highlighter-rouge">.env</code> file in the app folder to put in the email service configuration like below,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AFFINE_ADMIN_EMAIL="******"
+AFFINE_ADMIN_PASSWORD="******"
+CONTAINER_NAME="1Panel-affine-X7oq"
+CPUS=0
+HOST_IP=""
+MEMORY_LIMIT=0
+PANEL_APP_PORT_HTTP=3010
+PANEL_APP_PORT_HTTP_5555=5555
+PANEL_DB_HOST="postgresql"
+PANEL_DB_HOST_NAME="postgresql"
+PANEL_DB_NAME="affine_rtkwcm"
+PANEL_DB_PORT=5432
+PANEL_DB_USER="affine_4kaPn4"
+PANEL_DB_USER_PASSWORD="******"
+PANEL_REDIS_HOST="redis"
+PANEL_REDIS_ROOT_PASSWORD="******"
+AFFINE_SERVER_HOST="aff.iris-home.net"
+MAILER_HOST="smtp.gmail.com"
+MAILER_PORT=587
+MAILER_USER="******"
+MAILER_PASSWORD="******"
+</code></pre></div></div>
+
+<p>where all the email address and password relevant entries were left out. The normal installation via <code class="language-plaintext highlighter-rouge">1panel</code> should already take care of the configuration up until the <code class="language-plaintext highlighter-rouge">PANEL_REDIS_ROOT_PASSWORD</code> entry. The <code class="language-plaintext highlighter-rouge">AFFINE_SERVER_HOST</code> entry then should be added manually to be consistent with exact the host name where the <code class="language-plaintext highlighter-rouge">Affine</code> service can be reached. Here for the mail service, I am using <code class="language-plaintext highlighter-rouge">Gmail</code> and the <code class="language-plaintext highlighter-rouge">MAILER_USER</code> entry is just our <code class="language-plaintext highlighter-rouge">Gmail</code> email address. The <code class="language-plaintext highlighter-rouge">MAILER_PASSWORD</code> needs to be the Google application password, which can be obtained following the instruction in Ref. [13].</p>
+
+<p>To enable the AI feature, we need to first obtain the <code class="language-plaintext highlighter-rouge">OpenAI</code> API at [14]. Then we need to edit the <code class="language-plaintext highlighter-rouge">data/config/affine.js</code> file under the <code class="language-plaintext highlighter-rouge">Affine</code> application directory mentioned above [15]. Scrolling to the bottom of the file, we can fine the <code class="language-plaintext highlighter-rouge">Copilot</code> section and we just need to uncomment the section and fill in the <code class="language-plaintext highlighter-rouge">OpenAI</code> API key, like this,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// /* Copilot Plugin */
+AFFiNE.use('copilot', {
+  openai: {
+    apiKey: '&lt;OpenAI_API_Key&gt;',
+  },
+  // fal: {
+  //   apiKey: 'your-key',
+  // },
+  // unsplashKey: 'your-key',
+  // storage: {
+  //   provider: 'cloudflare-r2',
+  //   bucket: 'copilot',
+  // }
+})
+</code></pre></div></div>
+
+<p>After the manual configuration, we may need to stop the running container by running <code class="language-plaintext highlighter-rouge">sudo docker stop &lt;CONTAINER_ID&gt;</code> and the <code class="language-plaintext highlighter-rouge">&lt;CONTAINER_ID&gt;</code> can be obtained by running <code class="language-plaintext highlighter-rouge">sudo docker ps -a | grep "affine"</code>. Then we can do <code class="language-plaintext highlighter-rouge">sudo docker rm &lt;CONTAINER_ID&gt;</code> to remove the container and run <code class="language-plaintext highlighter-rouge">sudo docker compose up -d</code> in the <code class="language-plaintext highlighter-rouge">Affine</code> application directory mentioned above, namely <code class="language-plaintext highlighter-rouge">/opt/1panel/apps/affine/affine</code>.</p>
+
+<h1 id="issue-15">Issue #15</h1>
+
+<p>The <code class="language-plaintext highlighter-rouge">nextcloud</code> server sometimes may be locked in the <code class="language-plaintext highlighter-rouge">maintenance</code> mode.</p>
+
+<h1 id="solution-15">Solution (#15)</h1>
+
+<p>In this case, we may need to manually disable the <code class="language-plaintext highlighter-rouge">maintenance</code> mode by going into the running docker container,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> <span class="o">[</span>CONTAINER_ID] /bin/bash
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">[CONTAINER_ID]</code> refers to the ID of the running <code class="language-plaintext highlighter-rouge">nextcloud</code> container, which can be obtained by running <code class="language-plaintext highlighter-rouge">sudo docker ps -a | grep "nextcloud"</code>. Once in the interactive container, we can edit the file <code class="language-plaintext highlighter-rouge">/config/www/nextcloud/config/config.php</code> and change <code class="language-plaintext highlighter-rouge">'maintenance' =&gt; true</code> to <code class="language-plaintext highlighter-rouge">'maintenance' =&gt; false</code>. The running service should be able to pick up the change automatically. If not, we may need to restart the docker container,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker restart <span class="o">[</span>CONTAINER_ID]
+</code></pre></div></div>
+
+<h1 id="issue-16">Issue #16</h1>
+
+<p>Sometimes, deleting trashed files permanently from the web interface would lead to server crash, in which we may want to delete all trashed files in the <code class="language-plaintext highlighter-rouge">nextcloud</code> server from the command line.</p>
+
+<h1 id="solution-16">Solution (#16)</h1>
+
+<p>We first need to go into the running docker container,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> <span class="o">[</span>CONTAINER_ID] /bin/bash
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">[CONTAINER_ID]</code> refers to the ID of the running <code class="language-plaintext highlighter-rouge">nextcloud</code> container, which can be obtained by running <code class="language-plaintext highlighter-rouge">sudo docker ps -a | grep "nextcloud"</code>. Once in the interactive container, we can execute the following command,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>occ trashbin:cleanup <span class="nt">--all-users</span>
+</code></pre></div></div>
+
+<p>which will empty the trash bin for all users. For more options, we can do,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>occ <span class="nb">help </span>trashbin:cleanup
+</code></pre></div></div>
+
+<h1 id="issue-17">Issue #17</h1>
+
+<p>When setting up <code class="language-plaintext highlighter-rouge">Affine</code> with <code class="language-plaintext highlighter-rouge">docker</code>, initially, the AI feature would not work.</p>
+
+<blockquote>
+  <p>AFFiNE is a workspace with fully merged docs, whiteboards and databases.</p>
+</blockquote>
+
+<h1 id="solution-17">Solution (#17)</h1>
+
+<p>First, we need to grab the ID of the running container for <code class="language-plaintext highlighter-rouge">Affine</code>, by running,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker ps <span class="nt">-a</span> | <span class="nb">grep</span> <span class="s2">"affine"</span>
+</code></pre></div></div>
+
+<p>Then we want to go into the container through an interactive shell, via,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> cb8620cb592f /bin/bash
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">cb8620cb592f</code> is the container ID for <code class="language-plaintext highlighter-rouge">affine</code> in my case. Once inside the container, we want to <code class="language-plaintext highlighter-rouge">cd</code> into the following directory,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /root/.affine/config
+</code></pre></div></div>
+
+<p>and edit the <code class="language-plaintext highlighter-rouge">affine.js</code> file. Initially, editor might not be installed in the <code class="language-plaintext highlighter-rouge">docker</code> container, in which case we want to do,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt update
+apt <span class="nb">install </span>vim
+</code></pre></div></div>
+
+<p>to install <code class="language-plaintext highlighter-rouge">vim</code>. In the <code class="language-plaintext highlighter-rouge">affine.js</code> file, we want to change the following bit,</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">AFFiNE</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="dl">'</span><span class="s1">copilot</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">openai</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">apiKey</span><span class="p">:</span> <span class="dl">'</span><span class="s1">User API keys (Legacy)</span><span class="dl">'</span>
+    <span class="p">},</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>where we need to grab the <code class="language-plaintext highlighter-rouge">legacy</code> OpenAI API key [16]. Exit the interactive shell and now the AI feature in <code class="language-plaintext highlighter-rouge">Affine</code> should be working normally. If not, try to restart the container.</p>
+
+<h1 id="issue-18">Issue #18</h1>
+
+<p>Access <code class="language-plaintext highlighter-rouge">NextCloud</code> through <code class="language-plaintext highlighter-rouge">WebDav</code>.</p>
+
+<h1 id="solution-18">Solution (#18)</h1>
+
+<p>We can map the <code class="language-plaintext highlighter-rouge">NextCloud</code> as a network drive through <code class="language-plaintext highlighter-rouge">WebDav</code>. To do this, we need to first obtain the <code class="language-plaintext highlighter-rouge">WebDav</code> URL. First, we go to <code class="language-plaintext highlighter-rouge">Files</code> in the <code class="language-plaintext highlighter-rouge">NextCloud</code> web interface and go to <code class="language-plaintext highlighter-rouge">Files settings</code> on the bottom-left corner of the page. From there, we can see the <code class="language-plaintext highlighter-rouge">WebDav</code> URL to use for the network drive mapping.</p>
+
+<h1 id="issue-19">Issue #19</h1>
+
+<p>Access <code class="language-plaintext highlighter-rouge">SFTPGo</code> through <code class="language-plaintext highlighter-rouge">WebDav</code>.</p>
+
+<h1 id="solution-19">Solution (#19)</h1>
+
+<p>The <code class="language-plaintext highlighter-rouge">SFTPGo</code> service can also be accessed through <code class="language-plaintext highlighter-rouge">WebDabv</code>. First, we need to know the <code class="language-plaintext highlighter-rouge">WebDAV</code> port that the <code class="language-plaintext highlighter-rouge">SFTPGo</code> service is using. In my case, I was installing the service through <code class="language-plaintext highlighter-rouge">1Panle</code> and I can see the <code class="language-plaintext highlighter-rouge">WebDAV</code> port in the <code class="language-plaintext highlighter-rouge">1Panel</code> installed app interface. Clicking on the <code class="language-plaintext highlighter-rouge">Edit</code> button for the <code class="language-plaintext highlighter-rouge">SFTPGo</code> service, we will see the port being used for different interfaces, including the <code class="language-plaintext highlighter-rouge">WebDAV</code> interface. Once we know the port, we can set up a secondary domain name on <code class="language-plaintext highlighter-rouge">CloudFlare</code> and configure the <code class="language-plaintext highlighter-rouge">nginx</code> service running on our server to point the domain name to the port where the <code class="language-plaintext highlighter-rouge">WebDAV</code> interface of the <code class="language-plaintext highlighter-rouge">SFTPGo</code> service is running on. Here below I put my my <code class="language-plaintext highlighter-rouge">nginx</code> server configuration,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    listen 80;
+    server_name wd.iris-home.net;
+    location / {
+            proxy_pass         http://localhost:10080;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection "upgrade";
+            proxy_set_header   Host $host;
+    }
+}
+</code></pre></div></div>
+
+<p>where the <code class="language-plaintext highlighter-rouge">WebDAV</code> port is <code class="language-plaintext highlighter-rouge">10080</code> and the secondary domain name registered with <code class="language-plaintext highlighter-rouge">CloudFlare</code> is <code class="language-plaintext highlighter-rouge">wd</code> (primary domain name is <code class="language-plaintext highlighter-rouge">iris-home.net</code>). Regarding setting up the secondary domain name on <code class="language-plaintext highlighter-rouge">CloudFlare</code>, <code class="language-plaintext highlighter-rouge">Issue #3</code> in the current post and Ref. [17, 18] can be useful references. Then at the client side when trying to map the <code class="language-plaintext highlighter-rouge">SFTPGo</code> service through <code class="language-plaintext highlighter-rouge">WebDAV</code>, we can use the URL <code class="language-plaintext highlighter-rouge">https://wd.iris-home.net</code>. For the user name and password, we can use the the combo we use for logging in the web interface.</p>
+
+<h1 id="issue-20">Issue #20</h1>
+
+<p><code class="language-plaintext highlighter-rouge">NextCloud</code> service sometimes shows the <code class="language-plaintext highlighter-rouge">Update Needed</code> error.</p>
+
+<h1 id="solution-20">Solution (#20)</h1>
+
+<p>First, we can refer to <code class="language-plaintext highlighter-rouge">Issue #16</code> in the current post to go into to the docker container running the <code class="language-plaintext highlighter-rouge">NextCloud</code> service. Then we execute the command <code class="language-plaintext highlighter-rouge">occ upgrade</code> [19] and the then exit the container. Then the issue should be gone (maybe a restart of the docker container is needed).</p>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://www.youtube.com/watch?v=5a5tdJh8mKY">https://www.youtube.com/watch?v=5a5tdJh8mKY</a></p>
+
+<p>[2] <a href="https://www.freedidi.com/6075.html">https://www.freedidi.com/6075.html</a></p>
+
+<p>[3] <a href="https://www.freedidi.com/10167.html">https://www.freedidi.com/10167.html</a></p>
+
+<p>[4] <a href="https://github.com/1Panel-dev/1Panel">https://github.com/1Panel-dev/1Panel</a></p>
+
+<p>[5] <a href="https://github.com/langgenius/dify">https://github.com/langgenius/dify</a></p>
+
+<p>[6] <a href="https://github.com/YannickFricke/codestats.nvim">https://github.com/YannickFricke/codestats.nvim</a></p>
+
+<p>[7] <a href="https://gitlab.com/code-stats/code-stats-zsh">https://gitlab.com/code-stats/code-stats-zsh</a></p>
+
+<p>[8] <a href="https://noted.lol/qr-code-generators/">https://noted.lol/qr-code-generators/</a></p>
+
+<p>[9] <a href="https://github.com/bizzycola/qrcode-generator">https://github.com/bizzycola/qrcode-generator</a></p>
+
+<p>[10] <a href="https://docs.requarks.io/install/docker#using-docker-compose">https://docs.requarks.io/install/docker#using-docker-compose</a></p>
+
+<p>[11] <a href="https://affine.pro/">https://affine.pro/</a></p>
+
+<p>[12] <a href="https://github.com/1Panel-dev/1Panel">https://github.com/1Panel-dev/1Panel</a></p>
+
+<p>[13] <a href="https://support.google.com/accounts/answer/185833?hl=en">https://support.google.com/accounts/answer/185833?hl=en</a></p>
+
+<p>[14] <a href="https://platform.openai.com/api-keys">https://platform.openai.com/api-keys</a></p>
+
+<p>[15] <a href="https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437">https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-9877437</a></p>
+
+<p>[16] <a href="https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-10718980">https://github.com/toeverything/AFFiNE/discussions/6996#discussioncomment-10718980</a></p>
+
+<p>[17] <a href="https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/">https://iris2020.net/2024-11-03-n8n_notion_slack_workflow/</a></p>
+
+<p>[18] <a href="https://iris2020.net/2025-08-18-cloudcone_setup/">https://iris2020.net/2025-08-18-cloudcone_setup/</a></p>
+
+<p>[19] <a href="https://help.nextcloud.com/t/update-needed-error/198234/7">https://help.nextcloud.com/t/update-needed-error/198234/7</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#programming">programming</a>
+          
+            <a href="/tags#web">web</a>
+          
+            <a href="/tags#VPS">VPS</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Set+up+a+self-hosted+web+server+on+Oracle+VPS&url=http%3A%2F%2Flocalhost%3A8000%2F2023-09-08-docker_nginx%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2023-09-08-docker_nginx%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2023-09-08-docker_nginx%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2023-08-11-rmc_papers/" data-toggle="tooltip" data-placement="top" title="Typical Science Papers with RMCProfile">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2023-09-10-pdf_thermal_bkg/" data-toggle="tooltip" data-placement="top" title="Thermal background in pair distrubtion function (PDF)">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

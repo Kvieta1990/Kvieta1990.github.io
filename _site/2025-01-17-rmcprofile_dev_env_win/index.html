@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Development environment setup for RMCProfile on Windows</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="This blog is for noting down the details about setting up the development environment for RMCProfile on Windows machine. The notes here are still based on the conventional way of compiling using make files. There is some work happening in the background now to transfer the compiling to using cmake....">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Development environment setup for RMCProfile on Windows">
+  <meta property="og:description" content="This blog is for noting down the details about setting up the development environment for RMCProfile on Windows machine. The notes here are still based on the conventional way of compiling using make files. There is some work happening in the background now to transfer the compiling to using cmake....">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2025-01-17T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2025-01-17-rmcprofile_dev_env_win/">
+  <link rel="canonical" href="http://localhost:8000/2025-01-17-rmcprofile_dev_env_win/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Development environment setup for RMCProfile on Windows">
+  <meta property="twitter:description" content="This blog is for noting down the details about setting up the development environment for RMCProfile on Windows machine. The notes here are still based on the conventional way of compiling using make files. There is some work happening in the background now to transfer the compiling to using cmake....">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Development environment setup for RMCProfile on Windows</h1>
+          
+
+          
+					<span class="post-meta">Posted on January 17, 2025, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <style>
+    .faq-container {
+        margin: 0 auto;
+    }
+    .faq-question {
+        margin-bottom: 10px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .faq-answer {
+        display: none;
+        margin-bottom: 20px;
+    }
+    .callout {
+        background-color: #e8f4fd; /* Light blue background */
+        border-left: 5px solid #007BFF; /* Blue accent on the left */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        font-family: Arial, sans-serif; /* Ensuring the font is consistent */
+    }
+    .multiline-span {
+        display: block; /* or display: inline-block; */
+    }
+</style>
+
+<p>This blog is for noting down the details about setting up the development environment for RMCProfile on Windows machine. The notes here are still based on the conventional way of compiling using <code class="language-plaintext highlighter-rouge">make</code> files. There is some work happening in the background now to transfer the compiling to using <code class="language-plaintext highlighter-rouge">cmake</code>. Before the whole pipeline of <code class="language-plaintext highlighter-rouge">cmake</code> is ready, we will still rely on the route as in the current blog. In fact, even the current route is depracated, some of the notes will still apply when setting up the development environment.</p>
+
+<ul>
+  <li>
+    <p>Nowadays, we are pretty much using the intel Fortran compiler which now is free, through the <code class="language-plaintext highlighter-rouge">oneAPI</code> toolkit. To install the compiler, we need to first install <code class="language-plaintext highlighter-rouge">Microsoft Visual Studio</code> (the community version is fine, and it is free). We may need to remove whatever existing old versions of <code class="language-plaintext highlighter-rouge">Microsoft Visual Studio</code> (e.g., the 2019 version may need to be removed, if the we intend to use the 2022 version). I am not sure whether this is the cause for my issue, but in my case, I have been struggling a lot with the <code class="language-plaintext highlighter-rouge">oneAPI</code> setup in the down stream. Anyhow, having a clean version of 2022 turns out to be working fine for me.</p>
+  </li>
+  <li>
+    <p>Then we want to install the <code class="language-plaintext highlighter-rouge">OneAPI</code> toolkit.</p>
+
+    <blockquote>
+      <p>Here is the official website for download and instructions (as of writing), <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?operatingsystem=windows">oneAPI Base Toolkit download and install</a></p>
+    </blockquote>
+
+    <blockquote>
+      <p>See the <code class="language-plaintext highlighter-rouge">Run Sample Code to Verify Installation</code> section on the website for the command to run for terminal (e.g., <code class="language-plaintext highlighter-rouge">powershell</code>) initialization.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>To use <code class="language-plaintext highlighter-rouge">make</code> and also for the purpose of back-compatibility for some plotting routines, we need to install <code class="language-plaintext highlighter-rouge">Cygwin</code> and set up the <code class="language-plaintext highlighter-rouge">pgplot</code> library inside the <code class="language-plaintext highlighter-rouge">Cygwin</code> environment (see the section at the very bottom for details about setting up <code class="language-plaintext highlighter-rouge">pgplot</code> in <code class="language-plaintext highlighter-rouge">Cygwin</code>). When installing <code class="language-plaintext highlighter-rouge">Cygwin</code>, the following selections are necessary: <code class="language-plaintext highlighter-rouge">make</code>, <code class="language-plaintext highlighter-rouge">x11</code> and <code class="language-plaintext highlighter-rouge">xorg</code>. Later on when installing the <code class="language-plaintext highlighter-rouge">pgplot</code> library, if some of the <code class="language-plaintext highlighter-rouge">X11</code> stuff are missing, we can Google what we need to include for <code class="language-plaintext highlighter-rouge">X11</code> installation according to the error message we got.</p>
+  </li>
+  <li>
+    <p>We will need to install <code class="language-plaintext highlighter-rouge">nvcc</code> for compiling CUDA codes involved in the <code class="language-plaintext highlighter-rouge">RMCProfile</code> project. As of writing, the offial website for download the installation file is <a href="https://developer.nvidia.com/cuda-downloads">this</a>. In case it is changed, we can just google ‘CUDA nvcc install’ or something relevant to search for information.</p>
+  </li>
+  <li>
+    <p>In preparation for the compiling, we may need to delete unnecessary entries in the <code class="language-plaintext highlighter-rouge">PATH</code> environment variable. Otherwise, the <code class="language-plaintext highlighter-rouge">nvcc</code> command will fail when it is trying to set up the environment on-the-fly. It is something relevant to the running of <code class="language-plaintext highlighter-rouge">vcvars64.bat</code> script which will be running on-the-fly when running <code class="language-plaintext highlighter-rouge">nvcc</code>, and the fundamental reason for the potential failure is the value of the environment variable <code class="language-plaintext highlighter-rouge">PATH</code> is too long. On Windows, we can use <code class="language-plaintext highlighter-rouge">Start</code> to search for ‘environment variable’ to bring up the GUI window for changing the <code class="language-plaintext highlighter-rouge">PATH</code> variable.</p>
+  </li>
+  <li>
+    <p>On <code class="language-plaintext highlighter-rouge">powershell</code>, we need to run</p>
+
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="n">cmd.exe</span><span class="w"> </span><span class="s2">"/K"</span><span class="w"> </span><span class="s1">'"C:\Program Files (x86)\Intel\oneAPI\setvars.bat" &amp;&amp; powershell'</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <p>to initialize the terminal environment.</p>
+
+    <blockquote>
+      <p>This command needs to be run each time when launching a new <code class="language-plaintext highlighter-rouge">powershell</code> terminal.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>When we see error like this,</p>
+    </blockquote>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> LINK : fatal error LNK1104: cannot open file 'ifconsol.lib'
+</code></pre></div>    </div>
+
+    <p>it infers the <code class="language-plaintext highlighter-rouge">oneAPI</code> environment initializer was not run, in which case we just need to run the command above to initialize the environment and try again the compiling.</p>
+  </li>
+  <li>
+    <p>As a side note, with the latest intel <code class="language-plaintext highlighter-rouge">oneAPI</code> compiler (<code class="language-plaintext highlighter-rouge">ifort</code>), the argument that goes into <code class="language-plaintext highlighter-rouge">c_loc</code> (<code class="language-plaintext highlighter-rouge">the function used in the source codes for fetching the address of a pointer</code>) should be defined as a pointer. The original definition of some of the variables (used as the argument for <code class="language-plaintext highlighter-rouge">c_loc</code>) as allocatable arrays would not work.</p>
+  </li>
+  <li>
+    <p>When encountering the issue with unresolved CUDA symbols, we may need to change the cuda library files to the version that is compatible with the version of <code class="language-plaintext highlighter-rouge">nvcc</code> being used for the compiling. Specifically, two CUDA library files <code class="language-plaintext highlighter-rouge">cublas.lib</code> and <code class="language-plaintext highlighter-rouge">cudart.lib</code> need to be linked while making the <code class="language-plaintext highlighter-rouge">rmcprofile.exe</code> executable. For specific command for linking, etc., refer to those <code class="language-plaintext highlighter-rouge">Makefile</code> files in the <code class="language-plaintext highlighter-rouge">RMCProfile</code> repository – for the moment, the source code is not open source yet. To get access, get in touch with me <a href="https://iris2020.net/contact/" target="_blank">here</a>. We need to copy the proper version of these two files to somewhere (and the path to the two library files will be specified while linking to make <code class="language-plaintext highlighter-rouge">rmcprofile.exe</code>).</p>
+
+    <blockquote>
+      <p>In my case, I was using the <code class="language-plaintext highlighter-rouge">12.6</code> version of <code class="language-plaintext highlighter-rouge">nvcc</code> and my library files could be found here, <code class="language-plaintext highlighter-rouge">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\lib\x64</code>.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p style="text-align: center;">=================I AM A SEPARATOR=================</p>
+
+<p><br /></p>
+
+<p>Here follows are the detaild instructions about setting up <code class="language-plaintext highlighter-rouge">pgplot</code> in <code class="language-plaintext highlighter-rouge">Cygwin</code>.</p>
+
+<ul>
+  <li>
+    <p>Grab the <code class="language-plaintext highlighter-rouge">pgplot5.2.tar.gz</code> file which has already been included in the main directory of the <code class="language-plaintext highlighter-rouge">RMCProfile</code> repository.</p>
+  </li>
+  <li>
+    <p>Decompress and extract the contents of the distribution file in a source directory. In this sense, I always place <code class="language-plaintext highlighter-rouge">pgplot5.2.tar.gz</code> under /usr/local/src. Then we can do,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  cd /usr/local/src
+  mv [SOMEWHERE]/pgplot5.2.tar.gz .
+  tar zxvf pgplot5.2.tar.gz
+</code></pre></div>    </div>
+
+    <p>This will create <code class="language-plaintext highlighter-rouge">/usr/local/src/pgplot</code> and subdirectories.</p>
+  </li>
+  <li>
+    <p>Create the directory where <code class="language-plaintext highlighter-rouge">PGPLOT</code> will be actually installed,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  mkdir /usr/local/pgplot
+  cd /usr/local/pgplot
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Copy the file <code class="language-plaintext highlighter-rouge">drivers.list</code> from the source directory to the installation directory,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  cp /usr/local/src/pgplot/drivers.list .
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Edit that file and remove the exclamation mark (first column of each row) in front of the following graphic devices,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  /PS, /VPS, /CPS, /VCPS,  /Xserve and /XWindow
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create the makefile. From the installation directory <code class="language-plaintext highlighter-rouge">/usr/local/pgplot</code>, execute,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  /usr/local/src/pgplot/makemake /usr/local/src/pgplot linux g77_gcc_aout
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Edit the file makefile and change the line,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  FCOMPL=g77
+</code></pre></div>    </div>
+
+    <p>to</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  FCOMPL=gfortran
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Compile the source files,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  make
+  make cpg
+  make clean
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p style="text-align: center;">=================I AM A SEPARATOR=================</p>
+
+<p>Here are some random notes on compiling with <code class="language-plaintext highlighter-rouge">cmake</code>.</p>
+
+<ul>
+  <li>
+    <p>In the main <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code> file, there is one line <code class="language-plaintext highlighter-rouge">project(RMCProfile LANGUAGES CXX C Fortran)</code> specifying what languages are included in the project. <code class="language-plaintext highlighter-rouge">cmake</code> will perform the necessary configuration checking and testing at the configuration stage for all the included languages. With <code class="language-plaintext highlighter-rouge">CUDA</code>, I found that on my Windows machine, including <code class="language-plaintext highlighter-rouge">CUDA</code> in the language list would never pass the initial configuration stage. However, leaving out <code class="language-plaintext highlighter-rouge">CUDA</code> from the list, thus skipping the <code class="language-plaintext highlighter-rouge">CUDA</code> checking and testing, is still OK – the compiling could still be finished without problems with <code class="language-plaintext highlighter-rouge">CUDA</code> codes compiled successfully. Not sure why, but suspecting whether it is the following line that puts down <code class="language-plaintext highlighter-rouge">CUDA</code> specification explicitly actually did the magic,</p>
+
+    <div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">find_package</span><span class="p">(</span>CUDA 11.4 REQUIRED<span class="p">)</span>
+
+  <span class="nb">set</span><span class="p">(</span>CMAKE_CUDA_STANDARD 11<span class="p">)</span>
+  <span class="nb">set</span><span class="p">(</span>CMAKE_CUDA_STANDARD_REQUIRED ON<span class="p">)</span>
+
+  <span class="nb">find_package</span><span class="p">(</span>CUDAToolkit REQUIRED<span class="p">)</span>
+
+  <span class="nb">if</span><span class="p">(</span>CUDAToolkit_VERSION_MAJOR GREATER_EQUAL 12<span class="p">)</span>
+      <span class="nb">set</span><span class="p">(</span>CMAKE_CUDA_ARCHITECTURES <span class="s2">"61;70;75;80;86;89"</span><span class="p">)</span>
+  <span class="nb">else</span><span class="p">()</span>
+      <span class="nb">set</span><span class="p">(</span>CMAKE_CUDA_ARCHITECTURES <span class="s2">"61;70;75;80;86"</span><span class="p">)</span>
+  <span class="nb">endif</span><span class="p">()</span>
+
+  <span class="nb">message</span><span class="p">(</span>STATUS <span class="s2">"Using Nvidia GPU architectures </span><span class="si">${</span><span class="nv">CMAKE_CUDA_ARCHITECTURES</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+  <span class="nb">if</span><span class="p">(</span>CMAKE_BUILD_TYPE STREQUAL <span class="s2">"Debug"</span><span class="p">)</span>
+      <span class="nb">set</span><span class="p">(</span>CMAKE_CUDA_FLAGS <span class="si">${</span><span class="nv">CMAKE_CUDA_FLAGS</span><span class="si">}</span> <span class="s2">"-g -G"</span><span class="p">)</span>  <span class="c1"># enable cuda-gdb</span>
+  <span class="nb">endif</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#RMCProfile">RMCProfile</a>
+          
+            <a href="/tags#tool">tool</a>
+          
+            <a href="/tags#technical">technical</a>
+          
+            <a href="/tags#dev">dev</a>
+          
+            <a href="/tags#Windows">Windows</a>
+          
+            <a href="/tags#rmc">rmc</a>
+          
+            <a href="/tags#scattering">scattering</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Development+environment+setup+for+RMCProfile+on+Windows&url=http%3A%2F%2Flocalhost%3A8000%2F2025-01-17-rmcprofile_dev_env_win%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2025-01-17-rmcprofile_dev_env_win%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2025-01-17-rmcprofile_dev_env_win%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2025-01-03-prop_vector/" data-toggle="tooltip" data-placement="top" title="Description of Magnetic Structure with Propogation Vector">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2025-01-20-slashdot_block_ads/" data-toggle="tooltip" data-placement="top" title="Block the annoying ads on slashdot">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

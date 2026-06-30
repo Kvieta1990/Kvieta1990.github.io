@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  
+
+  <title>Yuanpeng&apos;s Blog</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="{% include search-lunr.html %}">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Yuanpeng&apos;s Blog">
+  <meta property="og:description" content="{% include search-lunr.html %}">
+
+  
+  <meta property="og:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/search/">
+  <link rel="canonical" href="http://localhost:4000/search/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Yuanpeng&apos;s Blog">
+  <meta property="twitter:description" content="{% include search-lunr.html %}">
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/avatar-icon.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:4000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Research</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://www.ornl.gov/staff-profile/yuanpeng-zhang">ORNL Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.pages.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+            </div>
+          </li>
+        </ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:4000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+<div class="intro-header"></div>
+
+
+
+
+
+<div class="intro-header"></div>
+
+<div role="main" class=" container-md ">
+  
+
+  </br>
+
+<script src="/js/lunr.js"></script>
+
+<script>
+
+var documents = [{
+    "id": 0,
+    "url": "http://localhost:4000/404.html",
+    "title": "404 - Page not found",
+    "body": " Whoops, this page doesn’t exist.  Move along. (404 error)   "
+    }, {
+    "id": 1,
+    "url": "http://localhost:4000/about/",
+    "title": "About My Blog",
+    "body": " This is my personal blog, for the purpose of recording my learning progress. For every single idea which I believe is crucial for understanding specific physics or other topics,I have been trying my best to write them down. On one hand, this can help myself refreshing my mind from time to time,and on the other, if someone else loving physics happens to meet this site,I hope either these materials can help them or they can provide important advice for me to revise some key stuff, which could help improving my understanding! We all have such moments when forgetting something we already understood before. So why not writing them down when you are sure you have got it (maybe someday, what you were sure about turns out to be wrong!)?Also, learning physics, or perhaps anything else, is a process of accumulating and we can never say what is important or not. Neither can we say with hundred percent confidence that we really understand the real meaning of some specific issues – this makes me recall a saying by R. Feynman – ‘illusion of understanding’. So let’s write everything in mind down to paper,and have a look in the future (or show around to others). There are two cases possibly to happen – one is ‘Ah ha, what I thought at that time is absolutely correct!’ and we then get a deeper impression in mind about how it works. The other case is that ‘Oh no, the stuff I wrote at that time is totally wrong!!!’. That is, however, not totally a disaster since we now realize something is going wrong, which, at least, is better than pretending everything is right! At last, it is reading, writing, reviewing and effective interaction that makes everybody and also physics itself different from what it was yesterday. So, let’s write! "
+    }, {
+    "id": 2,
+    "url": "http://localhost:4000/nav_pages/about_community/",
+    "title": "RMCProfile Community",
+    "body": "Two magic ways to join the RMCProfile community for discussion    [Recommended] GitHub Issues.          Go to COMMUNITY -&gt; ON GITHUB in the top-right corner of the page.           Quickly access community discussion,                Once opening the ON GITHUB link, bookmark it.                 The GitHub issues are associated with a GitHub repository. Therefore,Star the repository will give you quick access to our GitHub issuesthrough your Starred repository.                 Access to the community through this RMCProfile website is not a badoption.                    More information to be presented below.          Mailing list.      Go to COMMUNITY -&gt; MAILING LIST in the top-right corner of the page.    Brief covering for the recommended way of joining the community discussion,using GitHub issues    You need a GitHub account.      &gt; Click Me to get it if you are not already having one.       Though it is fairly straightforward to use, a demo for how-to is still worthit, as given below.        A few more links introducing GitHub issues to check out.          About issues           Mastering issues       "
+    }, {
+    "id": 3,
+    "url": "http://localhost:4000/all_posts/",
+    "title": "Yuanpeng's Posts",
+    "body": ""
+    }, {
+    "id": 4,
+    "url": "http://localhost:4000/nav_pages/change_log/",
+    "title": "Change Log",
+    "body": ""
+    }, {
+    "id": 5,
+    "url": "http://localhost:4000/nav_pages/developers/",
+    "title": "Developers",
+    "body": ""
+    }, {
+    "id": 6,
+    "url": "http://localhost:4000/nav_pages/disclaimer/",
+    "title": "Disclaimer",
+    "body": "The software and files on this site are delivered to you AS IS and for non-profit making purposes. The primary authors (Matt Tucker, Martin Dove, Andrew Goodwin, Anthony Phillips, David Keen, Helen Playford, Wojciech A. Slawinski, Igor Levin, Victor Krayzman, Maksim Eremenko and Yuanpeng Zhang) and their employing organizations (STFC, ORNL, NIST, the Universities of Oxford and Cambridge, Queen Mary, University of London) make no warranty as to their use or performance. The employing organizations and their suppliers make no warranties regarding performance, results or otherwise, express or implied, nor also regarding to non-infringement or third-party rights, merchantability, or fitness for any particular purpose. In no event will the employing organizations be liable to you for any consequential, incidental, or special damages, including any lost profits or lost savings, even if the their representatives have been advised of the possibility of such damages, or for any claim by any third party. "
+    }, {
+    "id": 7,
+    "url": "http://localhost:4000/archive/2020/02/",
+    "title": "Archive",
+    "body": ""
+    }, {
+    "id": 8,
+    "url": "http://localhost:4000/archive/",
+    "title": "Archive",
+    "body": "        2022                                                                                     October (10)       2020             December (1)"
+    }, {
+    "id": 9,
+    "url": "http://localhost:4000/archive/2022/10/",
+    "title": "Archive",
+    "body": ""
+    }, {
+    "id": 10,
+    "url": "http://localhost:4000/archive/2020/12/",
+    "title": "Archive",
+    "body": ""
+    }, {
+    "id": 11,
+    "url": "http://localhost:4000/archive/2020/10/",
+    "title": "Archive",
+    "body": ""
+    }, {
+    "id": 12,
+    "url": "http://localhost:4000/archive/2020/11/",
+    "title": "Archive",
+    "body": ""
+    }, {
+    "id": 13,
+    "url": "http://localhost:4000/",
+    "title": "Yuanpeng's Blog",
+    "body": "About Me Working as neutron scattering scientist at ORNL, I have been actively involved in software development and scientific research activities. The software development part mainly involves the development and maintenance oftools for neutron scattering data reduction and analysis, such as ADDIE environmentfor neutron total scattering data reduction, ADDIE web interface for structuremining and online Bragg and pair distribution function refinement, RMCProfile packagefor fitting scattering data based on supercell approach. Meanwhile, I am alsointerfacing the beamline scientists team and the software development team at ORNL,actively working on the development of Mantid framework for powder diffraction data reduction.  My research interest mainly focuses on the application of neutron total scatteringto look at local structure of materials - both nucleus and magnetic. The local environmentplays an important role in determining properties in a wide range of functional materials,e. g. , the polarization behavior in ferroelectric materials, ion transportation behavior inenergy story materials, magnetic anisotropy in low dimensional magnetic systems, etc. Myresearch interest at this point is to utilize total scattering technique to reveal localstructure for energy storage (e. g. Li-ion battery, functional material (high entropy spinelmaterials) and low dimensional magnetic system (e. g. 2D vdWs magnetic materials). Forfuturistic perspective, using machine learning algorithms in phase recognition duringphase transition is one of the goals to pursue. More   Yuanpeng’s ORNL profile     Yuanpeng’s Google scholar     Yuanpeng’s ORCID     RMCProfile website     Yuanpeng’s GitHub     Binder for Jupyter notebooks     Learning notes on GitHub  "
+    }, {
+    "id": 14,
+    "url": "http://localhost:4000/nav_pages/lnotes/",
+    "title": "Collection",
+    "body": " Contents:  1. Notes on Machine Learning 1. 1. Probability Theory1. 2. Machine learning in practice2. Notes on group theory1. Notes on Machine Learning: 1. 1. Probability Theory: Probability theory basicsBayesian learningGaussian process 1. 2. Machine learning in practice: Linear algebra in machine learningLinear predictionRegularization &amp; cross-validationL1 Norm and LassoCategorical, Dirichlet distribution &amp; Naive BayesOptimizationLogistic regressionNeural network 2. Notes on group theory: Lecture note-ILecture note-II "
+    }, {
+    "id": 15,
+    "url": "http://localhost:4000/nav_pages/manual/",
+    "title": "",
+    "body": ""
+    }, {
+    "id": 16,
+    "url": "http://localhost:4000/nav_pages/publications/",
+    "title": "Selected Publications",
+    "body": "Click here for a full list of my publication list.  2022  Qiang Zhang, Yuanpeng Zhang, Masaaki Matsuda, Vasile Ovidiu Garlea, JiaqiangYan, Michael A. McGuire, D. Alan Tennant, Satoshi Okamoto. J. Am. Chem. Soc. ,2022, 144, 14339-14350. 2021    J Marcial, Y Zhang, X Zhao, H Xu, A Mesbah, ET Nienhuis, S Szenknect, JC Neuefeind, J Lin, L Qi, AA Migdisov, RC Ewing, N Dacheux, JS McCloy and X Guo,Thermodynamic non-ideality and disorder heterogeneity in actinide silicate solid solutions, npj Mater. Degrad. , 2021, 5 (1), 1-14.     Mingyang Ou, Yuanpeng Zhang, Yongcheng Zhu, Chenyang Fan, Shixiong Sun, Jintai Feng, Xueping Sun, Peng Wei, Jia Xu, Jian Peng, Xianyong Wu, Gang Jiang, Qing Li, Chun Fang and Jiantao Han, Local Structures of Soft Carbon and Electrochemical Performance of Potassium-Ion Batteries, ACS Appl. Mater. Interf. , 2021, 13 (24), 28261-28269.     Peng Jian, Ou Mingyang, Yi Haocong, Sun Xueping, Zhang Yuanpeng, Zhang Bao, Yu Ding, Wang Feng, Gu Songqi, Lopez Carlos, Zhang Wang, Liu YI, Fang Ju, Wei Peng, Li Yuyu, Miao Ling, Jiang Jianjun, Fang Chun, Li Qing, Fernandez-Diaz Maria Teresa, Alonso Jose Antonio, Chou Shulei and Han Jiantao, Defect-free-induced Na+ disordering in electrode materials, Energy Environ. Sci. , 2021, 14, 3130-3140.     F. P. Marlton, Z. Zhao, Y. Zhang, T. E. Proffen, C. D. Ling and B. J. Kennedy, Lattice Disorder and Oxygen Migration Pathways in Pyrochlore and Defect-Fluorite Oxides, Chem. Mater. , 2021, 33 (4) 1407-1415.     Santanu Roy, Shobha Sharma, Waruni V Karunaratne, Fei Wu, Ruchi Gakhar, Dmitry S Maltsev, Phillip Halstenberg, Milinda Abeykoon, Simerjeet K Gill, Yuanpeng Zhang, Shannon M Mahurin, Sheng Dai, Vyacheslav S Bryantsev, Claudio J Margulis and Alexander S Ivanov, X-ray scattering reveals ion clustering of dilute chromium species in molten chloride medium, Chem. Sci. , 2021, 12, 8026-8035.  2020    C. Li, Y. P. Zhang, J. Liu and H. A. Graetsch. Long-Range and Local Structure of SrxBa1–xNb2O6 (x = 0. 33 and 0. 67) across the Ferroelectric–Relaxor Transition, Chem. Mater. , 2020, 32 (5), 1844-1853.     Yuanpeng Zhang, Maksim Eremenko, Victor Krayzman, Matthew G. Tucker, Igor Levin, New capabilities for enhancement of RMCProfile: instrumental profiles with arbitrary peak shapes for structural refinements using the reverse Monte Carlo method, J. appl. Crystallogr. , 2020, 53 (6) 1-10.     Bo Jiang, Craig A Bridges, Raymond R Unocic, Krishna Chaitanya Pitike, Valentino R Cooper, Yuanpeng Zhang, De-Ye Lin and Katharine Page, Probing the Local Site Disorder and Distortion in Pyrochlore High-Entropy Oxides, J. Am. Chem. Soc. , 2020, 143 (11), 4193-4204.     Zhi Deng, Mingyang Ou, Jing Wan, Shuai Li, Yuyu Li, Yuanpeng Zhang, Zhe Deng, Jia Xu, Yuegang Qiu, Yi Liu, Chun Fang, Qing Li, Li Huang, Jinlong Zhu, Songbai Han, Jiantao Han and Yusheng Zhao, Local Structural Changes and Inductive Effects on Ion Conduction in Antiperovskite Solid Electrolytes, Chem. Mater. , 2020, 32 (20), 8827-8835.  2019    Y. P. Zhang, M. McDonnell, W. Liu and M. G. Tucker. Reverse Monte Carlo modeling for low-dimensional systems, *J. Appl. Cryst. , 2019, 52, 1035-1042.     Y. P. Zhang, M. McDonnell, S. A. Calder and M. G. Tucker. Mechanistic Insights into the SuperexchangeInteraction-Driven Negative Thermal Expansion in CuO, *J. Am. Chem. Soc. , 2019, 141, 6310-6317.     Y. P. Zhang, T. Scholz, R. Dronskowski, M. McDonnell and M. G. Tucker. Local magnetic cluster size identified by neutron total scattering in the site-diluted spin glass SnxFe4-xN (x=0. 88). Phys. Rev. B, 2019, 100, 014419.  -2019    N. R. C. Corsini, Y. P. Zhang, W. R. Little, A. Karatutlu, O. Ersoy, P. D. Haynes, C. Molteni, N. D. M. Hine, I. Hernandez, J. Gonzalez, F. Rodriguez, V. V. Brazhkin and A. Sapelkin. Pressure-induced amorphization and a new high density amorphous metallic phase in matrix-free Ge nanoparticles, *Nano Lett. , 2015, 15, 7334-7340.     A. Karatutlu, M. Song, A. P. Wheeler, O. Ersoy, W. R. Little, Y. P. Zhang, P. Puech, F. S. Boi, Z. Luklinska and A. V. Sapelkin. Synthesis and structure of free-standing germanium quantum dots and their application in live cell imaging, RSC Adv. , 2015, 5, 20566-20573.     Y. P. Zhang, W. Liu and R. Wang. From ZnS nanoparticles, nanobelts to nanotetrapods: the ethelenediamine modulated anisotropic growth of ZnS nanostructures, *Nanoscale, 2012, 4, 2394-2399.  "
+    }, {
+    "id": 17,
+    "url": "http://localhost:4000/post_templates/sample_1/",
+    "title": "Welcome to RMCprofile community",
+    "body": "This is a demo post to show you how to write blog posts with markdown.  I strongly encourage you to take 5 minutes to learn how to write in markdown - it’ll teach you how to transform regular text into bold/italics/headings/tables/etc. Here is some bold text Here is a secondary heading: Here’s a useless table:       Number   Next number   Previous number         Five   Six   Four       Ten   Eleven   Nine       Seven   Eight   Six       Two   Three   One   How about a yummy crepe? It can also be centered! Here’s a code chunk:    var foo = function(x) { return(x + 5);}foo(3) And here is the same code with syntax highlighting:    var foo = function(x) { return(x + 5);}foo(3) And here is the same code yet again but with line numbers:  1234var foo = function(x) { return(x + 5);}foo(3)Boxes: You can add notification, warning and error boxes like this: Notification: Note: This is a notification box. Warning: Warning: This is a warning box. Error: Error: This is an error box. "
+    }, {
+    "id": 18,
+    "url": "http://localhost:4000/search/",
+    "title": "",
+    "body": "&lt;/br&gt; {% include search-lunr. html %} "
+    }, {
+    "id": 19,
+    "url": "http://localhost:4000/tags/",
+    "title": "Tag Index",
+    "body": "      {% assign date_format = site. date_format   default: “%B %-d, %Y” %}   {%- capture site_tags -%}  {%- for tag in site. tags -%}    {{- tag | first -}}{%- unless forloop. last -%},{%- endunless -%}  {%- endfor -%}{%- endcapture -%}{%- assign tags_list = site_tags | split:’,’ | sort -%} {%- for tag in tags_list -%}   {{- tag -}} ({{site. tags[tag]. size}}){%- endfor -%}  {%- for tag in tags_list -%}  &lt;h2 id= {{- tag -}}  class= linked-section &gt;         {{- tag -}} ({{site. tags[tag]. size}})  &lt;/h2&gt;  &lt;div class= post-list &gt;    {%- for post in site. tags[tag] -%}      &lt;div class= tag-entry &gt;        {{- post. title -}}        &lt;div class= entry-date &gt;										{{- post. date | date: date_format -}}, by {{ post. author }}        &lt;/div&gt;      &lt;/div&gt;    {%- endfor -%}  &lt;/div&gt;{%- endfor -%} "
+    }, {
+    "id": 20,
+    "url": "http://localhost:4000/nav_pages/tools/",
+    "title": "Tools",
+    "body": "   SofQ_Calib      A tool for calibrating \(S(Q)\) against Bragg pattern.            Installation     This requires users to have conda installed on their machines, so that one can easily install this tool using the following command:      conda install -c apw247 sofq_calib             Topas4RMC      A tool for preparing Topas profiles to be used in Bragg pattern fitting in RMCProfile.            Installation     This requires users to have conda installed on their machines, so that one can easily install this tool using the following command:      conda install -c apw247 topas4rmc          "
+    }, {
+    "id": 21,
+    "url": "http://localhost:4000/nav_pages/tutorial/",
+    "title": "Tutorials",
+    "body": "Videos for each of the exercises included in RMCProfile release package. Exercise-1 {% include streamablePlayer. html id=page. streamableId1 %} Exercise-2 {% include streamablePlayer. html id=page. streamableId2 %} "
+    }, {
+    "id": 22,
+    "url": "http://localhost:4000/robots.txt",
+    "title": "",
+    "body": "      Sitemap: {{ “sitemap. xml”   absolute_url }}   "
+    }, {
+    "id": 23,
+    "url": "http://localhost:4000/2022-10-07-coriolis_force/",
+    "title": "About Coriolis force",
+    "body": "2022/10/07 - First, a comprehensive GIF animation demonstrating the basic ideas of Coriolis force is presented.   Detailed explanation and derivation is presented in the following embedded document.  "
+    }, {
+    "id": 24,
+    "url": "http://localhost:4000/2022-10-06-notes_mag_III/",
+    "title": "Notes on magnetism - III",
+    "body": "2022/10/06 -  Talking about magnetic field, we have three relevant physical quantities - magnetic field (\vec{H}), magnetic induction field (\vec{B}) and magnetization field (\vec{M}). It is straightforward to understand (\vec{M}) - when applying magnetic field (here, by ‘magnetic field’, we mean something in general, but not specifically refer to (\vec{H})), we use (\vec{M}) to characterize how much the matter in question is magnetized. However, concerning (\vec{H}) and (\vec{B}), it seems that both are describing some sort of ‘strength’ of magnetic field (again, we mean ‘magnetic field’ in general. The same applies below until we become specific about what we mean by ‘magnetic field’). But why do we have two quantities here to describe the ‘same’ thing? The answer is - they are not the same thing, as described by (\vec{H}) and (\vec{B}), respectively. Fundamentally, this goes back to the foundation of the electromagnetic theory - specifically, we mean the two historical discoveries. One is the finding that an electric current creates a magnetic field, by Oersted. The other is the discovery by Faraday that, in brief, a changing magnetic field will create electromotive force across an electrical conductor. The first one describes how a magnetic field can be generated from a current. Starting from such a discovery, if we are going to define a quantity to describe magnetic field, such a quantity will be bounded to electrical current, i. e. such a defined quantity for describing magnetic field can be purely derived from electrical current - this is the quantity (\vec{H}), to which we give the name of magnetic filed (we now become specific about what we mean by ‘magnetic field’). Concerning the second discovery, we also have a correspondingly defined quantity to describe the associated magnetic field (here, we go back to the general meaning of saying ‘magnetic field’, temporarily) – the quantity we define as (\vec{B}), to which we give the name of magnetic induction field. Different from (\vec{H}), the quantity (\vec{B}) serves as the ‘source’ of electric field, i. e. (\vec{B}) is considered to induce electric field (thus given the name magnetic induction field) and therefore (\vec{B}) does not have to originate itself purely from electrical current. In another word, when we talk about the induction of electric field from magnetic ‘stuff’, we mean every aspect of the magnetic ‘stuff’, including both that generated from electrical current (i. e. the magnetic field (\vec{H})) and the magnetization effect of matter (i. e. , the magnetization field (\vec{M})). After all, the following relation summarizes the discussion above, [\vec{B} = \mu_0\vec{H} + \vec{M}] The two discoveries mentioned above were further summarized into Maxwell’s equation in matter (i. e. , non-vacuum), respectively, [\nabla \times \vec{E} = -\frac{1}{c}\frac{\partial \vec{B}}{\partial t}] [\nabla \times \vec{H} = \frac{1}{c}(4\pi \vec{J}_f + \frac{\partial \vec{D}}{\partial t})] In summary, (\vec{H}) can be thought of as being purely coming from electrical current, whereas (\vec{B}) covers both the part originating from electrical field and that from matter magnetization (i. e. , a comprehensive ‘magnetic field’) – that’s why the Gauss’s law for magnetism is summarized as (\nabla \cdot \vec{B} = 0), where the comprehensive quantity (\vec{B}) is used instead of (\vec{H}). "
+    }, {
+    "id": 25,
+    "url": "http://localhost:4000/2022-10-06-notes_mag_II/",
+    "title": "Notes on magnetism - II",
+    "body": "2022/10/06 - Talking about the magnetism of ions in crystals naturally brings us out of the atomic physics picture which we previously based ourselves in when discussing the free atom and ions (see previous note by clicking me!). Also, for sure we should turn to the many-electron scheme instead of a single-electron one. However, to build up the final multi-electron picture, we can potentially take the single-electron pathway. This is quite similar to the situation of independent atoms, where we have been mentioning the coupling between angular momentum of multi-electrons. The pathway we take thereby is also a single-electron one. For example, based on Hund’s rule, we talk about filling electrons one-by-one to various energy levels to finally build up the ground state. Here, for discussing the magnetism of ions in crystals, Hund’s rule can still be used in some situations. However, attention should be paid and we will revisit this issue later by inspecting a specific example. To start, we first notice that usually the orbitals involved in magnetism are either (3d) (e. g. transition metals) or (4f) (e. g. rare earth metals), both of which are strongly localized (as compared to, e. g. (s) orbitals). Therefore, we can still treat those ions as being isolated. However, they are not completely isolated as being free ions and the states will be more or less influenced by the surroundings.  Although we say both (3d) and (4f) orbitals are strongly localized, electrons in either of those states can still move in the whole crystal [1]! In a broad sense, such effect upon states exerted by the surroundings in crystal can be called the crystal field effect, which has different pictures in two distinctive situations - (3d) orbital involved transition metal ions and (4f) orbital involved rare earth metal ions [1].  For rare earth metals, because overlapping between (4f) is weak and therefore the crystal field effect is also weak since it is purely coming from electrostatic potential. In comparison for transition metal, the (3d) orbital overlapping is much stronger and therefore the crystal field effect is also much stronger as the result of hybridization (see page 15 in [2]). In former case, the (LS) coupling is considered first to go into the coupled (J) representation and then the crystal field is considered to split the degenerate (J) levels. Hereby, it should be pointed out that in this case we directly go into multi-electron picture without going through the single-electron pathway as before! Detailed discussion can be found in page 15-18 in Ref. [2], where the magnetic anisotropy pops up naturally as the result of symmetry-adapted Hamiltonian (see page-18 in Ref. [2]). For the latter situation, the crystal field effect is strong and thus is considered as the main factor, which splits the degenerate (L) levels. The (LS) coupling and other effects such as Zeeman effect are then considered as perturbations (see page 27-33 in Ref. [1]). Again, magnetic anisotropy naturally pops up as the result of either (LS) coupling or Zeeman term in the Hamiltonian (see page 34-37 in Ref. [1]). Moreover, Jahn-Teller effect also plays an important role for splitting states if the ground state is non-degenerate (see Ref. [3] and page section-3. 4 in Ref. [1]).  Here we have two important things to mention. 1) When the ground state (see the example below for detailed explanations) is non-degenerate, it can be proved (see page 34-35 in Ref. [1]) that the contribution from orbital angular momentum (the coupled multi-electron one) to the Hamiltonian is 0. We say in such a situation, the orbital angular momentum is quenched. 2) When we have odd number of electrons, the doubly degeneracy of spin (z) component is not broken by the crystal field, which is called Kramers theorem and the still degenerate spin doublet is called Kramers doublet. For understanding the splitting of (L) levels (which is obviously a multi-electron problem), here we can take a single-electron pathway. Taking the cubic symmetry as an example, first we can obtain the split states as the result of crystal field effect - the splitting into (t_{2g}) and (e_g) levels. Then according to the strength of the crystal field effect as compared to the energy for pairing electrons (the first Hund coupling, see previous note, by clicking me), we either have low-spin or high-spin situations - see Ref. [3] and page 21-22 in Ref. [2]. Suppose we have the low-spin situation, and for example we have 6 (d) electrons, the electrons can be filled into available states following the first Hund’s rule, as follows, Any one of the three situations shown above can be our ground state and therefore in this case we have triplet degeneracy in our ground coupled state. Such a picture is exactly consistent with what we will get following the multi-electron approach, as shown in page 30-34 in Ref. [1].  Since we have hybridization of orbitals here, the single electron orbital angular momentum quantum number is no longer a good one. Therefore, the second Hund’s rule no longer works here and that’s why we have the triplet degeneracy in the example shown above. Similar discussion can be made for other situations - refer to the states splitting discussed in page 19 in Ref. [2] and page 32-33 in Ref. [1].  For high-spin situation, we can also follow the single-electron pathway to discuss the degeneracy problems of the ground state. A full picture of electron configurations for both low-spin and high-spin situations can be found in Ref. [3]. N. B. when the energy difference between low-spin and high-spin configuration is not so large, we can potentially have the spin crossover - see page 21-22 in Ref. [2] - as the result of thermal effect.  References [1] K. Yosida. Theory of magnetism. Springer. 1996. [2] Theory of magnetism, by C. Timm. [3] Jahn-Teller Distortions, from Chemistry LibreText. "
+    }, {
+    "id": 26,
+    "url": "http://localhost:4000/2022-10-06-notes_mag_I/",
+    "title": "Notes on magnetism - I",
+    "body": "2022/10/06 - To understand the magnetism of free atoms and ions, we may go through several stages, as follows, Hartree approximation - electrons are treated in a non-interactive manner. Beyond Hartree - interaction between electrons is taken into account. Spin-orbital coupling. Hyperfine interaction - the interaction between electrons and nucleus. Stage-1At this stage, the single electron Schrodinger equation can be solved in the spherical potential field and one can get quantized energy levels indexed by quantum number (n), (l) and (m). Hydrogen atom is the simplest and the most special case - the Coulomb potential is rigorously inverse proportional to (r) and therefore energy levels with the same (n) but different (l) are degenerate. For general cases, e. g. hydrogen-like atoms, the effective Coulomb potential is not rigorously inverse proportional to (r), as the result of screening effect from the atom core charge (nucleus + electrons). This results in the splitting of (r) levels. However, no matter for which situation, the degeneracy over (m) is always there. Based on the recipes given here, one can then follow the Aufbau principle to fill electrons into various shells. Suppose we have already filled all levels between 1s and 4s and we are left with 5 more electrons to worry about, how many possibilities we have to finish filling the 5 electrons? The general formula is given as (C_{2(2l+1)}^{n_{nl}})where (l) refers to the angular momentum quantum number and (n_{nl}) refers to the number of left-over electrons. The logic here is that we have in total (2(2l+1)) degenerate states (considering spin up and down) and we can just pick up any (n_{nl}) ones from them to fill electrons, simply because they are all degenerate.  Stage-2Going beyond the Hartree approximation, we start to consider the interaction between electrons and here it comes that Hund’s rule plays an important role for determining the ground state (N. B. Hund’s rule is not working for determining excited state. Also, it is even not working perfectly, though for most of cases it is working fine, for determining the ground state). Behind the Hund’s rule, we have some fundamental physics, which we will mention later. But here we take exactly the same example mentioned above - to fill 5 electrons into the 3d levels. The 1st Hund’s rule says we should have the maximum coupled S. Here it immediately brings in a critical question: what coupled S really is. We already said that by going beyond the Hartree approximation, interaction between electrons is taken into account. Therefore, now electrons are not independent any more and we say they are coupled, including the coupling between orbital and spin momentum. In another word, previously we have been using (l), (s), (m_l) and (m_s) to label quantum states, but now we have to change our label for quantum states to the coupled representation, using (L), (S), (m_L) and (m_S) instead. How to get to coupled representation from independent representation is a typical/fundamental quantum mechanics problem, for which we can refer to Shankar’s book Principles of quantum mechanics (2nd edition, chapter-15). Back to the 1st Hund’s rule mentioned above (focusing on the coupling between electron spins for the moment), it can give us a non-degenerate (unique) ground state, with spins of all the five electrons aligned in a parallel manner, occupying each of the (m_l = -2, -1, 0, 1, 2) level. Why? Because Hund’s rules says we should have the coupled (S) as large as possible, and we know that the largest (S) should be equal to the largest possible value of (S_z). Furthermore, we know for sure that the largest possible value of (S_z) should be (5/2) with all spins lined up in the same direction. Here it may be a bit confusing that we said we go from independent representation to coupled representation, but it seems that the ground coupled state is just one of the original state in the independent representation. Actually, they are just seemingly identical and actually they are different stuff - in the coupled representation, the ground state we arrived at above is labeled with quantum number (S = 5/2) and (m_S = 5/2). However, for the independent representation, we have 5 independent labels for this single state (it’s just that all the five labels takes (m_s = 1/2))! Furthermore, if going beyond the ground state, we will immediately see the difference between these two representations - in most of the cases, the coupled state is a superposition of those states in the independent representation, where we have the so-called Clebsch-Gordan (CG) coefficients as the linear combination coefficients. For those excited states in the coupled representation, again we can refer to Shankar’s book mentioned above for details (chapter-15).  Here, though not directly relevant to current discussion, it’s still worth mentioning the other two general important issues in fundamental quantum mechanics (which most people just take for granted yet without knowing why): 1) given the principal quantum number (n), we all know the orbital angular momentum can take (0, 1, \dots, n-1). But why? We can find the answer to this question in Shankar’s book mentioned above (page 422-423, 2nd edition), where the quantum version of Runge-Lenz vector is introduced to act as a ladder operator with respect to orbital angular momentum. The values of orbital angular momentum is then obtained by observing that all (l&gt;n) terms will vanish. 2) Given the orbital angular momentum quantum number (l), we all know (m_l = -l, -(l-1), \dots, (l-1), l). But why? The answer to this question can be found in page 321-324 in Shankar’s book and again the ladder operator is acting an important role here. When the coupled spin (S) does not recognize a unique ground state, here comes the 2nd Hund’s rule, concerning coupling of orbital angular momentum. It says the ground state should be the one with largest coupled (L). Following the same recipe above, we should immediately know that we are actually looking for a state with largest possible (L_z). For the five electrons situation mentioned above, coupled (S) has already specified a unique ground state. To demonstrate the 2nd Hund’s rule, we go for six electrons situation. Following the 1st Hund’s rule, the first five electrons should line up in a parallel manner into the five available levels and the 6th electron can choose whichever of the first five electrons to pair with, and obviously after pairing we should have the 6th electron aligned in the opposite direction with the spins of the first five electrons. To determine the true ground state, we need the 2nd Hund’s rule here - we are trying to look for the largest possible (L_z), which obviously point to that the 6th electron should be put on the level indexed by (m_L = \pm 2) (here the sign does not really make any difference since it is just a matter of choosing the positive direction of (z)-axis).  The golden rule to keep in mind concerning the angular momentum coupling is that the value of the coupled angular momentum is equal to the largest possible sum of the corresponding magnetic quantum number of all the independent angular moment. Considering the interaction between electrons, the total number of non-degenerate states become ((2L+1)(2S+1)).  Understanding the physics behind the first two Hund’s rules. 1) Considering the first Hund’s rule, according to Pauli exclusion principle, electrons are not allowed to stay at exactly the same state. Therefore, by aligning in a parallel manner, electrons have to ‘stay away from each other’ (e. g. by taking up states indexed by different magnetic quantum number), which then help reducing the system energy (we can understand this as an effective Coulomb repulsion). 2) As for the second Hund’s rule, electrons tend to have the same orbital angular momentum, which means they rotate in the same direction and therefore they become further apart effectively because of the Coulomb repulsion - this also helps lowering the system energy.  Stage-3 Now we need to bring in the spin-orbital coupling, which is crucial for understanding both the magnetic property of free atoms or ions discussed here and that of solid materials where atoms are bonded together to form crystal field. Attached picture shows two key figures in shaping quantum mechanics - Paul Dirac and Wolfgang Pauli. Specially, the relativistic version of ({\rm{Shr}}\ddot o{\rm{dinger}}) equation given initially by Dirac not only embed spins in a natural way, but also it brings in the spin-orbital coupling term explicitly. Here we will just briefly mention the spin-orbital coupling in terms of (LS) mode coupling (another alternative coupling mode is the (jj) mode, for which the coupling between (l) and (s) of a single electron is considered first and the coupling between electrons are considered as perturbation. In contrast, for the (LS) mode coupling, since the coupling between electrons is stronger, all (l)’s and (s)’s are coupled first and (LS) coupling is considered afterwards). Within the (LS) coupling mode, (L) and (S) are coupled following the basic addition principle of angular momentum (see chapter-15 in Shankar’s book mentioned above), which gives (J = |L-S|, \dots, |L+S|). In this case, the degenerate states in stage-2 discussed above will be further split, with respect to the coupled quantum number (J) and here we have the 3rd Hund’s rule comes into play - the ground state takes minimum (J) if we have less than half filled levels (e. g. suppose the situation where we have 4 electrons filling the (3d) level); or the ground state takes maximum (J) if we have more than half filled levels (e. g. suppose the situation where we have 6 electrons filling the (3d) level); when we have half filled level, the 3rd Hund’s rule becomes trivial since we have (L = 0) (e. g. suppose the situation where we have 5 electrons filling the (3d) level) and thus we have (|L-S| = |L+S|).  Stage-4The hyperfine interaction which further splits energy levels is due to the interaction between nucleus spins and electron spins. Detailed formulation is a bit complicated and we won’t proceed with it here. We can refer to section-2. 6 in the lecture note Theory of Magnetism by Dr. C. Timm. "
+    }, {
+    "id": 27,
+    "url": "http://localhost:4000/2022-10-06-ising_sol/",
+    "title": "Notes on Ising model",
+    "body": "2022/10/06 - Ernst Ising (Left) and Wilhelm Lenz (Right) - Ising was Lenz’s student and the Ising model was claimed (by Ising himself) to be originated by Lenz but named after Ising. Ising model was originally proposed for ferromagnetism and owing to its simplicity in describing the system interaction, it has been widely used in not only describing magnetic systems in theoretical physics area but also in other areas involving similar interaction mechanism. In fact, Ising model can potentially find its position in describing systems involving binary states whereby we have active influence upon each other between neighbors. Here in this blog, I will not try to reproduce those already available beautiful introduction to Ising model - see e. g. , Ref. [1-4] and a whole bunch of others one can easily find on Internet. Instead, I will just write down the outline of the problem we are facing once we have the simple Ising model set up for describing the system energy. For example, we always hear people talking about the exact solution for Ising model. But, what actually are we trying to solve? What about those non-exact ways for ‘solving’ the Ising model?First, it is worthwhile to write down the Hamiltonian for Ising model, [E_I{S_i} = -\sum_{\langle i,j\rangle}J_{ij}S_iS_j - \sum_{i=1}^NB_iSi] where the subscript (I) represents the Ising model. The first term corresponds to the interaction energy between neighboring spins and the second term is the interaction energy with externally applied magnetic field. ({S_i}) is a shortcut for the spin configuration of the system where each spin on its lattice site has its own orientation - either up (+1) or down (-1). (i) and (j) refers to lattice site and (J_{ij}) is the exchange constant describing the interaction strength between neighboring spins. Given the Hamiltonian of system, we are trying to calculate a crucial quantity - the partition function, which is a defined as the function of system state variables such as temperature, volume, etc. Starting from partition function, we can derive most of other thermodynamic variables, e. g. , system total energy, free energy, entropy, pressure, etc. Then naturally we can look into the phase transition problem, e. g. , for magnetic system, using those quantities derived from partition function. Therefore, for Ising model, when we say we want the exact solution, we mean to obtain the exact analytical solution for the partition function, the general expression of which is given as below, [Z = \sum_{s_1=-1}^{+1}\sum_{s_2=-1}^{+1}\cdots\sum_{s_N=-1}^{+1}e^{-\beta E_I{S_i}}] The solution for 1D Ising model can be found in Ref. [3], which is based on the original publication by Kramers and Wannier [5]. The exact solution for 2D model was originally proposed by Onsager [6-8] and the whole derivation procedure is reproduced in details as presented in Ref. [6]. The exact solution for 3D situation has been a challenging question to the physics community. In 2007, Prof. Z. Zhang proposed his exact solution based on two conjectures [9] and currently it is still under active debate and development [10, 11]. About this debate, Prof. Z. Zhang has three series of blogs introducing the history and current development of this theory - one can refer to Ref. [12-14] for details. Apart from exact solution, there are other ways to explore the phase transition behavior using Ising model, mainly based on numerical or simulation (e. g. , Monte Carlo) approach. An approach based on iterative numerical technique can be found in Ref. [3] and typical examples for those based on Monte Carlo simulation can be found in Ref. [15, 16].  References [1] http://blog. sciencenet. cn/blog-2344-3193. html [2] http://blog. sciencenet. cn/blog-2344-3194. html [3] https://1drv. ms/b/s!AlZpbyasn9jtoqUSanNV39-L40X42g?e=pOxR7u [4] https://1drv. ms/b/s!AlZpbyasn9jtoqUTtwM3cceW31_s5Q?e=d8RZv4 [5] H. A. Kramers and G. H. Wannier, Phys. Rev. 60, 263, 1941. [6] https://1drv. ms/b/s!AlZpbyasn9jtoqUUAfC4omrmXx1SSg?e=BX4WtI [7] https://1drv. ms/b/s!AlZpbyasn9jtoqUVcBIXJkaygOTFXw?e=3V0JK0 [8] L. Onsager. Phys. Rev. 65, 117, 1944. [9] Z-D. Zhang, Philos. Mag. Lett. 87 (34), 5309-5419, 2007. [10] Zhi-Dong Zhang, Chinese Phys. B. 22, 030513, 2013. [11] Zhidong Zhang, Osamu Suzuki and Norman H. March, Adv. Appl. Chifford Al. 29, 12, 2019. [12] http://blog. sciencenet. cn/blog-2344-3476. html [13] http://blog. sciencenet. cn/blog-2344-49176. html [14] http://blog. sciencenet. cn/blog-2344-1173989. html [15] https://rajeshrinet. github. io/blog/2014/ising-model/ [16] https://towardsdatascience. com/monte-carlo-method-applied-on-a-2d-binary-alloy-using-an-ising-model-on-python-70afa03b172b "
+    }, {
+    "id": 28,
+    "url": "http://localhost:4000/2022-10-05-top_physics/",
+    "title": "Notes on topological physics",
+    "body": "2022/10/05 - Image reproduced from Ref. [5]. In this blog, I will put down my learning notes as reading through the article on topological electrons by A. P. Ramirez and B. Skinner [1]. Basically, I will follow the story flow in Ref. [1] and therefore, first, I will note down the main flow that one can follow to arrive at the notion of topological electrons. Then I will cover the implications of topology and its connection to quantum Hall effect and quantum spin Hall effect. Finally, Weyl semimetal will be covered. It should be pointed that I will not reproduce all the nice discussions presented in Ref. [1]. Rather instead, I will just try to note down those key points or questions that I came across during reading Ref. [1]. First, the topological structure of an geometric object is defined by the Gauss-Bonnet integral, [\frac{1}{2\pi}\int_S K dA = n] where (K) refers to the curvature at points on surface (A). The integral will give us a constant (n) which corresponds to the genus (number of holes) of a certain geometric object in the following manner, [n = 2(1 - g)] When defining topological electrons, we are trying to look for similar definition as for the Gauss-Bonnet integral presented above. We can summarize the discussion in Ref. [1] as the following flow, Berry connection (\rightarrow) Berry curvature (\rightarrow) Berry phase. Considering then the integral of Berry curvature on the boundary of a 2D Brillouin zone, we then arrive the topological invariant - the Berry phase, [\frac{1}{2\pi\hbar^2}\int_{BZ}\Omega d^2p = C] where the topological invariant (C) in this case is called the Chern number. (\Omega = \nabla \times \mathbf{X}) is defined as Berry curvature, where (\mathbf{X}) is the Berry connection. The general definition for Berry connection and Berry phase can be found on Wikipedia [2] and won’t be reproduced here. Though, it should be pointed out that the general variable (R) in the formulation presented in Ref. [2] becomes (p) (i. e. momentum of electron) in the specific context of discussing topological electrons. Accordingly, the Berry connection in the context of topological electrons has its physical meaning - the average position of electron as the function of momentum. To understand this, we can refer to Eqn. (5. 34)-(5. 39) in Ref. [3]. Next, I will talk about the implication of topological invariant for magnetic field. First, to have non-zero Chern number, we will have a self-rotation in momentum space, as presented in Fig. 3 in Ref. [1]. Moreover, from the discussion above, we know that the mean value of atomic center position in unit cell is a function of momentum (\mathbf{p}). This indicates that the changing in momenta (i. e. , rotation - attention to the difference between rotation in momentum and real space) accompanies the changing of position and therefore indicates that the angular momentum is associated with the local Berry curvature (which infers the rotation of momenta). Therefore, we can see the analogous relation between Berry curvature and magnetic field - they both break symmetry (Berry curvature breaks the inversion symmetry when we have non-zero Chern number); they both bring in orbital angular momentum. Another implication for magnetic field from Berry curvature is that non-zero curl of (\mathbf{X}) will introduce movement in the transverse direction as, e. g. , electrons are accelerated in electric field - refer to Wikipage for curl [4] (see the two examples given there).  If inversion symmetry is not broken, the path integral along the boundary ofBrillouin zone will always Chern number of 0 – for any (\mathbf{p}),we have a corresponding (-\mathbf{p}) with identical Berry connection,which will make the integration always 0. The implication for magnetic field as originated from topological invariant brings us to the connection with quantum Hall effect. When certain 2D materials are immersed in strong magnetic field and low temperature environment, they show quantized Hall conductance behavior. The physics picture for such a behavior is, electrons are circulating interior the bulk and rolling along the surface. Such circulating and rolling orbitals are quantized according to Landau levels which gives the quantization of cyclotron orbitals of charged particles in a uniform magnetic field. The quantization of Hall conductance can be explained purely by Landau’s quantization theory for magnetic field [6], and also it can be deduced based on topological consideration [7, 8]. The topological paradigm also explains the robustness of quantum Hall effect, i. e. the quantized Hall conductance is protected by topological invariant [7, 8]. According to Ref. [7, 8], the topological invariant is defined in parameter space, which is different from the version as presented in current summary based on Ref. [1] where the topological invariant is given in momentum space. Going back to the discussion about topological invariant as defined in momentum space, the implication for magnetic field gives rise to edge states much like those in the quantum Hall effect. There are two things to note down at this point, 1) as pointed out just above, the topological protection mechanism of quantum Hall effect systems and the topological system defined in momentum space is different. 2) though the topological invariant (again, defined in momentum space) implies magnetic field (which seems to suggest that the edge states can stably exists without external magnetic field), the breaking of time reversal symmetry in such topological systems makes it impossible to hold stable edge currents as what we can have in quantum Hall effect systems. However, in certain systems with strong spin-orbital coupling [1, 9], electrons with spin up and spin down can break down the time reversal symmetry separately to give opposite non-zero Chern number. In another word, spin up electrons flow, e. g. , to the right on surface whereas spin down electrons to the left. In such systems. the overall time-reversal symmetry is kept and on surface, we won’t have net current of electrons but we do have net flux of spins - either up or down. Such an effect is called quantum spin Hall effect [1, 10, 11]. The topological notion discussed here can apply to both 2D and 3D systems – in 3D systems, it can be used to understand Weyl semimetal. What is semimetal? It shows continuous band structure as what we have for metal but the connection part (somewhat like the neck) is quite narrow – that is typical band structure of semimetals. Specifically for Weyl semimetals, two bands touch each other in momentum space at Weyl points where we have the abrupt change in the orbital character of the wavefunction – the momentum of electrons does not change smoothly crossing Weyl points. The picture shown at the top of current blog gives a typical picture of the corresponding band structure in 3D space. Usually, electronic band cannot coincide in energy since anytime two bands meet each other, there will be hybridization happening which will splits the degeneracy and therefore the two bands are bounced away from each other. In early age, the touching of two bands was explained to be accidental in which case hybridization is avoided. However, such an accidental touching could be easily destroyed by perturbation and therefore does not stand. In the context of topological paradigm, we see that such a type of band structure for Weyl semimetal systems is protected by the topological invariant. The value of topological invariant is relevant to the inclusion of Weyl points in the integration area when evaluating the Chern number integral. Weyl points are topological analogues to electric charges – they are monopoles of Berry flux [1]. Also the Weyl points always come in pairs with opposite topological charges and the two Weyl points in the pair are with different chirality. Therefore, in Weyl semimetal systems, half of electrons are Weyl fermions with one chirality (see Ref. [12] for definition of electron chirality – basically, it means whether electron spin is in the same or opposite direction flowing direction), the other half being Weyl fermions (electrons without explicit chirality are Dirac [fermions) with opposite chirality.  References [1] A. P. Ramirez and B. Skinner.  Physics Today 73, 9, 30 (2020). [2] https://en. wikipedia. org/wiki/Berry_connection_and_curvature [3] https://1drv. ms/b/s!AlZpbyasn9jtoqUZCYW069akHDG2rQ?e=gCynHc [4] https://en. wikipedia. org/wiki/Curl_(mathematics) [5] https://www. bnl. gov/newsroom/news. php?a=117401 [6] https://1drv. ms/b/s!AlZpbyasn9jtoqUlsQ_9KB7CG2g-og?e=kSOfZu [7] https://1drv. ms/b/s!AlZpbyasn9jtoqUkYCO6KG6h8JZFFA?e=gdOCXB [8] https://1drv. ms/b/s!AlZpbyasn9jtoqUj2N8fMFbK-0_cNQ?e=oe58FK [9] https://jqi. umd. edu/glossary/quantum-hall-effect-and-topological-insulators [10] https://scienceblogs. com/principles/2010/07/20/whats-a-topological-insulator [11] https://www. evernote. com/shard/s266/sh/2a935515-dfaa-4312-bb66-1d5dd5086339/dcdb9fe33e21b49f7c10168fd8980861 [12] https://en. wikipedia. org/wiki/Chirality_(physics) "
+    }, {
+    "id": 29,
+    "url": "http://localhost:4000/2022-10-05-coh_incoh_sl/",
+    "title": "Derivation of neutron incoherent scattering length",
+    "body": "2022/10/05 - Figure. 1. Neutron scattering length table by NIST [1]. When we do calculations relevant to neutron scattering, it is unavoidable that we will come across either coherent, incoherent or total scattering length of elements, which describes the strength of scattering neutrons by different elements, either coherently, incoherently or both. In this article, I will try to uncover the three different types of neutron scattering length, by going through the derivation in details. First, the differential cross section for neutron scattering by a certain structure is given as below – here we do the derivation for a single-species system so we can derive the relevant scattering length conveniently. [\frac{d\sigma}{d\Omega} = \sum_{i,j}b_ib_je^{-i\vec{Q}\cdot (\vec{R}_i - \vec{R}_j)}] where (i), (j) refers to atoms located at different locations in the structure under beam. In practice, every single (b_i), (b_j) depends on the corresponding nuclear isotope, spin orientation relative to neutron, nuclear eigenstate, etc. What we are interested in and what is meaningful in practical calculation is the average (\langle b_ib_j\rangle) across all pairs in system, which then can be used as an effective representative of system. To obtain (\langle b_ib_j\rangle), we first write, [b_i = \langle b\rangle + \delta b_i] where we should have (\langle\delta b_i\rangle = 0), if assuming random variation of (b_i) around (\langle b\rangle) for an arbitrary (i). Further, [\begin{equation}\begin{aligned}\langle b_ib_j\rangle &amp; = \Big\langle\langle b\rangle^2 + \langle b\rangle(\delta b_i + \delta b_j) + \delta b_i\delta b_j\Big\rangle\ &amp; = \Big\langle\langle b\rangle^2\Big\rangle + \big\langle\langle b\rangle(\delta b_i + \delta b_j)\big\rangle + \langle\delta b_i\delta b_j\rangle\ &amp; = \langle b\rangle^2 + 0 + \langle\delta b_i \delta b_j\rangle\end{aligned}\nonumber\end{equation}] (\langle\delta b_i\delta b_j\rangle) is then the quantity we want to calculate. The good news is, it is only non-zero when (i = j), assuming atom (i) and (j) is irrelevant to each other. For (i = j), we have, [\langle b^2\rangle = \langle b\rangle^2 + \langle\delta b_i^2\rangle \Rightarrow \langle\delta b_i^2\rangle = \langle b^2\rangle - \langle b\rangle^2] For (i \neq j), we simply have, [\langle b_ib_j\rangle = \langle b\rangle^2] Going back to the equation for calculating differential cross section and putting in the expression for (\langle b_ib_j\rangle), we have, [\begin{equation}\begin{aligned}\frac{d\sigma}{d\Omega} &amp; = \sum_{i,j}^N\langle b_ib_j\rangle e^{i\vec{Q}\cdot(\vec{R}i - \vec{R}_j)}\ &amp; = \sum{i\neq j}^N\Big[\langle b\rangle^2e^{i\vec{Q}\cdot(\vec{R}i - \vec{R}_j)} + \langle\delta b_i\delta b_j\rangle e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)}\Big] + \ &amp; \hspace{0. 75cm} \sum{i=j}^N\Big[\langle b\rangle^2e^{i\vec{Q}\cdot(\vec{R}i - \vec{R}_j)} + \langle\delta b_i\delta b_j\rangle e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)}\Big]\ &amp; = \sum{i\neq j}^N\Big[\langle b\rangle^2e^{i\vec{Q}\cdot(\vec{R}i - \vec{R}_j)} + 0\Big] + \sum{i=j}^N\Big[\langle b\rangle^2e^{i\vec{Q}\cdot(\vec{R}i - \vec{R}_j)} + (\langle b^2\rangle - \langle b\rangle^2)\Big]\ &amp; = \sum{i,j}^N\langle b\rangle^2e^{i\vec{Q}\cdot(\vec{R}_i - \vec{R}_j)} + N(\langle b^2\rangle - \langle b\rangle^2)\end{aligned}\nonumber\end{equation}] where (N) is the total number of atoms in system. Here we see the first term is relevant to atomic positions and therefore is the coherent scattering term. Accordingly, (\langle b\rangle^2) is the coherent scattering length (squared). The second term is nothing to do with structure and therefore is the incoherent scattering term. Accordingly, [\langle b^2\rangle - \langle b\rangle^2] is the incoherent scattering length (squared).  References [1] https://www. ncnr. nist. gov/resources/n-lengths/ "
+    }, {
+    "id": 30,
+    "url": "http://localhost:4000/2022-10-04-owncloud_setup/",
+    "title": "OwnCloud Server Setup",
+    "body": "2022/10/04 -  👉 Ports configuration Refer to the following links to gist for configuration files concerning the ports configuration, /etc/apache2/ports. conf /etc/apache2/sites-enabled/000-default. conf 👉 Connection to WSL Apache server from outside (i. e. , beyond localhost) This link provide detailed explanation about the IP address assignment scheme for WSL 2 and we need to follow the instruction there to establish the connection from outside to WSL Apache server. Also, since each time when we launch the WSL, new IP address will be assigned to the virtual system and we have no way to make the IP address static. In this case, we can follow this link to grab the IP address of the virtual WSL system automatically and connect it to our Windows host. The following function can be put in powershell profile file so that we can do the configurations all-in-once,    Function own {  wsl sudo /etc/init. d/mysql start  wsl sudo service apache2 restart  $wsl_ip = (wsl hostname -I). trim()  netsh interface portproxy add v4tov4 listenport=5051 listenaddress=0. 0. 0. 0 connectport=5051 connectaddress=$wsl_ip}  👉 Port confliction &amp; Firewall issues Sometimes, if the connection cannot be established via public IP address (or domain name if configured), there could be multiple reasons. First, we may want to change the Apache configuration to let it listen to another alternative port, since sometimes other services (e. g. , Jupyterlab) will take over the port used by Apache. Second, we want to make sure the rule for a specific port is added in Windows Firewall exception (inbound traffic).  👉 Configure external drive By default, onwCloud will use ‘/var/www/owncloud/data’ as the data directory, where all files would be stored. Also, by default, using external local drive as storage is disabled (for safety reason). To enable this, we can refer to Ref. [3].  References [1] https://www. how2shout. com/how-to/how-to-install-owncloud-server-on-windows-10-wsl. html [2] https://lucidar. me/en/owncloud/install-owncloud-server-on-ubuntu-20-04/ [3] https://github. com/owncloud/core/pull/27590 "
+    }, {
+    "id": 31,
+    "url": "http://localhost:4000/2022-10-04-nano_rmc/",
+    "title": "Size effect in RMCProfile",
+    "body": "2022/10/04 - Figure. 1. Simulation box for bulk (left) and nano (right) systems.  In Ref. [1], we discussed the theoretical principles for correcting the nano-size effect when modeling the pair distribution function (PDF). The fundamental idea is to bring back the uncorrelated pairings in between atoms belong to different nanoparticles, based on the assumption of random distribution of nanoparticles in system. Such uncorrelated pairings will then be added to the partial PDF’s calculated explicitly from the structural model in simulation box, as presented in the right of the picture shown above. The kernel mathematical expression in Ref. [1] is reproduced as follows, [G(r) = \sum_{i,j}c_ic_jf_if_j[\frac{\rho^{RMC}}{\rho}g_{ij}^{RMC}(r) + U(r) - 1]] where the meaning of all symbols can be found in Ref. [1] and we won’t reproduce them all here. Instead, we are going to focus on the term (g_{ij}^{RMC}(r)) which represents the partial PDF’s calculated explicitly from the simulation box and (U(r)) which represents the uncorrelated correlation term. What we are going to discuss here is how to bring these two terms together so that they can be calculated in a compact manner when coded in, e. g. , RMCProfile package. First, (g_{ij}^{RMC}(r)) can be further written as, [g_{ij}^{RMC}(r) = \frac{n_{ij}}{4\pi r^2dr\rho_j} = \frac{\frac{hist_{ij}}{n_i}}{4\pi r^2dr\frac{n_j}{Vol}} = \frac{hist_{ij}}{4\pi r^2dr\frac{n_i\cdot n_j}{Vol}}] where (hist_{ij}) represents the histogram of pairings between atoms of type (i) and (j) in system. Basically, it is just the number of pairs between atoms of type (i) and (j) that fall into specific distance bins. (Vol) represents the ‘overall’ volume for calculating the partial number density (\rho_j). However, if (Vol) in the equation represents the overall volume of the simulation box (where we have void space, to get rid of periodic boundary condition), we then have to bring in an extra correction factor so that the partial number density can be calculated properly. To this point, the factor (\rho^{RMC}/\rho) can be introduced, where (\rho^{RMC}) and (\rho) refers to the overall number density calculated with and without void space in the simulation box, respectively. If we multiple this factor the $Vol$, the effective volume then can be obtained, in which case the equation above just becomes, [g_{ij}^{RMC}(r) = \frac{hist_{ij}}{4\pi r^2dr\frac{n_i\cdot n_j}{Vol^{eff}}} = \frac{\rho^{RMC}}{\rho}\frac{hist_{ij}}{4\pi r^2dr\frac{n_i\cdot n_j}{Vol}}] Next, we focus on the (U(r)) term – when coding in such a correction term, we want to do it in a clean way and thus will try to calculate the ‘histogram’ corresponding to the correction term, so that the correction can be applied at the initialization stage and we don’t need to worry about it anymore when calculating the overall PDF and all the other relevant quantities in the program. To do this, we first write, [\frac{\rho^{RMC}}{\rho}g_{ij}^{RMC}(r) + U(r) = \frac{\rho^{RMC}}{\rho}\frac{hist_{ij}}{4\pi r^2dr\frac{n_i\cdot n_j}{Vol}} + \frac{U(r)4\pi r^2dr\frac{n_i\cdot n_j}{Vol}}{4\pi r^2dr\frac{n_i\cdot n_j}{Vol}}] Pulling all the factors out, we will arrive at, [\begin{equation}\begin{aligned}\frac{\rho^{RMC}}{\rho}g_{ij}^{RMC}(r) + U(r) &amp; = \frac{\rho^{RMC}}{\rho}\frac{1}{4\pi r^2dr\frac{n_i\cdot n_j}{Vol}}[hist_{ij} + \frac{\rho}{\rho^{RMC}}U(r)4\pi r^2dr\frac{n_i\cdot n_j}{Vol}]\ &amp; = \frac{\rho^{RMC}}{\rho}\frac{1}{4\pi r^2dr\frac{n_i\cdot n_j}{Vol}}[hist_{ij} + \frac{\rho}{n_{all}/Vol}U(r)4\pi r^2dr\frac{n_i\cdot n_j}{Vol}]\ &amp; = \frac{\rho^{RMC}}{\rho}\frac{1}{4\pi r^2dr\frac{n_i\cdot n_j}{Vol}}[hist_{ij} + \rho U(r)4\pi r^2dr\frac{n_i\cdot n_j}{n_{all}}]\end{aligned}\nonumber\end{equation}] where the second term in the square bracket is the effective histogram corresponding to the uncorrelated pairings, which then can be added to the partial PDF’s at the initialization stage.  References [1] Y. Zhang, et al. , J. Appl. Cryst. (2019). 52, 1035-1042. "
+    }, {
+    "id": 32,
+    "url": "http://localhost:4000/2022-10-04-iso_subg/",
+    "title": "Notes On Isotropy Subgroup",
+    "body": "2022/10/04 - Figure. 1. Isotropy subgroup [1].  This blog contains some key notes for reading the lecture notes by H. Stokes, et al. [1] on isotropy subgroup. Details about the lecture notes will not be reproduced here and instead we will just put down some key understanding as below, Two subspaces are equivalent if the basis vectors for each can be set up in such a way that they are associated with the same representation. The reason why the two subspaces are equivalent is that it is actually the linear combination coefficients that appear in front of the basis vectors that determines how the symmetry is lowered. Even though the basis vectors of the two subspaces may be very different, the same linear combination of basis vectors still lead to the same variation of symmetry, e. g. , lowering the space group from (G) to its subgroup (G’). This might be the reason why subgroups associated with vectors in parameter space are called isotropy subgroup – atomic distortions in the two equivalent subspaces could be very different in 3D space (i. e. , isotropic) but they both lead to the same symmetry lowering from (G) to (G’). In group theory, there are many ways of separating out group elements into different parts, like cosets. One of the ways is that the separated-out parts themselves can be regarded as a single group element, in which case we say the original group is mapped onto another group the elements of which is actually a group of elements instead of single operations. In such a situation, for sure there should be a certain group of elements that are mapped to the identify element in the new group i. e. , all the group elements involved are mapped to the identity element (of the new group). Representation is a certain type of mapping – it maps group elements in the original group to certain matrices in the new group (of matrices which are now the specific form of operations). Then in the context of isotropy subgroup, if a certain isotropy subgroup is mapped to the identity matrix by a certain irreducible representation (IR), that isotropy subgroup is called the kernel of the IR. This further means all vectors in the representation space is invariant under the operation of any elements in that isotropy subgroup (the kernel of the IR).  References [1] https://1drv. ms/b/s!AlZpbyasn9jtkNAL8RAzOHFoeYj2iQ "
+    }, {
+    "id": 33,
+    "url": "http://localhost:4000/2020-12-01-rmc_configure/",
+    "title": "Configure RMCProfile",
+    "body": "2020/12/01 -    Configuration on Linux system          rmcprofile on cluster      To run rmcprofile on cluster, the following bash script may be helpful,       #!/bin/bash ulimit -s unlimited export OMP_NUM_THREADS=12 RMCProfile_PATH=WHEREVER_RMCProfile_FOLDER_IS_LOCATED export PGPLOT_DIR=$RMCProfile_PATH/exe/libs export LD_LIBRARY_PATH=$RMCProfile_PATH/exe/libs export LIBRARY_PATH=$RMCProfile_PATH/exe/libs export PATH=$PATH:$RMCProfile_PATH/exe $RMCProfile_PATH/exe/rmcprofile stem_name        where WHEREVER_RMCProfile_FOLDER_IS_LOCATED refers to the main  RMCProfile directory within which the exe and tutorial  sub-directories are usually located. stem_name refers to whatever the stem name is for our RMC fitting. Put this script within RMC  fitting directory and run it from there should not be a bad idea.           Speeding up rmcprofile     No matter running on clusters or a PC, running the following two  commands just before kicking off RMC fitting should help speeding up the fitting.      ulimit -s unlimited export OMP_NUM_THREADS=12             Configuration on MacOS          Speeding up rmcprofile     Running the following two commands just before kicking off RMC fitting should help speeding up the fitting.      ulimit -s unlimited export OMP_NUM_THREADS=12          "
+    }];
+
+var idx = lunr(function () {
+    this.ref('id')
+    this.field('title')
+    this.field('body')
+
+    documents.forEach(function (doc) {
+        this.add(doc)
+    }, this)
+});
+function lunr_search(term) {
+    document.getElementById('lunrsearchresults').innerHTML = '<ul></ul>';
+    if(term) {
+        document.getElementById('lunrsearchresults').innerHTML = "<p>Search results for '" + term + "'</p>" + document.getElementById('lunrsearchresults').innerHTML;
+        //put results on the screen.
+        var results = idx.search(term);
+        if(results.length>0){
+            //console.log(idx.search(term));
+            //if results
+            for (var i = 0; i < results.length; i++) {
+                // more statements
+                var ref = results[i]['ref'];
+                var url = documents[ref]['url'];
+                var title = documents[ref]['title'];
+                var body = documents[ref]['body'].substring(0,160)+'...';
+                document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML = document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML + "<li class='lunrsearchresult'><a href='" + url + "'><span class='title'>" + title + "</span><br /><span class='body'>"+ body +"</span><br /><span class='url'>"+ url +"</span></a></li>";
+            }
+        } else {
+            document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML = "<li class='lunrsearchresult'>No results found...</li>";
+        }
+    }
+    return false;
+}
+</script>
+<style>
+    #lunrsearchresults {padding-top: 0.2rem;}
+    .lunrsearchresult {padding-bottom: 1rem;}
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <p><input type="text" class="form-control" id="lunrsearch" name="q" maxlength="255" value="" placeholder="🔍" /></p>
+</form>
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+
+
+  
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/rmc/">RMC at ISIS facility</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://community.dur.ac.uk/john.evans/topas_workshop/tutorial_pdf_sno2.htm">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE (ORNL internal)</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href=""https://mlfinfo.jp/en/bl21/>Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+				</br>
+				<a target="_blank" href="http://e-ssrf.sinap.cas.cn/beamlines/bl13w1/201401/t20140112_152430.html">China - SSRF - BL13W1</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2020 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

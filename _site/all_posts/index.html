@@ -1,0 +1,6544 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Yuanpeng&apos;s Posts</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Posts by Yuanpeng on various topics">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Yuanpeng&apos;s Posts">
+  <meta property="og:description" content="Posts by Yuanpeng on various topics">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:8000/all_posts/">
+  <link rel="canonical" href="http://localhost:8000/all_posts/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Yuanpeng&apos;s Posts">
+  <meta property="twitter:description" content="Posts by Yuanpeng on various topics">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="page-heading">
+						<h1>Yuanpeng's Posts</h1>
+          
+            
+              <hr class="small">
+              <span class="page-subheading">Posts by Yuanpeng on various topics</span>
+            
+          
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md " role="main">
+  <div class="row">
+    <div class=" page_body ">
+      
+
+      
+
+
+
+<div class="posts-list">
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+	
+  
+
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2026-05-17-zgx_sparks/">
+      <h2 class="post-title">HP ZGX Nano AI Station Setup</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on May 17, 2026, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2026-05-17-zgx_sparks/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#LLM">LLM</a>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2026-04-18-vnc_novnc/">
+      <h2 class="post-title">VNC and noVNC for remote connection</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 18, 2026, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2026-04-18-vnc_novnc/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#remote">remote</a>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2026-04-05-strand_agent/">
+      <h2 class="post-title">Strands Agent Episode-1 — Setup</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 5, 2026, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2026-04-05-strand_agent/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#agent">agent</a>
+      
+      <a href="http://localhost:8000/tags#AI">AI</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2026-04-03-win_fserver/">
+      <h2 class="post-title">Set up a File Server on Windows</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 3, 2026, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      In this post, I will be noting down how to use Dufs [1] for setting up a file server on Windows 11. Originally, I was using gohttpserver which is no longer maintained, and Dufs is one of the recommended options on the gohttpserver GitHub [2]. First, we need to install...
+      
+      
+        <a href="http://localhost:8000/2026-04-03-win_fserver/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+      <a href="http://localhost:8000/tags#Windows">Windows</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2026-03-19-n8n_technical/">
+      <h2 class="post-title">Some Technical Notes on n8n setup</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 19, 2026, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      I had some previous posting covering some specific technical notes on the n8n setup [1, 2]. The current post covers the general technical notes on n8n setup, in a laundary list form, meaning that items are not coming in a logical order.
+
+
+      
+      
+        <a href="http://localhost:8000/2026-03-19-n8n_technical/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#LLM">LLM</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2026-03-01-openclaw_install_config/">
+      <h2 class="post-title">OpenClaw Installation & Configuration on Linux</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 1, 2026, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Here in this post, I am noting down the installation and configuration for OpenClaw. First, we follow the installation instructions here and carefully go through each step. Below is presented the whole input/output during my installation, where all the API keys and configuration tokens, etc. are omitted.
+
+
+      
+      
+        <a href="http://localhost:8000/2026-03-01-openclaw_install_config/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#AI">AI</a>
+      
+      <a href="http://localhost:8000/tags#agent">agent</a>
+      
+      <a href="http://localhost:8000/tags#LLM">LLM</a>
+      
+      <a href="http://localhost:8000/tags#Slack">Slack</a>
+      
+      <a href="http://localhost:8000/tags#automation">automation</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2026-01-05-spherical_harmonics_viz/">
+      <h2 class="post-title">Real Spherical Harmonics Visualization</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 5, 2026, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Taking the \(Y_4^3\) function as the example, the full mathematical form of the function is,
+
+
+      
+      
+        <a href="http://localhost:8000/2026-01-05-spherical_harmonics_viz/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#physics">physics</a>
+      
+      <a href="http://localhost:8000/tags#maths">maths</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2026-01-01-goldstone_mode_symmetry/">
+      <h2 class="post-title">Goldstone Mode and Spontaneous Symmetry Broken</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 1, 2026, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2026-01-01-goldstone_mode_symmetry/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#physics">physics</a>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:8000/tags#symmetry">symmetry</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-12-12-wakeup_macos/">
+      <h2 class="post-title">Remotely Wake up MacOS from Sleeping</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 12, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-12-12-wakeup_macos/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+      <a href="http://localhost:8000/tags#netword">netword</a>
+      
+      <a href="http://localhost:8000/tags#remote">remote</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-12-11-preferred_orientation_texture_followup/">
+      <h2 class="post-title">Some Follow-up Notes on Preferred Orientation and Texture</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 11, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      In one of my previous posts, I had some notes about the preferred orientation and texture and the two typical ways to represent them [1]. In this post, I am trying to put down some follow-up notes about the topic, hoping to add some more understanding of the topic.
+
+
+      
+      
+        <a href="http://localhost:8000/2025-12-11-preferred_orientation_texture_followup/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#physics">physics</a>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-12-04-einstein_debye_model/">
+      <h2 class="post-title">Einstein and Debye Model for Specific Heat</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 4, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region. Einstein gave the problem...
+      
+      
+        <a href="http://localhost:8000/2025-12-04-einstein_debye_model/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#physics">physics</a>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-11-30-metropolis_monte_carlo/">
+      <h2 class="post-title">About the Metropolis Monte Carlo Method</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 30, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-11-30-metropolis_monte_carlo/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#maths">maths</a>
+      
+      <a href="http://localhost:8000/tags#statistics">statistics</a>
+      
+      <a href="http://localhost:8000/tags#general">general</a>
+      
+      <a href="http://localhost:8000/tags#physics">physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-11-19-n8n_postgres_embed/">
+      <h2 class="post-title">Set up n8n and postgres for Retrieval Augmented Generation (RAG) using the local vector database</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 19, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2025-11-19-n8n_postgres_embed/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+      <a href="http://localhost:8000/tags#LLM">LLM</a>
+      
+      <a href="http://localhost:8000/tags#database">database</a>
+      
+      <a href="http://localhost:8000/tags#RAG">RAG</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-10-26-bondstr_bvs/">
+      <h2 class="post-title">Bond Valence Energy Landscape Calculation with the BondStr Program in Fullprof Suite</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 26, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-10-26-bondstr_bvs/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#diffraction">diffraction</a>
+      
+      <a href="http://localhost:8000/tags#ion diffusion">ion diffusion</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-10-17-mantid_geometry/">
+      <h2 class="post-title">Instrument Geometry in Mantid Framework</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 17, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-10-17-mantid_geometry/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#diffraction">diffraction</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-08-25-gsasii_scriptable/">
+      <h2 class="post-title">Running GSAS-II Scriptable Refinement</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 25, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. Conveniently, it provides the scriptable interface so that we can perform the refinement in a programming way. This is pretty handy when some batch...
+      
+      
+        <a href="http://localhost:8000/2025-08-25-gsasii_scriptable/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#diffraction">diffraction</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-08-18-cloudcone_setup/">
+      <h2 class="post-title">Set up a Budget VPS on CloudCone</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 18, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-08-18-cloudcone_setup/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#Linux">Linux</a>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+      <a href="http://localhost:8000/tags#vps">vps</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-08-01-gsasii_on_linux/">
+      <h2 class="post-title">Installation of GSAS-II on Linux</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 1, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. Here I am sharing my working pipeline to get GSAS-II working on my Linux machine of Ubuntu distro. FYI, here below is listed my...
+      
+      
+        <a href="http://localhost:8000/2025-08-01-gsasii_on_linux/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#diffraction">diffraction</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-07-11-mac_app_distribution/">
+      <h2 class="post-title">Publish Apps on MacOS</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 11, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-07-11-mac_app_distribution/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#utils">utils</a>
+      
+      <a href="http://localhost:8000/tags#Mac">Mac</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-06-26-remote_connect/">
+      <h2 class="post-title">Technical Notes on Remote Connection with Thinlinc, Windows RDP and SSH</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 26, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-06-26-remote_connect/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#network">network</a>
+      
+      <a href="http://localhost:8000/tags#remote">remote</a>
+      
+      <a href="http://localhost:8000/tags#utils">utils</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-06-15-selection_rule/">
+      <h2 class="post-title">Notes on Selection Rule for Transition between Energy Levels</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 15, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...
+      
+      
+        <a href="http://localhost:8000/2025-06-15-selection_rule/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#Quantum Mechanics">Quantum Mechanics</a>
+      
+      <a href="http://localhost:8000/tags#quantum physics">quantum physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-06-14-windows_in_docker/">
+      <h2 class="post-title">Windows in Docker</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 14, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Yes, now we can run Windows in a docker container. That means we can access the Windows operating system from the web, thanks to the Windows docker image provided in Ref. [1]. Based on the instructions provided in Ref. [1], here follows is my docker compose file to start up...
+      
+      
+        <a href="http://localhost:8000/2025-06-14-windows_in_docker/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-05-20-totp_code_gen/">
+      <h2 class="post-title">Time-Based One-Time Password Generation Programmingly</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on May 20, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+  Today is May-20-2025. In Chinese, the pronunciation of ‘May-20’ is similar to ‘I love you’ so today is usually the day to express the love between boyfriend and girlfriend, wife and husband. Love you! My beloved Xin!
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-05-20-totp_code_gen/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-05-09-nova_dev/">
+      <h2 class="post-title">Local Development Environment Setup for NOVA</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on May 9, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      This post will go over the steps for setting up the local development for nova, which is a frontend interface platform at ORNL that interacts with the backend Galaxy workflow platform.
+
+
+      
+      
+        <a href="http://localhost:8000/2025-05-09-nova_dev/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#ORNL">ORNL</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-04-21-mantid_livered/">
+      <h2 class="post-title">Configure a Local Mantid Live Reduction Service</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 21, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Here in this post, I am writing down notes regarding the configuration of a Mantid live reduction service locally. By ‘locally’, I mean the service can be managed by a local user, instead a system-wise one for which the management would require a sudo privilege. Relevant scripts are stored in...
+      
+      
+        <a href="http://localhost:8000/2025-04-21-mantid_livered/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#data_proc">data_proc</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-04-21-gsasii_dev_new/">
+      <h2 class="post-title">Local Development of GSAS-II -- New Instructions</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 21, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Here in this post, I will put down the instructions for setting up the local developing environment for GSAS-II. See the legacy instructions in my previous post here for the old version of the source codes.
+
+
+      
+      
+        <a href="http://localhost:8000/2025-04-21-gsasii_dev_new/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#diffraction">diffraction</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-03-18-gsasii_dev/">
+      <h2 class="post-title">Local Development of GSAS-II -- Deprecated Instructions</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 18, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. It is possible to grab the source codes of GSAS-II, develop and test it locally. This post covers the steps to set up the...
+      
+      
+        <a href="http://localhost:8000/2025-03-18-gsasii_dev/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#diffraction">diffraction</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-03-16-os_configs/">
+      <h2 class="post-title">Config, Tips and Tricks for Different Operating Systems</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 16, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-03-16-os_configs/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#Windows">Windows</a>
+      
+      <a href="http://localhost:8000/tags#Mac">Mac</a>
+      
+      <a href="http://localhost:8000/tags#Linux">Linux</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-03-16-dify_config/">
+      <h2 class="post-title">Dify Server Maintenance</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 16, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-03-16-dify_config/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#gpt">gpt</a>
+      
+      <a href="http://localhost:8000/tags#LLM">LLM</a>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#docker">docker</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-02-12-abs_geo/">
+      <h2 class="post-title">Sample and Container geometry for absorption correction</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on February 12, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2025-02-12-abs_geo/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#data reduction">data reduction</a>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-01-31-mantid_local_python/">
+      <h2 class="post-title">Use local build of Mantid with Python script</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 31, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2025-01-31-mantid_local_python/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#Mantid">Mantid</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-01-30-1panel_cloudflare/">
+      <h2 class="post-title">Setting up 1panel with Cloudflare</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 30, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2025-01-30-1panel_cloudflare/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-01-28-rmcprofile_dev_env_gen/">
+      <h2 class="post-title">Notes on the development environment setup for RMCProfile</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 28, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2025-01-28-rmcprofile_dev_env_gen/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#RMCProfile">RMCProfile</a>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#rmc">rmc</a>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-01-20-slashdot_block_ads/">
+      <h2 class="post-title">Block the annoying ads on slashdot</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 20, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2025-01-20-slashdot_block_ads/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-01-17-rmcprofile_dev_env_win/">
+      <h2 class="post-title">Development environment setup for RMCProfile on Windows</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 17, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2025-01-17-rmcprofile_dev_env_win/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#RMCProfile">RMCProfile</a>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+      <a href="http://localhost:8000/tags#Windows">Windows</a>
+      
+      <a href="http://localhost:8000/tags#rmc">rmc</a>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2025-01-03-prop_vector/">
+      <h2 class="post-title">Description of Magnetic Structure with Propogation Vector</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 3, 2025, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2025-01-03-prop_vector/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:8000/tags#magnetism">magnetism</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-12-16-superconductivity_summary/">
+      <h2 class="post-title">A brief summary of the early superconductivity development</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 16, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2024-12-16-superconductivity_summary/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:8000/tags#superconductivity">superconductivity</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-11-07-n8n_slack_nocodb/">
+      <h2 class="post-title">Set up workflows for bidirectional connection between NocoDB and Slack</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 7, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2024-11-07-n8n_slack_nocodb/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+      <a href="http://localhost:8000/tags#tutorial">tutorial</a>
+      
+      <a href="http://localhost:8000/tags#Slack">Slack</a>
+      
+      <a href="http://localhost:8000/tags#automation">automation</a>
+      
+      <a href="http://localhost:8000/tags#database">database</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-11-04-n8n_rss_gmail/">
+      <h2 class="post-title">Set up an automated workflow for collecting RSS feeds and send to Gmail</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 4, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2024-11-04-n8n_rss_gmail/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+      <a href="http://localhost:8000/tags#tutorial">tutorial</a>
+      
+      <a href="http://localhost:8000/tags#gmail">gmail</a>
+      
+      <a href="http://localhost:8000/tags#automation">automation</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-11-03-n8n_notion_slack_workflow/">
+      <h2 class="post-title">Set up an automated workflow for Notion & Slack connection with n8n</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 3, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2024-11-03-n8n_notion_slack_workflow/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+      <a href="http://localhost:8000/tags#tutorial">tutorial</a>
+      
+      <a href="http://localhost:8000/tags#Slack">Slack</a>
+      
+      <a href="http://localhost:8000/tags#automation">automation</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-09-03-wordpress_tips/">
+      <h2 class="post-title">Tips on Wordpress Setup</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on September 3, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2024-09-03-wordpress_tips/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-08-30-tof_binning/">
+      <h2 class="post-title">Output of the Reduced Time-of-Flight Powder Diffraction Bragg Data</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 30, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2024-08-30-tof_binning/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#data reduction">data reduction</a>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-08-24-mantid_faq/">
+      <h2 class="post-title">FAQs about Mantid &ndash; Yuanpeng's Collection</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 24, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2024-08-24-mantid_faq/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-08-22-van_hove_func/">
+      <h2 class="post-title">Van Hove Function</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 22, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      The Van Hove function describes the time dependent pair correlation between atoms,
+
+
+      
+      
+        <a href="http://localhost:8000/2024-08-22-van_hove_func/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:8000/tags#total scattering">total scattering</a>
+      
+      <a href="http://localhost:8000/tags#dynamic PDF">dynamic PDF</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-08-19-gitlab_ssh/">
+      <h2 class="post-title">Use SSH key with GitLab</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 19, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2024-08-19-gitlab_ssh/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-08-15-stacking_fault/">
+      <h2 class="post-title">Stacking Faults</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 15, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Close packing means that if assuming hard sphere model for atoms, we would have as much dense packing of those hard spheres as possible. Specifically, this refers to the packing of equal spheres (radius being equal). Normally, we have two types of close packing, the hexagonal close packing (HCP) and...
+      
+      
+        <a href="http://localhost:8000/2024-08-15-stacking_fault/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-08-03-preferred_orientation_texture/">
+      <h2 class="post-title">Preferred Orientation and Texture</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 3, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Normally for a powder sample, we are assuming that we have a uniform distribution of orientation of those small crystalline samples, meaning that we have many small crystalline pieces of the sample and their orientation in space is uniform. As such, in the measured powder diffraction pattern, the peak intensities...
+      
+      
+        <a href="http://localhost:8000/2024-08-03-preferred_orientation_texture/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:8000/tags#diffraction">diffraction</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-07-16-docker_tips/">
+      <h2 class="post-title">Notes and Tips for using Docker</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 16, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2024-07-16-docker_tips/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#docker">docker</a>
+      
+      <a href="http://localhost:8000/tags#dev">dev</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-05-25-dirac_equation/">
+      <h2 class="post-title">Dirac Equation</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on May 25, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Introduction
+
+
+      
+      
+        <a href="http://localhost:8000/2024-05-25-dirac_equation/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#Quantum Mechanics">Quantum Mechanics</a>
+      
+      <a href="http://localhost:8000/tags#Relativity">Relativity</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-03-16-aws_s3_notes/">
+      <h2 class="post-title">Amazon AWS S3 setup</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 16, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Introduction
+
+
+      
+      
+        <a href="http://localhost:8000/2024-03-16-aws_s3_notes/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#cloud">cloud</a>
+      
+      <a href="http://localhost:8000/tags#tutorial">tutorial</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-03-11-vscode_python_debugger/">
+      <h2 class="post-title">Notes on using VSCode</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 11, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      This post is a collection of notes for useful setups, tricks and utilities in VSCode, as one of the popular IDEs in the market, along with
+Sublime Text, Atom, JetBrains, and so many to name.
+
+
+      
+      
+        <a href="http://localhost:8000/2024-03-11-vscode_python_debugger/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#IDE">IDE</a>
+      
+      <a href="http://localhost:8000/tags#software">software</a>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#VSCode">VSCode</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-03-11-mac_mouse_gesture/">
+      <h2 class="post-title">Mouse gesture on Mac</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 11, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      On Windows, we have software like AutoHotkey with which we can define keyboard shortcut for running various actions in a convenient way. With AutoHotkey, we can also define mouse gestures to execute actions quickly. Here in Ref. [1] is provided a zip file containing the AutoHotkey files for some useful...
+      
+      
+        <a href="http://localhost:8000/2024-03-11-mac_mouse_gesture/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#Mac">Mac</a>
+      
+      <a href="http://localhost:8000/tags#software">software</a>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-03-07-flarum_setup/">
+      <h2 class="post-title">Set up a Flarum forum on VPS</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 7, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2024-03-07-flarum_setup/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#docker">docker</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-03-04-latt_params_to_latt_vecs/">
+      <h2 class="post-title">Construct lattice vectors from lattice parameters</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 4, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      In crystallography, quite often we would use the 6 lattice parameters to describe the unit cell, namely, a, b, c, \(\alpha\), \(\beta\) and \(\gamma\). In some cases, we would also need to construct those lattice vectors (\(\vec{a}\), \(\vec{b}\) and \(\vec{c}\)) in Cartesian coordinate system. For example, when we want to...
+      
+      
+        <a href="http://localhost:8000/2024-03-04-latt_params_to_latt_vecs/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-02-25-ps_make_animation/">
+      <h2 class="post-title">Photoshop基于图层生成动画</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on February 25, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      将一系列图片导入到Photoshop里，然后基于图层生成动画，即每一个图层为生成动画的一帧，下面给出的是详细的操作步骤，
+
+
+      
+      
+        <a href="http://localhost:8000/2024-02-25-ps_make_animation/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#design">design</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-02-04-yacy_setup/">
+      <h2 class="post-title">Set up our own search engine with Yacy</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on February 4, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      The fundamental idea of web searching is through web crawling, critical information about the website and the embedded links in the crawled website can be obtained. Based on the crawling results, a ranking algorithm could be applied, based on which one can search the website using keywords. Nowadays, we get...
+      
+      
+        <a href="http://localhost:8000/2024-02-04-yacy_setup/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#search">search</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-01-28-oracle_vps_vol_expand/">
+      <h2 class="post-title">Resize Oracle VPS volume</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 28, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      When setting up Oracle cloud instance, we would give the instance an initial allocation of volume, and later on we might find that the initial volume size is not enough as we install more and more services into our VPS. In such a situation, we may want to expand the...
+      
+      
+        <a href="http://localhost:8000/2024-01-28-oracle_vps_vol_expand/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#VPS">VPS</a>
+      
+      <a href="http://localhost:8000/tags#oracle">oracle</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-01-27-docker_dify/">
+      <h2 class="post-title">Set up Dify server on VPS with docker</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 27, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2024-01-27-docker_dify/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#docker">docker</a>
+      
+      <a href="http://localhost:8000/tags#gpt">gpt</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-01-15-yourls_docker/">
+      <h2 class="post-title">Set up YOURLS on VPS with docker</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 15, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      YOURLS is an URL shortening service [1] and we can deploy a local version of the service to our own VPS. Here, I am using the 1Panel service [2] to set up YOURLS – 1Panel is a web-based Linux system management interface with which we can manage our VPS and...
+      
+      
+        <a href="http://localhost:8000/2024-01-15-yourls_docker/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#docker">docker</a>
+      
+      <a href="http://localhost:8000/tags#yourls">yourls</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2024-01-13-dockerize_addie/">
+      <h2 class="post-title">Dockerize the ADDIE service</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on January 13, 2024, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2024-01-13-dockerize_addie/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#docker">docker</a>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-12-25-vps_docker_services/">
+      <h2 class="post-title">Setting up services on VPS using docker</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 25, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      To set up services on VPS, one could follow the conventional routine to configure the server and set up the services. However, such services would then live natively on the VPS operating system, which is not completely self-contained (e.g., one may need to configure multiple services in the same configuration...
+      
+      
+        <a href="http://localhost:8000/2023-12-25-vps_docker_services/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#docker">docker</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-10-29-findsym/">
+      <h2 class="post-title">Find out symmetry from RMC fitted supercell</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 29, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      In the reverse Monte Carlo (RMC) modeling, there is no constraint of symmetry exerted on the model. Once the initial unit cell is expanded to a supercell, the symmetry constraint will be removed and the model will be purely driven by the data together with some other physical or chemical...
+      
+      
+        <a href="http://localhost:8000/2023-10-29-findsym/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#total scattering">total scattering</a>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-10-12-token_github_anaconda/">
+      <h2 class="post-title">Anaconda token setup for GitHub action</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 12, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Conda package building and deploying (to Anaconda) can be configured in GitHub action so that when a certain action triggers the GitHub action, the conda package will be built and deployed automatically. As part of the setup, the Anaconda token is required in the GitHub settings so that the secure...
+      
+      
+        <a href="http://localhost:8000/2023-10-12-token_github_anaconda/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#package">package</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-10-09-diff_size_strain/">
+      <h2 class="post-title">Size & strain effect and preferred orientation in diffraction</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 9, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Size effect
+
+
+      
+      
+        <a href="http://localhost:8000/2023-10-09-diff_size_strain/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#diffraction">diffraction</a>
+      
+      <a href="http://localhost:8000/tags#theory">theory</a>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-09-10-rustdesk_server/">
+      <h2 class="post-title">Rustdesk server setup</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on September 10, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      There are several available software in the market for remote control, such as Teamviewer (probably the most well-known one), AnyDesk, etc., including the built-in Windows remote control utility (which is actually already very good especially for the use of local network connection). For cross-platform usage, for sure, Teamviewer is probably...
+      
+      
+        <a href="http://localhost:8000/2023-09-10-rustdesk_server/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#software">software</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-09-10-pdf_thermal_bkg/">
+      <h2 class="post-title">Thermal background in pair distrubtion function (PDF)</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on September 10, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      This post discusses the thermal background of a pair distribution function (PDF), taking the paper by K. Page, et al. [1] as the reference and noting down several aspects that are critical for understanding the topic. The paper was originally reporting an alternative way for coping with the incoherent inelastic...
+      
+      
+        <a href="http://localhost:8000/2023-09-10-pdf_thermal_bkg/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#total scattering">total scattering</a>
+      
+      <a href="http://localhost:8000/tags#theory">theory</a>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-09-08-docker_nginx/">
+      <h2 class="post-title">Set up a self-hosted web server on Oracle VPS</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on September 8, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2023-09-08-docker_nginx/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#web">web</a>
+      
+      <a href="http://localhost:8000/tags#VPS">VPS</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-08-11-rmc_papers/">
+      <h2 class="post-title">Typical Science Papers with RMCProfile</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 11, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      This blog lists out several typical research papers with RMCProfile that I myself was involved.
+
+
+      
+      
+        <a href="http://localhost:8000/2023-08-11-rmc_papers/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#RMCProfile">RMCProfile</a>
+      
+      <a href="http://localhost:8000/tags#Research">Research</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-06-11-rmc_lammps/">
+      <h2 class="post-title">RMCProfile + LAMMPS Implementation</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 11, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2023-06-11-rmc_lammps/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#RMCProfile">RMCProfile</a>
+      
+      <a href="http://localhost:8000/tags#LAMMPS">LAMMPS</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-04-15-notes_jbook/">
+      <h2 class="post-title">Notes on using Jupyter book</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 15, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2023-04-15-notes_jbook/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#jupyter">jupyter</a>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-04-14-notes_fdm/">
+      <h2 class="post-title">Notes on difference Fourier map</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 14, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Reversing the transformation from reciprocal space to real space given an experimentally measured diffraction pattern is difficult in practice since the phase information is lost in the experimental diffraction measurement and we are left with only the intensities of the Bragg spots. The Fourier map approach is one of commonly...
+      
+      
+        <a href="http://localhost:8000/2023-04-14-notes_fdm/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-03-14-notes_jekyll_search/">
+      <h2 class="post-title">Notes on implementing search in Jekyll site</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 14, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2023-03-14-notes_jekyll_search/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-03-14-notes_flask_nginx_https/">
+      <h2 class="post-title">Notes Flask+Nginx+HTTPS setup</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 14, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2023-03-14-notes_flask_nginx_https/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-02-22-notes_windterm/">
+      <h2 class="post-title">Notes on setting up WindTerm</h2>
+
+      
+        <h3 class="post-subtitle">
+        A platform integrating both terminal and file explorer
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on February 22, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      This post is about the configuration of the tool WindTerm, which is a quicker and better SSH/Telnet/Serial/Shell/Sftp client for DevOps.
+
+
+      
+      
+        <a href="http://localhost:8000/2023-02-22-notes_windterm/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2023-02-15-notes_mybb/">
+      <h2 class="post-title">Notes on Forum Setup with MyBB</h2>
+
+      
+        <h3 class="post-subtitle">
+        Side notes for the setup along the way of configuration
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on February 15, 2023, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      This post is for putting down some random sites notes as I struggle through the
+process of setting up a forum hosted with MyBB.
+
+
+      
+      
+        <a href="http://localhost:8000/2023-02-15-notes_mybb/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#forum">forum</a>
+      
+      <a href="http://localhost:8000/tags#PHP">PHP</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-12-30-notes_slack_msg/">
+      <h2 class="post-title">Notes on Slack App Setup</h2>
+
+      
+        <h3 class="post-subtitle">
+        Send message to Slack with Python
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 30, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+To set up for sending message to Slack using Python, we can refer to Ref. [1]. Most of the instructions in the reference
+would work out, with several glitches and thus necessary adjustments.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2022-12-30-notes_slack_msg/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#Slack">Slack</a>
+      
+      <a href="http://localhost:8000/tags#Python">Python</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-12-11-notes_total_commander/">
+      <h2 class="post-title">Notes on Total Commander Setups</h2>
+
+      
+        <h3 class="post-subtitle">
+        Tips & Tricks
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 11, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+This post is a collection of notes of tips and tricks for Total Commander setups. This is a software as an alternative
+to the file explorer on Windows. It allows double column management and operations, making life much easier in terms of
+file and directory operations.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2022-12-11-notes_total_commander/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#software">software</a>
+      
+      <a href="http://localhost:8000/tags#Windows">Windows</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-12-11-notes_gsasii/">
+      <h2 class="post-title">Notes on GSAS-II</h2>
+
+      
+        <h3 class="post-subtitle">
+        Tips & Tricks
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 11, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+This post is a collection of notes, tips and tricks for using GSAS-II.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2022-12-11-notes_gsasii/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-11-29-notes_slurm/">
+      <h2 class="post-title">Notes on slurm server setup</h2>
+
+      
+        <h3 class="post-subtitle">
+        Tips & Tricks
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 29, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+This post is a collection of notes of tips and tricks when trying to set up slurm server on Ubuntu 20.04 focal.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2022-11-29-notes_slurm/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#slurm">slurm</a>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-11-26-notes_jupyterhub/">
+      <h2 class="post-title">Notes on Jupyterhub server setup</h2>
+
+      
+        <h3 class="post-subtitle">
+        Tips & Tricks
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 26, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+      
+      
+        <a href="http://localhost:8000/2022-11-26-notes_jupyterhub/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#jupyter">jupyter</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-10-30-twin_paradox/">
+      <h2 class="post-title">Notes on twin paradox</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 30, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+This post is my notes for reading an online article published on Scientific American about resolving the twin paradox purely in the special relativity framework. Refer to Ref. [1, 2] for the original article.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2022-10-30-twin_paradox/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#general physics">general physics</a>
+      
+      <a href="http://localhost:8000/tags#relativity">relativity</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-10-25-notes_mag_IV/">
+      <h2 class="post-title">Notes on magnetism - IV</h2>
+
+      
+        <h3 class="post-subtitle">
+        About stray and demagnetization field
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 25, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+In this post, some basics about the stray and demagnetization field will be covered. The post originates from reading the book by Stöhr – Ref. [1].
+
+
+
+      
+      
+        <a href="http://localhost:8000/2022-10-25-notes_mag_IV/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:8000/tags#magnetism">magnetism</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-10-13-css_javascript_img_effect/">
+      <h2 class="post-title">Image effect in web page</h2>
+
+      
+        <h3 class="post-subtitle">
+        CSS + Javascript for basic image effect in web page
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 13, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+In the index page of current blog, we have a picture shown as below - if we hover the mouse over the image, it will change to another picture and also as we move our mouse, the image will tilt along with the mouse moving.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2022-10-13-css_javascript_img_effect/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-10-09-jekyll_maths/">
+      <h2 class="post-title">Math equation in Jekyll</h2>
+
+      
+        <h3 class="post-subtitle">
+        Notes on inclusion of equation in GitHub pages
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 9, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2022-10-09-jekyll_maths/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+      <a href="http://localhost:8000/tags#jekyll">jekyll</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-10-09-jekyll_code_snippet_copy/">
+      <h2 class="post-title">Copy of code snippet in Jekyll</h2>
+
+      
+        <h3 class="post-subtitle">
+        Notes on inclusion of a button for copy code snippet in GitHub pages
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on October 9, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2022-10-09-jekyll_code_snippet_copy/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+      <a href="http://localhost:8000/tags#jekyll">jekyll</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2022-06-20-iso_subg/">
+      <h2 class="post-title">Notes On Isotropy Subgroup</h2>
+
+      
+        <h3 class="post-subtitle">
+        Key notes for reading the lecture notes by Stokes on isotropy subgroup
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 20, 2022, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Figure. 1. Isotropy subgroup [1].
+
+
+
+      
+      
+        <a href="http://localhost:8000/2022-06-20-iso_subg/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#maths">maths</a>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2021-12-21-owncloud_setup/">
+      <h2 class="post-title">OwnCloud Server Setup</h2>
+
+      
+        <h3 class="post-subtitle">
+        Set up OwnCloud server on Windows with WSL
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 21, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2021-12-21-owncloud_setup/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#server">server</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2021-08-25-nano_rmc/">
+      <h2 class="post-title">Size effect in RMCProfile</h2>
+
+      
+        <h3 class="post-subtitle">
+        Implementation of nano-size effect correction for modeling PDF
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on August 25, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Figure. 1. Simulation box for bulk (left) and nano (right) systems.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2021-08-25-nano_rmc/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#nano">nano</a>
+      
+      <a href="http://localhost:8000/tags#rmc">rmc</a>
+      
+      <a href="http://localhost:8000/tags#theory">theory</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2021-07-09-coh_incoh_sl/">
+      <h2 class="post-title">Derivation of neutron incoherent scattering length</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 9, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Figure. 1. Neutron scattering length table by NIST [1].
+
+
+
+      
+      
+        <a href="http://localhost:8000/2021-07-09-coh_incoh_sl/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:8000/tags#total scattering">total scattering</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2021-07-08-top_physics/">
+      <h2 class="post-title">Notes on topological physics</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 8, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Image reproduced from Ref. [5].
+
+
+
+      
+      
+        <a href="http://localhost:8000/2021-07-08-top_physics/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2021-07-07-ising_sol/">
+      <h2 class="post-title">Notes on Ising model</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 7, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Ernst Ising (Left) and Wilhelm Lenz (Right) - Ising was Lenz’s student and the Ising model was claimed (by Ising himself) to be originated by Lenz but named after Ising.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2021-07-07-ising_sol/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:8000/tags#thermodynamics">thermodynamics</a>
+      
+      <a href="http://localhost:8000/tags#statistical physics">statistical physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2021-06-24-man_jupyter_kernel/">
+      <h2 class="post-title">Management of Jupyter kernels</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 24, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2021-06-24-man_jupyter_kernel/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#software installation">software installation</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2021-05-17-sphinx/">
+      <h2 class="post-title">Intro to Sphinx</h2>
+
+      
+        <h3 class="post-subtitle">
+        Documentation with docstring in Python
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on May 17, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2021-05-17-sphinx/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#python">python</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2021-05-17-jup_kernel/">
+      <h2 class="post-title">Jupyterlab kernel setup</h2>
+
+      
+        <h3 class="post-subtitle">
+        Conda environment to be used as Jupyterlab kernel across users
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on May 17, 2021, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2021-05-17-jup_kernel/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-12-21-notes_mag_III/">
+      <h2 class="post-title">Notes on magnetism - III</h2>
+
+      
+        <h3 class="post-subtitle">
+        Various physical quantities describing magnetic field
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 21, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-12-21-notes_mag_III/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:8000/tags#magnetism">magnetism</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-12-18-spin/">
+      <h2 class="post-title">About electron spin</h2>
+
+      
+        <h3 class="post-subtitle">
+        Why do we have spin half for electrons?
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 18, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Illustration for Stern-Glach experiment [1].
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-12-18-spin/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#quantum physics">quantum physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-12-01-rmc_configure/">
+      <h2 class="post-title">Configure RMCProfile</h2>
+
+      
+        <h3 class="post-subtitle">
+        Some tips for configuring RMCProfile on Unix/Linux system
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 1, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+  Configuration on Linux system
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-12-01-rmc_configure/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#total scattering">total scattering</a>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#data analysis">data analysis</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-11-28-notes_jekyll/">
+      <h2 class="post-title">Notes on Jekyll</h2>
+
+      
+        <h3 class="post-subtitle">
+        building site with Jekyll locally
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 28, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-11-28-notes_jekyll/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-11-22-kde/">
+      <h2 class="post-title">Notes on kernel density estimation</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 22, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      With a collection of data, we may want to extract or estimate the underlying distribution model. For example, we have the collection of house price in a certain area, we want to have an idea about how the house price in that area is distributed. However, without a priori knowledge...
+      
+      
+        <a href="http://localhost:8000/2020-11-22-kde/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#maths">maths</a>
+      
+      <a href="http://localhost:8000/tags#statistics">statistics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-11-20-flask/">
+      <h2 class="post-title">Notes on Flask</h2>
+
+      
+        <h3 class="post-subtitle">
+        Setting up web host with Python Flask
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on November 20, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-11-20-flask/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#web development">web development</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-09-25-rsa/">
+      <h2 class="post-title">Notes on RSA algorithm</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on September 25, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+Image reproduced from Ref. [9].
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-09-25-rsa/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#technical">technical</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-07-27-thermo_2nd/">
+      <h2 class="post-title">为什么不能通过让海水不断降温从而获取无尽的能量？</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 27, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+      
+      
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-07-27-thermo_2nd/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#thermodynamics">thermodynamics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-07-22-temperature/">
+      <h2 class="post-title">Notes On Temperature</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 22, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-07-22-temperature/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#thermodynamics">thermodynamics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-07-06-occ_order/">
+      <h2 class="post-title">Notes on occupational short-range ordering in crystal</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 6, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      When multiple atomic species (including vacancies) coexist on the same crystallographic site, it immediately brings up a question - say, we have species A and B sharing the same site, then do we have clustering of A and B in separate domains, or do we have A and B preferring...
+      
+      
+        <a href="http://localhost:8000/2020-07-06-occ_order/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-07-04-sublime/">
+      <h2 class="post-title">Notes on Sublime Text 3</h2>
+
+      
+        <h3 class="post-subtitle">
+        Key binding configuration issue
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on July 4, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-07-04-sublime/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#IDE">IDE</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-06-28-fourier_transform/">
+      <h2 class="post-title">When Fourier transform meets total scattering</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 28, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-06-28-fourier_transform/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#scattering">scattering</a>
+      
+      <a href="http://localhost:8000/tags#crystallography">crystallography</a>
+      
+      <a href="http://localhost:8000/tags#total scattering">total scattering</a>
+      
+      <a href="http://localhost:8000/tags#maths">maths</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-06-27-conda_build/">
+      <h2 class="post-title">Build package with conda recipe</h2>
+
+      
+        <h3 class="post-subtitle">
+        A minimal working example
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 27, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      There are indeed instructions and tutorials about how to build conda packages (which we can then install easily through conda, e. g. by simply executing ‘conda install …’ from command line) with conda recipe. However, as a beginner to conda build, it was really difficult for myself to find the...
+      
+      
+        <a href="http://localhost:8000/2020-06-27-conda_build/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#python">python</a>
+      
+      <a href="http://localhost:8000/tags#conda">conda</a>
+      
+      <a href="http://localhost:8000/tags#package">package</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-06-26-discus_install/">
+      <h2 class="post-title">Install DISCUS version 6 on Windows 10</h2>
+
+      
+        <h3 class="post-subtitle">
+        Problem & solution
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on June 26, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-06-26-discus_install/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#tool">tool</a>
+      
+      <a href="http://localhost:8000/tags#software installation">software installation</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-04-19-cuda_note_II/">
+      <h2 class="post-title">Notes on CUDA programming II</h2>
+
+      
+        <h3 class="post-subtitle">
+        Matrix multiplication
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 19, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+First of all, we may need a review for the very basic CUDA programming and GPU execution principle. Here, I want to use the diagram below to demonstrate the threadings on GPU with a very simple array addition operation example.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-04-19-cuda_note_II/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#GPU">GPU</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-04-19-cuda_note_I/">
+      <h2 class="post-title">Notes on CUDA programming I</h2>
+
+      
+        <h3 class="post-subtitle">
+        Preparation
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on April 19, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      To understand and implement CUDA codes in practice, the very first step is to understand the allocation of threads on GPU. Fundamentally, threads are basic units on GPU where computation can happen in a parallel way. To the first level, threads are grouped into blocks, either in a 1D, 2D...
+      
+      
+        <a href="http://localhost:8000/2020-04-19-cuda_note_I/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#programming">programming</a>
+      
+      <a href="http://localhost:8000/tags#GPU">GPU</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-03-29-notes_mag_II/">
+      <h2 class="post-title">Notes on magnetism - II</h2>
+
+      
+        <h3 class="post-subtitle">
+        Magnetic ions in crystals
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 29, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      Talking about the magnetism of ions in crystals naturally brings us out of the atomic physics picture which we previously based ourselves in when discussing the free atom and ions (see previous note by clicking me!). Also, for sure we should turn to the many-electron scheme instead of a single-electron...
+      
+      
+        <a href="http://localhost:8000/2020-03-29-notes_mag_II/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:8000/tags#magnetism">magnetism</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-03-18-notes_mag_I/">
+      <h2 class="post-title">Notes on magnetism - I</h2>
+
+      
+        <h3 class="post-subtitle">
+        Magnetism of free atoms and ions
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 18, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+To understand the magnetism of free atoms and ions, we may go through several stages, as follows,
+
+
+Hartree approximation - electrons are treated in a non-interactive manner.
+Beyond Hartree - interaction between electrons is taken into account.
+Spin-orbital coupling.
+Hyperfine interaction - the interaction between electrons and nucleus.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-03-18-notes_mag_I/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#solid state physics">solid state physics</a>
+      
+      <a href="http://localhost:8000/tags#magnetism">magnetism</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2020-03-08-coriolis_force/">
+      <h2 class="post-title">About Coriolis force</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on March 8, 2020, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+First, a comprehensive GIF animation demonstrating the basic ideas of Coriolis force is presented.
+
+
+
+      
+      
+        <a href="http://localhost:8000/2020-03-08-coriolis_force/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#classical physics">classical physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2019-12-10-special_relativity/">
+      <h2 class="post-title">Notes on special relativity</h2>
+
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 10, 2019, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      
+
+
+
+
+
+      
+      
+        <a href="http://localhost:8000/2019-12-10-special_relativity/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#general physics">general physics</a>
+      
+      <a href="http://localhost:8000/tags#relativity">relativity</a>
+      
+    </div>
+    
+   </article>
+  
+  
+	
+  <article class="post-preview">
+    
+
+    
+
+    <a href="http://localhost:8000/2019-12-08-einstein_fridge/">
+      <h2 class="post-title">A silent refrigerator</h2>
+
+      
+        <h3 class="post-subtitle">
+        The working principle of Einstein’s refrigerator
+        </h3>
+      
+    </a>
+
+    <p class="post-meta">
+      
+			Posted on December 8, 2019, by Yuanpeng Zhang
+    </p>
+
+    
+
+    
+    
+
+    <div class="post-entry">
+      
+      All refrigerators running with gas relies on the principle that the evaporation of liquid to its corresponding gas form will take heat from surroundings. After evaporation, the gas should be liquefied back to liquid form to finish the cycle, and of course, the process of liquefaction will emit heat. That’s...
+      
+      
+        <a href="http://localhost:8000/2019-12-08-einstein_fridge/" class="post-read-more">[Read&nbsp;More]</a>
+      
+    </div>
+    
+
+    
+    <div class="blog-tags">
+      <span>Tags:</span>
+      
+      <a href="http://localhost:8000/tags#general physics">general physics</a>
+      
+    </div>
+    
+   </article>
+  
+  
+</div>
+
+
+
+
+      
+
+      
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

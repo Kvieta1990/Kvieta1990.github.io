@@ -1,0 +1,14 @@
+---
+title: Archive
+permalink: /archive/
+layout: page
+sitemap: false
+---
+
+{% if site.posts.size == 0 %}
+<p>
+  No post to archive yet. :(
+</p>
+{% else %}
+  {% include archive.html %}
+{% endif %}
