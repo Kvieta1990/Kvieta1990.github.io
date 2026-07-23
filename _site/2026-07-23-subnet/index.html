@@ -19,13 +19,13 @@
 
   
 
-  <title>Use SSH key with GitLab</title>
+  <title>Explanation About Subnet Mask with Some Simple Examples</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="This post notes down the procedures to go through for setting up the connection to GitLab using SSH key so that we don’t need to bother with the login credentials, which, sometimes can be tedious due to firewall issues, etc. Here, I am using Unix-like OS for demo for the...">
+  <meta name="description" content="If we think of network as a big region in which we have a lot of houses (analogous to devices in the network), subnets are just smaller sub-regions inside the big region. Houses are separated according to those sub-regions, which determines how they can talk to each other. This is...">
 
   
 
@@ -89,8 +89,8 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Use SSH key with GitLab">
-  <meta property="og:description" content="This post notes down the procedures to go through for setting up the connection to GitLab using SSH key so that we don’t need to bother with the login credentials, which, sometimes can be tedious due to firewall issues, etc. Here, I am using Unix-like OS for demo for the...">
+  <meta property="og:title" content="Explanation About Subnet Mask with Some Simple Examples">
+  <meta property="og:description" content="If we think of network as a big region in which we have a lot of houses (analogous to devices in the network), subnets are just smaller sub-regions inside the big region. Houses are separated according to those sub-regions, which determines how they can talk to each other. This is...">
 
   
   <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
@@ -99,9 +99,9 @@
   
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Yuanpeng Zhang">
-  <meta property="og:article:published_time" content="2024-08-19T00:00:00-04:00">
-  <meta property="og:url" content="http://localhost:8000/2024-08-19-gitlab_ssh/">
-  <link rel="canonical" href="http://localhost:8000/2024-08-19-gitlab_ssh/">
+  <meta property="og:article:published_time" content="2026-07-23T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-07-23-subnet/">
+  <link rel="canonical" href="http://localhost:8000/2026-07-23-subnet/">
   
 
   
@@ -110,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Use SSH key with GitLab">
-  <meta property="twitter:description" content="This post notes down the procedures to go through for setting up the connection to GitLab using SSH key so that we don’t need to bother with the login credentials, which, sometimes can be tedious due to firewall issues, etc. Here, I am using Unix-like OS for demo for the...">
+  <meta property="twitter:title" content="Explanation About Subnet Mask with Some Simple Examples">
+  <meta property="twitter:description" content="If we think of network as a big region in which we have a lot of houses (analogous to devices in the network), subnets are just smaller sub-regions inside the big region. Houses are separated according to those sub-regions, which determines how they can talk to each other. This is...">
 
   
   <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
@@ -264,11 +264,11 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>Use SSH key with GitLab</h1>
+						<h1>Explanation About Subnet Mask with Some Simple Examples</h1>
           
 
           
-					<span class="post-meta">Posted on August 19, 2024, by Yuanpeng Zhang</span>
+					<span class="post-meta">Posted on July 23, 2026, by Yuanpeng Zhang</span>
             
             
           
@@ -293,100 +293,91 @@ if (chromeAgent) {
 
       <article role="main" class="blog-post">
         <p align="center">
-<img src="/assets/img/posts/gitlab.png" style="border:none;" width="200" alt="gitlab" title="gitlab" />
+<img src="/assets/img/posts/network.jpg" style="border:none;" width="500" alt="network" title="network" />
 </p>
 
-<p>This post notes down the procedures to go through for setting up the connection to GitLab using SSH key so that we don’t need to bother with the login credentials, which, sometimes can be tedious due to firewall issues, etc. Here, I am using Unix-like OS for demo for the SSH key generation – on Windows, one can use the key generation tool that comes with software like <code class="language-plaintext highlighter-rouge">PuTTy</code>, <code class="language-plaintext highlighter-rouge">MobaXTerm</code>, etc. On a Unix/Linux terminal, execute <code class="language-plaintext highlighter-rouge">ssh-keygen</code> to generate the <code class="language-plaintext highlighter-rouge">rsa</code> key pair and we need to following the prompt to give a name to the generated key file. When asked to enter a passphrase for the key file, we can just press <code class="language-plaintext highlighter-rouge">[Enter]</code> to continue without any input. Assume we put <code class="language-plaintext highlighter-rouge">my_key_file</code> as the key file name, the process above will create two files – <code class="language-plaintext highlighter-rouge">my_key_file</code> and <code class="language-plaintext highlighter-rouge">my_key_file.pub</code> – the former one is the private key, which we want to keep to ourselves, and the latter one is the public key which we can post to the machine that we want to connect to.</p>
+<p>If we think of network as a big region in which we have a lot of houses (analogous to devices in the network), subnets are just smaller sub-regions inside the big region. Houses are separated according to those sub-regions, which determines how they can talk to each other. This is the basic idea of subnet. Given two IP addresses, we want to first deterime whether they belong to the same subnet before worrying about the communication between them. It is like posting service in our daily life – given two house addresses and a letter that we want to send from house A to house B, we may need to first check the two addresses and figure out whether they are actually in the same neighborhood by checking the city, ZIP code, and street name, etc. If they do belong the same neighborhood, the communication is straightforward and if not, we need to go through post offices. The situation for sure can become more complicated – for example, we may want to mail a letter from our house to another location in another country, in which case the whole communication chain will become way more complicated. However, down to the very first step, still we need to check whether the two given addresses or IP addresses belong to the same neighborhood or subnet, anyhow. This is where the subnet mask comes to help and in this post, I will be writing down my understanding of how the subnet mask works with several simple examples and I hope the idea can be delivered clearly.</p>
 
-<p><br /></p>
+<p>First, let’s start with the simplest example – the subnet mask of <code class="language-plaintext highlighter-rouge">255.255.255.0</code>, which, in the <code class="language-plaintext highlighter-rouge">CIDR (Classless Inter-Domain Routing)</code> [1], is written as <code class="language-plaintext highlighter-rouge">/24</code>, inferring that the first 24 bits of the IP address is used for the network address. Here, it should be mentioned that for a given IP address, we can figure out its network part and the actual address part. The network part tells which subnet that the IP address belongs to and the actual address part is attached to devices and used for telling the address of the device in the subnet network. The subnet mask is just used for figuring out the network part from the IP address. The reason why <code class="language-plaintext highlighter-rouge">/24</code> is used for naming the subnet mask is because in its binary form, the subnet mask example given here can be written as,</p>
 
-<p>In this case, we want to post the public key to our GitLab server so that we can use our private key to establish the secure connection to the GitLab server. To do this, we first go to the GitLab server via the web browser, e.g., <a href="https://code.ornl.gov">https://code.ornl.gov</a>. Once logged in, we can click on our avatar icon as shown below,</p>
-
-<p align="center">
-<img src="/assets/img/posts/gitlab_ssh_step1.png" style="border:none;" width="600" alt="gitlab_ssh_step1" title="gitlab_ssh_step1" />
-</p>
-
-<p>to bring up the profile setting menu, followed by clicking on the <code class="language-plaintext highlighter-rouge">Preferences</code> as shown below,</p>
-
-<p align="center">
-<img src="/assets/img/posts/gitlab_ssh_step2.png" style="border:none;" width="600" alt="gitlab_ssh_step2" title="gitlab_ssh_step2" />
-</p>
-
-<p>Then in the left-side menu, we click on the <code class="language-plaintext highlighter-rouge">SSH Keys</code> item, as shown below,</p>
-
-<p align="center">
-<img src="/assets/img/posts/gitlab_ssh_step3.png" style="border:none;" width="600" alt="gitlab_ssh_step3" title="gitlab_ssh_step3" />
-</p>
-
-<p>which will bring us with the <code class="language-plaintext highlighter-rouge">SSH Keys</code> interface,</p>
-
-<p align="center">
-<img src="/assets/img/posts/gitlab_ssh_step4.png" style="border:none;" width="1000" alt="gitlab_ssh_step4" title="gitlab_ssh_step4" />
-</p>
-
-<p>There, we click on the <code class="language-plaintext highlighter-rouge">Add new key</code> button as shown in the picture above. Then we paste the contents of the <code class="language-plaintext highlighter-rouge">my_key_file.pub</code> file that was generated previously, into the <code class="language-plaintext highlighter-rouge">Key</code> box as shown below,</p>
-
-<p align="center">
-<img src="/assets/img/posts/gitlab_ssh_step5.png" style="border:none;" width="1000" alt="gitlab_ssh_step5" title="gitlab_ssh_step5" />
-</p>
-
-<p>Then we give it a title, assign the usage type (e.g., <code class="language-plaintext highlighter-rouge">Authentication</code>) and give it a suitable expiration date, followed by clicking on the <code class="language-plaintext highlighter-rouge">Add key</code> button at the bottom so that our public key will be added to the GitLab server.</p>
-
-<p><br /></p>
-
-<p>Next, we go to the repository that we want to work with, from the web browser, and we want to find out the SSH connection address for the repo – we can find the address by clicking on the <code class="language-plaintext highlighter-rouge">Code</code> dropdown menu in our repo as shown below,</p>
-
-<p align="center">
-<img src="/assets/img/posts/gitlab_ssh_step6.png" style="border:none;" width="1000" alt="gitlab_ssh_step6" title="gitlab_ssh_step6" />
-</p>
-
-<p>Copy the address and we will use it together with the SSH key we set up earlier to establish the secure connection. In my case, the full copied address is, <code class="language-plaintext highlighter-rouge">git@code.ornl.gov:general/tsitc.git</code> and I will use this as an example for next step of demo. Next, we go to the terminal on our local machine, and we want to edit the <code class="language-plaintext highlighter-rouge">~/.ssh/config</code> file (<code class="language-plaintext highlighter-rouge">~</code> on Unix/Linux terminal represents the user home directory) to put in the following contents,</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host ornlgit
-    HostName code.ornl.gov
-    User git
-    IdentityFile ~/.ssh/my_key_file
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>11111111.11111111.11111111.00000000
 </code></pre></div></div>
 
-<p>where <code class="language-plaintext highlighter-rouge">ornlgit</code> is an arbitrarily unique name that we assign to the GitLab server. The <code class="language-plaintext highlighter-rouge">User</code> has to be literally <code class="language-plaintext highlighter-rouge">git</code>, and the identity file refers to the private key file that we generated earlier.</p>
+<p>in which all the first three parts, i.e., <code class="language-plaintext highlighter-rouge">11111111.11111111.11111111</code>, are used for labeling the network address (we will see what this means soon) and in total there are <code class="language-plaintext highlighter-rouge">24</code> bits there (why we need the <code class="language-plaintext highlighter-rouge">/</code> there will also become clear soon). Let’s assume two IP addresses <code class="language-plaintext highlighter-rouge">192.168.2.11</code> and <code class="language-plaintext highlighter-rouge">192.168.2.111</code> and try to apply the subnet mask to both and see what we get. What we mean by ‘apply’ here is we are going to perform the bit-by-bit <code class="language-plaintext highlighter-rouge">AND</code> operation. Specifically, we first write both the subnet mask and the IP address in their binary form,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>255.255.255.0 =&gt; 11111111.11111111.11111111.00000000
+192.168.2.11 =&gt; 11000000.10101000.00000010.00001011
+</code></pre></div></div>
+
+<p>Operating the two with the bit-by-bit AND operation yields (<code class="language-plaintext highlighter-rouge">1 AND 1 = 1</code>, <code class="language-plaintext highlighter-rouge">1 AND 0 = 0</code>, <code class="language-plaintext highlighter-rouge">0 AND 1 = 0</code>, <code class="language-plaintext highlighter-rouge">0 AND 0 = 0</code>),</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>11000000.10101000.00000010.00000000 = 192.168.2.0
+</code></pre></div></div>
+
+<p>With the same approach, we apply the subnet mask to the other IP address, yielding,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>11000000.10101000.00000010.00000000 = 192.168.2.0
+</code></pre></div></div>
+
+<p>Then we can clearly see that by applying the subnet mask to both, we arrive at the same result <code class="language-plaintext highlighter-rouge">192.168.2.0</code>. In fact, we can pick up any IP addresses that fall into the range <code class="language-plaintext highlighter-rouge">192.168.2.0 - 192.168.2.255</code> and apply the subnet mask here, and we will always get back the same result <code class="language-plaintext highlighter-rouge">192.168.2.0</code>. Then we know why and how the subnet mask is useful – it gives us a way to figure out whether IP addresses belong to the same subnet. We simply apply the subnet mask to any IP addresses we want to check following exactly the way as described here, and we check the resulted address and compare across. If the resulted addresses are the same, they belong to the same subnet, and vice versa. The resulted address, e.g., <code class="language-plaintext highlighter-rouge">192.168.2.0</code> here in the example, is the network address. Further, since the address <code class="language-plaintext highlighter-rouge">192.168.2.0</code> will be used to label the subnet, this specific address will then not be used for devices in the IP address block. Also, the last IP address <code class="language-plaintext highlighter-rouge">192.168.2.255</code> is usually reserved for broadcasting purposes. Therefore, IP addresses ranging from <code class="language-plaintext highlighter-rouge">192.168.2.1</code> to <code class="language-plaintext highlighter-rouge">192.168.2.254</code> in this block can be assigned to devices, and again, all those addresses in this range belong to the network <code class="language-plaintext highlighter-rouge">192.168.2.0</code>.</p>
+
+<p>Having all the explanations here, we can understand why usually the subnet is written as something like <code class="language-plaintext highlighter-rouge">192.168.2.0/24</code> – the first part <code class="language-plaintext highlighter-rouge">192.168.2.0</code> is just the network address and the <code class="language-plaintext highlighter-rouge">/24</code> refers to the subnet mask and now we see why <code class="language-plaintext highlighter-rouge">/</code> is being used in <code class="language-plaintext highlighter-rouge">/24</code> mentioned earlier – it is simply just a separator in the notation like <code class="language-plaintext highlighter-rouge">192.168.2.0/24</code> and when we separate out the subnet maks part, we keep the separator for the sake of clarity. Such a notation is called CIDR notation [1].</p>
+
+<p>Let’s now take a bit more complicated subnet mask, <code class="language-plaintext highlighter-rouge">255.255.252.0</code>,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>255.255.252.0 = 11111111.11111111.11111100.00000000
+</code></pre></div></div>
+
+<p>First, with such a subnet mask, the first 22 bits (corresponding to the number of those <code class="language-plaintext highlighter-rouge">1</code>’s in the subnet mask) of an IP address will always be used for the network address. The reason is that values in the first 22 bits of the IP address will be kept as is, with the binary AND operations, and therefore, if two IP addresses are different in the first 22 bits, we know that the resulted network address will be different between them. Accordingly, they just belong to different subnets. By comparison, the last 10 bits will not be used for the network address since no matter how different two IP addresses are in those 10 bits, the binary AND operation will always zero them out anyhow, resulting exactly the same last 10 bits of the address. The subnet with the mask <code class="language-plaintext highlighter-rouge">255.255.252.0</code> is accordingly named as <code class="language-plaintext highlighter-rouge">/22</code>.</p>
+
+<p>Now let’s take some specific IP addresses to see how this works out. The first two parts of the IP address is trivial – any different values will label different subnets and we can just pick the same as above, <code class="language-plaintext highlighter-rouge">192.168</code>. For the third part, it is a bit different from the simple <code class="language-plaintext highlighter-rouge">/24</code> example above – in this case, we know that the last two bits in the third part will not be used for labeling the network address. Accordingly, the first subnet block starts from <code class="language-plaintext highlighter-rouge">192.168.0.0</code> and stops at <code class="language-plaintext highlighter-rouge">192.168.3.255</code>. Why? Let’s write down its binary form,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>192.168.0.0 = 192.168.00000000.00000000
+192.168.3.255 = 192.168.00000011.11111111
+</code></pre></div></div>
 
 <p><br /></p>
 
-<p>Once the preparation work is all done, suppose that we want to clone my example repository mentioned above, we want to do this on terminal,</p>
+<blockquote>
+  <p>Here I only write down the last two parts in their binary form for the sake of simplicity.</p>
+</blockquote>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone ornlgit:general/tsitc.git
+<p>The next block then starts from <code class="language-plaintext highlighter-rouge">192.168.4.0</code>,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>192.168.4.0 = 192.168.00000100.00000000
 </code></pre></div></div>
 
-<p>where we have replaced <code class="language-plaintext highlighter-rouge">git@code.ornl.gov</code> in the originally copied address with the unique name <code class="language-plaintext highlighter-rouge">ornlgit</code> that we assigned to the GitLab server in our local SSH configuration file. From now on, we should be able to use git within the checked out repo without the need to worry about login, etc., as the connection has already been established in a secure way using the SSH key.</p>
+<p>and it can all the way to <code class="language-plaintext highlighter-rouge">192.168.7.255</code>,</p>
 
-<style>
-.callout {
-    margin: 20px 0;
-    padding: 15px 20px;
-    background-color: #e8f4fd; /* Light blue background */
-    border-left: 5px solid #007BFF; /* Blue accent on the left */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-    font-family: Arial, sans-serif; /* Ensuring the font is consistent */
-}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>192.168.7.255 = 192.168.00000111.11111111
+</code></pre></div></div>
 
-.callout-header {
-    margin: 0 0 10px 0;
-    font-size: 18px;
-    font-weight: bold;
-    color: #007bff; /* Matching the blue accent */
-}
+<p>Again, for each block, the first address is reserved for the network address and the last one is reserved for broadcasting purposes. Therefore, the IP addresses that can be assigned to devices for the first two blocks are, <code class="language-plaintext highlighter-rouge">192.168.0.1 - 192.168.3.254</code> and <code class="language-plaintext highlighter-rouge">192.168.4.1 - 192.168.7.254</code>, respectively. To confirm, we can grab an arbitrary IP address falling in the range and check its network address. For example, let’s take <code class="language-plaintext highlighter-rouge">192.168.7.55</code> and write down its binary form,</p>
 
-.callout-content {
-    margin-top: 10px;
-    line-height: 1.6; /* Improving readability */
-}
-</style>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>11000000.10101000.00000111.00110111
+</code></pre></div></div>
 
-<p class="callout">
-<a style="color:#007bff;font-weight:bold;font-size:18px;margin-bottom:5px">For Windows</a>
-<br />
-On Windows, we need to use the <code class="language-plaintext highlighter-rouge">git</code> terminal – if we follow the instruction <a href="https://git-scm.com/download/win">here</a> to install the Windows version of <code class="language-plaintext highlighter-rouge">git</code>, we will have access to the <code class="language-plaintext highlighter-rouge">git</code> terminal. Inside the <code class="language-plaintext highlighter-rouge">git</code> terminal, we can edit the <code class="language-plaintext highlighter-rouge">~/.ssh/config</code> file to put in the host configuration mentioned above just like what we would do on a Unix/Linux machine. Using <code class="language-plaintext highlighter-rouge">git</code> through Windows terminal like <code class="language-plaintext highlighter-rouge">powershell</code> or <code class="language-plaintext highlighter-rouge">CMD</code> will probably work with the SSH key, but I am not sure how for the moment and will leave it for further exploration.
-</p>
+<p>Applying the subnet mask, we have the result of the binary AND operation as,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>11000000.10101000.00000100.00000000 = 192.168.4.0
+</code></pre></div></div>
+
+<p>Taking another IP address in the range, e.g., <code class="language-plaintext highlighter-rouge">192.168.4.1</code> and perform the same operation, we will also get back the network address of <code class="language-plaintext highlighter-rouge">192.168.4.0</code> and then we know the two IP addresses <code class="language-plaintext highlighter-rouge">192.168.4.1</code> and <code class="language-plaintext highlighter-rouge">192.168.7.55</code> belong to the same subnet, with the networks address of <code class="language-plaintext highlighter-rouge">192.168.4.0</code>.</p>
+
+<p>To continue, the third block of subnet will be the network,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>192.168.00001000.00000000
+</code></pre></div></div>
+
+<p>One may wonder that now we have the last 11 bits that be of any values and therefore this block size will be much larger, i.e., \(2^{11}\) &gt; \(2^{10}\), as compared to the previous two blocks we have been discussing. However, don’t forget that we are now worrying about only the third block and therefore ‘x’ in the third part ‘00001x00’ can only be ‘0’ since otherwise ‘00001100’ will bring us to the fourth block <code class="language-plaintext highlighter-rouge">192.168.12.0</code>. Keeping this in mind, the logic will then be exactly the same as above for the first two blocks – IP addresses belonging to the third block will go from <code class="language-plaintext highlighter-rouge">192.168.00001000.00000000</code> to <code class="language-plaintext highlighter-rouge">192.168.00001011.11111111</code>, i.e., from <code class="language-plaintext highlighter-rouge">192.168.8.0</code> to <code class="language-plaintext highlighter-rouge">192.168.11.255</code>. Accordingly, the usable IP addresses for devices go from <code class="language-plaintext highlighter-rouge">192.168.8.1</code> to <code class="language-plaintext highlighter-rouge">192.168.11.254</code>.</p>
+
+<p>From the three blocks above, we can see that no matter for which one, the block size is the same, \(2^{10} = 1024\), corresponding to all possible values for any of the last 10 bits in the IP address. By comparison, the block size of the <code class="language-plaintext highlighter-rouge">/24</code> subnet is much smaller, \(2^{8} = 256\).</p>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing</a></p>
 
       </article>
 
@@ -394,9 +385,7 @@ On Windows, we need to use the <code class="language-plaintext highlighter-rouge
         <div class="blog-tags">
           <span>Tags:</span>
           
-            <a href="/tags#programming">programming</a>
-          
-            <a href="/tags#tool">tool</a>
+            <a href="/tags#network">network</a>
           
         </div>
       
@@ -413,7 +402,7 @@ On Windows, we need to use the <code class="language-plaintext highlighter-rouge
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Use+SSH+key+with+GitLab&url=http%3A%2F%2Flocalhost%3A8000%2F2024-08-19-gitlab_ssh%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Explanation+About+Subnet+Mask+with+Some+Simple+Examples&url=http%3A%2F%2Flocalhost%3A8000%2F2026-07-23-subnet%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -421,7 +410,7 @@ On Windows, we need to use the <code class="language-plaintext highlighter-rouge
   
 
   
-    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2024-08-19-gitlab_ssh%2F"
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-07-23-subnet%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -429,7 +418,7 @@ On Windows, we need to use the <code class="language-plaintext highlighter-rouge
   
 
   
-    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2024-08-19-gitlab_ssh%2F"
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-07-23-subnet%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -447,13 +436,9 @@ On Windows, we need to use the <code class="language-plaintext highlighter-rouge
       <ul class="pagination blog-pager">
         
         <li class="page-item previous">
-          <a class="page-link" href="/2024-08-15-stacking_fault/" data-toggle="tooltip" data-placement="top" title="Stacking Faults">&larr; Previous Post</a>
+          <a class="page-link" href="/2026-04-05-strand_agent/" data-toggle="tooltip" data-placement="top" title="Strands Agent Episode-1 — Setup">&larr; Previous Post</a>
         </li>
         
-        
-        <li class="page-item next">
-          <a class="page-link" href="/2024-08-22-van_hove_func/" data-toggle="tooltip" data-placement="top" title="Van Hove Function">Next Post &rarr;</a>
-        </li>
         
       </ul>
       
