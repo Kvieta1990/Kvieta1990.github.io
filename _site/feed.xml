@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>About Gradient Update for the Cross Entropy Loss</title>
+        <description>
+          
+          Image generated with Gemini with the prompt ‘robot with intuition for loss function’ (here I am using exactly the same prompt as presented in a reference post about cross entropy loss. [1]). Cross entropy loss is a commonly used loss function for classification problems with neural network. A nice and...
+        </description>
+        <pubDate>Wed, 29 Jul 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-07-29-cross_entropy_loss_gradient/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-07-29-cross_entropy_loss_gradient/</guid>
+      </item>
+    
+      <item>
         <title>Explanation About Subnet Mask with Some Simple Examples</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Mon, 16 Dec 2024 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2024-12-16-superconductivity_summary/</link>
         <guid isPermaLink="true">http://localhost:8000/2024-12-16-superconductivity_summary/</guid>
-      </item>
-    
-      <item>
-        <title>Tips on Wordpress Setup</title>
-        <description>
-          
-          Wordpress is commonly used framework for setting up website without directly and heavily working with HTML or CSS. Here in this blog, I will note down tips for using Wordpress – it keeps record of my problem solving along the way so the whole blog does not come in a...
-        </description>
-        <pubDate>Tue, 03 Sep 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2024-09-03-wordpress_tips/</link>
-        <guid isPermaLink="true">http://localhost:8000/2024-09-03-wordpress_tips/</guid>
       </item>
     
   </channel>
