@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Configuration Uniqueness in Reverse Monte Carlo Modeling and Potential Solution with Kullback-Liebler Divergence</title>
+        <description>
+          
+          In Reverse Monte Carlo modeling, when the data are not providing strong enough constraint towards the fitting target, potentially we would be having the overfitting problem. The fitting may converge to a state simply because the state entropy is high, i.e., the landscape of the configuration space is very flat...
+        </description>
+        <pubDate>Thu, 30 Jul 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-07-30-rmc_sol_uniqueness/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-07-30-rmc_sol_uniqueness/</guid>
+      </item>
+    
+      <item>
         <title>About Gradient Update for the Cross Entropy Loss</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Fri, 03 Jan 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2025-01-03-prop_vector/</link>
         <guid isPermaLink="true">http://localhost:8000/2025-01-03-prop_vector/</guid>
-      </item>
-    
-      <item>
-        <title>A brief summary of the early superconductivity development</title>
-        <description>
-          
-          The diagram below is maded out of the nice article in Ref. [1] by Prof. C. Slichter, summarizing the history of the early development of superconductivity. It goes over the discovery of superconducting phenomenon, the early efforts in revealing the reason why such a peculiar phenomenon could ever happen, the...
-        </description>
-        <pubDate>Mon, 16 Dec 2024 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2024-12-16-superconductivity_summary/</link>
-        <guid isPermaLink="true">http://localhost:8000/2024-12-16-superconductivity_summary/</guid>
       </item>
     
   </channel>

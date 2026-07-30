@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Configuration Uniqueness in Reverse Monte Carlo Modeling and Potential Solution with Kullback-Liebler Divergence</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="In Reverse Monte Carlo modeling, when the data are not providing strong enough constraint towards the fitting target, potentially we would be having the overfitting problem. The fitting may converge to a state simply because the state entropy is high, i.e., the landscape of the configuration space is very flat...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Configuration Uniqueness in Reverse Monte Carlo Modeling and Potential Solution with Kullback-Liebler Divergence">
+  <meta property="og:description" content="In Reverse Monte Carlo modeling, when the data are not providing strong enough constraint towards the fitting target, potentially we would be having the overfitting problem. The fitting may converge to a state simply because the state entropy is high, i.e., the landscape of the configuration space is very flat...">
 
   
   <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:8000/archive/2026/07/">
-  <link rel="canonical" href="http://localhost:8000/archive/2026/07/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-07-30T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-07-30-rmc_sol_uniqueness/">
+  <link rel="canonical" href="http://localhost:8000/2026-07-30-rmc_sol_uniqueness/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Configuration Uniqueness in Reverse Monte Carlo Modeling and Potential Solution with Kullback-Liebler Divergence">
+  <meta property="twitter:description" content="In Reverse Monte Carlo modeling, when the data are not providing strong enough constraint towards the fitting target, potentially we would be having the overfitting problem. The fitting may converge to a state simply because the state entropy is high, i.e., the landscape of the configuration space is very flat...">
 
   
   <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
@@ -261,10 +263,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Configuration Uniqueness in Reverse Monte Carlo Modeling and Potential Solution with Kullback-Liebler Divergence</h1>
           
 
+          
+					<span class="post-meta">Posted on July 30, 2026, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -277,395 +283,140 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
-
-<div class="intro-header"></div>
-
-<div role="main" class=" container-md ">
-  
-
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>July, 2026</em></h2>
-  </header>
-
-  
-  <article class="post-content">
-    <ol>
       
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2026-07-30-rmc_sol_uniqueness/"><h3 class="post-title mb0">Configuration Uniqueness in Reverse Monte Carlo Modeling and Potential Solution with Kullback-Liebler Divergence</h3></a>
-					<p class="post-meta small">July 30, 2026, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#scattering">scattering</a>
-  
-    <a href="/tags#RMC">RMC</a>
-  
-</p>
 
-          </div>
+      
+
+      <article role="main" class="blog-post">
+        <p>In Reverse Monte Carlo modeling, when the data are not providing strong enough constraint towards the fitting target, potentially we would be having the overfitting problem. The fitting may converge to a state simply because the state entropy is high, i.e., the landscape of the configuration space is very flat regarding the agreement with the experimental data. Though, it should always be kept in mind that what our target is for the fitting — it is the actual degree of freedom that we are interested in (or based on which we draw some critical conclusions) that is our fitting target. It is NOT the whole configuration at all, unless we are interested in the position of every single atom in the supercell, which is never the case.</p>
+
+<p>There are multiple ways to help solve the uniqueness problem, e.g., by adding in the energy constraint so that the configuration space degeneracy can be lowered, helping the configuration to converge to more real/stable minima. Introducing some prior to lead the fitting is another alternative solution, based on the reverse Kullback-Leibler (KL) divergence,</p>
+
+\[D_{KL}(\rho||\rho^0) = \sum\rho\,log\bigg(\frac{\rho}{\rho^0}\bigg)\]
+
+<p>where \(\rho\) and \(\rho^0\) refers to the density distribution of the fitted configuration and a prior distribution, respectively. Here, the distribution may refer to the atoms distribution around the average positions. When adding such a term to the overall \(\chi^2\) to guide the model, we are actually penalizing configurations that steps far off from the prior distribution, thus regulating the atoms to only move when they have to (to fit the data).</p>
+
+<p>Such an approach is relevant to the KL divergence but they are not actually the same thing. The normal KL divergence is defined as follows,</p>
+
+\[D_{KL}(P||Q)=\sum P\,log\bigg(\frac{P}{Q}\bigg)\]
+
+<p>where \(P\) is the true probability distribution and \(Q\) is the model distribution. The KL divergence here can be interpreted as <code class="language-plaintext highlighter-rouge">information waste</code> and here follows come some explanations. First, the summation goes over possibilities that the distribution is describing. For example, we have 26 letters from ‘a’ to ‘z’ and each of them has a certain show-up probability in a certain context — the true distribution \(P\) may say ‘a’ shows up with the probability of 0.5 while our model \(Q\) may say ‘a’ will show up with the probability of 0.1. When we have an event with a low probability of happening, we can imagine that we would need more information bits to describe the event — for example, a two-side coin needs 0 and 1 to describe all the possible events with each happening with the probability of 50%; a 6-side dice would then need 3 bits (000, 001, etc.) to cover all the possibilities where each of the possibilities has a probability of 16.666…% to happen. In general, we may have,</p>
+
+\[\text{Bits needed} = -log_2P(x)\]
+
+<p>Here we are taking \(2\) as the base, which does not have to be case at all since anyhow the absolute magnitude of the formulation does not matter that much. So, our model then says the bits needed is,</p>
+
+\[\text{Bits needed said by model} = -log_2Q(x)\]
+
+<p>Therefore, we see by having the model to estimate the true distribution, we are wasting some bits of information by,</p>
+
+\[[-log_2Q(x)] - [-log_2P(x)] = log_2\bigg[\frac{P(x)}{Q(x)}\bigg]\]
+
+<p>from which we can give the defined KL divergence,</p>
+
+\[D_{KL}(P||Q)=\sum P(x)\,log\bigg[\frac{P(x)}{Q(x)}\bigg]\]
+
+<p>where the base of \(2\) is replaced by the base of \(e\). Also, the summation term in the KL divergence definition has a multiplicative term \(P(x)\), inferring that the KL divergence is calculating the <code class="language-plaintext highlighter-rouge">expected information loss</code>.</p>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#scattering">scattering</a>
+          
+            <a href="/tags#RMC">RMC</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Configuration+Uniqueness+in+Reverse+Monte+Carlo+Modeling+and+Potential+Solution+with+Kullback-Liebler+Divergence&url=http%3A%2F%2Flocalhost%3A8000%2F2026-07-30-rmc_sol_uniqueness%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-07-30-rmc_sol_uniqueness%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-07-30-rmc_sol_uniqueness%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-07-29-cross_entropy_loss_gradient/" data-toggle="tooltip" data-placement="top" title="About Gradient Update for the Cross Entropy Loss">&larr; Previous Post</a>
         </li>
         
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2026-07-29-cross_entropy_loss_gradient/"><h3 class="post-title mb0">About Gradient Update for the Cross Entropy Loss</h3></a>
-					<p class="post-meta small">July 29, 2026, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#machine learning">machine learning</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2026-07-23-subnet/"><h3 class="post-title mb0">Explanation About Subnet Mask with Some Simple Examples</h3></a>
-					<p class="post-meta small">July 23, 2026, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#network">network</a>
-  
-</p>
-
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
         
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-  
+    </div>
+  </div>
 </div>
 
 
