@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Markov Chain Monte Carlo -- An Introduction</title>
+        <description>
+          
+          This post is written by both AI and myself in a ‘collaborative’ way. I was learning through the sampling technique with Claude AI and was asking quite a lot questions back and forth, trying to understand each of the pieces clearly. After that, I asked Claude AI to summarize the...
+        </description>
+        <pubDate>Fri, 31 Jul 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-07-31-markov_chain_monte_carlo/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-07-31-markov_chain_monte_carlo/</guid>
+      </item>
+    
+      <item>
         <title>Configuration Uniqueness in Reverse Monte Carlo Modeling and Potential Solution with Kullback-Liebler Divergence</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Fri, 17 Jan 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2025-01-17-rmcprofile_dev_env_win/</link>
         <guid isPermaLink="true">http://localhost:8000/2025-01-17-rmcprofile_dev_env_win/</guid>
-      </item>
-    
-      <item>
-        <title>Description of Magnetic Structure with Propogation Vector</title>
-        <description>
-          
-          The magnetic structure sits on top of the nucleus structure and in general, the periodicity of the magnetic structure can be different from that of the nucleus structure. However, the periodicity of the two is indeed related and usually we treat the magnetic structure as a modulation of the nucleus...
-        </description>
-        <pubDate>Fri, 03 Jan 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-01-03-prop_vector/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-01-03-prop_vector/</guid>
       </item>
     
   </channel>

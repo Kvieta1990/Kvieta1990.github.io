@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Markov Chain Monte Carlo -- An Introduction</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="This post is written by both AI and myself in a ‘collaborative’ way. I was learning through the sampling technique with Claude AI and was asking quite a lot questions back and forth, trying to understand each of the pieces clearly. After that, I asked Claude AI to summarize the...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Markov Chain Monte Carlo -- An Introduction">
+  <meta property="og:description" content="This post is written by both AI and myself in a ‘collaborative’ way. I was learning through the sampling technique with Claude AI and was asking quite a lot questions back and forth, trying to understand each of the pieces clearly. After that, I asked Claude AI to summarize the...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-07-31T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-07-31-markov_chain_monte_carlo/">
+  <link rel="canonical" href="http://localhost:8000/2026-07-31-markov_chain_monte_carlo/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Markov Chain Monte Carlo -- An Introduction">
+  <meta property="twitter:description" content="This post is written by both AI and myself in a ‘collaborative’ way. I was learning through the sampling technique with Claude AI and was asking quite a lot questions back and forth, trying to understand each of the pieces clearly. After that, I asked Claude AI to summarize the...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Markov Chain Monte Carlo -- An Introduction</h1>
+          
+
+          
+					<span class="post-meta">Posted on July 31, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>This post is written by both AI and myself in a ‘collaborative’ way. I was learning through the sampling technique with Claude AI and was asking quite a lot questions back and forth, trying to understand each of the pieces clearly. After that, I asked Claude AI to summarize the conversation in an introductory material format and I gave it detailed insturctions and logic about how to compose the story flow. Then finally I was reading through the material, making corrections that I feel necessary and noting down my understanding of certain aspects as side notes.</p>
+
+<h2 id="1-the-basic-markov-chain-monte-carlo-algorithm">1. The Basic Markov Chain Monte Carlo Algorithm</h2>
+
+<p>Markov Chain Monte Carlo (MCMC) is a method for drawing samples from a target distribution \(p(x)\) that may be difficult to sample from directly. The method constructs a sequence of samples \(x_0, x_1, x_2, \dots\) using a transition rule \(x_{t+1} \sim T(x_{t+1} \mid x_t)\), designed so that the distribution of \(x_t\) converges to \(p(x)\) regardless of the starting point. Once convergence occurs, each subsequent \(x_t\) constitutes a (correlated) sample from \(p(x)\).</p>
+
+<p>The transition rule followed by the chain algorithm is only comparing whether the proposed sample is more probable as compared to the current state of the system, and therefore the absolute value of the state possibility does not matter that much. For example, for a canonical ensemble that follows the Boltzmann distribution,</p>
+
+\[f(x) = \frac{1}{\mathcal{Z}}e^{-E(x)/(k_BT)}\]
+
+<p>it is, in practice, impossible to obtain the partition function since that will require going over all the possibilities of the system state – the partition function is nothing but a summation of probabilities of all possible system states. The MCMC sampling algorithm solves such a problem by checking and comparing the relative ratio between the possibility of the proposed state and the current state, in which case the normalization factor (i.e., the partition function which we cannot obtain in practice) will be cancelled out. Let’s see how the algorithm works out in practice.</p>
+
+<h3 id="11-the-metropolis-hastings-procedure">1.1 The Metropolis-Hastings Procedure</h3>
+
+<ol>
+  <li>Start at some state \(x_t\).</li>
+  <li>
+    <p>Propose a new state \(x^* \sim q(x^* \mid x_t)\) – commonly a small random perturbation, e.g., \(x^* = x_t + \epsilon\), \(\epsilon \sim \mathcal{N}(0, \sigma^2)\).</p>
+
+    <blockquote>
+      <p>Here, \(x^* \sim q(x^* \mid x_t)\) reads like “starting from the current state \(x_t\), we want to propose a new state \(x^*\) and the way of proposing the new state \(x^*\) follows the distribution \(q\)”.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Compute the acceptance ratio:
+\(\alpha = \min\left(1, \frac{p(x^*)\, q(x_t \mid x^*)}{p(x_t)\, q(x^* \mid x_t)}\right)\)
+For a symmetric proposal (where \(q(x^*|x_t) = q(x_t|x^*)\)), this reduces to the simpler Metropolis ratio:
+\(\alpha = \min\left(1, \frac{p(x^*)}{p(x_t)}\right)\)</p>
+
+    <blockquote>
+      <p>Remember that \(p\) here refers to the probability of states, namely \(x_t\), \(x^*\), etc.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>Here we mentioned the assumption of the symmetric proposition of new states. In section-3, we will be discussing what we mean by an <code class="language-plaintext highlighter-rouge">asymmetryic</code> version.</p>
+    </blockquote>
+
+    <blockquote>
+      <p>In section-2.2, we will be discussing why the acceptance ratio is like that and in section-2.3, we will be explaining why having the proposition probability in the formulation is necessary in terms of asymmetric proposition of new states.</p>
+    </blockquote>
+  </li>
+  <li>Draw \(u \sim \text{Uniform}(0,1)\). If \(u \le \alpha\), accept: \(x_{t+1} = x^*\). Otherwise, reject: \(x_{t+1} = x_t\) (the chain remains at the current state, which counts as a repeated sample rather than a discarded draw).</li>
+  <li>Repeat.</li>
+</ol>
+
+<h3 id="12-a-concrete-example-a-discrete-three-state-chain">1.2 A Concrete Example: A Discrete Three-State Chain</h3>
+
+<p>Consider a target distribution over three states A, B, C with probabilities \(p = (0.2, 0.5, 0.3)\). Suppose the proposal rule moves to one of the other two states with equal probability (a symmetric proposal). Starting at A:</p>
+
+<ul>
+  <li>Propose B. Ratio: \(\min(1, p(B)/p(A)) = \min(1, 0.5/0.2) = 1\). Moves toward more probable states are always accepted.</li>
+  <li>From B, propose C. Ratio: \(\min(1, 0.3/0.5) = 0.6\). A uniform draw determines acceptance; the move succeeds 60% of the time.</li>
+  <li>If rejected, the chain remains at B (counted again as the next sample).</li>
+</ul>
+
+<p>Running this process for many steps and tallying the frequency of visits to each state shows convergence to (0.2, 0.5, 0.3) in the long run – the target probabilities emerge from the accept/reject ratios rather than being chosen directly.</p>
+
+<h3 id="13-another-concrete-example-sampling-a-boltzmann-distribution">1.3 Another Concrete Example: Sampling a Boltzmann Distribution</h3>
+
+<p>This example corresponds directly to Metropolis Monte Carlo sampling of particle configurations in statistical mechanics.</p>
+
+<p>Target: the canonical distribution \(p(\mathbf{r}) \propto e^{-U(\mathbf{r})/k_BT}\) over particle configurations \(\mathbf{r}\), where \(U\) is potential energy.</p>
+
+<ol>
+  <li>Current configuration \(\mathbf{r}_t\), energy \(U_t\).</li>
+  <li>Propose a small random displacement of one particle: \(\mathbf{r}^* = \mathbf{r}_t + \delta\), with new energy \(U^*\).</li>
+  <li>Since this proposal is symmetric, the acceptance ratio simplifies to:
+\(\alpha = \min\left(1, \frac{e^{-U^*/k_BT}}{e^{-U_t/k_BT}}\right) = \min\left(1, e^{-(U^*-U_t)/k_BT}\right)\)
+    <ul>
+      <li>A move that <em>lowers</em> energy (\(\Delta U &lt; 0\)) is always accepted (\(\alpha=1\)).</li>
+      <li>A move that <em>raises</em> energy (\(\Delta U &gt; 0\)) is accepted with probability \(e^{-\Delta U/k_BT}\) – the Boltzmann factor itself. The chain naturally spends more time in low-energy states without ever requiring the partition function \(Z\), which cancels in the ratio.</li>
+    </ul>
+  </li>
+  <li>Accept or reject via a uniform draw; repeat.</li>
+</ol>
+
+<hr />
+
+<h2 id="2-detailed-balance-and-global-balance">2. Detailed Balance and Global Balance</h2>
+
+<h3 id="21-the-goal-an-invariant-distribution">2.1 The Goal: An Invariant Distribution</h3>
+
+<p>The construction of an MCMC algorithm aims to leave \(p(x)\) invariant under the chain’s transitions. A convenient sufficient condition for this is <strong>detailed balance</strong>:</p>
+
+\[p(x_t)\, T(x^* \mid x_t) = p(x^*)\, T(x_t \mid x^*)\]
+
+<p>This states that the probability “flow” from state \(x_t\) to \(x^*\) equals the flow in the reverse direction, from \(x^*\) to \(x_t\). When this holds for every pair of states, \(p(x)\) is guaranteed to be a stationary distribution of the chain.</p>
+
+<h3 id="22-splitting-the-transition-into-proposal-and-acceptance">2.2 Splitting the Transition into Proposal and Acceptance</h3>
+
+<p>The transition \(T(x^* \mid x_t)\) is constructed from two components:</p>
+
+\[T(x^* \mid x_t) = q(x^* \mid x_t)\, \alpha(x^*, x_t)\]
+
+<ul>
+  <li>\(q(x^*\mid x_t)\) – the proposal distribution: the mechanism for generating a candidate move.</li>
+  <li>\(\alpha(x^*, x_t)\) – the acceptance probability: whether the move is taken.</li>
+</ul>
+
+<p>The proposal \(q\) can be freely chosen; the acceptance probability \(\alpha\) must be selected so that the resulting transition \(T\) satisfies detailed balance, correcting for any imbalance introduced by the proposal mechanism.</p>
+
+<h3 id="23-deriving-the-acceptance-ratio">2.3 Deriving the Acceptance Ratio</h3>
+
+<p>Substituting the split into the detailed balance condition:</p>
+
+\[p(x_t)\, q(x^*\mid x_t)\, \alpha(x^*, x_t) = p(x^*)\, q(x_t \mid x^*)\, \alpha(x_t, x^*)\]
+
+<p>Rearranging:</p>
+
+\[\frac{\alpha(x^*, x_t)}{\alpha(x_t, x^*)} = \frac{p(x^*)\, q(x_t \mid x^*)}{p(x_t)\, q(x^* \mid x_t)}\]
+
+<p>Choosing the largest possible values of \(\alpha\) consistent with this ratio, capped at 1, gives the Metropolis-Hastings acceptance rule:</p>
+
+\[\alpha(x^*, x_t) = \min\left(1,\ \frac{p(x^*)\, q(x_t \mid x^*)}{p(x_t)\, q(x^* \mid x_t)}\right)\]
+
+<p>The two factors have distinct roles:</p>
+<ul>
+  <li>\(\dfrac{p(x^*)}{p(x_t)}\) – the target ratio: whether the proposed state is more or less probable than the current one.</li>
+  <li>\(\dfrac{q(x_t \mid x^*)}{q(x^* \mid x_t)}\) – the proposal correction: accounts for any asymmetry in how easily the forward move is proposed compared to the reverse move.</li>
+</ul>
+
+<p>For a symmetric proposal, the correction term equals 1, recovering the simpler Metropolis ratio. A concrete case where this correction term becomes necessary arises when sampling a positive-only quantity, such as a temperature or a bond length, using a log-normal proposal: \(x^* = x_t \cdot e^{\epsilon}\), \(\epsilon \sim \mathcal{N}(0,\sigma^2)\). This proposal is not symmetric – jumping from a small \(x_t\) to a large \(x^*\) has a different density than jumping back. In this case the Hastings correction term \(q(x_t\mid x^*)/q(x^*\mid x_t)\) is not equal to 1 and must be included. This example is developed in full detail in Section 3.</p>
+
+<h3 id="24-how-detailed-balance-guarantees-global-balance">2.4 How Detailed Balance Guarantees Global Balance</h3>
+
+<p>Back in section-2.1, we mentioned that the detailed balance is the sufficient condition to guarantee that the Markov chain transition yields stable/invariant distribution \(px(x)\) of the system. To see why, we need to look at the <strong>global balance equation</strong>:</p>
+
+\[p_{t+1}(x') = \sum_x p_t(x)\, T(x' \mid x)\]
+
+<p>which basically says the state \(x'\) at the step \(t + 1\) could possibly come from any of the system states \(x\) at the step \(t\). Each of the state \(x\) has a certain probability transitioning to the state \(x'\) and naturally the distribution \(p_{t+1}(x')\) is given by the summation presented above. Further, stationarity requires that if \(p_t = p\), then \(p_{t+1} = p\) as well:</p>
+
+\[p(x') = \sum_x p(x)\, T(x' \mid x) \quad \text{for all } x'\]
+
+<p>meaning that at step \(t\), the system distribution follows \(p(x)\) and after the transition, the system ends up with an identical distribution as before. Then we can show that the detailed balance is a stronger, easier-to-verify condition that implies this. Starting from detailed balance holding for every pair,</p>
+
+\[p(x)\, T(x' \mid x) = p(x')\, T(x \mid x') \quad \text{for every pair } x, x'\]
+
+<p>summing both sides over all \(x\) gives:</p>
+
+\[\sum_x p(x)\, T(x' \mid x) = \sum_x p(x')\, T(x \mid x') = p(x') \sum_x T(x \mid x') = p(x') \cdot 1 = p(x')\]
+
+<p>The last step uses the fact that \(T(x\mid x')\), summed over all possible destinations, equals 1. The left-hand side is exactly \(p_{t+1}(x')\) when \(p_t = p\), so \(p_{t+1}(x') = p(x')\) follows directly. Detailed balance, summed over one variable, collapses into global balance – proving detailed balance for every pair of states is a stronger requirement than proving global balance alone, but automatically satisfies it.</p>
+
+<h3 id="25-what-stationary-actually-means">2.5 What “Stationary” Actually Means</h3>
+
+<p>The distribution \(p(x)\) should be understood not as the outcome being generated, but as a <strong>distribution over where the chain could be at a given time</strong>. For sure, when running the chain once, at step \(t\), we will end up with the system being at a certain state \(x\) but that is not what we mean by \(p(x)\), which is actually a distribution. Then how to understand it? Well, we can imagnine running the chain multiple times and every time running the chain, at step \(t\), the system will end up with different states. Across all the chain runs, we will have a distribution over the system states, and such a distribution is represented by the \(p(x)\) function.</p>
+
+<p>\(p(x)\) is a stationary distribution of the chain if, whenever \(p_t(x) = p(x)\) for all \(x\), it remains true that \(p_{t+1}(x) = p(x)\) for all \(x\). Applying one further step of the chain does not change the distribution once it matches \(p(x)\). This is different from saying “the chain is stuck.” The chain itself keeps moving around – the state at time \(t\) might be A, and the state at time \(t+1\) might be B. What is fixed is the probability distribution describing the ensemble of all possible chains: if millions of independent copies of the chain were run simultaneously, each bouncing around on its own, the fraction of copies sitting at each state would stay constant at \(p(x)\), even though any individual copy keeps hopping between states.</p>
+
+<h3 id="26-illustration-with-the-crowd-of-walkers">2.6 Illustration with The Crowd of Walkers</h3>
+
+<p>Let’s now make it more concrete by talking more about the multiple runs of the chain mentioned in the previous section. Imagine we have a crowd of 1000 independent copies of the chain running at the same time, each following the same rules (the same proposal, the same accept/reject criterion) but making its own independent random choices. At any step \(t\), each of the 1000 walkers occupies some state. The quantity \(p_t(x)\) is then simply a headcount, divided by 1000: the fraction of walkers currently sitting at state \(x\). Advancing every walker by one step (each proposing a move and accepting or rejecting according to the rule) and recounting gives \(p_{t+1}(x)\). In general, this headcount changes between steps. Stationarity describes the special case where the headcount, once matching the target proportions, remains at those proportions after every walker takes one more step. Individual walkers continue to move – someone leaving state A is replaced by someone else arriving at A from another state, in equal amount. This resembles a busy establishment with a stable total headcount: people are constantly entering and leaving, but if arrivals at each position always match departures, the overall occupancy pattern appears frozen from a distance even though every individual keeps moving.</p>
+
+<p>Detailed balance is what enforces this replacement exactly: it states that the number of walkers flowing from state A to state B per step equals the number flowing from B back to A per step, and likewise for every other pair. If every pairwise flow is exactly balanced in this way, no state’s total headcount can change, since every walker leaving a state is replaced by one arriving.</p>
+
+<p>Although the crowd-of-walkers description involves many parallel chains, in practice a single chain is run for a long time. If the chain runs long enough, the fraction of time a single chain spends at each state converges to the target proportions given by \(p(x)\), for a closely related reason: once in equilibrium, the chain leaves each state as often as it returns to it, so long-run time averages settle at the target proportions. The crowd-of-walkers picture and the single-long-chain picture are two views of the same underlying fact, an equivalence referred to as ergodicity.</p>
+
+<h3 id="27-some-more-notes">2.7 Some more Notes</h3>
+
+<p>Detailed balance proves that <strong>if</strong> the chain is already distributed according to \(p(x)\) at time \(t\), it remains distributed according to \(p(x)\) at time \(t+1\). It’s a statement about \(p(x)\) being a <em>fixed point</em> — not a statement that every step, starting from wherever the chain happens to be, already follows \(p(x)\). In practice, the chain typically starts somewhere arbitrary (e.g., an initial guess, an arbitrary configuration), and the early steps do <strong>not</strong> follow \(p(x)\) at all — they follow whatever distribution results from the initial condition, gradually reshaping step by step. This is exactly the “burn-in” period mentioned earlier: the first N steps are discarded because they haven’t converged yet. So it isn’t that detailed balance forces every step to already match \(p(x)\) — it forces \(p(x)\) to be a <em>stable resting point</em> that the chain approaches and then stays at, once reached.</p>
+
+<p>Detailed balance only proves that \(p(x)\) <em>is a</em> stationary distribution — it says nothing about whether the chain actually gets there from an arbitrary start, or whether it visits every state at all.</p>
+
+<p><strong>Ergodicity</strong> is a separate, additional requirement — informally, it means the chain is:</p>
+<ul>
+  <li><em>irreducible</em>: any state can eventually be reached from any other state (no isolated pockets the chain can get trapped in), and</li>
+  <li><em>aperiodic</em>: the chain doesn’t cycle through states in a rigid repeating pattern.</li>
+</ul>
+
+<p>Only when the chain satisfies <em>both</em> detailed balance (guaranteeing \(p(x)\) is a fixed point) <em>and</em> ergodicity (guaranteeing the chain actually explores the whole space and converges to that fixed point from anywhere) does the long-run behavior work out. A poorly designed proposal (e.g., one that can never propose moves between two disconnected regions of state space) can satisfy detailed balance perfectly on the reachable states while still failing to converge to the true \(p(x)\), because whole regions are never visited.</p>
+
+<h3 id="28-worked-numerical-example">2.8 Worked Numerical Example</h3>
+
+<p>Here we use the three-state chain from Section 1.2 to illustrate all of the above concretely.</p>
+
+<p><strong>Setup.</strong> Proposal: from any state, propose one of the other two states with equal probability, \(q = 0.5\) each way. Target: \(p = (0.2, 0.5, 0.3)\) for states A, B, C.</p>
+
+<p><strong>Step 1: Acceptance probabilities.</strong> For each ordered pair, \(\alpha(x \to x') = \min(1, p(x')/p(x))\):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Move</th>
+      <th>Ratio \(p(x')/p(x)\)</th>
+      <th>\(\alpha\)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A→B</td>
+      <td>0.5/0.2 = 2.5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>B→A</td>
+      <td>0.2/0.5 = 0.4</td>
+      <td>0.4</td>
+    </tr>
+    <tr>
+      <td>A→C</td>
+      <td>0.3/0.2 = 1.5</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>C→A</td>
+      <td>0.2/0.3 = 0.667</td>
+      <td>0.667</td>
+    </tr>
+    <tr>
+      <td>B→C</td>
+      <td>0.3/0.5 = 0.6</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <td>C→B</td>
+      <td>0.5/0.3 = 1.667 → capped</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Step 2: Full transition probabilities</strong>, \(T(x'\mid x) = q \cdot \alpha\):</p>
+
+\[T(B|A)=0.5{\times}1=0.5 \qquad T(A|B)=0.5{\times}0.4=0.2\]
+
+\[T(C|A)=0.5{\times}1=0.5 \qquad T(A|C)=0.5{\times}0.667=0.333\]
+
+\[T(C|B)=0.5{\times}0.6=0.3 \qquad T(B|C)=0.5{\times}1=0.5\]
+
+<p>And the “stay put” probabilities, since each row must sum to 1:</p>
+
+\[T(A|A) = 1 - 0.5 - 0.5 = 0\]
+
+\[T(B|B) = 1 - 0.2 - 0.3 = 0.5\]
+
+\[T(C|C) = 1 - 0.333 - 0.5 = 0.167\]
+
+<p><strong>Step 3: Detailed balance check for each pair.</strong></p>
+
+<p>A ↔ B:</p>
+
+\[p(A)T(B|A) = 0.2 \times 0.5 = 0.1\]
+
+<p>and</p>
+
+\[p(B)T(A|B) = 0.5 \times 0.2 = 0.1\]
+
+<p>matches.</p>
+
+<p>A ↔ C:</p>
+
+\[p(A)T(C|A) = 0.2 \times 0.5 = 0.1\]
+
+<p>and</p>
+
+\[p(C)T(A|C) = 0.3 \times 0.333 = 0.1\]
+
+<p>matches.</p>
+
+<p>B ↔ C:</p>
+
+\[p(B)T(C|B) = 0.5 \times 0.3 = 0.15\]
+
+<p>and</p>
+
+\[p(C)T(B|C) = 0.3 \times 0.5 = 0.15\]
+
+<p>matches.</p>
+
+<p>Every pairwise flow balances exactly.</p>
+
+<p><strong>Step 4: Global balance check for state B.</strong></p>
+
+\[p(B) \stackrel{?}{=} p(A)T(B|A) + p(B)T(B|B) + p(C)T(B|C)\]
+
+\[= (0.2 \times 0.5) + (0.5 \times 0.5) + (0.3 \times 0.5) = 0.1 + 0.25 + 0.15 = 0.5\]
+
+<p>This equals \(p(B) = 0.5\), confirming global balance.</p>
+
+<p>Decomposing the total: the terms \(0.1\) (inflow from A) and \(0.15\) (inflow from C) are exactly the pairwise flow values verified in Step 3, and \(0.25 = p(B)T(B\mid B)\) is the mass that remained at B. Since flow(A→B) was already shown to equal flow(B→A), and flow(C→B) equal to flow(B→C), the inflow to B from its neighbors automatically equals the outflow from B to its neighbors, so B’s total headcount cannot change. Global balance is not a separate fact requiring independent verification – it follows automatically once every pairwise flow is individually balanced. Proving the three pairwise equalities (A↔B, A↔C, B↔C) simultaneously proves all three global balance equations, for A, B, and C.</p>
+
+<hr />
+
+<h2 id="3-asymmetric-proposals-the-log-normal-case">3. Asymmetric Proposals: The Log-Normal Case</h2>
+
+<p>The Metropolis-Hastings acceptance ratio includes a proposal correction term precisely to accommodate proposals that are not symmetric. A concrete example of such a proposal is the log-normal proposal, commonly used when sampling a strictly positive quantity such as a temperature or a bond length:</p>
+
+\[x^* = x_t \cdot e^{\epsilon}, \qquad \epsilon \sim \mathcal{N}(0, \sigma^2)\]
+
+<h3 id="31-deriving-the-proposal-density">3.1 Deriving the Proposal Density</h3>
+
+<p>Since \(\epsilon = \ln(x^*/x_t)\), converting the Gaussian density on \(\epsilon\) into a density on \(x^*\) requires a change-of-variables (Jacobian) factor:</p>
+
+\[q(x^* \mid x_t) = \frac{1}{x^*}\cdot\frac{1}{\sqrt{2\pi\sigma^2}}\exp\!\left(-\frac{(\ln(x^*/x_t))^2}{2\sigma^2}\right)\]
+
+<p>The leading \(\frac{1}{x^*}\) term arises directly from this transformation.</p>
+
+<p>Applying the same reasoning in reverse, treating \(x^*\) as the starting point and \(x_t\) as the proposed state, gives:</p>
+
+\[q(x_t \mid x^*) = \frac{1}{x_t}\cdot\frac{1}{\sqrt{2\pi\sigma^2}}\exp\!\left(-\frac{(\ln(x_t/x^*))^2}{2\sigma^2}\right)\]
+
+<p>Because the Gaussian density is symmetric, \(f(-\epsilon) = f(\epsilon)\), the exponential portions of both expressions are identical. The two densities differ only in their prefactors, \(1/x^*\) versus \(1/x_t\).</p>
+
+<h3 id="32-the-resulting-asymmetry">3.2 The Resulting Asymmetry</h3>
+
+<p>Taking the ratio of the two proposal densities:</p>
+
+\[\frac{q(x_t \mid x^*)}{q(x^* \mid x_t)} = \frac{1/x_t}{1/x^*} = \frac{x^*}{x_t}\]
+
+<p>Unless \(x^* = x_t\), this ratio does not equal 1 – the proposal is asymmetric, and the discrepancy arises entirely from the \(1/x\) Jacobian factor rather than from the underlying Gaussian noise itself.</p>
+
+<h3 id="33-intuitive-explanation">3.3 Intuitive Explanation</h3>
+
+<p>Considering the proposal in log-space clarifies the source of the asymmetry. Equal-sized jumps in \(\ln x\) are symmetric, as guaranteed by the Gaussian distribution on \(\epsilon\). However, a fixed jump in \(\ln x\) corresponds to a different absolute jump in \(x\) depending on the starting point:</p>
+
+<ul>
+  <li>Starting at \(x_t = 1\): a jump of \(\epsilon = \ln 2 \approx 0.69\) leads to \(x^* = 2\), an absolute change of +1.</li>
+  <li>Starting at \(x_t = 10\): the same \(\epsilon = \ln 2\) leads to \(x^* = 20\), an absolute change of +10.</li>
+</ul>
+
+<p>A proposal that is symmetric in log-space therefore becomes asymmetric in linear space – a large absolute jump is easy to propose from a large starting value, since multiplicative steps scale with the current value, but achieving the same absolute-sized jump back from a small starting value would require a much larger relative (log) jump, which is far less probable under the same \(\epsilon \sim \mathcal{N}(0,\sigma^2)\). The forward and backward ease of proposing genuinely differ, and this is exactly what the \(x^*/x_t\) correction factor compensates for in the Hastings ratio.</p>
+
+<h3 id="34-consequence-for-detailed-balance">3.4 Consequence for Detailed Balance</h3>
+
+<p>Omitting the Hastings correction term and using the plain Metropolis ratio \(\min(1, p(x^*)/p(x_t))\) with this proposal would violate detailed balance: the forward and backward flows would no longer match pairwise, and the chain would converge to a distribution subtly different from the intended \(p(x)\) – systematically over- or under-visiting large-\(x\) states, since jumps toward large \(x\) are proposed more readily than jumps back. Including the Hastings correction term repairs this discrepancy, restoring detailed balance and, with it, the correct stationary distribution.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#maths">maths</a>
+          
+            <a href="/tags#physics">physics</a>
+          
+            <a href="/tags#statistics">statistics</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Markov+Chain+Monte+Carlo+--+An+Introduction&url=http%3A%2F%2Flocalhost%3A8000%2F2026-07-31-markov_chain_monte_carlo%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-07-31-markov_chain_monte_carlo%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-07-31-markov_chain_monte_carlo%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-07-30-rmc_sol_uniqueness/" data-toggle="tooltip" data-placement="top" title="Configuration Uniqueness in Reverse Monte Carlo Modeling and Potential Solution with Kullback-Liebler Divergence">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zhangy3@ornl.gov" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
