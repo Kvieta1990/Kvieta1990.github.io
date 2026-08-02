@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>Sampling Algorithms</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="This post notes down the understanding of several typical sampling algorithms, including the inverse transform sampling, the rejectin sampling and Markov Chain Monte Carlo sampling. I am not going to cover the nitty-gritty details but just to note down some of what I think as critical points benefiting the understanding...">
 
   
 
@@ -89,17 +89,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="Sampling Algorithms">
+  <meta property="og:description" content="This post notes down the understanding of several typical sampling algorithms, including the inverse transform sampling, the rejectin sampling and Markov Chain Monte Carlo sampling. I am not going to cover the nitty-gritty details but just to note down some of what I think as critical points benefiting the understanding...">
 
   
   <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:8000/archive/2023/04/">
-  <link rel="canonical" href="http://localhost:8000/archive/2023/04/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-08-02T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-08-02-sampling_algorithms/">
+  <link rel="canonical" href="http://localhost:8000/2026-08-02-sampling_algorithms/">
   
 
   
@@ -108,8 +110,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="Sampling Algorithms">
+  <meta property="twitter:description" content="This post notes down the understanding of several typical sampling algorithms, including the inverse transform sampling, the rejectin sampling and Markov Chain Monte Carlo sampling. I am not going to cover the nitty-gritty details but just to note down some of what I think as critical points benefiting the understanding...">
 
   
   <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
@@ -261,10 +263,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>Sampling Algorithms</h1>
           
 
+          
+					<span class="post-meta">Posted on August 2, 2026, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -277,388 +283,206 @@ if (chromeAgent) {
 
 
 
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
 
+      
 
-<div class="intro-header"></div>
+      
 
-<div role="main" class=" container-md ">
-  
+      <article role="main" class="blog-post">
+        <p>This post notes down the understanding of several typical sampling algorithms, including the inverse transform sampling, the rejectin sampling and Markov Chain Monte Carlo sampling. I am not going to cover the nitty-gritty details but just to note down some of what I think as critical points benefiting the understanding of the algorithms.</p>
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>April, 2023</em></h2>
-  </header>
+<h1 id="inverse-transform-sampling">Inverse transform sampling</h1>
 
-  
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2023-04-15-notes_jbook/"><h3 class="post-title mb0">Notes on using Jupyter book</h3></a>
-					<p class="post-meta small">April 15, 2023, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#jupyter">jupyter</a>
-  
-    <a href="/tags#programming">programming</a>
-  
+<p align="center">
+<img src="/assets/img/posts/inverse_transform.png" style="border:none;" width="800" alt="inverse_transform" title="inverse_transform" />
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-        <li>
-          <a class="post-link" href="/2023-04-14-notes_fdm/"><h3 class="post-title mb0">Notes on difference Fourier map</h3></a>
-					<p class="post-meta small">April 14, 2023, by Yuanpeng Zhang</p>
-          <div class="small">
-            
-<p class="post-tags small">
-  <i class="fa fa-tags"></i>
-  
-    <a href="/tags#crystallography">crystallography</a>
-  
+<ul>
+  <li>
+    <p>It can be proved by sampling along the x-axis uniformly, the resulted \(F^{-1}(U)\) follows the same distribution as the original one, i.e., \(X = F^{-1}(U)\) has the same Cumulative Distribution function (CDF) as \(F(x)\). The core fact is this: if $U$ is uniform on \((0,1)\) and we define \(X = F^{-1}(U)\), then $X$ has exactly the CDF \(F(x)\) — and therefore the PDF \(f(x) = F'(x)\).</p>
+
+\[P(X \le x) = P(F^{-1}(U) \le x)\]
+
+    <p>Since \(F\) is monotonically increasing, you can apply \(F\) to both sides of the inequality without flipping it:</p>
+
+\[= P(U \le F(x))\]
+
+    <p>But \(U\) is uniform on \((0,1)\), so \(P(U \le u) = u\) for any \(u \in [0,1]\). Plugging in \(u = F(x)\):</p>
+
+\[= F(x)\]
+
+    <p>So \(P(X \le x) = F(x)\) — which is <em>by definition</em> what it means for \(X\) to have CDF \(F\). That’s the whole proof. No calculus needed, just “apply the monotone function $F$ to both sides.”</p>
+  </li>
+  <li>
+    <p>Since \(F'(x) = f(x) = dy/dx\), if we sample \(y\) uniformly, the steeper \(f(x)\) is, the narrower \(x\) range we would end up with. Then as compared to the flat region of the \(F(x)\) function, the \(x\) values in the narrower regions have more chances to be picked/sampled, i.e., the inverse transform sampling indeed samples following the \(f(x)\) distribution.</p>
+  </li>
+</ul>
+
+<h1 id="rejection-sampling">Rejection sampling</h1>
+
+<p align="center">
+<img src="/assets/img/posts/rejection.png" style="border:none;" width="800" alt="rejection" title="rejection" />
 </p>
 
-          </div>
-        </li>
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
-</div>
+<ul>
+  <li>
+    <p>\(g(x) \Rightarrow\) a picked distribution</p>
+  </li>
+  <li>
+    <p>\(\alpha\cdot g(x) \Rightarrow \alpha\) picked so that we have \(\alpha\cdot g(x) &gt; f(x), \forall x\)</p>
+  </li>
+  <li>
+    <p>\(X \Rightarrow\) sampled from \(g(x)\)</p>
+  </li>
+  <li>
+    <p>\(U \Rightarrow\) sampled from \(\text{Uniform}(0, 1)\)</p>
+  </li>
+  <li>
+    <p>If \(U\cdot X &lt; f(x) \Rightarrow\) accept</p>
+  </li>
+  <li>
+    <p>Else \(\Rightarrow\) reject &amp; repeat</p>
+  </li>
+</ul>
 
+<p>Some notes,</p>
+
+<ul>
+  <li>
+    <p>The acceptance probability is determined by the height of \(f(x)\) at \(X\) and therefore the accepted samples \(X\)’s follow the \(f(x)\) distribution.</p>
+  </li>
+  <li>
+    <p>Sampling of \(X\) is biased by \(g(x)\) but the acceptance rate is dominated by \(f(x)\). Therefore, the accpeted sampling follows the \(f(x)\) distribution. Imagine we are not using a uniform distribution \(g(x)\) for the initial sampling and we may have the PDF \(g(x)\) having large values in certain regions of \(x\). Sampling will then be biased towards those regions. However, the more it is biased towards those regions, the less probable that the sampling in those regions will be accepted, since the proportion of the rejected region along the vertical direction (see the region bounded by the dashed blue lines in the figure and the shaded region inside the bounded box) is larger.</p>
+  </li>
+</ul>
+
+<h1 id="markov-chain-monte-carlo">Markov Chain Monte Carlo</h1>
+
+<p>Detailed notes about the Markov Chain Monte Carlo (MCMC) sampling algorithm can be found in my earlier post <a href="/2026-07-31-markov_chain_monte_carlo/">here</a>. Here below I am putting down some side notes about the algorithm.</p>
+
+<p align="center">
+<img src="/assets/img/posts/MCMC.png" style="border:none;" width="1200" alt="mcmc" title="mcmc" />
+</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>Download scrpts for creating the figures above <a href="/assets/files/plot_scripts.zip">here</a>.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>Sampling is dominated by the probability density function (PDF), or put the other way round, a proper sampling scheme should be the one to yield a distribution that follows the target PDF.</p>
+  </li>
+  <li>
+    <p>MCMC algorithm follows the same principle, and the sampling is dominated by the PDF shown in the middle panel above (the right panel shows the corresponding contour plot).</p>
+  </li>
+  <li>
+    <p>Physically, for systems following Boltzmann distribution, the PDF is determined by the energy landscape, \(f(x) = \frac{1}{\mathcal{Z}}e^{-\frac{E(x)}{k_BT}}\), where the partition function \(\mathcal{Z}\) is usually unknown in practice.</p>
+
+    <p><br /></p>
+
+    <blockquote>
+      <p>N.B. \(x\) here is a high dimensional vector in the configuration space and here we are using 2D for the demo purpose.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Running the MCMC chain, the system will finally converge to the PDF distribution, i.e., it is converging to any single state but instead to a distribution. This means that if we keep running the chain after convergence, the system state will still fluctuate, but the resulted configurations along the chain altogether will follow the PDF distribution. If the system has a well-defined global minimum like the 2D example shown here, since the PDF function has a large value at the global minimum (when I say ‘minimum’, I am referring to the energy landscape), the sampled states will have a very high probability to end up in that region.</p>
+  </li>
+</ul>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#maths">maths</a>
+          
+            <a href="/tags#statistics">statistics</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
 
   
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Sampling+Algorithms&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-02-sampling_algorithms%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-08-02-sampling_algorithms%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-02-sampling_algorithms%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-07-31-markov_chain_monte_carlo/" data-toggle="tooltip" data-placement="top" title="Markov Chain Monte Carlo -- An Introduction">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
 </div>
 
 
