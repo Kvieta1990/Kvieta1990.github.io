@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Learning Notes on Denoising Diffusion Probablistic Model</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Image generated with Gemini with the prompt ‘generate an image with a person thinking hardly on how diffusion model really works. follow the ghibli style’. My learning for the diffusion model started with the cource by fast.ai, which is a great learning resource. It tries to stay on the practical...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Learning Notes on Denoising Diffusion Probablistic Model">
+  <meta property="og:description" content="Image generated with Gemini with the prompt ‘generate an image with a person thinking hardly on how diffusion model really works. follow the ghibli style’. My learning for the diffusion model started with the cource by fast.ai, which is a great learning resource. It tries to stay on the practical...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-08-09T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-08-09-diffusion_algorithm/">
+  <link rel="canonical" href="http://localhost:8000/2026-08-09-diffusion_algorithm/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Learning Notes on Denoising Diffusion Probablistic Model">
+  <meta property="twitter:description" content="Image generated with Gemini with the prompt ‘generate an image with a person thinking hardly on how diffusion model really works. follow the ghibli style’. My learning for the diffusion model started with the cource by fast.ai, which is a great learning resource. It tries to stay on the practical...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-2020.us/script.js" data-website-id="387a3202-bb18-41ba-a954-d985ff940209"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Learning Notes on Denoising Diffusion Probablistic Model</h1>
+          
+
+          
+					<span class="post-meta">Posted on August 9, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/diffusion_model.png" style="border:none;" width="700" alt="diffusion_model" title="diffusion_model" /><br />
+<em>Image generated with Gemini with the prompt ‘generate an image with a person thinking hardly on how diffusion model really works. follow the ghibli style’.</em></p>
+
+<p><br /></p>
+
+<p>My learning for the diffusion model started with the cource by fast.ai, which is a great learning resource. It tries to stay on the practical level with a bit of technical or mathematical explanations but may not be that deep. When first learning through the course, I thought everything is making perfect sense but after a few weeks not touching the subject and when trying to get back to it, I found myself totally lost, forgetting all the logic and understanding. The problem is I vaguely remember how things are working together and I might have read something relevant here and there, and therefore something beyond the scope of the course did come into my mind randomly. When having all those pieces of knowledge in mind without a systematic framework for understanding the subject, I found myself lost, I mean totally lost. That feel is something like, did I ever learn about this before? Yes. But how does the training process really go? The course seems to explain the denoising process in an intuitive way but how does it really work in practice? I mean, I know what it is trying to say – given a noisy image, if we have some ‘API’ (named used in the course) that predict the noise, we can try to make the image less noisy, moving closer towards the clean image target. But what is the ‘API’ and how did we ever obtain it? When initially learning through the course, I was following the story flow of the course so not even having that much time to really think about why and how about this – at that time of initial learning, the course did make perfect sense since my brain was staying together with the course on the intuitive level. Later on, when coming from a fresh mode, my brain could not figure out at all what is really happening.</p>
+
+<p>So I decided to learn with those multiple GPT models, namely Gemini, ChatGPT and Claude. I was starting with the very naive prompt as below – as I mentioned, the whole subject was totally a mess in my brain at that time and therefore the question I came up with may not make any sense at all. Fortunately, Gemini initially was kind of understanding my pain and maybe it is just trying to come up with something relevant to what I asked. Anyways, its response gave me something to start with. Since I was totally not sure whether the response makes any real sense or not, I was trying to give the response to both ChatGPT and Claude to let them judge and give me further information. The Claude version did not go so well since I found an obvious mistake in its response so I stayed with the ChatGPT most of the time for all the following studies. At the end of the day, I think now at least I have a much more clear pipeline of understanding in my brain by quite a lot of back-and-forth interactions with ChatGPT, based on which I put down the current post to record the understanding of the topic.</p>
+
+<p>Here below is my very initial prompt to Gemini,</p>
+
+<hr />
+
+<p>starting from the clean image, we add in noise step by step until we get a complete noise image. then we revserse the process during training to try to tune the parameter of network target at minimizing the difference from the noise we added in. If my understanding is correct, we have different noise added at different time step while noising the data, are all the noise at all time step considered into the calculation of the loss function? Also, there is no guarantee that the denoised image in the reverse process is the same as the image at the same stage in the forward noising stage so are the noise in the forward and reverse process really comparable?</p>
+
+<p>maybe I am still confused by the algorithm, so please give me some demo with some very easy and straightforward examples to help my understanding</p>
+
+<hr />
+
+<p>Now, let’s dive into the topic.</p>
+
+<h2 id="1-training-walkthrough-at-a-high-level">1. Training Walkthrough, at a high level</h2>
+
+<p>Diffusion models learn by doing the opposite of what they’ll eventually be used for: instead of learning to <em>create</em> images, they learn to <em>undo noise</em>.</p>
+
+<p><strong>The setup.</strong> Start with a real image, \(x_0\). A fixed, precomputed schedule controls how much Gaussian noise gets mixed in as a function of a timestep \(t\), running from \(t=1\) (barely touched) to \(t=T\) (pure noise, typically \(T=1000\)). Because each step of that schedule is Gaussian, the noise doesn’t need to be added incrementally – there’s a closed-form shortcut that jumps straight from \(x_0\) to any \(x_t\):</p>
+
+\[x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\epsilon, \qquad \epsilon \sim \mathcal{N}(0,I)\]
+
+<p>\(\bar\alpha_t\) is a number between 0 and 1, read off a precomputed table (where that table comes from is covered in Section 4.2). As \(t\) grows, \(\bar\alpha_t\) shrinks toward 0 – less of the original signal survives, more noise dominates.</p>
+
+<p><strong>One training example.</strong> For a given image:</p>
+
+<ol>
+  <li>Pick a random timestep \(t \sim \text{Uniform}(1,\dots,T)\).</li>
+  <li>Sample fresh noise \(\epsilon \sim \mathcal N(0,I)\).</li>
+  <li>Build \(x_t\) with the formula above.</li>
+  <li>Feed \(x_t\) (and \(t\)) into the network and ask it to guess which \(\epsilon\) was used.</li>
+  <li>Compare the guess \(\hat\epsilon\) against the real \(\epsilon\): \(\mathcal L = \|\epsilon - \hat\epsilon\|^2\).</li>
+</ol>
+
+<p>That is it, at the high level – the training <em>data</em> is a noisy image at some random noise level, and the training <em>target</em> is the exact noise that produced it. What the network does internally to produce \(\hat\epsilon\) is deferred to Section 4.</p>
+
+<p>Because \(t\) is re-sampled randomly on every example, no single training step covers every noise level – but across millions of steps, every \(t\) gets visited proportionally. The objective is really an expectation over the whole schedule:</p>
+
+\[\mathcal L = \mathbb E_{x_0,\,t,\,\epsilon}\big[\|\epsilon - \epsilon_\theta(x_t,t)\|^2\big]\]
+
+<p><strong>Where does this actually happen – pixels, or something else?</strong> Most modern text-to-image systems (Stable Diffusion [1] and similar) are <em>latent</em> diffusion models, and this matters for what “\(x_0\)” really is:</p>
+
+<ul>
+  <li>A variational autoencoder (VAE) [2] is trained once, beforehand, and then frozen. It compresses images into a much smaller latent grid – e.g. a 512×512×3 image down to something like 64×64×4.</li>
+  <li>From that point on, every \(x_0\) and \(x_t\) in the formulas above lives in that compressed latent space, not pixel space: \(x_0 = \text{VAE}_{\text{encoder}}(\text{image})\), and the noise \(\epsilon\) is sampled with the same shape as that latent, then added directly to it.</li>
+  <li>The network never sees a raw pixel during training. Only after the full reverse process (Section 2) produces a clean latent \(\hat x_0\) does a VAE decoder turn it back into pixels: \(\text{image} = \text{VAE}_{\text{decoder}}(\hat x_0)\).</li>
+</ul>
+
+<p>This is a deliberate design choice, not a mathematical necessity – the original Denoising Diffusion Probabilistic Model (DDPM) [3], GLIDE (Guided Language to Image Diffusion for Generation and Editing) [4], and Imagen [5] instead apply the exact same equations directly to pixels, no VAE involved. The latent version is popular mainly because diffusing a 64×64×4 grid is far cheaper than diffusing a 512×512×3 image, while a well-trained VAE loses little perceptually-relevant detail in the compression.</p>
+
+<h2 id="2-generating-images-the-reverse-process">2. Generating images: the reverse process</h2>
+
+<p>Generation reverses the story: start from pure noise \(x_T \sim \mathcal N(0,I)\) and walk backward, \(x_T \to x_{T-1} \to \cdots \to x_1 \to x_0\), using the same trained network at every step.</p>
+
+<p><strong>Why not jump straight from \(x_t\) to \(x_0\)?</strong> The forward formula can actually be algebraically rearranged into a one-shot estimate of the clean image, given a noise prediction:</p>
+
+\[\hat x_0 = \frac{x_t - \sqrt{1-\bar\alpha_t}\,\epsilon_\theta(x_t,t)}{\sqrt{\bar\alpha_t}}\]
+
+<p>But at large \(t\), \(x_t\) is mostly noise – there isn’t much signal left for the network to work with, so this single-shot \(\hat x_0\) is a coarse, low-confidence guess. Committing to it in one leap tends to produce blurry or inconsistent results. Instead, diffusion takes many small, conservative steps: predict noise, move only <em>slightly</em> toward the estimated clean image, then re-predict using the updated, less-noisy input. Each step gets a better-conditioned problem than the last, which is what makes the final output sharp and coherent.</p>
+
+<p><strong>The actual step</strong>, from \(x_t\) to \(x_{t-1}\):</p>
+
+\[x_{t-1} = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{1-\alpha_t}{\sqrt{1-\bar\alpha_t}}\,\epsilon_\theta(x_t,t)\right) + \sigma_t z\]
+
+\[z \sim \mathcal N(0,I)\]
+
+<p>Every symbol here:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(\beta_t\)</td>
+      <td>per-step noise variance, fixed ahead of time by the schedule (Section 4.2)</td>
+    </tr>
+    <tr>
+      <td>\(\alpha_t = 1-\beta_t\)</td>
+      <td>fraction of signal retained in a <em>single</em> step \(t\)</td>
+    </tr>
+    <tr>
+      <td>\(\bar\alpha_t = \prod_{s=1}^t \alpha_s\)</td>
+      <td>cumulative retained signal from step 1 through \(t\)</td>
+    </tr>
+    <tr>
+      <td>\(\epsilon_\theta(x_t,t)\)</td>
+      <td>the network’s noise prediction, given the current noisy input and timestep</td>
+    </tr>
+    <tr>
+      <td>\(\sigma_t\)</td>
+      <td>standard deviation of a small amount of fresh randomness re-injected at this step (commonly set to \(\sqrt{\beta_t}\), following the schedule directly)</td>
+    </tr>
+    <tr>
+      <td>\(z\)</td>
+      <td>a freshly sampled standard Gaussian, independent at every step (skipped, i.e. \(z=0\), on the very last step \(t=1\))</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Intuitively: subtract off the network’s best guess at the noise (scaled appropriately), rescale by how much signal this step is supposed to retain, then stir back in a small amount of fresh randomness so the sampling process doesn’t collapse onto one deterministic path. Repeating this \(T\) times, with the <em>same</em> network weights but a different \(t\) fed in each time, is the entire generation procedure.</p>
+
+<h2 id="3-the-score-function-bridge">3. The score function bridge</h2>
+
+<p>There’s a second, equivalent way to describe what the network has learned, borrowed from <em>score-based</em> generative modeling [6].</p>
+
+<p>The <strong>score</strong> of a distribution is \(s_t(x) = \nabla_{x}\log p_t(x)\) – the direction in which log-probability increases fastest. Intuitively, at any noisy point \(x_t\), the score points toward the nearest region of more plausible (less noisy, more image-like) data. That is exactly the information the reverse process needs at every step.</p>
+
+<p>The network was trained to predict \(\epsilon\), not the score – but the two turn out to be the same quantity, up to a known rescaling. The bridge rests on two results, derived in full below.</p>
+
+<h3 id="31-the-conditional-score">3.1 The conditional score</h3>
+
+<p>Conditioned on a specific \(x_0\), the forward process makes \(x_t\) Gaussian:</p>
+
+\[q(x_t\mid x_0) = \mathcal N\big(\sqrt{\bar\alpha_t}\,x_0,\ (1-\bar\alpha_t)I\big)\]
+
+<p><strong>Start from the general multivariate Gaussian density.</strong> For any Gaussian \(\mathcal N(\mu,\Sigma)\) in \(d\) dimensions, the probability density at a point \(x\) is:</p>
+
+\[q(x) = \frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}}\exp\left(-\frac{1}{2}(x-\mu)^\top\Sigma^{-1}(x-\mu)\right)\]
+
+<p>The normalizing prefactor makes the total probability integrate to 1; the part that depends on where \(x\) actually sits is entirely inside the exponent.</p>
+
+<p><strong>Plug in this specific Gaussian.</strong> Here \(\mu = \sqrt{\bar\alpha_t}\,x_0\) and \(\Sigma = (1-\bar\alpha_t)I\) – a single scalar, \((1-\bar\alpha_t)\), times the identity matrix. This is what “isotropic” noise means: every dimension gets the same variance, with no correlation between dimensions, so the whole covariance matrix collapses to one number times \(I\).</p>
+
+<p><strong>Simplify the quadratic form.</strong> Because \(\Sigma\) is a scalar times \(I\), its inverse is trivial: \(\Sigma^{-1}=\frac{1}{1-\bar\alpha_t}I\). So the exponent’s quadratic term becomes:</p>
+
+\[(x_t-\mu)^\top\Sigma^{-1}(x_t-\mu) = \frac{1}{1-\bar\alpha_t}(x_t-\mu)^\top(x_t-\mu) = \frac{\|x_t-\mu\|^2}{1-\bar\alpha_t}\]
+
+<p>(A vector dotted with itself, \((x_t-\mu)^\top(x_t-\mu)\), is by definition \(\|x_t-\mu\|^2\).) The full density is therefore:</p>
+
+\[q(x_t\mid x_0) = \frac{1}{(2\pi)^{d/2}(1-\bar\alpha_t)^{d/2}}\exp\left(-\frac{\|x_t-\sqrt{\bar\alpha_t}\,x_0\|^2}{2(1-\bar\alpha_t)}\right)\]
+
+<p><strong>Take the log.</strong> Logging a product turns it into a sum, and \(\log\exp(\cdot)\) cancels:</p>
+
+\[\log q(x_t\mid x_0) = -\frac{d}{2}\log(2\pi) \;-\; \frac{d}{2}\log(1-\bar\alpha_t) \;-\; \frac{\|x_t-\sqrt{\bar\alpha_t}\,x_0\|^2}{2(1-\bar\alpha_t)}\]
+
+<p><strong>Drop the terms that do not depend on \(x_t\).</strong> The next step is differentiating this with respect to \(x_t\), and the gradient of anything that does not contain \(x_t\) is zero. \(-\frac{d}{2}\log(2\pi)\) depends only on the fixed dimensionality \(d\). \(-\frac{d}{2}\log(1-\bar\alpha_t)\) depends on \(\bar\alpha_t\), which is fixed once the timestep \(t\) is fixed. Neither touches \(x_t\), so both collapse into a single constant carried along without being written out term by term:</p>
+
+\[\log q(x_t\mid x_0) = -\frac{\|x_t-\sqrt{\bar\alpha_t}\,x_0\|^2}{2(1-\bar\alpha_t)} + \text{const}\]
+
+<p><strong>Differentiate.</strong> Using the standard vector-calculus identity \(\nabla_x\|x-a\|^2 = 2(x-a)\):</p>
+
+\[\nabla_{x_t}\log q(x_t\mid x_0) = -\frac{1}{2(1-\bar\alpha_t)}\cdot 2\big(x_t-\sqrt{\bar\alpha_t}\,x_0\big) = -\frac{x_t-\sqrt{\bar\alpha_t}\,x_0}{1-\bar\alpha_t}\]
+
+<p><strong>Substitute the forward equation.</strong> \(x_t-\sqrt{\bar\alpha_t}\,x_0 = \sqrt{1-\bar\alpha_t}\,\epsilon\), so:</p>
+
+\[\nabla_{x_t}\log q(x_t\mid x_0) = -\frac{\sqrt{1-\bar\alpha_t}\,\epsilon}{1-\bar\alpha_t} = -\frac{\epsilon}{\sqrt{1-\bar\alpha_t}}\]
+
+<p>So <em>if</em> the specific \(x_0\) (and the exact \(\epsilon\) that produced this \(x_t\)) were known, the conditional score would just be that noise, rescaled. In practice neither is available at generation time – what is actually needed is the <em>marginal</em> score \(\nabla_{x_t}\log p_t(x_t)\), averaged over every \(x_0\) that could plausibly have produced this \(x_t\). That average is the second result.</p>
+
+<h3 id="32-from-conditional-to-marginal-score-denoising-score-matching-7">3.2 From conditional to marginal score (denoising score matching [7])</h3>
+
+<p>Let \(p(x_0)\) denote the distribution of clean images – the training data distribution. The marginal density of \(x_t\) is obtained by integrating the conditional over every possible clean image that could have produced it:</p>
+
+\[p_t(x_t) = \int q(x_t\mid x_0)\,p(x_0)\,dx_0\]
+
+<p>The marginal score is \(\nabla_{x_t}\log p_t(x_t) = \nabla_{x_t}p_t(x_t)\,/\,p_t(x_t)\). Differentiating the integral with respect to \(x_t\) (moving the gradient inside the integral, valid under the mild regularity conditions that hold here):</p>
+
+\[\nabla_{x_t}p_t(x_t) = \int \nabla_{x_t}q(x_t\mid x_0)\,p(x_0)\,dx_0\]
+
+<p>The identity \(\nabla_x f(x) = f(x)\,\nabla_x\log f(x)\) – which follows directly from the chain rule applied to \(\log f(x)\) – turns \(\nabla_{x_t}q(x_t\mid x_0)\) into \(q(x_t\mid x_0)\,\nabla_{x_t}\log q(x_t\mid x_0)\):</p>
+
+\[\nabla_{x_t}p_t(x_t) = \int q(x_t\mid x_0)\,\nabla_{x_t}\log q(x_t\mid x_0)\,p(x_0)\,dx_0\]
+
+<p>Dividing both sides by \(p_t(x_t)\):</p>
+
+\[\nabla_{x_t}\log p_t(x_t) = \int \frac{q(x_t\mid x_0)\,p(x_0)}{p_t(x_t)}\,\nabla_{x_t}\log q(x_t\mid x_0)\,dx_0\]
+
+<p>The fraction inside the integral is exactly Bayes’ rule for the posterior over \(x_0\) given \(x_t\) – since \(p_t(x_t)=\int q(x_t\mid x_0)p(x_0)\,dx_0\) is precisely the normalizing constant that turns the joint \(q(x_t\mid x_0)p(x_0)\) into a proper posterior, \(q(x_0\mid x_t) = q(x_t\mid x_0)\,p(x_0)\,/\,p_t(x_t)\). Substituting this in:</p>
+
+\[\nabla_{x_t}\log p_t(x_t) = \int q(x_0\mid x_t)\,\nabla_{x_t}\log q(x_t\mid x_0)\,dx_0 = \mathbb E_{x_0\sim q(x_0\mid x_t)}\big[\nabla_{x_t}\log q(x_t\mid x_0)\big]\]
+
+<p>the marginal score is the posterior-weighted average of the conditional score.</p>
+
+<h3 id="33-combining-the-two-results">3.3 Combining the two results</h3>
+
+<p>Substituting the conditional score from Section 3.1 into the averaging identity from Section 3.2:</p>
+
+\[\nabla_{x_t}\log p_t(x_t) = \mathbb E_{x_0\sim q(x_0\mid x_t)}\left[-\frac{\epsilon}{\sqrt{1-\bar\alpha_t}}\right] = -\frac{1}{\sqrt{1-\bar\alpha_t}}\,\mathbb E[\epsilon\mid x_t]\]
+
+<p>(The scalar \(1/\sqrt{1-\bar\alpha_t}\) does not depend on \(x_0\), so it pulls straight out of the expectation.)</p>
+
+<h3 id="34-what-the-networks-loss-actually-estimates">3.4 What the network’s loss actually estimates</h3>
+
+<p>Separately, minimizing an \(\|\epsilon-\hat\epsilon\|^2\) loss is ordinary least-squares regression, whose optimal solution is the conditional expectation of the target: \(\epsilon_\theta(x_t,t) \approx \mathbb E[\epsilon\mid x_t]\). Substituting the result here into Section 3.3 gives the bridge:</p>
+
+\[s_\theta(x_t,t) = \nabla_{x_t}\log p_t(x_t) \approx -\frac{\epsilon_\theta(x_t,t)}{\sqrt{1-\bar\alpha_t}}\]
+
+<p>equivalently</p>
+
+\[\epsilon_\theta(x_t,t) \approx -\sqrt{1-\bar\alpha_t}\,\nabla_{x_t}\log p_t(x_t)\]
+
+<p>Practically, this is why DDPM-style noise prediction and score-based/stochastic differential equation (SDE) diffusion are the same underlying model wearing different notation – samplers and theory built for one transfer directly to the other via this rescaling.</p>
+
+<h2 id="4-under-the-hood-how-the-network-is-actually-trained">4. Under the hood: how the network is actually trained</h2>
+
+<p>This section unpacks what Section 1 deferred – what actually happens between “noisy input” and “noise prediction”, including how a text prompt steers the result. The denoising network itself is almost always a U-Net [8]: a convolutional architecture, originally designed for biomedical image segmentation, whose encoder progressively downsamples the input and whose decoder upsamples it back, with skip connections linking matching resolutions (the original block input gets added back onto the result) – giving it its characteristic U-shaped diagram.</p>
+
+<h3 id="41-what-goes-in">4.1 What goes in</h3>
+
+<p>For text-to-image training, each dataset example is an (image, caption) pair, \((x_0, c)\). The caption is run once through a frozen, pretrained text encoder – for example Contrastive Language-Image Pre-training (CLIP) [9] or the Text-to-Text Transfer Transformer (T5) [10] – to produce a sequence of embeddings \(C\), <em>before</em> diffusion training even starts. The full pipeline:</p>
+
+\[\text{image}+\text{caption} \;\to\; x_0 + C \;\to\; \text{add noise} \;\to\; x_t + C\]
+
+\[x_t + C \;\to\; \text{U-Net + cross-attention} \;\to\; \hat\epsilon \;\to\; \|\epsilon-\hat\epsilon\|^2\]
+
+<blockquote>
+  <p>In the first pipeline, between \(x_0 + C\) and <code class="language-plaintext highlighter-rouge">add noise</code> steps, there is an implicit layer of operation to encode the input images into the latent space.</p>
+</blockquote>
+
+<h3 id="42-the-forward-process-is-closed-form-math-not-a-network">4.2 The forward process is closed-form math, not a network</h3>
+
+<p>\(x_t = \sqrt{\bar\alpha_t}x_0 + \sqrt{1-\bar\alpha_t}\epsilon\) involves no learned weights – \(\bar\alpha_t\) is a lookup into a table built <em>before training starts</em>. Where that table comes from:</p>
+
+<p><strong>The per-step definition.</strong> The forward process is originally specified one small step at a time:</p>
+
+\[q(x_t \mid x_{t-1}) = \mathcal N\big(\sqrt{1-\beta_t}\,x_{t-1},\ \beta_t I\big)\]
+
+<p>equivalently</p>
+
+\[x_t = \sqrt{\alpha_t}\,x_{t-1}+\sqrt{1-\alpha_t}\,\epsilon_t, \qquad \alpha_t=1-\beta_t\]
+
+<p>\(\beta_t\) is the <em>noise budget for that single step</em>. Its values are not learned; they come from a hand-chosen schedule, fixed and cached before training starts. A small illustrative schedule, with \(T=5\):</p>
+
+\[\beta = [0.0001,\ 0.005,\ 0.01,\ 0.015,\ 0.02]\]
+
+<p>increasing across steps, so each step injects a little more noise than the last. Real schedules run to \(T=1000\) or more and are typically generated from a formula rather than listed by hand – linear interpolation between a \(\beta_{\min}\) and \(\beta_{\max}\) is a common baseline,</p>
+
+\[\beta_t = \beta_{\text{min}} + \frac{t - 1}{T - 1}(\beta_{\text{max}} - \beta_{\text{min}})\]
+
+<p>The cosine schedule is another popular choice, and the formulation is a bit more complex,</p>
+
+\[\bar{\alpha}_t = \frac{f(t)}{f(0)},\ \ \ \ \ \ \ f(t) = cos^2\bigg(\frac{t/T + s}{1 + s}\cdot\frac{\pi}{2}\bigg)\]
+
+<p>where \(s\) is an arbitrarily chosen small positive offset [11]. In this case, the schedule \(\beta_t\) is actually not given explicitly, but we can derive it. Since,</p>
+
+\[\bar\alpha_t=\prod_{s=1}^{t}\alpha_s\]
+
+<p>it follows that,</p>
+
+\[\frac{\bar\alpha_t}{\bar\alpha_{t-1}} = \alpha_t = 1 - \beta_t \Rightarrow \beta_t = 1 - \frac{\bar\alpha_t}{\bar\alpha_{t-1}} = 1 - \frac{f(t)}{f(t-1)}\]
+
+<p>Anyways, a small five-step version is enough to see how the pieces fit together. Taking \(\alpha_t=1-\beta_t\) term by term:</p>
+
+\[\alpha = [0.9999,\ 0.995,\ 0.99,\ 0.985,\ 0.98]\]
+
+<p><strong>From per-step to cumulative.</strong> Chaining two such steps shows how the closed-form shortcut in Section 1 arises. Substituting the \(x_1\) equation into the \(x_2\) equation:</p>
+
+\[\begin{align}
+x_2 &amp; = \sqrt{\alpha_2}\big(\sqrt{\alpha_1}x_0+\sqrt{1-\alpha_1}\epsilon_1\big)+\sqrt{1-\alpha_2}\,\epsilon_2\\
+&amp; = \sqrt{\alpha_1\alpha_2}\,x_0 + \underbrace{\bigg(\sqrt{\alpha_2(1-\alpha_1)}\,\epsilon_1+\sqrt{1-\alpha_2}\,\epsilon_2\bigg)}_{\text{sum of two independent Gaussians}}
+\end{align}\]
+
+<p>A sum of independent Gaussians is itself Gaussian, with variance equal to the sum of the individual variances: \(\alpha_2(1-\alpha_1)+(1-\alpha_2)=1-\alpha_1\alpha_2\). The bracketed sum can therefore be replaced by a single equivalent noise term, \(\sqrt{1-\alpha_1\alpha_2}\,\epsilon\):</p>
+
+\[x_2=\sqrt{\alpha_1\alpha_2}\,x_0+\sqrt{1-\alpha_1\alpha_2}\,\epsilon\]
+
+<p>With the schedule above, \(\alpha_1\alpha_2 = 0.9999\times0.995\approx0.9949\), so after two steps roughly 99.5% of the original signal variance remains. Repeating this merge at every subsequent step projects the product of retention fractions out to step \(t\), producing the cumulative quantity used throughout this document:</p>
+
+\[\bar\alpha_t=\prod_{s=1}^{t}\alpha_s\]
+
+<p>Carrying the same schedule through all five steps gives \(\bar\alpha_5\approx0.9508\) – after the full five-step schedule, about 95% of the original signal variance is still present, with the rest replaced by noise. This is exactly what turns the step-by-step process into the one-shot formula from Section 1:</p>
+
+\[x_t=\sqrt{\bar\alpha_t}\,x_0+\sqrt{1-\bar\alpha_t}\,\epsilon\]
+
+<p>So the three quantities relate as: \(\beta_t\) is the raw per-step schedule input, \(\alpha_t=1-\beta_t\) is the signal-retention fraction it implies for a single step, and \(\bar\alpha_t\) is the cumulative retention fraction after chaining steps 1 through \(t\) together. Sampling \(x_t\) directly is therefore mathematically exact, not an approximation – it is the same distribution as simulating \(x_1,x_2,\dots,x_t\) one at a time, yielding one closed-form step instead of \(t\) successive ones.</p>
+
+<p>Once \(\alpha_t\) and \(\bar\alpha_t\) are computed and cached this way, \(t\) is nothing more than a row index into that table.</p>
+
+<h3 id="43-two-separate-conditioning-pathways-inside-the-u-net">4.3 Two separate conditioning pathways, inside the U-Net</h3>
+
+<p>The time step \(t\) gets used a <em>second</em>, completely different way once inside the network – easy to be confused with its role above, but the two are unrelated.</p>
+
+<p><strong>Timestep pathway.</strong> The U-Net’s weights are reused at every one of the \(T\) diffusion steps, from nearly pure noise down to nearly clean. But the task looks different at each end: near \(t=1\) the network is doing fine cleanup on an input that is mostly signal already; near \(t=T\) it has almost no real signal to anchor on and has to lean much more on learned priors (and on the caption). Without being told \(t\), the network would have to infer which regime it is in purely from the statistics of \(x_t\) – a harder, noisier problem to learn. The timestep pathway hands it that information directly, in three steps.</p>
+
+<p><strong>Step 1: turn the scalar \(t\) into a vector.</strong> Neural networks work better with vectors than raw scalars – a bare integer gives the network no useful structure to learn from. \(t\) is mapped into a vector using the same sinusoidal construction as Transformer positional encodings [12]:</p>
+
+\[PE(t)_{2i}=\sin\!\left(\frac{t}{10000^{2i/d}}\right)\]
+
+\[PE(t)_{2i+1}=\cos\!\left(\frac{t}{10000^{2i/d}}\right)\]
+
+<p>Several reasons for this specific construction rather than, say, feeding in the raw integer or a one-hot vector: 1) nearby timesteps produce nearby vectors (smoothness), so the network generalizes across steps instead of treating each step independently; 2) mixing several frequencies lets the network distinguish both coarse position (which era of the schedule) and fine position (the exact step); 3) avoid values exploding for large \(t\) the way a raw integer would – to keep consistent with the general number scaling in the neural network.</p>
+
+<blockquote>
+  <p>\(d\) here is an arbitrarily chosen dimension of the resulted position encoding. For instance, the example presented below is using \(d = 4\).</p>
+</blockquote>
+
+<p>Concrete example, \(d=4\) (so \(i=0,1\)), \(t=500\):</p>
+
+<ul>
+  <li>\(i=0\): divisor \(10000^{0/4}=1\), angle \(=500\) rad \(\to \sin(500)\approx-0.468\), \(\cos(500)\approx-0.884\)</li>
+  <li>\(i=1\): divisor \(10000^{2/4}=100\), angle \(=5\) rad \(\to \sin(5)\approx-0.959\), \(\cos(5)\approx0.284\)
+\(PE(500) = [-0.468,\ -0.884,\ -0.959,\ 0.284]\)</li>
+</ul>
+
+<p>The rationale carried by #1 and #3 reasons presented above are straightforward to follow. For #2, we can see its logic by grouping the encoding list by the value of \(i\) – in the example above, we have \(i = 0, 1\) and accordingly the first two numbers form the first group with \(i = 0\) and the last two numbers form the second group with \(i = 1\). With \(i = 0\), the encoding equation just becomes \(sin(t)\) and \(cos(t)\), respectively, and the variation of the encoding is fast, with the frequency of \(\frac{1}{2\pi}\) in the time step space. Therefore, this bit of the encoding ‘cares’ more about the fast variation of the noise across time steps. With \(i = 1\), the encoding equations become \(sin(t/100)\) and \(cos(t/100)\), respectively, and the variation of the time step encoding in this case is very slow with the frequency of \(\frac{1}{200\pi}\). Therefore, the \(i = 1\) group of the encoding ‘cares’ more about the slow variation bit of the time step encoding. Putting them together, we have the neural network covering the different frequency components regarding the noise variation across the time steps.</p>
+
+<p><strong>Step 2: project into the network’s working dimension.</strong> The sinusoidal vector is fixed, not learned. It is passed through a small learned MLP (Multi-Layer Perceptron), typically two linear layers with a nonlinearity:</p>
+
+\[\text{temb} = W_2\cdot\text{SiLU}(W_1\cdot PE(t)+b_1)+b_2\]
+
+<p>This lets the network learn how to reinterpret the raw sinusoidal signal, and projects it from the sinusoidal dimension to whatever channel width the U-Net’s ResBlocks expect. Continuing the example with toy weights \(W_1=\begin{bmatrix}0.1&amp;-0.2&amp;0.3&amp;0.1\\0.2&amp;0.1&amp;-0.1&amp;0.4\end{bmatrix}\), \(b_1=[0,0]\):</p>
+
+\[W_1\cdot PE(500) = \begin{bmatrix}0.1(-0.468)+(-0.2)(-0.884)+0.3(-0.959)+0.1(0.284)\\0.2(-0.468)+0.1(-0.884)+(-0.1)(-0.959)+0.4(0.284)\end{bmatrix} = \begin{bmatrix}-0.129\\0.028\end{bmatrix}\]
+
+<p>Applying SiLU (see Section 4.4) elementwise: \(\text{SiLU}(-0.129)\approx-0.060\), \(\text{SiLU}(0.028)\approx0.014\). With a second layer \(W_2=I\), \(b_2=0\) for simplicity:</p>
+
+\[\text{temb} \approx [-0.060,\ 0.014]\]
+
+<blockquote>
+  <p>This is a self-contained illustration at \(d=4\); the working example in Section 4.6 uses its own, independently hand-picked temb for a smaller 2-dimensional setup, so the two are not meant to represent literally the same diffusion step.</p>
+</blockquote>
+
+<p><strong>Step 3: modulate the feature maps.</strong> <code class="language-plaintext highlighter-rouge">temb</code> – the same vector, reused at every ResBlock in the U-Net – modulates <em>feature maps</em>: the intermediate activations inside the U-Net’s conv layers, not \(x_t\) itself. The mechanism is <strong>FiLM</strong> (Feature-wise Linear Modulation) [13]: rather than concatenating the timestep information onto the feature maps (clunky for convolutional data), a small linear layer projects <code class="language-plaintext highlighter-rouge">temb</code> into a per-channel scale \(\gamma\) and shift \(b\), and the feature map is rescaled channel by channel:</p>
+
+\[\gamma, b = \text{Linear}(\text{temb}), \qquad h' = \gamma \odot h + b\]
+
+<p>Stable Diffusion’s U-Net implements this as “adaptive group norm” applied immediately after a GroupNorm layer. \(\odot\) is elementwise multiplication per channel, so each channel of the feature map gets its own scale and shift, both conditioned on how noisy the current timestep is. Section 4.6 carries this exact mechanism through numerically applying a FiLM layer to the ResBlock output from that section’s running example.</p>
+
+<h3 id="44-inside-a-resblock">4.4 Inside a ResBlock</h3>
+
+<p>The U-Net is a stack of residual blocks (ResBlocks) [14]. Each computes \(h_{\text{out}} = x + f(x)\) – the input skips around a small convolutional stack and gets added back at the end, and accordingly such a process is called <code class="language-plaintext highlighter-rouge">skip connection</code>. This matters for trainability: during backpropagation, \(\partial h_{\text{out}}/\partial x = 1 + \partial f/\partial x\), so the <code class="language-plaintext highlighter-rouge">+1</code> term guarantees a clean gradient path no matter how many blocks are stacked, which is what makes training of deep networks practical.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">skip connection</code> basically refers to that the input of the ResBlock is skipping whatever transformation in the ResBlock and gets added directly to the output of the ResBlock.</p>
+</blockquote>
+
+<p>A typical block chains normalization, activation, and convolution: <code class="language-plaintext highlighter-rouge">GroupNorm → SiLU → Conv → [FiLM by temb] → GroupNorm → SiLU → Conv</code> (the whole chain here corresponds to \(f(x)\) in \(h_{out}\)), then adds the skip connection. GroupNorm is Group Normalization [15], and Conv is a convolutional layer. SiLU is the activation used throughout [16]:</p>
+
+\[\text{SiLU}(x) = x\cdot\sigma(x)\]
+
+\[\sigma(x)=\frac{1}{1+e^{-x}} \qquad \text{(sigmoid)}\]
+
+<p>Unlike the Rectified Linear Unit (ReLU) [17]’s hard cutoff at 0, SiLU smoothly damps negative inputs toward – but not exactly to – zero: e.g. \(\text{SiLU}(-2) \approx -0.24\), \(\text{SiLU}(2)\approx 1.76\). That smoothness keeps gradients flowing more cleanly through very deep stacks.</p>
+
+<h3 id="45-the-complete-training-step">4.5 The complete training step</h3>
+
+<ol>
+  <li>Sample an (image, caption) pair; encode the caption once: \(C = \text{TextEncoder}(c)\).</li>
+  <li>Sample \(t \sim \text{Uniform}(1,\dots,T)\) and \(\epsilon \sim \mathcal N(0,I)\).</li>
+  <li>Look up \(\bar\alpha_t\), compute \(x_t = \sqrt{\bar\alpha_t}\,x_0 + \sqrt{1-\bar\alpha_t}\,\epsilon\) (Section 4.2).</li>
+  <li>Compute \(\text{temb} = \text{MLP}(\text{sinusoidal}(t))\), then \(\hat\epsilon = \text{UNet}(x_t,\ \text{temb},\ C)\) – <code class="language-plaintext highlighter-rouge">temb</code> modulates ResBlocks via FiLM, \(C\) conditions via cross-attention (Section 4.3).</li>
+  <li>\(\mathcal L = \|\epsilon - \hat\epsilon\|^2\); backpropagate and update the U-Net’s weights, including the small <code class="language-plaintext highlighter-rouge">temb</code> MLP and the FiLM/attention projection layers. (The text encoder itself is typically kept frozen.)</li>
+</ol>
+
+<p>The training <em>target</em> is always the actually-sampled \(\epsilon\), at every step, with or without a caption. Text conditioning never changes what’s being predicted – it only gives the network extra information to make that same prediction more accurately, by narrowing down what the clean image underneath the noise is likely to contain.</p>
+
+<h3 id="46-a-concrete-working-example">4.6 A concrete working example</h3>
+
+<p>Tiny dimensions so every step is checkable by hand. Embedding dimension \(d=2\), latent \(x_0 = [1,-1]\), caption embedding \(C = \begin{bmatrix}1&amp;0\\0&amp;1\end{bmatrix}\) (two token vectors), \(\bar\alpha_t = 0.8\), sampled noise \(\epsilon = [0.5,-0.2]\). This version follows the full “ResBlock, then cross-attention” structure end to end, including both residual connections – the ResBlock’s own skip connection (Section 4.4) and cross-attention’s separate residual – rather than compressing past either.</p>
+
+<p><strong>Forward step:</strong></p>
+
+\[x_t = \sqrt{0.8}\,[1,-1] + \sqrt{0.2}\,[0.5,-0.2]\]
+
+\[= [0.894,-0.894]+[0.224,-0.089] = [1.118,-0.983]\]
+
+<p><strong>The ResBlock.</strong> Following Section 4.4’s structure exactly: <code class="language-plaintext highlighter-rouge">GroupNorm → SiLU → Conv → [FiLM by temb] → GroupNorm → SiLU → Conv</code>, then a skip connection closes the block.</p>
+
+<p><em>GroupNorm₁</em> (toy: mean/variance standardization only, with no extra learned affine beyond what FiLM already provides):</p>
+
+\[\text{mean}=\frac{1.118+(-0.983)}{2}=0.068,\qquad \text{std}=\left|\frac{1.118-(-0.983)}{2}\right|=1.051\]
+
+\[\text{GroupNorm}_1(x_t) = \left[\frac{1.118-0.068}{1.051},\ \frac{-0.983-0.068}{1.051}\right] = [1.000,\,-1.000]\]
+
+<p><em>SiLU₁:</em></p>
+
+\[\text{SiLU}(1.000)\approx0.731,\qquad \text{SiLU}(-1.000)\approx-0.269\]
+
+<p><em>Conv₁</em> (toy: identity, so this step leaves the numbers unchanged): \([0.731,-0.269]\)</p>
+
+<p><em>FiLM</em> (Section 4.3): with \(\text{temb}=[-0.046,-0.003]\), \(W_\gamma=[1,\,0.5]\), \(b_\gamma=1\), \(W_b=[0.2,\,-0.3]\), \(b_b=0\):</p>
+
+\[\gamma = W_\gamma\cdot\text{temb}+b_\gamma = 0.952, \qquad b = W_b\cdot\text{temb}+b_b = -0.008\]
+
+\[h' = \gamma\odot[0.731,-0.269]+b = [0.696,-0.256]+(-0.008) = [0.688,\,-0.264]\]
+
+<p><em>GroupNorm₂</em> applied to \([0.688,-0.264]\):</p>
+
+\[\text{mean}=0.212,\qquad\text{std}=0.476\]
+
+\[\text{GroupNorm}_2 = \left[\frac{0.688-0.212}{0.476},\ \frac{-0.264-0.212}{0.476}\right] = [1.000,\,-1.000]\]
+
+<p>This lands on exactly the same \([1.000,-1.000]\) as GroupNorm₁ – not a copy-paste artifact. With only two elements, mean/variance standardization always collapses to \([\pm1,\mp1]\) regardless of the input’s actual scale, since it discards everything except the sign of the difference between the two entries. That means FiLM’s specific scale and shift, applied between the two GroupNorms here, ends up invisible to everything downstream as long as \(\gamma\) stays positive: it changes the numbers momentarily, but the second normalization erases that change. This is a limitation of the toy two-dimensional setup, not of the real architecture – with the hundreds of channels a real ResBlock actually has, GroupNorm normalizes per-group statistics without discarding the relative structure FiLM introduces across channels, so FiLM’s effect on the final output does survive there.</p>
+
+<p><em>SiLU₂:</em> identical input to SiLU₁, so identical output: \([0.731,-0.269]\)</p>
+
+<p><em>Conv₂</em> (toy: identity): \([0.731,-0.269]\) – this is \(f(x_t)\), the ResBlock’s full internal transformation.</p>
+
+<p><em>Skip connection</em> (the ResBlock’s own residual from Section 4.4, \(h_{\text{out}}=x+f(x)\)):</p>
+
+\[r = x_t + f(x_t) = [1.118,-0.983]+[0.731,-0.269] = [1.849,\,-1.252]\]
+
+<p><strong>Cross-attention</strong>, consuming the ResBlock’s output \(r\) as its query (the “ResBlock → Cross-attention” ordering from Section 4.3), toy: \(W_Q=W_K=W_V=I\), so \(Q=r\), \(K=V=C\):</p>
+
+\[QK^\top = [1.849,-1.252], \qquad \text{scaled by }1/\sqrt2 = [1.308,-0.885]\]
+
+\[\text{softmax} = [0.900,\ 0.100]\]
+
+\[\text{Attn} = 0.900[1,0]+0.100[0,1] = [0.900,\,0.100]\]
+
+<p><strong>Attention’s own residual</strong> (a separate skip connection from the ResBlock’s – the standard \(x+\text{Attention}(x)\) pattern wrapping the attention sub-layer):</p>
+
+\[h = r + \text{Attn} = [1.849+0.900,\ -1.252+0.100] = [2.749,\,-1.152]\]
+
+<p><strong>Output head</strong> (toy: \(W_{out}=0.5I\)):</p>
+
+\[\hat\epsilon = W_{out}\,h = 0.5\,[2.749,-1.152] = [1.375,\,-0.576]\]
+
+<p><strong>Loss:</strong></p>
+
+\[\|\epsilon-\hat\epsilon\|^2 = (0.5-1.375)^2+(-0.2+0.576)^2\]
+
+\[= 0.766+0.141 = 0.906\]
+
+<p>This scalar drives backpropagation through every weight touched along the way – both Convs, both GroupNorms’ implicit statistics, the FiLM layer’s \(W_\gamma,W_b\), \(W_Q,W_K,W_V\), and \(W_{out}\). The loss is larger here than in a version that skipped the ResBlock’s internal structure, which makes sense: this pipeline now genuinely passes through two residual connections and two rounds of normalization rather than one shortcut projection, so an untrained set of toy weights has more opportunity to push the prediction away from the true noise. Everything here is still deliberately trivialized (identity convolutions, one attention head, dimension 2, hand-picked temb), but the sequence of operations – GroupNorm, SiLU, convolution, FiLM modulation, a second GroupNorm/SiLU/convolution, the ResBlock’s own skip connection, cross-attention, attention’s own residual, noise prediction, mean-squared error – now mirrors Section 4.4’s actual ResBlock structure end to end, rather than compressing past it.</p>
+
+<h3 id="47-steering-the-result-harder-classifier-free-guidance">4.7 Steering the result harder: classifier-free guidance</h3>
+
+<p>During training, the caption is occasionally dropped (replaced with an empty condition) so the network learns both \(\epsilon_\theta(x_t,t)\) and \(\epsilon_\theta(x_t,t,C)\) [18]. At generation time, both predictions are computed and combined:</p>
+
+\[\epsilon_{\text{guided}} = \epsilon_{\text{uncond}} + w\,(\epsilon_{\text{cond}} - \epsilon_{\text{uncond}})\]
+
+<p>\(\epsilon_{\text{cond}}-\epsilon_{\text{uncond}}\) approximates “what the prompt wants to change”; the guidance scale \(w&gt;1\) amplifies that direction, which is why turning guidance up produces images that hew more strongly – sometimes too strongly – to the prompt.</p>
+
+<div class="info-box">
+  <p><strong>About the weight factor \(w\)</strong></p>
+
+  <ul>
+    <li>It is a <strong>hyperparameter</strong> that can be tuned manually.</li>
+    <li><strong>What tuning it trades off.</strong> Larger \(w\) pushes samples to hew more closely to the prompt, since it’s extrapolating further in the direction \(\epsilon_{\text{cond}}-\epsilon_{\text{uncond}}\) (“what the prompt wants to change”, as stated above). But push it too far and that extrapolation overshoots – samples tend to get oversaturated, lose diversity, or pick up artifacts, since the model is being driven outside the range of predictions it ever actually saw during training. So in practice \(w\) is tuned empirically per model, and often per prompt, balancing prompt-fidelity against sample quality rather than having one universally correct value.</li>
+    <li><strong>\(w&lt;1\) and \(w=0\) are meaningful too</strong>, not just large values: \(w=0\) recovers pure unconditional generation (ignores the caption entirely), and \(0&lt;w&lt;1\) produces something weaker than the plain conditional model’s prediction.</li>
+  </ul>
+</div>
+
+<h2 id="notation-reference">Notation reference</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(x_0\)</td>
+      <td>clean data (image, or its VAE latent for latent diffusion)</td>
+    </tr>
+    <tr>
+      <td>\(x_t\)</td>
+      <td>data after \(t\) steps of noise</td>
+    </tr>
+    <tr>
+      <td>\(\epsilon\)</td>
+      <td>the actual Gaussian noise sampled during training (the target)</td>
+    </tr>
+    <tr>
+      <td>\(\epsilon_\theta(x_t,t)\), \(\hat\epsilon\)</td>
+      <td>the network’s noise prediction</td>
+    </tr>
+    <tr>
+      <td>\(\beta_t\)</td>
+      <td>per-step noise variance, from the fixed schedule</td>
+    </tr>
+    <tr>
+      <td>\(\alpha_t = 1-\beta_t\)</td>
+      <td>single-step signal retention fraction</td>
+    </tr>
+    <tr>
+      <td>\(\bar\alpha_t=\prod_{s\le t}\alpha_s\)</td>
+      <td>cumulative signal retention through step \(t\)</td>
+    </tr>
+    <tr>
+      <td>\(C\)</td>
+      <td>caption/text embeddings (output of a frozen text encoder)</td>
+    </tr>
+    <tr>
+      <td>temb</td>
+      <td>learned embedding of \(t\), used for FiLM modulation</td>
+    </tr>
+    <tr>
+      <td>\(\gamma, b\) (FiLM)</td>
+      <td>per-channel scale/shift derived from temb</td>
+    </tr>
+    <tr>
+      <td>\(s_t(x)=\nabla_x\log p_t(x)\)</td>
+      <td>the score function</td>
+    </tr>
+    <tr>
+      <td>\(\sigma_t\), \(z\)</td>
+      <td>reverse-step noise scale, and the fresh Gaussian sample it multiplies</td>
+    </tr>
+    <tr>
+      <td>\(w\)</td>
+      <td>classifier-free guidance scale</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1]. Rombach, R., Blattmann, A., Lorenz, D., Esser, P., &amp; Ommer, B. (2022). <em>High-Resolution Image Synthesis with Latent Diffusion Models</em>. (The architecture behind Stable Diffusion.)</p>
+
+<p>[2]. Kingma, D. P., &amp; Welling, M. (2013). <em>Auto-Encoding Variational Bayes</em>. (Introduces the variational autoencoder.)</p>
+
+<p>[3]. Ho, J., Jain, A., &amp; Abbeel, P. (2020). <em>Denoising Diffusion Probabilistic Models</em>.</p>
+
+<p>[4]. Nichol, A., Dhariwal, P., Ramesh, A., et al. (2021). <em>GLIDE: Towards Photorealistic Image Generation and Editing with Text-Guided Diffusion Models</em>.</p>
+
+<p>[5]. Saharia, C., Chan, W., Saxena, S., et al. (2022). <em>Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding</em>. (Imagen.)</p>
+
+<p>[6]. Song, Y., Sohl-Dickstein, J., Kingma, D. P., Kumar, A., Ermon, S., &amp; Poole, B. (2021). <em>Score-Based Generative Modeling through Stochastic Differential Equations</em>.</p>
+
+<p>[7]. Vincent, P. (2011). <em>A Connection Between Score Matching and Denoising Autoencoders</em>. (The denoising score matching identity used in Section 3.)</p>
+
+<p>[8]. Ronneberger, O., Fischer, P., &amp; Brox, T. (2015). <em>U-Net: Convolutional Networks for Biomedical Image Segmentation</em>.</p>
+
+<p>[9]. Radford, A., Kim, J. W., Hallacy, C., et al. (2021). <em>Learning Transferable Visual Models From Natural Language Supervision</em>. (CLIP.)</p>
+
+<p>[10]. Raffel, C., Shazeer, N., Roberts, A., et al. (2020). <em>Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer</em>. (T5.)</p>
+
+<p>[11]. Nichol, A., &amp; Dhariwal, P. (2021). <em>Improved Denoising Diffusion Probabilistic Models</em>. (Introduces the cosine noise schedule used in Section 4.2.)</p>
+
+<p>[12]. Vaswani, A., Shazeer, N., Parmar, N., et al. (2017). <em>Attention Is All You Need</em>. (Introduces the query/key/value attention mechanism and the sinusoidal positional encoding used in Section 4.3.)</p>
+
+<p>[13]. Perez, E., Strub, F., de Vries, H., Dumoulin, V., &amp; Courville, A. (2017). <em>FiLM: Visual Reasoning with a General Conditioning Layer</em>.</p>
+
+<p>[14]. He, K., Zhang, X., Ren, S., &amp; Sun, J. (2015). <em>Deep Residual Learning for Image Recognition</em>. (Introduces the residual/skip connection used in ResBlocks.)</p>
+
+<p>[15]. Wu, Y., &amp; He, K. (2018). <em>Group Normalization</em>.</p>
+
+<p>[16]. Elfwing, S., Uchibe, E., &amp; Doya, K. (2017). <em>Sigmoid-Weighted Linear Units for Neural Network Function Approximation in Reinforcement Learning</em>. (SiLU; independently proposed as “Swish” by Ramachandran, P., Zoph, B., &amp; Le, Q. V. (2017), <em>Searching for Activation Functions</em>.)</p>
+
+<p>[17]. Nair, V., &amp; Hinton, G. E. (2010). <em>Rectified Linear Units Improve Restricted Boltzmann Machines</em>. (ReLU.)</p>
+
+<p>[18]. Ho, J., &amp; Salimans, T. (2022). <em>Classifier-Free Diffusion Guidance</em>.</p>
+
+<p>[19] <a href="https://course.fast.ai/Lessons/lesson9.html">https://course.fast.ai/Lessons/lesson9.html</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#AI">AI</a>
+          
+            <a href="/tags#machine learning">machine learning</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Learning+Notes+on+Denoising+Diffusion+Probablistic+Model&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-09-diffusion_algorithm%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-08-09-diffusion_algorithm%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-09-diffusion_algorithm%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-08-02-sampling_algorithms/" data-toggle="tooltip" data-placement="top" title="Sampling Algorithms">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zyroc1990@iris-2020.us" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
