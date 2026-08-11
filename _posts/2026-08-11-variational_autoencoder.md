@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Variational Autoencoders -- An Introduction
+title: Learning Notes on Variational Autoencoders
 subtitle:
 tags: [AI, machine learning]
 author: Yuanpeng Zhang
@@ -330,7 +330,8 @@ The result here is used in Section 2.2.
 
 <br>
 
-# 3. References
+References
+===
 
 [1] D. P. Kingma and M. Welling, arXiv:1312.6114, 2013.
 
