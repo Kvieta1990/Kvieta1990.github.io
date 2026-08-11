@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Variational Autoencoders -- An Introduction</title>
+        <description>
+          
+          The image was generated with Gemini with the prompt of ‘Generate an image as an abstract showcase for the variational autoencoder. Use the Ghibli style’. 1. General Introduction A Variational Autoencoder (VAE) is a generative model that represents data through a probabilistic latent space, allowing new data to be synthesized...
+        </description>
+        <pubDate>Tue, 11 Aug 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-08-11-variational_autoencoder/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-08-11-variational_autoencoder/</guid>
+      </item>
+    
+      <item>
         <title>Learning Notes on Denoising Diffusion Probablistic Model</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Mon, 21 Apr 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2025-04-21-gsasii_dev_new/</link>
         <guid isPermaLink="true">http://localhost:8000/2025-04-21-gsasii_dev_new/</guid>
-      </item>
-    
-      <item>
-        <title>Local Development of GSAS-II -- Deprecated Instructions</title>
-        <description>
-          
-          GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. It is possible to grab the source codes of GSAS-II, develop and test it locally. This post covers the steps to set up the...
-        </description>
-        <pubDate>Tue, 18 Mar 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-03-18-gsasii_dev/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-03-18-gsasii_dev/</guid>
       </item>
     
   </channel>

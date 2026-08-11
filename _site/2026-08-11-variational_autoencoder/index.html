@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Variational Autoencoders -- An Introduction</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="The image was generated with Gemini with the prompt of ‘Generate an image as an abstract showcase for the variational autoencoder. Use the Ghibli style’. 1. General Introduction A Variational Autoencoder (VAE) is a generative model that represents data through a probabilistic latent space, allowing new data to be synthesized...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Variational Autoencoders -- An Introduction">
+  <meta property="og:description" content="The image was generated with Gemini with the prompt of ‘Generate an image as an abstract showcase for the variational autoencoder. Use the Ghibli style’. 1. General Introduction A Variational Autoencoder (VAE) is a generative model that represents data through a probabilistic latent space, allowing new data to be synthesized...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-08-11T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-08-11-variational_autoencoder/">
+  <link rel="canonical" href="http://localhost:8000/2026-08-11-variational_autoencoder/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Variational Autoencoders -- An Introduction">
+  <meta property="twitter:description" content="The image was generated with Gemini with the prompt of ‘Generate an image as an abstract showcase for the variational autoencoder. Use the Ghibli style’. 1. General Introduction A Variational Autoencoder (VAE) is a generative model that represents data through a probabilistic latent space, allowing new data to be synthesized...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-2020.us/script.js" data-website-id="387a3202-bb18-41ba-a954-d985ff940209"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Variational Autoencoders -- An Introduction</h1>
+          
+
+          
+					<span class="post-meta">Posted on August 11, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/vae_ghibli.png" style="border:none;" width="700" alt="vae" title="vae" /><br />
+<em>The image was generated with Gemini with the prompt of ‘Generate an image as an abstract showcase for the variational autoencoder. Use the Ghibli style’.</em></p>
+
+<p><br /></p>
+
+<h1 id="1-general-introduction">1. General Introduction</h1>
+
+<p>A Variational Autoencoder (VAE) is a generative model that represents data through a probabilistic latent space, allowing new data to be synthesized by sampling from that latent space and decoding the samples [1, 2]. This distinguishes it from a conventional (non-variational) autoencoder, which learns a deterministic mapping from an input to a single latent code and back to a reconstruction, with no sampling operation involved at any stage of normal use: encoding is \(z = f(x)\) and decoding is \(\hat{x} = g(z)\), both fixed functions.</p>
+
+<p>The training objective of a conventional autoencoder minimizes reconstruction error alone (e.g., \(\|x - g(f(x))\|^2\)), without imposing any structure on the latent space. As a result, most points in that latent space are never visited during training, and decoding an arbitrarily chosen latent point typically produces unstructured, meaningless output – the autoencoder’s latent space is, in general, not sample-able.</p>
+
+<p>For a non-variational autoencoder, the non sample-able latent space is not a problem since we are not supposed to sample the latent space anyways – the whole purpose of a conventional autoencoder is to compress the input effectively into the latent space from which then the input can be re-generated reliably. In another word, <code class="language-plaintext highlighter-rouge">the conventional autoencoder is not supposed to be a generative tool with which we can generate some new samples given the trained network</code>. To have such generative autoencoder, a VAE comes to the spot by changing the training scheme in two ways:</p>
+
+<ol>
+  <li>The encoder outputs the <strong>parameters of a probability distribution</strong> over the latent space for each input, rather than a single latent code.</li>
+  <li>The aggregate of these latent distributions is explicitly regularized, during training, toward a fixed and known prior distribution – typically a standard multivariate normal distribution, \(\mathcal{N}(0, I)\).</li>
+</ol>
+
+<p>Because each input is mapped to a distribution (a “cloud” of plausible latent values) rather than a single point, and because these clouds are collectively pushed toward the prior, the decoder is exposed to – and learns to handle – a densely and continuously populated region of latent space. This is what makes it possible, once training is complete, to bypass the encoder entirely, draw a fresh latent sample directly from the known prior, and decode it into a novel, plausible output. This <code class="language-plaintext highlighter-rouge">generative capability</code> is the central practical benefit of the VAE framework over a conventional autoencoder.</p>
+
+<p>It is also important to note that neither the encoder nor the decoder produces a data point directly – each network predicts the <strong>parameters</strong> of a distribution, and the corresponding data point is (in principle) a sample drawn from that distribution:</p>
+
+<ul>
+  <li>The encoder produces the parameters (mean and variance) of a distribution over the latent space, \(q_\phi(z \mid x)\), from which a latent vector \(z\) is sampled.</li>
+  <li>
+    <p>The decoder produces the parameters of a distribution over the output space, \(p_\theta(x \mid z)\) – for example, a mean vector under a Gaussian likelihood, or a set of per-element probabilities under a Bernoulli likelihood – from which the output is, in principle, itself sampled.</p>
+
+    <p><br /></p>
+
+    <blockquote>
+      <p>For the Bernoulli case, here is an example to showcase how it works. For instance, suppose the decoder predicts that a pixel has an 80% chance of being white and a 20% chance of being black. Then, to generate the value for the pixel, we can generate a random number between 0 and 1. If the generated number is greater than 0.2, the pixel is sampled as white; otherwise, it is black.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>In practice, if we are dealing with continuous generation problems (e.g., generating RGB-color images where each pixel has continous values), we will be using the Gaussian distribution for the output generation. In this case, the out sampling step is usually reporting the mean of the output distribution, since the meaningful variability for generation has already been introduced by sampling \(z\); sampling again at the output stage typically adds little beyond low-level noise. This matters mathematically, because the reconstruction term of the training objective is derived directly from the assumed form of this output distribution (Section 2.2).</p>
+
+<p>The end-to-end pipeline of a VAE can be summarized in the following diagram,</p>
+
+<p align="center">
+<img src="/assets/img/posts/VAE_pipeline.png" style="border:none;" width="700" alt="vae_pipeline" title="vae_pipeline" />
+</p>
+
+<p><strong>N.B.</strong> The \(\sigma^2 = 1\) in the output sampling step is an arbitrarily chosen value, as a hyperparameter (see the discussion above for the justification of doing so).</p>
+
+<h1 id="2-some-maths">2. Some Maths</h1>
+
+<p>This section presents the mathematical foundations of the variational autoencoder framework: the derivation of the Evidence Lower Bound (ELBO), the derivation of the training loss under two different assumed output likelihoods, and a list of supporting background topics.</p>
+
+<h2 id="21-derivation-of-the-evidence-lower-bound-elbo">2.1 Derivation of the Evidence Lower Bound (ELBO)</h2>
+
+<p>Consider data \(x\) assumed to be generated by an unobserved latent variable \(z\) through a generative process \(p_\theta(x\mid z)\), with prior distribution \(p(z) = \mathcal{N}(0, I)\). The marginal likelihood of the data is</p>
+
+\[p_\theta(x) = \int p_\theta(x\mid z)\, p(z)\, dz\]
+
+<p>This integral is intractable in general, since the decoder \(p_\theta(x\mid z)\) is a nonlinear neural network and we cannot enumerate all \(z\)’s. To circumvent this, an approximate posterior distribution \(q_\phi(z\mid x)\) (implemented by the encoder network) is introduced and used to derive a tractable lower bound on \(\log p_\theta(x)\).</p>
+
+<p>Consider the Kullback-Leibler (KL) divergence between the approximate posterior \(q_\phi(z\mid x)\) and the true, intractable posterior \(p_\theta(z\mid x)\),</p>
+
+\[D_{KL}\big(q_\phi(z\mid x)\,\|\,p_\theta(z\mid x)\big) = \mathbb{E}_{q_\phi(z\mid x)}\left[\log\frac{q_\phi(z\mid x)}{p_\theta(z\mid x)}\right]\]
+
+<p>By Bayes’ rule, \(p_\theta(z\mid x) = \dfrac{p_\theta(x\mid z)\,p(z)}{p_\theta(x)}\). Substituting this into the KL divergence formulation, we have,</p>
+
+\[D_{KL}\big(q_\phi(z\mid x)\|p_\theta(z\mid x)\big) = \mathbb{E}_{q_\phi(z\mid x)}\Big[\log q_\phi(z\mid x) - \log p_\theta(x\mid z) - \log p(z) + \log p_\theta(x)\Big]\]
+
+<p>Since \(\log p_\theta(x)\) does not depend on \(z\), it can be moved outside the expectation:</p>
+
+\[D_{KL}\big(q_\phi(z\mid x)\|p_\theta(z\mid x)\big) = \log p_\theta(x) - \mathbb{E}_{q_\phi(z\mid x)}\big[\log p_\theta(x\mid z)\big] + D_{KL}\big(q_\phi(z\mid x)\|p(z)\big)\]
+
+<p>Rearranging:</p>
+
+\[\log p_\theta(x) = \underbrace{\mathbb{E}_{q_\phi(z\mid x)}\big[\log p_\theta(x\mid z)\big] - D_{KL}\big(q_\phi(z\mid x)\|p(z)\big)}_{\text{ELBO}(\theta,\phi;\,x)} \;+\; \underbrace{D_{KL}\big(q_\phi(z\mid x)\|p_\theta(z\mid x)\big)}_{\geq 0}\]
+
+<p>Because KL divergence is always non-negative, the first term – the Evidence Lower Bound (ELBO) – constitutes a lower bound on the marginal log-likelihood:</p>
+
+\[\log p_\theta(x) \;\geq\; \mathbb{E}_{q_\phi(z\mid x)}\big[\log p_\theta(x\mid z)\big] - D_{KL}\big(q_\phi(z\mid x)\|p(z)\big)\]
+
+<p>Since the true posterior \(p_\theta(z\mid x)\) is unavailable, the ELBO is maximized in its place; doing so simultaneously increases \(\log p_\theta(x)\) and drives \(q_\phi(z\mid x)\) toward the true posterior [1, 2].</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>Remark on covariance structure.</strong> Both \(q_\phi(z\mid x)\) (the encoder’s latent distribution) and, when a Gaussian output likelihood is used, \(p_\theta(x\mid z)\) (the decoder’s output distribution) are multivariate Gaussian distributions. In standard VAE formulations, the different dimensions of each distribution are assumed statistically independent given the conditioning variable, so that the covariance matrix is restricted to be diagonal (or, for the output likelihood, isotropic with a single shared scalar variance). This assumption reduces the number of parameters that must be predicted from \(O(d^2)\) to \(O(d)\), allows sampling to be performed independently per dimension (Section 1.1), and – as shown in Section 2.2.2 – allows the KL divergence term to be written in closed form as a sum of independent per-dimension terms [4, 5].</p>
+</blockquote>
+
+<h2 id="22-loss-function-derivation">2.2 Loss Function Derivation</h2>
+
+<p>The ELBO consists of two terms that are optimized jointly:</p>
+
+\[\mathcal{L}(\theta,\phi;x) = \underbrace{\mathbb{E}_{q_\phi(z\mid x)}[\log p_\theta(x\mid z)]}_{\text{reconstruction term}} \;-\; \underbrace{D_{KL}\big(q_\phi(z\mid x)\|p(z)\big)}_{\text{regularization term}}\]
+
+<p>Training maximizes \(\mathcal{L}\), equivalently minimizing \(-\mathcal{L}\) as a loss.</p>
+
+<p>The reconstruction term is an expectation over \(q_\phi(z\mid x)\) with no closed form (an explicit algebraic formula), since the decoder is a nonlinear network; it is approximated with a single Monte Carlo sample per training step. Direct sampling of \(z\) is not differentiable with respect to \(\phi\), so the reparameterization trick is used [1, 2]: the sample is rewritten as a deterministic, differentiable function of an independent noise variable,</p>
+
+\[z = \mu + \sigma \odot \epsilon, \qquad \epsilon \sim \mathcal{N}(0, I)\]
+
+<p>with \(\odot\) denoting the elementwise (Hadamard) product. Since \(\mu\) and \(\sigma\) (outputs of the encoder) enter through a differentiable path and all stochasticity is isolated in \(\epsilon\), gradients with respect to \(\phi\) can be computed normally. With one such sample, the reconstruction term is approximated as</p>
+
+\[\mathbb{E}_{q_\phi(z\mid x)}[\log p_\theta(x\mid z)] \approx \log p_\theta(x\mid z), \qquad z = \mu + \sigma\odot\epsilon\]
+
+<p>i.e., by decoding the single sampled \(z\) and evaluating the resulting output likelihood. Its exact form depends on the assumed output distribution.</p>
+
+<h3 id="221-reconstruction-term">2.2.1 Reconstruction Term</h3>
+
+<p><strong>Gaussian Output Distribution</strong></p>
+
+<p>Assume a Gaussian output likelihood with fixed, isotropic variance \(\sigma_x^2\) (a hyperparameter, not predicted by the network),</p>
+
+\[p_\theta(x\mid z) = \mathcal{N}(x;\,\hat{x},\,\sigma_x^2 I), \qquad \hat{x} = \hat{x}_\mu(z)\]
+
+<p>For a single scalar element (e.g., one pixel),</p>
+
+\[\log p(x_i\mid z) = -\frac{1}{2}\log(2\pi\sigma_x^2) - \frac{(x_i-\hat{x}_i)^2}{2\sigma_x^2}\]
+
+<p>Under the diagonal (here, isotropic) covariance assumption, elements are conditionally independent given \(z\), so the joint log-likelihood over all \(n\) elements sums (the joint likelihood should be multiplicative but the log-likelihood turns that into summation),</p>
+
+\[\log p_\theta(x\mid z) = -\frac{n}{2}\log(2\pi\sigma_x^2) - \frac{1}{2\sigma_x^2}\sum_{i=1}^n(x_i-\hat{x}_i)^2 = -\frac{n}{2}\log(2\pi\sigma_x^2) - \frac{1}{2\sigma_x^2}\|x-\hat{x}\|^2\]
+
+<p>Negating, to obtain a quantity to be minimized:</p>
+
+\[-\log p_\theta(x\mid z) = \underbrace{\frac{n}{2}\log(2\pi\sigma_x^2)}_{\text{constant}} + \frac{1}{2\sigma_x^2}\|x-\hat{x}\|^2\]
+
+<p>Because \(\sigma_x^2\) is fixed rather than predicted by the network, the first term is a constant with no dependence on \(\theta\) or \(\phi\), and the coefficient \(1/(2\sigma_x^2)\) is a fixed positive scalar that does not change the location of the minimum. Both can be dropped:</p>
+
+\[-\log p_\theta(x\mid z) \;\propto\; \|x-\hat{x}\|^2\]
+
+<p>That is, the negative log-likelihood under a fixed-variance Gaussian output distribution reduces to the squared error between the input and the decoder’s mean output – the Mean Squared Error (MSE) loss. This mirrors the classical result that least-squares regression is the maximum-likelihood estimator under an assumption of homoscedastic Gaussian noise.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>Homoscedastic: multiple observations possess the same variance.</p>
+</blockquote>
+
+<p><em>Note:</em> if the decoder instead predicts a per-element variance \(\sigma_{x,\theta}^2(z)\) in addition to the mean, the \(\log(2\pi\sigma_x^2)\) term becomes \(\theta\)-dependent and cannot be dropped; the loss then takes the form of a full heteroscedastic Gaussian negative log-likelihood. This variant is less common in practice, in part because the predicted variance can degenerate toward zero during optimization. Here follows is a bit more illustration regarding such a failure mode. Suppose, for some training point, the network manages to get its mean prediction \(\hat{x}_i\) very close to the true value \(x_i\) – so the residual \((x_i - \hat{x}_i)^2\) is small. Once that residual is small, we can take look at what happens as \(\sigma_{x,i}^2 \to 0\):</p>
+
+<ul>
+  <li>
+    <p>The quadratic term \(\dfrac{(x_i-\hat{x}_i)^2}{2\sigma_{x,i}^2}\) stays bounded (small numerator divided by small denominator, but the numerator is <em>already</em> small before dividing, so this term doesn’t necessarily explode – it depends on how fast the residual shrinks relative to \(\sigma^2\)).</p>
+  </li>
+  <li>
+    <p>The log term \(\dfrac{1}{2}\log(2\pi\sigma_{x,i}^2)\) marches toward \(-\infty\) as \(\sigma_{x,i}^2\to 0\), with no floor.</p>
+  </li>
+</ul>
+
+<p>So the network discovers a cheap trick: for any point where it’s already fitting reasonably well, it can keep shrinking \(\sigma_{x,i}^2\) toward zero, and the log term keeps driving the loss down toward \(-\infty\), <em>unboundedly</em>. In another word, the networks sees a shortcut to reduce the loss by reducing the variance, therefore losing the ‘interest’ in predicting the mean value more accurately.</p>
+
+<p><strong>Bernoulli Output Distribution</strong></p>
+
+<p>For binary or \([0,1]\)-normalized data, a Bernoulli output likelihood is commonly assumed instead. Each element \(x_i \in \{0,1\}\) is modeled as</p>
+
+\[p_\theta(x_i\mid z) = \text{Bernoulli}(x_i;\,\hat{p}_i), \qquad \hat{p}_i = \hat{x}_i(z) \in [0,1]\]
+
+<p>where \(\hat{x}_i(z)\) is the decoder’s output, typically obtained via a sigmoid activation. Unlike the Gaussian case, the Bernoulli distribution has a single parameter that determines both its mean and its variance, so no separate variance term needs to be introduced. The probability mass function is</p>
+
+\[p(x_i\mid z) = \hat{p}_i^{\,x_i}(1-\hat{p}_i)^{\,1-x_i}\]
+
+<p>Taking the logarithm and summing over all \(n\) elements (again assuming conditional independence given \(z\)):</p>
+
+\[\log p_\theta(x\mid z) = \sum_{i=1}^n\Big[x_i\log\hat{p}_i + (1-x_i)\log(1-\hat{p}_i)\Big]\]
+
+<p>Negating gives the loss directly, with no constant terms to discard:</p>
+
+\[-\log p_\theta(x\mid z) = -\sum_{i=1}^n\Big[x_i\log\hat{p}_i + (1-x_i)\log(1-\hat{p}_i)\Big]\]
+
+<p>This expression is exactly the Binary Cross-Entropy (BCE) loss, summed over all elements. In practice this quantity is computed from the decoder’s pre-sigmoid logits using a numerically stable, fused implementation, to avoid overflow as \(\hat{p}_i \to 0\) or \(\hat{p}_i \to 1\). Here below are presented the details.</p>
+
+<p><strong>Why the naive computation is unstable.</strong> The decoder’s final layer typically produces an unbounded logit \(\ell_i \in (-\infty,\infty)\), with \(\hat p_i = \sigma(\ell_i) = 1/(1+e^{-\ell_i})\). If \(\hat p_i\) is computed first and then substituted directly into the BCE formula, two floating-point failure modes arise for extreme values of \(\ell_i\):</p>
+
+<ul>
+  <li>If \(\ell_i\) is very negative, \(\hat p_i\) underflows to exactly \(0.0\) in floating-point representation. If the true label is \(x_i=1\), the loss contains \(\log(0.0) = -\infty\), and this propagates: <code class="language-plaintext highlighter-rouge">finite + (-inf) = -inf</code> for the batch total.</li>
+  <li>If \(\hat p_i\) underflows to \(0.0\) while the true label is \(x_i=0\), the corresponding term is \(x_i\log\hat p_i = 0\cdot\log(0.0) = 0\cdot(-\infty)\). Mathematically this term should vanish (the coefficient \(x_i=0\) eliminates it), but IEEE floating-point arithmetic evaluates \(0\times\infty\) as <code class="language-plaintext highlighter-rouge">NaN</code>, since the two factors reach their limiting values independently and there is no way to resolve the product consistently from the numerical values alone.
+The corresponding gradient is equally fragile: \(\dfrac{d}{d\hat p_i}\log\hat p_i = 1/\hat p_i\), which diverges as \(\hat p_i\to 0\) and can itself overflow to <code class="language-plaintext highlighter-rouge">inf</code> in floating point before \(\hat p_i\) even reaches exact zero. Once an <code class="language-plaintext highlighter-rouge">inf</code> or <code class="language-plaintext highlighter-rouge">NaN</code> value enters a gradient tensor, the chain rule propagates it through every downstream computation in the backward pass, and a subsequent optimizer step assigns <code class="language-plaintext highlighter-rouge">NaN</code> to the corresponding network weights – from that point on, every forward pass using those weights also produces <code class="language-plaintext highlighter-rouge">NaN</code>, so the corruption is not confined to the single offending element.</li>
+</ul>
+
+<p><strong>Derivation of the stable, logits-based formula.</strong> Expanding \(\log\hat p_i\) and \(\log(1-\hat p_i)\) directly in terms of the logit \(\ell_i\) removes the need to ever evaluate \(\log\) of a quantity that can round to exactly \(0\) or \(1\). First,</p>
+
+\[\log\hat p_i = \log\left(\frac{1}{1+e^{-\ell_i}}\right) = -\log\big(1+e^{-\ell_i}\big)\]
+
+<p>Second, using \(1-\hat p_i = \dfrac{e^{-\ell_i}}{1+e^{-\ell_i}}\),</p>
+
+\[\log(1-\hat p_i) = -\ell_i - \log\big(1+e^{-\ell_i}\big)\]
+
+<p>Substituting both into the BCE expression for a single element and distributing the sign,</p>
+
+\[\begin{align}
+\text{loss}_i &amp; = -\Big[x_i\big(-\log(1+e^{-\ell_i})\big) + (1-x_i)\big(-\ell_i-\log(1+e^{-\ell_i})\big)\Big]\\
+&amp; = (1-x_i)\ell_i + \log\big(1+e^{-\ell_i}\big)
+\end{align}\]
+
+<p>This form is already safe for very negative \(\ell_i\), but can still overflow for very large positive \(\ell_i\) if computed as written. Adding and subtracting \(\max(\ell_i,0)\) – an identity verified by checking the cases \(\ell_i\geq 0\) and \(\ell_i&lt;0\) separately – yields a form that is symmetric in \(\ell_i\):</p>
+
+\[\text{loss}_i = \max(\ell_i,0) - \ell_i x_i + \log\big(1+e^{-|\ell_i|}\big)\]
+
+<p>The only exponential term remaining is \(e^{-\vert\ell_i\vert}\), and since \(\vert\ell_i\vert\geq 0\) always, this quantity satisfies \(e^{-\vert\ell_i\vert}\in(0,1]\) regardless of how large \(\ell_i\) becomes in either direction. Consequently \(1+e^{-\vert\ell_i\vert}\in(1,2]\), so the log term is always finite and bounded, and no probability value is ever explicitly computed or passed through a logarithm. This is the formula implemented by fused operations such as <code class="language-plaintext highlighter-rouge">binary_cross_entropy_with_logits</code>, operating directly on the decoder’s logits rather than on \(\hat p_i\) itself.</p>
+
+<h3 id="222-kl-divergence-regularization-term">2.2.2 KL Divergence (Regularization) Term</h3>
+
+<p>Because both \(q_\phi(z\mid x) = \mathcal{N}(\mu,\Sigma_0)\) and the prior \(p(z) = \mathcal{N}(0,I)\) are multivariate Gaussian distributions, their KL divergence has a closed form and requires no Monte Carlo estimation. The general closed-form KL divergence between two multivariate Gaussians \(\mathcal{N}(\mu_0,\Sigma_0)\) and \(\mathcal{N}(\mu_1,\Sigma_1)\) in \(d\) dimensions is</p>
+
+\[D_{KL} = \frac{1}{2}\left[\text{tr}(\Sigma_1^{-1}\Sigma_0) + (\mu_1-\mu_0)^\top\Sigma_1^{-1}(\mu_1-\mu_0) - d + \log\frac{\det\Sigma_1}{\det\Sigma_0}\right]\]
+
+<p>Setting \(\mu_1=0\), \(\Sigma_1=I\) (the prior) and \(\Sigma_0=\text{diag}(\sigma_1^2,\dots,\sigma_d^2)\) (the diagonal-covariance encoder output, per the remark in Section 2.1), we have,</p>
+
+\[\begin{align}
+&amp; \text{tr}(\Sigma_1^{-1}\Sigma_0) = \text{tr}(\Sigma_0) = \sum_j\sigma_j^2\\
+&amp; (\mu_1-\mu_0)^\top\Sigma_1^{-1}(\mu_1-\mu_0) = \mu^\top\mu = \sum_j\mu_j^2\\
+&amp; \log(\det\Sigma_1) = 0, \log(\det\Sigma_0) = \sum_j\log\sigma_j^2
+\end{align}\]
+
+<p>Substituting all the terms back into the KL divergence yields,</p>
+
+\[D_{KL} = \frac{1}{2}\left[\sum_j\sigma_j^2 + \sum_j\mu_j^2 - d - \sum_j\ln\sigma_j^2\right] = \frac{1}{2}\sum_{j=1}^d\left(\mu_j^2+\sigma_j^2-\ln\sigma_j^2-1\right)\]
+
+<p>Equivalently, this result follows directly from the fact that a diagonal-covariance multivariate Gaussian factorizes into a product of \(d\) independent univariate Gaussians, \(q_\phi(z\mid x)=\prod_{j=1}^d\mathcal{N}(z_j;\mu_j,\sigma_j^2)\), and the KL divergence between two product distributions equals the sum of the KL divergences of their factors. The univariate KL divergence \(D_{KL}(\mathcal{N}(\mu,\sigma^2)\|\mathcal{N}(0,1))\), obtained by expanding \(\mathbb{E}_q[\log q(z)-\log p(z)]\) and using \(\mathbb{E}_q[z^2]=\mu^2+\sigma^2\) (Section 2.3), reduces to \(\tfrac{1}{2}(\mu^2+\sigma^2-\log\sigma^2-1)\) per dimension, consistent with the multivariate result above [4, 5]. Here below is the presented the detailed derivation,</p>
+
+<p>First, start from the KL divergence definition,</p>
+
+\[D_{KL}(q\|p) = \mathbb{E}_q\big[\log q(z) - \log p(z)\big]\]
+
+<p>with \(q(z) = \mathcal{N}(\mu,\sigma^2)\) and \(p(z) = \mathcal{N}(0,1)\).</p>
+
+<p>Then we write out both log-densities,</p>
+
+\[\begin{align}
+\log q(z) &amp; = -\frac{1}{2}\log(2\pi\sigma^2) - \frac{(z-\mu)^2}{2\sigma^2}\\
+\log p(z) &amp; = -\frac{1}{2}\log(2\pi) - \frac{z^2}{2}
+\end{align}\]
+
+<p>Substituting back into the KL divergence expression yields,</p>
+
+\[\log q(z) - \log p(z) = -\frac{1}{2}\log(2\pi\sigma^2) + \frac{1}{2}\log(2\pi) - \frac{(z-\mu)^2}{2\sigma^2} + \frac{z^2}{2}\]
+
+<p>The two \(\log(2\pi)\) pieces combine: \(-\tfrac12\log(2\pi\sigma^2)+\tfrac12\log(2\pi) = -\tfrac12\log\sigma^2\) (since \(\log(2\pi\sigma^2) = \log(2\pi)+\log\sigma^2\), the \(\log(2\pi)\) terms cancel). So:</p>
+
+\[\log q(z) - \log p(z) = -\frac{1}{2}\log\sigma^2 - \frac{(z-\mu)^2}{2\sigma^2} + \frac{z^2}{2}\]
+
+<p>Finally we take the expectation under \(q\), term by term,</p>
+
+\[D_{KL}(q\|p) = -\frac{1}{2}\log\sigma^2 - \frac{1}{2\sigma^2}\,\mathbb{E}_q[(z-\mu)^2] + \frac{1}{2}\mathbb{E}_q[z^2]\]
+
+<p>Two expectations need evaluating:</p>
+
+<ul>
+  <li>\(\mathbb{E}_q[(z-\mu)^2]\): this is, by definition, the variance of \(z\) under \(q\) — since \(q=\mathcal{N}(\mu,\sigma^2)\), that variance is exactly \(\sigma^2\).</li>
+  <li>\(\mathbb{E}_q[z^2]\): see Section 2.3.</li>
+</ul>
+
+<p>Substituting the results back into the KL divergence, we have,</p>
+
+\[\begin{align}
+D_{KL}(q\|p) &amp; = -\frac{1}{2}\log\sigma^2 - \frac{1}{2\sigma^2}\cdot\sigma^2 + \frac{1}{2}(\mu^2+\sigma^2)\\
+&amp; = -\frac{1}{2}\log\sigma^2 - \frac{1}{2} + \frac{\mu^2}{2} + \frac{\sigma^2}{2}\\
+&amp; = \frac{1}{2}\left(\mu^2 + \sigma^2 - \log\sigma^2 - 1\right)
+\end{align}\]
+
+<p>which reproduces the result from the multi-variate derivation.</p>
+
+<p>Combining the reconstruction and regularization terms, and introducing a weighting coefficient \(\beta\) on the regularization term as in the \(\beta\)-VAE formulation [3], the total per-example training loss is</p>
+
+\[\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{reconstruction}} + \beta\cdot\frac{1}{2}\sum_{j=1}^d\left(\mu_j^2+\sigma_j^2-\log\sigma_j^2-1\right)\]
+
+<p>where \(\mathcal{L}_{\text{reconstruction}}\) is either the squared-error term (Section 2.2.1, Gaussian case) or the binary cross-entropy term (Section 2.2.1, Bernoulli case), depending on the assumed output likelihood. Setting \(\beta=1\) recovers the standard VAE objective; \(\beta&gt;1\) places additional weight on the regularization term, generally at the cost of reconstruction fidelity, and has been associated with more disentangled latent representations [3].</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Disentangled latent representation</code> here means the different dimensions in the latent space are determining the image features independently.</p>
+</blockquote>
+
+<h2 id="23-background-knowledge">2.3 Background Knowledge</h2>
+
+<p>Here in this session I am presenting several pieces of mathematical background knowledge for better understanding the story flow presented above.</p>
+
+<h3 id="bernoulli-distribution">Bernoulli Distribution</h3>
+
+<p>When we have a series of observations, and for each of the obeservations we have binary results, e.g., \(0\) or \(1\), with the probability of \(p(X=0) = p\) and \(p(X=1) = 1 - p\), respectively, such a distribution of observation values is the Bernoulli distribution. The probability mass function (see next bit) can be written in a compact form, as,</p>
+
+\[p_X(k) = p(X = k) = f(k; p) = p^k(1 - p)^{1 - k},\ \ \ \ \ \text{with}\ k \in \{0, 1\}\]
+
+<p>Here, \(k\) refers to the possible binary values, e.g., \(0\) for coin head up and \(1\) for coin tail up. \(p\) is the probability of the variable taking \(k = 0\).</p>
+
+<h3 id="probability-mass-function">Probability Mass Function</h3>
+
+<p>The function presented in the previous chunk,</p>
+
+\[p_X(k) = p(X = k)\]
+
+<p>is called the <code class="language-plaintext highlighter-rouge">probability mass function</code>, which is the probability distribution of a discrete random variable. For a discrete random variable, the probability for each discrete value can be given directly – by comparison, for continuous random variable, the probability can only be given for a certain range of the variable by integrating the <code class="language-plaintext highlighter-rouge">probability density function (PDF)</code> over that region.</p>
+
+<h3 id="derivation-of-mathbbez2">Derivation of \(\mathbb{E}[z^2]\)</h3>
+
+<p>If we have the random variable \(z\) following the Gaussian distribution, \(z \sim \mathcal{N}(\mu, \sigma^2)\), here we are trying to derive \(\mathbb{E}[z^2]\). First, we have the variance of \(z\) defined as,</p>
+
+\[\text{Var}(z) = \mathbb{E}\bigg[\big(z - \mathbb{E}[z]\big)^2\bigg]\]
+
+<p>Expanding the expression inside the square bracket, we have,</p>
+
+\[\begin{align}
+\text{Var}(z) &amp; = \mathbb{E}\bigg[z^2 - 2\mathbb{E}[z] \cdot z + \big(\mathbb{E}[z]\big)^2\bigg]\\
+&amp; = \mathbb{E}[z^2] - 2\mathbb{E}[z] \cdot \mathbb{E}[z] + \big(\mathbb{E}[z]\big)^2\\
+&amp; = \mathbb{E}[z^2] - \big(\mathbb{E}[z]\big)^2
+\end{align}\]
+
+<p><br /></p>
+
+<blockquote>
+  <p>\(\mathbb{E}[z]\) is a constant so can be pulled out from expectation value calculations like \(\mathbb{E\big[2\mathbb{E}[z] \cdot z\big]}\) to have \(\mathbb{E\big[2\mathbb{E}[z] \cdot z\big]} = 2\mathbb{E}[z] \cdot \mathbb{E}[z]\).</p>
+</blockquote>
+
+<p>Given \(z \sim \mathcal{N}(\mu, \sigma^2)\), we have \(\text{Var}(z) = \sigma^2\), and rearranging the derivation above gives,</p>
+
+\[\begin{align}
+\mathbb{E}[z^2] &amp; = \big(\mathbb{E}[z]\big)^2 + \text{Var}(z)\\
+&amp; = \mu^2 + \sigma^2
+\end{align}\]
+
+<p>The result here is used in Section 2.2.</p>
+
+<p><br /></p>
+
+<h1 id="3-references">3. References</h1>
+
+<p>[1] D. P. Kingma and M. Welling, arXiv:1312.6114, 2013.</p>
+
+<p>[2] D. J. Rezende, S. Mohamed, and D. Wierstra, arXiv:1401.4082, 2014.</p>
+
+<p>[3] I. Higgins, L. Matthey, A. Pal, C. Burgess, X. Glorot, M. Botvinick, S. Mohamed, and A. Lerchner, ICLR, 2017.</p>
+
+<p>[4] C. Doersch, arXiv:1606.05908, 2016.</p>
+
+<p>[5] C. M. Bishop, <em>Pattern Recognition and Machine Learning</em>, Springer, 2006.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#AI">AI</a>
+          
+            <a href="/tags#machine learning">machine learning</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Variational+Autoencoders+--+An+Introduction&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-11-variational_autoencoder%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-08-11-variational_autoencoder%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-11-variational_autoencoder%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-08-09-diffusion_algorithm/" data-toggle="tooltip" data-placement="top" title="Learning Notes on Denoising Diffusion Probablistic Model">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zyroc1990@iris-2020.us" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
