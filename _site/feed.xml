@@ -12,7 +12,18 @@
     
     
       <item>
-        <title>Variational Autoencoders -- An Introduction</title>
+        <title>Gibbs Sampling</title>
+        <description>
+          
+          In one of my earlier posts [1], several typical sampling algorithms were briefly discussed, such as the direct inverse sampling, rejection sampling and Markov Chain Monte Carlo (MCMC) sampling. The direct inverse sampling requires analytical form of the distribution function and reversability. For suitable 1D distribution function, it can be...
+        </description>
+        <pubDate>Thu, 13 Aug 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-08-13-gibbs_sampling/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-08-13-gibbs_sampling/</guid>
+      </item>
+    
+      <item>
+        <title>Learning Notes on Variational Autoencoders</title>
         <description>
           
           The image was generated with Gemini with the prompt of ‘Generate an image as an abstract showcase for the variational autoencoder. Use the Ghibli style’. 1. General Introduction A Variational Autoencoder (VAE) is a generative model that represents data through a probabilistic latent space, allowing new data to be synthesized...
@@ -218,17 +229,6 @@
         <pubDate>Sun, 15 Jun 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2025-06-15-selection_rule/</link>
         <guid isPermaLink="true">http://localhost:8000/2025-06-15-selection_rule/</guid>
-      </item>
-    
-      <item>
-        <title>Local Development of GSAS-II -- New Instructions</title>
-        <description>
-          
-          Here in this post, I will put down the instructions for setting up the local developing environment for GSAS-II. See the legacy instructions in my previous post here for the old version of the source codes. Conda Environment Setup conda create -n gsasii_dev conda activate gsasii_dev conda install python numpy...
-        </description>
-        <pubDate>Mon, 21 Apr 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-04-21-gsasii_dev_new/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-04-21-gsasii_dev_new/</guid>
       </item>
     
   </channel>
