@@ -12,6 +12,28 @@
     
     
       <item>
+        <title>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-2)</title>
+        <description>
+          
+          This post is part-2 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4. Part IV – The Fluctuation–Dissipation Relation The task of this part is to determine the relationship between the two coefficients \(\gamma\) and \(\sigma\) left undetermined in (2.1). Two logically distinct...
+        </description>
+        <pubDate>Sat, 15 Aug 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-08-15-langevin_dynamics_2/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-08-15-langevin_dynamics_2/</guid>
+      </item>
+    
+      <item>
+        <title>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-1)</title>
+        <description>
+          
+          This post is part-1 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4. 0. Scope, prerequisites, and how to read this This document develops Langevin dynamics from first principles and follows a single thread all the way from classical statistical mechanics to the...
+        </description>
+        <pubDate>Thu, 13 Aug 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-08-13-langevin_dynamics_1/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-08-13-langevin_dynamics_1/</guid>
+      </item>
+    
+      <item>
         <title>Gibbs Sampling</title>
         <description>
           
@@ -207,28 +229,6 @@
         <pubDate>Fri, 01 Aug 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2025-08-01-gsasii_on_linux/</link>
         <guid isPermaLink="true">http://localhost:8000/2025-08-01-gsasii_on_linux/</guid>
-      </item>
-    
-      <item>
-        <title>Publish Apps on MacOS</title>
-        <description>
-          
-          In this post, I will be covering the application packaging on MacOS. It involves multiple stage of efforts, concerning the library path configuration, application folder packaging, release package preparation, and application notarization &amp;amp; signature. Here I am taking our RMCProfile package (a package for neutron total scattering data analysis, see...
-        </description>
-        <pubDate>Fri, 11 Jul 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-07-11-mac_app_distribution/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-07-11-mac_app_distribution/</guid>
-      </item>
-    
-      <item>
-        <title>Notes on Selection Rule for Transition between Energy Levels</title>
-        <description>
-          
-          When a physical system is absorbing or emitting electromagnetic radiation, there will be a transition happening between the quantum energy levels of the system. The selection rule determines whether or not such a transition can happen. It is a typical topic in quantum mechanics textbook and it is not the...
-        </description>
-        <pubDate>Sun, 15 Jun 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-06-15-selection_rule/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-06-15-selection_rule/</guid>
       </item>
     
   </channel>

@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-1)</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="This post is part-1 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4. 0. Scope, prerequisites, and how to read this This document develops Langevin dynamics from first principles and follows a single thread all the way from classical statistical mechanics to the...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-1)">
+  <meta property="og:description" content="This post is part-1 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4. 0. Scope, prerequisites, and how to read this This document develops Langevin dynamics from first principles and follows a single thread all the way from classical statistical mechanics to the...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-08-13T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-08-13-langevin_dynamics_1/">
+  <link rel="canonical" href="http://localhost:8000/2026-08-13-langevin_dynamics_1/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-1)">
+  <meta property="twitter:description" content="This post is part-1 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4. 0. Scope, prerequisites, and how to read this This document develops Langevin dynamics from first principles and follows a single thread all the way from classical statistical mechanics to the...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-2020.us/script.js" data-website-id="387a3202-bb18-41ba-a954-d985ff940209"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-1)</h1>
+          
+
+          
+					<span class="post-meta">Posted on August 13, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <blockquote>
+  <p>This post is part-1 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4.</p>
+</blockquote>
+
+<h2 id="0-scope-prerequisites-and-how-to-read-this">0. Scope, prerequisites, and how to read this</h2>
+
+<p>This document develops Langevin dynamics from first principles and follows a single thread all the way from classical statistical mechanics to the stochastic differential equations underlying modern diffusion models. The claim being defended throughout is that these are not two subjects connected by a loose analogy: the sampler at the heart of score-based generative modelling <em>is</em> the overdamped Langevin equation, with the physical potential replaced by an engineered one, and every convergence guarantee for the former is inherited from the equilibration theory of the latter.</p>
+
+<p><strong>Prerequisites.</strong> Multivariable calculus, ordinary differential equations, basic probability (Gaussian distributions, expectation, variance), and elementary classical mechanics. No prior exposure to stochastic calculus is assumed – Part III builds the required machinery from scratch. Familiarity with the canonical ensemble is helpful but not required.</p>
+
+<p><strong>Structure.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Part</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>I</td>
+      <td>Deterministic dynamics, and why it cannot sample a temperature</td>
+    </tr>
+    <tr>
+      <td>II</td>
+      <td>The Langevin equation with undetermined coefficients</td>
+    </tr>
+    <tr>
+      <td>III</td>
+      <td>Stochastic calculus: Wiener processes, Itô integrals, Itô’s lemma</td>
+    </tr>
+    <tr>
+      <td>IV</td>
+      <td>The fluctuation–dissipation relation, derived two ways</td>
+    </tr>
+    <tr>
+      <td>V</td>
+      <td>The Fokker–Planck equation: what it is and where it comes from</td>
+    </tr>
+    <tr>
+      <td>VI</td>
+      <td>Proof that the stationary solution is the Boltzmann distribution</td>
+    </tr>
+    <tr>
+      <td>VII</td>
+      <td>The overdamped (Smoluchowski) limit</td>
+    </tr>
+    <tr>
+      <td>VIII</td>
+      <td>Euler–Maruyama discretization and the discrete sampler</td>
+    </tr>
+    <tr>
+      <td>IX</td>
+      <td>Static targets: the bridge to generative modelling</td>
+    </tr>
+    <tr>
+      <td>X</td>
+      <td>Time-dependent targets: diffusion models</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Parts I–VIII are physics and mathematics; Parts IX–X are the machine-learning payoff. A reader interested only in the sampling algorithm can read Parts III, VII, VIII, and IX, but the justification for <em>why</em> the algorithm works lives in Parts IV–VI.</p>
+
+<h2 id="notation-and-conventions">Notation and conventions</h2>
+
+<p>Consistent notation matters here more than usual, because two widespread conventions for the friction coefficient differ by a factor of the mass, and because the symbol \(\beta\) is standard for two unrelated quantities in the two halves of this document.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Meaning</th>
+      <th>Units (SI)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(x, p\)</td>
+      <td>position, momentum</td>
+      <td>m, kg·m/s</td>
+    </tr>
+    <tr>
+      <td>\(m\)</td>
+      <td>mass</td>
+      <td>kg</td>
+    </tr>
+    <tr>
+      <td>\(U(x)\)</td>
+      <td>potential energy</td>
+      <td>J</td>
+    </tr>
+    <tr>
+      <td>\(H(x,p)\)</td>
+      <td>Hamiltonian, \(H = p^2/2m + U(x)\)</td>
+      <td>J</td>
+    </tr>
+    <tr>
+      <td>\(T\)</td>
+      <td>bath temperature</td>
+      <td>K</td>
+    </tr>
+    <tr>
+      <td>\(k_B\)</td>
+      <td>Boltzmann constant, \(1.381\times10^{-23}\)</td>
+      <td>J/K</td>
+    </tr>
+    <tr>
+      <td>\(\beta\)</td>
+      <td>inverse temperature, \(\beta \equiv 1/k_BT\)</td>
+      <td>1/J</td>
+    </tr>
+    <tr>
+      <td>\(\gamma\)</td>
+      <td><strong>friction rate</strong></td>
+      <td>1/s</td>
+    </tr>
+    <tr>
+      <td>\(\zeta\)</td>
+      <td><strong>drag coefficient</strong>, \(\zeta \equiv m\gamma\)</td>
+      <td>kg/s</td>
+    </tr>
+    <tr>
+      <td>\(\sigma\)</td>
+      <td>noise amplitude in the momentum equation</td>
+      <td>kg·m·s\(^{-3/2}\)</td>
+    </tr>
+    <tr>
+      <td>\(D_p\)</td>
+      <td>momentum-space diffusion coefficient, \(D_p \equiv \sigma^2/2\)</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <td>\(D\)</td>
+      <td>position-space (Einstein) diffusion coefficient</td>
+      <td>m²/s</td>
+    </tr>
+    <tr>
+      <td>\(W_t\)</td>
+      <td>Wiener process (standard Brownian motion)</td>
+      <td>s\(^{1/2}\)</td>
+    </tr>
+    <tr>
+      <td>\(\xi(t)\)</td>
+      <td>Gaussian white noise, formally \(dW_t/dt\)</td>
+      <td>s\(^{-1/2}\)</td>
+    </tr>
+    <tr>
+      <td>\(\rho(x,p,t)\)</td>
+      <td>phase-space probability density</td>
+      <td>–</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>⚠ Convention warning 1 – friction.</strong> Two forms of the Langevin equation appear in the literature:</p>
+</blockquote>
+
+<blockquote>
+\[\dot p = -\gamma p + \cdots \qquad\text{versus}\qquad m\ddot x = -\zeta\dot x + \cdots\]
+</blockquote>
+
+<blockquote>
+  <p>Since \(p = m\dot x\), these are the same equation with \(\zeta = m\gamma\). The first makes \(\gamma\) a <em>rate</em> (units 1/s), the second makes \(\zeta\) a <em>drag coefficient</em> (units kg/s, matching <a href="https://en.wikipedia.org/wiki/Stokes%27s_law">Stokes’ law</a> \(\zeta = 6\pi\eta a\) for a sphere of radius \(a\) in a fluid of viscosity \(\eta\)). The corresponding fluctuation–dissipation relations therefore differ by a factor of \(m\):</p>
+</blockquote>
+
+<blockquote>
+\[\sigma^2 = 2\gamma m k_BT = 2\zeta k_BT\]
+</blockquote>
+
+<blockquote>
+  <p>This document uses \(\gamma\) (rate) in the momentum equation and \(\zeta = m\gamma\) wherever the drag coefficient is more natural, and states which is meant at each use.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>⚠ Convention warning 2 – the symbol \(\beta\).</strong> In Parts I–IX, \(\beta = 1/k_BT\) is the thermodynamic inverse temperature. In Part X, \(\beta(t)\) denotes the <em>noise schedule</em> of a diffusion model.</p>
+</blockquote>
+
+<p>Throughout, one spatial dimension is used for clarity. Every result generalizes to \(d\) dimensions by replacing \(\partial_x \to \nabla\), \(\partial_x^2 \to \nabla^2\) (or \(\nabla\cdot\nabla\)), and treating each Cartesian component as carrying its own independent noise.</p>
+
+<h1 id="part-i--deterministic-dynamics-and-why-it-is-not-enough">Part I – Deterministic Dynamics, and Why It Is Not Enough</h1>
+
+<h2 id="11-hamiltonian-equations-of-motion">1.1 Hamiltonian equations of motion</h2>
+
+<p>A classical particle of mass \(m\) moving in a potential \(U(x)\) is described by the Hamiltonian</p>
+
+\[H(x,p) = \frac{p^2}{2m} + U(x)\]
+
+<p>and Hamilton’s equations,</p>
+
+\[\dot x = \frac{\partial H}{\partial p} = \frac{p}{m}, \qquad \dot p = -\frac{\partial H}{\partial x} = -U'(x) \tag{1.1}\]
+
+<p>The second equation is Newton’s second law, \(\dot p = F\), with \(F = -U'(x)\). This system is <strong>closed</strong>: no reference is made to anything outside the particle, and nothing in the equations mentions temperature.</p>
+
+<h2 id="12-energy-is-conserved">1.2 Energy is conserved</h2>
+
+<p>Differentiate \(H\) along a trajectory generated by (1.1):</p>
+
+\[\frac{dH}{dt} = \frac{\partial H}{\partial x}\dot x + \frac{\partial H}{\partial p}\dot p = \frac{\partial H}{\partial x}\frac{\partial H}{\partial p} + \frac{\partial H}{\partial p}\left(-\frac{\partial H}{\partial x}\right) = 0 \tag{1.2}\]
+
+<p>The two terms cancel identically. Every trajectory of (1.1) is confined for all time to the level set \(\{(x,p): H(x,p) = E_0\}\) determined by its initial condition. <strong>Energy is a constant of the motion, exactly, forever.</strong></p>
+
+<h2 id="13-liouvilles-theorem">1.3 Liouville’s theorem</h2>
+
+<p>Consider now not a single trajectory but an ensemble of them, described by a phase-space density \(\rho(x,p,t)\). Probability is conserved (trajectories are neither created nor destroyed), so \(\rho\) obeys a continuity equation in phase space,</p>
+
+\[\frac{\partial\rho}{\partial t} + \frac{\partial}{\partial x}(\dot x\,\rho) + \frac{\partial}{\partial p}(\dot p\,\rho) = 0\]
+
+<p>Substituting (1.1) and using the fact that \(\dot x\) depends only on \(p\) and \(\dot p\) only on \(x\),</p>
+
+\[\frac{\partial}{\partial x}\left(\frac{p}{m}\rho\right) + \frac{\partial}{\partial p}\left(-U'(x)\rho\right) = \frac{p}{m}\frac{\partial\rho}{\partial x} - U'(x)\frac{\partial\rho}{\partial p}\]
+
+<p>so,</p>
+
+\[\frac{\partial\rho}{\partial t} = -\frac{p}{m}\frac{\partial\rho}{\partial x} + U'(x)\frac{\partial\rho}{\partial p} \equiv \{H,\rho\} \tag{1.3}\]
+
+<p>where the <strong>Poisson bracket</strong> of two phase-space functions \(A\) and \(B\) is defined as,</p>
+
+\[\{A,B\} \equiv \frac{\partial A}{\partial p}\frac{\partial B}{\partial x} - \frac{\partial A}{\partial x}\frac{\partial B}{\partial p} \tag{1.4}\]
+
+<p>Equation (1.3) is the <strong>Liouville equation</strong>. It says the density is simply advected along the Hamiltonian flow without compression: phase-space volume is preserved. This structure – and specifically the antisymmetry \(\{A,B\} = -\{B,A\}\), hence \(\{H,H\}=0\) – reappears as the key algebraic step in Part VI.</p>
+
+<h2 id="14-why-deterministic-dynamics-cannot-sample-the-canonical-ensemble">1.4 Why deterministic dynamics cannot sample the canonical ensemble</h2>
+
+<p>The goal of equilibrium statistical mechanics is often to draw samples from the <strong>canonical (NVT) distribution</strong></p>
+
+\[\rho_{\text{eq}}(x,p) = \frac{1}{Z}e^{-\beta H(x,p)}, \qquad \beta = \frac{1}{k_BT} \tag{1.5}\]
+
+<p>which describes a system in thermal contact with a reservoir at temperature \(T\). Equation (1.5) assigns nonzero probability to <em>every</em> energy, weighted exponentially. But a trajectory of (1.1) never changes its energy. A single deterministic trajectory therefore explores, at most, one energy level set – a set of measure zero under (1.5).</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>In mathematics (specifically measure theory), a set of measure zero is a subset of a space that is so infinitely small compared to the whole space that its “volume” (or area, or length, depending on the dimensions) is essentially zero.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example: Imagine a 3D cube. The entire volume of the cube is the “space.” A single 2D sheet of paper inside that cube has a volume of exactly zero. In that 3D space, the 2D plane is a “set of measure zero.”</p>
+</blockquote>
+
+<p>Three consequences follow, and they motivate everything that comes after:</p>
+
+<ol>
+  <li><strong>A thermostat is necessary.</strong> Some mechanism must be added that allows energy to flow in and out, so that the trajectory visits different energy shells with the correct relative frequencies.</li>
+  <li><strong>The thermostat must be balanced.</strong> A mechanism that only removes energy drives the system to the potential minimum (\(T \to 0\)); one that only adds energy heats it without bound. The two effects must be tuned against each other.</li>
+  <li><strong>The balance point must encode \(T\).</strong> The correct balance is not a free parameter: it must reproduce (1.5) at the specified temperature.</li>
+</ol>
+
+<p>Part II adds the mechanism; Part IV determines the balance.</p>
+
+<h1 id="part-ii--coupling-to-a-heat-bath-the-langevin-equation">Part II – Coupling to a Heat Bath: The Langevin Equation</h1>
+
+<h2 id="21-the-physical-picture">2.1 The physical picture</h2>
+
+<p>Consider a heavy particle immersed in a fluid of many light particles – a pollen grain in water, a solute molecule in solvent, an atom coupled to the phonon bath of a surrounding lattice. Tracking every bath particle explicitly is both infeasible and uninformative. Instead, the bath effect is effectively represented by two terms:</p>
+
+<ul>
+  <li>
+    <p><strong>A systematic drag.</strong> A particle moving through the fluid collides more often, and more energetically, with bath particles ahead of it than behind. The net effect is a force opposing the motion, proportional to the velocity for small velocities: \(-\zeta\dot x = -\gamma p\).</p>
+  </li>
+  <li>
+    <p><strong>A random force.</strong> Even at rest, the particle is bombarded by bath particles from all directions. These collisions do not cancel exactly at any instant; the residual is a rapidly fluctuating random force.</p>
+  </li>
+</ul>
+
+<p>These are <em>not</em> two independent physical effects. They are the mean and the fluctuation of <em>the same</em> microscopic bombardment. That observation, made precise, is the fluctuation–dissipation theorem (Part IV).</p>
+
+<h2 id="22-the-equation-with-undetermined-coefficients">2.2 The equation, with undetermined coefficients</h2>
+
+<p>Adding both terms to (1.1),</p>
+
+\[\dot x = \frac{p}{m}, \qquad \dot p = -U'(x) - \gamma p + \sigma\,\xi(t) \tag{2.1}\]
+
+<p>This is the <strong>Langevin equation</strong> [1]. The three forces on the right are, in order: the conservative force from the potential, the friction, and the random force. The random force is written as an amplitude \(\sigma\) times a normalized noise process \(\xi(t)\) specified by,</p>
+
+\[\langle \xi(t)\rangle = 0, \qquad \langle \xi(t)\xi(t')\rangle = \delta(t-t') \tag{2.2}\]
+
+<p>and taken to be Gaussian. Such a process is called <strong>Gaussian white noise</strong>: “white” because its power spectrum, the Fourier transform of the delta-correlated autocovariance, is flat (all frequencies equally represented); “Gaussian” because any finite linear functional of it is normally distributed.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>Delta-correlated autocovariance refers to the equation (2.2).</p>
+</blockquote>
+
+<p>Two modelling assumptions are embedded in (2.2) and deserve to be named,</p>
+
+<ul>
+  <li><strong>Zero memory.</strong> The delta correlation asserts that the random force at time \(t\) is statistically independent of the force at any other time. Physically this requires the bath’s own correlation time to be much shorter than any timescale of interest for the system – a good approximation when the bath particles are light and fast compared to the system particle. The general case, with a memory kernel, appears in §4.4.</li>
+  <li><strong>Gaussianity.</strong> The random force is a sum of a very large number of approximately independent collision impulses; the central limit theorem then makes the sum Gaussian regardless of the distribution of individual impulses.</li>
+</ul>
+
+<p><strong>At this stage \(\gamma\) and \(\sigma\) are two independent, undetermined constants.</strong> Nothing so far forces any relationship between them, and nowhere does the temperature \(T\) appear. Establishing that relationship – and thereby introducing \(T\) – is the content of Part IV.</p>
+
+<h2 id="23-a-warning-about-xit">2.3 A warning about \(\xi(t)\)</h2>
+
+<p>Equation (2.1) is written in the notation of ordinary differential equations, but it is not one. The trouble is that a process satisfying (2.2) cannot be an ordinary function: setting \(t=t'\) gives \(\langle\xi(t)^2\rangle = \delta(0) = \infty\). White noise has infinite variance at every instant.</p>
+
+<p>The equation is nonetheless meaningful, because \(\xi\) only ever appears <em>integrated over time</em>, and its integral is perfectly well behaved. Making this precise is the business of stochastic calculus, developed next – manipulation of (2.1) formally refers to Part IV, with the three results from Part III – Itô’s lemma, the Itô isometry, and the scaling \(dW \sim \sqrt{dt}\) as the building block to understand the topic.</p>
+
+<h1 id="part-iii--the-stochastic-calculus-toolkit">Part III – The Stochastic Calculus Toolkit</h1>
+
+<h2 id="31-the-wiener-process">3.1 The Wiener process</h2>
+
+<p>Rather than defining \(\xi(t)\) directly, define its integral. The <strong>Wiener process</strong> (standard Brownian motion) \(W_t\) is the stochastic process characterised by:</p>
+
+<ul>
+  <li><strong>(W1)</strong> \(W_0 = 0\).</li>
+  <li><strong>(W2)</strong> <em>Independent increments</em>: for \(t_1 &lt; t_2 \le t_3 &lt; t_4\), the random variables \(W_{t_2}-W_{t_1}\) and \(W_{t_4}-W_{t_3}\) are statistically independent.</li>
+  <li><strong>(W3)</strong> <em>Gaussian increments</em>: for \(t &gt; s\),
+\(W_t - W_s \sim \mathcal N(0,\,t-s)\)
+i.e. normally distributed with mean zero and variance equal to the elapsed time.</li>
+  <li><strong>(W4)</strong> <em>Continuous paths</em>: \(t\mapsto W_t\) is continuous with probability one.</li>
+</ul>
+
+<p>Property (W3) carries essentially all of the unusual behaviour. The standard deviation of an increment over a time interval \(\Delta t\) is \(\sqrt{\Delta t}\), not \(\Delta t\):</p>
+
+\[\Delta W \sim \sqrt{\Delta t} \tag{3.1}\]
+
+<p>For a smooth function, a small time step produces a displacement proportional to \(\Delta t\); here it is proportional to \(\sqrt{\Delta t}\), which is <em>much larger</em> for small \(\Delta t\). Every peculiarity of stochastic calculus traces back to this mismatch.</p>
+
+<p><strong>Non-differentiability.</strong> The difference quotient is \(\Delta W/\Delta t \sim \sqrt{\Delta t}/\Delta t = 1/\sqrt{\Delta t} \to \infty\). The Wiener process is continuous but nowhere differentiable – its paths are infinitely jagged at every magnification. This is the precise sense in which \(\xi(t) = dW_t/dt\) fails to exist as a function, and why (2.1) must be interpreted as shorthand for the integral equation</p>
+
+\[p(t) = p(0) - \int_0^t\left[U'(x(s)) + \gamma p(s)\right]ds + \sigma\int_0^t dW_s \tag{3.2}\]
+
+<p>The differential notation used from here on,</p>
+
+\[dx = \frac{p}{m}dt, \qquad dp = \left[-U'(x)-\gamma p\right]dt + \sigma\,dW_t \tag{3.3}\]
+
+<p>is understood as an abbreviation for (3.2). This is a <strong>stochastic differential equation</strong> (SDE).</p>
+
+<p><strong>Simulating an increment.</strong> In practice, \(dW_t\) over a step \(\Delta t\) is sampled as</p>
+
+\[\Delta W = \sqrt{\Delta t}\;z, \qquad z\sim\mathcal N(0,1) \tag{3.4}\]
+
+<p>which reproduces (W2) and (W3) exactly for the discrete times visited.</p>
+
+<h2 id="32-the-central-identity-dw_t2--dt">3.2 The central identity: \((dW_t)^2 = dt\)</h2>
+
+<p>For a smooth function \(f\), if we want to calculate \(\sum (\Delta f)^2\), we would have \(\sum (\Delta f)^2 \approx \sum (f'\Delta t)^2 = O(\Delta t)\to 0\). Fundamentally, this is because \(dt\) is considered as an infinitesimally small quantity and therefore \((dt)^2\) can be ingnored. However, for stochastic integration we are dealing with here, this is not the case. Consider the sum of squared increments of \(W\) over \([0,T]\), partitioned into \(n\) equal steps of size \(\Delta t = T/n\). We have,</p>
+
+\[S_n = \sum_{i=1}^n (\Delta W_i)^2\]
+
+<p>Its mean is, using (W3),</p>
+
+\[\langle S_n\rangle = \sum_{i=1}^n \langle(\Delta W_i)^2\rangle = \sum_{i=1}^n \Delta t = n\Delta t = T\]
+
+<p>Its variance is, using independence (W2) and the Gaussian fourth moment \(\langle Z^4\rangle = 3\langle Z^2\rangle^2\),</p>
+
+\[\text{Var}(S_n) = \sum_{i=1}^n\text{Var}\!\left[(\Delta W_i)^2\right] = \sum_{i=1}^n\left[\langle(\Delta W_i)^4\rangle - \langle(\Delta W_i)^2\rangle^2\right] = \sum_{i=1}^n\left[3(\Delta t)^2 - (\Delta t)^2\right] = 2n(\Delta t)^2 = \frac{2T^2}{n}\]
+
+<p><br /></p>
+
+<blockquote>
+  <p>For a variable \(X\) following Gaussian distribution with the mean of \(0\), the \(n\)-th moment refers to \(\langle X^n \rangle = \mathbb{E}[X^n]\).</p>
+</blockquote>
+
+<p>As \(n\to\infty\), \(\text{Var}(S_n)\to 0\) while \(\langle S_n\rangle = T\) exactly. The sum of squared increments therefore converges <strong>to a deterministic limit</strong>:</p>
+
+\[\sum_i (\Delta W_i)^2 \;\longrightarrow\; T \quad\text{in mean square} \tag{3.5}\]
+
+<p>This is summarised by the formal rule</p>
+
+\[(dW_t)^2 = dt \tag{3.6}\]
+
+<p>together with the companion rules \(dW_t\,dt = 0\) and \((dt)^2 = 0\), both of which vanish faster than \(dt\) (respectively as \(\Delta t^{3/2}\) and \(\Delta t^2\)) and can be dropped.</p>
+
+<p>Rule (3.6) is the origin of everything distinctive about stochastic calculus. In ordinary calculus, second-order differentials are negligible; here one of them is not – \((dt)^2\) and \(dW_tdt\) are, \((dW_t)^2 = dt\) is not.</p>
+
+<h2 id="33-the-itô-integral-and-the-itôstratonovich-ambiguity">3.3 The Itô integral, and the Itô–Stratonovich ambiguity</h2>
+
+<p>To make sense of \(\int_0^T f(s)\,dW_s\), we need to mimic the <a href="https://en.wikipedia.org/wiki/Riemann_integral">Riemann construction</a> (basically, how we turn the integration into the summation of areas for a lot of small pieces): partition \([0,T]\), evaluate \(f\) somewhere in each subinterval, multiply by the increment of \(W\), and sum. For an ordinary <a href="https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral">Riemann–Stieltjes integral</a>, the choice of evaluation point within each subinterval does not matter in the limit. <strong>Here it does</strong>, because \(f\) (which typically depends on the process being driven) and \(\Delta W\) are correlated within a subinterval, and the correlation does not vanish relative to the \(\sqrt{\Delta t}\)-sized increments.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>The expression \(\int_0^T f(s) dW_s\) is a stochastic integral. In standard mechanics, if we want to find out how much a force changes a particle’s momentum over time, we integrate that force from time \(0\) to time \(T\). Here, we are doing the exact same thing, but the “force” is the infinitely jagged, random microscopic bombardment from the heat bath, represented by the Wiener process increment \(dW_s\). This integral is the mathematical act of adding up an infinite number of infinitesimally tiny, completely random kicks over a specific time window.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Why do we need  to evaluate it?</strong> As pointed out in Section 2.3, the raw Langevin equation (\(dp = \dots + \sigma \xi(t)dt\)) is actually mathematically broken if you look at a single frozen instant. Pure white noise (\(\xi(t)\)) has infinite variance at any exact microsecond. We cannot ask, “What is the exact random force at exactly \(t = 1.000\) seconds?” The math blows up. However, if we ask, “What is the total accumulated effect of the random forces between \(t = 1\) and \(t = 2\) seconds?”, the infinities cancel out and we get a perfectly well-behaved, finite answer (a Gaussian distribution). To get from the broken instant-in-time equation to a physically measurable change over time, we are strictly required to integrate it.</p>
+</blockquote>
+
+<blockquote>
+  <p>\(f(s)\) is the amplitude (or strength) of the noise at time \(s\). It acts as a scaling factor for the raw, mathematical random kick \(dW_s\).</p>
+</blockquote>
+
+<p>Two conventions are in standard use:</p>
+
+<p><strong>Itô convention</strong> [4] – evaluate at the <strong>left</strong> endpoint:</p>
+
+\[\int_0^T f\,dW_s \equiv \lim_{n\to\infty}\sum_{i=0}^{n-1} f(s_i)\left(W_{s_{i+1}} - W_{s_i}\right) \tag{3.7}\]
+
+<p><strong>Stratonovich convention</strong> – evaluate at the <strong>midpoint</strong>:</p>
+
+\[\int_0^T f\circ dW_s \equiv \lim_{n\to\infty}\sum_{i=0}^{n-1} f\!\left(\tfrac{s_i + s_{i+1}}{2}\right)\left(W_{s_{i+1}} - W_{s_i}\right)\]
+
+<p>These give genuinely different answers. The trade-off:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Itô</th>
+      <th>Stratonovich</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Evaluation point</td>
+      <td>left endpoint</td>
+      <td>midpoint</td>
+    </tr>
+    <tr>
+      <td>Anticipates future noise?</td>
+      <td>no (<em>non-anticipating</em>)</td>
+      <td>yes (slightly)</td>
+    </tr>
+    <tr>
+      <td>\(\langle\int f\,dW\rangle = 0\)?</td>
+      <td>yes</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>Ordinary chain rule?</td>
+      <td>no (correction term)</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>Natural for</td>
+      <td>forward simulation, numerics</td>
+      <td>limits of smooth (coloured) noise</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <strong>Itô convention is used exclusively in this document</strong>, for two reasons. First, it matches the physical causality of a simulation: the noise kick applied over \([s_i, s_{i+1}]\) should not influence the state used to compute the force at \(s_i\). Second, it makes stochastic integrals <strong>martingales</strong>, so \(\langle\int f\,dW\rangle = 0\), which simplifies every expectation computed below.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p><em>‘it matches the physical causality of a simulation’</em>: At time \(s_i\), the particle is at a specific position. We look at that position, calculate the forces acting on it, and then we let the random thermal noise kick it toward its new position at \(s_{i+1}\). The calculation relies only on the past and present, never the future. This matches exactly how real physics works: cause precedes effect.</p>
+</blockquote>
+
+<blockquote>
+  <p>A martingale is a mathematical concept that essentially models a “fair game.” In a martingale, a system has no predictable drift; the expected future value, given everything you know right now, is exactly equal to its current value.</p>
+</blockquote>
+
+<p>For <strong>additive noise</strong> – noise amplitude independent of the state, which is the case for (3.3) since \(\sigma\) is constant – the two conventions coincide, so the choice is immaterial for the physics of Parts IV–VIII. It matters for multiplicative noise, and it matters for interpreting formal manipulations, as the next example shows.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>Additive noise</strong> <em>The Math</em>: \(b(x_t, t)\) is just a constant (like \(\sigma\)) or a function that only changes with time \(b(t)\). It does not contain the state variable \(x_t\). <em>Physical Example</em>: A particle floating in a glass of water that is sitting in a perfectly temperature-controlled room. No matter where the particle floats—top, bottom, left, or right—the surrounding water molecules hit it with the exact same average thermal intensity.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Multiplicative noise</strong> <em>The Math</em>: \(b(x_t, t)\) contains the state variable \(x_t\). <em>Physical Example</em>: Imagine that same glass of water, but now there is a blowtorch heating the left side of the glass and an ice pack cooling the right side. If the particle drifts to the left side, the water is hotter, meaning the molecules are moving faster, and the random kicks the particle receives suddenly become much stronger. The noise amplitude depends entirely on where the particle is.</p>
+</blockquote>
+
+<p>Let’s end this section with a working example to showcase the pecularity of stochastic integration. Back to Eqn. (2.1), the second equation is basically about the force (\(\dot p = dp/dt = f\)), and therefore each term on the right-hand side corresponds to a certain form of force. If we take the force term for the random noise \(\sigma\,\xi(t)\) and try to calculate the average rate that the random noise pumps energy into the system \(\langle \sigma p(t)\xi(t) \rangle\) (\(\text{Power} = \text{Force} \times \text{Velocity}\)), we may have two instinct arguments,</p>
+
+<ul>
+  <li>
+    <p>Argument A: “White noise has zero memory and is completely random. Therefore, the random noise \(\xi(t)\) shouldn’t be correlated with the momentum \(p(t)\) at all. The answer should be \(0\).”</p>
+  </li>
+  <li>
+    <p>Argument B: “Wait, the noise is the physical force pushing the particle! Therefore, at the exact instant the noise pushes, the momentum perfectly reacts to it. They must be perfectly correlated. The answer should be \(\sigma\).”</p>
+  </li>
+</ul>
+
+<p>It turns out that both are wrong. Using the explicit solution derived in §4.1, \(p(t) = \sigma\int_0^t e^{-\gamma(t-s)}dW_s\) (again, back to Eqn. 2.1 – integrating the noise term yields momentum gain), and \(\langle\xi(s)\xi(t)\rangle = \delta(t-s)\), we have,</p>
+
+\[\begin{align}
+\langle p(t)\xi(t)\rangle &amp; = \left\langle \left( \sigma \int_0^t e^{-\gamma(t-s)} \xi(s) ds \right) \xi(t) \right\rangle\\
+&amp; = \sigma \int_0^t e^{-\gamma(t-s)} \langle \xi(s)\xi(t) \rangle ds\\
+&amp; = \sigma\int_0^t e^{-\gamma(t-s)}\delta(t-s)\,ds = \frac{\sigma}{2}
+\end{align}\]
+
+<p>The factor of \(\tfrac12\) arises because the delta function sits exactly at the endpoint of the integration range, so only half its weight is captured. This is precisely the Itô convention’s non-anticipating structure showing up in a formal calculation. The clean way to avoid such reasoning entirely is Itô’s lemma, next.</p>
+
+<h2 id="34-itôs-lemma-the-stochastic-chain-rule">3.4 Itô’s lemma (the stochastic chain rule)</h2>
+
+<p><strong>Statement.</strong> Let \(x_t\) satisfy the Itô SDE</p>
+
+\[dx_t = a(x_t,t)\,dt + b(x_t,t)\,dW_t \tag{3.8}\]
+
+<p>and let \(\phi(x,t)\) be twice continuously differentiable. Then</p>
+
+\[d\phi = \left[\frac{\partial\phi}{\partial t} + a\frac{\partial\phi}{\partial x} + \frac{b^2}{2}\frac{\partial^2\phi}{\partial x^2}\right]dt + b\frac{\partial\phi}{\partial x}\,dW_t \tag{3.9}\]
+
+<p><strong>Derivation.</strong> Taylor-expand \(\phi\) to second order in the increment – and, crucially, keep the second-order term, which ordinary calculus discards:</p>
+
+\[d\phi = \frac{\partial\phi}{\partial t}dt + \frac{\partial\phi}{\partial x}dx + \frac12\frac{\partial^2\phi}{\partial x^2}(dx)^2 + \cdots\]
+
+<p>Now evaluate \((dx)^2\) using (3.8) and the multiplication rules of §3.2:</p>
+
+\[(dx)^2 = \left(a\,dt + b\,dW\right)^2 = a^2\underbrace{(dt)^2}_{=0} + 2ab\underbrace{dt\,dW}_{=0} + b^2\underbrace{(dW)^2}_{=\,dt} = b^2\,dt\]
+
+<p>So \((dx)^2\) is of order \(dt\), not \(dt^2\) – it must be retained. Substituting and grouping gives (3.9). Third and higher order terms involve \((dW)^3 \sim \Delta t^{3/2}\) or smaller, and hence vanish.</p>
+
+<p>The extra term \(\tfrac12 b^2\partial_x^2\phi\) is the <strong>Itô correction</strong>. It is the entire difference between stochastic and ordinary calculus, and it is responsible for the second-derivative term in the Fokker–Planck equation (Part V).</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>Worked example: \(\phi = p^2\).</strong> For the free Langevin process \(dp = -\gamma p\,dt + \sigma\,dW\) (no potential), Itô’s lemma with \(\phi(p) = p^2\), \(a = -\gamma p\), \(b = \sigma\) gives
+\(d(p^2) = \left[-2\gamma p^2 + \sigma^2\right]dt + 2\sigma p\,dW\)
+Taking expectations and using \(\langle\int f\,dW\rangle = 0\):
+\(\frac{d\langle p^2\rangle}{dt} = -2\gamma\langle p^2\rangle + \sigma^2 \tag{3.10}\)
+The friction term drains \(\langle p^2\rangle\) at rate \(2\gamma\); the \(\sigma^2\) source term – which is <em>purely</em> the Itô correction, and which ordinary calculus would have missed entirely – pumps it back up. Setting the left side to zero gives the stationary variance \(\langle p^2\rangle_\infty = \sigma^2/2\gamma\) in one line. This is the fluctuation–dissipation balance in its rawest form, and §4.1 rederives it by explicit solution as a cross-check.</p>
+</blockquote>
+
+<h2 id="35-the-itô-isometry">3.5 The Itô isometry</h2>
+
+<p><strong>Statement.</strong> For a non-anticipating integrand \(f\),</p>
+
+\[\left\langle\left(\int_0^T f(s)\,dW_s\right)^{\!2}\right\rangle = \int_0^T \langle f(s)^2\rangle\,ds \tag{3.11}\]
+
+<p><strong>Derivation.</strong> Discretize and square:</p>
+
+\[\left(\sum_i f_i\,\Delta W_i\right)^{\!2} = \underbrace{\sum_i f_i^2(\Delta W_i)^2}_{\text{diagonal}} + \underbrace{2\sum_{i&lt;j} f_if_j\,\Delta W_i\,\Delta W_j}_{\text{cross}}\]
+
+<p>For the cross terms with \(i&lt;j\): the increment \(\Delta W_j\) lies strictly in the future of everything determining \(f_i\), \(f_j\), and \(\Delta W_i\) (this is exactly where the <em>left-endpoint</em>, non-anticipating property of the Itô convention is used), so by independence and \(\langle\Delta W_j\rangle = 0\),</p>
+
+\[\langle f_if_j\Delta W_i\Delta W_j\rangle = \langle f_if_j\Delta W_i\rangle\langle\Delta W_j\rangle = 0\]
+
+<p>Every cross term vanishes. For the diagonal terms, \(f_i\) is independent of \(\Delta W_i\) by the same argument, so \(\langle f_i^2(\Delta W_i)^2\rangle = \langle f_i^2\rangle\Delta t\). Summing and taking \(n\to\infty\) gives (3.11).</p>
+
+<p>The isometry is the workhorse for computing variances of stochastic integrals and is used in §4.1, §8.6, and §10.4.</p>
+
+<blockquote>
+  <p><em>*N.B.</em> Let’s just repeat what \(\Delta W\) here means, just to remind ourselves. So, \(\Delta W_j\) is the total accumulated random “kick” (the Wiener increment) that is applied to the system over that specific, tiny time interval from \(t_j\) to \(t_j + \Delta t\). Mathematically, it is the change in the Wiener process over that window: \(\Delta W_j = W(t_j + \Delta t) - W(t_j)\).</p>
+</blockquote>
+
+<h2 id="36-summary-of-part-iii">3.6 Summary of Part III</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Object</th>
+      <th>Definition / rule</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Wiener increment</td>
+      <td>\(\Delta W\sim\mathcal N(0,\Delta t)\), sampled as \(\sqrt{\Delta t}\,z\)</td>
+    </tr>
+    <tr>
+      <td>Scaling</td>
+      <td>\(dW\sim\sqrt{dt}\) – not \(dt\)</td>
+    </tr>
+    <tr>
+      <td>Quadratic variation</td>
+      <td>\((dW)^2 = dt\); \(dW\,dt = 0\); \((dt)^2 = 0\)</td>
+    </tr>
+    <tr>
+      <td>Itô integral</td>
+      <td>left-endpoint sum; non-anticipating; \(\langle\int f\,dW\rangle = 0\)</td>
+    </tr>
+    <tr>
+      <td>Itô’s lemma</td>
+      <td>\(d\phi = [\partial_t\phi + a\partial_x\phi + \tfrac12 b^2\partial_x^2\phi]dt + b\partial_x\phi\,dW\)</td>
+    </tr>
+    <tr>
+      <td>Itô isometry</td>
+      <td>\(\langle(\int f\,dW)^2\rangle = \int\langle f^2\rangle ds\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>(to be continued…)</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#AI">AI</a>
+          
+            <a href="/tags#machine learning">machine learning</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Langevin+Dynamics+--+From+Molecular+Thermostats+to+Diffusion+Models+%28Part-1%29&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-13-langevin_dynamics_1%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-08-13-langevin_dynamics_1%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-13-langevin_dynamics_1%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-08-13-gibbs_sampling/" data-toggle="tooltip" data-placement="top" title="Gibbs Sampling">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2026-08-15-langevin_dynamics_2/" data-toggle="tooltip" data-placement="top" title="Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-2)">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zyroc1990@iris-2020.us" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
