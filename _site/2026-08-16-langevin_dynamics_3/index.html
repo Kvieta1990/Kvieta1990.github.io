@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-3)</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="This post is part-3 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4. Part VII – The Overdamped (Smoluchowski) Limit 7.1 The physical regime Two timescales are present in the Langevin system: Timescale Symbol Meaning Momentum relaxation \(\tau_p = 1/\gamma = m/\zeta\) time...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/admonitions.css">
+    
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-3)">
+  <meta property="og:description" content="This post is part-3 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4. Part VII – The Overdamped (Smoluchowski) Limit 7.1 The physical regime Two timescales are present in the Langevin system: Timescale Symbol Meaning Momentum relaxation \(\tau_p = 1/\gamma = m/\zeta\) time...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-08-16T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-08-16-langevin_dynamics_3/">
+  <link rel="canonical" href="http://localhost:8000/2026-08-16-langevin_dynamics_3/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-3)">
+  <meta property="twitter:description" content="This post is part-3 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4. Part VII – The Overdamped (Smoluchowski) Limit 7.1 The physical regime Two timescales are present in the Langevin system: Timescale Symbol Meaning Momentum relaxation \(\tau_p = 1/\gamma = m/\zeta\) time...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-2020.us/script.js" data-website-id="387a3202-bb18-41ba-a954-d985ff940209"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-3)</h1>
+          
+
+          
+					<span class="post-meta">Posted on August 16, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <blockquote>
+  <p>This post is part-3 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4.</p>
+</blockquote>
+
+<h1 id="part-vii--the-overdamped-smoluchowski-limit">Part VII – The Overdamped (Smoluchowski) Limit</h1>
+
+<h2 id="71-the-physical-regime">7.1 The physical regime</h2>
+
+<p>Two timescales are present in the Langevin system:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Timescale</th>
+      <th>Symbol</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Momentum relaxation</td>
+      <td>\(\tau_p = 1/\gamma = m/\zeta\)</td>
+      <td>time for velocity to forget its initial value</td>
+    </tr>
+    <tr>
+      <td>Configurational</td>
+      <td>\(\tau_x\)</td>
+      <td>time for \(x\) to move over the scale of interest</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<blockquote class="info">
+  <p><strong>About the relaxation time scale</strong></p>
+
+  <p>In the Langevin equation (Eqn. 2.1 <a href="../2026-08-13-langevin_dynamics_1">here</a>), let’s for the moment forget about the noise term in the motion equation and assume \(0\) potential field,</p>
+
+\[\frac{dp}{dt} = -\gamma p\]
+
+  <p>(where \(\gamma = \zeta/m\) is the friction coefficient per unit mass)</p>
+
+  <p>Solution of the equation yields,</p>
+
+\[p(t) = p(0)e^{-\gamma t}\]
+
+  <p>from which we can see the typical relaxation time for momentum is,</p>
+
+\[\tau_p = \frac{1}{\gamma}\]
+</blockquote>
+
+<p>The <strong>overdamped limit</strong> is \(\tau_p \ll \tau_x\): friction is so strong that momentum equilibrates essentially instantaneously on the timescale over which position changes. At any “slow” time, momentum can be treated as already Maxwell-distributed at the local position. This is an <strong>adiabatic elimination</strong> of a fast variable.</p>
+
+<h2 id="72-the-heuristic">7.2 The heuristic</h2>
+
+<p>If \(\tau_p \ll \tau_x\), the inertial term in \(m\ddot x = -\zeta\dot x - U'(x) + \sigma\xi\) has already relaxed on the timescale of interest (i.e., the momentum already equilibrates so \(dp/dt \approx 0\)), and dropping it gives,</p>
+
+\[0 \approx -\zeta\dot x - U'(x) + \sigma\xi(t) \Rightarrow \dot x = -\frac{U'(x)}{\zeta} + \frac{\sigma}{\zeta}\xi(t)\]
+
+<p>With \(\sigma = \sqrt{2\zeta k_BT}\) (recall the discussion in part-IV about the fluctuation-dissipation theorem), the noise prefactor is \(\sigma/\zeta = \sqrt{2k_BT/\zeta}\), and if we ignore the potential term for the moment, it can be shown to yield the Einstein diffusion relation for the 1D diffusion problem.</p>
+
+<blockquote class="info">
+  <p><strong>Heuristic diffusion relation derivation</strong></p>
+
+  <p>First, the 1D diffusion equation (see <a href="https://math.libretexts.org/Bookshelves/Differential_Equations/Differential_Equations_(Chasnov)/09%3A_Partial_Differential_Equations/9.01%3A_Derivation_of_the_Diffusion_Equation">here</a> for derivation) for the probability density is,</p>
+
+\[\frac{\partial P(x, t)}{\partial t} = D\frac{\partial^2 P(x, t)}{\partial x^2}\]
+
+  <p>Starting from \(P(x, 0) = \delta(x)\), i.e., at the beginning (\(t = 0\)), the distribution is at exactly \(x = 0\) as a delta function, the solution is given as,</p>
+
+\[P(x, t) = \frac{1}{\sqrt{4\pi Dt}}e^{-x^2/(4Dt)}\]
+
+  <p>Solving the partial differential equation over the whole \(x\)-space without boundary involves the utilization of a Fourier transform trick and details can be found <a href="https://share.gemini.google/210PERVN35AH">here</a>. For the bounded situation, refer to the discussion <a href="https://math.libretexts.org/Bookshelves/Differential_Equations/Differential_Equations_(Chasnov)/09%3A_Partial_Differential_Equations/9.05%3A_Solution_of_the_Diffusion_Equation">here</a>.</p>
+
+  <p>Given the Gaussian solution and by comparing to the standard Gaussian distribution \(\frac{1}{\sqrt{2\pi\sigma^2}}e^{-x^2/(2\sigma_0^2)}\), we have the variance of the position,</p>
+
+\[\langle x^2 \rangle = \sigma_0^2 = 2Dt\]
+
+  <p>Then we turn to the stochastic equation while ignoring the potential term,</p>
+
+\[\frac{dx}{dt} = \sigma\xi(t)\]
+
+  <p>Integrating over \(t\) on both sides and squaring, we have,</p>
+
+\[\begin{align}
+\langle x(t)^2 \rangle &amp; = \left\langle \left( \int_0^t \sigma \xi(t') dt' \right) \left( \int_0^t \sigma \xi(t'') dt'' \right) \right\rangle\\
+&amp; = \sigma^2\int_0^t\int^t\langle \xi(t')\xi(\xi'') \rangle dt'dt''\\
+&amp; = \sigma^2 \int_0^t \int_0^t \delta(t' - t'') dt' dt''\\
+&amp; = \int_0^t dt'\sigma^2\int_0^t \delta(t' - t'') dt'' = \sigma^2 t
+\end{align}\]
+
+  <p>So, we have \(2D = \sigma^2 \Rightarrow D = \frac{k_BT}{\zeta}\).</p>
+</blockquote>
+
+<p><br /></p>
+
+<blockquote>
+  <p>Here, for the standard Gaussian distribution function, I was using \(\sigma_0\) to represent the variance to avoid confusion with the \(\sigma\) parameter used in the stochastic differential equation.</p>
+</blockquote>
+
+<p>The derivation here is rigorous for the stochastic process but the starting point is a bit loose – it is assumed the momentum already equilibrates during the ‘slow’ time duration. This can be a good assumption for normal processes but not the case for the stochastic process would yield an infinite force exerted on particles.</p>
+
+<h2 id="73-systematic-derivation-chapmanenskog-elimination">7.3 Systematic derivation: Chapman–Enskog elimination</h2>
+
+<p>Start from the Kramers equation (5.3) with \(D_p = \gamma mk_BT\):</p>
+
+\[\frac{\partial\rho}{\partial t} = \mathcal L_1\rho + \gamma\,\mathcal L_0\rho \tag{7.1}\]
+
+<p>where the two operators are defined as,</p>
+
+\[\mathcal L_1 \equiv -\frac{p}{m}\partial_x + U'(x)\partial_p, \qquad \mathcal L_0 \equiv \partial_p\big(p\;\cdot\;\big) + mk_BT\,\partial_p^2 \tag{7.2}\]
+
+<p><strong>Step 1 – identify the null space of \(\mathcal L_0\).</strong> Solving \(\mathcal L_0\phi = 0\) gives the <strong>local Maxwellian</strong>,</p>
+
+\[\phi_{\text{MB}}(p) = \frac{1}{\sqrt{2\pi mk_BT}}\exp\left(-\frac{p^2}{2mk_BT}\right), \qquad \mathcal L_0\phi_{\text{MB}} = 0 \tag{7.3}\]
+
+<p>The null space is \(\{\phi_{\text{MB}}(p)\,n(x)\}\) for arbitrary \(n\) – momentum is pinned to the Maxwellian, position is unconstrained.</p>
+
+<blockquote class="info">
+  <p><strong>Some notes</strong></p>
+
+  <p><em>Null space</em> refers to functions that nullifies (i.e., zero out) an operator – here, the solution \(\phi\) for \(\mathcal{L}_0\rho = 0\) forms the null space for the operator \(\mathcal{L}_0\).</p>
+
+  <p><br /></p>
+
+  <p>To solve \(\mathcal{L}_0\phi = 0\),</p>
+
+\[\begin{align}
+\mathcal{L}_0\phi &amp; = \frac{\partial(p\phi)}{\partial p} + mk_BT\frac{\partial^2\phi}{\partial p^2}\\
+&amp; = \frac{d}{dp}[p\phi + mk_BT\phi'] = 0
+\end{align}\]
+
+  <p>where we replace the partial derivative with the full derivative since the derivative involved in the \(\mathcal{L}\) operator only operates on the momentum but not the position. We know that the term inside the square bracket should be a constant and given the boundary condition that \(\phi \rightarrow 0\) and \(\phi' \rightarrow 0\) as \(p \rightarrow \pm \infty\), we have,</p>
+
+\[p\phi + mk_BT\phi' = 0\]
+
+  <p>Therefore,</p>
+
+\[mk_BT\phi' = -p\phi \Rightarrow \frac{\phi'}{\phi} = -\frac{p}{mk_BT}\]
+
+  <p>Integrating both sides can solve \(\phi\) up to a multiplicative constant and applying the normalization of the probability to give an overall value of 1, we can obtain the solution for \(\phi\) as presented above.</p>
+</blockquote>
+
+<p><strong>Step 2 – set up the expansion.</strong> Let \(\epsilon \equiv 1/\gamma\) be the small parameter and rescale to the slow time \(\tau = t/\gamma = \epsilon t\), so \(\partial_t = \epsilon\,\partial_\tau\). Multiplying (7.1) through by \(\epsilon\):</p>
+
+\[\epsilon^2\,\partial_\tau\rho = \epsilon\,\mathcal L_1\rho + \mathcal L_0\rho \tag{7.4}\]
+
+<blockquote>
+  <p>Here, we are doing nothing but changing the variable from \(t\) to the rescaled time variable \(\tau = \epsilon t\).</p>
+</blockquote>
+
+<p>Expand \(\rho = \rho^{(0)} + \epsilon\rho^{(1)} + \epsilon^2\rho^{(2)} + \cdots\) and collect orders – we are trying to solve \(\rho\) and first we write \(\rho\) in this specific expansion form so terms containing different orders of \(\epsilon\) can be treated term by term. Also, it turns out that the lower order terms solution will be used in solving the higher order terms.</p>
+
+<p><strong>Order \(\epsilon^0\).</strong></p>
+
+<p>Putting the expansion into Eqn. (7.4), the left-side does not have \(\epsilon^0\) term due to the \(\epsilon^2\) multiplicative factor in the front. Therefore, the \(\epsilon^0\) term on the right side should give 0. Therefore,</p>
+
+\[\mathcal L_0\rho^{(0)} = 0 \Rightarrow \rho^{(0)}(x,p,\tau) = \phi_{\text{MB}}(p)\,n(x,\tau) \tag{7.5}\]
+
+<p><strong>Order \(\epsilon^1\).</strong></p>
+
+<p>Same logic applies here to balance terms between the left and right side, we have,</p>
+
+\[\mathcal L_0\rho^{(1)} = -\mathcal L_1\rho^{(0)} \tag{7.6}\]
+
+<p>Compute the right-hand side using \(\partial_p\phi_{\text{MB}} = -\frac{p}{mk_BT}\phi_{\text{MB}}\),</p>
+
+\[\mathcal L_1\rho^{(0)} = -\frac{p}{m}\phi_{\text{MB}}\partial_xn + U'n\,\partial_p\phi_{\text{MB}} = -\frac{p}{m}\phi_{\text{MB}}\underbrace{\left[\partial_xn + \frac{U'n}{k_BT}\right]}_{\equiv\,A(x,\tau)}\]
+
+<p><ins><em>Solvability.</em></ins>  Equation (7.6) is solvable only if its right-hand side is orthogonal to the null space of \(\mathcal L_0^\dagger\). This is a lemma from the linear algebra, stating that for solving \(Ax = y\), we will have a solution if and only if the vector \(y\) has zero overlap (a dot product of zero) with the null space of the transpose matrix \(A^T\). Here we are applying the lemma to the differential equation – fundamentally, the differential operator is just like a matrix operation with infinite dimension and the item it operates on in a vector with inifinite dimension as well (a function). Therefore, the lemma for linear algebra can be applied for the differential equation here. Further, the adjoint operator \(\mathcal{L}_0^\dagger\) of \(\mathcal{L}\) is defined such that,</p>
+
+\[\int (L_0 f) \, g \, dp = \int f \, (L_0^\dagger g) \, dp\]
+
+<p>The null space for \(\mathcal{L}_0^\dagger\) therefore should be spanned by function \(g\) that satisfies,</p>
+
+\[\mathcal{L}_0^\dagger g = 0\]
+
+<p>Accordingly, we have,</p>
+
+\[\int (L_0 f) \, g \, dp = \int f \, (L_0^\dagger g) \, dp = \int f \cdot 0 \, dp = 0\]
+
+<p>for all functions \(f(p)\). Since the operator \(\mathcal{L}_0\) is a total derivative with respect to \(p\), we have \(\mathcal{L}_0f = \frac{dh}{dp}\) (\(h\) here just refers to whatever function of \(p\) corresponding to the \(\mathcal{L}_0\)). Accordingly,</p>
+
+\[\int (L_0 f) \, g \, dp = \int\frac{dh}{dp}g dp = hg\Big\vert{}_{-\infty}^{\infty} - \int h\frac{dg}{dp}dp = 0\]
+
+<p>for all functions \(h(p)\). Given the boundary condition that both \(h\) and \(g\) should vanish at \(\pm\infty\), we have,</p>
+
+\[\int h\frac{dg}{dp}dp = 0\]
+
+<p>for all functions \(h(p)\) and this requires \(dg/dp = 0\), inferring that \(g(p)\) is a constant. So, the null space for \(\mathcal{L}_0^\dagger\) is constant function and here we can take \(g = 1\). Back to the condition for the solvability of Eqn. (7.5), we should satisfy the orthogonality equation \(\int 1 \cdot \mathcal{L}_1\rho^{(0)} dp = 0\). We have already worked out \(\rho^{(0)}\) in Eqn. (7.5), and further taking the involved \(\phi_{\text{MB}}\) there given by Eqn. (7.3) while considering the form of operator \(\mathcal{L}_1\) in Eqn. (7.2), we can obtain,</p>
+
+\[L_1 \rho^{(0)} \propto p \phi_{\text{MB}}\]
+
+<p>and therefore the integration boils down to,</p>
+
+\[\int p \phi_{\text{MB}} dp\]
+
+<p>Since \(p\) is an odd function and \(\phi_{\text{MB}}\) is the Maxwell distribution function which is a symmetric bell curve centered exactly at \(p = 0\), the integration will be 0. So, the solvability condition is natually satisfied.</p>
+
+<p><ins><em>Solve.</em></ins> The useful fact is that \(p\,\phi_{\text{MB}}\) is an eigenfunction of \(\mathcal L_0\) with eigenvalue \(-1\). Verify directly,</p>
+
+\[\begin{align}
+\partial_p\!\left(p\cdot p\phi_{\text{MB}}\right) &amp; = 2p\phi_{\text{MB}} - \frac{p^3}{mk_BT}\phi_{\text{MB}}\\
+mk_BT\,\partial_p^2\!\left(p\phi_{\text{MB}}\right) &amp; = mk_BT\,\partial_p\!\left[\phi_{\text{MB}} - \frac{p^2}{mk_BT}\phi_{\text{MB}}\right] = -3p\phi_{\text{MB}} + \frac{p^3}{mk_BT}\phi_{\text{MB}}
+\end{align}\]
+
+<p>Adding up, we have,</p>
+
+\[\mathcal L_0\!\left(p\,\phi_{\text{MB}}\right) = -p\,\phi_{\text{MB}} \tag{7.7}\]
+
+<p>Putting the following results together,</p>
+
+\[\begin{align}
+\mathcal{L}_0(p\phi_{\text{MB}}) &amp; = -p\phi_{\text{MB}}\\
+\mathcal{L}_1\rho^{(0)} &amp; = -\frac{pA(x, \tau)}{m}\phi_{\text{MB}}\\
+\mathcal{L}_0\rho^{(1)} &amp; = -\mathcal{L}_1\rho^{(0)}
+\end{align}\]
+
+<p>We have the solution of (7.6) given as,</p>
+
+\[\rho^{(1)} = -\frac{A(x,\tau)}{m}\,p\,\phi_{\text{MB}}(p) \tag{7.8}\]
+
+<p><strong>Order \(\epsilon^2\).</strong></p>
+
+\[\partial_\tau\rho^{(0)} = \mathcal L_1\rho^{(1)} + \mathcal L_0\rho^{(2)} \tag{7.9}\]
+
+<p>Integrate over \(p\). The last term drops (\(\int\mathcal L_0\rho^{(2)}dp = 0\), since \(\mathcal{L}_0\) is a total derivative with respect to \(p\) and therefore \(\int\mathcal{L}_0(\cdot)dp = 0\)), and the left side gives \(\partial_\tau n\) since \(\int\phi_{\text{MB}}dp=1\). On the right,</p>
+
+\[\int\mathcal L_1\rho^{(1)}dp = -\frac{1}{m}\partial_x\!\int p\,\rho^{(1)}dp + U'\!\underbrace{\int\partial_p\rho^{(1)}dp}_{=\,0}\]
+
+<p>and, using \(\int p^2\phi_{\text{MB}}dp = mk_BT\),</p>
+
+\[\int p\,\rho^{(1)}\,dp = -\frac{A}{m}\int p^2\phi_{\text{MB}}\,dp = -A\,k_BT\]
+
+<p>Therefore,</p>
+
+\[\partial_\tau n = \frac{k_BT}{m}\,\partial_x A = \frac{k_BT}{m}\partial_x\!\left[\partial_xn + \frac{U'n}{k_BT}\right]\]
+
+<p><strong>Step 3 – restore real time.</strong> With \(\tau = t/\gamma\), i.e. \(\partial_\tau = \gamma\partial_t\), and \(\zeta = m\gamma\),</p>
+
+\[\frac{\partial n}{\partial t} = \frac{\partial}{\partial x}\left[\frac{U'(x)}{\zeta}n\right] + \frac{k_BT}{\zeta}\frac{\partial^2n}{\partial x^2} \tag{7.10}\]
+
+<p>This is the <strong>Smoluchowski equation</strong> – a Fokker–Planck equation in position alone.</p>
+
+<p>Note precisely where the diffusion coefficient (forget about the potential term in Eqn. 7.10, we can see the 1D diffusion equation is reproduced) came from – it is \(\frac{1}{m^2}\int p^2\phi_{\text{MB}}dp \times \tau_p\) (refer to the derivation process presented above), i.e. the <em>equilibrium velocity variance</em> multiplied by the momentum correlation time. Multiplying an equilibrium variance by a relaxation time is the classic signature of a <strong>Green-Kubo</strong> relation, which proves that macroscopic transport (diffusion) is fundamentally built out of the integral of microscopic equilibrium fluctuations over time.</p>
+
+<h2 id="74-the-overdamped-sde-and-the-einstein-relation">7.4 The overdamped SDE and the Einstein relation</h2>
+
+<p>Matching (7.10) against the general Fokker–Planck form (5.1), \(\partial_t\rho = -\partial_x(a\rho) + \partial_x^2(\tfrac{b^2}{2}\rho)\) (reminded that Eqn. 7.10 is the position part of the Fokker-Planck equation), identifies \(a = -U'/\zeta\) and \(b^2/2 = k_BT/\zeta\). The corresponding Itô SDE is</p>
+
+\[dx = -\frac{U'(x)}{\zeta}\,dt + \sqrt{\frac{2k_BT}{\zeta}}\;dW_t \tag{7.11}\]
+
+<p>or in the notation of Part II, with \(\zeta = m\gamma\),</p>
+
+\[\dot x = -\frac{1}{m\gamma}U'(x) + \sqrt{\frac{2k_BT}{m\gamma}}\;\xi(t) \tag{7.11}\]
+
+<p>Defining the <strong>mobility</strong> \(\mu \equiv 1/\zeta\) (velocity per unit applied force) and the position-space diffusion coefficient</p>
+
+\[D \equiv \frac{k_BT}{\zeta} = \mu k_BT \tag{7.12}\]
+
+<p>recovers the <strong>Einstein relation</strong> [2]. Also refer to the derivation in the highlighted part in §7.2.</p>
+
+<h2 id="75-consistency-stationary-solution-of-the-smoluchowski-equation">7.5 Consistency: stationary solution of the Smoluchowski equation</h2>
+
+<p>Write (7.10) in continuity form, \(\partial_tn = -\partial_xJ\) with \(J = -\frac{U'}{\zeta}n - D\,\partial_xn\). Detailed balance requires \(J = 0\):</p>
+
+\[D\,n' = -\frac{U'}{\zeta}n \Rightarrow \frac{n'}{n} = -\frac{U'}{\zeta D} = -\frac{U'}{k_BT}\]
+
+\[n_{\text{eq}}(x) = \frac{1}{Z_x}e^{-\beta U(x)} \tag{7.13}\]
+
+<p>exactly the position marginal of (6.9). The overdamped reduction preserves the equilibrium distribution, as it must.</p>
+
+<h2 id="76-validity-criterion">7.6 Validity criterion</h2>
+
+<p>A practical criterion for guaranteeing the validity of the overdamped limit,</p>
+
+\[\tau_p = \frac{m}{\zeta} \;\ll\; \tau_x = \frac{\ell^2}{D} = \frac{\ell^2\zeta}{k_BT}\]
+
+<p>for the smallest length scale \(\ell\) over which \(U\) varies appreciably. Equivalently,</p>
+
+\[\frac{m\,k_BT}{\zeta^2\ell^2} \ll 1\]
+
+<p>For the colloidal bead with \(\ell = a = 1\,\mu\)m: \(\tau_p = 0.22\,\mu\)s, \(D = k_BT/\zeta = 2.2\times10^{-13}\,\text{m}^2/\text{s}\), \(\tau_x = a^2/D \approx 4.6\) s. The ratio is \(\sim5\times10^{-8}\) – overwhelmingly overdamped. For atomistic molecular dynamics, the ratio is order unity or larger, which is why MD codes integrate the full underdamped equations rather than (7.11).</p>
+
+<h1 id="part-viii--eulermaruyama-discretization">Part VIII – Euler–Maruyama Discretization</h1>
+
+<h2 id="81-the-scheme">8.1 The scheme</h2>
+
+<p>Analytic solutions exist only for linear SDEs. For a general potential, (7.11) must be integrated numerically. The <strong>Euler–Maruyama (EM) scheme</strong> [12] is the stochastic analogue of the <a href="https://math.libretexts.org/Bookshelves/Differential_Equations/Numerically_Solving_Ordinary_Differential_Equations_(Brorson)/02%3A_Forward_Euler_method">forward Euler method</a> – for the general SDE \(dx = a(x,t)dt + b(x,t)dW_t\), fix a step \(\Delta t\) and iterate</p>
+
+\[x_{k+1} = x_k + a(x_k,t_k)\,\Delta t + b(x_k,t_k)\sqrt{\Delta t}\;z_k, \qquad z_k\sim\mathcal N(0,1)\;\text{i.i.d.} \tag{8.1}\]
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">i.i.d.</code> \(\Rightarrow\) independent and identically distributed. In probability theory and statistics, a collection of random variables is i.i.d. if each random variable has the same probability distribution as the others (identically distributed) and all are mutually independent of one another.</p>
+</blockquote>
+
+<p>Its derivation is immediate from the integral form: over \([t_k, t_k+\Delta t]\),</p>
+
+\[x_{k+1} - x_k = \int_{t_k}^{t_k+\Delta t}a\,ds + \int_{t_k}^{t_k+\Delta t}b\,dW_s\]
+
+<p>Freezing the integrands at their <strong>left-endpoint</strong> values (which is exactly the Itô convention, §3.3 – so EM is intrinsically an Itô scheme) gives \(a(x_k,t_k)\Delta t\) for the first integral and \(b(x_k,t_k)\,\Delta W_k\) for the second, with \(\Delta W_k = W_{t_{k+1}}-W_{t_k}\sim\mathcal N(0,\Delta t)\) sampled as \(\sqrt{\Delta t}z_k\) per (3.4) in §3.1.</p>
+
+<h2 id="82-why-the-noise-scales-as-sqrtdelta-t">8.2 Why the noise scales as \(\sqrt{\Delta t}\)</h2>
+
+<p>The single most important structural feature of (8.1) is that the deterministic term carries \(\Delta t\) while the noise term carries \(\sqrt{\Delta t}\). This is not a convention – it is forced by (W3), and it has a decisive consequence.</p>
+
+<p>Consider what happens as \(\Delta t\to0\) with the noise incorrectly scaled as \(\Delta t\) instead:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scaling used</th>
+      <th>Behaviour as \(\Delta t\to0\)</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(b\,\Delta t\,z\)</td>
+      <td>noise vanishes faster than drift</td>
+      <td>deterministic gradient descent – converges to a single minimum</td>
+    </tr>
+    <tr>
+      <td>\(b\sqrt{\Delta t}\,z\)</td>
+      <td>noise and drift balance in the FD sense</td>
+      <td>correct sampler – explores the full Boltzmann distribution</td>
+    </tr>
+    <tr>
+      <td>\(b\,\Delta t^{1/4}z\)</td>
+      <td>noise dominates</td>
+      <td>pure random walk; potential is irrelevant</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Only the middle row reproduces the stationary variance derived in Parts IV–VI. <strong>The \(\sqrt{\Delta t}\) scaling is what makes the algorithm a sampler rather than an optimizer</strong>. According to the table, if the noise term is scaled linearly just as the deterministic term, as \(\Delta t \rightarrow 0\), the noise term will vanish more quickly since the standard deviation of the random noise scales as \((\Delta t)^2\). On the other hand, if the noise term scales as something like \((\Delta t)^{1/4}\), it will dominate the process and the whole process therefore just becomes a random walk.</p>
+
+<h2 id="83-orders-of-convergence-strong-versus-weak">8.3 Orders of convergence: strong versus weak</h2>
+
+<p>For stochastic processes, we need to consider its accuracy. Two inequivalent notions of accuracy apply to stochastic schemes.</p>
+
+<p><strong>Strong convergence</strong> measures pathwise accuracy – how close the numerical path is to the exact path driven by the <em>same</em> noise realization:</p>
+
+\[\big\langle\,|x_N - x(T)|\,\big\rangle \le C\,(\Delta t)^{\alpha}\]
+
+<p><strong>Weak convergence</strong> measures distributional accuracy – how close the numerical <em>statistics</em> are to the exact ones:</p>
+
+\[\Big|\big\langle\phi(x_N)\big\rangle - \big\langle\phi(x(T))\big\rangle\Big| \le C_\phi\,(\Delta t)^{\beta_w}\]
+
+<p>for smooth test functions \(\phi\). For Euler–Maruyama, the standard results are</p>
+
+\[\alpha = \tfrac12 \quad\text{(strong)}, \qquad \beta_w = 1 \quad\text{(weak)}\]
+
+<blockquote>
+  <p>Here, \(N\) refers to the stem \(N\) in the discrete-time numerical scheme, so that \(T_N = N\Delta t\).</p>
+</blockquote>
+
+<p><strong>Which one matters here?</strong> For sampling applications – computing thermodynamic averages, or drawing samples from a target distribution – only the <em>distribution</em> matters, never the individual path. Weak order 1 is therefore the relevant figure of merit, and EM’s poor strong order is irrelevant.</p>
+
+<p><strong>A useful special case.</strong> The next-order scheme, <strong>Milstein’s method</strong>, adds the correction term \(\tfrac12 b\,\partial_xb\left[(\Delta W)^2 - \Delta t\right]\) and achieves strong order 1. But for the overdamped Langevin equation (7.11), \(b = \sqrt{2D}\) is <em>constant</em> in \(x\), so \(\partial_xb = 0\) and the Milstein term vanishes identically. <strong>For additive noise, Euler–Maruyama is already strong order 1</strong> and Milstein offers nothing. This is a genuine simplification specific to Langevin-type equations.</p>
+
+<blockquote>
+  <p>See the notes in §3.3 about <code class="language-plaintext highlighter-rouge">additive</code> and <code class="language-plaintext highlighter-rouge">multiplicative</code> noise.</p>
+</blockquote>
+
+<h2 id="84-the-discrete-overdamped-langevin-update">8.4 The discrete overdamped Langevin update</h2>
+
+<p>Applying (8.1) to the overdamped SDE (7.11), with \(a = -U'(x)/\zeta\) and \(b = \sqrt{2D}\), \(D = k_BT/\zeta\):</p>
+
+\[x_{k+1} = x_k - \frac{\Delta t}{\zeta}\,U'(x_k) + \sqrt{\frac{2k_BT\,\Delta t}{\zeta}}\;z_k \tag{8.2}\]
+
+<p>In the statistics literature this is the <strong>Unadjusted Langevin Algorithm (ULA)</strong> [13]; in lattice field theory it appeared earlier as <strong>stochastic quantization</strong> [15]; in machine learning, with a stochastic gradient substituted for \(U'\), it is <strong>Stochastic Gradient Langevin Dynamics (SGLD)</strong> [14]. All three are (8.2).</p>
+
+<p>Pseudocode:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>input: potential gradient dU(x), drag ζ, temperature kT, step Δt, n_steps
+x ← x_0
+for k = 1 … n_steps:
+    z ← randn()  # standard normal
+    x ← x − (Δt/ζ)·dU(x) + sqrt(2·kT·Δt/ζ)·z
+    record x
+</code></pre></div></div>
+
+<p>Each iteration costs exactly one gradient evaluation and one Gaussian draw.</p>
+
+<h2 id="85-discretization-bias-an-exactly-solvable-example">8.5 Discretization bias: an exactly solvable example</h2>
+
+<p>An essential caveat: <strong>the chain (8.2) does not have \(e^{-\beta U}\) as its exact stationary distribution.</strong> It has a nearby one, differing at \(O(\Delta t)\). This is quantifiable in closed form for the harmonic well.</p>
+
+<p>Take \(U = \tfrac12kx^2\), so \(U' = kx\) and (8.2) becomes a linear recursion:</p>
+
+\[x_{k+1} = a\,x_k + \sqrt{2D\Delta t}\;z_k, \qquad a \equiv 1 - \frac{k\Delta t}{\zeta} \tag{8.3}\]
+
+<p>This is an <a href="https://www.econometrics-with-r.org/14.3-autoregressions.html">first order autoregressive AR(1) process</a>. We can find the stationary variance \(V = \langle x^2 \rangle\) by taking the variance of both sides at equilibrium,</p>
+
+\[\begin{align}
+V &amp; = a^2 V + (\text{variance of the noise term})
+&amp; = a^2V + 2D\Delta t
+\end{align}\]
+
+<p>Solving for \(V\),</p>
+
+\[V(1 - a^2) = 2D\Delta t \Rightarrow V_{\text{EM}} = \frac{2D\Delta t}{1 - a^2}\]
+
+<blockquote>
+  <p>EM: Euler–Maruyama</p>
+</blockquote>
+
+<p>Now, substitute \(a = 1 - \frac{k \Delta t}{\zeta}\) and use \(D = \frac{k_B T}{\zeta}\),</p>
+
+\[V_{\text{EM}} = \frac{k_B T}{k} \cdot \frac{1}{1 - \frac{k \Delta t}{2\zeta}}\]
+
+<p>Using a Taylor expansion for small \(\Delta t\) (\(\frac{1}{1 - x} \approx 1 + x\)), this becomes,</p>
+
+\[V_{\text{EM}} = \frac{k_B T}{k} \left( 1 + \frac{k \Delta t}{2\zeta} + \mathcal{O}(\Delta t^2) \right)\]
+
+<p>For a one-dimensional harmonic oscillator, the potential energy is \(\frac{1}{2}kx^2\) and from the equipartition theorem, we know that the average potential energy associated with the spatial coordinate $x$ is equal to \(\frac{1}{2}k_B T\), so,</p>
+
+\[\left\langle \frac{1}{2}kx^2 \right\rangle = \frac{1}{2}k_B T\]
+
+<p>Therefore, \(V_{\text{EM}}\) can be written as,</p>
+
+\[V_{\text{EM}} = V_{\text{exact}} \left( 1 + \frac{k \Delta t}{2\zeta} + \mathcal{O}(\Delta t^2) \right)\]
+
+<p>where,</p>
+
+\[V_{\text{exact}} = \frac{k_B T}{k}\]
+
+<p>Some takeaways,</p>
+
+<ul>
+  <li>
+    <p><strong>First-Order Bias:</strong> The error scales as \(\mathcal{O}(\Delta t)\), which matches the theoretical weak order 1 of the Euler-Maruyama method. Halving \(\Delta t\) cuts the error in half.</p>
+  </li>
+  <li>
+    <p><strong>Systematically Too Hot:</strong> The bias term is positive (\(+ \frac{k \Delta t}{2\zeta}\)). This means the discrete simulation consistently overestimates the variance – the system behaves as though it is at a higher temperature than the target \(T\). Physically, this happens because the deterministic restoring force $-U’(x)$ is evaluated at the beginning of the time step and held constant, missing the continuous pull toward the center during the interval.</p>
+  </li>
+  <li>
+    <p><strong>Not a Transient Effect (i.e., the effect does not depend on a single specific moment):</strong> Because this is a property of the stationary state, running the simulation longer will not make the bias go away. The only ways to fix it are to use a smaller time step $\Delta t$ or employ a higher-order numerical integrator.</p>
+  </li>
+</ul>
+
+<h2 id="86-stability-limit">8.6 Stability limit</h2>
+
+<p>The recursion (8.3) is stable only if \(\vert a \vert &lt;1\):</p>
+
+\[\left|1 - \frac{k\Delta t}{\zeta}\right| &lt; 1 \Leftrightarrow \Delta t &lt; \frac{2\zeta}{k} = \frac{2}{k}\,\zeta \tag{8.5}\]
+
+<p>Beyond this, the iteration oscillates with growing amplitude and diverges. For a general potential, the binding constraint is set by the <strong>stiffest</strong> direction, \(k\to U''_{\max}\) (remember that here we are dealing with the harmonic oscillator), so the usable step size is governed by the largest curvature anywhere in the landscape, regardless of the presence of noise.</p>
+
+<h2 id="87-removing-the-bias-the-metropolis-correction">8.7 Removing the bias: the Metropolis correction</h2>
+
+<p>The \(O(\Delta t)\) bias can be eliminated exactly by treating (8.2) as a <em>proposal</em> in a Metropolis–Hastings scheme rather than as the sampler itself. This is the <strong>Metropolis-Adjusted Langevin Algorithm (MALA)</strong> [13].</p>
+
+<p>Given current state \(x\), propose</p>
+
+\[x' = x - \frac{\Delta t}{\zeta}U'(x) + \sqrt{2D\Delta t}\,z\]
+
+<p>so the proposal density is the Gaussian</p>
+
+\[q(x'|x) = \mathcal N\!\left(x';\; x - \tfrac{\Delta t}{\zeta}U'(x),\;\; 2D\Delta t\right)\]
+
+<p>Accept \(x'\) with probability</p>
+
+\[P_{\text{acc}} = \min\left(1,\;\frac{e^{-\beta U(x')}\,q(x\,|\,x')}{e^{-\beta U(x)}\,q(x'\,|\,x)}\right) \tag{8.6}\]
+
+<p>otherwise remain at \(x\). Because the acceptance test enforces detailed balance with respect to \(e^{-\beta U}\) exactly, MALA has the <em>exact</em> Boltzmann distribution as its stationary state for any \(\Delta t\) – the bias of (8.4) is removed entirely.</p>
+
+<p><strong>The trade-off:</strong> each step now requires an evaluation of \(U\) itself (not just its gradient), and the acceptance rate falls as \(\Delta t\) grows. Therefore, the time step must be adjusted to account for different dimension. The <a href="https://doi.org/10.48550/arXiv.1702.01777">optimal-scaling theory for MALA</a> in high dimension \(d\) recommends tuning \(\Delta t\) to an acceptance rate near \(0.574\), with \(\Delta t\propto d^{-1/3}\); unadjusted ULA, by contrast, requires no accept/reject step but tolerates a bias.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>In practice, targeting a certain acceptance of \(0.574\) means we need to tune the step size $\Delta t$ for a high-dimensional target distribution until the empirical acceptance rate hovers around the \(0.574\) threshold.</p>
+</blockquote>
+
+<p><strong>Which to use?</strong> In molecular dynamics, the unadjusted scheme is standard, because \(\Delta t\) is already constrained to be far below the stability limit for accuracy reasons and the residual bias is negligible. In Bayesian sampling with large steps, MALA’s exactness is usually worth its cost. In generative modelling (Part IX–X), the unadjusted scheme is used – the score is only approximate anyway, so an exact accept/reject test against an inexact target buys little.</p>
+
+<p><br /></p>
+
+<p>(to be continued…)</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#AI">AI</a>
+          
+            <a href="/tags#machine learning">machine learning</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Langevin+Dynamics+--+From+Molecular+Thermostats+to+Diffusion+Models+%28Part-3%29&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-16-langevin_dynamics_3%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-08-16-langevin_dynamics_3%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-16-langevin_dynamics_3%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-08-15-langevin_dynamics_2/" data-toggle="tooltip" data-placement="top" title="Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-2)">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zyroc1990@iris-2020.us" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/copyCode.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

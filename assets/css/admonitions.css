@@ -1,0 +1,45 @@
+/* Admonition / callout boxes for blog posts (Docusaurus-style), built on kramdown IAL classes.
+   Usage in a post:
+     > **Optional custom title**
+     > Body text of the callout.
+     {: .warning}
+   Supported classes: .note .info .tip .warning .danger
+*/
+
+.blog-post blockquote.note,
+.blog-post blockquote.info,
+.blog-post blockquote.tip,
+.blog-post blockquote.warning,
+.blog-post blockquote.danger {
+  font-style: normal;
+  color: #333;
+  border-left-width: 0.3125rem;
+  border-left-style: solid;
+  border-radius: 0.25rem;
+  padding: 0.9rem 1.25rem;
+}
+
+.blog-post blockquote.note {
+  background-color: #f0f1f2;
+  border-left-color: #6c757d;
+}
+
+.blog-post blockquote.info {
+  background-color: #e7f3fb;
+  border-left-color: #1a73c7;
+}
+
+.blog-post blockquote.tip {
+  background-color: #e8f6ee;
+  border-left-color: #1f9254;
+}
+
+.blog-post blockquote.warning {
+  background-color: #fff8e6;
+  border-left-color: #e0a800;
+}
+
+.blog-post blockquote.danger {
+  background-color: #fdecea;
+  border-left-color: #d93025;
+}

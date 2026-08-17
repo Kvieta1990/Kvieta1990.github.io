@@ -1047,8 +1047,40 @@ pre {
   margin: 0 auto;
 }
 
-.copy-code-button {
-  display: block;
+.code-block-wrapper {
+  position: relative;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1;
+  color: #666;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.code-block-wrapper:hover .code-copy-btn,
+.code-copy-btn:focus {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  color: #222;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.code-copy-btn.copied {
+  color: #2e7d32;
+  border-color: #2e7d32;
 }
 
 .card {

@@ -1,25 +1,30 @@
-// This assumes that you're using Rouge; if not, update the selector
-const codeBlocks = document.querySelectorAll('.code-header + .highlighter-rouge');
-const copyCodeButtons = document.querySelectorAll('.copy-code-button');
+// Adds a "copy to clipboard" button to the top-right corner of every
+// Rouge-highlighted code block (i.e. any fenced ``` code block).
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('div.highlighter-rouge').forEach(function (block) {
+    var code = block.querySelector('pre code, pre');
+    if (!code) return;
 
-copyCodeButtons.forEach((copyCodeButton, index) => {
-  const code = codeBlocks[index].innerText;
+    block.classList.add('code-block-wrapper');
 
-  copyCodeButton.addEventListener('click', () => {
-    // Copy the code to the user's clipboard
-    window.navigator.clipboard.writeText(code);
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'code-copy-btn';
+    button.setAttribute('aria-label', 'Copy code to clipboard');
+    button.innerHTML = '<i class="fas fa-copy"></i>';
 
-    // Update the button text visually
-    const { innerText: originalText } = copyCodeButton;
-    copyCodeButton.innerText = 'Copied!';
+    button.addEventListener('click', function () {
+      navigator.clipboard.writeText(code.innerText).then(function () {
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        button.classList.add('copied');
 
-    // (Optional) Toggle a class for styling the button
-    copyCodeButton.classList.add('copied');
+        setTimeout(function () {
+          button.innerHTML = '<i class="fas fa-copy"></i>';
+          button.classList.remove('copied');
+        }, 1500);
+      });
+    });
 
-    // After 2 seconds, reset the button to its initial UI
-    setTimeout(() => {
-      copyCodeButton.innerText = originalText;
-      copyCodeButton.classList.remove('copied');
-    }, 2000);
+    block.appendChild(button);
   });
 });

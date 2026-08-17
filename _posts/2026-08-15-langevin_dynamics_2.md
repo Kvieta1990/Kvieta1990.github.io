@@ -295,7 +295,7 @@ Matching against $$\eta = \sigma\xi$$ with $$\langle\xi\xi'\rangle = \delta(t-t'
 
 > **N.B.** $$\langle \eta\eta' \rangle = \sigma^2\langle \xi\xi' \rangle = \sigma^2\delta(t - t') = 2\zeta k_BT\delta(t - t') = 2\gamma mk_BT$$
 
-> Regarding the choice of the scale factor $$\zeta$$ or $$\gamma$$, refer to the 'Convention warning 1' in [part-1](./2026-08-13-langevin_dynamics_1.md).
+> Regarding the choice of the scale factor $$\zeta$$ or $$\gamma$$, refer to the 'Convention warning 1' in [part-1](../2026-08-13-langevin_dynamics_1).
 
 > **How do we transition from the summation of delta functions into something like the assumption of $$J(\omega) = \zeta\omega$$?** Eqn. (4.19) gives a lot of spikes along the $$\omega$$-axis corresponding to each individual oscillator $$j$$ in the heat bath. In practice, the number of oscillators is huge and accordingly the spikes are very much crowded so to be nearly forming a continuous function. Once $$J(\omega)$$ is established as a continuous, smooth curve, we still have to figure out its actual shape. The true shape depends on the exact quantum or classical microscopic details of the specific material (water vs. argon vs. honey). However, in physics, if a function is smooth and starts at zero (since there are no oscillators with exactly zero frequency), we can approximate it at low frequencies using a Taylor expansion. The first term of a Taylor expansion is just a straight line. The Ohmic assumption is the phenomenological choice to simply model that continuous curve as the simplest possible straight line over all the low frequencies that matter to the particle: $$J(\omega) = \zeta\omega$$. Here, $$\zeta$$ (the macroscopic drag coefficient) is just the slope of that line.
 
@@ -719,7 +719,7 @@ $$\{H,\rho\}\big|_{g=g(x)} = -\frac{p}{m}\rho_{\text{eq}}\,\partial_xg$$
 
 which **reintroduces $$p$$-dependence** unless $$\partial_xg = 0$$ as well. Combined with $$\partial_pg=0$$, this forces $$g$$ constant, and normalization fixes the constant to $$1$$:
 
-$$g\equiv1 \quad\Longleftrightarrow\quad \rho = \rho_{\text{eq}}$$
+$$g\equiv1 \Leftrightarrow \rho = \rho_{\text{eq}}$$
 
 Here we see that the dissipation term destroys the $$p$$-dependence but it does not contain the operation regarding $$x$$, meaning that the dissipation term does not yield constaints on what values that the particle position should take. However, the Hamiltonian term (i.e., the first term in Eqn. 6.1) does contain the operation upon $$x$$ (i.e., the $$\partial_xg$$ above) and we arrived at the conclusion that the whole process will only halt when neither dependence ($$x$$ and $$p$$) remains for the defined quantity $$g$$. This coupling of a degenerate-but-dissipative operator (e.g., the second term in Eqn. 6.1) with an entropy-neutral-but-mixing one (e.g., the first term in Eqn. 6.1) is the phenomenon Villani named **hypocoercivity** [11]; the kinetic Fokker–Planck equation is its canonical example.
 
@@ -830,5 +830,7 @@ The exponential factor at the end, $$e^{-\Delta U / k_B T}$$, is decisive. Here 
 The mathematics guarantees the correct answer eventually; the physics indicates that "eventually" may exceed any feasible simulation. On a rugged, multi-valley landscape, ordinary Langevin dynamics becomes trapped in the first valley encountered and remains there indefinitely for all practical purposes. This gap between mathematical guarantee and computational feasibility is the reason enhanced sampling is required in molecular simulation, and, as Part IX shows, the direct reason **annealing is required in generative modeling**.
 
 The standard remedy is simulated annealing: the temperature $$T$$ of the simulation is temporarily raised, which enlarges the $$e^{-\Delta U / k_B T}$$ term and allows the system to cross barriers and explore the full landscape, before being slowly cooled again to settle into the true global equilibrium. Raw Langevin dynamics, without such temperature manipulation, is therefore a poor tool for exploring rugged landscapes: it converges in principle but remains trapped in metastable states in practice.
+
+<br>
 
 (to be continued...)

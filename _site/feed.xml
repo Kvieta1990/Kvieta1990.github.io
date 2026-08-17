@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-3)</title>
+        <description>
+          
+          This post is part-3 of the 4-parts full story about the Langevin dynamics. All references will be presented in part-4. Part VII – The Overdamped (Smoluchowski) Limit 7.1 The physical regime Two timescales are present in the Langevin system: Timescale Symbol Meaning Momentum relaxation \(\tau_p = 1/\gamma = m/\zeta\) time...
+        </description>
+        <pubDate>Sun, 16 Aug 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-08-16-langevin_dynamics_3/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-08-16-langevin_dynamics_3/</guid>
+      </item>
+    
+      <item>
         <title>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-2)</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Mon, 25 Aug 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2025-08-25-gsasii_scriptable/</link>
         <guid isPermaLink="true">http://localhost:8000/2025-08-25-gsasii_scriptable/</guid>
-      </item>
-    
-      <item>
-        <title>Installation of GSAS-II on Linux</title>
-        <description>
-          
-          GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. Here I am sharing my working pipeline to get GSAS-II working on my Linux machine of Ubuntu distro. FYI, here below is listed my...
-        </description>
-        <pubDate>Fri, 01 Aug 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-08-01-gsasii_on_linux/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-08-01-gsasii_on_linux/</guid>
       </item>
     
   </channel>

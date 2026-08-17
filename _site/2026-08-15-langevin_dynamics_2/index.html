@@ -80,6 +80,10 @@
   
 
   
+    
+      <link rel="stylesheet" href="/assets/css/admonitions.css">
+    
+  
 
   
   
@@ -595,7 +599,7 @@ E_{\text{relaxed}} &amp; = \frac{1}{2} m_j \omega_j^2 \left( \frac{c_j x}{m_j \o
 </blockquote>
 
 <blockquote>
-  <p>Regarding the choice of the scale factor \(\zeta\) or \(\gamma\), refer to the ‘Convention warning 1’ in <a href="./2026-08-13-langevin_dynamics_1.md">part-1</a>.</p>
+  <p>Regarding the choice of the scale factor \(\zeta\) or \(\gamma\), refer to the ‘Convention warning 1’ in <a href="../2026-08-13-langevin_dynamics_1">part-1</a>.</p>
 </blockquote>
 
 <blockquote>
@@ -1036,7 +1040,7 @@ M_2 &amp; = \lim_{\tau \to 0} \frac{a^2\tau^2 + b^2\tau}{\tau} = \lim_{\tau \to 
 
 <p>which <strong>reintroduces \(p\)-dependence</strong> unless \(\partial_xg = 0\) as well. Combined with \(\partial_pg=0\), this forces \(g\) constant, and normalization fixes the constant to \(1\):</p>
 
-\[g\equiv1 \quad\Longleftrightarrow\quad \rho = \rho_{\text{eq}}\]
+\[g\equiv1 \Leftrightarrow \rho = \rho_{\text{eq}}\]
 
 <p>Here we see that the dissipation term destroys the \(p\)-dependence but it does not contain the operation regarding \(x\), meaning that the dissipation term does not yield constaints on what values that the particle position should take. However, the Hamiltonian term (i.e., the first term in Eqn. 6.1) does contain the operation upon \(x\) (i.e., the \(\partial_xg\) above) and we arrived at the conclusion that the whole process will only halt when neither dependence (\(x\) and \(p\)) remains for the defined quantity \(g\). This coupling of a degenerate-but-dissipative operator (e.g., the second term in Eqn. 6.1) with an entropy-neutral-but-mixing one (e.g., the first term in Eqn. 6.1) is the phenomenon Villani named <strong>hypocoercivity</strong> [11]; the kinetic Fokker–Planck equation is its canonical example.</p>
 
@@ -1136,6 +1140,8 @@ M_2 &amp; = \lim_{\tau \to 0} \frac{a^2\tau^2 + b^2\tau}{\tau} = \lim_{\tau \to 
 
 <p>The standard remedy is simulated annealing: the temperature \(T\) of the simulation is temporarily raised, which enlarges the \(e^{-\Delta U / k_B T}\) term and allows the system to cross barriers and explore the full landscape, before being slowly cooled again to settle into the true global equilibrium. Raw Langevin dynamics, without such temperature manipulation, is therefore a poor tool for exploring rugged landscapes: it converges in principle but remains trapped in metastable states in practice.</p>
 
+<p><br /></p>
+
 <p>(to be continued…)</p>
 
       </article>
@@ -1200,6 +1206,10 @@ M_2 &amp; = \lim_{\tau \to 0} \frac{a^2\tau^2 + b^2\tau}{\tau} = \lim_{\tau \to 
           <a class="page-link" href="/2026-08-13-langevin_dynamics_1/" data-toggle="tooltip" data-placement="top" title="Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-1)">&larr; Previous Post</a>
         </li>
         
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2026-08-16-langevin_dynamics_3/" data-toggle="tooltip" data-placement="top" title="Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-3)">Next Post &rarr;</a>
+        </li>
         
       </ul>
       
@@ -1430,6 +1440,11 @@ M_2 &amp; = \lim_{\tau \to 0} \frac{a^2\tau^2 + b^2\tau}{\tau} = \lim_{\tau \to 
     <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
     
       <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/copyCode.js"></script>
     
   
 
