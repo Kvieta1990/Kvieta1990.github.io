@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-4)</title>
+        <description>
+          
+          This post is part-4 of the 4-parts full story about the Langevin dynamics. All references are presented in the current part. Part IX – Static Targets: The Bridge to Generative Modelling Everything to this point has been physics: given a potential \(U\), sample its Boltzmann distribution. Generative modelling inverts the...
+        </description>
+        <pubDate>Mon, 17 Aug 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-08-17-langevin_dynamics_4/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-08-17-langevin_dynamics_4/</guid>
+      </item>
+    
+      <item>
         <title>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-3)</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sun, 26 Oct 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2025-10-26-bondstr_bvs/</link>
         <guid isPermaLink="true">http://localhost:8000/2025-10-26-bondstr_bvs/</guid>
-      </item>
-    
-      <item>
-        <title>Running GSAS-II Scriptable Refinement</title>
-        <description>
-          
-          GSAS-II is a powerful software for analyzing the crystallographic structure from diffraction data. It is written in Python, with some underlying routines in Fortran and C++. Conveniently, it provides the scriptable interface so that we can perform the refinement in a programming way. This is pretty handy when some batch...
-        </description>
-        <pubDate>Mon, 25 Aug 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-08-25-gsasii_scriptable/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-08-25-gsasii_scriptable/</guid>
       </item>
     
   </channel>
