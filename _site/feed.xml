@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Bayesian Optimization</title>
+        <description>
+          
+          Image generated with Gemini with the prompt ‘generate an image for me as an interesting head image in my Bayesian optimization post. when people see the image, they know the post is talking about the BO. but it should not be an illustrative image showing details of BO. just an...
+        </description>
+        <pubDate>Wed, 19 Aug 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-08-19-gp_bo/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-08-19-gp_bo/</guid>
+      </item>
+    
+      <item>
         <title>Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-4)</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sun, 30 Nov 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2025-11-30-metropolis_monte_carlo/</link>
         <guid isPermaLink="true">http://localhost:8000/2025-11-30-metropolis_monte_carlo/</guid>
-      </item>
-    
-      <item>
-        <title>Bond Valence Energy Landscape Calculation with the BondStr Program in Fullprof Suite</title>
-        <description>
-          
-          Understanding ion diffusion is essential in battery materials research and characterizing diffusion pathways is critical for rational materials design and optimization. While using the diffraction technique for the characterization of battery materials, we could obtain the refined structure configuration via fitting the diffraction data, with the small-box or big-box approach,...
-        </description>
-        <pubDate>Sun, 26 Oct 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-10-26-bondstr_bvs/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-10-26-bondstr_bvs/</guid>
       </item>
     
   </channel>

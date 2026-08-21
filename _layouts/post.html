@@ -4,9 +4,14 @@ layout: base
 
 {% include header.html type="post" %}
 
+{% assign show_toc = true %}
+{% if page.full-width or page.toc == false %}
+  {% assign show_toc = false %}
+{% endif %}
+
 <div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
   <div class="row">
-    <div class="{% if page.full-width %} col {% else %} col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 {% endif %}">
+    <div class="{% if page.full-width %} col {% elsif show_toc %} col-xl-8 offset-xl-1 col-lg-8 offset-lg-1 col-12 {% else %} col-xl-10 offset-xl-1 col-lg-12 offset-lg-1 {% endif %}">
 
       {% if page.gh-repo %}
         {% assign gh_split =  page.gh-repo | split:'/'  %}
@@ -78,5 +83,18 @@ layout: base
       </ul>
       {% include comments.html %}
     </div>
+
+    {% if show_toc %}
+    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+      <nav id="toc-container" class="toc-sidebar">
+        <div class="toc-title">Contents</div>
+        <ul id="toc-list"></ul>
+      </nav>
+    </div>
+    {% endif %}
   </div>
 </div>
+
+{% if show_toc %}
+  <script src="{{ '/assets/js/toc.js' | relative_url }}" defer></script>
+{% endif %}

@@ -30,7 +30,7 @@ install_if -> { RUBY_PLATFORM =~ %r!mingw|mswin|java! } do
 end
 
 # Performance-booster for watching directories on Windows
-gem "wdm", "~> 0.1.0", :install_if => Gem.win_platform?
+gem "wdm", "~> 0.2.0", :install_if => Gem.win_platform?
 
 # kramdown v2 ships without the gfm parser by default. If you're using
 # kramdown v1, comment out this line.
@@ -39,3 +39,13 @@ gem 'jekyll-paginate'
 gem 'jekyll-sitemap'
 
 gem "webrick", "~> 1.7"
+
+# Ruby 4.0 removed these from the default gems; Jekyll 3.9 and its
+# dependencies (safe_yaml, kramdown, etc.) still require them.
+gem "logger"
+gem "csv"
+gem "base64"
+gem "bigdecimal"
+gem "mutex_m"
+gem "ostruct"
+gem "benchmark"

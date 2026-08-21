@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Bayesian Optimization</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Image generated with Gemini with the prompt ‘generate an image for me as an interesting head image in my Bayesian optimization post. when people see the image, they know the post is talking about the BO. but it should not be an illustrative image showing details of BO. just an...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/admonitions.css">
+    
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Bayesian Optimization">
+  <meta property="og:description" content="Image generated with Gemini with the prompt ‘generate an image for me as an interesting head image in my Bayesian optimization post. when people see the image, they know the post is talking about the BO. but it should not be an illustrative image showing details of BO. just an...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-08-19T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-08-19-gp_bo/">
+  <link rel="canonical" href="http://localhost:8000/2026-08-19-gp_bo/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Bayesian Optimization">
+  <meta property="twitter:description" content="Image generated with Gemini with the prompt ‘generate an image for me as an interesting head image in my Bayesian optimization post. when people see the image, they know the post is talking about the BO. but it should not be an illustrative image showing details of BO. just an...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-2020.us/script.js" data-website-id="387a3202-bb18-41ba-a954-d985ff940209"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://me.iris-home.net">My Homepage</a>
+								  <a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://page.iris-2020.net">My Collection</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Bayesian Optimization</h1>
+          
+
+          
+					<span class="post-meta">Posted on August 19, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-1 col-lg-8 offset-lg-1 col-12 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<img src="/assets/img/posts/bo.png" style="border:none;" width="700" alt="bo" title="bo" /><br />
+<em>Image generated with Gemini with the prompt ‘generate an image for me as an interesting head image in my Bayesian optimization post. when people see the image, they know the post is talking about the BO. but it should not be an illustrative image showing details of BO. just an abstract one should be fine. use the Ghibli art style’.</em></p>
+
+<p><br /></p>
+
+<h2 id="background--gaussian-process">Background – Gaussian Process</h2>
+
+<p>In practice when we are dealing with optimization problems while the parameter space is huge to explore, we need some methods to guide us to explore the parameter space in an efficient way. For example, when synthesizing multi-component high entropy alloy (HEA) materials, if we want to tune the composition to target at optimal hardness or whatever material properties, the exploration space is exploding. The brutal force way of trying out composition combinations is inefficient until it becomes practically impossible due to high dimensionality of the configuration space. Suppose we have a model and if we feed in the coordination in the configuration space (e.g., a specific combination of composition) into the model and the model will spit out the property, that will be perfect since we know exactly where to go in the configuration space for the exploration. For sure, if we do have such a model, then we don’t need to explore at all since we know exactly where to go to target at the property with the exact model. Well, the thing is, in practice, we never have such a model, I mean the exact deterministic model. But indeed we can have some model, some probabilistic model, to help us. Gaussian process is one of such models – based on those measured points (e.g., a certain set of synthesized HEA samples with specific compositions, together with the corresponding measured properties) and a simple principle that the closer that points in the high dimensional space are getting to each other, the closer that their corresponding values should get to each other, the mean value and the variance of unknown points in the configuration space can be predicted.</p>
+
+<p>I have some detailed summary slides about Gaussian process in Ref. [1] and I won’t reproduce all the details here but instead I will just put down the main results. Say the high dimensional configuration space is represented by \(\mathbf{X}\) and we have data \(Y = m_1\) at \(\mathbf{X} = \mathbf{x}_1 = (x_1=0.5, x_2 = 0.1, x_3 = 1, x_4 = 5, \dots)\), \(Y = m_2\) at \(\mathbf{X} = \mathbf{x}_2 = (x_1 = 1, x_2 = 0.7, x_3 = 2, x_4 = 0.8, \dots)\), etc. Based on the available data, we want to predict at \(\mathbf{X} = x_*\). Putting \(\mathbf{x}_1\), \(\mathbf{x}_2\), \(\dots\) and \(\mathbf{x}_*\) altogether, their values follow the joint Gaussian distribution,</p>
+
+\[\begin{bmatrix} \mathbf{y} \\ f_* \end{bmatrix}
+\sim \mathcal{N}\!\left(
+\begin{bmatrix} \mathbf{m} \\ m_* \end{bmatrix},\;
+\begin{bmatrix}
+K + \sigma_n^2 I &amp; \mathbf{k}_* \\
+\mathbf{k}_*^{\!\top} &amp; k_{**}
+\end{bmatrix}
+\right)\]
+
+<p>Here, \(f_*\) refers to the value at \(\mathbf{X} = \mathbf{x}_*\) that we want to predict. For points without data, we can have some prior function \(m(\mathbf{X})\), the choice of which is up to us. For example, we can just choose to have \(m\mathbf{X} = 0\). In the joint Gaussian distribution formulation above, \(m_* = m(\mathbf{X} = \mathbf{x}_*)\). Now comes the covariance matrix part. To specify all the terms in the matrix, we need to first give a kernel function, which is a function up to our choice and defines how different points in the configuration space are correlated to each other. Basically, all the terms in the covariance matrix for the joint Gaussian distribution are constructed from the kernel function and we know that the covariance matrix defines the correlation between the distribution of various variables, or, in the context of current post, the correlation of values for different points in the high dimensional configuration space. So, even without writing down the specific form of the matrix components, we know that the kernel function definitely is something to do with the correlation. Specifically,</p>
+
+\[K_y = K(X,X) + \sigma_n^2 I =
+\begin{bmatrix}
+k(\mathbf{x}_1,\mathbf{x}_1) + \sigma_n^2 &amp; k(\mathbf{x}_1,\mathbf{x}_2) &amp; \cdots &amp; k(\mathbf{x}_1,\mathbf{x}_n) \\
+k(\mathbf{x}_2,\mathbf{x}_1) &amp; k(\mathbf{x}_2,\mathbf{x}_2) + \sigma_n^2 &amp; \cdots &amp; k(\mathbf{x}_2,\mathbf{x}_n) \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+k(\mathbf{x}_n,\mathbf{x}_1) &amp; k(\mathbf{x}_n,\mathbf{x}_2) &amp; \cdots &amp; k(\mathbf{x}_n,\mathbf{x}_n) + \sigma_n^2
+\end{bmatrix}
+\in \mathbb{R}^{n \times n}\]
+
+\[\mathbf{k}_* = k(X, \mathbf{x}_*) =
+\begin{bmatrix}
+k(\mathbf{x}_1, \mathbf{x}_*) \\
+k(\mathbf{x}_2, \mathbf{x}_*) \\
+\vdots \\
+k(\mathbf{x}_n, \mathbf{x}_*)
+\end{bmatrix}
+\in \mathbb{R}^{n \times 1}\]
+
+\[\mathbf{k}_*^{\!\top} = k(\mathbf{x}_*, X) =
+\begin{bmatrix}
+k(\mathbf{x}_*, \mathbf{x}_1) &amp; k(\mathbf{x}_*, \mathbf{x}_2) &amp; \cdots &amp; k(\mathbf{x}_*, \mathbf{x}_n)
+\end{bmatrix}
+\in \mathbb{R}^{1 \times n}\]
+
+\[k_{**} = k(\mathbf{x}_*, \mathbf{x}_*) \in \mathbb{R}\]
+
+<p>Putting all together,</p>
+
+\[\begin{bmatrix}
+k(\mathbf{x}_1,\mathbf{x}_1) + \sigma_n^2 &amp; \cdots &amp; k(\mathbf{x}_1,\mathbf{x}_n) &amp; k(\mathbf{x}_1,\mathbf{x}_*) \\
+\vdots &amp; \ddots &amp; \vdots &amp; \vdots \\
+k(\mathbf{x}_n,\mathbf{x}_1) &amp; \cdots &amp; k(\mathbf{x}_n,\mathbf{x}_n) + \sigma_n^2 &amp; k(\mathbf{x}_n,\mathbf{x}_*) \\
+k(\mathbf{x}_*,\mathbf{x}_1) &amp; \cdots &amp; k(\mathbf{x}_*,\mathbf{x}_n) &amp; k(\mathbf{x}_*,\mathbf{x}_*)
+\end{bmatrix}\]
+
+<p>Here, terms like \(k(\mathbf{x}_1, \mathbf{x}_1)\), \(k(\mathbf{x}_1, \mathbf{x}_2)\), etc. are evaluated by putting the coordinates in the high dimensional space into the kernel function we picked. For example, if we choose to use the Radial Basis Function (RBF) kernel, the function is,</p>
+
+\[k(\mathbf{x}, \mathbf{x}') = \sigma_f^2 \exp\!\left(-\frac{\|\mathbf{x} - \mathbf{x}'\|^2}{2\ell^2}\right)\]
+
+<p>where \(\ell\) and \(\sigma_f\) are both hyperparameters.</p>
+
+<p>Finally, to give the estimation at \(\mathbf{x}_*\), we need to calculate the conditional distribution, i.e., the distribution of the single variable \(f_*\) with all the other values at all the observed points are fixed,</p>
+
+\[\begin{align}
+\mu_* &amp; = \mathbf{k}_*^{\!\top} K_y^{-1} \mathbf{y}\\
+\sigma_*^2 &amp; = k_{**} - \mathbf{k}_*^{\!\top} K_y^{-1} \mathbf{k}_*
+\end{align}\]
+
+<p>Now, given all the already observed/measured data, we can predict the mean and variance for any points in the configuraiton space. This is critical for us to make decisions about what is next. In the machine learning terminology, determining ‘what is next’ can be treated as ‘to pick a new training data’ – indeed, it is. Like with the Gaussian process, we have some observed data and we use them to construct a model to predict values and variance at an arbitrary point in the configuration space. Then if we somehow utilize such information to pick a new point to observe or take the measurement at, we are indeed adding a new data point to the training data so that when predicting the next one, the data added in the current step will be incorporated into the model construction. In general, such a process of adding new training data into the learning process on-the-fly, in machine learning, is called <em>active learning</em>.</p>
+
+<h2 id="bayesian-optimization">Bayesian Optimization</h2>
+
+<p>Having established the formulation for Gaussian process, we are ready to discuss how we can use it for making decision about what is coming next. One thing we can do is obviously to directly use the information coming out from the Gaussian process. Across the whole configuration space \(\mathbf{X}\), the Gaussian process gives us the estimation for the mean and variance for the value at each point. So, an obvious step to take is to take a measurement at those points with large variance (i.e., with large uncertainty) – this is considered as being <code class="language-plaintext highlighter-rouge">exploration</code> since the sampling happens where the model is most uncertain. However, with such an approach (i.e., being purely exploratory), the mean information obtained from the Gaussian process is unused at all. Suppose we are trying to optimize something, e.g., the hardness of HEA by tuning the composition, not only we want to explore those configuration points where the model is uncertain, but also we want to seriously consider the points where the model thinks the hardness is maximized. Then, we step into the Bayesian Optimization (BO).</p>
+
+<p>BO is about balancing the utilization of both pieces of information – the mean and variance that we obtained from the Gaussian process. There are three main approaches in impelmenting the BO,</p>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <p>Lower/Upper Confidence Bound (LCB/UCB)</p>
+  </li>
+  <li>
+    <p>Probability of Improvement (PI)</p>
+  </li>
+  <li>
+    <p>Expected Improvement (EI)</p>
+  </li>
+</ul>
+
+<p>Let’s discuss them one by one and we will see how the BO is realized in practice.</p>
+
+<h3 id="lowerupper-confidence-bound-lcbucb">Lower/Upper Confidence Bound (LCB/UCB)</h3>
+
+<p>First, the LCB/UCB.</p>
+
+<p align="center">
+<img src="/assets/img/posts/optimization_curve.png" style="border:none;" width="800" alt="optimization_curve" title="optimization_curve" />
+</p>
+
+<p>In the case shown above, let’s say we have the Gaussian process predict the mean and variance for several points (red points) – the blue curve is the underlying ground truth. If we were to decide which point to go next for taking the observation based on the prediction, the pure reliance on the variance tells us to go with the point on the very left. However, if our target here is to find the minimum of the curve, ignorance of the predicted mean values is obviously not an optimal thing to do here. Though, we don’t want to purely rely on the predicted mean values either and therefore instead we look at the following quantity,</p>
+
+\[\mu(\mathbf{x}) - \kappa\sigma(\mathbf{x})\]
+
+<p>where \(\kappa\) is a pre-chosen hyperparameter (e.g., \(\kappa = 2\)). Since the value at each point is assumed to follow the Gaussian distribution, for a given value of \(\kappa\), the following probability is the same for all points,</p>
+
+\[p\big[m(\mathbf{x}) &lt; \mu(\mathbf{x}) - \kappa\sigma(\mathbf{x})\big]\]
+
+<p>Another way to look at this is to define a variable \(U\) as,</p>
+
+\[U = \frac{m(\mathbf{x}) - \mu(\mathbf{x})}{\sigma(\mathbf{x})}\]
+
+<p>Referring to the Gaussian distribution formulation, we know that \(U \sim \mathcal{N}(0, 1)\) since \(m(\mathbf{x}) \sim \mathcal{N}[\mu(\mathbf{x}), \sigma(\mathbf{x})]\). So the probability above becomes,</p>
+
+\[p(U &lt; -\kappa) = \Phi(-\kappa)\]
+
+<p>where \(\Phi\) is just the Cumulative Distribution Function (CDF) corresponding to the Gaussian distribution \(\mathcal{N}(0, 1)\). If we set \(\kappa = 2\), we have \(\Phi(-2) \approx 0.02275\), which can be regarded as a small number, meaning that the probability of \(U\) being smaller than \(-\kappa = -2\) is very small. This is to say that the probability of \(m(\mathbf{x})\) being smaller than \(\mu(\mathbf{x}) - 2\sigma(\mathbf{x})\) is very small. So, the value \(\mu(\mathbf{x}) - 2\sigma(\mathbf{x})\) sets the Lower Confidence Bound (LCB) for our prediction. What does this mean? Say we have a large value of LCB at a certain point (e.g., the point on the very left side in the figure above), the LCB tells us that there is little chance for \(m(\mathbf{x})\) to be smaller than the LCB. So if the LCB value is large, that means we have a very little chance to get a small value than the LCB. If we are trying to find the minimum, points with large LCB are definitely <em>not</em> what we want. Then our sampling condition become clear – we just need to take the Gaussian process predictions at all grid points in the configuration space and find out the one with the smallest LCB and that point will be our next observation point.</p>
+
+<h3 id="probability-of-improvement-pi">Probability of Improvement (PI)</h3>
+
+<p align="center">
+<img src="/assets/img/posts/acquisition_curve.png" style="border:none;" width="800" alt="acquisition_curve" title="acquisition_curve" />
+</p>
+
+<p>Suppose at the current step of the optimization, we have the minimum value as \(m_{\text{best}}\). Given a pre-chosen margin \(\xi\) (which can be tuned as a hyperparameter), we want to ask such a question – at a certain configuration point \(\mathbf{x}\), what the probability is for \(m(\mathbf{x})\) to be smaller than \(m_{\text{best}} - \xi\), i.e.,</p>
+
+\[p\big[m(\mathbf{x}) &lt; m_{\text{best}} - \xi\big]\]
+
+<blockquote class="info">
+  <p><strong>Notes about the margin \(\xi\)</strong></p>
+
+  <p>By introducing the margin \(\xi\), we are not only interested in the new sampling is getting better than the current optimum, but also interested in getting much (inferred by the pre-defined margin \(\xi\)) better.</p>
+</blockquote>
+
+<p>Again, we define \(U\) in the same way above,</p>
+
+\[U = \frac{m(\mathbf{x}) - \mu(\mathbf{x})}{\sigma(\mathbf{x})}\]
+
+<p>and effectively we are looking at the probability,</p>
+
+\[p\big[ \mu(\mathbf{x}) + \sigma(\mathbf{x})U &lt; m_{\text{best}} - \xi \big] = p\Bigg[ U &lt; \frac{m_{\text{best}} - \xi - \mu(\mathbf{x})}{\sigma(\mathbf{x})} \Bigg]\]
+
+<p>Defining,</p>
+
+\[z = \frac{m_{\text{best}} - \xi - \mu(\mathbf{x})}{\sigma(\mathbf{x})}\]
+
+<p>we have,</p>
+
+\[\text{PI}(\mathbf{x}) = p(U &lt; z) = \Phi(z)\]
+
+<p>which is the quantity we want to maximize regarding the decision to make about what is to sample next. Taking the example presented in the figure above, we see that for the candidate point on the left, the value of \(\text{PI}(\mathbf{x}_{\text{left}})\) should be very small. As for the point on the right, the area under the green Gaussian distribution probability density functio (PDF, and below the dashed line indicating the \(m_{\text{best}} - \xi\) level) should yield a much larger value. If we were to pick between the two points to try next, with the PI approach, we will for sure change the point on the right.</p>
+
+<h3 id="expected-improvement-ei">Expected Improvement (EI)</h3>
+
+<p>There are some obvious issues with the PI approach. First, let’s say we have two points in the configuration space, as below,</p>
+
+<ul>
+  <li>
+    <p>Point A: \(\mu_A = m_{\text{best}} - 1\), \(\sigma_A = 1\)</p>
+  </li>
+  <li>
+    <p>Point B: \(\mu_B = m_{\text{best}} - 10\), \(\sigma_A = 10\)</p>
+  </li>
+</ul>
+
+<p>For the demo purpose, let’s just choose the margin \(\xi = 0\) and we will see the value of \(z\) for both of the two points is \(z = 1\). Therefore,</p>
+
+\[\text{PI}(A) = \text{PI}(B) = \Phi(1) \approx 0.84\]
+
+<p>So, the PI approach gives identical outcome for both points and does not give useful advice on which one to sample next. However, we know that between the two points, we do want to sample point B since it has high uncertainty (therefore worth exploring). The PI approach hits the failing spot in this imaged situation. From the example here, we can see that the fundamental reason for the failure of the PI approach is that the uncertainty comes into the PI evaluation only in the form of a division factor and therefore it will normalize out the actual difference between the prediction and the current optimum.</p>
+
+<p align="center">
+<img src="/assets/img/posts/optimization_curve_1.png" style="border:none;" width="800" alt="optimization_curve_1" title="optimization_curve_1" />
+</p>
+
+<p>Another failing spot of the PI approach is shown in the figure above – in this case, it is about the over-exploitation, i.e., the loss of exploration. Among all the candidate points to try out next, all those points on the left side near the local minimum are with obviously larger \(z\) values as compared to the single point on the right side. This is mainly because the variance of the point on the right side is predicted to be large. So, all the points on the left are considered reasonable next sampling points – the BO process in this case tend to wander around the local minimum without strong ‘willingness’ to explore other regions.</p>
+
+<p>The EI approach can hopefully help in such cases. The Expected Improvement, as suggested by its name, calculates the expectation,</p>
+
+\[\text{EI}(\mathbf{x}) = \mathbb{E}[\text{max}(m_{\text{best}} - \xi - m, 0)]\]
+
+<p>where,</p>
+
+\[m(\mathbf{x}) \sim \mathcal{N}\big[ \mu(\mathbf{x}), \sigma(\mathbf{x}) \big]\]
+
+<p>The formulation needs a bit explanation. First, still we have the quantity \(m_{\text{best}} - \xi\) indicating the currently identified optimal (e.g., the minimal) value minus some pre-defined margin \(\xi\). With the margin term, nothing fundamentally is changed – it is just that we are more aggressive in terms of getting better. \(\text{max}(m_{\text{best}} - \xi - m, 0)\) says, if the prediction is getting worse, i.e., \(m\) is larger than the current optimal value by the pre-defined margin, we will cap the value at 0. When it is getting worse, we are not at all interested in by how much it is getting worse – the whole worse part in the predicted distribution therefore contributes \(0\) to the expectation value evaluation. Given in its integration form, we have,</p>
+
+\[\text{EI}(\mathbf{x}) = \int_{-\infty}^{m_{\text{best}} - \xi}(m_{\text{best}} - \xi - m)p(m)d\,m\]
+
+<p>where \(\text{max}(\cdot, 0)\) kills the integrand wherever \(m &gt; m_{\text{best}} - \xi\). Also,</p>
+
+\[p(m) = \frac{1}{\sigma}\phi(\frac{m - \mu}{\sigma})\]
+
+<p>where \(\phi\) is the standard normal PDF,</p>
+
+\[\phi(u) = \frac{1}{\sqrt{2\pi}}e^{-u^2/2}\]
+
+<p>and here I am writing \(\mu = \mu(\mathbf{x})\) and \(\sigma = \sigma(\mathbf{x})\) for brevity. Here, let’s just substitute,</p>
+
+\[u = \frac{m - \mu}{\sigma}\]
+
+<p>so,</p>
+
+\[\begin{align}
+m &amp; = \mu + \sigma u\\
+d\,m &amp; = \sigma d\,u
+\end{align}\]
+
+<p>and the integration upper limitation just transforms as,</p>
+
+\[m_{\text{best}} - \xi \Rightarrow z = \frac{m_{\text{best}} - \xi - \mu}{\sigma}\]
+
+<p>where we replace \(m\) with \(m_{\text{best}} - \xi\) in the defined variable \(u\) above. The integral therefore becomes,</p>
+
+\[\begin{align}
+\text{EI}(\mathbf{x}) &amp; = \int_{-\infty}^{z}(m_{\text{best}} - \xi - \mu - \sigma u)\phi(u)d\,u\\
+&amp; = (m_{\text{best}} - \xi - \mu)\int_{-\infty}^{z}\phi(u)d\,u - \sigma\int_{-\infty}^{z}u\phi(u)d\,u\\
+&amp; = (m_{\text{best}} - \xi - \mu)\Phi(z) - \sigma\int_{-\infty}^{z}u\phi(u)d\,u
+\end{align}\]
+
+<p>where \(\Phi(z)\) is just the CDF for the standard normal distribution,</p>
+
+\[\Phi(z) = \int_{-\infty}^{z}\phi(u)d\,u\]
+
+<p>For the second term in the integral, we have,</p>
+
+\[\frac{d}{d\,u}\phi(u) = \frac{d}{d\,u}\Bigg[ \frac{1}{\sqrt{2\pi}}e^{-u^2/2} \Bigg] = -u \cdot \frac{1}{\sqrt{2\pi}}e^{-u^2/2} = -u\phi(u)\]
+
+<p>so, the integrand in the second term becomes,</p>
+
+\[u\phi(u) = -\phi'(u)\]
+
+<p>and therefore,</p>
+
+\[\begin{align}
+\int_{-\infty}^{z}u\phi(u)d\,u &amp; = \int_{-\infty}^{z}\phi'(u)d\,u\\
+&amp; = -\phi(u)\vert_{\infty}^{z}\\
+&amp; = -\phi(z) + \phi(\infty)\\
+&amp; = -\phi(z) + 0\\
+&amp; = -\phi(z)
+\end{align}\]
+
+<p>Putting together both terms, we have the EI value given as,</p>
+
+\[\begin{align}
+\text{EI}(\mathbf{x}) &amp; = (m_{\text{best}} - \xi - \mu)\Phi(z) - \sigma\int_{-\infty}^{z}u\phi(u)d\,u\\
+&amp; = (m_{\text{best}} - \xi - \mu)\Phi(z) - \sigma[-\phi(z)]\\
+&amp; = (m_{\text{best}} - \xi - \mu)\Phi(z) + \sigma\phi(z)
+\end{align}\]
+
+<p>where we see that the uncertain \(\sigma\) appears as a prefactor of an additive term – not like in the PI approach where it appears only in the normalization term. Therefore, we will not have the normalization issue as mentioned above for the PI approach. Meanwhile, the additive term containing the uncertain yields a better balancing between the exploitation and exploration. In practice, with the EI approach, we decide the next sampling step according to,</p>
+
+\[\mathbf{x}_{\text{next}} = \arg\max_{x} \text{EI}(\mathbf{x})\]
+
+<hr />
+
+<blockquote class="info">
+  <p><strong>Notes about the maximization problem</strong></p>
+
+  <p>Here in the post, I am mainly focusing on the minimization problem with BO. In practice, maximization is another typical type of optimization task. There is really not that much extra to say about maximization beyond the formulation and explanation in the post. Simply negating the quantity to maximize, the maximization problem will be easily turned into a minimization problem.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="pros--cons-for-the-three-measures">Pros &amp; Cons for the Three Measures</h3>
+
+<p><strong>LCB/UCB</strong></p>
+
+<p><em><u>Pros</u></em>: Highly intuitive – for the example, the LCB \(\mu(\mathbf{x}) - \kappa\sigma(\mathbf{x})\) explicitly balances between exploitation and exploration. Also, the \(\kappa\) hyperparameter can be adjusted on-the-fly so that we have the direct control over the trade-off during the BO process.</p>
+
+<p><em><u>Cons</u></em>: Relies strongly on the choice of the hyperparameter \(\kappa\).</p>
+
+<p><strong>PI</strong></p>
+
+<p><em><u>Pros</u></em>: A good choice if the main goal is improvement regardless of size, or when the potential risk is expensive to take.</p>
+
+<p><em><u>Cons</u></em>: Highly explotative. Easy to be trapped in local optima.</p>
+
+<p><strong>EI</strong></p>
+
+<p><em><u>Pros</u></em>: A robust “default” choice, with better balancing between exploitation and exploration.</p>
+
+<p><em><u>Cons</u></em>: Mathematically a bit more complex to evaluate but should not be a big deal in practice.</p>
+
+<h3 id="some-useful-resources">Some Useful Resources</h3>
+
+<ul>
+  <li>A cookbook going over Bayesian optimiztion and active learning can be found in Ref. [2].</li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="references">References</h1>
+
+<p>[1] <a href="https://www.overleaf.com/read/kzhbrfhkfsng#77c4d9">https://www.overleaf.com/read/kzhbrfhkfsng#77c4d9</a></p>
+
+<p>[2] <a href="https://www.physicsx.ai/newsroom/bayesian-optimization-and-active-learning-cookbook">https://www.physicsx.ai/newsroom/bayesian-optimization-and-active-learning-cookbook</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#AI">AI</a>
+          
+            <a href="/tags#machine learning">machine learning</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Bayesian+Optimization&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-19-gp_bo%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-08-19-gp_bo%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-08-19-gp_bo%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-08-17-langevin_dynamics_4/" data-toggle="tooltip" data-placement="top" title="Langevin Dynamics -- From Molecular Thermostats to Diffusion Models (Part-4)">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+
+    
+    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+      <nav id="toc-container" class="toc-sidebar">
+        <div class="toc-title">Contents</div>
+        <ul id="toc-list"></ul>
+      </nav>
+    </div>
+    
+  </div>
+</div>
+
+
+  <script src="/assets/js/toc.js" defer></script>
+
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zyroc1990@iris-2020.us" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/copyCode.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
