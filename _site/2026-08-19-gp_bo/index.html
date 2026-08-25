@@ -589,7 +589,33 @@ d\,m &amp; = \sigma d\,u
 <h3 id="some-useful-resources">Some Useful Resources</h3>
 
 <ul>
-  <li>A cookbook going over Bayesian optimiztion and active learning can be found in Ref. [2].</li>
+  <li>
+    <p>A cookbook going over Bayesian optimiztion and active learning can be found in Ref. [2].</p>
+  </li>
+  <li>
+    <p>A Jupyter notebook implementing some Bayesian optimization examples can be found <a href="../assets/files/BO_Demo.ipynb">here</a>. This includes,</p>
+
+    <p><br /></p>
+
+    <blockquote>
+      <p>The notebook was created from the Refs. [3, 4].</p>
+    </blockquote>
+
+    <ul>
+      <li>
+        <p>A manual implementation of the Bayesian optimization with a dummy target function.</p>
+      </li>
+      <li>
+        <p>Bayesian optimization for hyperparameters optimization with the <code class="language-plaintext highlighter-rouge">XGBRegressor</code> regressor, using the out-of-date module <code class="language-plaintext highlighter-rouge">from GPyOpt.methods import BayesianOptimization</code>.</p>
+      </li>
+      <li>
+        <p>Bayesian optimization for hyperparameters optimization with the <code class="language-plaintext highlighter-rouge">XGBRegressor</code> regressor, using the up-to-date module <code class="language-plaintext highlighter-rouge">from skopt import BayesSearchCV</code>.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Some candidate packages for Bayesian optimization can be found following the link in Refs. [5-7].</p>
+  </li>
 </ul>
 
 <p><br /></p>
@@ -598,7 +624,17 @@ d\,m &amp; = \sigma d\,u
 
 <p>[1] <a href="https://www.overleaf.com/read/kzhbrfhkfsng#77c4d9">https://www.overleaf.com/read/kzhbrfhkfsng#77c4d9</a></p>
 
-<p>[2] <a href="https://www.physicsx.ai/newsroom/bayesian-optimization-and-active-learning-cookbook">https://www.physicsx.ai/newsroom/bayesian-optimization-and-active-learning-cookbook</a></p>
+<p>[2] <a href="https://www.physicsx.ai/newsroom/bayesian-optimization-and-active-learning-cookbook">Bayesian optimization and active learning cookbook</a></p>
+
+<p>[3] <a href="https://krasserm.github.io/2018/03/21/bayesian-optimization/">https://krasserm.github.io/2018/03/21/bayesian-optimization/</a></p>
+
+<p>[4] <a href="https://www.geeksforgeeks.org/machine-learning/xgboost-for-regression/">https://www.geeksforgeeks.org/machine-learning/xgboost-for-regression/</a></p>
+
+<p>[5] <a href="https://www.reddit.com/r/datascience/comments/cpyer5/bayesian_optimization_libraries_python/">Reddit discussion thread on bayesian optimization libraries</a></p>
+
+<p>[6] <a href="https://github.com/bayesian-optimization/bayesianoptimization">https://github.com/bayesian-optimization/bayesianoptimization</a></p>
+
+<p>[7] <a href="https://scikit-optimize.github.io/stable/modules/generated/skopt.BayesSearchCV.html">BayesSearchCV by scikit-optimize</a></p>
 
       </article>
 
