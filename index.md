@@ -38,6 +38,55 @@ I am a neutron scattering scientist specialized in powder diffraction. My resear
 I am a member of American Crystallography Association (ACA) and the International Centre for Diffraction Data (ICDD). I am also serving as the guest editor for the Materials journal and I has been serving as reviewers for various peer review journals such as Advanced Science, Angew Chemie, Physical Review B, Physical Review M, etc.
 </p>
 
+<div id="codestats-widget" style="max-width: 1000px; margin: 2rem auto; padding: 1.5rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;">
+  <h3 style="margin-top: 0; text-align: center;">Code::Stats</h3>
+  <p style="text-align: center; margin: 0.5rem 0;">
+    Total XP: <strong id="cs-total-xp">…</strong>
+  </p>
+  <p style="text-align: center; margin: 0.5rem 0; font-size: 0.9em; color: #888;">
+    +<span id="cs-new-xp">…</span> XP in last 12h
+  </p>
+  <div id="cs-languages" style="margin-top: 1rem;"></div>
+  <p style="text-align: center; margin-top: 1rem;">
+    <a href="https://codestats.net/users/apw247" target="_blank">View full profile →</a>
+  </p>
+</div>
+
+<script>
+fetch('https://codestats.net/api/users/apw247')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('cs-total-xp').textContent = data.total_xp.toLocaleString();
+    document.getElementById('cs-new-xp').textContent = data.new_xp.toLocaleString();
+
+    const topLangs = Object.entries(data.languages)
+      .sort((a, b) => b[1].xps - a[1].xps)
+      .slice(0, 5);
+
+    const maxXp = topLangs[0][1].xps;
+    const container = document.getElementById('cs-languages');
+
+    topLangs.forEach(([lang, stats]) => {
+      const pct = (stats.xps / maxXp) * 100;
+      const row = document.createElement('div');
+      row.style.margin = '0.4rem 0';
+      row.innerHTML = `
+        <div style="display: flex; justify-content: space-between; font-size: 0.85em;">
+          <span>${lang}</span>
+          <span>${stats.xps.toLocaleString()} XP</span>
+        </div>
+        <div style="background: #eee; border-radius: 4px; height: 6px; overflow: hidden;">
+          <div style="background: #4a90d9; height: 100%; width: ${pct}%;"></div>
+        </div>
+      `;
+      container.appendChild(row);
+    });
+  })
+  .catch(err => {
+    document.getElementById('codestats-widget').innerHTML = '<p style="text-align:center;">Could not load Code::Stats data.</p>';
+  });
+</script>
+
 More
 ===
 
