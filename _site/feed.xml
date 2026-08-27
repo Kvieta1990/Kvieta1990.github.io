@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Bayesian Optimization -- A typical Application</title>
+        <description>
+          
+          Introduction In this post, I am going to put down some notes on a very nice paper by Prof. Z. T. Chen from UT Austin. The paper implements a physics model guided Bayesian optimization for spectroscopy experiment steering [1]. As a high-level summary, the backbone of the paper is as...
+        </description>
+        <pubDate>Wed, 26 Aug 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-08-26-bo_adv/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-08-26-bo_adv/</guid>
+      </item>
+    
+      <item>
         <title>Bayesian Optimization</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Thu, 04 Dec 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2025-12-04-einstein_debye_model/</link>
         <guid isPermaLink="true">http://localhost:8000/2025-12-04-einstein_debye_model/</guid>
-      </item>
-    
-      <item>
-        <title>About the Metropolis Monte Carlo Method</title>
-        <description>
-          
-          When we have a high-dimension configuration space, e.g., a system containing hundreds of thousands of atoms with each atom carrying 3 degrees of freedom (DOF), it becomes difficult to sample the system. For example, if we want to sample the configuration with low energy (thus considered as energetically stable) or...
-        </description>
-        <pubDate>Sun, 30 Nov 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-11-30-metropolis_monte_carlo/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-11-30-metropolis_monte_carlo/</guid>
       </item>
     
   </channel>
