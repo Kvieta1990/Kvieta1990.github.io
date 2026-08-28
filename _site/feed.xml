@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Poisson Distribution</title>
+        <description>
+          
+          Image generated with Gemini with the prompt ‘generate an abstract image for demo of Poisson distribution pictorially. use the Ghibli style’. Introduction Poisson distribution is usually used to describe the distribution of independent discrete events happening in a constant rate. For example, in neutron scattering experiments, detectors record the events...
+        </description>
+        <pubDate>Thu, 27 Aug 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-08-27-poisson_distribution/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-08-27-poisson_distribution/</guid>
+      </item>
+    
+      <item>
         <title>Bayesian Optimization -- A typical Application</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Thu, 11 Dec 2025 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2025-12-11-preferred_orientation_texture_followup/</link>
         <guid isPermaLink="true">http://localhost:8000/2025-12-11-preferred_orientation_texture_followup/</guid>
-      </item>
-    
-      <item>
-        <title>Einstein and Debye Model for Specific Heat</title>
-        <description>
-          
-          In the low temperature region, the Dulong-Petit describing the specific heat \(C_V\) as \(3R\) fails – \(C_V\) will approach 0 while \(3R\) stays a constant across the whole temperature range. Fundamenally, this is due to the failure of the equipartition theorem in the low temperature region. Einstein gave the problem...
-        </description>
-        <pubDate>Thu, 04 Dec 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-12-04-einstein_debye_model/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-12-04-einstein_debye_model/</guid>
       </item>
     
   </channel>
