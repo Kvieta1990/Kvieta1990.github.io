@@ -26,6 +26,9 @@ About Me
 
 <div style="text-align: center; perspective: 1000px;">
   <img id="ai-human-tilt" src="/assets/img/ai_human.png" alt="AI Human" style="max-width: 100%; height: auto; transform-style: preserve-3d; transition: transform 0.15s ease-out; will-change: transform;" />
+  <br>
+<a style="color: #c92205">(Image generated with Gemini using the prompt 'generate an image. AI shake hands with human. human should be a young man. make it the Ghibli Style'. Hover your mouse over the image to see the image wiggling.)</a>
+<br>
 </div>
 
 <script>
@@ -66,6 +69,9 @@ I am a neutron scattering scientist specialized in powder diffraction. My resear
 <p style='text-align: justify;'>
 I am a member of American Crystallography Association (ACA) and the International Centre for Diffraction Data (ICDD). I am also serving as the guest editor for the Materials journal and I has been serving as reviewers for various peer review journals such as Advanced Science, Angew Chemie, Physical Review B, Physical Review M, etc.
 </p>
+
+Coding Stats
+===
 
 <div id="codestats-widget" style="max-width: 1000px; margin: 2rem auto; padding: 1.5rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;">
   <h3 style="margin-top: 0; text-align: center;">Code::Stats</h3>
