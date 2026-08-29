@@ -160,7 +160,7 @@ $$
 \end{align}
 $$
 
-As given above, $$G_j = \sum_{i\in I_j}g_i$$, so,
+As given above, $$G_j = \sum_{i\in I_j}g_i, H_j = \sum_{i\in I_j}h_i$$, so,
 
 $$
 \begin{align}
