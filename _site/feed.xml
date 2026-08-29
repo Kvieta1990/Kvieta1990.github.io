@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Decision Tree</title>
+        <description>
+          
+          Image generated with Gemini with the prompt ‘generate an abstract image for demo of decision tree pictorially. use the Ghibli style’. Introduction A decision tree is composed of various nodes branching from the top to the bottom, forming a tree-like structure. Each node is a preset criterion based on which...
+        </description>
+        <pubDate>Fri, 28 Aug 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-08-28-decision_tree/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-08-28-decision_tree/</guid>
+      </item>
+    
+      <item>
         <title>Poisson Distribution</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Thu, 01 Jan 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-01-01-goldstone_mode_symmetry/</link>
         <guid isPermaLink="true">http://localhost:8000/2026-01-01-goldstone_mode_symmetry/</guid>
-      </item>
-    
-      <item>
-        <title>Some Follow-up Notes on Preferred Orientation and Texture</title>
-        <description>
-          
-          In one of my previous posts, I had some notes about the preferred orientation and texture and the two typical ways to represent them [1]. In this post, I am trying to put down some follow-up notes about the topic, hoping to add some more understanding of the topic. Preferred...
-        </description>
-        <pubDate>Thu, 11 Dec 2025 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2025-12-11-preferred_orientation_texture_followup/</link>
-        <guid isPermaLink="true">http://localhost:8000/2025-12-11-preferred_orientation_texture_followup/</guid>
       </item>
     
   </channel>
