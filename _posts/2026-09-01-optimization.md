@@ -22,7 +22,7 @@ A summary of optimization methods will be presented in the current post, giving 
 
 ## Direction-First Methods
 
-This is just how I call it and I am not sure what category that people usually call these methods. I am not even sure whether people usually categorize them in this case. Anyhow, I thought all the methods included in the current section first decided the direction to go along, followed by deciding how much to go along the determined direction.
+This is just how I call it and I am not sure what category that people usually call these methods. I am not even sure whether people usually categorize them in this way. Anyhow, I thought all the methods included in the current section first decided the direction to go along, followed by deciding how much to go along the determined direction. Therefore, I chose to call them altogether as 'direction-first' methods.
 
 ### Newton Method
 
