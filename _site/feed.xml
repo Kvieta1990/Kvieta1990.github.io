@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Optimization Methods</title>
+        <description>
+          
+          Image generated with Gemini with the prompt ‘generate an abstract image for my blog post about optimization methods like Newton method, Gauss-Newton, Levenberg-Marquardt, etc,. use the Ghibli style’. A summary of optimization methods will be presented in the current post, giving an idea about what methods we have, their categories...
+        </description>
+        <pubDate>Tue, 01 Sep 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-09-01-optimization/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-09-01-optimization/</guid>
+      </item>
+    
+      <item>
         <title>Decision Tree</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Mon, 05 Jan 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-01-05-spherical_harmonics_viz/</link>
         <guid isPermaLink="true">http://localhost:8000/2026-01-05-spherical_harmonics_viz/</guid>
-      </item>
-    
-      <item>
-        <title>Goldstone Mode and Spontaneous Symmetry Broken</title>
-        <description>
-          
-          In the age of AI, is it really making any real sense to write blogs to put down something that AI can probably generate in a flash? In fact, when I was writing this blog, initially I was using the phrase ‘in a blinking time’ but as a non-native English...
-        </description>
-        <pubDate>Thu, 01 Jan 2026 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2026-01-01-goldstone_mode_symmetry/</link>
-        <guid isPermaLink="true">http://localhost:8000/2026-01-01-goldstone_mode_symmetry/</guid>
       </item>
     
   </channel>
