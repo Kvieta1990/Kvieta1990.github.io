@@ -32,6 +32,24 @@ In Ref. [3], details about these two types of spectroscopy are presented very ni
 
 ***Raman***: Again, with the CO$$_2$$ example, one of the ways of the molecule vibration is the symmetric stretching. In this mode, the oxygen atoms move away from and then back towards the central carbon atom in a symmetrical way. The molecule remains linear throughout this vibration. The polarizability changes during this vibration. As the oxygen atoms move away from the carbon, the electron cloud is less concentrated, and the polarizability decreases. When the oxygen atoms move closer, the electron cloud becomes more concentrated, and the polarizability increases. This change in polarizability occurs along the molecular axis (the $$z$$-axis). This is represented by the $$z^{2}$$ component of the polarizability tensor.
 
+The energy scale detected by IR and Raman spectroscopy is very similar but the detection mechanism is fundamentally different. Therefore, the incident and outgoing photon energy scale is pretty much different.
+
+**Infrared (IR) Spectroscopy: Direct Absorption**
+
+* **The Mechanism:** IR relies on a direct resonance process. For a transition to occur, the energy of the incident photon must precisely match the energy difference between the quantized vibrational states ($$\Delta E = h\nu$$).
+
+* **The Energy Range:** Because molecular vibrational energies naturally sit in the infrared region ($$\sim 0.05$$ to $$0.5 \text{ eV}$$), the incident and detected light must be infrared. The photon is fully absorbed, shifting the molecule's dipole moment.
+
+**Raman Spectroscopy: Inelastic Scattering**
+
+* **The Mechanism:** Raman is a two-photon inelastic scattering event, much like measuring spin dynamics or phonons via inelastic neutron scattering. An incident photon excites the system to a short-lived, non-quantized "virtual state" by distorting the electron cloud (polarizability), and a scattered photon is instantly re-emitted.
+
+* **The Energy Transfer:** The absolute energy of the incident probe does not need to match the vibrational transition. Instead, it is the *energy transfer* ($$\Delta E = E_{in} - E_{out}$$) that corresponds to the vibrational mode.
+
+* **The Energy Range:** While we could theoretically use IR light for Raman, it is highly impractical. The Raman scattering cross-section is weak, and scattering intensity scales dramatically with $$1/\lambda^4$$. To get a measurable signal, Raman instruments use high-energy visible, near-IR, or UV lasers. Consequently, the detected inelastically scattered photons also fall into the visible/UV range, shifted just slightly from the incident laser line by the vibrational energy quantum.
+
+Ultimately, IR forces us to work with low-energy photons because it requires a 1:1 energy match with the vibration. Raman allows us to "up-convert" the detection into the visible or UV range, leveraging high-energy probes to measure low-energy excitations through the energy difference.
+
 Transition among Atomic Levels or Orbitals
 ===
 

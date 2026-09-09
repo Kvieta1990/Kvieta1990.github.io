@@ -1,0 +1,219 @@
+<!-- Mirror-plane symmetry demo.
+     Self-contained fragment for a Jekyll site: save as _includes/mirror-demo.html
+     and pull it into a post with the Liquid include tag, or paste the whole
+     block (this comment excluded) directly into your markdown.
+     All class names are prefixed with "mirdemo-" so they won't collide
+     with your site's CSS. -->
+
+<div class="mirdemo" id="mirdemo">
+  <div class="mirdemo-stage">
+    <div class="mirdemo-mirror"></div>
+
+    <!-- original motif, fixed on the left -->
+    <div class="mirdemo-half mirdemo-original">
+      <svg viewBox="0 0 550 500" aria-label="original motif">
+        <rect x="65" y="130" width="420" height="240" fill="none" stroke="#1e2a5e" stroke-width="4"/>
+        <line x1="160" y1="300" x2="360" y2="180" stroke="#8a93a6" stroke-width="4"/>
+        <circle cx="160" cy="300" r="17" fill="#D55E00"/>
+        <circle cx="360" cy="180" r="19" fill="#009E73"/>
+      </svg>
+    </div>
+
+    <!-- the copy that gets reflected / shifted / rotated -->
+    <div class="mirdemo-half mirdemo-copy">
+      <svg viewBox="0 0 550 500" aria-label="reflected motif">
+        <rect x="65" y="130" width="420" height="240" fill="none" stroke="#1e2a5e" stroke-width="4"/>
+        <line x1="160" y1="300" x2="360" y2="180" stroke="#8a93a6" stroke-width="4"/>
+        <circle cx="160" cy="300" r="17" fill="#D55E00"/>
+        <circle cx="360" cy="180" r="19" fill="#009E73"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="mirdemo-controls">
+    <button type="button" class="mirdemo-btn" data-action="reflect">Mirror</button>
+    <button type="button" class="mirdemo-btn" data-action="overlay">Translation &amp; Rotation</button>
+    <button type="button" class="mirdemo-btn mirdemo-btn-ghost" data-action="pause" disabled>Pause</button>
+    <button type="button" class="mirdemo-btn mirdemo-btn-ghost" data-action="reset">Reset</button>
+  </div>
+</div>
+
+<style>
+  .mirdemo {
+    margin: 2rem auto;
+    max-width: 900px;
+    font-family: inherit;
+  }
+  .mirdemo-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 11 / 5;
+    perspective: 1600px;
+    overflow: visible;
+  }
+  .mirdemo-mirror {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2.5px;
+    background: #5b6fd6;
+    transform: translateX(-50%);
+  }
+  .mirdemo-half {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+  }
+  .mirdemo-half svg { width: 100%; height: 100%; display: block; }
+  .mirdemo-copy {
+    opacity: 0;
+    transform-origin: 100% 50%;   /* hinge on the mirror plane for the flip */
+    will-change: transform, opacity;
+  }
+  .mirdemo-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .mirdemo-btn {
+    font: inherit;
+    font-size: 0.95rem;
+    padding: 8px 20px;
+    border: 1.5px solid #1e2a5e;
+    border-radius: 999px;
+    background: #1e2a5e;
+    color: #fff;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, opacity .15s ease;
+  }
+  .mirdemo-btn:hover:not(:disabled) { background: #fff; color: #1e2a5e; }
+  .mirdemo-btn:disabled { opacity: .45; cursor: default; }
+  .mirdemo-btn-ghost { background: #fff; color: #1e2a5e; }
+  .mirdemo-btn-ghost:hover:not(:disabled) { background: #1e2a5e; color: #fff; }
+</style>
+
+<script>
+(function () {
+  const root    = document.getElementById('mirdemo');
+  const copy    = root.querySelector('.mirdemo-copy');
+  const buttons = root.querySelectorAll('.mirdemo-btn');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const D = reduced ? 10 : 1;          // near-instant if reduced motion is preferred
+
+  // state: 'start' -> 'reflected' -> 'overlaid'
+  let state = 'start';
+  let busy = false;
+  let paused = false;
+  const pauseBtn = root.querySelector('[data-action="pause"]');
+
+  function setBusy(b) {
+    busy = b;
+    buttons.forEach(btn => {
+      // pause is only usable *while* an animation is running
+      btn.disabled = (btn.dataset.action === 'pause') ? !b : b;
+    });
+    if (!b) { paused = false; pauseBtn.textContent = 'Pause'; }
+  }
+
+  function setPaused(p) {
+    paused = p;
+    pauseBtn.textContent = p ? 'Resume' : 'Pause';
+    copy.getAnimations().forEach(a => {
+      if (p) a.pause();
+      else if (a.playState === 'paused') a.play();
+    });
+  }
+
+  function animate(el, keyframes, duration, easing) {
+    const a = el.animate(keyframes, {
+      duration: duration * D === 0 ? 1 : duration / D,
+      easing: easing || 'ease-in-out',
+      fill: 'forwards'
+    });
+    return a.finished;
+  }
+
+  // Phase 1: flip through the mirror plane (sigma_v as a continuous motion)
+  async function reflect() {
+    copy.style.transformOrigin = '100% 50%';
+    await animate(copy, [
+      { transform: 'rotateY(0deg)',    opacity: 0 },
+      { transform: 'rotateY(-21.6deg)', opacity: 1, offset: 0.12 },
+      { transform: 'rotateY(-180deg)', opacity: 1 }
+    ], 2200, 'linear');
+
+    // Replace the 3D end-state with an equivalent flat mirrored placement
+    // (left:50% + scaleX(-1)) so later 2D moves are simple to compose.
+    copy.getAnimations().forEach(a => a.cancel());
+    copy.style.left = '50%';
+    copy.style.transformOrigin = '50% 50%';
+    copy.style.transform = 'scaleX(-1)';
+    copy.style.opacity = '1';
+    state = 'reflected';
+  }
+
+  // Phase 2: translate the mirrored block onto the original, then spin 360
+  async function overlay() {
+    copy.style.opacity = '0.8';   // keep the original visible underneath
+    await animate(copy, [
+      { transform: 'translateX(0)      scaleX(-1)' },
+      { transform: 'translateX(-100%) scaleX(-1)' }
+    ], 1600, 'linear');
+
+    // hold briefly before spinning — run the hold as a no-op animation
+    // so the pause button also works during this gap
+    await animate(copy, [
+      { transform: 'translateX(-100%) scaleX(-1)' },
+      { transform: 'translateX(-100%) scaleX(-1)' }
+    ], 350, 'linear');
+
+    await animate(copy, [
+      { transform: 'translateX(-100%) scaleX(-1) rotate(0deg)' },
+      { transform: 'translateX(-100%) scaleX(-1) rotate(360deg)' }
+    ], 2600, 'linear');
+    state = 'overlaid';
+  }
+
+  function reset() {
+    copy.getAnimations().forEach(a => a.cancel());
+    copy.style.left = '0';
+    copy.style.transformOrigin = '100% 50%';
+    copy.style.transform = 'rotateY(0deg)';
+    copy.style.opacity = '0';
+    state = 'start';
+  }
+
+  root.querySelector('.mirdemo-controls').addEventListener('click', async (e) => {
+    const btn = e.target.closest('.mirdemo-btn');
+    if (!btn) return;
+    const action = btn.dataset.action;
+
+    if (action === 'pause') {
+      if (busy) setPaused(!paused);
+      return;
+    }
+    if (busy) return;
+
+    if (action === 'reset') { reset(); return; }
+
+    setBusy(true);
+    try {
+      if (action === 'reflect') {
+        if (state !== 'start') reset();
+        await reflect();
+      } else if (action === 'overlay') {
+        if (state === 'overlaid') reset();
+        if (state === 'start') await reflect();   // needs a mirror image first
+        await overlay();
+      }
+    } finally {
+      setBusy(false);
+    }
+  });
+})();
+</script>
