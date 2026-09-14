@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Enantiomorphic Space Groups</title>
+        <description>
+          
+          Mirror Translation &amp;amp; Rotation Pause Reset Enantiomorph An enantiomorph is a mirrored structure of an original structure – it can be obtained via reflection as shown in the animation above. After the reflection, all the basic metrics (distance and angle) are kept – the two structures are basically the same...
+        </description>
+        <pubDate>Mon, 14 Sep 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-09-14-enantiomorph/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-09-14-enantiomorph/</guid>
+      </item>
+    
+      <item>
         <title>Optimization Methods</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Fri, 03 Apr 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-04-03-win_fserver/</link>
         <guid isPermaLink="true">http://localhost:8000/2026-04-03-win_fserver/</guid>
-      </item>
-    
-      <item>
-        <title>Real Spherical Harmonics Visualization</title>
-        <description>
-          
-          Taking the \(Y_4^3\) function as the example, the full mathematical form of the function is, \[Y_4^3 = \frac{3}{4}\sqrt{\frac{35}{\pi}}sin^3\theta cos\theta cos(3\phi)\] To visualize the function, we first need to make it clear what we are trying to visualize. First, physically, this functions gives the distribution of, e.g., the electron density, as...
-        </description>
-        <pubDate>Mon, 05 Jan 2026 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2026-01-05-spherical_harmonics_viz/</link>
-        <guid isPermaLink="true">http://localhost:8000/2026-01-05-spherical_harmonics_viz/</guid>
       </item>
     
   </channel>

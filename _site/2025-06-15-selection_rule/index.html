@@ -349,6 +349,35 @@ if (chromeAgent) {
 
 <p><strong><em>Raman</em></strong>: Again, with the CO\(_2\) example, one of the ways of the molecule vibration is the symmetric stretching. In this mode, the oxygen atoms move away from and then back towards the central carbon atom in a symmetrical way. The molecule remains linear throughout this vibration. The polarizability changes during this vibration. As the oxygen atoms move away from the carbon, the electron cloud is less concentrated, and the polarizability decreases. When the oxygen atoms move closer, the electron cloud becomes more concentrated, and the polarizability increases. This change in polarizability occurs along the molecular axis (the \(z\)-axis). This is represented by the \(z^{2}\) component of the polarizability tensor.</p>
 
+<p>The energy scale detected by IR and Raman spectroscopy is very similar but the detection mechanism is fundamentally different. Therefore, the incident and outgoing photon energy scale is pretty much different.</p>
+
+<p><strong>Infrared (IR) Spectroscopy: Direct Absorption</strong></p>
+
+<ul>
+  <li>
+    <p><strong>The Mechanism:</strong> IR relies on a direct resonance process. For a transition to occur, the energy of the incident photon must precisely match the energy difference between the quantized vibrational states (\(\Delta E = h\nu\)).</p>
+  </li>
+  <li>
+    <p><strong>The Energy Range:</strong> Because molecular vibrational energies naturally sit in the infrared region (\(\sim 0.05\) to \(0.5 \text{ eV}\)), the incident and detected light must be infrared. The photon is fully absorbed, shifting the molecule’s dipole moment.</p>
+  </li>
+</ul>
+
+<p><strong>Raman Spectroscopy: Inelastic Scattering</strong></p>
+
+<ul>
+  <li>
+    <p><strong>The Mechanism:</strong> Raman is a two-photon inelastic scattering event, much like measuring spin dynamics or phonons via inelastic neutron scattering. An incident photon excites the system to a short-lived, non-quantized “virtual state” by distorting the electron cloud (polarizability), and a scattered photon is instantly re-emitted.</p>
+  </li>
+  <li>
+    <p><strong>The Energy Transfer:</strong> The absolute energy of the incident probe does not need to match the vibrational transition. Instead, it is the <em>energy transfer</em> (\(\Delta E = E_{in} - E_{out}\)) that corresponds to the vibrational mode.</p>
+  </li>
+  <li>
+    <p><strong>The Energy Range:</strong> While we could theoretically use IR light for Raman, it is highly impractical. The Raman scattering cross-section is weak, and scattering intensity scales dramatically with \(1/\lambda^4\). To get a measurable signal, Raman instruments use high-energy visible, near-IR, or UV lasers. Consequently, the detected inelastically scattered photons also fall into the visible/UV range, shifted just slightly from the incident laser line by the vibrational energy quantum.</p>
+  </li>
+</ul>
+
+<p>Ultimately, IR forces us to work with low-energy photons because it requires a 1:1 energy match with the vibration. Raman allows us to “up-convert” the detection into the visible or UV range, leveraging high-energy probes to measure low-energy excitations through the energy difference.</p>
+
 <h1 id="transition-among-atomic-levels-or-orbitals">Transition among Atomic Levels or Orbitals</h1>
 
 <p>The selecton rule applied here refers to the transitions between the different energy levels corresponding to either the atomic levels or moculelar orbitals. In this context, we normally see the notion of <code class="language-plaintext highlighter-rouge">dipole selection rule</code>. Regarding this, we have quite a lot useful resources to learn about, and here I am just giving several of them in Ref. [4-7]. Again, I am not going to note down the detailed derivation of the selection rule here – derivation and discussions can refer to those references. Simply, the dipole selection rule is,</p>

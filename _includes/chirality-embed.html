@@ -1,0 +1,411 @@
+<!-- Chirality demo — paste this whole block into a Jekyll post/page/include.
+     It renders inside a Shadow DOM, so its CSS/JS/ids are fully isolated:
+     nothing here can be affected by your site's stylesheet, and nothing
+     here can leak out and affect the rest of your page. No iframe. -->
+<div id="chirality-demo-host"></div>
+<template id="chirality-demo-template">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :host{
+    display:block;
+    --bg:#f4f2ec; --surface:#ffffff; --surface-2:#faf8f1; --grid-line:#e2ddce;
+    --text:#1b2027; --text-muted:#5c6673; --border:#ddd8ca;
+    --amber:#b8730f; --amber-soft:#f1ddb4; --amber-track:#e8dcc4;
+    --teal:#0f7d75; --teal-soft:#bfe6e2; --teal-glow:#0aa89c;
+    --shadow: 0 1px 2px rgba(30,25,10,.07), 0 8px 24px rgba(30,25,10,.05);
+    background:var(--bg); color:var(--text);
+    font-family:"IBM Plex Sans",-apple-system,Segoe UI,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :host{
+      --bg:#0a0e14; --surface:#121a24; --surface-2:#0e1620; --grid-line:#1d2833;
+      --text:#e9edf3; --text-muted:#8b98a9; --border:#233241;
+      --amber:#e2a33c; --amber-soft:#3c2f16; --amber-track:#2b2416;
+      --teal:#49c2b8; --teal-soft:#193835; --teal-glow:#7fe6da;
+      --shadow: 0 1px 2px rgba(0,0,0,.5), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+
+  *{box-sizing:border-box;}
+  .wrap{max-width:980px; margin:0 auto; display:flex; flex-direction:column; gap:28px; padding:28px 18px 48px;}
+
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--teal); margin:0 0 10px;
+  }
+  h1{
+    font-family:"IBM Plex Sans Condensed",sans-serif; font-weight:700;
+    font-size:clamp(28px,4.2vw,40px); line-height:1.08; margin:0 0 14px;
+    text-wrap:balance; letter-spacing:-.01em; color:var(--text);
+  }
+  .intro{
+    max-width:62ch; color:var(--text-muted); font-size:16px; line-height:1.6; margin:0;
+  }
+  .intro strong{color:var(--text); font-weight:600;}
+
+  .stage-grid{
+    display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:20px; align-items:start;
+  }
+  @media (max-width:760px){ .stage-grid{grid-template-columns:1fr;} }
+
+  .stage-panel, .readout-panel{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px;
+    box-shadow:var(--shadow);
+  }
+  .stage-panel{padding:18px 18px 20px;}
+  .stage-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; gap:12px; flex-wrap:wrap;}
+  .stage-head h2{font-family:"IBM Plex Sans Condensed",sans-serif; font-size:15px; font-weight:600; margin:0; letter-spacing:.02em; color:var(--text);}
+  .legend{display:flex; gap:16px; font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--text-muted);}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .swatch{width:10px; height:10px; border-radius:3px; display:inline-block;}
+
+  #stage{
+    display:block; width:100%; height:auto; aspect-ratio:1/1;
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0/40px 40px,
+      var(--surface-2);
+    border-radius:10px; border:1px solid var(--border);
+  }
+  .landmark{opacity:.9;}
+
+  .controls{margin-top:16px; display:flex; flex-direction:column; gap:12px;}
+  .slider-row label{
+    display:flex; justify-content:space-between; font-family:"IBM Plex Mono",monospace;
+    font-size:12.5px; color:var(--text-muted); margin-bottom:6px;
+  }
+  .slider-row label b{color:var(--text); font-weight:500; font-variant-numeric:tabular-nums;}
+  input[type=range]{
+    -webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:99px;
+    background:var(--amber-track); outline-offset:4px;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:18px; height:18px; border-radius:50%;
+    background:var(--amber); border:3px solid var(--surface); box-shadow:0 0 0 1px var(--amber);
+    cursor:pointer; margin-top:-6px;
+  }
+  input[type=range]::-moz-range-thumb{
+    width:18px; height:18px; border-radius:50%; background:var(--amber);
+    border:3px solid var(--surface); box-shadow:0 0 0 1px var(--amber); cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-runnable-track{height:6px; border-radius:99px;}
+
+  .btnrow{display:flex; gap:10px; flex-wrap:wrap;}
+  button{
+    font-family:"IBM Plex Sans Condensed",sans-serif; font-weight:600; font-size:13.5px;
+    letter-spacing:.02em; padding:10px 16px; border-radius:8px; cursor:pointer;
+    border:1px solid var(--border); background:var(--surface-2); color:var(--text);
+    transition:background .15s,border-color .15s,color .15s;
+  }
+  button:hover{border-color:var(--text-muted);}
+  button:focus-visible, input:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+  button#reflectBtn[aria-pressed="true"]{
+    background:var(--teal); border-color:var(--teal); color:#04211e;
+  }
+  button#spinBtn[data-spinning="true"]{border-color:var(--amber); color:var(--amber);}
+
+  .readout-panel{padding:18px;}
+  .readout-panel h2{
+    font-family:"IBM Plex Sans Condensed",sans-serif; font-size:15px; font-weight:600;
+    margin:0 0 14px; letter-spacing:.02em; color:var(--text);
+  }
+  .readout-panel h3{
+    font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--text-muted); margin:18px 0 8px; font-weight:500;
+  }
+  .readout-panel h3:first-of-type{margin-top:0;}
+  dl.readout{display:flex; flex-direction:column; gap:8px; margin:0;}
+  dl.readout > div{display:flex; justify-content:space-between; align-items:baseline;}
+  dl.readout dt{font-size:13px; color:var(--text-muted); font-family:"IBM Plex Mono",monospace;}
+  dl.readout dd{margin:0; font-family:"IBM Plex Mono",monospace; font-size:14px; font-variant-numeric:tabular-nums;}
+
+  .matrix-row{display:flex; align-items:center; gap:14px; margin-top:4px;}
+  .matrix{display:inline-flex; align-items:stretch;}
+  .bracket{width:7px; border-top:2px solid var(--text); border-bottom:2px solid var(--text);}
+  .bracket.l{border-left:2px solid var(--text);}
+  .bracket.r{border-right:2px solid var(--text);}
+  .matrix-cells{
+    display:grid; grid-template-columns:1fr 1fr; gap:2px 14px; padding:6px 10px;
+    font-family:"IBM Plex Mono",monospace; font-size:14px; font-variant-numeric:tabular-nums;
+  }
+  .matrix-cells span{text-align:right;}
+  .det{
+    font-family:"IBM Plex Mono",monospace; font-size:14px; display:flex; flex-direction:column; gap:2px;
+  }
+  .det b{font-size:20px; font-variant-numeric:tabular-nums;}
+  .det[data-sign="1"] b{color:var(--amber);}
+  .det[data-sign="-1"] b{color:var(--teal-glow);}
+
+  .fit-block{margin-top:16px; padding-top:14px; border-top:1px dashed var(--border);}
+  .fit-bar{height:8px; border-radius:99px; background:var(--amber-track); overflow:hidden; margin:8px 0 10px;}
+  .fit-bar > i{display:block; height:100%; background:var(--amber); border-radius:99px; transition:width .1s linear, background .2s;}
+  .status-line{
+    font-family:"IBM Plex Mono",monospace; font-size:12.5px; line-height:1.5;
+    padding:10px 12px; border-radius:8px; background:var(--surface-2); border:1px solid var(--border);
+  }
+  .status-line b{display:block; font-family:"IBM Plex Sans Condensed",sans-serif; font-size:13.5px; margin-bottom:2px;}
+  .status-line.match{border-color:var(--teal); background:var(--teal-soft);}
+  .status-line.match b{color:var(--teal);}
+
+  footer{
+    max-width:70ch; padding-top:6px; border-top:1px solid var(--border);
+    color:var(--text-muted); font-size:14.5px; line-height:1.65;
+  }
+  footer p{margin:14px 0 0;}
+  footer code{
+    font-family:"IBM Plex Mono",monospace; background:var(--surface-2); border:1px solid var(--border);
+    padding:1px 5px; border-radius:4px; font-size:.92em; color:var(--text);
+  }
+
+  @media (prefers-reduced-motion: reduce){ * { animation-duration:.001ms !important; } }
+</style>
+
+<div class="wrap">
+  <main class="stage-grid">
+    <section class="stage-panel">
+      <div class="stage-head">
+        <h2>Stage</h2>
+        <div class="legend">
+          <span><i class="swatch" style="background:var(--teal)"></i>target (mirror image, fixed)</span>
+          <span><i class="swatch" style="background:var(--amber)"></i>your hand (movable)</span>
+        </div>
+      </div>
+      <svg id="stage" viewBox="0 0 400 400" aria-label="Two hand shapes on a grid; one fixed as a mirror-image target, one you can rotate">
+        <g id="targetHand"></g>
+        <g id="movingHand"></g>
+      </svg>
+      <div class="controls">
+        <div class="slider-row">
+          <label for="angle"><span>Rotation &theta;</span> <b id="angleVal">35&deg;</b></label>
+          <input type="range" id="angle" min="0" max="359" step="1" value="35" aria-describedby="angleVal">
+        </div>
+        <div class="btnrow">
+          <button id="spinBtn" type="button" data-spinning="true">&#10074;&#10074; Pause auto-spin</button>
+          <button id="reflectBtn" type="button" aria-pressed="false">&#8646; Mirror (reflect)</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="readout-panel">
+      <h2>Live transform</h2>
+
+      <h3>Linear part A</h3>
+      <div class="matrix-row">
+        <div class="matrix">
+          <div class="bracket l"></div>
+          <div class="matrix-cells">
+            <span id="a11">1.00</span><span id="a12">0.00</span>
+            <span id="a21">0.00</span><span id="a22">1.00</span>
+          </div>
+          <div class="bracket r"></div>
+        </div>
+        <div class="det" id="detBlock" data-sign="1">
+          <span>det(A)</span>
+          <b id="detVal">+1</b>
+        </div>
+      </div>
+
+      <h3>Fit to target</h3>
+      <dl class="readout">
+        <div><dt>max landmark gap</dt><dd id="gapVal">&mdash; px</dd></div>
+      </dl>
+      <div class="fit-bar"><i id="fitBar" style="width:40%"></i></div>
+      <div class="status-line" id="statusLine">
+        <b id="statusHead">Not superimposed</b>
+        <span id="statusBody">Every proper motion (det = +1) has been tried by the dial &mdash; none land it.</span>
+      </div>
+    </aside>
+  </main>
+</div>
+</template>
+
+<script>
+(function(){
+  "use strict";
+  var hostEl = document.getElementById("chirality-demo-host");
+  var tmpl = document.getElementById("chirality-demo-template");
+  if(!hostEl || !tmpl || hostEl.shadowRoot) return; // already initialized, or markup missing
+  var shadow = hostEl.attachShadow({mode:"open"});
+  shadow.appendChild(tmpl.content.cloneNode(true));
+  tmpl.remove();
+
+  var NS = "http://www.w3.org/2000/svg";
+  var CX = 200, CY = 200;
+
+  // ---- geometry: build once, mirror by x-negation, single source of truth ----
+  var S = 1.7;
+  var PALM = {x:-23*S, y:0, w:46*S, h:42*S, rx:11*S};
+  var FINGERS = [
+    {cx:-17*S, w:10*S, h:24*S},
+    {cx:-6*S,  w:10*S, h:37*S},
+    {cx:5*S,   w:10*S, h:41*S},
+    {cx:16*S,  w:10*S, h:30*S},
+  ];
+  var THUMB = {tx:-27*S, ty:24*S, angle:-42, w:15*S, h:30*S, rx:7*S};
+
+  function rot(x,y,deg){
+    var r = deg*Math.PI/180, c = Math.cos(r), s = Math.sin(r);
+    return [x*c - y*s, x*s + y*c];
+  }
+  var thumbTipLocal = (function(){
+    var p = rot(0, THUMB.h, THUMB.angle);
+    return [THUMB.tx + p[0], THUMB.ty + p[1]];
+  })();
+
+  var LANDMARKS = FINGERS.map(function(f){ return [f.cx, -f.h]; })
+    .concat([[-23, PALM.h], [23, PALM.h], thumbTipLocal]);
+
+  function buildHandGroup(mirrored){
+    var g = document.createElementNS(NS,"g");
+    var sx = mirrored ? -1 : 1;
+    function mk(tag, attrs){
+      var el = document.createElementNS(NS, tag);
+      for(var k in attrs) el.setAttribute(k, attrs[k]);
+      return el;
+    }
+    g.appendChild(mk("rect", {x: sx===1?PALM.x:-(PALM.x+PALM.w), y:PALM.y, width:PALM.w, height:PALM.h, rx:PALM.rx, "class":"palm"}));
+    FINGERS.forEach(function(f){
+      var fx = (sx===1? f.cx : -f.cx) - f.w/2;
+      g.appendChild(mk("rect", {x:fx, y:-f.h, width:f.w, height:f.h, rx:4, "class":"finger"}));
+    });
+    var tx = sx===1 ? THUMB.tx : -THUMB.tx;
+    var ang = sx===1 ? THUMB.angle : -THUMB.angle;
+    g.appendChild(mk("rect", {x:-THUMB.w/2, y:0, width:THUMB.w, height:THUMB.h, rx:THUMB.rx,
+      transform:"translate("+tx+","+THUMB.ty+") rotate("+ang+")", "class":"thumb"}));
+    LANDMARKS.forEach(function(l){
+      var px = sx===1 ? l[0] : -l[0];
+      g.appendChild(mk("circle", {cx:px, cy:l[1], r:4.6, "class":"landmark"}));
+    });
+    return g;
+  }
+
+  var targetHand = shadow.getElementById("targetHand");
+  var movingHand = shadow.getElementById("movingHand");
+
+  targetHand.setAttribute("transform", "translate("+CX+","+CY+")");
+  var targetShape = buildHandGroup(true);
+  targetShape.setAttribute("fill","none");
+  targetShape.setAttribute("stroke","var(--teal)");
+  targetShape.setAttribute("stroke-width","2.5");
+  targetShape.setAttribute("stroke-dasharray","5 4");
+  targetHand.appendChild(targetShape);
+  Array.prototype.forEach.call(targetShape.querySelectorAll(".landmark"), function(c){
+    c.setAttribute("fill","var(--teal)"); c.setAttribute("stroke","none"); c.classList.remove("landmark");
+  });
+
+  var movingShape = buildHandGroup(false);
+  movingShape.setAttribute("fill","var(--amber)");
+  movingShape.setAttribute("fill-opacity","0.88");
+  movingShape.setAttribute("stroke","var(--amber)");
+  movingShape.setAttribute("stroke-width","1.5");
+  movingHand.appendChild(movingShape);
+  Array.prototype.forEach.call(movingShape.querySelectorAll(".landmark"), function(c){
+    c.setAttribute("fill","var(--surface)"); c.setAttribute("stroke","var(--amber)"); c.setAttribute("stroke-width","1.6"); c.classList.remove("landmark");
+  });
+
+  var targetPts = LANDMARKS.map(function(l){ return [-l[0], l[1]]; });
+
+  var angleInput = shadow.getElementById("angle");
+  var angleVal = shadow.getElementById("angleVal");
+  var spinBtn = shadow.getElementById("spinBtn");
+  var reflectBtn = shadow.getElementById("reflectBtn");
+  var a11=shadow.getElementById("a11"), a12=shadow.getElementById("a12"),
+      a21=shadow.getElementById("a21"), a22=shadow.getElementById("a22");
+  var detBlock=shadow.getElementById("detBlock"), detVal=shadow.getElementById("detVal");
+  var gapVal=shadow.getElementById("gapVal"), fitBar=shadow.getElementById("fitBar");
+  var statusLine=shadow.getElementById("statusLine"), statusHead=shadow.getElementById("statusHead"), statusBody=shadow.getElementById("statusBody");
+
+  var reflected = false;
+  var spinning = true;
+  var theta = 35;
+  var EPS = 2.0;
+  var MAXGAP_SCALE = 150;
+
+  function render(){
+    var sx = reflected ? -1 : 1;
+    var rad = theta*Math.PI/180, c = Math.cos(rad), s = Math.sin(rad);
+    var A = [[c*sx, -s],[s*sx, c]];
+
+    movingHand.setAttribute("transform", "translate("+CX+","+CY+") rotate("+theta+") scale("+sx+",1)");
+
+    a11.textContent = A[0][0].toFixed(2);
+    a12.textContent = A[0][1].toFixed(2);
+    a21.textContent = A[1][0].toFixed(2);
+    a22.textContent = A[1][1].toFixed(2);
+    var det = Math.round(A[0][0]*A[1][1]-A[0][1]*A[1][0]);
+    detVal.textContent = det>0? "+1":"−1";
+    detBlock.setAttribute("data-sign", det>0?"1":"-1");
+
+    var maxGap = 0;
+    LANDMARKS.forEach(function(l,i){
+      var x1 = l[0]*sx, y1 = l[1];
+      var xr = x1*c - y1*s, yr = x1*s + y1*c;
+      var tx = targetPts[i][0], ty = targetPts[i][1];
+      var d = Math.hypot(xr-tx, yr-ty);
+      if(d>maxGap) maxGap = d;
+    });
+
+    gapVal.textContent = maxGap.toFixed(1) + " px";
+    fitBar.style.width = Math.max(3, Math.min(100, 100*(1 - maxGap/MAXGAP_SCALE))) + "%";
+
+    var matched = maxGap < EPS;
+    fitBar.style.background = matched ? "var(--teal-glow)" : "var(--amber)";
+    statusLine.classList.toggle("match", matched);
+    if(matched){
+      statusHead.textContent = "Superimposed ✓";
+      statusBody.textContent = "Only reached with a reflection in play — det(A) = −1.";
+    } else if(reflected){
+      statusHead.textContent = "Not superimposed (yet)";
+      statusBody.textContent = "Mirror is on, but θ isn't the matching angle. Try θ = 0°.";
+    } else {
+      statusHead.textContent = "Not superimposed";
+      statusBody.textContent = "Every proper motion (det = +1) has been tried by the dial — none land it.";
+    }
+  }
+
+  angleInput.addEventListener("input", function(){
+    theta = +angleInput.value;
+    angleVal.textContent = theta + "°";
+    if(spinning){ spinning=false; spinBtn.textContent="▶ Resume auto-spin"; spinBtn.dataset.spinning="false"; }
+    render();
+  });
+
+  reflectBtn.addEventListener("click", function(){
+    reflected = !reflected;
+    reflectBtn.setAttribute("aria-pressed", String(reflected));
+    reflectBtn.textContent = reflected ? "✓ Mirrored (reflect on)" : "⇆ Mirror (reflect)";
+    render();
+  });
+
+  spinBtn.addEventListener("click", function(){
+    spinning = !spinning;
+    spinBtn.textContent = spinning ? "❙❙ Pause auto-spin" : "▶ Resume auto-spin";
+    spinBtn.dataset.spinning = String(spinning);
+    if(spinning){ lastT = null; requestAnimationFrame(tick); }
+  });
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var lastT = null;
+  function tick(t){
+    if(!spinning) return;
+    if(lastT!==null){
+      var dt = (t-lastT)/1000;
+      theta = (theta + dt*24) % 360;
+      angleInput.value = theta.toFixed(0);
+      angleVal.textContent = Math.round(theta) + "°";
+      render();
+    }
+    lastT = t;
+    requestAnimationFrame(tick);
+  }
+
+  render();
+  if(reduceMotion){
+    spinning = false;
+    spinBtn.textContent = "▶ Resume auto-spin";
+    spinBtn.dataset.spinning = "false";
+  } else {
+    requestAnimationFrame(tick);
+  }
+})();
+</script>
