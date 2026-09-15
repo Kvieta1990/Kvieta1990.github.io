@@ -8,7 +8,7 @@ comments: true
 use_math: true
 ---
 
-In a previous post about [enantiomorth](../2026-09-14-enantiomorph), I mentioned the affine space in which we locate ourselves for talking about the space groups. Staying in the affine space, we have 230 space groups in total, and if we do not care about the handedness, we have 219 inequivalent  space groups in total. This is something I covered in details in that post. There, we encountered the notion of *affine space*, and in crystallography, we will be encountering a lot of such notions in *abstract algebra*. So, I will use this post to present a basic summary about those abstract algebra notions that are relevant to crystallography (and maybe a bit beyond).
+In a previous post about [enantiomorph](../2026-09-14-enantiomorph), I mentioned the affine space in which we locate ourselves for talking about the space groups. Staying in the affine space, we have 230 space groups in total, and if we do not care about the handedness, we have 219 inequivalent  space groups in total. This is something I covered in details in that post. There, we encountered the notion of *affine space*, and in crystallography, we will be encountering a lot of such notions in *abstract algebra*. So, I will use this post to present a basic summary about those abstract algebra notions that are relevant to crystallography (and maybe a bit beyond).
 
 <br>
 
