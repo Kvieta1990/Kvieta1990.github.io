@@ -307,39 +307,183 @@ if (chromeAgent) {
 <b>Hover your mouse over the picture to see something interesting</b>
 </p> -->
 
-<div style="text-align: center; perspective: 1000px;">
-  <p><img id="ai-human-tilt" src="/assets/img/ai_human.png" alt="AI Human" style="max-width: 100%; height: auto; transform-style: preserve-3d; transition: transform 0.15s ease-out; will-change: transform;" />
-  <br />
-<a style="color: #c92205">(Image generated with Gemini using the prompt ‘generate an image. AI shake hands with human. human should be a young man. make it the Ghibli Style’. Hover your mouse over the image to see the image wiggling.)</a>
-<br /></p>
+<div style="position: relative; max-width: 760px; margin: 0 auto;">
+  <p><span id="symmetry-reminder" style="position: absolute; top: 33%; left: 50%; z-index: 1; transform: translate(-50%, -50%); color: #b00020; font-size: 1.6em; font-weight: bold; white-space: nowrap; pointer-events: none;">Hover your mouse over me</span></p>
+  <canvas id="symmetry-canvas" width="760" height="650" role="img" aria-label="Interactive three-fold rotational, mirror, and 3_1 screw symmetry figure" style="display: block; width: 100%; height: auto; cursor: none; touch-action: none;"></canvas>
 </div>
+
+<p style="text-align: center; color: #b00020; font-style: italic; font-weight: bold">Life is all symmetric, we all have moments up and down. Though, among all images, we can always choose to look at those up pointing ones.</p>
 
 <script>
 (function () {
-  const img = document.getElementById('ai-human-tilt');
-  if (!img) return;
+  const canvas = document.getElementById('symmetry-canvas');
+  if (!canvas) return;
+  const reminder = document.getElementById('symmetry-reminder');
 
-  const maxTilt = 15;
-
-  img.addEventListener('mousemove', function (e) {
-    const rect = img.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const percentX = (x / rect.width) - 0.5;
-    const percentY = (y / rect.height) - 0.5;
-
-    const rotateY = percentX * maxTilt * 2;
-    const rotateX = percentY * -maxTilt * 2;
-
-    img.style.transition = 'transform 0.05s ease-out';
-    img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  const context = canvas.getContext('2d');
+  const width = canvas.width;
+  const height = canvas.height;
+  const center = { x: width / 2, y: height / 2 };
+  const hexagonRadius = Math.min(width * 0.36, height * 0.42);
+  const vertices = Array.from({ length: 6 }, function (_, index) {
+    const angle = -Math.PI / 3 * index - Math.PI / 3;
+    return {
+      x: center.x + hexagonRadius * Math.cos(angle),
+      y: center.y + hexagonRadius * Math.sin(angle)
+    };
   });
-
-  img.addEventListener('mouseleave', function () {
-    img.style.transition = 'transform 0.4s ease-out';
-    img.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+  const screwCenters = vertices.map(function (vertex, index) {
+    const nextVertex = vertices[(index + 1) % vertices.length];
+    return {
+      x: (center.x + vertex.x + nextVertex.x) / 3,
+      y: (center.y + vertex.y + nextVertex.y) / 3
+    };
   });
+  // In canvas coordinates, positive angles are visually clockwise.
+  // Centers are ordered: top-left, bottom-left, bottom, bottom-right, top-right, top.
+  const screwDirections = [1, -1, 1, -1, 1, -1];
+  let pointer = null;
+
+  function rotate(point, angle) {
+    return rotateAround(point, center, angle);
+  }
+
+  function rotateAround(point, pivot, angle) {
+    const sine = Math.sin(angle);
+    const cosine = Math.cos(angle);
+    const x = point.x - pivot.x;
+    const y = point.y - pivot.y;
+    return {
+      x: pivot.x + x * cosine - y * sine,
+      y: pivot.y + x * sine + y * cosine
+    };
+  }
+
+  function reflectAcrossHorizontal(point) {
+    return { x: point.x, y: 2 * center.y - point.y };
+  }
+
+  function transform(point, angle) {
+    return rotate(point, angle);
+  }
+
+  function nearestScrewCenter(point) {
+    return screwCenters.reduce(function (nearest, screwCenter, index) {
+      const nearestDistance = Math.hypot(point.x - nearest.center.x, point.y - nearest.center.y);
+      const currentDistance = Math.hypot(point.x - screwCenter.x, point.y - screwCenter.y);
+      return currentDistance < nearestDistance
+        ? { center: screwCenter, index: index }
+        : nearest;
+    }, { center: screwCenters[0], index: 0 });
+  }
+
+  function trianglePoints(point, size, angle) {
+    return [
+      { x: point.x, y: point.y - size },
+      { x: point.x - size * Math.sqrt(3) / 2, y: point.y + size * 0.5 },
+      { x: point.x + size * Math.sqrt(3) / 2, y: point.y + size * 0.5 }
+    ].map(function (trianglePoint) {
+      return rotateAround(trianglePoint, point, angle);
+    });
+  }
+
+  function drawTriangle(point, size, color, angle, fill) {
+    const points = trianglePoints(point, size, angle);
+
+    context.beginPath();
+    context.moveTo(points[0].x, points[0].y);
+    context.lineTo(points[1].x, points[1].y);
+    context.lineTo(points[2].x, points[2].y);
+    context.closePath();
+    context.fillStyle = color;
+    context.strokeStyle = color;
+    context.lineWidth = 2;
+    if (fill === false) {
+      context.stroke();
+    } else {
+      context.fill();
+    }
+  }
+
+  function drawScrewCopies(point, angle) {
+    const nearest = nearestScrewCenter(point);
+    const screwCenter = nearest.center;
+    const direction = screwDirections[nearest.index];
+    const copies = [
+      { offset: { x: 0, y: -8 }, angle: direction * (2 * Math.PI) / 3, label: '+1/3' },
+      { offset: { x: 0, y: -16 }, angle: direction * (4 * Math.PI) / 3, label: '+2/3' }
+    ];
+
+    copies.forEach(function (copy) {
+      const copyPoint = rotateAround(point, screwCenter, copy.angle);
+      copyPoint.x += copy.offset.x;
+      copyPoint.y += copy.offset.y;
+      drawTriangle(copyPoint, 18, '#d71920', angle + copy.angle);
+      context.font = 'bold 12px sans-serif';
+      context.textAlign = 'center';
+      context.textBaseline = 'bottom';
+      context.fillStyle = '#b0141b';
+      context.fillText(copy.label, copyPoint.x, copyPoint.y - 20);
+    });
+
+    drawTriangle(point, 18, '#d71920', angle);
+  }
+
+  function draw() {
+    context.clearRect(0, 0, width, height);
+    context.lineWidth = 4;
+    context.lineCap = 'round';
+    context.strokeStyle = '#202d61';
+    context.beginPath();
+    context.moveTo(vertices[0].x, vertices[0].y);
+    vertices.slice(1).forEach(function (vertex) {
+      context.lineTo(vertex.x, vertex.y);
+    });
+    context.closePath();
+    context.stroke();
+
+    context.strokeStyle = '#000';
+    context.lineWidth = 4;
+    [[0, 3], [4, 1], [5, 2]].forEach(function (axis) {
+      context.beginPath();
+      context.moveTo(vertices[axis[0]].x, vertices[axis[0]].y);
+      context.lineTo(vertices[axis[1]].x, vertices[axis[1]].y);
+      context.stroke();
+    });
+
+    vertices.forEach(function (vertex) {
+      drawTriangle(vertex, 42, '#000', 0);
+    });
+    drawTriangle(center, 42, '#000', 0);
+
+    if (pointer) {
+      const symmetryAngles = [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3];
+      symmetryAngles.forEach(function (angle) {
+        drawScrewCopies(transform(pointer, angle), angle + Math.PI);
+        drawScrewCopies(rotate(reflectAcrossHorizontal(pointer), angle), angle);
+      });
+    }
+  }
+
+  function updatePointer(event) {
+    const bounds = canvas.getBoundingClientRect();
+    pointer = {
+      x: (event.clientX - bounds.left) * width / bounds.width,
+      y: (event.clientY - bounds.top) * height / bounds.height
+    };
+    draw();
+  }
+
+  canvas.addEventListener('pointermove', updatePointer);
+  canvas.addEventListener('pointerenter', function () {
+    if (reminder) reminder.style.visibility = 'hidden';
+  });
+  canvas.addEventListener('pointerleave', function () {
+    pointer = null;
+    if (reminder) reminder.style.visibility = 'visible';
+    draw();
+  });
+  draw();
 })();
 </script>
 
