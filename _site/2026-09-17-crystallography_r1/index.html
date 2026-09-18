@@ -19,7 +19,7 @@
 
   
 
-  <title>Some (Random) Notes On crystallography</title>
+  <title>Some (Random) Notes On crystallography (Part-1)</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
@@ -93,7 +93,7 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Some (Random) Notes On crystallography">
+  <meta property="og:title" content="Some (Random) Notes On crystallography (Part-1)">
   <meta property="og:description" content="This post is not meant to be a systematic note about a specific topic. It’s a collection of learning notes on a few basic topics on crystallography and may come in a sort of random order, which may seem a bit messy at a first (second, or maybe even third)...">
 
   
@@ -114,7 +114,7 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Some (Random) Notes On crystallography">
+  <meta property="twitter:title" content="Some (Random) Notes On crystallography (Part-1)">
   <meta property="twitter:description" content="This post is not meant to be a systematic note about a specific topic. It’s a collection of learning notes on a few basic topics on crystallography and may come in a sort of random order, which may seem a bit messy at a first (second, or maybe even third)...">
 
   
@@ -267,7 +267,7 @@ if (chromeAgent) {
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
         <div class="post-heading">
-						<h1>Some (Random) Notes On crystallography</h1>
+						<h1>Some (Random) Notes On crystallography (Part-1)</h1>
           
 
           
@@ -320,7 +320,7 @@ if (chromeAgent) {
 
 <p>The common lattice system here is <code class="language-plaintext highlighter-rouge">hexagonal</code> and thus named for the crystal family.</p>
 
-<p><strong>N.B.</strong> It should be noted that ‘have’ as in the quoted statement above does <em>NOT</em> mean ‘all’ – as we can see in the table on Wikipedia [3], there are (meaning, ‘have’, as in the quoted statement) space groups that belong to the trigonal crystal system having the hexagonal lattice system but not all of them, since some of the space groups in the trigonal crystal system have the rhrombohedral lattice system.</p>
+<p><strong>N.B.</strong> It should be noted that ‘have’ as in the quoted statement above does <em>NOT</em> mean ‘all’ – as we can see in the table on Wikipedia [3], there are (meaning, ‘have’, as in the quoted statement) space groups that belong to the trigonal crystal system having the hexagonal lattice system but not all of them, since some of the space groups in the trigonal crystal system have the rhombohedral lattice system.</p>
 
 <h2 id="lattice-system">Lattice System</h2>
 
@@ -364,7 +364,103 @@ if (chromeAgent) {
 
 <h2 id="the-hexagonal-family">The Hexagonal Family</h2>
 
-<p>… o continue</p>
+<p>The following table is part of the table on Wikipedia on crystal system and it is worth some noting,</p>
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2" style="background:#e8e8e8">Crystal families</th>
+      <th colspan="2" style="background:#e8e8e8">Point group classification</th>
+      <th rowspan="2" style="background:#e8e8e8; color:#4a90d9">Space groups</th>
+      <th colspan="2" style="background:#e8e8e8">Lattice classification</th>
+    </tr>
+    <tr>
+      <th style="background:#e8e8e8">Crystal systems</th>
+      <th style="background:#e8e8e8; color:#4a90d9">Point groups</th>
+      <th style="background:#e8e8e8; color:#4a90d9">Bravais lattices</th>
+      <th style="background:#e8e8e8">Lattice systems</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3" style="background:#ffffff; color:#4a90d9"><strong>Hexagonal</strong></td>
+      <td rowspan="2" style="background:#ffffff"><strong>Trigonal</strong></td>
+      <td rowspan="2" style="background:#ffffff">5</td>
+      <td style="background:#ffffff">7</td>
+      <td style="background:#ffffff">1</td>
+      <td style="background:#ffffff"><strong>Rhombohedral</strong></td>
+    </tr>
+    <tr>
+      <td style="background:#ffffff">18</td>
+      <td rowspan="2" style="background:#ffffff">1</td>
+      <td rowspan="2" style="background:#ffffff"><strong>Hexagonal</strong></td>
+    </tr>
+    <tr>
+      <td style="background:#ffffff"><strong>Hexagonal</strong></td>
+      <td style="background:#ffffff">7</td>
+      <td style="background:#ffffff">27</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For the hexagonal crystal system, it is clear that the corresponding lattice systems are all hexagonal. Intuitively understandable, fine. But for the trigonal crystal system, the splitting into two lattice systems need some explanation. For structure falling into the trigonal crystal system, when we have decorations, the point group is one of the following \(3, \bar{3}, 32, 3m, \bar{3}m\). However, when removing all the decorations from the lattice, the underlying lattice (i.e., how the system repeat itself in space) may be different, giving different lattice systems. Each and every one of the 5 point groups in the trigonal crystal system can have two lattice point groups (or, holohedries) – the rhombohedral lattice system corresponds to the holohedry \(\bar{3}m\) and the hexagonal lattice system corresponds to the \(6/mmm\) holohedry.</p>
+
+<p>Each of the lattice systems support a series of space groups and we usually call them either <code class="language-plaintext highlighter-rouge">rhombohedral space groups</code> or <code class="language-plaintext highlighter-rouge">hexagonal space groups</code>, respectively for those belonging to the rhombohedral or hexagonal lattice system. Here is the full breakdown,</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Point group</th>
+      <th>Hexagonal (P) space groups</th>
+      <th>Rhombohedral (R) space groups</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(3\)</td>
+      <td>\(P3, P3_1, P3_2\)</td>
+      <td>\(R3\)</td>
+    </tr>
+    <tr>
+      <td>\(\bar{3}\)</td>
+      <td>\(P\bar{3}\)</td>
+      <td>\(R\bar{3}\)</td>
+    </tr>
+    <tr>
+      <td>\(32\)</td>
+      <td>\(P312, P321, P3_112, P3_121, P3_212, P3_221\)</td>
+      <td>\(R32\)</td>
+    </tr>
+    <tr>
+      <td>\(3m\)</td>
+      <td>\(P3m1, P31m, P3c1, P31c\)</td>
+      <td>\(R3m, R3c\)</td>
+    </tr>
+    <tr>
+      <td>\(\bar{3}m\)</td>
+      <td>\(P\bar{3}1m, P\bar{3}1c, P\bar{3}m1, P\bar{3}c1\)</td>
+      <td>\(R\bar{3}m, R\bar{3}c\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It can be noticed in the table that all rhombohedral space groups start with <code class="language-plaintext highlighter-rouge">R</code> in their Hermann-Mauguin (HM) symbols. This is also something worth noting. For all those rhombohedral space groups, we have two choices for the conventional unit cell – the rhombohedral cell or the hexagonal cell. When choosing the hexagonal cell, the unit cell is rhombohedral centered (i.e., having an atom at the origin automatically brings in another two atoms in the cell) and therefore the letter <code class="language-plaintext highlighter-rouge">R</code> is used to indicate such centering. However, it should be pointed out that the <code class="language-plaintext highlighter-rouge">R-centered hexagonal is not really a Bravais lattice</code> (pause for a bit and think about it – we all know that we have 14 Bravais lattices in 3D, but do we really understand what a Bravais lattice is? Will come back to this.). Since they are rhombohedral space groups and belong to the rhombohedral lattice system, for sure, the actual lattice is rhombohedral and it is primitive. Therefore, another choice of unit cell is obviously the rhombohedral cell, no centering at all. Two things to note. One is, we will use the letter <code class="language-plaintext highlighter-rouge">R</code> in the HM symbol anyways (even it is primitive rhombohedral lattice), with the purpose of distinguish wih those primitive trigonal space groups with hexagonal lattices [6]. Second is, the hexagonal cell is more commonly used since it is visually less tilted and easy to visualize [7].</p>
+
+<h2 id="bravais-lattice">Bravais Lattice</h2>
+
+<p>I have talked about the <code class="language-plaintext highlighter-rouge">lattice</code> <a href="./#lattice-system">above</a>, and the <code class="language-plaintext highlighter-rouge">Bravais lattice</code> is actually just the <code class="language-plaintext highlighter-rouge">lattice</code>, by definition. When we say <code class="language-plaintext highlighter-rouge">Bravais lattice</code> instead of <code class="language-plaintext highlighter-rouge">lattice</code>, we just want to emphasize that we are specifically talking about those 14 types of lattice in 3D and 5 in 2D. So, Bravais lattice is a smaller set of lattices, under the umbrella of the lattice system. So for a specific lattice, before we tell its Bravais lattice type, we should first tell what lattice system it belongs to. Let’s take an example to demonstrate.</p>
+
+<p align="center">
+<img src="/assets/img/posts/rectangle_centered.png" style="border:none;" width="1000" alt="oc" title="oc" />
+</p>
+
+<p>In the figure, I present the rectangular centered (\(oc\)) lattice in 2D, on the left. On the right, I am drawing it a bit differently to give a ‘oblique’ lattice (indicated by the light blue lines). Is it really an oblique lattice? Apparently not. But why? Because the actual symmetry of the lattice is \(2mm\) (the rectangular lattice system) but not \(2\) (the oblique lattice system). Therefore, the top level hierarchy is the rectangular lattice system for the lattice, and under the umbrella, we have that the rectangular lattice is centered, thus centered rectangular Bravais lattice (\(oc\)). Let’s take a look at another case,</p>
+
+<p align="center">
+<img src="/assets/img/posts/square_lattice.png" style="border:none;" width="1000" alt="tp" title="tp" />
+</p>
+
+<p>In this case, we have all those rectangles in the previous case becoming squares, and this makes some difference. On the left is presented the ‘centered square’ lattice. But do we really have a centered square lattice? The answer is No. Why? Because we realize that if we view the lattice from another perspective, as guided by the light blue lines, it is actually just a square lattice without centering. Same trick as in the previous case, but this one works due to that the ‘tilted’ lattice (it actually does not make that much sense to say a lattice is tilted but here I mean the visual effect only) does respect the lattice symmetry, namely the \(4mmm\) lattice point group.</p>
 
 <h2 id="references">References</h2>
 
@@ -377,6 +473,10 @@ if (chromeAgent) {
 <p>[4] <a href="https://dictionary.iucr.org/Holohedry">Holohedry</a></p>
 
 <p>[5] <a href="https://dictionary.iucr.org/Geometric_crystal_class">Geometric crystal class</a></p>
+
+<p>[6] <a href="http://img.chem.ucl.ac.uk/sgp/misc/notation.htm">Space Group Notation</a></p>
+
+<p>[7]  I. U. o. Crystallography, International Tables of Crystallography A, 5th Edition, Kluwer Academic Publishers, Dordrecht, the Netherlands, 2002.</p>
 
       </article>
 
@@ -405,7 +505,7 @@ if (chromeAgent) {
   <span class="sr-only">Share: </span>
 
   
-    <a target="_blank" href="https://twitter.com/intent/tweet?text=Some+%28Random%29+Notes+On+crystallography&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-17-crystallography_r1%2F"
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Some+%28Random%29+Notes+On+crystallography+%28Part-1%29&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-17-crystallography_r1%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
