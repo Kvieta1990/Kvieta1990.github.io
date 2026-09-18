@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Some (Random) Notes On crystallography</title>
+        <description>
+          
+          This post is not meant to be a systematic note about a specific topic. It’s a collection of learning notes on a few basic topics on crystallography and may come in a sort of random order, which may seem a bit messy at a first (second, or maybe even third)...
+        </description>
+        <pubDate>Thu, 17 Sep 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-09-17-crystallography_r1/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-09-17-crystallography_r1/</guid>
+      </item>
+    
+      <item>
         <title>Some Useful Abstract Algebra</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Thu, 23 Jul 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-07-23-subnet/</link>
         <guid isPermaLink="true">http://localhost:8000/2026-07-23-subnet/</guid>
-      </item>
-    
-      <item>
-        <title>Strands Agent Episode-1 — Setup</title>
-        <description>
-          
-          This is the first post in the series of using Strands agent SDK for agent development. The walkthrough can be found in the official quick start documentation with Python [1]. This post serves as the side note for the documentation, noting down some technical details that we may need regarding...
-        </description>
-        <pubDate>Sun, 05 Apr 2026 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2026-04-05-strand_agent/</link>
-        <guid isPermaLink="true">http://localhost:8000/2026-04-05-strand_agent/</guid>
       </item>
     
   </channel>

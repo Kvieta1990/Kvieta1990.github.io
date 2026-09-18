@@ -2,7 +2,7 @@
 layout: post
 title: Some Useful Abstract Algebra
 subtitle:
-tags: [maths, crystallography]
+tags: [maths, crystallography, physics]
 author: Yuanpeng Zhang
 comments: true
 use_math: true
