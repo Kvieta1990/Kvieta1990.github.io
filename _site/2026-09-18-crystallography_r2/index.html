@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Some (Random) Notes On crystallography (Part-2)</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="Let’s continue the discussion on some (random) topics about crystallography, and this time, I will start with looking at the diagram for the space group \(R3m\). Meaning carried by those symbols in the diagram are well explained in Refs. [1, 2] and I won’t reproduce them here. I will just...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/admonitions.css">
+    
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Some (Random) Notes On crystallography (Part-2)">
+  <meta property="og:description" content="Let’s continue the discussion on some (random) topics about crystallography, and this time, I will start with looking at the diagram for the space group \(R3m\). Meaning carried by those symbols in the diagram are well explained in Refs. [1, 2] and I won’t reproduce them here. I will just...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-09-18T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-09-18-crystallography_r2/">
+  <link rel="canonical" href="http://localhost:8000/2026-09-18-crystallography_r2/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Some (Random) Notes On crystallography (Part-2)">
+  <meta property="twitter:description" content="Let’s continue the discussion on some (random) topics about crystallography, and this time, I will start with looking at the diagram for the space group \(R3m\). Meaning carried by those symbols in the diagram are well explained in Refs. [1, 2] and I won’t reproduce them here. I will just...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-2020.us/script.js" data-website-id="387a3202-bb18-41ba-a954-d985ff940209"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://ha.iris-2020.us">My HomeArr</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Some (Random) Notes On crystallography (Part-2)</h1>
+          
+
+          
+					<span class="post-meta">Posted on September 18, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-1 col-lg-8 offset-lg-1 col-12 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>Let’s continue the discussion on some (random) topics about crystallography, and this time, I will start with looking at the diagram for the space group \(R3m\).</p>
+
+<p align="center">
+<a href="/assets/img/posts/R3m.png" target="_blank">
+<img src="/assets/img/posts/R3m.png" style="border:none;" width="1000" alt="R3m" title="R3m" />
+</a>
+</p>
+
+<p>Meaning carried by those symbols in the diagram are well explained in Refs. [1, 2] and I won’t reproduce them here. I will just put down some notes which I think will be helpful in understanding the diagram and the underlying symmetry.</p>
+
+<h2 id="r3m-diagram">\(R3m\) diagram</h2>
+
+<p>First, it should be noted that the diagram shows the projection of the lattice onto the \((111)\) plane – in the layer below the space group diagram [3], I put a dummy structure created in Vesta [4] viewed from the \([111]\) direction in the rhombohedral setting. As the result of the screw axis (there is something we need to talk about on this, will come back to it), we have some of those generated points leveraged above the screen plane, indicated by \(+\frac{1}{3}\) and \(+\frac{2}{3}\). The fraction here refers to the diagonal \([111]\) axis of the rhombohedral unit cell, and on the right side of the figure, I present the unit cell viewed from another angle so that the \([111]\) direction lies in the screen and points to the right. Also, I labeled out those fractions for better understanding what we mean by \(+\frac{1}{3}\) and \(+\frac{2}{3}\). An animation is included below to see how we transition from the projection view to the side view – nothing fundamental but just for better constructing the spatial picture in our brain,</p>
+
+<p align="center">
+<a href="/assets/img/posts/R3m_projection_rotation.gif" target="_blank">
+<img src="/assets/img/posts/R3m_projection_rotation.gif" style="border:none;" width="1000" alt="R3m_projection_rotation" title="R3m_projection_rotation" />
+</a>
+</p>
+
+<p>Second, taking the \(R3m\) diagram as an example, I want to put down a general note about space groups. It may sound obvious but is indeed critical in understanding concepts like the Wyckoff position. We know a space group contains a lot of symmetry operations, like all those symbols in the space group diagram for \(R3m\) presented above. Meanwhile, it is also important to be aware of that all those symmetry operations are with respect to some special elements in the lattice, like specific rotation axes, diffrently located and oriented mirror planes, etc. Trivial fact, but it is worthwhile keeping in mind – I will come back to this when talking about the Wyckoff positions.</p>
+
+<h2 id="symmorphic-space-group">Symmorphic Space Group</h2>
+
+<p>Third, if we look at the symmetry operations involved in the space groups (see Ref. [3]), we will realize that no fractional offsets are involved in all those operations – only permutations. This is something special and noteworthy – space groups like this are called symmorphic space groups. By definition, it refers to those space groups in which all the generating symmetry operations, apart from the lattice translations, leave one common point fixed [2, 5]. For example, for \(R3m\), the common fixed point is \((0, 0, 0)\). Following the IUC convention (see section 8.1.6 in Ref. [2]), we can tell whether a space group is symmorphic straightforwardly – if they are, the Hermann-Mauguin symbol does not contain any glide or screw operations. This means the generators can neither be glide nor screw if the space group were to be symmorphic. However, this does not mean the space group cannot contain screw or glide operations. A typical example is already presented here in this post – the \(R3m\) space group. As can be told from the diagram, we do have both glide planes and screw axes in the space group but \(R3m\) is indeed symmorphic. This cries for some noting.</p>
+
+<p align="center">
+<a href="/assets/img/posts/R3m_symmorphic.png" target="_blank">
+<img src="/assets/img/posts/R3m_symmorphic.png" style="border:none;" width="1000" alt="R3m_symmorphic" title="R3m_symmorphic" />
+</a>
+</p>
+
+<p>In the bottom-left panel of the figure, I presented the 3D view of the rhombohedral lattice for \(R3m\) (shown on the right is its 2D projection onto the plane perpendicular to the \([111]\) direction). The screw axis corresponding to the circled symmetry element in the space group diagram (the top panel) is shown – in 3D, it is an axis parallel to the \([111]\) direction of the rhombohedral unit cell, passing through the point \(\frac{2}{3}\vec{a} + \frac{1}{3}\vec{b}\) (which is located in the \(ab\) plane). Performing the \(3_1\) screw operation around this axis, we will first bring bring the origin from \(\mathbf{0}\) to \(\mathbf{0}'\) as shown in the figure, followed by translating upwards along the \([111]\) direction by \(\frac{1}{3}\) (again, with respect to the \([111]\) diagonal length). As the result, we will end up with the point at the tip of the lattice vector \(\vec{a}\), as shown in the figure. This is the point – although we do have \(3_1\) screw axis in the space group, it is not an intrinsic to the structure. When I say ‘intrinsic’, I mean those symmetry elements that are necessary for describing the crystal structure symmetry. In this case, we do have the \(3_1\) symmetry but it is not necessary – all its operations can be replaced by simple lattice vector translations. Same thing for the glide plane, and therefore neither the glide nor the screw operations here are the space group generators, making \(R3m\) a symmorphic space group.</p>
+
+<p>Let’s also put down some maths to double check what we said. In the rhombohedral lattice basis, the 3-fold rotation axis around the \([111]\) direction of the rhombohedral lattice can be performed with the following matrix,</p>
+
+\[R =
+\begin{bmatrix}
+0 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0
+\end{bmatrix}\]
+
+<p>so that the operation will be \(\mathbf{x}' = R\mathbf{x}\), bringing \(\vec{a} \rightarrow \vec{b}\), \(\vec{b} \rightarrow \vec{c}\) and \(\vec{c} \rightarrow \vec{a}\). If we shift the rotation axis to somewhere else (but still parallel to \([111]\)), the operation then becomes,</p>
+
+\[\mathbf{x}' = \mathbf{p} + R(\mathbf{x} - \mathbf{p}) = R\mathbf{x} + (\mathbb{I} - R)\mathbf{p}\]
+
+<p>where \(\mathbf{p}\) is the shifting vector lying in the \(ab\) plane. For formula above is understandable – we first shift the origin to \(\mathbf{p}\) so that \(\mathbf{x}\) in the original coordinate system becomes \(\mathbf{x} - \mathbf{p}\) in the new coordinate system, then perform the rotation, and finally shift the origin back. Now, we can confirm how \((0, 0, 0)\) transforms,</p>
+
+\[\mathbf{x}'(\mathbf{0}) = \begin{bmatrix}
+0 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0
+\end{bmatrix}\begin{bmatrix}
+0 \\
+0 \\
+0
+\end{bmatrix} + \begin{bmatrix}
+1 &amp; 0 &amp; -1 \\
+-1 &amp; 1 &amp; 0 \\
+0 &amp; -1 &amp; 1
+\end{bmatrix}\begin{bmatrix}
+\frac{2}{3} \\
+\frac{1}{3} \\
+0
+\end{bmatrix} = \begin{bmatrix}
+\frac{2}{3} \\
+-\frac{1}{3} \\
+-\frac{1}{3}
+\end{bmatrix}\]
+
+<p>Then we apply the translation part of the screw axis, corresponding to,</p>
+
+\[\frac{1}{3}(\vec{a} + \vec{b} + \vec{c}) = \begin{bmatrix}
+\frac{1}{3} \\
+\frac{1}{3} \\
+\frac{1}{3}
+\end{bmatrix}\]
+
+<p>giving us,</p>
+
+\[\begin{bmatrix}
+\frac{2}{3} \\
+-\frac{1}{3} \\
+-\frac{1}{3}
+\end{bmatrix} + \begin{bmatrix}
+\frac{1}{3} \\
+\frac{1}{3} \\
+\frac{1}{3}
+\end{bmatrix} = \begin{bmatrix}
+1 \\
+0 \\
+0
+\end{bmatrix}\]
+
+<p>That is exactly what we claimed, the point \((0, 0, 0)\) is shifted by the lattice vector \(\vec{a}\) as the result of the screw operation.</p>
+
+<p>In total, we have 73 symmorphic space groups and they are in one-to-one correspondence with the <code class="language-plaintext highlighter-rouge">arithmetic crystal classes</code> [5, 6]. To see what the arithmetic crystal class means, we need to know about the geometric crystal class [7], which is basically a way of classifying crystals according to their point groups. So naturally the geometric crystal class is in one-to-one correspondence with point groups. As for the arithmetic crystal class, it is also a way of classifying crystals according to symmetry groups and this time it is according to the space groups formed by combining point groups with only Bravais lattice translations, i.e., those symmorphic space groups.</p>
+
+<h3 id="when-will-point-group-be-the-subgroup-of-space-group">When will point group be the subgroup of space group?</h3>
+
+<p>In space groups, operations are given as \(\{R \vert \mathbf{t}_R\}\), combining point operations with translations. So, generally, we don’t always have the point group of a crystal structure as the subgroup of the space group. Only when the space group is symmorphic will we have the point group as the subgroup of the space group. First, for a space group \(G\), we have all the pure translations (i.e., the Bravais lattice) forming a group \(T\), as the subgroup of \(G\). Then we can have all the left cosets corresponding to \(T\) by multiplying all the point-translation combined operations on the left of \(T\). To have the point group as the subgroup of \(G\), we require \(\{R\vert \mathbf{0}\}\) existing in all the cosets (corresponding to all \(R\)). Why? Because in that case, we can collect all the \(\{R \vert \mathbf{0}\}\) for all the point operations \(R\), which then natuarally gives the point group, as the subgroup of the space group. In those cases where the condition is not met, not all the point operations are existing independently (i.e., without combining with translations) and therefore those independent point operations do not even form a group, not to say being the subgroup of the space group. To meet the condition, either the translation \(\mathbf{t}_R\) in \(\{R \vert \mathbf{t}_R\}\) is not corresponding to screw or glide operations (so that \(\mathbf{t}_R\) can always be made \(\mathbf{0}\) by origin choice for all \(R\), meaning that all the point operations \(R\) can be made <code class="language-plaintext highlighter-rouge">pure</code>) or the screw or glide \(\mathbf{t}_R\) is not intrinsic at all (so that \(\{R \vert \mathbf{t}_R\}\) can always replaced by \(\{E \vert \mathbf{0}\}\) – see the \(R3m\) example discussed above. \(E\) means identity point operation, i.e., doing nothing).</p>
+
+<p>Earlier when we put down the definition for the symmorphic space group, we say,</p>
+
+<blockquote>
+  <p>it refers to those space groups in which all the generating symmetry operations, apart from the lattice translations, leave one common point fixed</p>
+</blockquote>
+
+<p>The question is how this is relevant to the requirement above,</p>
+
+<blockquote>
+  <p>\(\{R\vert \mathbf{0}\}\) existing in all the cosets (corresponding to all \(R\))</p>
+</blockquote>
+
+<p>The top requirement says, there exists a point \(\mathbf{x}_0 \in \mathbb{R}^3\) such that every generator \(\{R \vert \mathbf{t}_R\}\) (other than pure translations) satisfies,</p>
+
+\[\{R \vert \mathbf{t}_R\}\mathbf{x}_0 = \mathbf{x}_0\]
+
+<p>Acting out the left side,</p>
+
+\[R\mathbf{x}_0 + \mathbf{t}_R = \mathbf{x}_0 \Rightarrow \mathbf{t}_R = (E - R) \mathbf{x}_0\]
+
+<p>That means for all \(\{R \vert \mathbf{t}_R\}\), if we shift the origin to \(\mathbf{x}_0\) (the fixed point, if existing), we have,</p>
+
+\[\mathbf{t}_R \mapsto \mathbf{t}_R + (R - E)\mathbf{x}_0 = \mathbf{t}_R - (E - R)\mathbf{x}_0\]
+
+<p>Since we have already worked out the top requirement yielding \(\{R \vert \mathbf{t}_R\}\mathbf{x}_0 = \mathbf{x}_0\), shifting the origin to \(\mathbf{x}_0\) yields,</p>
+
+\[\mathbf{t}_R \mapsto \mathbf{0}\]
+
+<p>proving that the two requirements are equivalent.</p>
+
+<h2 id="wyckoff-position">Wyckoff Position</h2>
+
+<p>There is no need to emphasize the importance of Wyckoff position in describing crystal structures, and we know they are special positions, ‘special’ in the sense that some of the symmetry elements (including the identity operation) involved in the space group leave atoms on those positions fixed. When we see a Wyckoff position symbol like \(4f\) for the space group \(P4mm\), we know the multiplicity of the site is 4, meaning that atoms on any of positions in the set will generate 4 equivalent positions. Stepping back a bit, we can always ask, what is the actual definition of Wyckoff position, rigorously? Let’s dive a bit deeper into it, where we will see some relevance to the discussion earlier in this post about the reference elements when talking about space group operations.</p>
+
+<p>First, let’s put down the rigorous definition for Wyckoff position. It is a set of positions, and the site symmetry group for positions in the set are all conjugate sugroup to each other. Oh no, a simple thing we keep referring to in our daily life dealing with crystal structures suddenly becomes a bit involved. Well, first, it is rigorous, definitely better than just vague descriptions. Second, learning about its rigorous definition is helpful in understanding what we fundamentally mean when we say points belonging to the same Wyckoff position are equivalent to each other. Let’s start with the notion of <code class="language-plaintext highlighter-rouge">site symmetry group</code>. Literally, it means the symmetry group for a specific site, a group of symmetry elements that leave the site invariant. It is a subgroup of the space group of the structure.</p>
+
+<p>Knowing what the site symmetry group means, we can be clear about what we mean by equivalence among all those points invovled in a Wyckoff position (remember the definition – a Wyckoff position is a set of positions). Mathematically, this just means the site symmetry groups for all those points in the Wyckoff position are conjugate to each other. This may still be a bit abstract, so let’s put down a specific example,</p>
+
+<p align="center">
+<a href="/assets/img/posts/P4mm_demo.png" target="_blank">
+<img src="/assets/img/posts/P4mm_demo.png" style="border:none;" width="500" alt="P4mm_demo" title="P4mm_demo" />
+</a>
+</p>
+
+<p>Here is presented the space group diagram for \(P4mm\) and the two points circled out with light blue color belong to the Wyckoff position \(2c\) with the coordinate in the form of \((1/2, 0, z)\) and \((0, 1/2, z)\). This Wyckoff position therefore contains all points with the \(a\) coordinate fixed at \(x = 1/2\) (or \(0\)), \(b\) coordinate fixed at \(y = 0\) (or \(1/2\)), and \(c\) coordinate \(z\) being anything. Looking at the diagram, we can see that both of the two series of positions have the following set of symmetries, identity, a 2-fold rotation, two mirror reflections. Therefore, if we focus on the point operation part for each site symmetry group, the two sites basically have identical local point symmetry. Mathematically, we say both of the site symmetry groups are isomorphic to the same point group, namely \(mm2\) in this case. Regarding the site symmetry group, we have,</p>
+
+\[\mathrm{Stab}(0,1/2,z) = g\,\mathrm{Stab}(1/2,0,z)\,g^{-1}.\]
+
+<blockquote class="info">
+  <p>The site symmetry group contains space group operations and therefore do carry the translation part, given as \(\{R \vert \mathbf{t}\}\). Therefore, they can only be isomorphic to subgroups of the point group that the space group belongs to, but the site symmetry groups themselves cannot be the subgroup of the point group.</p>
+
+  <p><br /></p>
+
+  <p>Also, the site symmetry group does care about the location of the symmetry elements, as we will see below, which is fundamentally why the conjugacy (but not necessarily being identical) is required for the site symmetry group for defining the Wyckoff position.</p>
+</blockquote>
+
+<p>where \(\mathrm{Stab}(0,1/2,z)\) and \(\mathrm{Stab}(1/2,0,z)\) means the site symmetry group for the site \((0,1/2,z)\) and \((1/2, 0, z)\), respectively. \(g\) refers to an operation in the space group but not in either of the site symmetry groups – in the diagram presented above, \(g\) is the 4-fold rotation with respect to the \(c\)-axis (with \(\mathbf{0}\) translation, i.e., \(\mathbf{t} = 0\)). Specifically, for the site \((0,1/2,z)\), the site symmetry group is,</p>
+
+\[\{\,1,\;\; 2\!\left[0,\tfrac12\right],\;\; m_{x=0},\;\; m_{y=1/2}\,\}\]
+
+<p>and for the site \((1/2,0,z)\), it is,</p>
+
+\[\{\,1,\;\; 2\!\left[\tfrac12,0\right],\;\; m_{x=1/2},\;\; m_{y=0}\,\}\]
+
+<p>These are two groups as the symmetry elements involved in each are not identical. But they are conjugate, as given in the formula earlier (which I will prove below). Visually, what this means can be told from the diagram above. With the \(g\) operation, the site at \((1/2,0,z)\) is brought to \((0,1/2,z)\), the local 2-fold rotation axis is brought to the corresponding new location. Same thing happens for the two mirror planes as well with their orientations also changed (refer to the two differently colored mirror planes). However, even though the symmetry elements are either relocated or reoriented, the type of symmetry still does not change. Therefore, the site symmetry for the two sites should be considered as equivalent, and that is what the <code class="language-plaintext highlighter-rouge">conjugacy</code> guarantees.</p>
+
+<p>Finally, let’s mathematically walk through the equivalence among sites in a Wyckoff position and the conjugacy of the site symmetry groups. Let \(G\) be the space group acting on points by \(g\cdot \mathbf{x}\), with \(g \in G\) and \(\mathbf{x} \in \mathbb{R}^3\). For a point \(\mathbf{p}\), we have its stabalizer given as,</p>
+
+\[\text{Stab}(\mathbf{p}) = \{ h \in G : h\cdot \mathbf{p} = \mathbf{p}\}\]
+
+<p>For \(g \in G\) and \(g \notin \text{Stab}(\mathbf{p})\), we have,</p>
+
+\[\mathbf{q} = g\cdot \mathbf{p}\]
+
+<p>i.e., the operation \(g\) brings the point \(\mathbf{p}\) to \(\mathbf{q}\). Take any \(h \in \text{Stab}(\mathbf{p})\) and conjugate it with \(g\), we have,</p>
+
+\[(ghg^{-1})\cdot\mathbf{q} = (ghg^{-1}) \cdot (g\cdot \mathbf{p}) = g\cdot h\cdot (g^{-1}g)\cdot \mathbf{p} = g\cdot h\cdot \mathbf{p} = g\cdot \mathbf{p} = \mathbf{q}\]
+
+<p>So \(ghg^{-1}\) fixes the new point \(\mathbf{q}\), i.e., \(ghg^{-1} \subseteq \text{Stab}(\mathbf{q})\) and therefore \(g\,\text{Stab}(\mathbf{p})\,g^{-1}\subseteq \mathrm{Stab}(\mathbf{q})\). Reversely, we can take any \(k \in \text{Stab}(\mathbf{q})\), and accordingly, we have,</p>
+
+\[k\cdot \mathbf{q} = \mathbf{q} \Rightarrow d \cdot (g\cdot \mathbf{p}) = g\cdot\mathbf{p}\]
+
+<p>Applying \(g^{-1}\) to both sides gives,</p>
+
+\[(g^{-1}kg)\cdot \mathbf{p} = \mathbf{p}\]
+
+<p>This means,</p>
+
+\[g^{-1}kg \in \text{Stab}(\mathbf{p}) \Rightarrow k \in g\text{Stab}(\mathbf{p})g^{-1} \Rightarrow \text{Stab}(\mathbf{q}) \subseteq g\text{Stab}(\mathbf{p})g^{-1}\]
+
+<p>Combined with relation we just derived above \(g\,\text{Stab}(\mathbf{p})\,g^{-1}\subseteq \mathrm{Stab}(\mathbf{q})\), we have,</p>
+
+\[\text{Stab}(\mathbf{q}) = g\text{Stab}(\mathbf{p})g^{-1}\]
+
+<p>This means, for the site \(\mathbf{p}\), we have its site symmetry group as \(\text{Stab}(\mathbf{p})\). If a space group operation \(g\) not in the stabalizer brings \(\mathbf{p}\) to \(\mathbf{q}\), the site symmetry group of the new site \(\mathbf{q}\) is given as \(g\text{Stab}(\mathbf{p})g^{-1}\) which is conjugate to \(\text{Stab}(\mathbf{p})\) (this is the definition of conjugate subgroups). Let’s walk through the conjugacy formulation and we can see why the derived conjugacy here means equivalence among sites involved in a Wyckoff position. For the position \(\mathbf{q}\) obtained after the operation of \(g\), not only the position of the object is changed but also the symmetry elements (rotation axis, mirror planes, etc.) are reoriented. To link to the situation before the operation of \(g\), let’s do this. We first apply \(g^{-1}\) on \(\mathbf{q}\) to bring it back to \(\mathbf{p}\). Then whatever symmetry operations in \(\text{Stab}(\mathbf{p})\) will leave \(\text{p}\) invariant. Then we apply \(g\) again to bring it back to \(\mathbf{q}\). Doing this, we find that no matter how the symmetry elements are changed by the operation of \(g\), we can always follow the chain of actions as given here to stabalize \(\mathbf{q}\) the same way as how \(\text{Stab}(\mathbf{p})\) would stabalize \(\mathbf{p}\) before the operation of \(g\). Therefore, the operation of \(g\) does not change anything fundamentally regarding the site symmetry – that’s exactly what we mean by equivalence among sites involved in a Wyckoff position. Since the chain of action we performed here is just \(g\text{Stab}(\mathbf{p})g^{-1}\), exactly the conjugate of \(\text{Stab}(\mathbf{p})\), we then understand why the Wyckoff position is defined by the conjugacy of site symmetry groups.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] <a href="http://img.chem.ucl.ac.uk/sgp/misc/symbols.htm">Space Group Diagram Symbols</a>.</p>
+
+<p>[2] International Tables for Crystallography, Volume A, 5th edition.</p>
+
+<p>[3] <a href="http://img.chem.ucl.ac.uk/sgp/large/160az1.htm">R3m space group diagram</a>.</p>
+
+<p>[4] K. Momma and F. Izumi (2008): J. Appl. Crystallogr., 41, 653-658.</p>
+
+<p>[5] <a href="https://dictionary.iucr.org/Symmorphic_space_groups">Symmorphic space groups</a>.</p>
+
+<p>[6] <a href="https://dictionary.iucr.org/Arithmetic_crystal_class">Arithmetic crystal class</a></p>
+
+<p>[7] <a href="https://dictionary.iucr.org/Geometric_crystal_class">Geometric crystal class</a></p>
+
+<p>[8] <a href="http://img.chem.ucl.ac.uk/sgp/large/099az1.htm">P4mm space group diagram</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#maths">maths</a>
+          
+            <a href="/tags#crystallography">crystallography</a>
+          
+            <a href="/tags#physics">physics</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Some+%28Random%29+Notes+On+crystallography+%28Part-2%29&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-18-crystallography_r2%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-09-18-crystallography_r2%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-18-crystallography_r2%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-09-17-crystallography_r1/" data-toggle="tooltip" data-placement="top" title="Some (Random) Notes On crystallography (Part-1)">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+
+    
+    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+      <nav id="toc-container" class="toc-sidebar">
+        <div class="toc-title">Contents</div>
+        <ul id="toc-list"></ul>
+      </nav>
+    </div>
+    
+  </div>
+</div>
+
+
+  <script src="/assets/js/toc.js" defer></script>
+
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zyroc1990@iris-2020.us" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/copyCode.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

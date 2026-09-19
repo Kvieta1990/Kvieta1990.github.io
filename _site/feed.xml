@@ -12,10 +12,21 @@
     
     
       <item>
+        <title>Some (Random) Notes On crystallography (Part-2)</title>
+        <description>
+          
+          Let’s continue the discussion on some (random) topics about crystallography, and this time, I will start with looking at the diagram for the space group \(R3m\). Meaning carried by those symbols in the diagram are well explained in Refs. [1, 2] and I won’t reproduce them here. I will just...
+        </description>
+        <pubDate>Fri, 18 Sep 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-09-18-crystallography_r2/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-09-18-crystallography_r2/</guid>
+      </item>
+    
+      <item>
         <title>Some (Random) Notes On crystallography (Part-1)</title>
         <description>
           
-          This post is not meant to be a systematic note about a specific topic. It’s a collection of learning notes on a few basic topics on crystallography and may come in a sort of random order, which may seem a bit messy at a first (second, or maybe even third)...
+          This series of posts are not meant to be a systematic note about a specific topic. It’s a collection of learning notes on a few basic topics on crystallography and may come in a sort of random order, which may seem a bit messy at a first (second, or maybe...
         </description>
         <pubDate>Thu, 17 Sep 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-09-17-crystallography_r1/</link>
@@ -218,17 +229,6 @@
         <pubDate>Wed, 29 Jul 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-07-29-cross_entropy_loss_gradient/</link>
         <guid isPermaLink="true">http://localhost:8000/2026-07-29-cross_entropy_loss_gradient/</guid>
-      </item>
-    
-      <item>
-        <title>Explanation About Subnet Mask with Some Simple Examples</title>
-        <description>
-          
-          If we think of network as a big region in which we have a lot of houses (analogous to devices in the network), subnets are just smaller sub-regions inside the big region. Houses are separated according to those sub-regions, which determines how they can talk to each other. This is...
-        </description>
-        <pubDate>Thu, 23 Jul 2026 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2026-07-23-subnet/</link>
-        <guid isPermaLink="true">http://localhost:8000/2026-07-23-subnet/</guid>
       </item>
     
   </channel>

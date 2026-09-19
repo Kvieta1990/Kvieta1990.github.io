@@ -8,7 +8,7 @@ comments: true
 use_math: true
 ---
 
-This post is not meant to be a systematic note about a specific topic. It's a collection of learning notes on a few basic topics on crystallography and may come in a sort of random order, which may seem a bit messy at a first (second, or maybe even third) look. However, topics covered in the post are indeed relevant to each other since they were all emerging as I was trying to clarify my understanding for those relevant topics. I don't remember which one of them did I start from -- anyhow, as I dived into a specific topic, relevant new topics keep emerging and I was trying my best to scribble down whatever in my mind at that moment. So, the post here roughly follows my scribbles on the draft paper.
+This series of posts are not meant to be a systematic note about a specific topic. It's a collection of learning notes on a few basic topics on crystallography and may come in a sort of random order, which may seem a bit messy at a first (second, or maybe even third) look. However, topics covered in the post are indeed relevant to each other since they were all emerging as I was trying to clarify my understanding for those relevant topics. I don't remember which one of them did I start from -- anyhow, as I dived into a specific topic, relevant new topics keep emerging and I was trying my best to scribble down whatever in my mind at that moment. So, the post here roughly follows my scribbles on the draft paper.
 
 ## Crystal System
 
@@ -157,16 +157,16 @@ In this case, we have all those rectangles in the previous case becoming squares
 
 ## References
 
-[1] [Crystal_system#Crystal_classes](https://en.wikipedia.org/wiki/Crystal_system#Crystal_classes)
+[1] [Crystal_system#Crystal_classes](https://en.wikipedia.org/wiki/Crystal_system#Crystal_classes).
 
-[2] [Crystal system](https://en.wikipedia.org/wiki/Crystal_system#Crystal_classes)
+[2] [Crystal system](https://en.wikipedia.org/wiki/Crystal_system#Crystal_classes).
 
-[3] [Crystal systems table](https://en.wikipedia.org/wiki/Crystal_system#In_3_dimensions)
+[3] [Crystal systems table](https://en.wikipedia.org/wiki/Crystal_system#In_3_dimensions).
 
-[4] [Holohedry](https://dictionary.iucr.org/Holohedry)
+[4] [Holohedry](https://dictionary.iucr.org/Holohedry).
 
-[5] [Geometric crystal class](https://dictionary.iucr.org/Geometric_crystal_class)
+[5] [Geometric crystal class](https://dictionary.iucr.org/Geometric_crystal_class).
 
-[6] [Space Group Notation](http://img.chem.ucl.ac.uk/sgp/misc/notation.htm)
+[6] [Space Group Notation](http://img.chem.ucl.ac.uk/sgp/misc/notation.htm).
 
-[7]  I. U. o. Crystallography, International Tables of Crystallography A, 5th Edition, Kluwer Academic Publishers, Dordrecht, the Netherlands, 2002.
+[7] International Tables for Crystallography, Volume A, 5th edition.
