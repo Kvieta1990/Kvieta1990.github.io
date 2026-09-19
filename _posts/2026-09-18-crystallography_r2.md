@@ -8,6 +8,8 @@ comments: true
 use_math: true
 ---
 
+## $$R3m$$ diagram
+
 Let's continue the discussion on some (random) topics about crystallography, and this time, I will start with looking at the diagram for the space group $$R3m$$.
 
 <p align='center'>
@@ -21,8 +23,6 @@ Let's continue the discussion on some (random) topics about crystallography, and
 </p>
 
 Meaning carried by those symbols in the diagram are well explained in Refs. [1, 2] and I won't reproduce them here. I will just put down some notes which I think will be helpful in understanding the diagram and the underlying symmetry.
-
-## $$R3m$$ diagram
 
 First, it should be noted that the diagram shows the projection of the lattice onto the $$(111)$$ plane -- in the layer below the space group diagram [3], I put a dummy structure created in Vesta [4] viewed from the $$[111]$$ direction in the rhombohedral setting. As the result of the screw axis (there is something we need to talk about on this, will come back to it), we have some of those generated points leveraged above the screen plane, indicated by $$+\frac{1}{3}$$ and $$+\frac{2}{3}$$. The fraction here refers to the diagonal $$[111]$$ axis of the rhombohedral unit cell, and on the right side of the figure, I present the unit cell viewed from another angle so that the $$[111]$$ direction lies in the screen and points to the right. Also, I labeled out those fractions for better understanding what we mean by $$+\frac{1}{3}$$ and $$+\frac{2}{3}$$. An animation is included below to see how we transition from the projection view to the side view -- nothing fundamental but just for better constructing the spatial picture in our brain,
 
@@ -38,9 +38,11 @@ First, it should be noted that the diagram shows the projection of the lattice o
 
 Second, taking the $$R3m$$ diagram as an example, I want to put down a general note about space groups. It may sound obvious but is indeed critical in understanding concepts like the Wyckoff position. We know a space group contains a lot of symmetry operations, like all those symbols in the space group diagram for $$R3m$$ presented above. Meanwhile, it is also important to be aware of that all those symmetry operations are with respect to some special elements in the lattice, like specific rotation axes, diffrently located and oriented mirror planes, etc. Trivial fact, but it is worthwhile keeping in mind -- I will come back to this when talking about the Wyckoff positions.
 
+Third, if we look at the symmetry operations involved in the space groups (see Ref. [3]), we will realize that no fractional offsets are involved in all those operations -- only permutations. This is something special and noteworthy -- space groups like this are called symmorphic space groups. So, what are `symmorphic space groups`? Let's talk about it.
+
 ## Symmorphic Space Group
 
-Third, if we look at the symmetry operations involved in the space groups (see Ref. [3]), we will realize that no fractional offsets are involved in all those operations -- only permutations. This is something special and noteworthy -- space groups like this are called symmorphic space groups. By definition, it refers to those space groups in which all the generating symmetry operations, apart from the lattice translations, leave one common point fixed [2, 5]. For example, for $$R3m$$, the common fixed point is $$(0, 0, 0)$$. Following the IUC convention (see section 8.1.6 in Ref. [2]), we can tell whether a space group is symmorphic straightforwardly -- if they are, the Hermann-Mauguin symbol does not contain any glide or screw operations. This means the generators can neither be glide nor screw if the space group were to be symmorphic. However, this does not mean the space group cannot contain screw or glide operations. A typical example is already presented here in this post -- the $$R3m$$ space group. As can be told from the diagram, we do have both glide planes and screw axes in the space group but $$R3m$$ is indeed symmorphic. This cries for some noting.
+By definition, it refers to those space groups in which all the generating symmetry operations, apart from the lattice translations, leave one common point fixed [2, 5]. For example, for $$R3m$$, the common fixed point is $$(0, 0, 0)$$. Following the IUC convention (see section 8.1.6 in Ref. [2]), we can tell whether a space group is symmorphic straightforwardly -- if they are, the Hermann-Mauguin symbol does not contain any glide or screw operations. This means the generators can neither be glide nor screw if the space group were to be symmorphic. However, this does not mean the space group cannot contain screw or glide operations. A typical example is already presented here in this post -- the $$R3m$$ space group. As can be told from the diagram, we do have both glide planes and screw axes in the space group but $$R3m$$ is indeed symmorphic. This cries for some noting.
 
 <p align='center'>
 <a href="/assets/img/posts/R3m_symmorphic.png" target="_blank">
