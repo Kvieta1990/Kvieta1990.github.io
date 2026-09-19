@@ -8,7 +8,7 @@ comments: true
 use_math: true
 ---
 
-## $$R3m$$ diagram
+## $$R3m$$ Diagram
 
 Let's continue the discussion on some (random) topics about crystallography, and this time, I will start with looking at the diagram for the space group $$R3m$$.
 
@@ -258,9 +258,89 @@ $$
 
 This means, for the site $$\mathbf{p}$$, we have its site symmetry group as $$\text{Stab}(\mathbf{p})$$. If a space group operation $$g$$ not in the stabalizer brings $$\mathbf{p}$$ to $$\mathbf{q}$$, the site symmetry group of the new site $$\mathbf{q}$$ is given as $$g\text{Stab}(\mathbf{p})g^{-1}$$ which is conjugate to $$\text{Stab}(\mathbf{p})$$ (this is the definition of conjugate subgroups). Let's walk through the conjugacy formulation and we can see why the derived conjugacy here means equivalence among sites involved in a Wyckoff position. For the position $$\mathbf{q}$$ obtained after the operation of $$g$$, not only the position of the object is changed but also the symmetry elements (rotation axis, mirror planes, etc.) are reoriented. To link to the situation before the operation of $$g$$, let's do this. We first apply $$g^{-1}$$ on $$\mathbf{q}$$ to bring it back to $$\mathbf{p}$$. Then whatever symmetry operations in $$\text{Stab}(\mathbf{p})$$ will leave $$\text{p}$$ invariant. Then we apply $$g$$ again to bring it back to $$\mathbf{q}$$. Doing this, we find that no matter how the symmetry elements are changed by the operation of $$g$$, we can always follow the chain of actions as given here to stabalize $$\mathbf{q}$$ the same way as how $$\text{Stab}(\mathbf{p})$$ would stabalize $$\mathbf{p}$$ before the operation of $$g$$. Therefore, the operation of $$g$$ does not change anything fundamentally regarding the site symmetry -- that's exactly what we mean by equivalence among sites involved in a Wyckoff position. Since the chain of action we performed here is just $$g\text{Stab}(\mathbf{p})g^{-1}$$, exactly the conjugate of $$\text{Stab}(\mathbf{p})$$, we then understand why the Wyckoff position is defined by the conjugacy of site symmetry groups.
 
+## Random Collection of Topics
+
+In this part, the notes will really start to fly around. It is indeed just a random collection of topics and I am not planning to dive deep into any of them here. Instead, they are here only as a reminder or as a knot in the knowledge net.
+
+- **Frieze group**. This is the 1D group for the frieze pattern which is a 2D pattern that repeats in 1D. It is like the space group but the translation only happens in 1D so we can imagine that there are not that many operations or frieze groups. In total, we only have 7 of them [9]. The convention of the Hermann-Mauguin symbols is not given explicitly in Ref. [10] and I put it as below,
+
+   - The first place is a letter indicating the lattice type and frieze groups, we only have primitive lattice, i.e., no centered lattice. Therefore, the first letter is always $$p$$.
+
+   - The second place indicates the rotation symmetry with respect to axes perpendicular to the screen. It is either `1` (no rotation symmetry) or `2` (180° rotation symmetry).
+
+   - The third place indicates the mirror symmetry with respect to the line perpendicular to the translation axis. If the fourth place symmetry (see below) does not exist, the `1` in the third place will be omitted.
+
+   - The fourth place indicates the symmetry with respect to the translation axis, either a mirror or glide (reflection with respect to and translation along the translation axis) symmetry.
+
+- **Wallpaper group**. This is the 2D group for the Wallpaper pattern which is a 2D pattern that repeats in 2D. As we have another repeating direction and therefore the pattern and group structure becomes more complicated, as can be imagined. The Wiki page provides comprehensive information about the wallpaper group [10], including the convention of the HM symbols. So no need to reiterate here.
+
+- **Niggli reduced cell**. For some lattice, the selection of primitive cell is not unique. For example, for the 2D oblique lattice shown below, we have infinite number of choices of the primitive unit cell for describing the lattice.
+
+   <p align='center'>
+   <a href="/assets/img/posts/oblique_cell.png" target="_blank">
+   <img src="/assets/img/posts/oblique_cell.png"
+      style="border:none;"
+      width="500"
+      alt="oblique_cell"
+      title="oblique_cell" />
+   </a>
+   </p>
+
+   The Niggli reduced cell provides a unique way of selecting the unit cell among those alternatives, by giving some requirements to meet. Detailed information and algorithm is summarized in Refs. [11, 12]. A useful tool for performing the Niggli reduction is provided in Ref. [13].
+
+- **t-subgroup and k-subgroup**. Say $$H$$ is a subgroup of the space group $$G$$, it is considered as a t-subgroup if all translations in $$G$$ are retained. If we pull all the pure translations in $$G$$ into a subgroup, the t-subgroup is formed by pulling together a portion (not all) of the cosets, i.e., some of the point operations are lost. If, on the other hand, the translations are reduced while the point operations are all retained, the corresponding subgroup is called k-subgroup.
+
+   - Isomorphic k-subgroups are trivial -- the affine space-group type of $$G$$ and the isomorphic k-subgroup is basically the same, namely, they are of the same space group type and share the same HM symbol. The only thing different between them is the lattice parameters, e.g., the lattice parameters of the k-subgroup is doubled in all directions. In this case, all the translations by $$n\vec{a}$$, $$n\vec{b}$$, $$n\vec{c}$$ and linear combinations of them ($$n = 1, 3, 5, c\dots$$) are lost in the k-subgroup structure. The translations by $$n\vec{a}$$, $$n\vec{b}$$, $$n\vec{c}$$ and linear combinations of them ($$n = 2, 4, 6, c\dots$$) are retained. However, the k-subgroup in this case is isomorphic to $$G$$ since for each translation by $$n\vec{a}$$, $$n\vec{b}$$, $$n\vec{c}$$ and linear combinations of them ($$n = 1, 2, 3, c\dots$$), we can always find its mapping in the k-subgroup, namely, the translation by $$2n\vec{a}$$, $$2n\vec{b}$$, $$2n\vec{c}$$ and linear combinations of them ($$n = 1, 2, 3, c\dots$$). This is fundamentally due to the countable infinity of both groups, meaning that even though they are infinite but are both countable and therefore can both be mapped to natural numbers in a one-to-one manner.
+
+   - For non-isomorphic k-subgroups, the first possibility is the loss of centering while keeping the cell. An example is presented below, where $$G = C2/m$$ and the k-subgroup $$H = P2/m$$,
+
+      <p align='center'>
+      <a href="/assets/img/posts/k_subgroup_NI_1.png" target="_blank">
+      <img src="/assets/img/posts/k_subgroup_NI_1.png"
+         style="border:none;"
+         width="500"
+         alt="k_subgroup_NI_1"
+         title="k_subgroup_NI_1" />
+      </a>
+      </p>
+
+   - For the second possibility of non-isomorphic k-subgroups, the unit cell will be enlarged, and an example is presented below, where $$G = P4$$ and the k-subgroup $$H = P4_2$$,
+
+      <p align='center'>
+      <a href="/assets/img/posts/k_subgroup_NI_2.png" target="_blank">
+      <img src="/assets/img/posts/k_subgroup_NI_2.png"
+         style="border:none;"
+         width="1000"
+         alt="k_subgroup_NI_2"
+         title="k_subgroup_NI_2" />
+      </a>
+      </p>
+
+      On the left side, the parent group $$P4$$ contains all the operations in the child group $$P4_2$$. For example, the blue atom on the right is generated by a $$4_2$$ screw. Applying the $$4_2$$ screw twice followed by an $$XY$$ inversion (i.e., $$x \rightarrow -x$$, $$y \rightarrow -y$$ and $$z \rightarrow z$$), we then get back to the original position (shifted along the $$c$$ axis by a lattice vector). On the left, all those positions can be generated by a combination of the 4-fold rotation (which is not in the $$P4_2$$ subgroup) and lattice translations, or if we want, we can also generate them following the same screw and inversion operations as what we did in the $$P4_2$$ subgroup. So, the left space group can generate what the right can, but not vice versa. Therefore, exactly, $$P4$$ is a parent of $$P4_2$$. However, are the point operations not stripped? Yes, since both structures have the point group of $$4$$.
+
+      <br>
+
+      > Since the $$P4_2$$ space group is not symmorphic, the point operation has to be combined with the translation to operate on the structure. So, it is not so straightforward to see the point group of $$P4$$ and $$P4_2$$ is the same. If we strip out the translation part, then all the point operations coincide between the two.
+
+- **Conventional Unit Cell Convention**. Table 2.1.2.1. in Ref. [2] presents the convention of the conventional unit cell choice for all the lattice systems. Although the convention is given, still some of them are not unique, like the triclinic, monoclinic and orthorhombic systems. For triclinic and orthorhombic, it does not say the order of the magnitude of $$a$$, $$b$$ and $$c$$ parameters. For monoclinic, the table says we can choose either the unique $$b$$ or $$c$$, i.e., choosing the 2-fold rotation axis as either $$b$$ or $$c$$. Either one, the order of the magnitude of the other two axes is not given. Some further discussions about this can be found in Ref. [14].
+
+- **Hermann-Mauguin Symbols**. I have already presented the convention of defining the HM symbol in details for the 1D frieze group above. Following the same convention, details about both the 2D wallpaper HM symbols and the 3D space group HM symbols can be found in Table 2.2.4.1. in Ref. [2]. Generally, the first symbol indicates the centering with $$R$$ being special -- it means $$R$$-centering; however, the actual lattice is primitive rhombohedral. The purpose of using $$R$$ is for distinguishing from those primitive trigonal space groups with hexagonal lattices [15]. See more discussions in my previous post [here](../2026-09-17-crystallography_r1/#the-hexagonal-family).
+
+   - In general, we have 4 places in the symbol. Not all the 4 places will always appear, though. It can be 2, 3, or 4 -- the first letter, for sure, should always appear.
+
+   - Triclinic and monoclinic only has the second place -- in the full HM symbol, monoclinic will also have 4 places to help emphasize the unique axis. For example, looking at $$P121$$, we know that the unique axis is $$b$$.
+
+   - For the tetragonal crystal system, the second place always contains $$4$$, inferring its 4-fold axis.
+
+   - For the trigonal crystal system, the second place always contains $$3$$, inferring its 3-fold axis.
+
+   - For the hexagonal crystal system, the second place always contains $$6$$, inferring its 6-fold axis.
+
+   - For the cubic crystal system, the third place always contains $$3$$, inferring the 3-fold axis along the body diagonal of the cubic cell.
+
 ## Acknowledgement
 
-Figures involved in the post use the diagram figures for space groups from Ref. [9]. Thank you Jeremy Karl Cockcroft and the team at Birkbeck College, University of London for this great resource!
+Figures involved in the post use the diagram figures for space groups from Ref. [16]. Thank you Jeremy Karl Cockcroft and the team at Birkbeck College, University of London for this great resource!
 
 ## References
 
@@ -280,4 +360,18 @@ Figures involved in the post use the diagram figures for space groups from Ref. 
 
 [8] [P4mm space group diagram](http://img.chem.ucl.ac.uk/sgp/large/099az1.htm)
 
-[9] [Space Group Diagrams and Tables](http://img.chem.ucl.ac.uk/sgp/large/sgp.htm)
+[9] [Frieze group](https://en.wikipedia.org/wiki/Frieze_group)
+
+[10] [Wallpaper group](https://en.wikipedia.org/wiki/Wallpaper_group)
+
+[11] [Niggli reduced cell (Markdown source)](../assets/files/Niggli_Reduced_Cell.md).
+
+[12] [Niggli reduced cell (rendered)](../assets/files/Niggli_Reduced_Cell.html).
+
+[13] [Reduced Cell and Bravais Lattice](https://xraytools.com/reduce)
+
+[14] [Choice of basis vectors for conventional unit cells revisited](https://doi.org/10.48550/arXiv.1506.01455)
+
+[15] [Space Group Notation](http://img.chem.ucl.ac.uk/sgp/misc/notation.htm).
+
+[16] [Space Group Diagrams and Tables](http://img.chem.ucl.ac.uk/sgp/large/sgp.htm)

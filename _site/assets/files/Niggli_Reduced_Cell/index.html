@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Niggli_Reduced_Cell</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="## 1. Historical and Mathematical Context ### 1.1 Why reduction is necessary A 3D lattice $\Lambda$ is the set of all integer linear combinations of three linearly independent basis vectors $\mathbf{a}, \mathbf{b}, \mathbf{c}$. Any matrix $M \in GL(3,\mathbb{Z})$ — i.e., any $3\times 3$ integer matrix with $\det M = \pm...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/admonitions.css">
+    
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Niggli_Reduced_Cell">
+  <meta property="og:description" content="## 1. Historical and Mathematical Context ### 1.1 Why reduction is necessary A 3D lattice $\Lambda$ is the set of all integer linear combinations of three linearly independent basis vectors $\mathbf{a}, \mathbf{b}, \mathbf{c}$. Any matrix $M \in GL(3,\mathbb{Z})$ — i.e., any $3\times 3$ integer matrix with $\det M = \pm...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:8000/assets/files/Niggli_Reduced_Cell/">
+  <link rel="canonical" href="http://localhost:8000/assets/files/Niggli_Reduced_Cell/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Niggli_Reduced_Cell">
+  <meta property="twitter:description" content="## 1. Historical and Mathematical Context ### 1.1 Why reduction is necessary A 3D lattice $\Lambda$ is the set of all integer linear combinations of three linearly independent basis vectors $\mathbf{a}, \mathbf{b}, \mathbf{c}$. Any matrix $M \in GL(3,\mathbb{Z})$ — i.e., any $3\times 3$ integer matrix with $\det M = \pm...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-2020.us/script.js" data-website-id="387a3202-bb18-41ba-a954-d985ff940209"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://ha.iris-2020.us">My HomeArr</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/updates">Updates</a></li>
+          <li class="nav-item"><a target="_blank" class="nav-link" href="https://flarum.iris-home.net">Forum</a>
+					  </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="page-heading">
+						<h1>Niggli_Reduced_Cell</h1>
+          
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md " role="main">
+  <div class="row">
+    <div class=" page_body ">
+      
+
+      <h2 id="1-historical-and-mathematical-context">1. Historical and Mathematical Context</h2>
+
+<h3 id="11-why-reduction-is-necessary">1.1 Why reduction is necessary</h3>
+
+<p>A 3D lattice $\Lambda$ is the set of all integer linear combinations of three linearly independent basis vectors $\mathbf{a}, \mathbf{b}, \mathbf{c}$. Any matrix $M \in GL(3,\mathbb{Z})$ — i.e., any $3\times 3$ integer matrix with $\det M = \pm 1$ — gives an equally valid description of the same lattice:</p>
+
+\[(\mathbf{a}', \mathbf{b}', \mathbf{c}') = (\mathbf{a}, \mathbf{b}, \mathbf{c})\, M\]
+
+<p>There are infinitely many such $M$, hence infinitely many cells for a single lattice. Niggli (1928), building on Eisenstein (1851), defined a canonical choice: the <strong>Niggli reduced cell</strong>, which is unique up to the symmetry operations of the lattice itself.</p>
+
+<h3 id="12-the-lineage-of-algorithms">1.2 The lineage of algorithms</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Paper</th>
+      <th>Contribution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Niggli (1928)</td>
+      <td>Defines the algebraic conditions for a unique reduced cell</td>
+    </tr>
+    <tr>
+      <td>Buerger (1957)</td>
+      <td>First iterative numerical procedure (does not always reach the unique Niggli cell)</td>
+    </tr>
+    <tr>
+      <td>Gruber (1973), <em>Acta Cryst.</em> A29, 433–440</td>
+      <td>Alternative Buerger-reduction algorithm; classifies 28 unique Niggli type families; introduces what become steps N1–N3, B1–B5</td>
+    </tr>
+    <tr>
+      <td>Křivý &amp; Gruber (1976), <em>Acta Cryst.</em> A32, 297–298</td>
+      <td>Modified algorithm (8 steps A1–A8) that reaches the <em>unique</em> Niggli cell</td>
+    </tr>
+    <tr>
+      <td>Zuo et al. (1995), <em>Acta Cryst.</em> A51, 943–945</td>
+      <td>Optimizes iteration count</td>
+    </tr>
+    <tr>
+      <td>Grosse-Kunstleve, Sauter &amp; Adams (2004), <em>Acta Cryst.</em> A60, 1–6</td>
+      <td>Numerically stable implementation with tolerance $\varepsilon$; proves the naive implementation has ~1% infinite-loop failure rate; derives change-of-basis matrices for each step</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-the-metric-tensor-and-niggli-parameters">2. The Metric Tensor and Niggli Parameters</h2>
+
+<h3 id="21-the-metric-tensor">2.1 The metric tensor</h3>
+
+<p>All geometry of the unit cell is encoded in the <strong>metric tensor</strong> $G$, the $3 \times 3$ Gram matrix of the basis vectors:</p>
+
+\[G = \begin{pmatrix} \mathbf{a}\cdot\mathbf{a} &amp; \mathbf{a}\cdot\mathbf{b} &amp; \mathbf{a}\cdot\mathbf{c} \\ \mathbf{a}\cdot\mathbf{b} &amp; \mathbf{b}\cdot\mathbf{b} &amp; \mathbf{b}\cdot\mathbf{c} \\ \mathbf{a}\cdot\mathbf{c} &amp; \mathbf{b}\cdot\mathbf{c} &amp; \mathbf{c}\cdot\mathbf{c} \end{pmatrix}\]
+
+<p>Under a basis change $(\mathbf{a}’, \mathbf{b}’, \mathbf{c}’) = (\mathbf{a}, \mathbf{b}, \mathbf{c})C$, the metric tensor transforms as:</p>
+
+\[G' = C^T G C\]
+
+<p>This is the fundamental operation underlying Niggli reduction — every step is a congruence transformation of $G$.</p>
+
+<h3 id="22-the-gruberkřivý-notation">2.2 The Gruber/Křivý notation</h3>
+
+<p>Gruber (1973) and Křivý &amp; Gruber (1976) use the following notation:</p>
+
+<p>\(A = \mathbf{a}\cdot\mathbf{a} = a^2\)
+\(B = \mathbf{b}\cdot\mathbf{b} = b^2\)
+\(C = \mathbf{c}\cdot\mathbf{c} = c^2\)
+\(\xi = 2\,\mathbf{b}\cdot\mathbf{c} = 2bc\cos\alpha\)
+\(\eta = 2\,\mathbf{c}\cdot\mathbf{a} = 2ca\cos\beta\)
+\(\zeta = 2\,\mathbf{a}\cdot\mathbf{b} = 2ab\cos\gamma\)</p>
+
+<p>So the metric tensor becomes:</p>
+
+\[G = \begin{pmatrix} A &amp; \zeta/2 &amp; \eta/2 \\ \zeta/2 &amp; B &amp; \xi/2 \\ \eta/2 &amp; \xi/2 &amp; C \end{pmatrix}\]
+
+<p>The factors of 2 in $\xi, \eta, \zeta$ (rather than the cosines themselves) simplify all the expressions that follow. Note:</p>
+<ul>
+  <li>$\xi, \eta, \zeta &gt; 0 \Leftrightarrow$ corresponding angles are acute</li>
+  <li>$\xi, \eta, \zeta &lt; 0 \Leftrightarrow$ corresponding angles are obtuse</li>
+  <li>$\xi, \eta, \zeta = 0 \Leftrightarrow$ corresponding angles are exactly $90°$</li>
+</ul>
+
+<p>The <strong>volume</strong> of the cell is $V = \sqrt{\det G}$, and the positivity condition $\det G &gt; 0$ is required for the cell to be non-degenerate.</p>
+
+<hr />
+
+<h2 id="3-the-niggli-conditions">3. The Niggli Conditions</h2>
+
+<p>A cell $(A, B, C, \xi, \eta, \zeta)$ is Niggli-reduced if and only if all of the following conditions hold simultaneously. They come from §9.3.2 of <em>International Tables for Crystallography</em>, Vol. A, and are derived directly from Niggli (1928):</p>
+
+<h3 id="31-main-conditions--enforce-minimum-lengths">3.1 Main conditions — enforce minimum lengths</h3>
+
+<p>These enforce that $\mathbf{a}$ is the shortest, $\mathbf{b}$ the second shortest, $\mathbf{c}$ the third shortest, in a suitably constrained sense:</p>
+
+\[A \leq B \leq C \tag{M1}\]
+
+\[|\xi| \leq B \tag{M2}\]
+
+\[|\eta| \leq A \tag{M3}\]
+
+\[|\zeta| \leq A \tag{M4}\]
+
+<p>The last three mean that no off-diagonal entry of $G$ can exceed the smaller of the two diagonal entries in the same row/column. This is the Minkowski reduction condition: $\mathbf{a}, \mathbf{b}, \mathbf{c}$ must be among the shortest vectors in the lattice.</p>
+
+<h3 id="32-special-conditions--enforce-uniqueness-of-sign">3.2 Special conditions — enforce uniqueness of sign</h3>
+
+<p>Even after the main conditions are satisfied, there is still residual freedom in choosing signs of the off-diagonal elements. The Niggli conditions eliminate this by requiring all angles to be simultaneously of the same type:</p>
+
+<p><strong>Type I (all obtuse/right):</strong>
+\(\xi \leq 0, \quad \eta \leq 0, \quad \zeta \leq 0 \tag{S1}\)</p>
+
+<p><strong>Type II (all acute/right):</strong>
+\(\xi &gt; 0, \quad \eta &gt; 0, \quad \zeta &gt; 0 \tag{S2}\)</p>
+
+<p>and then additional tie-breaking conditions that kick in at the boundaries:</p>
+
+<p>\(\text{If } \xi = 0 \Rightarrow \eta = 0 \tag{T1}\)
+\(\text{If } \eta = 0 \Rightarrow \zeta = 0 \tag{T2}\)</p>
+
+<h3 id="33-boundary-degenerate-tie-breaking-conditions">3.3 Boundary (degenerate) tie-breaking conditions</h3>
+
+<p>At equalities in M1–M4, additional strict inequalities resolve ambiguity:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$A = B \Rightarrow</td>
+      <td>\xi</td>
+      <td>\leq</td>
+      <td>\eta</td>
+      <td>\tag{D1}$$</td>
+    </tr>
+    <tr>
+      <td>$$B = C \Rightarrow</td>
+      <td>\eta</td>
+      <td>\leq</td>
+      <td>\zeta</td>
+      <td>\tag{D2}$$</td>
+    </tr>
+    <tr>
+      <td>$$</td>
+      <td>\xi</td>
+      <td>= B \Rightarrow \zeta \leq 2\eta \tag{D3}$$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$$</td>
+      <td>\eta</td>
+      <td>= A \Rightarrow \zeta \leq 2\xi \tag{D4}$$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$$</td>
+      <td>\zeta</td>
+      <td>= A \Rightarrow \eta \leq 2\xi \tag{D5}$$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And one more for the body-diagonal case:</p>
+
+\[\xi + \eta + \zeta + A + B = 0 \Rightarrow 2(A + \eta) + \zeta \leq 0 \tag{D6}\]
+
+<p>Conditions D1–D6 are the tie-breaking rules that distinguish among otherwise metrically equivalent choices and make the cell truly <em>unique</em>.</p>
+
+<hr />
+
+<h2 id="4-the-křivýgruber-algorithm-steps-a1a8">4. The Křivý–Gruber Algorithm (Steps A1–A8)</h2>
+
+<p>The Křivý–Gruber (1976) algorithm starts from an arbitrary primitive cell of a three-dimensional Bravais lattice and reaches the Niggli form requisite for lattice type determination. The algorithm is iterative: you apply steps A1–A8 in order, and whenever a step <em>fires</em> (its condition is true), you apply the corresponding transformation and restart from A1. The algorithm terminates when one complete pass through A1–A8 fires no step.</p>
+
+<p>Before describing the steps, we introduce helper variables for the signs:</p>
+
+\[l = \text{sign}(\xi), \quad m = \text{sign}(\eta), \quad n = \text{sign}(\zeta)\]
+
+<p>where we use the convention $\text{sign}(x) = +1$ if $x &gt; 0$, $-1$ if $x &lt; 0$, $0$ if $x = 0$. In practice with tolerance $\varepsilon$: $l = -1$ if $\xi &lt; -\varepsilon$, $l = +1$ if $\xi &gt; +\varepsilon$, else $l = 0$; similarly for $m, n$.</p>
+
+<hr />
+
+<h3 id="step-a1--sort-a-leq-b-with-tie-breaking">Step A1 — Sort $A \leq B$ (with tie-breaking)</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Condition:</strong> $A &gt; B + \varepsilon$, OR ($</td>
+      <td>A - B</td>
+      <td>\leq \varepsilon$ AND $</td>
+      <td>\xi</td>
+      <td>&gt;</td>
+      <td>\eta</td>
+      <td>+ \varepsilon$)</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>The first clause simply sorts lengths. The second handles the degenerate case $A = B$: by condition D1, we need $</td>
+      <td>\xi</td>
+      <td>\leq</td>
+      <td>\eta</td>
+      <td>$, so if this is violated we swap.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Action — swap $\mathbf{a} \leftrightarrow \mathbf{b}$:</strong></p>
+
+\[C_{\text{A1}} = \begin{pmatrix} 0 &amp; -1 &amp; 0 \\ -1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -1 \end{pmatrix}\]
+
+<p>This matrix simultaneously swaps $\mathbf{a}$ and $\mathbf{b}$ and flips $\mathbf{c}$, so that the cell remains right-handed ($\det C = +1$). After this, update all six Niggli parameters:</p>
+
+\[A \leftrightarrow B, \quad \xi \leftrightarrow \eta\]
+
+<p>(and $\zeta$ is unaffected because $\zeta = 2\mathbf{a}\cdot\mathbf{b}$ which is symmetric in $\mathbf{a}, \mathbf{b}$; but the flip of $\mathbf{c}$ leaves $\xi, \eta$ sign-unchanged because both involve $\mathbf{c}$). More precisely the tensor transformation gives:</p>
+
+\[A' = B, \quad B' = A, \quad C' = C, \quad \xi' = \eta, \quad \eta' = \xi, \quad \zeta' = \zeta\]
+
+<p><strong>After firing: go to A1</strong> (restart).</p>
+
+<hr />
+
+<h3 id="step-a2--sort-b-leq-c-with-tie-breaking">Step A2 — Sort $B \leq C$ (with tie-breaking)</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Condition:</strong> $B &gt; C + \varepsilon$, OR ($</td>
+      <td>B - C</td>
+      <td>\leq \varepsilon$ AND $</td>
+      <td>\eta</td>
+      <td>&gt;</td>
+      <td>\zeta</td>
+      <td>+ \varepsilon$)</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>This enforces $B \leq C$ and, when $B = C$, enforces D2: $</td>
+      <td>\eta</td>
+      <td>\leq</td>
+      <td>\zeta</td>
+      <td>$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Action — swap $\mathbf{b} \leftrightarrow \mathbf{c}$:</strong></p>
+
+\[C_{\text{A2}} = \begin{pmatrix} -1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -1 \\ 0 &amp; -1 &amp; 0 \end{pmatrix}\]
+
+<p>The parameter update from $G’ = C^T G C$ gives:</p>
+
+\[A' = A, \quad B' = C, \quad C' = B, \quad \xi' = \zeta, \quad \eta' = \eta \cdot \text{(sign correction)}, \quad \zeta' = \xi\]
+
+<p>More carefully (the $-1$ entries in $C_{\text{A2}}$ flip signs): $B’ = C$, $C’ = B$, $\xi’ = \zeta$, $\zeta’ = \xi$, and $\eta$ acquires sign changes from the two $-1$ diagonal factors: $\eta’ = \eta$ (two flips cancel).</p>
+
+<p><strong>After firing: go to A1</strong> (must re-sort, since $A \leq B$ may now be violated).</p>
+
+<hr />
+
+<h3 id="step-a3--enforce-pure-type-make-all-angles-same-sign">Step A3 — Enforce pure type: make all angles same sign</h3>
+
+<p><strong>Condition:</strong> $lmn = 1$</p>
+
+<p>This means exactly one or all three of $l, m, n$ are positive. In other words, the signs are not all negative/zero (Type I would be $lmn \leq 0$ with all nonpositive). If $lmn = 1$ we are not yet pure Type I or II — we have a “mixed” situation with an odd number of positive signs but at least one negative.</p>
+
+<p>Wait — let’s be more precise. The condition $lmn = 1$ occurs when: all three are positive ($+1 \cdot +1 \cdot +1 = 1$, pure Type II, which is fine), OR exactly two are negative and one positive ($(-1)(-1)(+1) = 1$, which is not a pure type). So the real intent of A3 is to handle the case where the product is positive but not all are positive (two negatives, one positive), by flipping signs to make them all positive. When all three are positive, the product is also $1$, but in that case we want to make $i=j=k=+1$ which does nothing. The step fires and does no harm.</p>
+
+<p><strong>Action — diagonal sign flip:</strong></p>
+
+\[i = \begin{cases} -1 &amp; \text{if } l = -1 \\ +1 &amp; \text{otherwise} \end{cases}, \quad j = \begin{cases} -1 &amp; \text{if } m = -1 \\ +1 &amp; \text{otherwise} \end{cases}, \quad k = \begin{cases} -1 &amp; \text{if } n = -1 \\ +1 &amp; \text{otherwise} \end{cases}\]
+
+\[C_{\text{A3}} = \begin{pmatrix} i &amp; 0 &amp; 0 \\ 0 &amp; j &amp; 0 \\ 0 &amp; 0 &amp; k \end{pmatrix}\]
+
+<p>This flips the sign of any basis vector that has a negative off-diagonal inner product contribution. Effect on parameters:</p>
+
+\[\xi' = ij\,\xi \cdot \frac{\xi}{|\xi|} \cdot \ldots\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>More simply: $\xi \to</td>
+      <td>\ \xi\</td>
+      <td>$, $\eta \to</td>
+      <td>\eta</td>
+      <td>$, $\zeta \to</td>
+      <td>\zeta</td>
+      <td>$, since the diagonal sign changes cancel in $A, B, C$ (each squared) but flip the signs of $\xi, \eta, \zeta$ appropriately. After A3 in this case, all three off-diagonal parameters become positive (Type II).</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>After firing: go to A4.</strong></p>
+
+<hr />
+
+<h3 id="step-a4--enforce-type-i-or-ii-handle-lmn-leq-0">Step A4 — Enforce Type I or II: handle $lmn \leq 0$</h3>
+
+<p><strong>Condition:</strong> NOT ($l = -1$ AND $m = -1$ AND $n = -1$) AND ($lmn = 0$ OR $lmn = -1$)</p>
+
+<p>This step handles the case where the angles are not yet all the same sign, and specifically forces them toward a consistent type. The goal is: if we can’t have all positive, make them all non-positive (Type I).</p>
+
+<p><strong>Action:</strong></p>
+
+<p>Initialize $i = j = k = 1$ and a reference variable $r$ pointing to nothing.</p>
+
+<ul>
+  <li>If $l = +1$: set $i = -1$</li>
+  <li>If $l = 0$: set $r \to i$</li>
+  <li>If $m = +1$: set $j = -1$</li>
+  <li>If $m = 0$: set $r \to j$</li>
+  <li>If $n = +1$: set $k = -1$</li>
+  <li>If $n = 0$: set $r \to k$</li>
+  <li>If $ijk = -1$: set the variable pointed to by $r$ to $-1$</li>
+</ul>
+
+\[C_{\text{A4}} = \begin{pmatrix} i &amp; 0 &amp; 0 \\ 0 &amp; j &amp; 0 \\ 0 &amp; 0 &amp; k \end{pmatrix}\]
+
+<p>The logic: for any angle that is currently positive (acute), flip it to negative (obtuse). If after doing so the product $ijk$ comes out $-1$, it means flipping all positive ones left an odd number of negative signs overall — so we pick one of the zero-angle directions (pointed to by $r$) and flip that too, to bring the parity back.</p>
+
+<p>This step converts any mixed sign pattern to either all-negative (Type I) or all-zero-or-negative. After A4, $\xi \leq 0$, $\eta \leq 0$, $\zeta \leq 0$.</p>
+
+<p><strong>After firing: go to A1</strong> (lengths may have changed).</p>
+
+<hr />
+
+<h3 id="step-a5--reduce-xi">Step A5 — Reduce $|\xi|$</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Condition:</strong> $</td>
+      <td>\xi</td>
+      <td>&gt; B + \varepsilon$, OR ($</td>
+      <td>B - \xi</td>
+      <td>\leq \varepsilon$ AND $2\eta &lt; \zeta - \varepsilon$), OR ($</td>
+      <td>B + \xi</td>
+      <td>\leq \varepsilon$ AND $\zeta &lt; -\varepsilon$)</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>This enforces $</td>
+      <td>\xi</td>
+      <td>\leq B$ (condition M2). The secondary clauses handle the tie-breaking conditions D3.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>First clause $</td>
+          <td>\xi</td>
+          <td>&gt; B$: the off-diagonal element $\xi = 2\mathbf{b}\cdot\mathbf{c}$ is too large; we need to replace $\mathbf{c}$ by $\mathbf{c} \pm \mathbf{b}$ to reduce it.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Second clause $\xi = B$ with $2\eta &lt; \zeta$: the boundary condition D3 is violated.</li>
+  <li>Third clause $\xi = -B$ with $\zeta &lt; 0$: another boundary case.</li>
+</ul>
+
+<p><strong>Action:</strong></p>
+
+\[C_{\text{A5}} = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; -\text{sign}(\xi) \\ 0 &amp; 0 &amp; 1 \end{pmatrix}\]
+
+<p>This replaces $\mathbf{c} \to \mathbf{c} - \text{sign}(\xi)\,\mathbf{b}$, which is equivalent to the operation that reduces $\xi$. The tensor update is:</p>
+
+<p>\(C' = C + B - \xi\,\text{sign}(\xi) = C + B - |\xi|\)
+\(\xi' = \xi - 2B\,\text{sign}(\xi)\)
+\(\eta' = \eta - \zeta\,\text{sign}(\xi)\)</p>
+
+<p>(with $A, B, \zeta$ unchanged). In the Gruber (1973) algorithm this is a full-reduction step using $\mathbf{c} \to \mathbf{c} - \lfloor \xi / 2B \rceil \mathbf{b}$, reducing $\xi$ in one shot; in the Křivý–Gruber version, only the sign step is used (requiring more iterations but simpler logic).</p>
+
+<p><strong>After firing: go to A1.</strong></p>
+
+<hr />
+
+<h3 id="step-a6--reduce-eta">Step A6 — Reduce $|\eta|$</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Condition:</strong> $</td>
+      <td>\eta</td>
+      <td>&gt; A + \varepsilon$, OR ($</td>
+      <td>A - \eta</td>
+      <td>\leq \varepsilon$ AND $2\xi &lt; \zeta - \varepsilon$), OR ($</td>
+      <td>A + \eta</td>
+      <td>\leq \varepsilon$ AND $\zeta &lt; -\varepsilon$)</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>This enforces $</td>
+      <td>\eta</td>
+      <td>\leq A$ (condition M3), with tie-breaking for D4.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Action:</strong></p>
+
+\[C_{\text{A6}} = \begin{pmatrix} 1 &amp; 0 &amp; -\text{sign}(\eta) \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}\]
+
+<p>This replaces $\mathbf{c} \to \mathbf{c} - \text{sign}(\eta)\,\mathbf{a}$. Update:</p>
+
+<p>\(C' = C + A - |\eta|\)
+\(\eta' = \eta - 2A\,\text{sign}(\eta)\)
+\(\zeta' = \zeta - \xi\,\text{sign}(\eta)\)</p>
+
+<p>(with $A, B, \xi$ unchanged).</p>
+
+<p><strong>After firing: go to A1.</strong></p>
+
+<hr />
+
+<h3 id="step-a7--reduce-zeta">Step A7 — Reduce $|\zeta|$</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Condition:</strong> $</td>
+      <td>\zeta</td>
+      <td>&gt; A + \varepsilon$, OR ($</td>
+      <td>A - \zeta</td>
+      <td>\leq \varepsilon$ AND $2\xi &lt; \eta - \varepsilon$), OR ($</td>
+      <td>A + \zeta</td>
+      <td>\leq \varepsilon$ AND $\eta &lt; -\varepsilon$)</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>This enforces $</td>
+      <td>\zeta</td>
+      <td>\leq A$ (condition M4), with tie-breaking for D5.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Action:</strong></p>
+
+\[C_{\text{A7}} = \begin{pmatrix} 1 &amp; -\text{sign}(\zeta) &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}\]
+
+<p>This replaces $\mathbf{b} \to \mathbf{b} - \text{sign}(\zeta)\,\mathbf{a}$. Update:</p>
+
+<p>\(B' = B + A - |\zeta|\)
+\(\xi' = \xi - \eta\,\text{sign}(\zeta)\)
+\(\zeta' = \zeta - 2A\,\text{sign}(\zeta)\)</p>
+
+<p>(with $A, C, \eta$ unchanged).</p>
+
+<p><strong>After firing: go to A1.</strong></p>
+
+<hr />
+
+<h3 id="step-a8--body-diagonal-check">Step A8 — Body-diagonal check</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Condition:</strong> $\xi + \eta + \zeta + A + B &lt; -\varepsilon$, OR ($</td>
+      <td>\xi + \eta + \zeta + A + B</td>
+      <td>\leq \varepsilon$ AND $2(A + \eta) + \zeta &gt; \varepsilon$)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This enforces the final boundary condition D6. The quantity $\xi + \eta + \zeta + A + B$ appears because it equals $(\mathbf{a} + \mathbf{b} + \mathbf{c}) \cdot (\mathbf{a} + \mathbf{b} + \mathbf{c}) - C$, which must be non-negative (any vector in the lattice has non-negative squared length). If it is negative, the vector $\mathbf{a} + \mathbf{b} + \mathbf{c}$ is shorter than $\mathbf{c}$ and needs to replace it. The tie-breaking clause handles the boundary case.</p>
+
+<p><strong>Action:</strong></p>
+
+\[C_{\text{A8}} = \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}\]
+
+<p>This replaces $\mathbf{c} \to \mathbf{c} + \mathbf{a} + \mathbf{b}$. The tensor update:</p>
+
+<p>\(C' = C + A + B + \xi + \eta + \zeta\)
+\(\xi' = \xi + 2B + \zeta\)
+\(\eta' = \eta + 2A + \zeta\)</p>
+
+<p>(with $A, B, \zeta$ unchanged).</p>
+
+<p><strong>After firing: go to A1.</strong></p>
+
+<hr />
+
+<h3 id="41-flowchart-of-the-complete-algorithm">4.1 Flowchart of the complete algorithm</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Initialize C_total = I (3×3 identity)
+
+LOOP:
+  Compute l, m, n from current ξ, η, ζ
+
+  A1: if (A &gt; B) OR (A≈B AND |ξ|&gt;|η|):
+        apply C_A1 → update A,B,C,ξ,η,ζ and C_total
+        GOTO A1
+
+  A2: if (B &gt; C) OR (B≈C AND |η|&gt;|ζ|):
+        apply C_A2 → update
+        GOTO A1
+
+  A3: if lmn = 1 (odd number negative or all positive):
+        apply C_A3 → update
+        GOTO A4
+
+  A4: if lmn = 0 or -1 (not all negative):
+        apply C_A4 → update
+        GOTO A1
+
+  A5: if |ξ| &gt; B or boundary violation:
+        apply C_A5 → update
+        GOTO A1
+
+  A6: if |η| &gt; A or boundary violation:
+        apply C_A6 → update
+        GOTO A1
+
+  A7: if |ζ| &gt; A or boundary violation:
+        apply C_A7 → update
+        GOTO A1
+
+  A8: if ξ+η+ζ+A+B &lt; 0 or boundary violation:
+        apply C_A8 → update
+        GOTO A1
+
+  If no step fired in A1–A8: DONE
+</code></pre></div></div>
+
+<p>The final cell $(A, B, C, \xi, \eta, \zeta)$ is Niggli-reduced. The accumulated product $C_{\text{total}}$ is the change-of-basis matrix, which can be used to transform atomic coordinates, symmetry operations, orientation matrices, etc.</p>
+
+<hr />
+
+<h2 id="5-change-of-basis-matrices-in-full">5. Change-of-Basis Matrices in Full</h2>
+
+<p>Each step in the Křivý–Gruber algorithm consists of testing for a condition, followed by an action. The actions are given by Křivý &amp; Gruber as reassignments of the parameters $A, B, C, \xi, \eta, \zeta$. A mathematically equivalent definition is given by the tensor transformation $G’ = C^T G C$ with a $3\times 3$ transformation matrix $C$ acting on the metric tensor.</p>
+
+<p>All eight matrices explicitly:</p>
+
+\[C_{\text{A1}} = \begin{pmatrix} 0 &amp; -1 &amp; 0 \\ -1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -1 \end{pmatrix}, \quad C_{\text{A2}} = \begin{pmatrix} -1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -1 \\ 0 &amp; -1 &amp; 0 \end{pmatrix}\]
+
+\[C_{\text{A3}} = \begin{pmatrix} i &amp; 0 &amp; 0 \\ 0 &amp; j &amp; 0 \\ 0 &amp; 0 &amp; k \end{pmatrix} \quad (i,j,k \text{ chosen to make all signs positive})\]
+
+\[C_{\text{A4}} = \begin{pmatrix} i &amp; 0 &amp; 0 \\ 0 &amp; j &amp; 0 \\ 0 &amp; 0 &amp; k \end{pmatrix} \quad (i,j,k \text{ chosen to make all signs non-positive})\]
+
+\[C_{\text{A5}} = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; -s_\xi \\ 0 &amp; 0 &amp; 1 \end{pmatrix}, \quad C_{\text{A6}} = \begin{pmatrix} 1 &amp; 0 &amp; -s_\eta \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}, \quad C_{\text{A7}} = \begin{pmatrix} 1 &amp; -s_\zeta &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}\]
+
+<p>where $s_x = \text{sign}(x) \in {-1, +1}$.</p>
+
+\[C_{\text{A8}} = \begin{pmatrix} 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}\]
+
+<p>All matrices $C$ shown above have determinant $+1$. Each matrix could also be replaced by the matrix product $C \cdot \text{diag}(-1,-1,-1)$ since any lattice exhibits a center of inversion at the origin. However, the choices above ensure that the final matrix has determinant $+1$. This is a very useful property because otherwise a determinant of $-1$ would result in the transformation of a right-handed system into a left-handed system (and vice versa). With the definitions above, the final change-of-basis matrix is directly suitable for transforming symmetry operations, atomic coordinates, orientation matrices or other crystallographic parameters.</p>
+
+<p>The accumulated change-of-basis matrix is built by left-multiplying at each step:</p>
+
+\[C_{\text{total}} = C_{\text{first}} \cdot C_{\text{second}} \cdot \ldots \cdot C_{\text{last}}\]
+
+<hr />
+
+<h2 id="6-numerical-stability-the-tolerance-varepsilon">6. Numerical Stability: The Tolerance $\varepsilon$</h2>
+
+<p>To make the iterative reduction algorithm numerically stable, a tolerance $\varepsilon$ is used in all comparisons. This tolerance accounts for the uncertainties implicitly introduced by the use of finite-precision algebra.</p>
+
+<p>The recommended tolerance is:</p>
+
+\[\varepsilon = \varepsilon_{\text{rel}} \cdot V^{1/3}\]
+
+<p>where $V = \sqrt{\det G}$ is the cell volume and $\varepsilon_{\text{rel}} = 10^{-5}$ in practice. The factor $V^{1/3}$ scales with cell dimensions (it is exact for cubic cells). All comparisons in steps A1–A8 use this tolerance:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Exact comparison</th>
+      <th>Implementation with $\varepsilon$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$x &lt; y$</td>
+      <td>$x &lt; y - \varepsilon$</td>
+    </tr>
+    <tr>
+      <td>$x &gt; y$</td>
+      <td>$y &lt; x - \varepsilon$</td>
+    </tr>
+    <tr>
+      <td>$x = y$</td>
+      <td>$\text{not } (x &lt; y-\varepsilon) \text{ and not } (y &lt; x-\varepsilon)$</td>
+    </tr>
+    <tr>
+      <td>$x \leq y$</td>
+      <td>$\text{not } (y &lt; x - \varepsilon)$</td>
+    </tr>
+    <tr>
+      <td>$x \geq y$</td>
+      <td>$\text{not } (x &lt; y - \varepsilon)$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Why is this necessary?</strong> Practical application of the algorithms of Gruber (1973), Křivý &amp; Gruber (1976) and Zuo et al. (1995) reveals that rounding errors owing to floating-point arithmetic can lead to infinite loops given typical experimentally observed cell parameters. In approximately 14,000 trials with reasonable unit-cell parameters, the algorithm enters infinite loops approximately 100 times (i.e., the failure rate is 0.7%).</p>
+
+<p><strong>A special consideration for A3/A4:</strong> Using the exact less-than comparison is the correct approach for the sign function evaluations in steps A5, A6, and A7, because the values involved are first compared (using the tolerance) with the parameters $A$ or $B$, which must be strictly greater than zero because the unit cell is degenerate otherwise. To further maximize the numerical stability, the expression $lmn &gt; 0$ in step A3 is treated in a special way: each parameter is tested individually, counting the number of positive and negative values, then using those integer counts to decide whether $lmn &gt; 0$. All evaluations in the reduction procedure are implemented using only additions and subtractions — floating-point multiplications are completely avoided.</p>
+
+<hr />
+
+<h2 id="7-convergence-and-termination">7. Convergence and Termination</h2>
+
+<p>The algorithm terminates because each transformation that fires strictly decreases a non-negative definite quantity. The key insight is:</p>
+
+<ul>
+  <li>Steps A1, A2 decrease or maintain $A + B + C$ (the trace of $G$).</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Steps A5, A6, A7 decrease $C$ (or $B$) by reducing $</td>
+          <td>\xi</td>
+          <td>$, $</td>
+          <td>\eta</td>
+          <td>$, $</td>
+          <td>\zeta</td>
+          <td>$ respectively.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Step A8 decreases $C$ since $C’ = C + A + B + \xi + \eta + \zeta &lt; C$ by the firing condition.</li>
+</ul>
+
+<p>Since $A + B + C \geq 3V^{2/3} &gt; 0$ (bounded below by the AM-GM inequality on lattice vectors), and each firing step decreases it by a computable amount, the number of steps is finite.</p>
+
+<hr />
+
+<h2 id="8-the-44-niggli-lattice-characters">8. The 44 Niggli Lattice Characters</h2>
+
+<p>Once you have the Niggli-reduced parameters $(A, B, C, \xi, \eta, \zeta)$, the lattice type is read off from a table of 44 <strong>lattice characters</strong> (also called Niggli types). These 44 different lattice characters arise because continuous deformations within a Bravais type are possible only within each character; to move between characters you must pass through special metric relationships. Each can be recognized from the relations between the elements of the reduced form.</p>
+
+<p>The 44 types are classified by:</p>
+<ol>
+  <li>The equalities among $A, B, C$ (e.g., $A = B = C$, $A = B &lt; C$, $A &lt; B = C$, $A &lt; B &lt; C$)</li>
+  <li>The equalities/zeros among $\xi, \eta, \zeta$ (e.g., $\xi = \eta = \zeta = 0$, $\xi = \eta \neq 0$, etc.)</li>
+  <li>The type (I: all $\leq 0$, II: all $&gt; 0$)</li>
+</ol>
+
+<p>Here is the complete classification table (Niggli 1928, as tabulated in <em>International Tables</em>, §9.3.2). Each row gives the Niggli type number, the metric conditions on $(A,B,C,\xi,\eta,\zeta)$, and the Bravais lattice it corresponds to:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Conditions</th>
+      <th>Bravais Lattice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>$A = B = C$; $\xi = \eta = \zeta &gt; 0$ (all equal, Type II)</td>
+      <td>cF</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>$A = B = C$; $\xi = \eta = \zeta &lt; 0$ (all equal, Type I)</td>
+      <td>cI</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>$A = B = C$; $\xi = \eta = \zeta = 0$</td>
+      <td>cP or hR</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>$A = B = C$; $\xi = \eta \neq \zeta$, all $&gt; 0$</td>
+      <td>hR</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>$A = B = C$; $\xi = \eta \neq \zeta$, all $&lt; 0$</td>
+      <td>hR</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>$A = B = C$; $\xi = \zeta \neq \eta$, all $&lt; 0$</td>
+      <td>hR</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>$A = B = C$; $\xi = \zeta$, $\eta = 0$, others $&gt; 0$</td>
+      <td>hR</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>$A = B = C$; $\xi = \eta = 0$, $\zeta \neq 0$</td>
+      <td>oI or mI</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>$A = B$; $\xi = \eta = \zeta = 0$</td>
+      <td>tP or oP</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>$A = B$; $\xi = \eta$, $\zeta = 0$, $\xi &lt; 0$</td>
+      <td>hR</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>$A = B$; $\xi = \eta$, $\zeta = 2\xi &lt; 0$</td>
+      <td>hP</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>$A = B$; $\xi = \eta \neq 0$, $\zeta = 0$</td>
+      <td>oC (or oA)</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>$A = B$; $\xi = \eta \neq \zeta$, all $\leq 0$</td>
+      <td>oI</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>$A = B$; $\xi = \eta$, $\zeta &gt; 0$, $\xi &lt; 0$</td>
+      <td>mI</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>$A = B$; $\xi = \eta$, $\zeta &gt; 0$, all $&gt; 0$</td>
+      <td>tI</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>$B = C$; $\xi = \zeta = 0$, $\eta = 0$</td>
+      <td>tP or oP</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>$B = C$; $\xi = B/2$, $\eta = \zeta = 0$</td>
+      <td>hR (obverse)</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>$B = C$; $\xi = \zeta$, $\eta = 0$, $\xi &lt; 0$</td>
+      <td>oF</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>$B = C$; $\xi = \zeta$, $\eta \neq 0$, all $&lt; 0$</td>
+      <td>oI</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>$B = C$; $\xi$, $\eta$, $\zeta$ general, Type I</td>
+      <td>mI</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>$B = C$; $\xi = B/2$, $\zeta = 0$, $\eta &lt; 0$</td>
+      <td>hR</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>$B = C$; $\zeta = 0$, $\xi = \eta &lt; 0$</td>
+      <td>oC</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>$B = C$; general Type II</td>
+      <td>mC</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>$A &lt; B &lt; C$; $\xi = \eta = \zeta = 0$</td>
+      <td>oP</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>$A &lt; B &lt; C$; $\xi = 0$, $\eta = \zeta = 0$</td>
+      <td>mP</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>$A &lt; B &lt; C$; $\xi$, $\eta$, $\zeta$ all $= 0$</td>
+      <td>oC</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>$A &lt; B &lt; C$; $\xi = B$, others $= 0$</td>
+      <td>mC</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>$A &lt; B &lt; C$; $\xi = 0$, $\eta = 0$, $\zeta \neq 0$</td>
+      <td>mP</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>$A &lt; B &lt; C$; $\xi = 0$, $\eta \neq 0$, $\zeta = 0$</td>
+      <td>mP</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>$A &lt; B &lt; C$; $\xi = \eta = 0$, $\zeta &lt; 0$</td>
+      <td>mP</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>$A &lt; B &lt; C$; $\xi \neq 0$, $\eta = \zeta = 0$</td>
+      <td>mP</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>$A &lt; B &lt; C$; general Type I (all $&lt; 0$)</td>
+      <td>aP</td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>$A &lt; B &lt; C$; one of $\xi, \eta, \zeta = 0$, others $&lt; 0$</td>
+      <td>mP</td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>$A &lt; B &lt; C$; $\xi + \eta + \zeta + A + B = 0$, Type I</td>
+      <td>mI</td>
+    </tr>
+    <tr>
+      <td>35–44</td>
+      <td>Various specific Type I/II combinations for $A &lt; B &lt; C$ with mixed constraints</td>
+      <td>aP, mP, mI, oF, etc.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(The exact table runs to 44 entries with conditions becoming increasingly specific; the full table is in <em>International Tables</em>, Table 9.3.1 and in Gruber 1973, Table 1.)</p>
+
+<p>The key point: once you have the Niggli-reduced $(A, B, C, \xi, \eta, \zeta)$ in exact arithmetic, exactly one of these 44 patterns is satisfied, which uniquely determines the Bravais lattice type. In practice with experimental data, metric symmetry searching (Le Page, 1982) is more robust than a direct lookup.</p>
+
+<hr />
+
+<h2 id="9-worked-example-in-full-detail">9. Worked Example in Full Detail</h2>
+
+<p>Let us reduce a triclinic cell with:</p>
+
+<p>\(a = 4.0\ \text{Å},\ b = 5.0\ \text{Å},\ c = 6.0\ \text{Å}\)
+\(\alpha = 100°,\ \beta = 80°,\ \gamma = 70°\)</p>
+
+<p><strong>Initialize Niggli parameters:</strong></p>
+
+\[A = 16.0,\quad B = 25.0,\quad C = 36.0\]
+
+<p>\(\xi = 2(5)(6)\cos(100°) = 60 \times (-0.1736) = -10.417\)
+\(\eta = 2(6)(4)\cos(80°) = 48 \times 0.1736 = +8.333\)
+\(\zeta = 2(4)(5)\cos(70°) = 40 \times 0.3420 = +13.681\)</p>
+
+<p>$C_{\text{total}} = I$.</p>
+
+<p><strong>Pass 1:</strong></p>
+
+<ul>
+  <li><strong>A1:</strong> $A = 16 &lt; B = 25$. Secondary: $A \neq B$. No fire.</li>
+  <li><strong>A2:</strong> $B = 25 &lt; C = 36$. No fire.</li>
+  <li><strong>A3:</strong> $l = \text{sign}(-10.417) = -1$, $m = \text{sign}(+8.333) = +1$, $n = \text{sign}(+13.681) = +1$. $lmn = (-1)(+1)(+1) = -1 \neq 1$. No fire.</li>
+  <li><strong>A4:</strong> $lmn = -1 \leq 0$ and not all $= -1$. <strong>Fire.</strong> We need to make all signs $\leq 0$.
+    <ul>
+      <li>$l = -1$: $i = 1$ (already negative, keep)</li>
+      <li>$m = +1$: $j = -1$ (flip to negative)</li>
+      <li>$n = +1$: $k = -1$ (flip to negative)</li>
+      <li>$ijk = (1)(-1)(-1) = +1 \neq -1$, so no adjustment to $r$.</li>
+      <li>Apply $C_{\text{A4}} = \text{diag}(1, -1, -1)$: flips $\mathbf{b}$ and $\mathbf{c}$.</li>
+      <li>Updated: $A = 16$, $B = 25$, $C = 36$, $\xi = -(-10.417)(-1)(-1) \to $… let’s be careful.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The transformation $(\mathbf{a}’, \mathbf{b}’, \mathbf{c}’) = (\mathbf{a}, \mathbf{b}, \mathbf{c})\text{diag}(i,j,k)$ gives:</p>
+
+\[\mathbf{a}' = \mathbf{a},\quad \mathbf{b}' = -\mathbf{b},\quad \mathbf{c}' = -\mathbf{c}\]
+
+<p>\(\xi' = 2\mathbf{b}'\cdot\mathbf{c}' = 2(-\mathbf{b})\cdot(-\mathbf{c}) = +\xi \cdot jk = -10.417 \cdot (-1)(-1) = -10.417\)
+\(\eta' = 2\mathbf{c}'\cdot\mathbf{a}' = 2(-\mathbf{c})\cdot\mathbf{a} = \eta \cdot ik = +8.333 \cdot (1)(-1) = -8.333\)
+\(\zeta' = 2\mathbf{a}'\cdot\mathbf{b}' = 2\mathbf{a}\cdot(-\mathbf{b}) = \zeta \cdot ij = +13.681 \cdot (1)(-1) = -13.681\)</p>
+
+<p>New state: $A = 16$, $B = 25$, $C = 36$, $\xi = -10.417$, $\eta = -8.333$, $\zeta = -13.681$.</p>
+
+<p>Now $l = m = n = -1$, $lmn = -1$. Type I. <strong>Go to A1.</strong></p>
+
+<p><strong>Pass 2:</strong></p>
+
+<ul>
+  <li><strong>A1:</strong> $A = 16 &lt; B = 25$. No fire.</li>
+  <li><strong>A2:</strong> $B = 25 &lt; C = 36$. No fire.</li>
+  <li><strong>A3:</strong> $lmn = -1 \neq 1$. No fire.</li>
+  <li><strong>A4:</strong> $lmn = -1$, and all are $-1$. The condition says “if $l=m=n=-1$, do nothing in A4.” <strong>No fire.</strong> (This is the pure Type I case; no adjustment needed.)</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>A5:</strong> $</td>
+          <td>\xi</td>
+          <td>= 10.417 \leq B = 25$. Secondary conditions: $</td>
+          <td>\xi</td>
+          <td>\neq B$, $</td>
+          <td>\xi</td>
+          <td>\neq -B$. <strong>No fire.</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>A6:</strong> $</td>
+          <td>\eta</td>
+          <td>= 8.333 \leq A = 16$. <strong>No fire.</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>A7:</strong> $</td>
+          <td>\zeta</td>
+          <td>= 13.681 \leq A = 16$. <strong>No fire.</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><strong>A8:</strong> $\xi + \eta + \zeta + A + B = -10.417 - 8.333 - 13.681 + 16 + 25 = +8.569 &gt; 0$. <strong>No fire.</strong></li>
+</ul>
+
+<p><strong>Done.</strong> The Niggli-reduced cell is:</p>
+
+<p>\(A = 16,\quad B = 25,\quad C = 36\)
+\(\xi = -10.417,\quad \eta = -8.333,\quad \zeta = -13.681\)</p>
+
+<p>In conventional parameters:
+\(a = 4.0\ \text{Å},\quad b = 5.0\ \text{Å},\quad c = 6.0\ \text{Å}\)
+\(\alpha = \arccos(\xi/2bc) = 100°,\quad \beta = \arccos(\eta/2ca) = 100°,\quad \gamma = \arccos(\zeta/2ab) = 110°\)</p>
+
+<p>Wait — note that $\gamma$ changed from $70°$ to $110°$ because we flipped $\mathbf{b}$. The physical lattice is the same; we’ve just made all angles obtuse (Type I), which is the canonical form.</p>
+
+<p>Change-of-basis matrix:</p>
+
+\[C_{\text{total}} = C_{\text{A4}} = \begin{pmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 0 \\ 0 &amp; 0 &amp; -1 \end{pmatrix}\]
+
+<p>This matches Niggli type 32 (general triclinic, $A &lt; B &lt; C$, all off-diagonal $&lt; 0$, Type I) → Bravais lattice <strong>aP</strong> (primitive triclinic).</p>
+
+<hr />
+
+<h2 id="10-relation-to-buerger-reduction-and-the-gruber-1973-algorithm">10. Relation to Buerger Reduction and the Gruber (1973) Algorithm</h2>
+
+<p>It’s worth distinguishing clearly:</p>
+
+<p><strong>Buerger-reduced cell (1957):</strong> A cell satisfying only the main conditions M1–M4 (lengths sorted, off-diagonal bounded). This is <em>not</em> unique — Gruber (1973) showed there can be up to <strong>5</strong> Buerger-reduced cells for the same lattice.</p>
+
+<p><strong>Gruber (1973) algorithm (steps N1–N3, B1–B5):</strong> A refinement of Buerger reduction. Steps N1–N3 handle the main conditions (sorting and sign normalization) using the integer-rounding function $\lfloor \cdot \rceil$ (nearest integer) rather than just the sign, which reduces in one shot rather than incrementally. Steps B1–B5 correspond to A4–A8 above. This reaches a Buerger cell, which may not be the unique Niggli cell.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Křivý–Gruber (1976) algorithm (steps A1–A8):</strong> Adds the tie-breaking conditions to reach the unique Niggli cell. The key additional logic is in A1 and A2 (the secondary conditions involving $</td>
+      <td>\xi</td>
+      <td>$ vs $</td>
+      <td>\eta</td>
+      <td>$, etc.) and in the boundary clauses of A5–A8.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The parameter updates in A5–A7 use $\text{sign}(\cdot)$ in Křivý–Gruber, but use $\lfloor \cdot/(2A) \rceil$ or $\lfloor \cdot/(2B) \rceil$ (the nearest-integer division) in Gruber (1973). The nearest-integer version reduces in one step; the sign version needs multiple passes but is simpler to analyze.</p>
+
+<hr />
+
+<h2 id="11-practical-considerations-for-powder-diffraction-and-pdf-work">11. Practical Considerations for Powder Diffraction and PDF Work</h2>
+
+<p><strong>Primitive cell requirement:</strong> Niggli reduction is defined only for primitive cells. If you start with a centered cell (e.g., body-centered cubic, face-centered, $C$-centered), you must first transform to the primitive setting:</p>
+
+<ul>
+  <li>BCC (I-centered): transformation $\frac{1}{2}\begin{pmatrix}-1&amp;1&amp;1\1&amp;-1&amp;1\1&amp;1&amp;-1\end{pmatrix}$</li>
+  <li>FCC (F-centered): transformation $\frac{1}{2}\begin{pmatrix}0&amp;1&amp;1\1&amp;0&amp;1\1&amp;1&amp;0\end{pmatrix}$</li>
+  <li>C-centered: transformation $\frac{1}{2}\begin{pmatrix}1&amp;-1&amp;0\1&amp;1&amp;0\0&amp;0&amp;2\end{pmatrix}$</li>
+</ul>
+
+<p>Then reduce the primitive cell; after reduction, look up the Niggli type to identify the Bravais lattice and transform back to the conventional setting.</p>
+
+<p><strong>Comparison of cells from different codes:</strong> Two cells describe the same lattice if and only if they reduce to the same Niggli cell. This is why Niggli reduction is the right tool when comparing a cell output from Mantid’s peak indexing against a published ICSD or NOMAD result — reduce both and check equality of $(A, B, C, \xi, \eta, \zeta)$ within experimental tolerance.</p>
+
+<p><strong>ISODISTORT supercell identification:</strong> ISODISTORT works from the primitive parent cell. If your RMCProfile supercell looks geometrically different from the published conventional cell, reduce both primitive cells with Niggli and verify they match before assuming an error.</p>
+
+<p><strong>Indexing software:</strong> DICVOL, TREOR, and N-TREOR all internally reduce candidate cells to Niggli form before comparing with observed $d$-spacings, which is why two candidate cells that are related by a unimodular transformation appear as duplicates and get de-duplicated at the Niggli comparison stage.</p>
+
+
+      
+
+      
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zyroc1990@iris-2020.us" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/copyCode.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
