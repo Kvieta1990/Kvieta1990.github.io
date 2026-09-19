@@ -256,6 +256,10 @@ $$
 
 This means, for the site $$\mathbf{p}$$, we have its site symmetry group as $$\text{Stab}(\mathbf{p})$$. If a space group operation $$g$$ not in the stabalizer brings $$\mathbf{p}$$ to $$\mathbf{q}$$, the site symmetry group of the new site $$\mathbf{q}$$ is given as $$g\text{Stab}(\mathbf{p})g^{-1}$$ which is conjugate to $$\text{Stab}(\mathbf{p})$$ (this is the definition of conjugate subgroups). Let's walk through the conjugacy formulation and we can see why the derived conjugacy here means equivalence among sites involved in a Wyckoff position. For the position $$\mathbf{q}$$ obtained after the operation of $$g$$, not only the position of the object is changed but also the symmetry elements (rotation axis, mirror planes, etc.) are reoriented. To link to the situation before the operation of $$g$$, let's do this. We first apply $$g^{-1}$$ on $$\mathbf{q}$$ to bring it back to $$\mathbf{p}$$. Then whatever symmetry operations in $$\text{Stab}(\mathbf{p})$$ will leave $$\text{p}$$ invariant. Then we apply $$g$$ again to bring it back to $$\mathbf{q}$$. Doing this, we find that no matter how the symmetry elements are changed by the operation of $$g$$, we can always follow the chain of actions as given here to stabalize $$\mathbf{q}$$ the same way as how $$\text{Stab}(\mathbf{p})$$ would stabalize $$\mathbf{p}$$ before the operation of $$g$$. Therefore, the operation of $$g$$ does not change anything fundamentally regarding the site symmetry -- that's exactly what we mean by equivalence among sites involved in a Wyckoff position. Since the chain of action we performed here is just $$g\text{Stab}(\mathbf{p})g^{-1}$$, exactly the conjugate of $$\text{Stab}(\mathbf{p})$$, we then understand why the Wyckoff position is defined by the conjugacy of site symmetry groups.
 
+## Acknowledgement
+
+Figures involved in the post use the diagram figures for space groups from Ref. [9]. Thank you Jeremy Karl Cockcroft and the team at Birkbeck College, University of London for this great resource!
+
 ## References
 
 [1] [Space Group Diagram Symbols](http://img.chem.ucl.ac.uk/sgp/misc/symbols.htm).
@@ -273,3 +277,5 @@ This means, for the site $$\mathbf{p}$$, we have its site symmetry group as $$\t
 [7] [Geometric crystal class](https://dictionary.iucr.org/Geometric_crystal_class)
 
 [8] [P4mm space group diagram](http://img.chem.ucl.ac.uk/sgp/large/099az1.htm)
+
+[9] [Space Group Diagrams and Tables](http://img.chem.ucl.ac.uk/sgp/large/sgp.htm)
