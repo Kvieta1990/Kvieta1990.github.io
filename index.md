@@ -29,7 +29,7 @@ About Me
   <canvas id="symmetry-canvas" width="760" height="650" role="img" aria-label="Interactive three-fold rotational, mirror, and 3_1 screw symmetry figure" style="display: block; width: 100%; height: auto; cursor: none; touch-action: none;"></canvas>
 </div>
 
-<p style="text-align: center; color: #b00020; font-style: italic; font-weight: bold">We all have moments up and down like those red triangles. However, life is all symmetric, and we can always choose to look at those up pointing ones.</p>
+<p style="text-align: center; color: #b00020; font-style: italic; font-weight: bold">We all have moments up and down like those red triangles (hover mouse over the image to see them). However, life is all symmetric, and we can always choose to look at those up pointing ones.</p>
 
 <script>
 (function () {
