@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>A Piece of Note on Refraction and Dispersion</title>
+        <description>
+          
+          We all know different colors in the sun light will be separated by a prism due to the different refraction index of light with different wavelength. Saying that, we basically mean that the refraction index \(n\) is a function of the wavelength \(\lambda\). The specific functional relation depends on the...
+        </description>
+        <pubDate>Sun, 20 Sep 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-09-20-dispersion/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-09-20-dispersion/</guid>
+      </item>
+    
+      <item>
         <title>Some (Random) Notes On crystallography (Part-2)</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Thu, 30 Jul 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-07-30-rmc_sol_uniqueness/</link>
         <guid isPermaLink="true">http://localhost:8000/2026-07-30-rmc_sol_uniqueness/</guid>
-      </item>
-    
-      <item>
-        <title>About Gradient Update for the Cross Entropy Loss</title>
-        <description>
-          
-          Image generated with Gemini with the prompt ‘robot with intuition for loss function’ (here I am using exactly the same prompt as presented in a reference post about cross entropy loss. [1]). Cross entropy loss is a commonly used loss function for classification problems with neural network. A nice and...
-        </description>
-        <pubDate>Wed, 29 Jul 2026 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2026-07-29-cross_entropy_loss_gradient/</link>
-        <guid isPermaLink="true">http://localhost:8000/2026-07-29-cross_entropy_loss_gradient/</guid>
       </item>
     
   </channel>

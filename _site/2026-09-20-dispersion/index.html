@@ -19,13 +19,13 @@
 
   
 
-  <title>Archive</title>
+  <title>A Piece of Note on Refraction and Dispersion</title>
 
   
   <meta name="author" content="Yuanpeng Zhang">
   
 
-  <meta name="description" content="">
+  <meta name="description" content="We all know different colors in the sun light will be separated by a prism due to the different refraction index of light with different wavelength. Saying that, we basically mean that the refraction index \(n\) is a function of the wavelength \(\lambda\). The specific functional relation depends on the...">
 
   
 
@@ -93,17 +93,19 @@
 
   
   <meta property="og:site_name" content="Yuanpeng's Blog">
-  <meta property="og:title" content="Archive">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="A Piece of Note on Refraction and Dispersion">
+  <meta property="og:description" content="We all know different colors in the sun light will be separated by a prism due to the different refraction index of light with different wavelength. Saying that, we basically mean that the refraction index \(n\) is a function of the wavelength \(\lambda\). The specific functional relation depends on the...">
 
   
   <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
   
 
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://localhost:8000/archive/2020/10/">
-  <link rel="canonical" href="http://localhost:8000/archive/2020/10/">
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-09-20T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-09-20-dispersion/">
+  <link rel="canonical" href="http://localhost:8000/2026-09-20-dispersion/">
   
 
   
@@ -112,8 +114,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="Archive">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:title" content="A Piece of Note on Refraction and Dispersion">
+  <meta property="twitter:description" content="We all know different colors in the sun light will be separated by a prism due to the different refraction index of light with different wavelength. Saying that, we basically mean that the refraction index \(n\) is a function of the wavelength \(\lambda\). The specific functional relation depends on the...">
 
   
   <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
@@ -264,10 +266,14 @@ if (chromeAgent) {
   <div class="container-md">
     <div class="row">
       <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
-        <div class="page-heading">
-						<h1>Archive</h1>
+        <div class="post-heading">
+						<h1>A Piece of Note on Refraction and Dispersion</h1>
           
 
+          
+					<span class="post-meta">Posted on September 20, 2026, by Yuanpeng Zhang</span>
+            
+            
           
         </div>
       </div>
@@ -282,423 +288,160 @@ if (chromeAgent) {
 
 
 
-<div class="intro-header"></div>
 
-<div role="main" class=" container-md ">
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-1 col-lg-8 offset-lg-1 col-12 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p align="center">
+<a href="https://en.wikipedia.org/wiki/Refractive_index#/media/File:Mplwp_dispersion_curves.svg" target="_blank">
+<img src="/assets/img/posts/Mplwp_dispersion_curves.svg" style="border:none;" width="800" alt="Mplwp_dispersion_curves" title="Mplwp_dispersion_curves" />
+</a>
+</p>
+
+<p>We all know different colors in the sun light will be separated by a prism due to the different refraction index of light with different wavelength. Saying that, we basically mean that the refraction index \(n\) is a function of the wavelength \(\lambda\). The specific functional relation depends on the medium – shown above is a figure from Wikipedia for the \(n-\lambda\) relation for various types of medium. We also have,</p>
+
+\[\begin{align}
+n &amp; = \frac{c}{v}\\
+\lambda\nu &amp; = v
+\end{align}\]
+
+<p>where \(c\) is for the speed of light in vacuum, \(\nu\) is for the frequency of light and \(v\) is for the speed of light in the medium. From the second equation, we can see that the speed of light (specifically, we mean the phase velocity here) in the medium will change with \(\lambda\). But wait, how about the frequency? What if \(\nu\) is also changing? What if the frequency is just inversely proportional to \(\lambda\), i.e., \(\nu \propto 1/\lambda\) (in which case the speed of light would be a constant as \(\lambda\) changes – this is definitely not rare since it is indeed the case in the vacuum)?</p>
+
+<p>So, the relation between the refration index and the wavelength is fundamentally determined by the relation between the frequency and wavelength, namely, the <code class="language-plaintext highlighter-rouge">dispesion relation</code>. In the example figure presented above, we can pick the <code class="language-plaintext highlighter-rouge">Dense flint SF10</code> case and fit the <code class="language-plaintext highlighter-rouge">Sellmeier function</code> (an empirical relationship between refractive index and wavelength [1]) to the data to get,</p>
+
+\[n(\lambda) = \sqrt{1 + \frac{B_1\lambda^2}{\lambda^2 - C_1} + \frac{B_2\lambda^2}{\lambda^2 - C_2} + \frac{B_3\lambda^2}{\lambda^2 - C_3}}\]
+
+<p>The fitting result and all the parameters invovled in the function can be found in the following figure,</p>
+
+<p align="center">
+<a href="/assets/img/posts/sf10_sellmeier_fit.png" target="_blank">
+<img src="/assets/img/posts/sf10_sellmeier_fit.png" style="border:none;" width="800" alt="sf10_sellmeier_fit" title="sf10_sellmeier_fit" />
+</a>
+</p>
+
+<p>Then, we can work out the <code class="language-plaintext highlighter-rouge">dispersion relation</code> via reverse engineer, combining all the three equations above, yielding,</p>
+
+\[\nu(\lambda) = \frac{c}{\lambda n(\lambda)}\]
+
+<p>With the fitted \(n(\lambda)\) above, we can plot the <code class="language-plaintext highlighter-rouge">dispersion curve</code> for this demo case,</p>
+
+<p align="center">
+<a href="/assets/img/posts/sf10_frequency.png" target="_blank">
+<img src="/assets/img/posts/sf10_frequency.png" style="border:none;" width="800" alt="sf10_frequency" title="sf10_frequency" />
+</a>
+</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] <a href="https://en.wikipedia.org/wiki/Sellmeier_equation">Sellmeier equation</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#physics">physics</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=A+Piece+of+Note+on+Refraction+and+Dispersion&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-20-dispersion%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
   
 
-  <div class="post">
-  <header class="post-header post-header_archive">
-    <h2>Posted in <em>October, 2020</em></h2>
-  </header>
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-09-20-dispersion%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
 
   
-  <article class="post-content">
-    <ol>
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-        
-        
-        
-      
-    </ol>
-  </article>
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-20-dispersion%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-09-18-crystallography_r2/" data-toggle="tooltip" data-placement="top" title="Some (Random) Notes On crystallography (Part-2)">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+
+    
+    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+      <nav id="toc-container" class="toc-sidebar">
+        <div class="toc-title">Contents</div>
+        <ul id="toc-list"></ul>
+      </nav>
+    </div>
+    
+  </div>
 </div>
 
 
-  
-</div>
+  <script src="/assets/js/toc.js" defer></script>
+
 
 
   <footer>

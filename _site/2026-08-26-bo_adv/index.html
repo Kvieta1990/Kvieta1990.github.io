@@ -368,6 +368,14 @@ if (chromeAgent) {
   </li>
 </ul>
 
+<blockquote class="info">
+  <p>$U_n$ is the utility function (the Expected-Information-Gain-style acquisition function) evaluated using everything known up through step $n$ – i.e., using the current posterior over $\vec\theta$ (drawn as the “Prior, $p(\vec\theta)$” box and sampled in the diagram). So,</p>
+
+\[U_n(\xi_{n+1}^{(1)}),\ U_n(\xi_{n+1}^{(2)}),\ \dots \ \Rightarrow\ U_n(\xi)\]
+
+  <p>means: score each candidate configuration one at a time, and stitching all those scores together across the whole candidate grid gives you the full utility function $U_n(\xi)$, which you then maximize to pick the actual next measurement point.</p>
+</blockquote>
+
 <h2 id="likelihood">Likelihood</h2>
 
 <p>Here is presented the summary of the algorithm for evaluating the likelihood,</p>
