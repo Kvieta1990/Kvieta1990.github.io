@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Bloch&apos;s Theorem and Band Structure</title>
+        <description>
+          
+          In solid states physics, a very fundamental building block for explaining and understanding all sorts of phenomena is the band structure. What is it? In quantum mechanics, we know that the energy levels of atoms are not continuous – they come in discrete levels. Usually when we draw atomic energy...
+        </description>
+        <pubDate>Mon, 21 Sep 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-09-21-bloch_band/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-09-21-bloch_band/</guid>
+      </item>
+    
+      <item>
         <title>A Piece of Note on Refraction and Dispersion</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Fri, 31 Jul 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-07-31-markov_chain_monte_carlo/</link>
         <guid isPermaLink="true">http://localhost:8000/2026-07-31-markov_chain_monte_carlo/</guid>
-      </item>
-    
-      <item>
-        <title>Configuration Uniqueness in Reverse Monte Carlo Modeling and Potential Solution with Kullback-Liebler Divergence</title>
-        <description>
-          
-          In Reverse Monte Carlo modeling, when the data are not providing strong enough constraint towards the fitting target, potentially we would be having the overfitting problem. The fitting may converge to a state simply because the state entropy is high, i.e., the landscape of the configuration space is very flat...
-        </description>
-        <pubDate>Thu, 30 Jul 2026 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2026-07-30-rmc_sol_uniqueness/</link>
-        <guid isPermaLink="true">http://localhost:8000/2026-07-30-rmc_sol_uniqueness/</guid>
       </item>
     
   </channel>

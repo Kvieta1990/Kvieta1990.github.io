@@ -85,19 +85,19 @@ The following table is part of the table on Wikipedia on crystal system and it i
     <tr>
       <th rowspan="2" style="background:#e8e8e8">Crystal families</th>
       <th colspan="2" style="background:#e8e8e8">Point group classification</th>
-      <th rowspan="2" style="background:#e8e8e8; color:#4a90d9">Space groups</th>
+      <th rowspan="2" style="background:#e8e8e8">Space groups</th>
       <th colspan="2" style="background:#e8e8e8">Lattice classification</th>
     </tr>
     <tr>
       <th style="background:#e8e8e8">Crystal systems</th>
-      <th style="background:#e8e8e8; color:#4a90d9">Point groups</th>
-      <th style="background:#e8e8e8; color:#4a90d9">Bravais lattices</th>
+      <th style="background:#e8e8e8">Point groups</th>
+      <th style="background:#e8e8e8">Bravais lattices</th>
       <th style="background:#e8e8e8">Lattice systems</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="3" style="background:#ffffff; color:#4a90d9"><strong>Hexagonal</strong></td>
+      <td rowspan="3" style="background:#ffffff"><strong>Hexagonal</strong></td>
       <td rowspan="2" style="background:#ffffff"><strong>Trigonal</strong></td>
       <td rowspan="2" style="background:#ffffff">5</td>
       <td style="background:#ffffff">7</td>

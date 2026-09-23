@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Bloch&apos;s Theorem and Band Structure</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="In solid states physics, a very fundamental building block for explaining and understanding all sorts of phenomena is the band structure. What is it? In quantum mechanics, we know that the energy levels of atoms are not continuous – they come in discrete levels. Usually when we draw atomic energy...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/admonitions.css">
+    
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Bloch&apos;s Theorem and Band Structure">
+  <meta property="og:description" content="In solid states physics, a very fundamental building block for explaining and understanding all sorts of phenomena is the band structure. What is it? In quantum mechanics, we know that the energy levels of atoms are not continuous – they come in discrete levels. Usually when we draw atomic energy...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-09-21T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-09-21-bloch_band/">
+  <link rel="canonical" href="http://localhost:8000/2026-09-21-bloch_band/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Bloch&apos;s Theorem and Band Structure">
+  <meta property="twitter:description" content="In solid states physics, a very fundamental building block for explaining and understanding all sorts of phenomena is the band structure. What is it? In quantum mechanics, we know that the energy levels of atoms are not continuous – they come in discrete levels. Usually when we draw atomic energy...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-2020.us/script.js" data-website-id="387a3202-bb18-41ba-a954-d985ff940209"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://ha.iris-2020.us">My HomeArr</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  <a target="_blank" class="dropdown-item" href="https://flarum.iris-home.net">Forum</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Bloch's Theorem and Band Structure</h1>
+          
+
+          
+					<span class="post-meta">Posted on September 21, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-1 col-lg-8 offset-lg-1 col-12 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>In solid states physics, a very fundamental building block for explaining and understanding all sorts of phenomena is the <code class="language-plaintext highlighter-rouge">band structure</code>. What is it? In quantum mechanics, we know that the energy levels of atoms are not continuous – they come in discrete levels. Usually when we draw atomic energy levels, we draw lines, but in fact lines are used only for illustrative purposes to indicate the level of energy. Vertically, the lines go lower or higher, inferring energy going lower or higher. Horizontally, it does not mean anything. So, we know, this is not a <code class="language-plaintext highlighter-rouge">band</code>. <em>Band</em>, according to the Merriam-Webster dictionary, means <em>a strip serving to join or hold things together</em>. Following such a definition and bringing a band structure in solid state physics into our mind, we see that they agree. Indeed, we have strips. Usually, we have a 2D plot with a lot of wavy lines. The vertical axis is still energy and if we look across the horizontal direction, we would see energy varies continuously in different ranges. So, yes, we have one of the defining component, the ‘strip’, for ‘band’. How about ‘join or hold things together’? What is the thing are we holding together with the strip? To answer this, we need to take a look at the horitonzal axis – it is called \(k\). There are quite a few names for it in different context. <code class="language-plaintext highlighter-rouge">Wave number</code> – the number of complete waves in unit length, \(2\pi/\lambda\) where \(\lambda\) is the wavelength. This is just the spatial frequency, just like \(f = 2\pi/T\) being the frequency in the time space. <code class="language-plaintext highlighter-rouge">Point in reciprocal space</code> – we construct the reciprocal space lattice from a crystal structure and \(k\) just refers to the coordinate in the reciprocal space. <code class="language-plaintext highlighter-rouge">Propagation vector</code> or just <code class="language-plaintext highlighter-rouge">k-vector</code> – commonly used in magnetic structure description or cyrstal structure transition with cell transformation. <code class="language-plaintext highlighter-rouge">Momentum</code> as in the de Broglie equation \(p = \hbar k\) – I mean it is not \(k\) that is called momentum but instead it is associated with the momentum. <code class="language-plaintext highlighter-rouge">Crystal momentum</code> – in band theory, \(k\) is not associated with atomic momentum but instead it is associated with the so-called <em>crystal momentum</em> (this will be mentioned briefly in this post but not covered in details, and I may come back to this later). Anyways, not like in the atomic energy levels diagram where the horizontal direction does not mean anything, the horizontal direction in the band structure does carry some physical meaning. Now, we have the second defining component for ‘band’ – it is those \(k\) values that we are holding together.</p>
+
+<p>Uhm… we want to talk about some physics here, right? The whole paragraph, though, looks more like for a drawing or painting class, with a lot of pictorial descriptions. Yes, maybe, but I think pictorially thinking of the band structure, following its definition, as for holding those \(k\) together, will be helpful in understanding the band structure. Indeed, the whole band structure is established via the introduction of the \(k\) values. At each \(k\), we have ‘atomic-like’ energy levels, and we have a series of \(k\) values. Connecting them together along the horizontal direction in a 2D plot, we have the band structure. Anyways, let’s talk about some physics.</p>
+
+<h2 id="blochs-theorem">Bloch’s theorem</h2>
+
+<p>To start with, Bloch’s theorem is the entry point of the band structure. It says that for a Hamiltonian with a periodic potential, the eigenstates can always be written in the form,</p>
+
+\[\psi_{n\mathbf{k}}(\mathbf{r}) = e^{i\mathbf{k}\cdot \mathbf{r}}u_{n\mathbf{k}}(\mathbf{r})\]
+
+<p>where \(u_{n\mathbf{k}}(\mathbf{r} + \mathbf{R}) = u_{n\mathbf{k}}(\mathbf{r})\) is a function with the periodicity of the lattice. This is a Bloch function, the form of the wavefunction that electrons should follow in a periodic potential field of the solid. Chapter-8 in the book by Ashcroft and Mermin [1] gives detailed proof for the Bloch’s theorem, i.e., why the wavefunction follows the form presented above. No need to reproduce the proof here – the two ways of the proof presented in the book has been treated as the golden standard. Here I just want to note down one thing used in the first proof in the book – the translation operation \(\hat{T}\) being unitary.</p>
+
+<blockquote class="info">
+  <p>\(\mathbf{R}\) refers to the Bravais lattice translation.</p>
+</blockquote>
+
+\[\langle \hat{T}_{\mathbf{R}} \psi \vert \hat{T}_{\mathbf{R}} \phi \rangle = \int \psi^*(\mathbf{r} + \mathbf{R})\phi(\mathbf{r} + \mathbf{R}) d^3r\]
+
+<p>Changing the variable \(\mathbf{r}' = \mathbf{r} + \mathbf{R}\), we can see that the integration is just \(\langle \psi \vert \phi \rangle\). This means the operation on \(\hat{T}\) does not change the normalization of states, and therefore its eigen function should be given as, \(\hat{T}\psi = e^{i\theta}\psi\) where \(\theta\) is an arbitrary parameter – in Chapter-8 by Ashcroft and Mermin [1], it is given as \(e^{2\pi i x_i}\) which then finally yields the emergence of the parameter \(k\) in the Bloch function. As a side note here, let’s do some work on the inner product above,</p>
+
+\[\langle \hat{T}_{\mathbf{R}} \psi \vert \hat{T}_{\mathbf{R}} \phi \rangle = \langle \psi \vert \hat{T}^\dagger_{\mathbf{R}} \hat{T}_{\mathbf{R}} \vert \phi \rangle\]
+
+<blockquote class="info">
+  <p>The definition of the Hermitian adjoint of an operator is as below,</p>
+
+\[\langle \psi \vert A \phi \rangle = \langle A^\dagger\psi \vert \phi \rangle\]
+
+  <p>By applying such a definition, we can obtain the formulation presented right above.</p>
+</blockquote>
+
+<p>Putting everything together, we have,</p>
+
+\[\langle \hat{T}_{\mathbf{R}} \psi \vert \hat{T}_{\mathbf{R}} \phi \rangle = \langle \psi \vert \hat{T}^\dagger_{\mathbf{R}}\hat{T}_{\mathbf{R}} \vert \phi \rangle = \langle \psi \vert \phi \rangle\]
+
+<p>inferring \(\hat{T}^\dagger_{\mathbf{R}}\hat{T}_{\mathbf{R}} = \mathbb{I}\), i.e., \(\hat{T}_{\mathbf{R}}\) is <em>unitary</em>.</p>
+
+<p>Here below I listed several important indications of the Bloch’s theorem,</p>
+
+<ul>
+  <li>
+    <p>\(\mathbf{k}\) is the crystal momentum, living in the <strong>first Brillouin zone</strong> (BZ) – we can shift \(\mathbf{k}\) by any reciprocal space lattice vectors \(\mathbf{G}\) and it won’t change the Bloch’s function. This can be done easily by plugging \(\mathbf{G}\) into the Bloch’s function and applying the definition of the reciprocal lattice definition.</p>
+  </li>
+  <li>
+    <p>\(n\) is the <strong>band index</strong>. Just like for an independent atom, we also have energy levels for atoms in solids. This is expected since atoms are still atoms – we put them together into solids and we do expect some fundamental structures to be kept. The difference is, first, the energy levels are no longer referring to any single atom in the system but instead it is a structure of the overall solid. Second, instead of a single series of energy levels for an independent atom, there are various series of energy levels in solids – I have already mentioned this above – for each value of \(k\), we have its own version of energy levels.</p>
+  </li>
+  <li>
+    <p>\(e^{i\mathbf{k}\cdot\mathbf{r}}\) is a free-electron-like plane wave envelope. So, the wavefunction is a periodic function modulated by a plane wave envelope – depending on the different values of \(k\), the modulation is different. See examples in Fig. 2 in Ref. [2].</p>
+  </li>
+  <li>
+    <p>\(u_{n\mathbf{k}}\) carries all the lattice-periodic structure.</p>
+  </li>
+</ul>
+
+<h2 id="mathbfk">\(\mathbf{k}\)</h2>
+
+<p>For free electrons (Sommerfeld model) [2, 3], the Shrödinger equation,</p>
+
+\[-\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf{r}) = \epsilon\psi(\mathbf{r})\]
+
+<p>gives the solution of the wavefunction as,</p>
+
+\[\psi_{\mathbf{k}} = \frac{1}{\sqrt{V}}e^{i\mathbf{k}\cdot\mathbf{r}}\]
+
+<p>with the energy eigen value of,</p>
+
+\[\epsilon(\mathbf{k}) = \frac{\hbar^2k^2}{2m}\]
+
+<p>The pre-factor \(1/\sqrt{V}\) in the wavefunction originates from the box normalization of the plane wave. The meaning carried by \(\mathbf{k}\) is clear. First, from the energy eigen value, we see \(\hbar^2k^2 = p^2\) since \(\epsilon = p^2/(2m)\). Further, the wavefunction is also shown to be the eigen state of the momentum operator,</p>
+
+\[\hat{p}\psi_{\mathbf{k}} = -i\hbar\nabla\psi_{\mathbf{k}} = \hbar\mathbf{k}\psi_{\mathbf{k}}\]
+
+<p>Therefore, in the Sommerfeld model for free electrons, \(\mathbf{k}\), which simply plays the role of wave number in the plane wave as shown in the equation above for \(\psi_{\mathbf{k}}\), is shown to be directly associated with the electron momentum. For electrons in solids, \(\mathbf{k}\) is also associated with momentum but it is not the momentum of individual electrons. I will probably talk about this in future posts – it is about the so-called <em>crystal momentum</em> which is more like a collection behavior of all electrons in solids. Taking the Bloch’s function form, we can apply the momentum operator,</p>
+
+\[\begin{align}
+-i\hbar \nabla \psi_{n\mathbf{k}} &amp; = -i\hbar\nabla\big[e^{i\mathbf{k}\cdot\mathbf{r}}u_{n\mathbf{k}}(\mathbf{r})\big]\\
+&amp; = \hbar\mathbf{k}\psi_{n\mathbf{k}} - i\,e^{i\mathbf{k}\cdot\mathbf{r}}\nabla u_{n\mathbf{k}}(\mathbf{r})
+\end{align}\]
+
+<p>Due to the extra term (the second term), this is not giving us a constant times \(\psi_{n\mathbf{k}}\) as what we have for free electrons. Therefore, as being said, \(\mathbf{k}\) is not associated with the momentum of individual electrons. If we dig a bit deeper, this is fundamentally due to that the Hamiltonian is not translation invariant, for a non-constant potential field across the space. If \(\hat{T}\) brings \(\vert \psi \rangle\) to \(\vert \psi' \rangle\), i.e.,</p>
+
+\[\vert \psi \rangle \rightarrow \vert \psi' \rangle = \hat{T}\vert \psi \rangle\]
+
+<p>If the system stays the same before and after the translation, we require the expectation value of physical quantities stay invariant,</p>
+
+\[\langle \psi' \vert \hat{H} \vert \psi' \rangle = \langle \psi \vert \hat{H} \vert \psi \rangle \quad \text{for all } \vert\psi\rangle\]
+
+<p>Accordingly we have,</p>
+
+\[\langle \psi' \vert \hat{H} \vert \psi' \rangle = \langle \hat{T}\psi \vert \hat{H} \vert \hat{T}\psi \rangle = \langle \psi \vert \hat{T}^\dagger \hat{H} \hat{T} \vert \psi \rangle\]
+
+<p>For this to equal \(\langle \psi \vert \hat{H} \vert \psi \rangle\) for <strong>all</strong> \(\vert\psi\rangle\), we need the operators themselves to be equal,</p>
+
+\[\hat{T}^\dagger \hat{H} \hat{T} = \hat{H}\]
+
+<p>This is basically viewing the same picture from another angle – instead of transforming the state, we transform the physical operator. Specifically, it means the Hamiltonian will transform as \(\hat{T}^\dagger \hat{H} \hat{T}\) as \(\hat{T}\) applies to the system. So, the Hamiltonian not being translation invariant means the condition above is not satisfied. Further, since we already know that \(\hat{T}\) is unitary, i.e., \(\hat{T}^\dagger\hat{T} = \mathbb{I}\), the condition above can be written as,</p>
+
+\[\hat{T}\hat{T}^\dagger \hat{H} \hat{T} = \hat{T}\hat{H} \Rightarrow \hat{H} \hat{T} = \hat{T}\hat{H} \Rightarrow [\hat{H}, \hat{T}] = 0\]
+
+<p>namely, the translation operator and the Hamiltonian operator commutes. As mentioned, in solids with non-constant potential, the Hamiltonian is not translation invariant and accordingly \(\hat{H}\) and \(\hat{T}\) does not commute. This then means they cannot share the same eigen state. Further, since the momentum operator is the generator of the tranaslation operation,</p>
+
+\[\hat{T}{\mathbf{a}} = e^{i\mathbf{a}\cdot\hat{p} / \hbar}\]
+
+<p>we know that if \([\hat{H}, \hat{T}] \neq 0\), \([\hat{H}, \hat{p}] \neq 0\) – we can just expand the generation shown above with Taylor series and can easily show that if \([\hat{H}, \hat{p}] = 0\), we would have \([\hat{H}, \hat{T}] = 0\). This means in solids, the single electron momentum is no longer a <em>good</em> quantum number.</p>
+
+<blockquote class="info">
+  <p><strong>Note about commuting operators</strong></p>
+
+  <p>For operators that commute, they share the same eigenstates. Proof for this for the non-degenerate case is straightforward. As for the degenerate case, we need to apply the fact that one operator never takes states out of the degenerate subspace and therefore the degenerate subspace of one operator is closed for another operator. If both are observable, they should be Hermitian for which the spectral theorem says they can be diagonalized. Therefore, in the closed degenerate subspace, the operator can always find its eigen states which are natually the eigen states of another operator.</p>
+</blockquote>
+
+<h2 id="mathbfk-dependent-hamiltonian">\(\mathbf{k}\)-dependent Hamiltonian</h2>
+
+<p>It was mentioned that in solids, for each \(\mathbf{k}\), there are a series of energy levels, from which the band structure emerges. In this section, I am trying to lay down some derivations regarding this – basically, what we will see is, the Hamiltonian becomes \(\mathbf{k}\)-dependent. Once we show that, it then becomes natural that for each \(\mathbf{k}\), we are expecting some independent energy levels.</p>
+
+<p>First, define the full Hamiltonian for a single electron in a periodic potential \(V(\mathbf{r})\):</p>
+
+\[H = \frac{\hat{\mathbf{p}}^2}{2m} + V(\mathbf{r})\]
+
+<p>where the momentum operator is \(\hat{\mathbf{p}} = -i\hbar\nabla\). Then we can substitute the Bloch’s function into the time-independent Schrödinger equation to have,</p>
+
+\[\left[ \frac{(-i\hbar\nabla)^2}{2m} + V(\mathbf{r}) \right] e^{i\mathbf{k}\cdot\mathbf{r}}u_{n\mathbf{k}}(\mathbf{r}) = E_{n\mathbf{k}} e^{i\mathbf{k}\cdot\mathbf{r}}u_{n\mathbf{k}}(\mathbf{r})\]
+
+<p>We need to evaluate the action of the momentum operator on the product. Using the product rule, applying \(\hat{\mathbf{p}}\) once yields:</p>
+
+\[-i\hbar\nabla \left( e^{i\mathbf{k}\cdot\mathbf{r}}u_{n\mathbf{k}}(\mathbf{r}) \right) = e^{i\mathbf{k}\cdot\mathbf{r}} (\hbar\mathbf{k} - i\hbar\nabla) u_{n\mathbf{k}}(\mathbf{r}) = e^{i\mathbf{k}\cdot\mathbf{r}} (\hat{\mathbf{p}} + \hbar\mathbf{k}) u_{n\mathbf{k}}(\mathbf{r})\]
+
+<p>Applying the momentum operator twice will give the kinetic energy term,</p>
+
+\[\hat{\mathbf{p}}^2 \big[ e^{i\mathbf{k}\cdot\mathbf{r}}u_{n\mathbf{k}}(\mathbf{r}) \big] = e^{i\mathbf{k}\cdot\mathbf{r}} (\hat{\mathbf{p}} + \hbar\mathbf{k})^2 u_{n\mathbf{k}}(\mathbf{r})\]
+
+<blockquote class="info">
+  <p>Here we can apply the \(-i\hbar\nabla\) operation to the middle part of the derivation one step earlier.</p>
+</blockquote>
+
+<p>Then, substitute this result back into the full Schrödinger equation,</p>
+
+\[e^{i\mathbf{k}\cdot\mathbf{r}} \left[ \frac{(\hat{\mathbf{p}} + \hbar\mathbf{k})^2}{2m} + V(\mathbf{r}) \right] u_{n\mathbf{k}}(\mathbf{r}) = E_{n\mathbf{k}} e^{i\mathbf{k}\cdot\mathbf{r}} u_{n\mathbf{k}}(\mathbf{r})\]
+
+<p>Finally, we can multiply from the left by \(e^{-i\mathbf{k}\cdot\mathbf{r}}\) to isolate the equation for the periodic part \(u_{n\mathbf{k}}(\mathbf{r})\),</p>
+
+\[\underbrace{\left[ \frac{(\hat{\mathbf{p}} + \hbar\mathbf{k})^2}{2m} + V(\mathbf{r}) \right]}_{H(\mathbf{k})} u_{n\mathbf{k}}(\mathbf{r}) = E_{n\mathbf{k}} u_{n\mathbf{k}}(\mathbf{r})\]
+
+<p>This directly defines the \(\mathbf{k}\)-dependent Bloch Hamiltonian, \(H(\mathbf{k})\), which can be expressed with the unitary transformation,</p>
+
+\[H(\mathbf{k}) = e^{-i\mathbf{k}\cdot\mathbf{r}} H e^{i\mathbf{k}\cdot\mathbf{r}} = \frac{(\hat{\mathbf{p}} + \hbar\mathbf{k})^2}{2m} + V(\mathbf{r})\]
+
+<p>Now, it should become clear that the emergence of the band structure. As shown, in solids, we have the Bloch Hamiltonian as \(\mathbf{k}\)-dependent. That means, for each \(\mathbf{k}\), we have a specific version of the Schrödinger equation, solving which will give us all the corresponding energy levels. Then repeat for the next \(\mathbf{k}\), and next, and so on. Putting all the \(E_{n\mathbf{k}}\)-\(\mathbf{k}\) pairs of values together, we have the band structure.</p>
+
+<h2 id="emergence-of-gap">Emergence of gap</h2>
+
+<p>Chapter-9 in Ref. [2] starts with solving the band structure in solid with weak potential. Mathematically it is a bit involved, involving a lot of approximations. The best I can do is to put down some side notes for better understanding – initially when I read through this part, it was very difficulty for me to construct a concrete picture about what is happening. My feeling is, yes, the maths does make a lot of sense but I just could not figure out what is happening. I mean the final result is clear and straightforward to follow, but what I did not follow well is those steps in the middle. After many times of checking through, I think I can now follow, but still I cannot independently work out the whole derivation. I guess the best I can do here is to put down some side notes that I found useful for understanding the process. Hopefully this will help me better ramping up (and hopefully diving deeper) next time when checking out the chapter again.</p>
+
+<blockquote class="info">
+  <p>This bit of post should be regarded as the side note of Chapter-9 and therefore is not supposed to be read independently. We should always read Chapter-9 and this part of post side-by-side.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>In Chapter-9 in Ref. [2], with the presented second proof of the Bloch’s theorem, the Bloch’s function (the periodic part) and the potential are both Fourier transformed. Then the Schrödinger equation turns into coupled equations containing those Fourier coefficients (Eqn. 9.2). Why is it ‘coupled’? Looking at Eqn. 9.2, we can see that the coefficient \(c_{\mathbf{k} - \mathbf{K}}\) (for a specific \(\mathbf{k}\) and a specific band labeled by \(\mathbf{K}\), where \(\mathbf{K}\) refers to the reciprocal space lattice vectors in Chapter-9) and \(c_{\mathbf{k} - \mathbf{K}'}\) (\(\mathbf{K}' \neq \mathbf{K}_1\)) are all appearing in the same equation, thus ‘coupled’.</p>
+  </li>
+  <li>
+    <p>\(\mathbf{k}\), as always, refer to general points in the reciprocal space, inferring the crystal momentum – see the earlier discussions in the post. \(\mathbf{K}\) refers to the reciprocal space lattice vectors (here let’s use the same symbol as in Chapter-9). When we pick a \(\mathbf{K}\), we are actually solving the specific band labeled with \(\mathbf{K}\). To understand this, we can roll back to the free electron case where the periodic potential is totally gone, i.e., \(U = 0\). In this case, we know that regardless of the Fourier mathematical tricks performed for the Schrödinger equation, we should always reproduce the free electron solution,</p>
+
+\[\begin{align}
+  \psi &amp; \propto e^{i\mathbf{k} \cdot \mathbf{r}}\\
+  \epsilon &amp; = \frac{\hbar^2k^2}{2m} 
+  \end{align}\]
+
+    <p>This is indeed the solution that Chapter-9 gives for the case of \(U = 0\), where the energy solution is given as,</p>
+
+\[\epsilon = \frac{\hbar^2(\mathbf{k} - \mathbf{K}_1)^2}{2m}\]
+
+    <p>given a choice of \(\mathbf{K}\) as \(\mathbf{K}_1\). Accordingly the wavefunction,</p>
+
+\[\psi \propto e^{i(\mathbf{k} - \mathbf{K}_1) \cdot \mathbf{r}}\]
+
+    <p>Mathematically, we can always call \(\mathbf{k} - \mathbf{K}_1\) as \(\mathbf{k}'\) and the solution naturally rolls back to the free electron solution. In terms of the band structure, a picture tells more, as shown below,</p>
+
+    <p align="center">
+  <a href="/assets/img/posts/bloch_1.png" target="_blank">
+  <img src="/assets/img/posts/bloch_1.png" style="border:none;" width="800" alt="bloch_1" title="bloch_1" />
+  </a>
+  </p>
+
+    <p>The black, red and green \(\epsilon(k)\) curves refer to three bands, with \(K = 0\), \(-K_1\) and \(K_2\), respectively.</p>
+
+    <blockquote class="info">
+      <p>\(K_1\) and \(K_2\) are both positive values, given the corresponding band in the figure and following the energy solution form presented above.</p>
+    </blockquote>
+
+    <p>For all bands, we can choose to focus on the part inside the first Brillouin zone (BZ, \(-\pi/a \leq k \leq \pi/a\) in the 1D case presented above) and that is indeed how a band structure would usually be presented. Without the potential field, such a band structure is equivalent to the free electron case, which is the black parabola plotted in full. To see why, we can go back to the energy solution for, e.g., the red band,</p>
+
+\[\epsilon = \frac{\hbar^2(k + K_1)^2}{2m}\]
+
+    <p>which is nothing but the \(\epsilon = \frac{\hbar^2k^2}{2m}\) curve shifted left by \(K_1\). From the figure, we can clearly see that by such a shifting, the red part of the free electron dispersion (the \(\epsilon-k\) relation) is collapsed into the first BZ, reproducing identically the band corresponding to \(-K_1\) (again, in the first BZ).</p>
+  </li>
+  <li>
+    <p>With \(U = 0\), if we focus on the band labeled with \(\mathbf{K}\), then we know that only the coefficient \(c_{\mathbf{k} - \mathbf{K}_1}\) exists. All the other coefficients \(c_{\mathbf{k} - \mathbf{K}'}\) with \(\mathbf{K}' \neq \mathbf{K}_1\) does not exist, meaning that different bands are not impacting each other – the reason why we can reproduce the free electron case identically. As \(U\) becomes non-zero, we would expect coefficients \(c_{\mathbf{k} - \mathbf{K}'}\) with \(\mathbf{K}' \neq \mathbf{K}_1\) start to emerge, but we do expect them to be on the order of \(\mathbb{O}(U)\) (at least), i.e., as \(U\) vanishes, they should vanish.</p>
+  </li>
+  <li>
+    <p>Since \(U_{\mathbf{k} - \mathbf{K}}\) refers to the Fourier transform coefficients, they should be on the order of \(\mathbb{O}(U)\).</p>
+  </li>
+  <li>
+    <p>Regarding the Eqn. 9.13, the following statement is presented in Chapter-9,</p>
+
+    <p><br /></p>
+
+    <blockquote>
+      <p>Equation (9.13) asserts that weakly perturbed nondegenerate bands repel each other, for every level \(\epsilon_{\mathbf{k}-\mathbf{K}}^0\) that lies below \(\epsilon_{\mathbf{k}-\mathbf{K}_1}^0\) contributes a term in (9.13) that raises the value of \(\epsilon\), while every level that lies above \(\epsilon_{\mathbf{k}-\mathbf{K}_1}^0\) contributes a term that lowers the energy.</p>
+    </blockquote>
+
+    <p align="center">
+  <a href="/assets/img/posts/bloch_2.png" target="_blank">
+  <img src="/assets/img/posts/bloch_2.png" style="border:none;" width="800" alt="bloch_2" title="bloch_2" />
+  </a>
+  </p>
+
+    <p>The diagram above demonstrates the point – for the dashed parts of bands, the red band sits between the black and green bands in the energy level. Therefore, when the potential becomes non-zero, the green one tries to push the red one down a bit while the black one triesd to push it up a bit.</p>
+  </li>
+  <li>
+    <p>Finally, we come to the point where the band gap emerges, at the BZ boundary. This originates from dealing with the degenerate case where multiple bands give the same energy. This is the part where the band structure is impacted the most significantly by the existence of the weak potential. Condition for the degeneracy coincides with the Bragg reflection condition. According to the energy solution presented above, the degeneracy means \(\vert \mathbf{k} \vert = \vert \mathbf{k} -\mathbf{K} \vert\)., which is exactly the Bragg reflection condition as presented below,</p>
+
+    <p align="center">
+  <a href="/assets/img/posts/bragg_plane.png" target="_blank">
+  <img src="/assets/img/posts/bragg_plane.png" style="border:none;" width="600" alt="bragg_plane" title="bragg_plane" />
+  </a>
+  </p>
+
+    <p>Two relevants notes about the coincidence of the degeneracy (thus the band gap emergence) and the Bragg reflection.</p>
+
+    <ul>
+      <li>
+        <p>Given the Fourier expansion of the potential,</p>
+
+\[U(\mathbf{r}) = \sum_{\mathbf{K}} U_{\mathbf{K}}e^{i\mathbf{K} \cdot \mathbf{r}}\]
+
+        <p>the interaction matrix element of this potential between the incident (\(\mathbf{k}\)) and scattered (\(\mathbf{k}'\)) plane wave states can be given as,</p>
+
+\[\langle \mathbf{k}' \vert U \vert \mathbf{k} \rangle
+  = \frac{1}{V} \int e^{-i\mathbf{k}'\cdot\mathbf{r}} \left( \sum_{\mathbf{K}} U_{\mathbf{K}}\, e^{i\mathbf{K}\cdot\mathbf{r}} \right) e^{i\mathbf{k}\cdot\mathbf{r}} \, d\mathbf{r}
+  = \sum_{\mathbf{K}} U_{\mathbf{K}}\, \delta_{\mathbf{k}',\, \mathbf{k}+\mathbf{K}}\]
+
+        <p>That means, the periodic potential only connects states that differ by a reciprocal lattice vector \(\mathbf{K}\). This is just the Bragg’s law in quantum mechanics language.</p>
+      </li>
+      <li>
+        <p><strong>Physical picture of the gap emergence</strong>. Taking the 1D case as an example, the electron density distribution corresponding to the two eigen states can be given as (see Eqn. 9.30 in Chapter-9),</p>
+
+\[\begin{align}
+  \vert \psi_+(x)\vert^2 &amp; \propto cos^2\bigg( \frac{\pi x}{a} \bigg)\\
+  \vert \psi_-(x)\vert^2 &amp; \propto sin^2\bigg( \frac{\pi x}{a} \bigg)
+  \end{align}\]
+
+        <p>where we can see that the dense region of electrons is located differently relative to where ions are located, for the two states. For the one with the electrons dense region coinciding with the ion position, the energy is expected to be lower (attraction by ion) and the other case will be with higher energy. This is the physical picture for the band gap emergence.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="filling-bands-with-electrons">Filling bands with electrons</h2>
+
+<p>Say we havea finite crystal with \(N_1\times N_2 \times N_3\) <em>primitive</em> unit cells and <em>pritimive</em> lattice vectos \(\mathbf{a}_1\), \(\mathbf{a}_2\) and \(\mathbf{a}_3\). The total number of <em>primitive</em> unit cell is \(N = N_1N_2N_3\). Assuming we only have a single atom as the motif in the primitive unit cell, the total number of atoms is also \(N = N_1N_2N_3\). Given the Born-Von Karman (periodic) boundary condition, the wavefunction must obey,</p>
+
+\[\psi(\mathbf{r} + N_i\mathbf{a}_i) = \psi(\mathbf{r}), \quad i = 1, 2, 3\]
+
+<p>Using Bloch’s theorem,</p>
+
+\[\begin{align}
+\psi_{n\mathbf{k}}(\mathbf{r} + N_i\mathbf{a}_i) &amp; = e^{i\mathbf{k} \cdot (\mathbf{r} + N_i\mathbf{a}_i)}u_{n\mathbf{k}}(\mathbf{r} + N_i\mathbf{a}_i)\\
+&amp; = e^{i\mathbf{k} \cdot N_i\mathbf{a}_i} e^{i\mathbf{k} \cdot \mathbf{r}} u_{n\mathbf{k}}(\mathbf{r})\\
+&amp; = e^{i\mathbf{k} \cdot N_i\mathbf{a}_i} \psi_{n\mathbf{k}}(\mathbf{r})
+\end{align}\]
+
+<p>Accordingly, the boundary condition above requires,</p>
+
+\[e^{i\mathbf{k}\cdot N_i\mathbf{a}_i} = 1 \quad \Rightarrow \quad \mathbf{k}\cdot N_i\mathbf{a}_i = 2\pi \times \text{integer}\]
+
+<p>Write \(\mathbf{k}\) in terms of reciprocal lattice basis vectors \(\mathbf{b}_1, \mathbf{b}_2, \mathbf{b}_3\) (defined by \(\mathbf{a}_i \cdot \mathbf{b}_j = 2\pi\delta_{ij}\)),</p>
+
+\[\mathbf{k} = \frac{m_1}{N_1}\mathbf{b}_1 + \frac{m_2}{N_2}\mathbf{b}_2 + \frac{m_3}{N_3}\mathbf{b}_3, \qquad m_i \in \mathbb{Z}\]
+
+<p>Restricting to the first BZ only (band structure is periodic in reciprocal space and thus we only need to focus on the first BZ), the number of allowed \(\mathbf{k}\) values are \(N = N_1N_2N_3\), same as the total number of atoms. This is kind of expected – as we change from the real to reciprocal space, the total number of degrees of freedom should not change. Further, this means for each band, we have \(N = N_1N_2N_3\) allowed \(\mathbf{k}\) values. Therefore, the number of electrons that each band and host is \(2N\) – the Pauli exclusion principle allows only 2 electrons per \(\mathbf{k}\), namely spin up and down. Now, we can try to use the band structure to understand the conductivity. Let’s take the 1D case for simplicity – the 3D case is more realistic yet more complicated, and the 1D case can at least gives us a flavor so that we can touch and feel the principle. If the atom contains odd number of outer shell electrons, since each band can only host \(2N\) electrons, all electrons in this case tend to half fill the band (either half filling the first band for 1 outer shell electron case or half filling the second band for 3 outer shell electrons case, etc.), leaving the Fermi level right within the band so that electrons can be easily excited to travel freely, thus conducting. Elements with even number of outer shell electrons tends to be the other way round, with bands fully filled. Therefore, when gap opens up (as the result of the weak potential field, as discussed above), it always takes energy to bring electrons to the empty band (the conduction band, so they can travel freely), thus they tend to be insulating.</p>
+
+<p>In 2D or 3D, the band structure is more complicated and the band filling is not as straightforward as it is for the 1D case. Regarding the energy level, the BZ boundary may be located within other bands, so even though the gap opens up at the BZ boundary, still it is possible that the Fermi level is located within a band. As such, the band gap at the BZ boundary does <em>NOT</em> make elements with even number of outer shell electrons insulating, like Mg.</p>
+
+<p align="center">
+<a href="/assets/img/posts/bloch_2d.png" target="_blank">
+<img src="/assets/img/posts/bloch_2d.png" style="border:none;" width="600" alt="bloch_2d" title="bloch_2d" />
+</a>
+</p>
+
+<p>As shown in the figure above, given the Fermi level \(E_F\), the first \(\Gamma \rightarrow M\) band is still filling even when the first \(\Gamma \rightarrow X\) band is already full. Therefore, even a gap opens at the zone boundary \(X\), the Fermi level is still within a band (the first \(\Gamma \rightarrow M\) band), in which case we will still have a conductor. It is only when the gap at \(M\) opens wide enough so the whole first \(\Gamma \rightarrow M\) band is pushed below the Fermi level will we have an insulator.</p>
+
+<h2 id="tight-binding-model">Tight binding model</h2>
+
+<p>A very nice walkthrough of the tight binding model can be found in Ref. [4] by M. Roy, which I found is pretty much self-contained – just follow it and we should get a very good idea about how the tight binding model works. For earlier discussions in this post, we mainly base ourselves in the free electron model – we start from it and add in weak potential where they move in and we build up the band structure. In fact, the free electron model itself shows the band structure already, originating from the energy solution \(\epsilon = \hbar^2k^2/(2m)\). When collapsing regions beyond the first BZ all into the first BZ, the commonly seen band structure becomes clear. The tight binding model takes a bottom-up approach to build up the band structure. As mentioned at the very beginning of the post, in atoms, we have discrete energy levels. We then put atoms into a solid and we allow those atomic states to interact with each other. As shown in the tight binding framework, the energy levels will be broadened as the result of the interaction, giving rise to the band structure.</p>
+
+<p>I am not planning to reiterate details in Ref. [4]. Instead, I will just put down several notes that I think will be helpful for understanding the material.</p>
+
+<ul>
+  <li>
+    <p>The single particle Hamiltonian is given as,</p>
+
+\[H = H_{\text{at}} + \Delta U\]
+
+    <p>where \(H_{\text{at}}\) is the hamiltonian for a single atom and \(\Delta U\) encodes <code class="language-plaintext highlighter-rouge">all the differences between the true potential in the crystal and the potential of an isolated atom</code>. This is just a reiteration of the statement in Ref. [4] and here I just quoted the part that needs to be emphasized.</p>
+  </li>
+  <li>
+    <p>When we say <code class="language-plaintext highlighter-rouge">overlap integral</code> in the context of tight binding model, we mean,</p>
+
+\[\gamma(\vert \mathbf{R} \vert) = \int \phi^*_i(\mathbf{r}) H \phi_i(\mathbf{r} + \mathbf{R})\,d\mathbf{r}\]
+
+    <p>between wavefunctions located on separate atomic sites (\(\mathbf{R} \neq 0\)) in the crystal. The <code class="language-plaintext highlighter-rouge">direct overlap</code> of atomic states across different lattice sites is given as,</p>
+
+\[\int \phi_i^*(\mathbf{r})\phi_j(\mathbf{r}+\mathbf{R})\,d\mathbf{r} =
+  \begin{cases}
+  1 &amp; \text{if } i=j \text{ and } \mathbf{R}=0 \\
+  0 &amp; \text{otherwise.}
+  \end{cases}\]
+  </li>
+  <li>
+    <p>The building block of the tight binding model is writing the Bloch’s function as a linear combination of atomic orbitals,</p>
+
+\[\psi_{n\mathbf{k}}(\mathbf{r}) = \frac{1}{\sqrt{N}}\sum_{\mathbf{R}}e^{i\mathbf{k} \cdot \mathbf{R}} \phi_n(\mathbf{r} - \mathbf{R})\]
+
+    <p>where \(N\) is the number of lattice sites in the crystal and \(1/\sqrt{N}\) ensures the normalization of the Bloch state. In Ref, [4], the linear combination form is directly presented. In the node that I put in Ref. [4] (the exact PDF shared below, private access only), the we start from the general linear combination from and use the Bloch’s theorem to derive the linear combination coefficients. We can reproduce the exact form as presented above.</p>
+
+    <p align="center">
+  <a href="/assets/img/posts/tb_illustration.png" target="_blank">
+  <img src="/assets/img/posts/tb_illustration.png" style="border:none;" width="400" alt="tb_illustration" title="tb_illustration" />
+  </a>
+  </p>
+
+    <p>Shown in the figure is an illustration for the basic idea of the tight binding model. For any position \(\mathbf{r}\) (doesn’t have to be in the first cell), contributions to the Bloch’s wave function from atomic orbitals in various cells are illustrated in the figure. The \(\mathbf{r} - \mathbf{R}\) transforms the position \(\mathbf{r}\) to the local coordinate of cell \(\mathbf{R}\) – this is indeed the atomic state evaluated at \(\mathbf{r}\) with the atom located at \(\mathbf{R}\). Each contribution carries a ‘propagation’ factor, given as \(e^{i\mathbf{k} \cdot \mathbf{R}}\).</p>
+  </li>
+  <li>
+    <p><strong>What is tight binding?</strong> In the tight binding model, ‘tight binding’ emphasizes the direct overlap being 0 and the overlap integral being small, among different lattice sites. So, atomic orbitals are pretty much staying local, i.e., tight binding to their own atoms.</p>
+  </li>
+</ul>
+
+<h2 id="wannier-function">Wannier function</h2>
+
+<p>Since the Bloch’s function is periodic in reciprocal space, it can be Fourier transformed to give,</p>
+
+\[\phi_{\mathbf{R}}(\mathbf{r}) = \frac{1}{N}\sum_{\mathbf{k}} e^{-i\mathbf{k} \cdot \mathbf{R}} \psi_{\mathbf{k}}(\mathbf{r})\]
+
+<p>where</p>
+
+<ul>
+  <li>
+    <p>\(\mathbf{R}\) is the lattice vector. Therefore the Wannier function is a localized function attached to each of the Bravais lattice vector.</p>
+  </li>
+  <li>
+    <p>\(N\) is the number of pritimive cells in the crystal.</p>
+  </li>
+  <li>
+    <p>The sum is over \(\mathbf{k}\) in the first BZ. The space variable \(\mathbf{r}\) is not touched at all.</p>
+  </li>
+</ul>
+
+<p>The orthogonality of Wannier functions for different lattice sites is proved in Ref. [5] and won’t be touched here. Basically, it means the set of Wannier functions can be used as a reliable basis set in the Hilbert space. The following property of the Wannier function is noteworthy,</p>
+
+\[\phi_{\mathbf{R}}(\mathbf{r}) = \phi_{\mathbf{R} + \mathbf{R}'}(\mathbf{r} + \mathbf{R}')\]
+
+<p>Proof.</p>
+
+\[\begin{align}
+\phi_{\mathbf{R} + \mathbf{R}'} &amp; = \sum_{\mathbf{k}} e^{-i\mathbf{k} \cdot (\mathbf{R} + \mathbf{R}')} \psi_{n\mathbf{k}}(\mathbf{r} + \mathbf{R}')\\
+&amp; = \sum_{\mathbf{k}} e^{-i\mathbf{k} \cdot (\mathbf{R} + \mathbf{R}')} e^{i\mathbf{k} \cdot \mathbf{R}'} \psi_{n\mathbf{k}}(\mathbf{r})\\
+&amp; = \sum_{\mathbf{k}} e^{-i \mathbf{k} \cdot \mathbf{R}} \psi_{n\mathbf{k}}(\mathbf{r})\\
+&amp; = \phi_{\mathbf{R}}(\mathbf{r})
+\end{align}\]
+
+<p>where we applied the following relation for Bloch’s function,</p>
+
+\[\psi_{n\mathbf{k}}(\mathbf{r} + \mathbf{R}') = e^{i\mathbf{k} \cdot \mathbf{R}'} \psi_{n\mathbf{k}}(\mathbf{r})\]
+
+<p>which can be simply derived by putting \(\mathbf{r} + \mathbf{R}'\) into the Bloch’s function form, as given <a href="./#blochs-theorem">here</a>.</p>
+
+<p>Let \(\mathbf{R} = \mathbf{0}\), we obtain,</p>
+
+\[\phi_{\mathbf{0}}(\mathbf{r}) = \phi_{\mathbf{R}'}(\mathbf{r} + \mathbf{R}')\]
+
+<p>This means for <em>any</em> lattice vector \(\mathbf{R}'\), the wavefunction evaluated at \(\mathbf{r} + \mathbf{R}'\) can always find its equivalent counterpart in cell \(\mathbf{0}\), evaluated at \(\mathbf{r}\). This is illustrated in the following figure,</p>
+
+<p align="center">
+<a href="/assets/img/posts/wannier_illustration.png" target="_blank">
+<img src="/assets/img/posts/wannier_illustration.png" style="border:none;" width="600" alt="wannier_illustration" title="wannier_illustration" />
+</a>
+</p>
+
+<p>For \(\mathbf{r} = \mathbf{r}_1\) with the Wannier function at lattice vector \(\mathbf{R}_1\) and \(\mathbf{r} = \mathbf{r}_2\) with the Wannier function at lattice vector \(\mathbf{R}_2\), they are both equivalent to the evaluation of the Wannier function at \(\mathbf{r} = \mathbf{r}_0\). For the evaluation at \(\mathbf{r}_1\) with the Wannier function at \(\mathbf{R}_2\), the correspondingly equivalent spot with respect to the Wannier function at \(\mathbf{r} = \mathbf{r}_0\) is shown with the pinkish color.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] Neil W. Aschcroft and N. David Mermin, Solid State Physics, Harcourt College Publishers, 1976.</p>
+
+<p>[2] Arthur P. Ramirez and Brian Skinner, Dawn of the Topological Age? Physics Today, September, 2020.</p>
+
+<p>[3] <a href="https://solidstate.quantumtinkerer.tudelft.nl/4_sommerfeld_model/">Sommerfeld model</a>.</p>
+
+<p>[4] <a href="https://file.notion.com/f/f/4b1cfd48-2d56-4149-b5e2-458ca9e5a1c8/745e4f46-2d67-48b7-af56-e5ef4b767861/tight-binding.pdf?table=block&amp;id=3e4e342b-9efe-80d2-9667-e535b4e2422c&amp;spaceId=4b1cfd48-2d56-4149-b5e2-458ca9e5a1c8&amp;expirationTimestamp=1790208000000&amp;signature=SsbYZVvEucJr3OuANgQst5ezRM5ctBZ642GpeMMx35I&amp;downloadName=tight-binding.pdf">Tight binding model (my personal notion link, not public)</a>.</p>
+
+<p>[5] <a href="https://en.wikipedia.org/wiki/Wannier_function">Wannier function</a>.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#physics">physics</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Bloch%27s+Theorem+and+Band+Structure&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-21-bloch_band%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-09-21-bloch_band%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-21-bloch_band%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-09-20-dispersion/" data-toggle="tooltip" data-placement="top" title="A Piece of Note on Refraction and Dispersion">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+
+    
+    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+      <nav id="toc-container" class="toc-sidebar">
+        <div class="toc-title">Contents</div>
+        <ul id="toc-list"></ul>
+      </nav>
+    </div>
+    
+  </div>
+</div>
+
+
+  <script src="/assets/js/toc.js" defer></script>
+
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zyroc1990@iris-2020.us" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/copyCode.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
