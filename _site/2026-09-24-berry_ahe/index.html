@@ -328,7 +328,7 @@ if (chromeAgent) {
 <p>:::info</p>
 <ul>
   <li>Here we are talking about the general situation where the Hamiltonian contains some parameters. A little forward-leaping hint for the following discussion is, think about the the Bloch Hamiltonian I put above for each single value of $\mathbf{k}$, isn’t the Hamiltonian just depending on ‘some’ parameter? Yes, the parameter is just $\mathbf{k}$. So we derive things here generally for $\lambda$ and the result will naturally follow, when we replace $\lambda$ with $\mathbf{k}$, as we will see below.</li>
-  <li>Explanation about ‘provided there is a gap’ can be found <a href="https://hdoc.iris-home.net/ivfi8WnvR7aN8BD4Ec9XWQ">here</a>.</li>
+  <li>Explanation about ‘provided there is a gap’ can be found <a href="./#appendix-a">here</a>.</li>
 </ul>
 
 <p>:::</p>
@@ -344,7 +344,7 @@ if (chromeAgent) {
 <p>The second exponential is the familiar <strong>dynamical phase</strong> — the time-integrated energy. The first factor $e^{i\gamma_n(t)}$ is what we want to find.</p>
 
 <p>:::info
-Here, let’s stop by visiting why the ansatz solution is actually proposed. See <a href="https://hdoc.iris-home.net/H8gdhGKYRn2WF40RDBoIuA">here</a>. This includes detailed discussion about why we have the second exponential term, i.e., the dynamical phase and why we still need the first term, i.e., the geometric phase.
+Here, let’s stop by visiting why the ansatz solution is actually proposed. See <a href="./#appendix-b">here</a>. This includes detailed discussion about why we have the second exponential term, i.e., the dynamical phase and why we still need the first term, i.e., the geometric phase.
 :::</p>
 
 <p>Substituting into the Schrödinger equation and using $H(\boldsymbol{\lambda})\vert n(\boldsymbol{\lambda})\rangle = E_n(\boldsymbol{\lambda})\vert n(\boldsymbol{\lambda})\rangle$, the energy terms cancel and we get,</p>
@@ -634,7 +634,7 @@ For the $\langle \partial_{k_\alpha} u_n \vert  u_m \rangle$ term in the Berry c
 <p>Let’s summarize what we have achieved briefly. We derived the expression for the Berry curvature, showing that it is fundamentally determined by the velocity operator. So far, for the Berry curvature derivation, there is no external field involved. Once the external field is introduced, the field-involved (and gauge invariant) Hamiltonian can be constructed. With the field effect being treated as perturbation, the induced current can be derived given the applied electric field. Accordingly the conductivity can be deduced – here the <em>dissipationless</em> (thus corresponding to the anomalous Hall effect) conductivity part of the Kubo formulation is presented,</p>
 
 <p>:::info
-The derivation for the Kubo formula is much too involved for me and here I am referring to Refs. [1, 2] for derivation.
+The derivation for the Kubo formula is much too involved for me and here I am referring to Refs. [1-4] for derivation and some relevant results.
 :::</p>
 
 \[\sigma_{\alpha\beta} = -e^2\hbar \sum_{n \neq m} \int_\text{BZ} \frac{d^3k}{(2\pi)^3} (f_{n\mathbf{k}} - f_{m\mathbf{k}}) \frac{\mathrm{Im}\left[\langle u_{n\mathbf{k}} \vert  \hat{v}_\alpha \vert  u_{m\mathbf{k}} \rangle \langle u_{m\mathbf{k}} \vert  \hat{v}_\beta \vert  u_{n\mathbf{k}} \rangle\right]}{(E_{n\mathbf{k}} - E_{m\mathbf{k}})^2}\]
@@ -757,11 +757,173 @@ Einstein notation is used here, i.e., repeated indices are summed.
 
 <p>which is exactly the <code class="language-plaintext highlighter-rouge">Hall vector</code> as defined in earlier discussion. Why can we do such a relabeling to turn a rank-2 tensor that has 9 components into a rank-1 tensor that has 3 components? The thing is, we know that the Berry curvature tensor is antisymmetric and therefore it only has 3 independent components – all the diagonal components are forced to be $0$ and the off-diagonal components are antisymmetric (thus giving 3 independent components out of the 6 components).</p>
 
+<h2 id="appendix-a">Appendix-A</h2>
+
+<p>$\vert n\rangle$ is the eigenstate of the Hamiltonian at $t = 0$. Then as the Hamiltonian changes with the parameter $\pmb{\lambda}(t)$, generally we will have the original state changing accordingly. Suppose originally we have two eigenstates $\vert m\rangle$ and $\vert n\rangle$ and they should be orthogonal, if $m \neq n$. If we have the eigenstate $\vert n\rangle$ changing as $\pmb{\lambda}(t)$ with the Hamiltonian, the orthogonality $\langle m\vert n \rangle$ will no longer be guaranteed. Accordingly, we can use the quantity $\langle m\vert \dot{n} \rangle$ to characterize how fast the eigenstate $\vert n\rangle$ is changed towards $\vert m\rangle$.</p>
+
+\[H\vert n\rangle = E_n\vert n\rangle\]
+
+<p>so,</p>
+
+\[\dot{H}\vert n\rangle + H\vert \dot{n}\rangle = \dot{E}_n\vert n\rangle + E_n\vert \dot{n}\rangle\]
+
+<p>and therefore,</p>
+
+\[\begin{align}
+&amp; \langle m \dot{H}\vert n\rangle + \langle m\vert H\vert \dot{n}\rangle = \langle m\vert \dot{E}_n\vert n\rangle + \langle m\vert E_n\vert \dot{n}\rangle\\
+&amp; \hspace{4.5cm} \Downarrow\\
+&amp; \hspace{1.3cm} \langle m \dot{H}\vert n\rangle + E_m\langle m \vert  \dot{n}\rangle = E_n\langle m\vert \dot{n}\rangle\\
+&amp; \hspace{4.5cm} \Downarrow\\
+&amp; \hspace{2.5cm} \langle m \vert  \dot{n}\rangle = \frac{\langle m \vert \dot{H}\vert n\rangle}{E_n - E_m}
+\end{align}\]
+
+<p>The time scale associated with such an eigenstate variation rate is therefore,</p>
+
+\[\tau_{\text{variation}} \propto \Bigg\vert  \frac{\langle m \vert \dot{H}\vert n\rangle}{E_n - E_m} \Bigg\vert ^{-1}\]
+
+<p>The time scale accosicated with the actual transition between the two energy levels is determined by the gap, and therefore,</p>
+
+\[\tau_{\text{gap}} \propto \frac{\hbar}{\vert E_m - E_n\vert }\]
+
+<p>If we want to consider the situation where the eigenstate variation is slow, we are basically aiming at $\tau_{\text{variation}} \gg \tau_{\text{gap}}$. Accordingly,</p>
+
+\[\Bigg\vert  \frac{\hbar\langle m \vert \dot{H}\vert  n\rangle }{(E_m - E_n)^2}\Bigg\vert  \ll 1,\ \ \ \forall\ m \neq n\]
+
+<p>This means if we have the changing rate of the Hamiltonian is small, as compared to the gap between the original eigenstate and any other eigenstates, the variation of the eigenstate (with $\pmb{\lambda}(t)$) can be ignored, i.e., the original eigenstate stays as the eigenstate of the Hamiltonian, ‘on-the-fly’. Physically, this is understandable – when the Hamiltonian changes very slow, the original eigenstate (of the original Hamiltonian) has enough time to relax to the new eigenstate (of the new Hamiltonian) and therefore if the system starts from the original eigenstate $\vert n[\pmb{\lambda}(0)]\rangle$, it will always stay as the eigenstate of $H[(\pmb{\lambda}(t)]$, evolving as $\vert n[\pmb{\lambda}(t)]\rangle$.</p>
+
+<h2 id="appendix-b">Appendix-B</h2>
+
+<p>The ansatz for the time-dependent wave function under adiabatic evolution is explicitly constructed to satisfy the time-dependent Schrödinger equation (TDSE) while enforcing the physical constraints of the adiabatic theorem.</p>
+
+<p><strong>The Adiabatic Assumption</strong>
+The adiabatic theorem dictates that if a system starts in a non-degenerate eigenstate $\vert{}n(\lambda(0))\rangle$ and the Hamiltonian changes infinitely slowly, the system will not transition to other energy levels. Therefore, the state $\vert{}\Psi(t)\rangle$ is allowed to be different from the eigenstate $\vert{}n(\lambda(t))\rangle$ but only by a phase factor,</p>
+
+\[\vert{}\Psi(t)\rangle = e^{i\theta(t)} \vert{}n(\lambda(t))\rangle\]
+
+<p><strong>Dynamical Phase</strong>
+For a simple time-independent Hamiltonian, a stationary state evolves with the standard phase factor $e^{-iE_n t/\hbar}$ $^\dagger$. When the external parameter $\lambda(t)$ makes the Hamiltonian time-dependent, the instantaneous energy $E_n(\lambda(t))$ fluctuates. The natural generalization of this standard phase is the time integral of the instantaneous energy$^\shortparallel$,</p>
+
+\[\theta_{dyn}(t) = -\frac{1}{\hbar} \int_0^t E_n(\lambda(t')) dt'\]
+
+<p>Factoring this dynamical phase out of the total phase $\theta(t)$ separates the expected kinematic evolution of the state from any phase changes caused by the changing parameters.</p>
+
+<p>:::info
+$^\dagger$ <strong>Stationary state$^\ddagger$ evolving with time</strong>
+The standard phase factor arises directly from solving the time-dependent Schrödinger equation (TDSE) for an energy eigenstate.</p>
+
+<p>When a quantum system is governed by a time-independent Hamiltonian $H$, its evolution is dictated by,</p>
+
+\[i\hbar \frac{\partial}{\partial t} \vert{}\Psi(t)\rangle = H \vert{}\Psi(t)\rangle\]
+
+<p>If the system is prepared in a stationary state (an eigenstate $\vert{}n\rangle$ of the Hamiltonian), it satisfies the time-independent eigenvalue equation,</p>
+
+\[H \vert{}n\rangle = E_n \vert{}n\rangle\]
+
+<p>To find how this state evolves over time, we assume the solution takes the form of the original state multiplied by some time-dependent scalar function $f(t)$,</p>
+
+\[\vert{}\Psi(t)\rangle = f(t) \vert{}n\rangle\]
+
+<p>Substitute this ansatz into the TDSE,</p>
+
+\[i\hbar \frac{\partial}{\partial t} \left( f(t) \vert{}n\rangle \right) = H \left( f(t) \vert{}n\rangle \right)\]
+
+<p>Because $\vert{}n\rangle$ has no explicit time dependence, the time derivative only acts on $f(t)$. Because $f(t)$ is a scalar, it commutes with the linear operator $H$,</p>
+
+\[i\hbar \frac{df(t)}{dt} \vert{}n\rangle = f(t) H \vert{}n\rangle\]
+
+<p>Apply the eigenvalue relation $H \vert{}n\rangle = E_n \vert{}n\rangle$ to the right side,</p>
+
+\[i\hbar \frac{df(t)}{dt} \vert{}n\rangle = f(t) E_n \vert{}n\rangle\]
+
+<p>Since this must hold for the non-zero vector $\vert{}n\rangle$, we can drop the ket to get a simple first-order ordinary differential equation for $f(t)$,</p>
+
+\[i\hbar \frac{df(t)}{dt} = E_n f(t)\]
+
+\[\frac{df(t)}{dt} = -\frac{i E_n}{\hbar} f(t)\]
+
+<p>Integrating this equation with the initial condition $f(0) = 1$ (so that $\vert{}\Psi(0)\rangle = \vert{}n\rangle$) yields,</p>
+
+\[f(t) = e^{-i E_n t / \hbar}\]
+
+<p>Thus, the full time-dependent state is simply the initial eigenstate rotating by a complex phase at a constant frequency determined by its energy,</p>
+
+<p>\(\vert{}\Psi(t)\rangle = e^{-i E_n t / \hbar} \vert{}n\rangle\)
+:::</p>
+
+<p>:::info
+$^\ddagger$ <strong>Stationary state</strong>
+A <strong>stationary state</strong> is a quantum state for which we can cleanly separate out the spatial part and the time part. Several key characteristics of a stationary state are listed below,</p>
+
+<ul>
+  <li>
+    <p><strong>Static Probability Density</strong>. The probability of finding a particle at a given location is determined by the absolute square of the wavefunction, $\vert{}\Psi(\mathbf{r}, t)\vert{}^2$. If we can manage to separate out the time evolution part purely, squaring the wavefunction, the time evolution part will be like this, $\vert{}e^{-iE_n t/\hbar}\vert{}^2 = 1$. The spatial probability distribution never changes.</p>
+  </li>
+  <li>
+    <p><strong>Constant Observables</strong>. The expected measurement outcome (expectation value) for any time-independent observable operator $\hat{A}$ remains completely fixed. The time-evolution phase applied to the bra $\langle\Psi(t)\vert{}$ mathematically cancels the phase applied to the ket $\vert{}\Psi(t)\rangle$.</p>
+  </li>
+</ul>
+
+<p>By contrast, if a system is prepared in a <em>superposition</em> of multiple energy eigenstates (e.g., $\vert{}\Psi\rangle = \frac{1}{\sqrt{2}}\vert{}E_1\rangle + \frac{1}{\sqrt{2}}\vert{}E_2\rangle$), it is a non-stationary state. The different energy components carry different time evolution parts. When squared to calculate probabilities, those cross-terms cause the probability distribution and the expectation values of observables to change over time.
+:::</p>
+
+<p>:::info
+$^\shortparallel$ <strong>Phase factor evolution with time</strong></p>
+
+<p>For a time-independent Hamiltonian, the energy $E_n$ is a constant value. The rate at which the quantum phase evolves is also a constant (refer to the stationary state wavefunction form presented above),</p>
+
+\[\frac{d\theta}{dt} = -\frac{E_n}{\hbar}\]
+
+<p>Accordingly, the total accumulated phase over a period $t$ is simply the constant rate multiplied by the time duration: $\theta(t) = -\frac{E_n t}{\hbar}$.</p>
+
+<p>When the Hamiltonian is time-dependent, its instantaneous energy eigenvalue $E_n(\lambda(t))$ (following the adiabatic assumption) fluctuates as the system evolves. Accordingly we have,</p>
+
+\[\frac{d\theta}{dt'} = -\frac{E_n(\lambda(t'))}{\hbar}\]
+
+<p>and,</p>
+
+<p>\(\theta_{dyn}(t) = \int_0^t d\theta = -\frac{1}{\hbar} \int_0^t E_n(\lambda(t')) dt'\)
+:::</p>
+
+<p><strong>Geometric Phase</strong>
+If the eigenstate vector $\vert{}n(\lambda)\rangle$ were perfectly rigid in Hilbert space, the dynamical phase alone would be the complete solution. However, as the external parameter $\lambda(t)$ changes, the eigenstate vector itself varies. When the TDSE operator $i\hbar \frac{d}{dt}$ operates on the state, the product rule infers that the derivative must act on both the phase exponential and the ket vector $\vert{}n(\lambda(t))\rangle$. This causes some problems if we only have the dynamical phase presented above in the wavefunction. To see why, let’s put down the ansatz wavefunction form as (here below I am using $\vert{}n(t)\rangle$ in place of $\vert{}n(\lambda(t))\rangle$ for the sake of simplicity),</p>
+
+\[\vert{}\Phi(t)\rangle = e^{-\frac{i}{\hbar} \int_0^t E_n(t') dt'} \vert{}n(t)\rangle\]
+
+<p>Then plug this into the TDSE,</p>
+
+\[i\hbar \frac{d}{dt} \vert{}\Phi(t)\rangle = H(t) \vert{}\Phi(t)\rangle\]
+
+<p>The left-hand side (LHS) gives,</p>
+
+\[LHS = E_n(t) \vert{}\Phi(t)\rangle + i\hbar e^{-\frac{i}{\hbar} \int E_n dt'} \left( \frac{d}{dt} \vert{}n(t)\rangle \right)\]
+
+<p>through the application of the production rule of the derivative and the following bit of result,</p>
+
+\[i\hbar \frac{d}{dt} \left( e^{-\frac{i}{\hbar} \int E_n dt'} \right) = i\hbar \left( -\frac{i}{\hbar} E_n(t) \right) e^{\dots} = E_n(t) e^{\dots}\]
+
+<p>Now, the right-hand side (RHS),</p>
+
+\[RHS = H(t) \vert{}\Phi(t)\rangle = E_n(t) \vert{}\Phi(t)\rangle\]
+
+<p>Equating the LHS and RHS, the $E_n(t) \vert{}\Phi(t)\rangle$ term cancels out, and we are left with,</p>
+
+\[i\hbar e^{-\frac{i}{\hbar} \int E_n dt'} \left( \frac{d}{dt} \vert{}n(t)\rangle \right) = 0\]
+
+<p>inferring,</p>
+
+\[\frac{d}{dt} \vert{}n(t)\rangle = 0\]
+
+<p>This is the problem – with only the dynamical phase factor, we conclude that the eigen state is not varying with time at all, which apparently does not make sense since we know the state will be evolving with time. To solve the issue, we can introduce an extra phase factor $e^{i\gamma_n(t)}$ in the ansatz so that the application of the production rule while evaluating the LHS will generate an additional term $i\hbar \dot{\gamma}_n(t)\vert{}n(t)\rangle$. This then avoids problematic situation of $\vert{}n(t)\rangle$ not evolving with time. As for how to find out $\gamma_n(t)$, the discussion will be presented in the main story.</p>
+
 <h2 id="references">References</h2>
 
 <p>[1] <a href="https://davidtong.org/pdfs/teaching/quantum-hall-effect/qhe.pdf">https://davidtong.org/pdfs/teaching/quantum-hall-effect/qhe.pdf</a></p>
 
 <p>[2] Henrik Bruus and Karsten Flensberg, Introduction to many-body quantum theory in condensed matter physics.</p>
+
+<p>[3] J. Sinova, <em>et al.</em>, Phys. Rev. B. <strong>67</strong>, 235203, 2003.</p>
+
+<p>[4] Y. Yao, <em>et al.</em>, Phys. Rev. Lett. <strong>92</strong>, 037204, 2004.</p>
 
       </article>
 
