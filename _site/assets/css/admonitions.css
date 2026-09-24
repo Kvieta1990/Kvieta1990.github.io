@@ -43,3 +43,27 @@
   background-color: #fdecea;
   border-left-color: #d93025;
 }
+
+/* Callout boxes from ":::info / :::warning / :::dangerous ... :::" fences,
+   converted to div.callout by /assets/js/callouts.js. */
+.blog-post .callout {
+  border-radius: 0.25rem;
+  padding: 0.9rem 1.25rem;
+  margin: 1rem 0;
+}
+
+.blog-post .callout > :last-child {
+  margin-bottom: 0;
+}
+
+.blog-post .callout-info {
+  background-color: #e7f3fb;
+}
+
+.blog-post .callout-warning {
+  background-color: #fff8e6;
+}
+
+.blog-post .callout-dangerous {
+  background-color: #fdecea;
+}

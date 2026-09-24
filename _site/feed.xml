@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Berry Physics and Anomalous Hall Effect</title>
+        <description>
+          
+          Recall the Bloch’s theorem Some basic results of the Bloch’s theorem is reproduced here. For more detailed discussion, refer to my earlier post here. The Bloch function, \[\psi_{n\mathbf{k}}(\mathbf{r}) = e^{i\mathbf{k}\cdot\mathbf{r}} u_{n\mathbf{k}}(\mathbf{r})\] where $u_{n\mathbf{k}}(\mathbf{r})$ is periodic with the lattice periodicity. Substituting into the full Schrödinger equation $H\psi_{n\mathbf{k}} = E_{n\mathbf{k}}\psi_{n\mathbf{k}}$ gives an...
+        </description>
+        <pubDate>Thu, 24 Sep 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-09-24-berry_ahe/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-09-24-berry_ahe/</guid>
+      </item>
+    
+      <item>
         <title>Bloch&apos;s Theorem and Band Structure</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sun, 02 Aug 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-08-02-sampling_algorithms/</link>
         <guid isPermaLink="true">http://localhost:8000/2026-08-02-sampling_algorithms/</guid>
-      </item>
-    
-      <item>
-        <title>Markov Chain Monte Carlo -- An Introduction</title>
-        <description>
-          
-          This post is written by both AI and myself in a ‘collaborative’ way. I was learning through the sampling technique with Claude AI and was asking quite a lot questions back and forth, trying to understand each of the pieces clearly. After that, I asked Claude AI to summarize the...
-        </description>
-        <pubDate>Fri, 31 Jul 2026 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2026-07-31-markov_chain_monte_carlo/</link>
-        <guid isPermaLink="true">http://localhost:8000/2026-07-31-markov_chain_monte_carlo/</guid>
       </item>
     
   </channel>

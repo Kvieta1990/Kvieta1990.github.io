@@ -166,35 +166,35 @@ try to execute the followings commands,
 
 ---
 
-$ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/mpich/lib/* /usr/lib/x86_64-linux-gnu/
+\\$ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/mpich/lib/* /usr/lib/x86_64-linux-gnu/
 <br />
-$ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/openmpi/lib/* /usr/lib/x86_64-linux-gnu/
+\\$ sudo cp /usr/lib/x86_64-linux-gnu/open-coarrays/openmpi/lib/* /usr/lib/x86_64-linux-gnu/
 <br />
-$ cd /usr/lib/x86_64-linux-gnu/
+\\$ cd /usr/lib/x86_64-linux-gnu/
 <br />
-$ sudo ln -s libmpi_usempif08.so.40 libmpi_usempif08.so
+\\$ sudo ln -s libmpi_usempif08.so.40 libmpi_usempif08.so
 <br />
-$ sudo ln -s libmpi_usempi_ignore_tkr.so.40 libmpi_usempi_ignore_tkr.so
+\\$ sudo ln -s libmpi_usempi_ignore_tkr.so.40 libmpi_usempi_ignore_tkr.so
 <br />
-$ sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
+\\$ sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
 <br />
-$ sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
+\\$ sudo ln -s libmpi_mpifh.so.40 libmpi_mpifh.so
 <br />
-$ sudo ln -s libmpi.so.40 libmpi.so
+\\$ sudo ln -s libmpi.so.40 libmpi.so
 <br />
-$ sudo ln -s libopen-rte.so.40 libopen-rte.so
+\\$ sudo ln -s libopen-rte.so.40 libopen-rte.so
 <br />
-$ sudo ln -s libopen-pal.so.40 libopen-pal.so
+\\$ sudo ln -s libopen-pal.so.40 libopen-pal.so
 <br />
-$ sudo ln -s libevent-2.1.so.7 libevent.so
+\\$ sudo ln -s libevent-2.1.so.7 libevent.so
 <br />
-$ sudo ln -s libevent_pthreads-2.1.so.7 libevent_pthreads.so
+\\$ sudo ln -s libevent_pthreads-2.1.so.7 libevent_pthreads.so
 <br />
-$ sudo ln -s libhwloc.so.15 libhwloc.so
+\\$ sudo ln -s libhwloc.so.15 libhwloc.so
 <br />
-$ sudo mkdir -p  /usr/include/OpenCoarrays-2.0.0-rc1_GNU-7.3.0
+\\$ sudo mkdir -p  /usr/include/OpenCoarrays-2.0.0-rc1_GNU-7.3.0
 <br />
-$ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/include
+\\$ sudo mkdir -p /usr/lib/x86_64-linux-gnu/openmpi/include
 <br />
 
 ---
@@ -224,17 +224,17 @@ Using the command above, the local conda environment located at `/home/cloud/.co
 
 ---
 
-$ sudo /opt/conda/bin/conda create --prefix /opt/conda/envs/diffpy python=3.7 ipykernel
+\\$ sudo /opt/conda/bin/conda create --prefix /opt/conda/envs/diffpy python=3.7 ipykernel
 <br />
-$ sudo /opt/conda/envs/diffpy/bin/python -m ipykernel install --prefix=/opt/jupyterhub/ --name 'diffpy' --display-name "Python (diffpy)"
+\\$ sudo /opt/conda/envs/diffpy/bin/python -m ipykernel install --prefix=/opt/jupyterhub/ --name 'diffpy' --display-name "Python (diffpy)"
 <br />
-$ sudo /opt/conda/bin/conda install -p /opt/conda/envs/diffpy -c diffpy diffpy-cmi
+\\$ sudo /opt/conda/bin/conda install -p /opt/conda/envs/diffpy -c diffpy diffpy-cmi
 <br />
-$ git clone https://github.com/FrandsenGroup/diffpy.mpdf.git
+\\$ git clone https://github.com/FrandsenGroup/diffpy.mpdf.git
 <br />
-$ mv diffpy.mpdf ~/.diffpy.mpdf && cd ~/.diffpy.mpdf
+\\$ mv diffpy.mpdf ~/.diffpy.mpdf && cd ~/.diffpy.mpdf
 <br />
-$ sudo /opt/conda/envs/diffpy/bin/python setup.py install
+\\$ sudo /opt/conda/envs/diffpy/bin/python setup.py install
 
 ---
 
