@@ -1,0 +1,167 @@
+<style>
+  /* All rules are scoped to #fdviz so a site theme (e.g. Jekyll) can't override them, and vice versa */
+  #fdviz {
+    --fd-card: #f5f4f0; --fd-text: #1a1a19; --fd-text2: #52514e;
+    --fd-border: rgba(0,0,0,0.18); --fd-accent: #2a78d6; --fd-grid: #e1e0d9;
+    max-width: 760px; margin: 0 auto; color: var(--fd-text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  #fdviz *, #fdviz *::before, #fdviz *::after { box-sizing: border-box; }
+  #fdviz .fd-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 0.75rem; }
+  #fdviz .fd-lbl { font-size: 14px; color: var(--fd-text2); }
+  #fdviz input[type=range] { flex: 1; min-width: 160px; accent-color: var(--fd-accent); }
+  #fdviz .fd-btn { font: inherit; font-size: 14px; padding: 6px 14px; border-radius: 8px; cursor: pointer;
+                   background: transparent; color: var(--fd-text); border: 1px solid var(--fd-border); min-width: 80px; }
+  #fdviz .fd-btn:focus-visible { outline: 2px solid var(--fd-accent); outline-offset: 2px; }
+  #fdviz .fd-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 1rem 0; }
+  #fdviz .fd-card { background: var(--fd-card); border-radius: 8px; padding: 0.75rem 1rem; border: none; }
+  #fdviz .fd-card-lab { font-size: 13px; color: var(--fd-text2); margin: 0; }
+  #fdviz .fd-card-val { font-size: 21px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--fd-text); margin: 0; }
+  #fdviz .fd-legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--fd-text2); margin: 0 0 6px; }
+  #fdviz .fd-legend > span { display: flex; align-items: center; gap: 4px; }
+  #fdviz .fd-sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  #fdviz .fd-chart { position: relative; height: 360px; }
+</style>
+<div id="fdviz">
+  <div class="fd-row">
+    <button id="play" class="fd-btn">Play</button>
+    <label for="t" class="fd-lbl">k<sub>B</sub>T / E<sub>F</sub></label>
+    <input type="range" id="t" min="0" max="0.8" step="0.002" value="0.5">
+    <span id="tout" style="color:var(--fd-text);font-size:14px;font-weight:500;min-width:44px;">0.500</span>
+  </div>
+
+  <div class="fd-cards">
+    <div class="fd-card"><div class="fd-card-lab">μ / E<sub>F</sub></div><div class="fd-card-val" id="mu">1.000</div></div>
+    <div class="fd-card"><div class="fd-card-lab">Blue area (gain above E<sub>F</sub>)</div><div class="fd-card-val" id="ga">0</div></div>
+    <div class="fd-card"><div class="fd-card-lab">Orange area (loss below E<sub>F</sub>)</div><div class="fd-card-val" id="la">0</div></div>
+  </div>
+
+  <div class="fd-legend">
+    <span><span style="width:14px;height:2px;background:#2a78d6;display:inline-block"></span>f(E)</span>
+    <span><span style="width:14px;height:0;border-top:2px dotted #eb6834;display:inline-block"></span>1 − f(E)</span>
+    <span><span style="width:14px;height:0;border-top:2px dashed #eb6834;display:inline-block"></span>−[1 − f(E)], mirrored</span>
+    <span><span class="fd-sw" style="background:rgba(42,120,214,0.4)"></span>Electrons gained, E &gt; E<sub>F</sub></span>
+    <span><span class="fd-sw" style="background:rgba(235,104,52,0.4)"></span>Electrons lost (holes), E &lt; E<sub>F</sub></span>
+    <span><span style="width:0;height:12px;border-left:2px dashed #6250d6;display:inline-block"></span>μ</span>
+    <span><span style="width:0;height:12px;border-left:2px dashed #1baf7a;display:inline-block"></span>E<sub>F</sub></span>
+  </div>
+  <div class="fd-chart">
+    <canvas id="c" role="img" aria-label="Delta f of E versus E over E_F: f(E) shaded above E_F as electrons gained, and minus one minus f(E) shaded below E_F as holes, with vertical lines at mu and E_F"></canvas>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+  // mu(T) is solved for a 3D free electron gas, g(E) ∝ sqrt(E), N0 = 2/3 (energies in units of E_F).
+  // g(E) is used ONLY to find mu; the plotted quantity is Δf(E) with no g(E) weighting.
+  const css = getComputedStyle(document.getElementById('fdviz'));
+  const ink = css.getPropertyValue('--fd-text2').trim();
+  const grid = css.getPropertyValue('--fd-grid').trim();
+  const C = { blue: '#2a78d6', orange: '#eb6834', violet: '#6250d6', green: '#1baf7a' };
+
+  const n = 1000, Emax = 2.5, E = [];
+  for (let i = 0; i <= n; i++) E.push(i * Emax / n);
+  if (!E.includes(1)) E.push(1);
+  E.sort((a, b) => a - b);
+
+  const fd = (e, m, t) => t <= 0 ? (e < m ? 1 : (e === m ? 0.5 : 0))
+                                 : 1 / (Math.exp(Math.max(Math.min((e - m) / t, 700), -700)) + 1);
+
+  function Nof(m, t) {
+    let s = 0; const k = 3000, h = 6 / k;
+    for (let i = 0; i < k; i++) { const e = (i + 0.5) * h; s += Math.sqrt(e) * fd(e, m, t) * h; }
+    return s;
+  }
+  function solveMu(t) {
+    if (t <= 0) return 1;
+    let a = -5, b = 1.5;
+    for (let k = 0; k < 50; k++) { const m = (a + b) / 2; Nof(m, t) > 2 / 3 ? b = m : a = m; }
+    return (a + b) / 2;
+  }
+
+  // Precompute mu(T) on the slider grid so the animation runs smoothly
+  const tStep = 0.002, tMax = 0.8, muTable = [];
+  for (let t = 0; t <= tMax + 1e-9; t += tStep) muTable.push(solveMu(t));
+  const muAt = t => muTable[Math.min(Math.round(t / tStep), muTable.length - 1)];
+
+  let mu = 1;
+  const vlines = {
+    id: 'vlines',
+    afterDraw(ch) {
+      const x = ch.scales.x, y = ch.scales.y, c = ch.ctx;
+      const close = Math.abs(mu - 1) < 0.04;
+      [[mu, C.violet, 'μ', 'right'], [1, C.green, 'E_F', 'left']].forEach(([v, col, lab, align]) => {
+        const px = x.getPixelForValue(v);
+        c.save();
+        c.strokeStyle = col; c.lineWidth = 2; c.setLineDash([6, 4]);
+        c.beginPath(); c.moveTo(px, y.top); c.lineTo(px, y.bottom); c.stroke();
+        c.setLineDash([]); c.fillStyle = col; c.font = '13px sans-serif'; c.textAlign = align;
+        c.fillText(lab, px + (align === 'right' ? -5 : 5), y.top + 14 + (close && align === 'left' ? 16 : 0));
+        c.restore();
+      });
+    }
+  };
+
+  const chart = new Chart(document.getElementById('c'), {
+    type: 'line',
+    data: { datasets: [
+      { data: [], borderColor: 'transparent', backgroundColor: 'rgba(42,120,214,0.4)', fill: 'origin', pointRadius: 0, borderWidth: 0 },  // gain fill
+      { data: [], borderColor: 'transparent', backgroundColor: 'rgba(235,104,52,0.4)', fill: 'origin', pointRadius: 0, borderWidth: 0 },  // loss fill
+      { data: [], borderColor: C.blue, borderWidth: 2, pointRadius: 0, fill: false },                         // f(E)
+      { data: [], borderColor: C.orange, borderWidth: 2, borderDash: [7, 5], pointRadius: 0, fill: false },   // -(1 - f)
+      { data: [], borderColor: C.orange, borderWidth: 2, borderDash: [2, 4], pointRadius: 0, fill: false }    // 1 - f
+    ]},
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      scales: {
+        x: { type: 'linear', min: 0, max: Emax, title: { display: true, text: 'E / E_F', color: ink }, ticks: { color: ink }, grid: { color: grid } },
+        y: { min: -1.05, max: 1.05, title: { display: true, text: 'Δf(E)', color: ink }, ticks: { color: ink }, grid: { color: grid } }
+      }
+    },
+    plugins: [vlines]
+  });
+
+  const slider = document.getElementById('t');
+  function update() {
+    const t = parseFloat(slider.value);
+    document.getElementById('tout').textContent = t.toFixed(3);
+    mu = muAt(t);
+    const d = chart.data.datasets;
+    d[0].data = E.map(e => ({ x: e, y: e >= 1 ? fd(e, mu, t) : 0 }));
+    d[1].data = E.map(e => ({ x: e, y: e <= 1 ? -(1 - fd(e, mu, t)) : 0 }));
+    d[2].data = E.map(e => ({ x: e, y: fd(e, mu, t) }));
+    d[3].data = E.map(e => ({ x: e, y: -(1 - fd(e, mu, t)) }));
+    d[4].data = E.map(e => ({ x: e, y: 1 - fd(e, mu, t) }));
+    chart.update();
+
+    // Unweighted areas: ∫_{E_F}^∞ f dE and ∫_0^{E_F} (1 - f) dE
+    let G = 0, L = 0; const k = 6000, h = 6 / k;
+    for (let i = 0; i < k; i++) {
+      const e = (i + 0.5) * h, f = fd(e, mu, t);
+      if (e >= 1) G += f * h; else L += (1 - f) * h;
+    }
+    document.getElementById('mu').textContent = mu.toFixed(3);
+    document.getElementById('ga').textContent = G.toFixed(4);
+    document.getElementById('la').textContent = L.toFixed(4);
+  }
+
+  // Animation: sweep T up and back down
+  let playing = false, dir = 1, raf = null;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function step() {
+    let t = parseFloat(slider.value) + dir * tStep * (reduce ? 3 : 1);
+    if (t >= tMax) { t = tMax; dir = -1; }
+    if (t <= 0) { t = 0; dir = 1; }
+    slider.value = t.toFixed(3);
+    update();
+    if (playing) raf = requestAnimationFrame(step);
+  }
+  document.getElementById('play').onclick = () => {
+    playing = !playing;
+    document.getElementById('play').textContent = playing ? 'Pause' : 'Play';
+    if (playing) raf = requestAnimationFrame(step); else cancelAnimationFrame(raf);
+  };
+  slider.addEventListener('input', update);
+  update();
+</script>

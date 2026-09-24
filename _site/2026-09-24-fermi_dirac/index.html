@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Fermi Level and Chemical Potential</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="In this post, I am going to put down the derivation of the Fermi-Dirac distribution and talk about the chemical potential and the Fermi level. Lagrange multiplier To prepare for the derivation, we need to first take a look at the mathematical method for finding optima given constraints, using the...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/admonitions.css">
+    
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Fermi Level and Chemical Potential">
+  <meta property="og:description" content="In this post, I am going to put down the derivation of the Fermi-Dirac distribution and talk about the chemical potential and the Fermi level. Lagrange multiplier To prepare for the derivation, we need to first take a look at the mathematical method for finding optima given constraints, using the...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-09-24T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-09-24-fermi_dirac/">
+  <link rel="canonical" href="http://localhost:8000/2026-09-24-fermi_dirac/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Fermi Level and Chemical Potential">
+  <meta property="twitter:description" content="In this post, I am going to put down the derivation of the Fermi-Dirac distribution and talk about the chemical potential and the Fermi level. Lagrange multiplier To prepare for the derivation, we need to first take a look at the mathematical method for finding optima given constraints, using the...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-2020.us/script.js" data-website-id="387a3202-bb18-41ba-a954-d985ff940209"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://ha.iris-2020.us">My HomeArr</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  <a target="_blank" class="dropdown-item" href="https://flarum.iris-home.net">Forum</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Fermi Level and Chemical Potential</h1>
+          
+
+          
+					<span class="post-meta">Posted on September 24, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-1 col-lg-8 offset-lg-1 col-12 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>In this post, I am going to put down the derivation of the Fermi-Dirac distribution and talk about the chemical potential and the Fermi level.</p>
+
+<h2 id="lagrange-multiplier">Lagrange multiplier</h2>
+
+<p>To prepare for the derivation, we need to first take a look at the mathematical method for finding optima given constraints, using the Lagrange multiplier method. The problem can be put down as below,</p>
+
+<ul>
+  <li>
+    <p>\(f(\mathbf{x})\) is the function we want to find the optima (maxima or minima) for.</p>
+  </li>
+  <li>
+    <p>The constraint condition is \(g(\mathbf{x})\)</p>
+  </li>
+</ul>
+
+<p>This means, along the trace of \(\mathbf{x}\) on \(g(\mathbf{x})\), we want to find out the optima for \(f(\mathbf{x})\). The Lagrange multiplier [1] method says, we can define a function,</p>
+
+\[\mathcal{L}(\mathbf{x}, \lambda) \equiv  f(\mathbf{x}) + \lambda g(\mathbf{x})\]
+
+<p>with \(\lambda\) as the <em>multiplier</em> (thus named). For the optimization condition, we have,</p>
+
+\[\begin{align}
+&amp; \Delta f(\mathbf{x}) + \lambda \Delta g(\mathbf{x}) = 0\\
+&amp; g(\mathbf{x}) = 0
+\end{align}\]
+
+<p>The condition \(g(\mathbf{x}) = 0\) is the given constraint so nothing to say about it. But why is the first condition? To see why, I asked Claude to prepare an animation for better understanding and here we go (had to do a few round of back and forth prompting to polish the generation),</p>
+
+<div class="lg-widget" markdown="0">
+<style>
+.lg-widget{--lg-text:#1f1f1f;--lg-text2:#5f5e5a;--lg-card:#f4f3ef;--lg-border:rgba(0,0,0,.2);--lg-warn-bg:#faeeda;--lg-warn-tx:#854f0b;--lg-ok-bg:#eaf3de;--lg-ok-tx:#3b6d11;color:var(--lg-text);margin:1.5rem 0}
+@media (prefers-color-scheme:dark){.lg-widget{--lg-text:#ececec;--lg-text2:#b4b2a9;--lg-card:#2a2a28;--lg-border:rgba(255,255,255,.25);--lg-warn-bg:#412402;--lg-warn-tx:#fac775;--lg-ok-bg:#173404;--lg-ok-tx:#c0dd97}}
+.lg-widget .lg-row{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.lg-widget button{width:44px;height:36px;font-size:16px;border:1px solid var(--lg-border);border-radius:8px;background:transparent;color:var(--lg-text);cursor:pointer}
+.lg-widget input[type=range]{flex:1}
+.lg-widget canvas{display:block;width:100%;max-width:560px;aspect-ratio:1;margin:0 auto}
+.lg-widget .lg-status{margin-top:12px;padding:10px 14px;border-radius:8px;font-size:17px}
+.lg-widget .lg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:12px}
+.lg-widget .lg-card{background:var(--lg-card);border-radius:8px;padding:12px 16px}
+.lg-widget .lg-lab{font-size:15px;color:var(--lg-text2)}
+.lg-widget .lg-val{font-size:28px;font-weight:500}
+.lg-widget .lg-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px;font-size:15px;color:var(--lg-text2)}
+.lg-widget .lg-sw{display:inline-block;width:16px;height:4px;vertical-align:middle;margin-right:6px}
+</style>
+<div class="lg-row">
+<button type="button" class="lg-play" aria-label="Play or pause">&#10074;&#10074;</button>
+<label class="lg-lab">Angle on circle</label>
+<input type="range" class="lg-th" min="0" max="360" step="1" value="10" aria-label="Angle on circle">
+<span class="lg-thv" style="font-size:16px;font-weight:500;min-width:50px">10°</span>
+</div>
+<canvas class="lg-canvas" role="img" aria-label="Point moving on the circle x^2+y^2=2 over contours of f=xy, with the tangent step projected onto the gradient of f"></canvas>
+<div class="lg-status"></div>
+<div class="lg-grid">
+<div class="lg-card"><div class="lg-lab">f = xy</div><div class="lg-val lg-mf">0</div></div>
+<div class="lg-card"><div class="lg-lab">Angle(tangent, ∇f)</div><div class="lg-val lg-ma">0</div></div>
+<div class="lg-card"><div class="lg-lab">∇f · t (rate of change)</div><div class="lg-val lg-mt">0</div></div>
+</div>
+<div class="lg-legend">
+<span><span class="lg-sw" style="background:#7F77DD"></span>tangent step t</span>
+<span><span class="lg-sw" style="background:#378ADD"></span>∇f</span>
+<span><span class="lg-sw" style="background:#BA7517"></span>component of t along ∇f</span>
+<span><span class="lg-sw" style="background:#D85A30"></span>∇g</span>
+<span><span class="lg-sw" style="background:#1D9E75"></span>level set of f</span>
+</div>
+<script>
+(function(){
+var root=document.currentScript.parentNode;
+var q=function(s){return root.querySelector(s);};
+var c1=q('.lg-canvas'),sl=q('.lg-th'),thv=q('.lg-thv'),st=q('.lg-status'),btn=q('.lg-play');
+var R=Math.SQRT2,L=2.3,OPT=[45,135,225,315],GR='#888780';
+var th=10,playing=true,pauseUntil=0;
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduce){playing=false;btn.innerHTML='&#9654;';}
+function col(v){return getComputedStyle(root).getPropertyValue(v).trim()||'#888';}
+function fit(c){var d=window.devicePixelRatio||1,r=c.getBoundingClientRect();c.width=r.width*d;c.height=r.height*d;var x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);return [x,r.width,r.height];}
+function arrow(x,x0,y0,x1,y1,c,w){if(Math.hypot(x1-x0,y1-y0)<3)return;var a=Math.atan2(y1-y0,x1-x0),h=12;x.strokeStyle=c;x.fillStyle=c;x.lineWidth=w;x.setLineDash([]);x.beginPath();x.moveTo(x0,y0);x.lineTo(x1,y1);x.stroke();x.beginPath();x.moveTo(x1,y1);x.lineTo(x1-h*Math.cos(a-0.4),y1-h*Math.sin(a-0.4));x.lineTo(x1-h*Math.cos(a+0.4),y1-h*Math.sin(a+0.4));x.closePath();x.fill();}
+function hyper(x,sx,sy,k){[1,-1].forEach(function(s){x.beginPath();var on=false;for(var i=0;i<=300;i++){var u=s*(0.02+i*(L-0.02)/300),v=k/u;if(Math.abs(v)>L){on=false;continue;}var X=sx(u),Y=sy(v);if(!on){x.moveTo(X,Y);on=true;}else x.lineTo(X,Y);}x.stroke();});}
+function draw(){
+var TXT=col('--lg-text'),TX2=col('--lg-text2');
+var t=th*Math.PI/180,px=R*Math.cos(t),py=R*Math.sin(t),fv=px*py;
+var tx=-Math.sin(t),ty=Math.cos(t),ux=py/R,uy=px/R,tu=tx*ux+ty*uy,rate=py*tx+px*ty;
+var f=fit(c1),x=f[0],W=f[1],H=f[2];
+var sx=function(u){return (u+L)/(2*L)*W;},sy=function(v){return (L-v)/(2*L)*H;};
+x.clearRect(0,0,W,H);
+x.strokeStyle=GR;x.globalAlpha=0.3;x.lineWidth=1;x.beginPath();x.moveTo(sx(-L),sy(0));x.lineTo(sx(L),sy(0));x.moveTo(sx(0),sy(-L));x.lineTo(sx(0),sy(L));x.stroke();
+x.globalAlpha=0.45;[-3,-2,-1,-0.5,0.5,1,2,3].forEach(function(k){hyper(x,sx,sy,k);});x.globalAlpha=1;
+if(Math.abs(fv)>0.01){x.strokeStyle='#1D9E75';x.lineWidth=2.5;hyper(x,sx,sy,fv);}
+x.strokeStyle=TXT;x.lineWidth=2.5;x.beginPath();x.arc(sx(0),sy(0),R/(2*L)*W,0,2*Math.PI);x.stroke();
+x.strokeStyle='#378ADD';x.globalAlpha=0.35;x.lineWidth=1.2;x.setLineDash([3,4]);x.beginPath();x.moveTo(sx(px-1.2*ux),sy(py-1.2*uy));x.lineTo(sx(px+1.2*ux),sy(py+1.2*uy));x.stroke();x.globalAlpha=1;x.setLineDash([]);
+arrow(x,sx(px),sy(py),sx(px+0.35*px),sy(py+0.35*py),'#D85A30',2);
+arrow(x,sx(px),sy(py),sx(px+0.5*py),sy(py+0.5*px),'#378ADD',3);
+var S=0.9,ex=px+S*tx,ey=py+S*ty,qx=px+S*tu*ux,qy=py+S*tu*uy;
+arrow(x,sx(px),sy(py),sx(ex),sy(ey),'#7F77DD',3);
+x.strokeStyle=TX2;x.lineWidth=1.2;x.setLineDash([5,4]);x.beginPath();x.moveTo(sx(ex),sy(ey));x.lineTo(sx(qx),sy(qy));x.stroke();x.setLineDash([]);
+arrow(x,sx(px),sy(py),sx(qx),sy(qy),'#BA7517',3.5);
+if(Math.abs(tu)<0.03){var m=0.13;x.strokeStyle=TXT;x.lineWidth=1.5;x.beginPath();x.moveTo(sx(px+m*tx),sy(py+m*ty));x.lineTo(sx(px+m*tx+m*ux),sy(py+m*ty+m*uy));x.lineTo(sx(px+m*ux),sy(py+m*uy));x.stroke();}
+x.fillStyle=TXT;x.beginPath();x.arc(sx(px),sy(py),6,0,2*Math.PI);x.fill();
+x.fillStyle=TX2;x.font='17px sans-serif';x.fillText('x',W-18,sy(0)-8);x.fillText('y',sx(0)+8,18);x.fillText('x² + y² = 2',sx(-1.25),sy(-1.3));
+x.font='16px sans-serif';x.fillStyle='#7F77DD';x.fillText('t',sx(ex+0.06*tx)+6,sy(ey+0.06*ty));x.fillStyle='#378ADD';x.fillText('∇f',sx(px+0.55*py)+4,sy(py+0.55*px));
+var ang=Math.acos(Math.max(-1,Math.min(1,tu)))*180/Math.PI;
+q('.lg-mf').textContent=fv.toFixed(2);
+q('.lg-ma').textContent=Math.round(ang)+'°';
+q('.lg-mt').textContent=rate.toFixed(2);
+if(Math.abs(tu)<0.03){st.textContent='Optimum: tangent ⟂ ∇f, no component along ∇f, so ∇f ∥ ∇g';st.style.background='var(--lg-ok-bg)';st.style.color='var(--lg-ok-tx)';}
+else{st.textContent=(rate>0?'Tangent step has a component along +∇f, so f increases':'Tangent step has a component against ∇f, so f decreases');st.style.background='var(--lg-warn-bg)';st.style.color='var(--lg-warn-tx)';}
+thv.textContent=Math.round(th)+'°';sl.value=Math.round(th);
+}
+function setPlay(p){playing=p;pauseUntil=0;btn.innerHTML=p?'&#10074;&#10074;':'&#9654;';}
+sl.addEventListener('input',function(){th=+sl.value;setPlay(false);draw();});
+btn.addEventListener('click',function(){setPlay(!playing);if(playing)th=(th+0.5)%360;});
+function loop(now){
+if(playing&&now>=pauseUntil){
+var prev=th,nt=prev+0.12+0.4*Math.abs(Math.cos(2*prev*Math.PI/180)),hit=null;
+for(var i=0;i<OPT.length;i++){if(prev<OPT[i]&&nt>=OPT[i]){hit=OPT[i];break;}}
+if(hit!==null){th=hit;pauseUntil=now+3000;}else th=nt%360;
+draw();}
+requestAnimationFrame(loop);}
+window.addEventListener('resize',draw);draw();requestAnimationFrame(loop);
+})();
+</script>
+</div>
+
+
+<p>The black circle is \(g(\mathbf{x})\) where the black point has to be constrained on. The <span style="color:#7f77dd"> blue-magenta arrow (⟶)</span> indicates the moving direction of the black particle. The <span style="color:#378add"> blue arrow (⟶)</span> indicates the direction \(\Delta f(\mathbf{x})\) – any movement along this direction will change the value of \(f(\mathbf{x})\). So, as along as the <span style="color:#7f77dd"> blue-magenta arrow (⟶)</span> has a component (indicated by the <span style="color:#ba7517"> brown arrow ⟶</span>) along the <span style="color:#378add"> blue arrow (⟶)</span>, we would always have \(f(\mathbf{x})\) <code class="language-plaintext highlighter-rouge">not staying stationary</code>, as the black point moves <code class="language-plaintext highlighter-rouge">infinitesimally</code>. In another word, the stationary condition is when the <span style="color:#7f77dd"> blue-magenta arrow (⟶)</span> is perpendicular to the <span style="color:#378add"> blue arrow (⟶)</span>. That is the several points where the animation is paused for a few seconds inferring the stationary condition (thus optima).</p>
+
+<p>Further, since we know that the tangent direction of \(g(\mathbf{x})\) is always perpendicular to the gradient of \(g(\mathbf{x})\) (indicated by the <span style="color:#d85a30"> red-orange arrow ⟶</span>), the stationary condition just becomes that the <span style="color:#d85a30"> red-orange arrow (⟶)</span> is parallel or antiparallel to the <span style="color:#378add"> blue arrow (⟶)</span>. This is exactly what the first condition equation says, i.e., \(\Delta f(\mathbf{x})\) is only different from \(\Delta g(\mathbf{x})\) by a multiplicative factor.</p>
+
+<div class="xy3d-widget" markdown="0">
+<style>
+.xy3d-widget{--x3-text:#1f1f1f;--x3-text2:#5f5e5a;--x3-grid:rgba(0,0,0,.18);--x3-border:rgba(0,0,0,.25);color:var(--x3-text);margin:1.5rem 0}
+@media (prefers-color-scheme:dark){.xy3d-widget{--x3-text:#ececec;--x3-text2:#b4b2a9;--x3-grid:rgba(255,255,255,.2);--x3-border:rgba(255,255,255,.3)}}
+.xy3d-widget .x3-ctl{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin:0 0 10px;font-size:15px;color:var(--x3-text2)}
+.xy3d-widget .x3-ctl label{cursor:pointer}
+.xy3d-widget button{font-size:14px;padding:6px 12px;border:1px solid var(--x3-border);border-radius:8px;background:transparent;color:var(--x3-text);cursor:pointer}
+.xy3d-widget .x3-plot{width:100%;height:560px}
+</style>
+<div class="x3-ctl">
+<label><input type="checkbox" class="x3-curve" checked> Constraint curve on surface</label>
+<label><input type="checkbox" class="x3-floor" checked> Circle and contours on floor</label>
+<label><input type="checkbox" class="x3-opt" checked> Optima</label>
+<button type="button" class="x3-reset">Reset view</button>
+</div>
+<div class="x3-plot" role="img" aria-label="Rotatable 3D saddle surface f=xy with the constraint circle x^2+y^2=2 lifted onto it and the four constrained optima marked"></div>
+<script>
+(function(){
+var root=document.currentScript.parentNode;
+var q=function(s){return root.querySelector(s);};
+var el=q('.x3-plot');
+function withPlotly(cb){
+if(window.Plotly){cb();return;}
+var ex=document.querySelector('script[data-plotly-loader]');
+if(ex){ex.addEventListener('load',cb);return;}
+var s=document.createElement('script');
+s.src='https://cdn.plot.ly/plotly-2.35.2.min.js';
+s.setAttribute('data-plotly-loader','1');
+s.onload=cb;document.head.appendChild(s);
+}
+function build(){
+var cs=getComputedStyle(root);
+var TXT=cs.getPropertyValue('--x3-text').trim()||'#888';
+var GRID=cs.getPropertyValue('--x3-grid').trim()||'rgba(128,128,128,.3)';
+var N=61,L=2,xs=[],ys=[],zs=[],i,j,k;
+for(i=0;i<N;i++){xs.push(-L+2*L*i/(N-1));ys.push(-L+2*L*i/(N-1));}
+for(j=0;j<N;j++){var row=[];for(i=0;i<N;i++)row.push(xs[i]*ys[j]);zs.push(row);}
+var zf=-4.5,R=Math.SQRT2,cx=[],cy=[],cz=[],fz=[];
+for(k=0;k<=240;k++){var t=2*Math.PI*k/240,x=R*Math.cos(t),y=R*Math.sin(t);cx.push(x);cy.push(y);cz.push(x*y);fz.push(zf);}
+var surf={type:'surface',x:xs,y:ys,z:zs,colorscale:'Viridis',opacity:0.92,showscale:true,
+colorbar:{title:{text:'f',font:{color:TXT,size:16}},showticklabels:false,ticks:'',len:0.7},
+contours:{z:{show:true,usecolormap:false,color:'rgba(40,40,40,0.45)',width:1,start:-4,end:4,size:0.5}},
+hovertemplate:'x=%{x:.2f}<br>y=%{y:.2f}<br>f=%{z:.2f}<extra></extra>'};
+var curve={type:'scatter3d',mode:'lines',x:cx,y:cy,z:cz,line:{color:'#D85A30',width:8},name:'f on x²+y²=2',hovertemplate:'on constraint<br>f=%{z:.2f}<extra></extra>'};
+var floor={type:'scatter3d',mode:'lines',x:cx,y:cy,z:fz,line:{color:'#D85A30',width:4,dash:'dash'},name:'x²+y²=2',hoverinfo:'skip'};
+var hx=[],hy=[],hz=[];
+[-2,-1,-0.5,0.5,1,2].forEach(function(c){[1,-1].forEach(function(s){for(var n=0;n<=80;n++){var u=s*(0.05+n*(L-0.05)/80),v=c/u;if(Math.abs(v)>L)continue;hx.push(u);hy.push(v);hz.push(zf);}hx.push(null);hy.push(null);hz.push(null);});});
+var floorH={type:'scatter3d',mode:'lines',x:hx,y:hy,z:hz,line:{color:'#888780',width:2},name:'level sets xy = c',hoverinfo:'skip'};
+var opt={type:'scatter3d',mode:'markers+text',x:[1,-1,-1,1],y:[1,-1,1,-1],z:[1,1,-1,-1],text:['max','max','min','min'],textposition:'top center',textfont:{color:TXT,size:15},
+marker:{size:7,color:['#FDE725','#FDE725','#440154','#440154'],line:{color:TXT,width:1}},name:'constrained optima',hovertemplate:'(%{x}, %{y})<br>f=%{z}<extra></extra>'};
+var cam={eye:{x:1.6,y:-1.6,z:1.1}};
+function ax(t){return {title:{text:t,font:{size:16,color:TXT}},showticklabels:false,ticks:'',gridcolor:GRID,zerolinecolor:GRID,backgroundcolor:'rgba(0,0,0,0)',showbackground:true};}
+var za=ax('f = xy');za.range=[zf,4];
+var layout={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',margin:{l:0,r:0,t:10,b:0},font:{color:TXT,size:14},
+scene:{xaxis:ax('x'),yaxis:ax('y'),zaxis:za,camera:cam,aspectmode:'manual',aspectratio:{x:1,y:1,z:0.8}},
+legend:{x:0,y:1,font:{size:14,color:TXT},bgcolor:'rgba(0,0,0,0)'}};
+Plotly.newPlot(el,[surf,curve,floor,floorH,opt],layout,{responsive:true,displaylogo:false});
+function vis(idx,v){Plotly.restyle(el,{visible:v},[idx]);}
+q('.x3-curve').addEventListener('change',function(e){vis(1,e.target.checked);});
+q('.x3-floor').addEventListener('change',function(e){vis(2,e.target.checked);vis(3,e.target.checked);});
+q('.x3-opt').addEventListener('change',function(e){vis(4,e.target.checked);});
+q('.x3-reset').addEventListener('click',function(){Plotly.relayout(el,{'scene.camera':cam});});
+}
+withPlotly(build);
+})();
+</script>
+</div>
+
+
+<p>Presented in the figure above is another plot I asked Claude to generate to demonstrate the situation. We can see the 3D shape of the function \(f = xy\) we want to optimize. The <span style="color:#d85a30"> red-orange curve</span> on the surface indicates the constraint that we have to satisfy (\(x^2 + y^2 = 2\) in this case), with its projection onto the \(XY\) plane shown with the dashed circle. The several optima points are also labeled out, corresponding to the exactly the condition we identified earlier.</p>
+
+<h2 id="fermi-dirac-distribution">Fermi-Dirac distribution</h2>
+
+<p>This is the problem we want to address here – we want to distribute \(N\) fermions among energy levels, subject to two constraints, and it will turn into a Lagrange optimization problem.</p>
+
+<p>Say we have a series of energy levels indexed by \(i\). Each level comes with the degeneracy of \(g_i\), and we have \(n_i\) fermions that we want to distribute among those \(g_i\) states on the level \(i\). The Pauli exclusion principle allows at most one fermion per state, so the number of ways to arrange $n_i$ fermions among $g_i$ states is \(\binom{g_i}{n_i}\) (or, \(C_{g_i}^{n_i}\), i.e., the number of ways of picking \(n_i\) levels from the total \(g_i\) levels). Given all the different \(i\) levels, we have,</p>
+
+\[W = \prod_i \frac{g_i!}{n_i!\,(g_i - n_i)!}\]
+
+<p>:::info
+Here are dealing with the grand canonical ensemble so both \(N\) and \(E\) are allowed to change.
+:::</p>
+
+<p>We want to maximize $\ln W$ (equivalently the entropy $S = k_B \ln W$), with the following two constraints,</p>
+
+\[\sum_i n_i = N, \qquad \sum_i n_i \varepsilon_i = E\]
+
+<p>This now becomes a standard Lagrange multiplier problem,</p>
+
+\[\mathcal{L} = \ln W - \alpha\left(\sum_i n_i - N\right) - \beta\left(\sum_i n_i\varepsilon_i - E\right).\]
+
+<p>Using Stirling’s approximation $\ln x! \approx x\ln x - x$, we have,</p>
+
+\[\begin{align}
+\ln\,W &amp; = \ln\prod_i \frac{g_i!}{n_i!\,(g_i - n_i)!}\\
+&amp; = \sum_i \ln \frac{g_i!}{n_i!\,(g_i - n_i)!}\\
+&amp; = \sum_i \Big[ \ln\,g_i! - \ln\,n_i! - \ln\,(g_i - n_i)! \Big]\\
+&amp; = \sum_i \Big[ g_i \ln g_i - n_i \ln n_i - (g_i - n_i)\ln(g_i - n_i) \Big]
+\end{align}\]
+
+<p>Setting $\partial \mathcal{L}/\partial n_i = 0$,</p>
+
+\[\ln\frac{g_i - n_i}{n_i} - \alpha - \beta\varepsilon_i = 0
+\Rightarrow
+\frac{n_i}{g_i} = \frac{1}{e^{\alpha + \beta\varepsilon_i} + 1}.\]
+
+<p>Now we need to work out \(\alpha\) and \(\beta\). To do that, let’s say we have the total number of fermions \(N\) and the total energy \(E\) are changed a bit. Accordingly we should have the optimal occupation \(n_i\) changed by a bit (\(d\,n_i\)). Given the expression for \(\ln\,W\) above, we have,</p>
+
+\[\begin{align}
+d\ln W &amp; = \sum_i \frac{\partial \ln\,W}{\partial n_i} d\,n_i\\
+&amp; = \sum_i \Bigg\{ \bigg\{ -\ln\,n_i - n_i\frac{1}{n_i} - \big[(g_i - n_i) \frac{-1}{g_i - n_i} - \ln(g_i - n_i)\big]\bigg\} d\,n_i \Bigg\}\\
+&amp; = \sum_i \ln\bigg( \frac{g_i - n_i}{n_i} \bigg)d\,n_i
+\end{align}\]
+
+<p>From the optimal condition earlier, we already know,</p>
+
+\[\ln\bigg( \frac{g_i - n_i}{n_i} \bigg) = \alpha + \beta \varepsilon_i\]
+
+<p>so,</p>
+
+\[d\ln W = \alpha \sum_i dn_i + \beta \sum_i \varepsilon_i\, dn_i = \alpha\, dN + \beta\, dE\]
+
+<p>Therefore, we have,</p>
+
+\[\begin{align}
+\left(\frac{\partial \ln W}{\partial N}\right)_E &amp; = \alpha\\
+\left(\frac{\partial \ln W}{\partial E}\right)_N &amp; = \beta
+\end{align}\]
+
+<p>Compare this with the thermodynamic identity for the grand canonical ensemble,</p>
+
+\[\begin{align}
+S &amp; = k_B\ln W\\
+dS &amp; = \frac{1}{T}\,dE - \frac{\mu}{T}\,dN
+\end{align}\]
+
+<p>we have,</p>
+
+\[\begin{align}
+\bigg(\frac{\partial S}{\partial E}\bigg)_N &amp; = k_B\bigg(\frac{\partial \ln W}{\partial E}\bigg)_N = \frac{1}{T}\\
+\bigg(\frac{\partial S}{\partial N}\bigg)_W &amp; = k_B\bigg(\frac{\partial \ln W}{\partial N}\bigg)_E = -\frac{\mu}{T}
+\end{align}\]
+
+<p>Pulling in the results we just derived above, we can obtain,</p>
+
+\[\begin{align}
+\beta &amp; = \frac{1}{k_BT}\\
+\alpha &amp;= -\frac{\mu}{k_BT}
+\end{align}\]
+
+<p>Now, we have the final form for the Fermi-Dirac distribution,</p>
+
+\[f(\varepsilon) = \frac{1}{e^{(\varepsilon - \mu)/k_BT} + 1}\]
+
+<h2 id="chemical-potential--fermi-level">Chemical potential &amp; Fermi level</h2>
+
+<p>According to the grand canonical ensemble, the chemical potential is,</p>
+
+\[\mu = \left(\frac{\partial F}{\partial N}\right)_{T,V}\]
+
+<p>meaning that it is the free energy cost of adding one more particle. Specifically for the Fermi-Dirac distribution, we have,</p>
+
+\[N = \int_{-\infty}^{\infty} g(\varepsilon)\, f(\varepsilon;\mu,T)\, d\varepsilon\]
+
+<p>If we want to keep the number of fermions fixed (it is allowed to change but nothing prevents us from focusing on the situation where it does not change), as the temperature \(T\) varies, the value of \(\mu\) has to be changed accordingly to keep \(N\) fixed. For example, as \(T\) increases, the Fermi-Dirac distribution becomes more flattened, meaning that the probability of occupying high energy level is increased. Since \(f\) is antisymmetry about \(\mu\), the increased probability above \(\mu\) will be equal to the decreased probability below \(\mu\). However, the density of states \(g(\varepsilon)\) is not symmetric around \(\mu\) and is larger above \(\mu\) than below. As a result, if \(\mu\) is fixed, the increasing of temperature \(T\) will cause the creation of fermions out of nowhere (this is contradictory to our prerequisite assumption that we don’t have particle exchange with surroundings). To compromise, \(\mu\) has to decrease. Then if we take the same reference point as before, the area below that reference will be larger than that above the reference, balancing \(g(\varepsilon)\).</p>
+
+<p><br /></p>
+
+<style>
+  /* All rules are scoped to #fdviz so a site theme (e.g. Jekyll) can't override them, and vice versa */
+  #fdviz {
+    --fd-card: #f5f4f0; --fd-text: #1a1a19; --fd-text2: #52514e;
+    --fd-border: rgba(0,0,0,0.18); --fd-accent: #2a78d6; --fd-grid: #e1e0d9;
+    max-width: 760px; margin: 0 auto; color: var(--fd-text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  #fdviz *, #fdviz *::before, #fdviz *::after { box-sizing: border-box; }
+  #fdviz .fd-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 0.75rem; }
+  #fdviz .fd-lbl { font-size: 14px; color: var(--fd-text2); }
+  #fdviz input[type=range] { flex: 1; min-width: 160px; accent-color: var(--fd-accent); }
+  #fdviz .fd-btn { font: inherit; font-size: 14px; padding: 6px 14px; border-radius: 8px; cursor: pointer;
+                   background: transparent; color: var(--fd-text); border: 1px solid var(--fd-border); min-width: 80px; }
+  #fdviz .fd-btn:focus-visible { outline: 2px solid var(--fd-accent); outline-offset: 2px; }
+  #fdviz .fd-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 1rem 0; }
+  #fdviz .fd-card { background: var(--fd-card); border-radius: 8px; padding: 0.75rem 1rem; border: none; }
+  #fdviz .fd-card-lab { font-size: 13px; color: var(--fd-text2); margin: 0; }
+  #fdviz .fd-card-val { font-size: 21px; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--fd-text); margin: 0; }
+  #fdviz .fd-legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--fd-text2); margin: 0 0 6px; }
+  #fdviz .fd-legend > span { display: flex; align-items: center; gap: 4px; }
+  #fdviz .fd-sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  #fdviz .fd-chart { position: relative; height: 360px; }
+</style>
+<div id="fdviz">
+  <div class="fd-row">
+    <button id="play" class="fd-btn">Play</button>
+    <label for="t" class="fd-lbl">k<sub>B</sub>T / E<sub>F</sub></label>
+    <input type="range" id="t" min="0" max="0.8" step="0.002" value="0.5">
+    <span id="tout" style="color:var(--fd-text);font-size:14px;font-weight:500;min-width:44px;">0.500</span>
+  </div>
+
+  <div class="fd-cards">
+    <div class="fd-card"><div class="fd-card-lab">μ / E<sub>F</sub></div><div class="fd-card-val" id="mu">1.000</div></div>
+    <div class="fd-card"><div class="fd-card-lab">Blue area (gain above E<sub>F</sub>)</div><div class="fd-card-val" id="ga">0</div></div>
+    <div class="fd-card"><div class="fd-card-lab">Orange area (loss below E<sub>F</sub>)</div><div class="fd-card-val" id="la">0</div></div>
+  </div>
+
+  <div class="fd-legend">
+    <span><span style="width:14px;height:2px;background:#2a78d6;display:inline-block"></span>f(E)</span>
+    <span><span style="width:14px;height:0;border-top:2px dotted #eb6834;display:inline-block"></span>1 − f(E)</span>
+    <span><span style="width:14px;height:0;border-top:2px dashed #eb6834;display:inline-block"></span>−[1 − f(E)], mirrored</span>
+    <span><span class="fd-sw" style="background:rgba(42,120,214,0.4)"></span>Electrons gained, E &gt; E<sub>F</sub></span>
+    <span><span class="fd-sw" style="background:rgba(235,104,52,0.4)"></span>Electrons lost (holes), E &lt; E<sub>F</sub></span>
+    <span><span style="width:0;height:12px;border-left:2px dashed #6250d6;display:inline-block"></span>μ</span>
+    <span><span style="width:0;height:12px;border-left:2px dashed #1baf7a;display:inline-block"></span>E<sub>F</sub></span>
+  </div>
+  <div class="fd-chart">
+    <canvas id="c" role="img" aria-label="Delta f of E versus E over E_F: f(E) shaded above E_F as electrons gained, and minus one minus f(E) shaded below E_F as holes, with vertical lines at mu and E_F"></canvas>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+  // mu(T) is solved for a 3D free electron gas, g(E) ∝ sqrt(E), N0 = 2/3 (energies in units of E_F).
+  // g(E) is used ONLY to find mu; the plotted quantity is Δf(E) with no g(E) weighting.
+  const css = getComputedStyle(document.getElementById('fdviz'));
+  const ink = css.getPropertyValue('--fd-text2').trim();
+  const grid = css.getPropertyValue('--fd-grid').trim();
+  const C = { blue: '#2a78d6', orange: '#eb6834', violet: '#6250d6', green: '#1baf7a' };
+
+  const n = 1000, Emax = 2.5, E = [];
+  for (let i = 0; i <= n; i++) E.push(i * Emax / n);
+  if (!E.includes(1)) E.push(1);
+  E.sort((a, b) => a - b);
+
+  const fd = (e, m, t) => t <= 0 ? (e < m ? 1 : (e === m ? 0.5 : 0))
+                                 : 1 / (Math.exp(Math.max(Math.min((e - m) / t, 700), -700)) + 1);
+
+  function Nof(m, t) {
+    let s = 0; const k = 3000, h = 6 / k;
+    for (let i = 0; i < k; i++) { const e = (i + 0.5) * h; s += Math.sqrt(e) * fd(e, m, t) * h; }
+    return s;
+  }
+  function solveMu(t) {
+    if (t <= 0) return 1;
+    let a = -5, b = 1.5;
+    for (let k = 0; k < 50; k++) { const m = (a + b) / 2; Nof(m, t) > 2 / 3 ? b = m : a = m; }
+    return (a + b) / 2;
+  }
+
+  // Precompute mu(T) on the slider grid so the animation runs smoothly
+  const tStep = 0.002, tMax = 0.8, muTable = [];
+  for (let t = 0; t <= tMax + 1e-9; t += tStep) muTable.push(solveMu(t));
+  const muAt = t => muTable[Math.min(Math.round(t / tStep), muTable.length - 1)];
+
+  let mu = 1;
+  const vlines = {
+    id: 'vlines',
+    afterDraw(ch) {
+      const x = ch.scales.x, y = ch.scales.y, c = ch.ctx;
+      const close = Math.abs(mu - 1) < 0.04;
+      [[mu, C.violet, 'μ', 'right'], [1, C.green, 'E_F', 'left']].forEach(([v, col, lab, align]) => {
+        const px = x.getPixelForValue(v);
+        c.save();
+        c.strokeStyle = col; c.lineWidth = 2; c.setLineDash([6, 4]);
+        c.beginPath(); c.moveTo(px, y.top); c.lineTo(px, y.bottom); c.stroke();
+        c.setLineDash([]); c.fillStyle = col; c.font = '13px sans-serif'; c.textAlign = align;
+        c.fillText(lab, px + (align === 'right' ? -5 : 5), y.top + 14 + (close && align === 'left' ? 16 : 0));
+        c.restore();
+      });
+    }
+  };
+
+  const chart = new Chart(document.getElementById('c'), {
+    type: 'line',
+    data: { datasets: [
+      { data: [], borderColor: 'transparent', backgroundColor: 'rgba(42,120,214,0.4)', fill: 'origin', pointRadius: 0, borderWidth: 0 },  // gain fill
+      { data: [], borderColor: 'transparent', backgroundColor: 'rgba(235,104,52,0.4)', fill: 'origin', pointRadius: 0, borderWidth: 0 },  // loss fill
+      { data: [], borderColor: C.blue, borderWidth: 2, pointRadius: 0, fill: false },                         // f(E)
+      { data: [], borderColor: C.orange, borderWidth: 2, borderDash: [7, 5], pointRadius: 0, fill: false },   // -(1 - f)
+      { data: [], borderColor: C.orange, borderWidth: 2, borderDash: [2, 4], pointRadius: 0, fill: false }    // 1 - f
+    ]},
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      scales: {
+        x: { type: 'linear', min: 0, max: Emax, title: { display: true, text: 'E / E_F', color: ink }, ticks: { color: ink }, grid: { color: grid } },
+        y: { min: -1.05, max: 1.05, title: { display: true, text: 'Δf(E)', color: ink }, ticks: { color: ink }, grid: { color: grid } }
+      }
+    },
+    plugins: [vlines]
+  });
+
+  const slider = document.getElementById('t');
+  function update() {
+    const t = parseFloat(slider.value);
+    document.getElementById('tout').textContent = t.toFixed(3);
+    mu = muAt(t);
+    const d = chart.data.datasets;
+    d[0].data = E.map(e => ({ x: e, y: e >= 1 ? fd(e, mu, t) : 0 }));
+    d[1].data = E.map(e => ({ x: e, y: e <= 1 ? -(1 - fd(e, mu, t)) : 0 }));
+    d[2].data = E.map(e => ({ x: e, y: fd(e, mu, t) }));
+    d[3].data = E.map(e => ({ x: e, y: -(1 - fd(e, mu, t)) }));
+    d[4].data = E.map(e => ({ x: e, y: 1 - fd(e, mu, t) }));
+    chart.update();
+
+    // Unweighted areas: ∫_{E_F}^∞ f dE and ∫_0^{E_F} (1 - f) dE
+    let G = 0, L = 0; const k = 6000, h = 6 / k;
+    for (let i = 0; i < k; i++) {
+      const e = (i + 0.5) * h, f = fd(e, mu, t);
+      if (e >= 1) G += f * h; else L += (1 - f) * h;
+    }
+    document.getElementById('mu').textContent = mu.toFixed(3);
+    document.getElementById('ga').textContent = G.toFixed(4);
+    document.getElementById('la').textContent = L.toFixed(4);
+  }
+
+  // Animation: sweep T up and back down
+  let playing = false, dir = 1, raf = null;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function step() {
+    let t = parseFloat(slider.value) + dir * tStep * (reduce ? 3 : 1);
+    if (t >= tMax) { t = tMax; dir = -1; }
+    if (t <= 0) { t = 0; dir = 1; }
+    slider.value = t.toFixed(3);
+    update();
+    if (playing) raf = requestAnimationFrame(step);
+  }
+  document.getElementById('play').onclick = () => {
+    playing = !playing;
+    document.getElementById('play').textContent = playing ? 'Pause' : 'Play';
+    if (playing) raf = requestAnimationFrame(step); else cancelAnimationFrame(raf);
+  };
+  slider.addEventListener('input', update);
+  update();
+</script>
+
+
+<p>Again, an animation will tell more than words. Originally at \(T = 0\), we have all fermions occupying the level below \(E_F\), and this is exactly the definition of the Fermi level. As \(T\) increases, fermions will tend to be excited to higher energy beyond the Fermi level \(E_F\). As presented above, the blue region is for the gaining of fermions, thus corresponding to \(f(E)\), beyond \(E_F\) and the orange region represents the loss (thus corresponding to \(1 - f(E)\), and it is mirrored to below the x-axis to emphsize that it represents the loss) of fermions (where those gained electrons beyond \(E_F\) are draining from). As can be seen, the region where \(\mu &lt; E &lt; E_F\) now belongs to the loss region, and accordingly, the area of the loss region is now larger than that of gaining region. This will then balance out the asymmetric \(g(E)\) so the overal gaining and losing can be balanced.</p>
+
+<p>Last but not least, when \(T = 0\), as shown in the figure, the chemical potential \(\mu\) equals the Fermi level \(E_F\). More rigorously, we should say, as \(T \rightarrow 0\), \(\mu \rightarrow E_F\). Looking at the Fermi-Dirac distribution, as \(T \rightarrow 0\), if \(\varepsilon - \mu &gt; 0\), the exponent tends to \(\infty\), making \(f(\varepsilon) \rightarrow 0\). This means no energy levels beyond \(\mu\) will be likely to be occupied – this is exactly the definition of the Fermi level \(E_F\). As discussed above, with the increasing of \(T\), levels above \(\mu\) are likely to be occupied and accordingly we have \(\mu\) shifting away from \(E_F\). The Fermi level, though, stays the same, since it is <em>defined</em> as such that if we fill the energy levels, totally regardless of the probability of the level being occupied, from low to high, the highest level we can get to, is the Fermi level.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] <a href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multiplier</a></p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#physics">physics</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Fermi+Level+and+Chemical+Potential&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-24-fermi_dirac%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-09-24-fermi_dirac%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-24-fermi_dirac%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-09-24-berry_ahe/" data-toggle="tooltip" data-placement="top" title="Berry Physics and Anomalous Hall Effect">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+
+    
+    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+      <nav id="toc-container" class="toc-sidebar">
+        <div class="toc-title">Contents</div>
+        <ul id="toc-list"></ul>
+      </nav>
+    </div>
+    
+  </div>
+</div>
+
+
+  <script src="/assets/js/toc.js" defer></script>
+
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zyroc1990@iris-2020.us" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/copyCode.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/callouts.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

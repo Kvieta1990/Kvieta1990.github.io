@@ -1,0 +1,67 @@
+<div class="xy3d-widget" markdown="0">
+<style>
+.xy3d-widget{--x3-text:#1f1f1f;--x3-text2:#5f5e5a;--x3-grid:rgba(0,0,0,.18);--x3-border:rgba(0,0,0,.25);color:var(--x3-text);margin:1.5rem 0}
+@media (prefers-color-scheme:dark){.xy3d-widget{--x3-text:#ececec;--x3-text2:#b4b2a9;--x3-grid:rgba(255,255,255,.2);--x3-border:rgba(255,255,255,.3)}}
+.xy3d-widget .x3-ctl{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin:0 0 10px;font-size:15px;color:var(--x3-text2)}
+.xy3d-widget .x3-ctl label{cursor:pointer}
+.xy3d-widget button{font-size:14px;padding:6px 12px;border:1px solid var(--x3-border);border-radius:8px;background:transparent;color:var(--x3-text);cursor:pointer}
+.xy3d-widget .x3-plot{width:100%;height:560px}
+</style>
+<div class="x3-ctl">
+<label><input type="checkbox" class="x3-curve" checked> Constraint curve on surface</label>
+<label><input type="checkbox" class="x3-floor" checked> Circle and contours on floor</label>
+<label><input type="checkbox" class="x3-opt" checked> Optima</label>
+<button type="button" class="x3-reset">Reset view</button>
+</div>
+<div class="x3-plot" role="img" aria-label="Rotatable 3D saddle surface f=xy with the constraint circle x^2+y^2=2 lifted onto it and the four constrained optima marked"></div>
+<script>
+(function(){
+var root=document.currentScript.parentNode;
+var q=function(s){return root.querySelector(s);};
+var el=q('.x3-plot');
+function withPlotly(cb){
+if(window.Plotly){cb();return;}
+var ex=document.querySelector('script[data-plotly-loader]');
+if(ex){ex.addEventListener('load',cb);return;}
+var s=document.createElement('script');
+s.src='https://cdn.plot.ly/plotly-2.35.2.min.js';
+s.setAttribute('data-plotly-loader','1');
+s.onload=cb;document.head.appendChild(s);
+}
+function build(){
+var cs=getComputedStyle(root);
+var TXT=cs.getPropertyValue('--x3-text').trim()||'#888';
+var GRID=cs.getPropertyValue('--x3-grid').trim()||'rgba(128,128,128,.3)';
+var N=61,L=2,xs=[],ys=[],zs=[],i,j,k;
+for(i=0;i<N;i++){xs.push(-L+2*L*i/(N-1));ys.push(-L+2*L*i/(N-1));}
+for(j=0;j<N;j++){var row=[];for(i=0;i<N;i++)row.push(xs[i]*ys[j]);zs.push(row);}
+var zf=-4.5,R=Math.SQRT2,cx=[],cy=[],cz=[],fz=[];
+for(k=0;k<=240;k++){var t=2*Math.PI*k/240,x=R*Math.cos(t),y=R*Math.sin(t);cx.push(x);cy.push(y);cz.push(x*y);fz.push(zf);}
+var surf={type:'surface',x:xs,y:ys,z:zs,colorscale:'Viridis',opacity:0.92,showscale:true,
+colorbar:{title:{text:'f',font:{color:TXT,size:16}},showticklabels:false,ticks:'',len:0.7},
+contours:{z:{show:true,usecolormap:false,color:'rgba(40,40,40,0.45)',width:1,start:-4,end:4,size:0.5}},
+hovertemplate:'x=%{x:.2f}<br>y=%{y:.2f}<br>f=%{z:.2f}<extra></extra>'};
+var curve={type:'scatter3d',mode:'lines',x:cx,y:cy,z:cz,line:{color:'#D85A30',width:8},name:'f on x²+y²=2',hovertemplate:'on constraint<br>f=%{z:.2f}<extra></extra>'};
+var floor={type:'scatter3d',mode:'lines',x:cx,y:cy,z:fz,line:{color:'#D85A30',width:4,dash:'dash'},name:'x²+y²=2',hoverinfo:'skip'};
+var hx=[],hy=[],hz=[];
+[-2,-1,-0.5,0.5,1,2].forEach(function(c){[1,-1].forEach(function(s){for(var n=0;n<=80;n++){var u=s*(0.05+n*(L-0.05)/80),v=c/u;if(Math.abs(v)>L)continue;hx.push(u);hy.push(v);hz.push(zf);}hx.push(null);hy.push(null);hz.push(null);});});
+var floorH={type:'scatter3d',mode:'lines',x:hx,y:hy,z:hz,line:{color:'#888780',width:2},name:'level sets xy = c',hoverinfo:'skip'};
+var opt={type:'scatter3d',mode:'markers+text',x:[1,-1,-1,1],y:[1,-1,1,-1],z:[1,1,-1,-1],text:['max','max','min','min'],textposition:'top center',textfont:{color:TXT,size:15},
+marker:{size:7,color:['#FDE725','#FDE725','#440154','#440154'],line:{color:TXT,width:1}},name:'constrained optima',hovertemplate:'(%{x}, %{y})<br>f=%{z}<extra></extra>'};
+var cam={eye:{x:1.6,y:-1.6,z:1.1}};
+function ax(t){return {title:{text:t,font:{size:16,color:TXT}},showticklabels:false,ticks:'',gridcolor:GRID,zerolinecolor:GRID,backgroundcolor:'rgba(0,0,0,0)',showbackground:true};}
+var za=ax('f = xy');za.range=[zf,4];
+var layout={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',margin:{l:0,r:0,t:10,b:0},font:{color:TXT,size:14},
+scene:{xaxis:ax('x'),yaxis:ax('y'),zaxis:za,camera:cam,aspectmode:'manual',aspectratio:{x:1,y:1,z:0.8}},
+legend:{x:0,y:1,font:{size:14,color:TXT},bgcolor:'rgba(0,0,0,0)'}};
+Plotly.newPlot(el,[surf,curve,floor,floorH,opt],layout,{responsive:true,displaylogo:false});
+function vis(idx,v){Plotly.restyle(el,{visible:v},[idx]);}
+q('.x3-curve').addEventListener('change',function(e){vis(1,e.target.checked);});
+q('.x3-floor').addEventListener('change',function(e){vis(2,e.target.checked);vis(3,e.target.checked);});
+q('.x3-opt').addEventListener('change',function(e){vis(4,e.target.checked);});
+q('.x3-reset').addEventListener('click',function(){Plotly.relayout(el,{'scene.camera':cam});});
+}
+withPlotly(build);
+})();
+</script>
+</div>

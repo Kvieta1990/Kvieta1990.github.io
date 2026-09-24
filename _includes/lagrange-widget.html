@@ -1,0 +1,93 @@
+<div class="lg-widget" markdown="0">
+<style>
+.lg-widget{--lg-text:#1f1f1f;--lg-text2:#5f5e5a;--lg-card:#f4f3ef;--lg-border:rgba(0,0,0,.2);--lg-warn-bg:#faeeda;--lg-warn-tx:#854f0b;--lg-ok-bg:#eaf3de;--lg-ok-tx:#3b6d11;color:var(--lg-text);margin:1.5rem 0}
+@media (prefers-color-scheme:dark){.lg-widget{--lg-text:#ececec;--lg-text2:#b4b2a9;--lg-card:#2a2a28;--lg-border:rgba(255,255,255,.25);--lg-warn-bg:#412402;--lg-warn-tx:#fac775;--lg-ok-bg:#173404;--lg-ok-tx:#c0dd97}}
+.lg-widget .lg-row{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.lg-widget button{width:44px;height:36px;font-size:16px;border:1px solid var(--lg-border);border-radius:8px;background:transparent;color:var(--lg-text);cursor:pointer}
+.lg-widget input[type=range]{flex:1}
+.lg-widget canvas{display:block;width:100%;max-width:560px;aspect-ratio:1;margin:0 auto}
+.lg-widget .lg-status{margin-top:12px;padding:10px 14px;border-radius:8px;font-size:17px}
+.lg-widget .lg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:12px}
+.lg-widget .lg-card{background:var(--lg-card);border-radius:8px;padding:12px 16px}
+.lg-widget .lg-lab{font-size:15px;color:var(--lg-text2)}
+.lg-widget .lg-val{font-size:28px;font-weight:500}
+.lg-widget .lg-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px;font-size:15px;color:var(--lg-text2)}
+.lg-widget .lg-sw{display:inline-block;width:16px;height:4px;vertical-align:middle;margin-right:6px}
+</style>
+<div class="lg-row">
+<button type="button" class="lg-play" aria-label="Play or pause">&#10074;&#10074;</button>
+<label class="lg-lab">Angle on circle</label>
+<input type="range" class="lg-th" min="0" max="360" step="1" value="10" aria-label="Angle on circle">
+<span class="lg-thv" style="font-size:16px;font-weight:500;min-width:50px">10°</span>
+</div>
+<canvas class="lg-canvas" role="img" aria-label="Point moving on the circle x^2+y^2=2 over contours of f=xy, with the tangent step projected onto the gradient of f"></canvas>
+<div class="lg-status"></div>
+<div class="lg-grid">
+<div class="lg-card"><div class="lg-lab">f = xy</div><div class="lg-val lg-mf">0</div></div>
+<div class="lg-card"><div class="lg-lab">Angle(tangent, ∇f)</div><div class="lg-val lg-ma">0</div></div>
+<div class="lg-card"><div class="lg-lab">∇f · t (rate of change)</div><div class="lg-val lg-mt">0</div></div>
+</div>
+<div class="lg-legend">
+<span><span class="lg-sw" style="background:#7F77DD"></span>tangent step t</span>
+<span><span class="lg-sw" style="background:#378ADD"></span>∇f</span>
+<span><span class="lg-sw" style="background:#BA7517"></span>component of t along ∇f</span>
+<span><span class="lg-sw" style="background:#D85A30"></span>∇g</span>
+<span><span class="lg-sw" style="background:#1D9E75"></span>level set of f</span>
+</div>
+<script>
+(function(){
+var root=document.currentScript.parentNode;
+var q=function(s){return root.querySelector(s);};
+var c1=q('.lg-canvas'),sl=q('.lg-th'),thv=q('.lg-thv'),st=q('.lg-status'),btn=q('.lg-play');
+var R=Math.SQRT2,L=2.3,OPT=[45,135,225,315],GR='#888780';
+var th=10,playing=true,pauseUntil=0;
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduce){playing=false;btn.innerHTML='&#9654;';}
+function col(v){return getComputedStyle(root).getPropertyValue(v).trim()||'#888';}
+function fit(c){var d=window.devicePixelRatio||1,r=c.getBoundingClientRect();c.width=r.width*d;c.height=r.height*d;var x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);return [x,r.width,r.height];}
+function arrow(x,x0,y0,x1,y1,c,w){if(Math.hypot(x1-x0,y1-y0)<3)return;var a=Math.atan2(y1-y0,x1-x0),h=12;x.strokeStyle=c;x.fillStyle=c;x.lineWidth=w;x.setLineDash([]);x.beginPath();x.moveTo(x0,y0);x.lineTo(x1,y1);x.stroke();x.beginPath();x.moveTo(x1,y1);x.lineTo(x1-h*Math.cos(a-0.4),y1-h*Math.sin(a-0.4));x.lineTo(x1-h*Math.cos(a+0.4),y1-h*Math.sin(a+0.4));x.closePath();x.fill();}
+function hyper(x,sx,sy,k){[1,-1].forEach(function(s){x.beginPath();var on=false;for(var i=0;i<=300;i++){var u=s*(0.02+i*(L-0.02)/300),v=k/u;if(Math.abs(v)>L){on=false;continue;}var X=sx(u),Y=sy(v);if(!on){x.moveTo(X,Y);on=true;}else x.lineTo(X,Y);}x.stroke();});}
+function draw(){
+var TXT=col('--lg-text'),TX2=col('--lg-text2');
+var t=th*Math.PI/180,px=R*Math.cos(t),py=R*Math.sin(t),fv=px*py;
+var tx=-Math.sin(t),ty=Math.cos(t),ux=py/R,uy=px/R,tu=tx*ux+ty*uy,rate=py*tx+px*ty;
+var f=fit(c1),x=f[0],W=f[1],H=f[2];
+var sx=function(u){return (u+L)/(2*L)*W;},sy=function(v){return (L-v)/(2*L)*H;};
+x.clearRect(0,0,W,H);
+x.strokeStyle=GR;x.globalAlpha=0.3;x.lineWidth=1;x.beginPath();x.moveTo(sx(-L),sy(0));x.lineTo(sx(L),sy(0));x.moveTo(sx(0),sy(-L));x.lineTo(sx(0),sy(L));x.stroke();
+x.globalAlpha=0.45;[-3,-2,-1,-0.5,0.5,1,2,3].forEach(function(k){hyper(x,sx,sy,k);});x.globalAlpha=1;
+if(Math.abs(fv)>0.01){x.strokeStyle='#1D9E75';x.lineWidth=2.5;hyper(x,sx,sy,fv);}
+x.strokeStyle=TXT;x.lineWidth=2.5;x.beginPath();x.arc(sx(0),sy(0),R/(2*L)*W,0,2*Math.PI);x.stroke();
+x.strokeStyle='#378ADD';x.globalAlpha=0.35;x.lineWidth=1.2;x.setLineDash([3,4]);x.beginPath();x.moveTo(sx(px-1.2*ux),sy(py-1.2*uy));x.lineTo(sx(px+1.2*ux),sy(py+1.2*uy));x.stroke();x.globalAlpha=1;x.setLineDash([]);
+arrow(x,sx(px),sy(py),sx(px+0.35*px),sy(py+0.35*py),'#D85A30',2);
+arrow(x,sx(px),sy(py),sx(px+0.5*py),sy(py+0.5*px),'#378ADD',3);
+var S=0.9,ex=px+S*tx,ey=py+S*ty,qx=px+S*tu*ux,qy=py+S*tu*uy;
+arrow(x,sx(px),sy(py),sx(ex),sy(ey),'#7F77DD',3);
+x.strokeStyle=TX2;x.lineWidth=1.2;x.setLineDash([5,4]);x.beginPath();x.moveTo(sx(ex),sy(ey));x.lineTo(sx(qx),sy(qy));x.stroke();x.setLineDash([]);
+arrow(x,sx(px),sy(py),sx(qx),sy(qy),'#BA7517',3.5);
+if(Math.abs(tu)<0.03){var m=0.13;x.strokeStyle=TXT;x.lineWidth=1.5;x.beginPath();x.moveTo(sx(px+m*tx),sy(py+m*ty));x.lineTo(sx(px+m*tx+m*ux),sy(py+m*ty+m*uy));x.lineTo(sx(px+m*ux),sy(py+m*uy));x.stroke();}
+x.fillStyle=TXT;x.beginPath();x.arc(sx(px),sy(py),6,0,2*Math.PI);x.fill();
+x.fillStyle=TX2;x.font='17px sans-serif';x.fillText('x',W-18,sy(0)-8);x.fillText('y',sx(0)+8,18);x.fillText('x² + y² = 2',sx(-1.25),sy(-1.3));
+x.font='16px sans-serif';x.fillStyle='#7F77DD';x.fillText('t',sx(ex+0.06*tx)+6,sy(ey+0.06*ty));x.fillStyle='#378ADD';x.fillText('∇f',sx(px+0.55*py)+4,sy(py+0.55*px));
+var ang=Math.acos(Math.max(-1,Math.min(1,tu)))*180/Math.PI;
+q('.lg-mf').textContent=fv.toFixed(2);
+q('.lg-ma').textContent=Math.round(ang)+'°';
+q('.lg-mt').textContent=rate.toFixed(2);
+if(Math.abs(tu)<0.03){st.textContent='Optimum: tangent ⟂ ∇f, no component along ∇f, so ∇f ∥ ∇g';st.style.background='var(--lg-ok-bg)';st.style.color='var(--lg-ok-tx)';}
+else{st.textContent=(rate>0?'Tangent step has a component along +∇f, so f increases':'Tangent step has a component against ∇f, so f decreases');st.style.background='var(--lg-warn-bg)';st.style.color='var(--lg-warn-tx)';}
+thv.textContent=Math.round(th)+'°';sl.value=Math.round(th);
+}
+function setPlay(p){playing=p;pauseUntil=0;btn.innerHTML=p?'&#10074;&#10074;':'&#9654;';}
+sl.addEventListener('input',function(){th=+sl.value;setPlay(false);draw();});
+btn.addEventListener('click',function(){setPlay(!playing);if(playing)th=(th+0.5)%360;});
+function loop(now){
+if(playing&&now>=pauseUntil){
+var prev=th,nt=prev+0.12+0.4*Math.abs(Math.cos(2*prev*Math.PI/180)),hit=null;
+for(var i=0;i<OPT.length;i++){if(prev<OPT[i]&&nt>=OPT[i]){hit=OPT[i];break;}}
+if(hit!==null){th=hit;pauseUntil=now+3000;}else th=nt%360;
+draw();}
+requestAnimationFrame(loop);}
+window.addEventListener('resize',draw);draw();requestAnimationFrame(loop);
+})();
+</script>
+</div>

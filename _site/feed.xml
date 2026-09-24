@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Fermi Level and Chemical Potential</title>
+        <description>
+          
+          In this post, I am going to put down the derivation of the Fermi-Dirac distribution and talk about the chemical potential and the Fermi level. Lagrange multiplier To prepare for the derivation, we need to first take a look at the mathematical method for finding optima given constraints, using the...
+        </description>
+        <pubDate>Thu, 24 Sep 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-09-24-fermi_dirac/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-09-24-fermi_dirac/</guid>
+      </item>
+    
+      <item>
         <title>Berry Physics and Anomalous Hall Effect</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Sun, 09 Aug 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-08-09-diffusion_algorithm/</link>
         <guid isPermaLink="true">http://localhost:8000/2026-08-09-diffusion_algorithm/</guid>
-      </item>
-    
-      <item>
-        <title>Sampling Algorithms</title>
-        <description>
-          
-          This post notes down the understanding of several typical sampling algorithms, including the inverse transform sampling, the rejectin sampling and Markov Chain Monte Carlo sampling. I am not going to cover the nitty-gritty details but just to note down some of what I think as critical points benefiting the understanding...
-        </description>
-        <pubDate>Sun, 02 Aug 2026 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2026-08-02-sampling_algorithms/</link>
-        <guid isPermaLink="true">http://localhost:8000/2026-08-02-sampling_algorithms/</guid>
       </item>
     
   </channel>
