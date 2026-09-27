@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>Learning Notes on Quantum Hall Effect</title>
+        <description>
+          
+          In this post, I am going to put down the learning notes for the lecture notes by Prof. David Tong [1]. Direction setup See the figure on Wikipedia page here for all directions involved in the discussion. The classical Hall effect A particle of charge $-e$ in $\mathbf{B}=B\hat{z}$ moves in...
+        </description>
+        <pubDate>Sat, 26 Sep 2026 00:00:00 -0400</pubDate>
+        <link>http://localhost:8000/2026-09-26-notes_qhe/</link>
+        <guid isPermaLink="true">http://localhost:8000/2026-09-26-notes_qhe/</guid>
+      </item>
+    
+      <item>
         <title>Systematic Absences (Crystallography)</title>
         <description>
           
@@ -218,17 +229,6 @@
         <pubDate>Thu, 13 Aug 2026 00:00:00 -0400</pubDate>
         <link>http://localhost:8000/2026-08-13-gibbs_sampling/</link>
         <guid isPermaLink="true">http://localhost:8000/2026-08-13-gibbs_sampling/</guid>
-      </item>
-    
-      <item>
-        <title>Learning Notes on Variational Autoencoders</title>
-        <description>
-          
-          The image was generated with Gemini with the prompt of ‘Generate an image as an abstract showcase for the variational autoencoder. Use the Ghibli style’. 1. General Introduction A Variational Autoencoder (VAE) is a generative model that represents data through a probabilistic latent space, allowing new data to be synthesized...
-        </description>
-        <pubDate>Tue, 11 Aug 2026 00:00:00 -0400</pubDate>
-        <link>http://localhost:8000/2026-08-11-variational_autoencoder/</link>
-        <guid isPermaLink="true">http://localhost:8000/2026-08-11-variational_autoencoder/</guid>
       </item>
     
   </channel>

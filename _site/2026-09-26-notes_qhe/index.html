@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+<link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/assets/img/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Learning Notes on Quantum Hall Effect</title>
+
+  
+  <meta name="author" content="Yuanpeng Zhang">
+  
+
+  <meta name="description" content="In this post, I am going to put down the learning notes for the lecture notes by Prof. David Tong [1]. Direction setup See the figure on Wikipedia page here for all directions involved in the discussion. The classical Hall effect A particle of charge $-e$ in $\mathbf{B}=B\hat{z}$ moves in...">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Yuanpeng's Blog" href="http://localhost:8000/feed.xml">
+
+  
+
+  
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-44PBCNZ80G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-44PBCNZ80G');
+</script>
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/admonitions.css">
+    
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Yuanpeng's Blog">
+  <meta property="og:title" content="Learning Notes on Quantum Hall Effect">
+  <meta property="og:description" content="In this post, I am going to put down the learning notes for the lecture notes by Prof. David Tong [1]. Direction setup See the figure on Wikipedia page here for all directions involved in the discussion. The classical Hall effect A particle of charge $-e$ in $\mathbf{B}=B\hat{z}$ moves in...">
+
+  
+  <meta property="og:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Yuanpeng Zhang">
+  <meta property="og:article:published_time" content="2026-09-26T00:00:00-04:00">
+  <meta property="og:url" content="http://localhost:8000/2026-09-26-notes_qhe/">
+  <link rel="canonical" href="http://localhost:8000/2026-09-26-notes_qhe/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Learning Notes on Quantum Hall Effect">
+  <meta property="twitter:description" content="In this post, I am going to put down the learning notes for the lecture notes by Prof. David Tong [1]. Direction setup See the figure on Wikipedia page here for all directions involved in the discussion. The classical Hall effect A particle of charge $-e$ in $\mathbf{B}=B\hat{z}$ moves in...">
+
+  
+  <meta name="twitter:image" content="http://localhost:8000/assets/img/mountain.png">
+  
+
+  
+
+
+  
+
+  
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script async='async' src='https://www.gstatic.com/external_hosted/clipboardjs/clipboard.min.js'></script>
+<script src='https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js'></script>
+<script language='JavaScript'>
+  function copytoclipboard(containerid){
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(document.getElementById(containerid));
+      range.select().createTextRange();
+      document.execCommand("copy");
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(document.getElementById(containerid));
+      var selection = window.getSelection() // get Selection object from currently user selected text
+      selection.removeAllRanges() // unselect any user selected text (if any)
+      selection.addRange(range) // add range to Selection object to select it
+      document.execCommand("copy");
+      //alert("Codes snippet copied to clipboard!")
+      swal({
+      title: "",
+      text: "Codes snippet copied to clipboard!",
+      icon: "success",
+      });
+    }
+  }
+</script>
+<script defer src="https://umm.iris-2020.us/script.js" data-website-id="387a3202-bb18-41ba-a954-d985ff940209"></script>
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand navbar-brand-logo" href="http://localhost:8000/"><img alt="Yuanpeng's Blog Logo" src="/assets/img/home.png"/></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="/search">🔍Search</a></li>
+          <li class="nav-item">
+              <a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Posts</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/all_posts">All posts</a>
+                    <a class="dropdown-item" href="/archive">Archive</a>
+                    <a class="dropdown-item" href="/tags">Tags</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Academic</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/nav_pages/publications">Publications</a>
+                    <a class="dropdown-item" href="/nav_pages/lnotes">Learning Notes</a>
+            </div>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Links</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a target="_blank" class="dropdown-item" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en">Google Scholar</a>
+								  <a target="_blank" class="dropdown-item" href="https://orcid.org/0000-0003-4224-3361">ORCID</a>
+								  <a target="_blank" class="dropdown-item" href="https://rmcprofile.ornl.gov/">RMCProfile</a>
+								  <a target="_blank" class="dropdown-item" href="https://dh.iris-home.net">My Dashboard</a>
+								  
+                    <a class="dropdown-item" href="https://ha.iris-2020.us">My HomeArr</a><a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990">GitHub Profile</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Kvieta1990.github.io">Blog Repo</a>
+								  <a target="_blank" class="dropdown-item" href="https://mybinder.org/v2/gh/Kvieta1990/Jup_Notes/master">Jupyter Binder</a>
+								  <a target="_blank" class="dropdown-item" href="https://github.com/Kvieta1990/Iris">More Notes</a>
+								  <a target="_blank" class="dropdown-item" href="https://flarum.iris-home.net">Forum</a>
+								  
+                    <a class="dropdown-item" href="/board.html">Board</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a></li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border" id="others">
+      </div>
+    </div>
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+					<div class="avatar-adjust" id="safari">
+				  </div>
+      </div>
+    </div>
+  
+
+<script>
+function myFunction() {
+		return '<a href="http://localhost:8000/"><img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/mountain.png" />';
+}
+let safariAgent = navigator.userAgent.indexOf("Safari") > -1;
+let chromeAgent = navigator.userAgent.indexOf("Chrome") > -1;
+if (chromeAgent) {
+  document.getElementById("others").innerHTML = myFunction();
+} else if (safariAgent) {
+  document.getElementById("safari").innerHTML = myFunction();
+} else {
+  document.getElementById("others").innerHTML = myFunction();
+}
+
+</script>
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+<script defer src="https://umm.ornl.gov/script.js" data-website-id="b8c91b4d-4919-4ace-84f3-af87dec9f8d0"></script>
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-1">
+        <div class="post-heading">
+						<h1>Learning Notes on Quantum Hall Effect</h1>
+          
+
+          
+					<span class="post-meta">Posted on September 26, 2026, by Yuanpeng Zhang</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-1 col-lg-8 offset-lg-1 col-12 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <p>In this post, I am going to put down the learning notes for the lecture notes by Prof. David Tong [1].</p>
+
+<h2 id="direction-setup">Direction setup</h2>
+
+<p>See the figure on Wikipedia page <a href="https://en.wikipedia.org/wiki/Hall_effect#/media/File:Hall_effect_Setup_Electrons_Holes.svg">here</a> for all directions involved in the discussion.</p>
+
+<h2 id="the-classical-hall-effect">The classical Hall effect</h2>
+
+<p>A particle of charge $-e$ in $\mathbf{B}=B\hat{z}$ moves in circles at the cyclotron frequency</p>
+
+\[\omega_B = \frac{eB}{m}.\]
+
+<p>:::info
+This can be derived with the motion equation,</p>
+
+\[m\frac{d\mathbf{v}}{dt} = -e\mathbf{b} \times \mathbf{B}\]
+
+<p>or simply just follow the Newton’s equation,</p>
+
+<p>\(evB = e\omega r B = mr\omega^2 \Rightarrow \omega = \frac{eB}{m}\)
+:::</p>
+
+<p>The Drude model adds an electric field and friction,</p>
+
+\[m\frac{d\mathbf{v}}{dt} = -e\mathbf{E} - e\mathbf{v}\times\mathbf{B} - \frac{m\mathbf{v}}{\tau}, \qquad \mathbf{J} = -ne\mathbf{v}.\]
+
+<p>In steady state ($d\mathbf{v}/dt = 0$), this gives,</p>
+
+\[\frac{m}{\tau}\mathbf{v} + e\,\mathbf{v}\times\mathbf{B} = -e\mathbf{E}.\]
+
+<p>Use $\mathbf{J} = -ne\,\mathbf{v}$, so $\mathbf{v} = -\mathbf{J}/(ne)$,</p>
+
+\[-\frac{m}{ne\tau}\mathbf{J} - \frac{1}{n}\,\mathbf{J}\times\mathbf{B} = -e\mathbf{E}
+\Rightarrow
+\mathbf{E} = \frac{m}{ne^2\tau}\,\mathbf{J} + \frac{1}{ne}\,\mathbf{J}\times\mathbf{B}.\]
+
+<p>With $\mathbf{B}=B\hat{z}$, the cross product is $\mathbf{J}\times\mathbf{B} = (J_y B,\,-J_x B,\,0)$. Therefore,</p>
+
+\[E_x = \frac{m}{ne^2\tau}J_x + \frac{B}{ne}J_y, \qquad
+E_y = -\frac{B}{ne}J_x + \frac{m}{ne^2\tau}J_y.\]
+
+<p>Then we can write down the tensor form linking the electric field and the current,</p>
+
+\[\mathbf{E} = \begin{bmatrix}
+E_x\\E_y
+\end{bmatrix} = \rho\mathbf{J} = \begin{bmatrix}
+\frac{m}{ne^2\tau} &amp; \frac{B}{ne}\\
+-\frac{B}{ne} &amp; \frac{m}{ne^2\tau}
+\end{bmatrix}\begin{bmatrix}
+J_x\\J_y
+\end{bmatrix}\]
+
+<p>This gives,</p>
+
+\[\rho = \frac{1}{\sigma_{DC}}\begin{pmatrix} 1 &amp; \omega_B\tau \\ -\omega_B\tau &amp; 1\end{pmatrix},\ \ \ \  \sigma = \frac{\sigma_{DC}}{1+\omega_B^2\tau^2}\begin{pmatrix} 1 &amp; -\omega_B\tau \\ \omega_B\tau &amp; 1\end{pmatrix}\]
+
+<p>where,</p>
+
+\[\sigma_{DC} = \frac{ne^2\tau}{m}\]
+
+<p>The classical predictions are</p>
+
+\[\rho_{xx} = \frac{m}{ne^2\tau}, \qquad \rho_{xy} = \frac{B}{ne}.\]
+
+<p>Two observations. First, $\rho_{xy}$ doesn’t depend on $\tau$ and therefore it is nothing to do with the friction that electron feels (thus should be considered dissipationless). Second, $\rho_{xx}\to 0$ as $\tau\to\infty$ – as the friction disappears, the horizontal resistivity also disappears.</p>
+
+<h2 id="actual-observation">Actual observation</h2>
+
+<ul>
+  <li>
+    <p><strong>Integer Hall effect</strong> (von Klitzing, 1980). The Hall resistivity forms plateaus at,</p>
+
+\[\rho_{xy} = \frac{2\pi\hbar}{e^2}\frac{1}{\nu}, \ \ \ \ \nu\in\mathbb{Z},\]
+
+    <p>with $\rho_{xx}=0$ on each plateau and a spike in $\rho_{xx}$ between plateaus. Plateau centers sit at $B = n\Phi_0/\nu$, where the flux quantum is $\Phi_0 = 2\pi\hbar/e$.</p>
+  </li>
+  <li>
+    <p><strong>Disorder is essential</strong>. Adding disorder, but not too much, makes the plateaus <em>more</em> prominent. In a perfectly clean sample they are expected to vanish.</p>
+  </li>
+  <li>
+    <p><strong>Zero longitudinal resistivity</strong>. From $\sigma = \rho^{-1}$,</p>
+
+\[\sigma_{xx} = \frac{\rho_{xx}}{\rho_{xx}^2 + \rho_{xy}^2}\]
+
+    <p>When $\rho_{xy}\neq 0$, $\rho_{xx}=0$ forces $\sigma_{xx}=0$. The sample acts like a perfect insulator and a perfect conductor at once. Below is included an illustration diagram,</p>
+
+    <p align="center">
+  <a href="/assets/img/posts/rho_sigma_0.png" target="_blank">
+  <img src="/assets/img/posts/rho_sigma_0.png" style="border:none;" width="400" alt="rho_sigma_0" title="rho_sigma_0" />
+  </a>
+  </p>
+
+    <p>In such a situation, the longitudinal current will be 0 – the current flows in the direction perfectly perpendicular to the applied electric field, due to the perfect balance between the electrostatic force and the Lorentz force, as shown in the diagram. Therefore, the longitudinal current being 0 is not because the resistivity is infinitely large – in fact, as given by the result above, the longitudinal resistivity is actually also 0. Instead, it is the result of the magnetic field.</p>
+  </li>
+</ul>
+
+<h2 id="some-electrodynamics">Some Electrodynamics</h2>
+
+<p>Faraday’s experiments (moving a magnet through a coil, or varying a magnetic field near a loop) established that a <strong>changing magnetic flux through any closed loop induces an electromotive force (EMF, circulating electric field, 电动势) around that loop</strong>. Quantitatively,</p>
+
+\[\oint_C \mathbf E\cdot d\boldsymbol\ell = -\frac{d}{dt}\int_S \mathbf B\cdot d\mathbf a\]
+
+<p>where $C$ is any closed loop, $S$ is any open surface bounded by $C$. The minus sign is the physical content of <strong>Lenz’s law</strong> – the induced field opposes the change in flux. With <strong>Stokes’ theorem</strong>,</p>
+
+\[\oint_C \mathbf E\cdot d\boldsymbol\ell = \int_S (\nabla\times\mathbf E)\cdot d\mathbf a\]
+
+<p>and further,</p>
+
+\[\int_S(\nabla\times\mathbf E)\cdot d\mathbf a = -\int_S \dot{\mathbf B}\cdot d\mathbf a\]
+
+<p>Accordingly we have,</p>
+
+\[\nabla\times\mathbf E = -\dot{\mathbf B}\]
+
+<p>Another equation from Maxwell’s is,</p>
+
+\[\nabla\cdot\mathbf B = 0\ \text{(no magnetic monopoles)}\]
+
+<p>and also we have the following genuine result for any scalar field $f$ and any vector field $\mathbf V$,</p>
+
+\[\nabla\times(\nabla f) = 0,\ \nabla\cdot(\nabla\times\mathbf V) = 0\]
+
+<p>Since we have $\nabla\cdot\mathbf B = 0$, from the genuine result presened above, we know that $\mathbf{B}$ can be written as,</p>
+
+\[\mathbf B \equiv \nabla\times\mathbf A\]
+
+<p>which then automatically satisfies $\nabla\cdot\mathbf B=0$ for <em>any</em> choice of $\mathbf A$. Now plug $\mathbf B=\nabla\times\mathbf A$ into Faraday’s law,</p>
+
+\[\nabla\times\mathbf E = -\dot{\mathbf B} = -\frac{\partial}{\partial t}(\nabla\times\mathbf A) = -\nabla\times\left(\frac{\partial\mathbf A}{\partial t}\right)\]
+
+<p>where the last step just swaps the order of the (spatial) curl and the (temporal) partial derivative – since they act on independent variables and therefore the order does not matter. Rearranging,</p>
+
+\[\nabla\times\left(\mathbf E + \dot{\mathbf A}\right) = 0\]
+
+<p>By the first genuine result presented above, we know that $\mathbf E+\dot{\mathbf A}$ can be written as,</p>
+
+\[\mathbf E+\dot{\mathbf A} \equiv -\nabla\phi \Rightarrow \mathbf E = -\nabla\phi-\dot{\mathbf A}\]
+
+<h2 id="landau-level">Landau level</h2>
+
+<p>Starting from the force on charged particle moving in the eletric and magnetic field,</p>
+
+\[\mathbf{F} = q[\mathbf{E} + \mathbf{v} \times \mathbf{B}]\]
+
+<p>and the fundamental results from electrodynamics presented in the previous section,</p>
+
+\[\begin{align}
+\mathbf{E} &amp; = \nabla \phi - \dot{\mathbf A}\\
+\mathbf{B} &amp; = \nabla \times \mathbf{A}
+\end{align}\]
+
+<p>The Lagrangian \(L\) and the Hamiltonian for electrons moving in the magnetic field can be derived – refer to Ref. [2] (see §1.5). Tong’s book [1] directly lays out the result, based on which the quantization is carried out. The Hamiltonian is given as,</p>
+
+\[H = \frac{1}{2m}(\mathbf{p}+e\mathbf{A})^2\]
+
+<p>The quantized Hamiltonian (see Ref. [1] for details – §1.4) is shown to reproduce the one for a harmonic oscillator for which the discrete energy levels can be given as,</p>
+
+\[E_n = \hbar \omega_B(n + \frac{1}{2})\]
+
+<p>where \(\omega_B\) is the cyclotron frequency given on the very top of this post. The harmonic oscillator form can be seen from the classical Hamiltonian form. Take $\mathbf{A} = xB\hat{y}$, the classical Hamiltonian can be given as,</p>
+
+\[H_k = \frac{p_x^2}{2m} + \frac{m\omega_B^2}{2}\left(x + kl_B^2\right)^2\]
+
+<p>where,</p>
+
+\[l_B = \sqrt{\frac{\hbar}{eB}}\]
+
+<p>Here we see the familiar form of the Hamiltonian for a harmonic oscillator (a classical spring) – the first term is the kinetic energy and the second term is the potential energy of the spring [3, 4]. It is just that the \(x\) value is shifted to the left by \(kl_B^2\). Since we take the form for $\mathbf{A} = xB\hat{y}$ along the \(y\) axis, the Hamiltonian in its classical form presented above does not contain any \(y\) components. Therefore, the eigen state can be written as,</p>
+
+\[\psi_k = e^{iky}f_k(x)\]
+
+<p>where the \(y\)-contained part is basically a free-propagating plane wave. The full version of the wave function from §1.4 in Ref. [1] is reproduced here,</p>
+
+\[\psi_{n,k} \sim e^{iky}H_n\!\left(\frac{x+kl_B^2}{l_B}\right)e^{-(x+kl_B^2)^2/2l_B^2}\]
+
+<p>where \(H_n\) refers to the Hermite polynomials [5], and the first few orders are given below,</p>
+
+\[\begin{align}
+H_0(u) &amp; = 1\\
+H_1(u) &amp; = 2u\\
+H_2(u) &amp; = 4u^2 - 2\\
+H_3(u) &amp; = 8u^3 - 12u
+\end{align}\]
+
+<p>As mentioned earlier, the eigen values of energy is independent of \(k\) and therefore for each energy level (indexed with \(n\)), all the states with different \(k\) are degenerate. Suppose the material dimension is \(L_x\) by \(L_y\). Along the \(y\) direction, we already know that it is basically just a plane wave and according to the periodic boundary condition, we should have,</p>
+
+\[e^{ikL_y} = 1 \Rightarrow k = \frac{2\pi}{L_y}j, \ \ \ \ j \in \mathcal{Z}\]
+
+<p>Therefore the interval between two adjacent allowed \(k\) values is \(2\pi/L_y\). Looking at the \(x\) direction, we have the wavefunction stripe (see below for what this means) centered at \(x_0 = -kl_B^2\) and for sure the stripe should be located inside the sample, so,</p>
+
+\[0 \le -kl_B^2 \le L_x \Rightarrow -\frac{L_x}{l_B^2} \le k \le 0\]
+
+<p>Now, we can calculate the degeneracy of each energy level (basically, how many values of \(k\) allowed for each level),</p>
+
+\[\mathcal{N} = \bigg( \frac{L_x}{l_B^2} \bigg) / \bigg( \frac{2\pi}{L_y} \bigg) = \frac{A}{2\pi l_B^2}\]
+
+<p>With \(l_B^2 = \hbar/eB\) and \(\Phi_0 = 2\pi\hbar/e\),</p>
+
+\[\frac{A}{2\pi l_B^2} = \frac{AeB}{2\pi\hbar} = \frac{AB}{\Phi_0}\]
+
+<p><br /></p>
+
+<blockquote>
+  <p>Since \(\Phi_0\) is defined as the flux quantum, the degeneracy here means the number of such quanta – the total flux \(AB\) divided by the flux quantum.</p>
+</blockquote>
+
+<p>To see what we mean by ‘wavefunction stripe’ mentioned above, we can plot out the squared wavefunction,</p>
+
+<p align="center">
+<a href="/assets/img/posts/landau_gauge_strips_panel_a.png" target="_blank">
+<img src="/assets/img/posts/landau_gauge_strips_panel_a.png" style="border:none;" width="800" alt="landau_gauge_strips_panel_a" title="landau_gauge_strips_panel_a" />
+</a>
+</p>
+
+<p>As expected, the distribution along the \(y\) direction is uniform and along the \(x\) direction, we have those stripes.</p>
+
+<p>:::info
+Looking at the wavefunction solution given above and its visualization, we may be wondering where the circular motion. Since we are dealing with the situation where electrons are moving in a magnetic field, and we know that electrons should be making circular motion in the field. But it seems that we never saw such a circular feature in the wavefunction. What is happening? Several things. First, the wavefunction presented here are stationary so there is no time component at all. Therefore, indeed we should not be expecting any circular motion since there is no motion at all in the presented wavefunction – it is a time average. Second, the wavefunction is only the basis function corresponding to the Landau gauge ($\mathbf{A} = xB\hat{y}$). Since the basis function is gauge dependent anyhow, a single basis function does not represent anything physical. It is only the combination of those basis functions that will yield something physical. Indeed, if we consider all possible stripes altogether, we won’t have stripes at all since indeed physically, we should not be expecting any stripes in the physical setting – electrons moving in a uniform magnetic field. Third, if we calculate the current flow given the wavefunction solution, we should be able to see the circular feature.
+:::</p>
+
+<p>Adding in the electric field, §1.4.2 in Ref. [1] shows the \(k\)-degeneracy is broken and the energy levels are given as,</p>
+
+\[E_{n,k} = \hbar\omega_B\left(n+\tfrac12\right) - eEkl_B^2 + \frac{mE^2}{2B^2}\]
+
+<p>Electrons drifts along the \(y\) direction as,</p>
+
+\[v_y = \frac{1}{\hbar}\frac{\partial E_{n,k}}{\partial k} = -\frac{E}{B}\]
+
+<p>That is exactly the first diagram I presented earlier in the post.</p>
+
+<h2 id="hall-conductivity">Hall conductivity</h2>
+
+<p>The current in the $\nu$ filled Landau levels (charge times velocity, summed over all filled states),</p>
+
+\[\mathbf{I} = -\frac{e}{m}\sum_{\text{filled}}\langle\psi|\,\boldsymbol{\pi}\,|\psi\rangle, \ \ \ \  \boldsymbol{\pi} = \mathbf{p} + e\mathbf{A}\]
+
+<p>With \(\mathbf{A} = xB\,\hat{\mathbf{y}}\), the two components are,</p>
+
+\[\begin{align}
+\pi_x = p_x\\
+\pi_y = p_y + eBx
+\end{align}\]
+
+<p>Each state is $\psi_{n,k} = e^{iky}f_n(x - x_0)$, with $f_n$ a real Hermite function centered at $x_0$.</p>
+
+<p>Since $f_n$ is real,</p>
+
+\[\langle p_x\rangle = -i\hbar\int f_n\,f_n'\,dx = -i\hbar\left[\tfrac{1}{2}f_n^2\right]_{-\infty}^{\infty} = 0\]
+
+<p>No current flows along \(\mathbf{E}\). The \(y\) component of \(\boldsymbol{\pi}\) has two parts,</p>
+
+\[\langle\pi_y\rangle = \hbar k + eB\langle x\rangle\]
+
+<p>Since we know that the Hamiltonian reproduce the harmonic oscillator, the average \(x\) position should be the center of the oscillator. From the wavefunction form in Eqn. 1.20 in Ref. [1] (also presented earlier in this post – see the <a href="./#landau-level">Landau level section</a>) with electric field and the form in Eqn. 1.24 in Ref. [1] with the electric field, we can obtain the average position of the harmonic oscillator, as,</p>
+
+\[\langle x\rangle = -\hbar k/eB - mE/eB^2\]
+
+<p>Substituting,</p>
+
+\[\langle\pi_y\rangle = \hbar k + eB\left(-\frac{\hbar k}{eB} - \frac{mE}{eB^2}\right) = \hbar k - \hbar k - \frac{mE}{B} = -\frac{mE}{B}\]
+
+<p>Back to the filled states summation earlier,</p>
+
+\[I_y = e\nu\sum_k\frac{E}{B}\]
+
+<p>The term inside the summation is a constant so can be pulled out of the summation and therefore the whole summation is all about counting the number of states, which I have already presented earlier, namely \(AB/\Phi_0\). So,</p>
+
+\[I_y = e\nu\,\frac{AB}{\Phi_0}\,\frac{E}{B} = \frac{e\nu A}{\Phi_0}E\]
+
+<p>Writing down the current density and link to the electric field, we can obtain the Hall conductivity tensor,</p>
+
+\[\sigma = \begin{bmatrix}
+0 &amp; -\dfrac{e\nu}{\Phi_0}\\
+\dfrac{e\nu}{\Phi_0} &amp; 0
+\end{bmatrix}\]
+
+<h2 id="edge-mode">Edge mode</h2>
+
+<ul>
+  <li>
+    <p>The simple diagram shown in Fig. 14 illustrates the whole idea of the surface state, where the circular moving electrons are bounced by the boundary so that they just move along a single direction, opposite between two opposite boundaries.</p>
+  </li>
+  <li>
+    <p>The opposite drifting velocity can be explained by the potential shape in Fig. 15, with the drifting velocity given as,</p>
+
+\[v_y = -\frac{1}{eB}\frac{\partial V}{\partial x}\]
+  </li>
+  <li>
+    <p>Edge modes are chiral and they are immune to impurity since the one-way moving electrons are hard to disrupted.</p>
+  </li>
+</ul>
+
+<h2 id="disorder-and-plateaus">Disorder and Plateaus</h2>
+
+<p>The filling factor is the density divided by the <code class="language-plaintext highlighter-rouge">number of states per level per unit area</code>,</p>
+
+\[\nu = \frac{n}{(B \cdot 1)/\Phi_0} = \frac{n\Phi_0}{B}\]
+
+<p>For fixed $n$, $\nu$ is an integer only at the special fields $B = n\Phi_0/\nu$. At any other field, $\nu$ has a fractional part. For example, $\nu = 2.4$ means two full levels plus a third level that is 40% occupied. For fully filled level, every nearby state is occupied, the next empty state is $\hbar\omega_B$ away, and a weak field can’t move electrons across that gap. A partly filled level has occupied and empty states at the same energy, because the $AB/\Phi_0$ states in a level are degenerate. Any small perturbation, such as an impurity or a weak field, can move an electron into an empty state at no energy cost. That allows scattering and dissipation, so,</p>
+
+\[\sigma_{xx} \neq 0 \Rightarrow \rho_{xx} = \frac{\sigma_{xx}}{\sigma_{xx}^2 + \sigma_{xy}^2} \neq 0\]
+
+<p>As for \(\sigma_{xy}\), it can always be argued that for a clean, translation-invariant sample, there always exists such a reference frame traveling at the drift velocity \(\mathbf{v} = \mathbf{E}\times\mathbf{B}/B^2\) where the electric field vanishes. When going back to the lab frame, the whole electron gas moves at $\mathbf{v}$, and therefore $\mathbf{J} = -ne\,\mathbf{v}$, giving,</p>
+
+\[\sigma_{xy} = -\frac{ne}{B}\]
+
+<p>:::info
+For $v \ll c$, the fields in a frame moving at velocity $\mathbf{v}$ are [6],</p>
+
+\[\mathbf{E}' = \mathbf{E} + \mathbf{v}\times\mathbf{B}, \qquad \mathbf{B}' \approx \mathbf{B}\]
+
+<p>Choose $\mathbf{v} = \mathbf{E}\times\mathbf{B}/B^2$. Using $(\mathbf{a}\times\mathbf{b})\times\mathbf{c} = \mathbf{b}(\mathbf{a}\cdot\mathbf{c}) - \mathbf{a}(\mathbf{b}\cdot\mathbf{c})$ and $\mathbf{E}\perp\mathbf{B}$,</p>
+
+\[\mathbf{v}\times\mathbf{B} = \frac{(\mathbf{E}\times\mathbf{B})\times\mathbf{B}}{B^2} = \frac{\mathbf{B}(\mathbf{E}\cdot\mathbf{B}) - \mathbf{E}\,B^2}{B^2} = -\mathbf{E}\]
+
+<p>so $\mathbf{E}’ = 0$.
+:::</p>
+
+<p>So, in a perfectly clean material, the Hall conductivity just shows a continuous variation as \(B\) varies and we are not yet seeing any plateaus behavior. What we are missing is the consideration of disorder. The existence of disorder in pratical materials give rise to random potential and Ref. [1] shows that electron orbit centers drift along equipotentials (the contour levels along which the random potentials are equal – see the diagram below).</p>
+
+<p align="center">
+<a href="/assets/img/posts/equipotential_drift_panel_a.png" target="_blank">
+<img src="/assets/img/posts/equipotential_drift_panel_a.png" style="border:none;" width="800" alt="equipotential_drift_panel_a" title="equipotential_drift_panel_a" />
+</a>
+</p>
+
+<p>Now, the physical picture for the emergence of the plateaus is like this. First, the existence of disorder in the system will broaden the Landau levels, as shown in Fig. 17 in Ref. [1]. The broadened Landau level is given as,</p>
+
+\[E = \hbar\omega_B\left(n+\tfrac{1}{2}\right) + V(X,Y)\]
+
+<p>:::info
+Here it is assumed that the random potential is pretty much localized and around each orbit center of electrons, it can be regarded as constant (and therefore can be directly added to the energy eigen value for the energy levels).
+:::</p>
+
+<p>If we write,</p>
+
+\[\epsilon = E - \hbar\omega_B\left(n+\tfrac{1}{2}\right)\]
+
+<p>The orbit center must then stay on the equipotential $V(X,Y) = \epsilon$. Imagine the random potential as a landscape, filled with water up to height $\epsilon$. The shoreline is exactly the contour $V = \epsilon$, so it traces the orbits allowed at that energy.</p>
+
+<p>Here below is presented a metaphor to understand the situation,</p>
+
+<p align="center">
+<a href="/assets/img/posts/percolation_landau_large.png" target="_blank">
+<img src="/assets/img/posts/percolation_landau_large.png" style="border:none;" width="800" alt="percolation_landau_large" title="percolation_landau_large" />
+</a>
+</p>
+
+<ul>
+  <li>
+    <p>Lower tail, $\epsilon = -1.2$ (left panel). The water level is low, so only the deepest valleys hold water. The result is small, separate lakes, each with a short closed shoreline. An electron at this energy circles one lake forever, so the state is localized.</p>
+  </li>
+  <li>
+    <p>Upper tail, $\epsilon = +1.2$ (right panel). The water level is high and almost everything is flooded. Only the highest peaks stick out as small islands. Each shoreline is again a short closed loop around one island, so the state is localized.</p>
+  </li>
+  <li>
+    <p>Band center, $\epsilon = 0$ (middle panel). Land and water each cover about half the area, and both form large, winding, connected regions. The shoreline between them can run all the way across the sample (red line). An electron on it travels from one side to the other, so the state is extended and can carry current.</p>
+  </li>
+</ul>
+
+<p align="center">
+<a href="/assets/img/posts/EF_sweep_large.png" target="_blank">
+<img src="/assets/img/posts/EF_sweep_large.png" style="border:none;" width="800" alt="EF_sweep_large" title="EF_sweep_large" />
+</a>
+</p>
+
+<p>As $B$ changes,</p>
+
+<ul>
+  <li>
+    <p><strong>Level energy changes</strong> – $E_n = \hbar\omega_B\left(n+\tfrac{1}{2}\right)$, with $\omega_B = eB/m$. Every level rises in proportion to $B$, which is the tilted red lines in panel (a).</p>
+  </li>
+  <li>
+    <p><strong>States per level change</strong> – $B/\Phi_0$ per unit area, also proportional to $B$.</p>
+  </li>
+</ul>
+
+<p>The filling factor is,</p>
+
+\[\nu = \frac{n\Phi_0}{B}\]
+
+<p>As $B$ increases, $\nu$ decreases continuously. Each level holds more electrons, so electrons occupying top levels will shift to to the lower levels, and accordingly the high level occupation drops from 1 toward 0. $E_F$ therefore moves down through that level’s density of states – first the upper tail, then the center, then the lower tail. When the fraction reaches 0, the level is empty. $E_F$ then crosses the gap, and lands at the top of the next level down, which is now full. Then the process repeats. In panel (a), the black $E_F$ curve follows one level (beige band) upward, sliding down relative to it, then drops to the next level at the vertical jumps near integer $\nu$. Most of the time, $E_F$ is in the beige localized tails, and accordingly the electrons being added or removed go into localized states, carrying no current. So $\sigma_{xx} = 0$, and $\rho_{xy}$ stays at the value set by the full levels below. These are the flat plateaus in panel (b). Only when $E_F$ passes the red line at a level’s center do extended states change occupation. There $\rho_{xx}$ spikes (panel c) and $\rho_{xy}$ steps to the next plateau. Comparing the classical line $\rho_{xy} = B/ne$ (dashed in panel b), we can see the plateaus cross it near integer $\nu$, where the calculation with filled levels applies exactly.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] <a href="https://davidtong.org/teaching/quantum-hall-effect/">Quantum Hall Effect</a></p>
+
+<p>[2] <a href="https://en.wikipedia.org/wiki/Classical_Mechanics_(Goldstein)">H. Goldstein, C. Poole, J. Safko, Classical Mechanics, 3rd ed.</a></p>
+
+<p>[3] <a href="https://phys.libretexts.org/Bookshelves/Classical_Mechanics/Classical_Mechanics_(Tatum)/14%3A_Hamiltonian_Mechanics/14.04%3A_Hamiltonian_Mechanics_Examples">Hamiltonian Mechanics Examples</a></p>
+
+<p>[4] <a href="https://www.maths.dur.ac.uk/users/kasper.peeters/mathphys/harmonic_oscillator.html">Simple Harmonic Oscillator</a></p>
+
+<p>[5] <a href="https://en.wikipedia.org/wiki/Hermite_polynomials">Hermite polynomials</a></p>
+
+<p>[6] J. D. Jackson, Classical Electrodynamics, 3rd ed. (Wiley, 1999)</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#physics">physics</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=Learning+Notes+on+Quantum+Hall+Effect&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-26-notes_qhe%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2F2026-09-26-notes_qhe%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A8000%2F2026-09-26-notes_qhe%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2026-09-24-systematic_absences/" data-toggle="tooltip" data-placement="top" title="Systematic Absences (Crystallography)">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  <div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_shortname = &quot;rmcprofile&quot;;
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://rmcprofile.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+    </div>
+
+    
+    <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+      <nav id="toc-container" class="toc-sidebar">
+        <div class="toc-title">Contents</div>
+        <ul id="toc-list"></ul>
+      </nav>
+    </div>
+    
+  </div>
+</div>
+
+
+  <script src="/assets/js/toc.js" defer></script>
+
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row column_top">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+        <h3>External Links</h3>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+        <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1">
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Monte Carlo</h4>
+				<a target="_blank" href="https://tproffen.github.io/DiffuseCode/">DISCUS</a>
+				</br>
+				<a target="_blank" href="https://www.szfki.hu/~nphys/rmc++/opening.html">RMC++</a>
+				</br>
+				<a target="_blank" href="https://research.csiro.au/mmm/hrmc/">HRMC</a>
+				</br>
+				<a target="_blank" href="https://bachiraoun.github.io/fullrmc/">fullrmc</a>
+				</br>
+        <a target="_blank" href="http://www.dragon.lv/exafs/rmc.htm">RMC for EXAFS</a>
+        </br>
+        <a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/Empirical-Potential-Structure-Refinement.aspx">EPSR</a>
+				</br>
+				<a target="_blank" href="https://rmcprofile.ornl.gov/">RMCProfile website</a>
+				</br>
+				<a target="_blank" href="http://www.rmcprofile.org/Main_Page">RMCProfile website - legacy</a>
+				</br>
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Wikipedia for RMC</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Rietveld-like</h4>
+        <a target="_blank" href="https://www.diffpy.org/products/pdfgui.html">PDFgui</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/diffpycmi/index.html">DIFFPy-CMI</a>
+        </br>
+        <a target="_blank" href="https://www.diffpy.org/products/mPDF.html">magnetic PDF</a>
+        </br>
+        <a target="_blank" href="https://topas.webspace.durham.ac.uk/tutorial_pdf_sno2/">Topas for PDF</a>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Tools</h4>
+        <a target="_blank" href="http://addie.ornl.gov/">ADDIE</a>
+        </br>
+				<a target="_blank"
+						href="http://li.mit.edu/Archive/Graphics/A/">Atomeye</a>
+				</br>
+				<a target="_blank"
+						href="https://sourceforge.net/projects/xming/">Xming</a>
+				</br>
+				<a target="_blank"
+						href="https://www.mantidproject.org/Main_Page">Mantid</a>
+				</br>
+				<a target="_blank" href="https://www.facebook.com/disord.matt">GUDRUN</a>
+				</br>
+				<a target="_blank"
+						href="https://www.diffpy.org/products/pdfgetx.html">PDFGet..
+						</a>
+				</br>
+				<a target="_blank" href="https://www.ncnr.nist.gov/resources/n-lengths/">Neutron scattering length</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/reference/Xray_scatfac.htm">X-ray form factor</a>
+				</br>
+				<a target="_blank" href="https://www.webelements.com/">Web elements</a>
+				</br>
+				<a target="_blank" href="https://ptable.com/#Properties">Dynamic
+						periodic table</a>
+				</br>
+				<a target="_blank" href="http://wwwisis2.isis.rl.ac.uk/disordered/Manuals/ATLAS/atlas_values.htm">ISIS values</a>
+				</br>
+      </div>
+      <div class="column" style="background-color:#EAEAEA;">
+        <h4>Facilities</h4>
+				<a target="_blank" href="https://neutrons.ornl.gov/nomad">US - ORNL - NOMAD</a>
+        </br>
+				<a target="_blank" href="https://neutrons.ornl.gov/powgen">US - ORNL -
+						POWGEN</a>
+				</br>
+				<a target="_blank" href="https://www.aps.anl.gov/Beamlines/Directory/Details?beamline_id=16">US - APS - 11-ID-B</a>
+				</br>
+				<a target="_blank" href="https://www.bnl.gov/ps/beamlines/beamline.php?r=28-ID-1">US - BNL - 28-ID-1</a>
+				</br>
+				<a target="_blank"
+						href="https://www.isis.stfc.ac.uk/Pages/Gem.aspx">UK - ISIS - GEM</a>
+				</br>
+				<a target="_blank" href="https://www.isis.stfc.ac.uk/Pages/polaris.aspx">UK - ISIS - Polaris</a>
+				</br>
+				<a target="_blank" href="https://www.diamond.ac.uk/Instruments/Crystallography/I15-1.html">UK - Diamond - I15-1</a>
+				</br>
+				<a target="_blank" href="https://mlfinfo.jp/en/bl21/">Japan - J-PARC - NOVA</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL14B1/instrument/lang-en/INS-0000000309/instrument_summary_view">Japan - SPRING8 - BL14B1</a>
+				</br>
+				<a target="_blank" href="http://www.spring8.or.jp/wkg/BL22XU/instrument/lang-en/INS-0000000327/instrument_summary_view">Japan - SPRING8 - BL22XU</a>
+				</br>
+				<a target="_blank" href="https://europeanspallationsource.se/instruments/heimdal">Europe - ESS - HEIMDAL</a>
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 footer_bottom">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a target="_blank" href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="mailto:zyroc1990@iris-2020.us" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://github.com/kvieta1990" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://reddit.com/u/apw247" title="Reddit">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-reddit fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Reddit</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a target="_blank" href="https://linkedin.com/in/yuanpeng-zhang-11bb503a" title="LinkedIn">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">LinkedIn</span>
+   </a>
+  </li><li class="list-inline-item">
+   <a target="_blank" href="https://orcid.org/0000-0003-4224-3361" title="ORCID">
+     <span class="fa-stack fa-lg" aria-hidden="true">
+       <i class="fas fa-circle fa-stack-2x"></i>
+       <i class="fab fa-orcid fa-stack-1x fa-inverse"></i>
+     </span>
+     <span class="sr-only">ORCID</span>
+   </a>
+ </li><li class="list-inline-item">
+    <a target="_blank" href="https://scholar.google.com/citations?user=NgqIgO0AAAAJ&hl=en" title="Google Scholar">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Google Scholar</span>
+    </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Copyright 2025 ©
+        <a>Yuanpeng Zhang</a>
+      </p>
+      </div>
+    </div>
+	<div class="row" id="vistor_map" style="position:absolute; left:-10px; bottom:20px;">
+	  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=000000&w=300&t=tt&d=mXrA2cjTFPms32CLvpbXJeN7mGr8Pp6J7WRX3Im-ZOw&co=eaeaea&ct=000000'></script>
+	</div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/copyCode.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/callouts.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
