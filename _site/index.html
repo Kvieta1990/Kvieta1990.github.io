@@ -312,8 +312,40 @@ if (chromeAgent) {
 <b>Hover your mouse over the picture to see something interesting</b>
 </p> -->
 
+<style>
+  #symmetry-cursor-hint {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  #symmetry-cursor-hint svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    animation: symmetry-cursor-move 2.8s ease-in-out infinite;
+  }
+  #symmetry-cursor-hint svg.lead {
+    filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.35));
+  }
+  @keyframes symmetry-cursor-move {
+    0%   { left: 98%; top: 72%; opacity: 0; }
+    15%  { opacity: 1; }
+    75%  { left: 58%; top: 55%; opacity: 1; }
+    100% { left: 58%; top: 55%; opacity: 0; }
+  }
+</style>
+
 <div style="position: relative; max-width: 760px; margin: 0 auto;">
-  <p><span id="symmetry-reminder" style="position: absolute; top: 33%; left: 50%; z-index: 1; transform: translate(-50%, -50%); color: #b00020; font-size: 1.6em; font-weight: bold; white-space: nowrap; pointer-events: none;">Hover your mouse over me</span></p>
+  <span id="symmetry-reminder" style="position: absolute; top: 33%; left: 50%; z-index: 1; transform: translate(-50%, -50%); color: #b00020; font-size: 1.6em; font-weight: bold; white-space: nowrap; pointer-events: none;"></span>
+  <div id="symmetry-cursor-hint" aria-hidden="true">
+    <svg class="trail" style="animation-delay: 0.32s;" viewBox="0 0 24 24" width="32" height="32" overflow="visible"><g opacity="0.12" transform="translate(3 2) scale(0.7) translate(-3 -2)"><path d="M3 2 L3 20 L8 15.5 L11.5 23 L14.5 21.6 L11 14.2 L17.5 14.2 Z" fill="#fff" stroke="#000" stroke-width="1.5" stroke-linejoin="round" /></g></svg>
+    <svg class="trail" style="animation-delay: 0.24s;" viewBox="0 0 24 24" width="32" height="32" overflow="visible"><g opacity="0.2" transform="translate(3 2) scale(0.78) translate(-3 -2)"><path d="M3 2 L3 20 L8 15.5 L11.5 23 L14.5 21.6 L11 14.2 L17.5 14.2 Z" fill="#fff" stroke="#000" stroke-width="1.5" stroke-linejoin="round" /></g></svg>
+    <svg class="trail" style="animation-delay: 0.16s;" viewBox="0 0 24 24" width="32" height="32" overflow="visible"><g opacity="0.32" transform="translate(3 2) scale(0.86) translate(-3 -2)"><path d="M3 2 L3 20 L8 15.5 L11.5 23 L14.5 21.6 L11 14.2 L17.5 14.2 Z" fill="#fff" stroke="#000" stroke-width="1.5" stroke-linejoin="round" /></g></svg>
+    <svg class="trail" style="animation-delay: 0.08s;" viewBox="0 0 24 24" width="32" height="32" overflow="visible"><g opacity="0.5" transform="translate(3 2) scale(0.93) translate(-3 -2)"><path d="M3 2 L3 20 L8 15.5 L11.5 23 L14.5 21.6 L11 14.2 L17.5 14.2 Z" fill="#fff" stroke="#000" stroke-width="1.5" stroke-linejoin="round" /></g></svg>
+    <svg class="lead" style="animation-delay: 0s;" viewBox="0 0 24 24" width="32" height="32" overflow="visible"><g opacity="1" transform="translate(3 2) scale(1) translate(-3 -2)"><path d="M3 2 L3 20 L8 15.5 L11.5 23 L14.5 21.6 L11 14.2 L17.5 14.2 Z" fill="#fff" stroke="#000" stroke-width="1.5" stroke-linejoin="round" /></g></svg>
+  </div>
   <canvas id="symmetry-canvas" width="760" height="650" role="img" aria-label="Interactive three-fold rotational, mirror, and 3_1 screw symmetry figure" style="display: block; width: 100%; height: auto; cursor: none; touch-action: none;"></canvas>
 </div>
 
@@ -324,6 +356,7 @@ if (chromeAgent) {
   const canvas = document.getElementById('symmetry-canvas');
   if (!canvas) return;
   const reminder = document.getElementById('symmetry-reminder');
+  const cursorHint = document.getElementById('symmetry-cursor-hint');
 
   const context = canvas.getContext('2d');
   const width = canvas.width;
@@ -482,10 +515,12 @@ if (chromeAgent) {
   canvas.addEventListener('pointermove', updatePointer);
   canvas.addEventListener('pointerenter', function () {
     if (reminder) reminder.style.visibility = 'hidden';
+    if (cursorHint) cursorHint.style.display = 'none';
   });
   canvas.addEventListener('pointerleave', function () {
     pointer = null;
     if (reminder) reminder.style.visibility = 'visible';
+    if (cursorHint) cursorHint.style.display = '';
     draw();
   });
   draw();
