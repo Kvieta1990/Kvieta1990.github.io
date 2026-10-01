@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plane Hunt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E6ECF1; --grid:#C2CEDA; --cell:#FAFBFC; --cell-hover:#DCE6EF;
+  --ink:#1D3557; --hit:#D62839; --miss:#5B9A6E; --frame:#1D3557;
+  --text:#14213D; --muted:#5A6B80; --panel:#F5F8FA; --btn:#1D3557; --btn-text:#F5F8FA;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#121A24; --grid:#223041; --cell:#1A2532; --cell-hover:#26364A;
+    --ink:#8FB3E0; --hit:#F0505F; --miss:#5FB07A; --frame:#8FB3E0;
+    --text:#E6EDF5; --muted:#93A4B8; --panel:#17212D; --btn:#8FB3E0; --btn-text:#0F1720;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121A24; --grid:#223041; --cell:#1A2532; --cell-hover:#26364A;
+  --ink:#8FB3E0; --hit:#F0505F; --miss:#5FB07A; --frame:#8FB3E0;
+  --text:#E6EDF5; --muted:#93A4B8; --panel:#17212D; --btn:#8FB3E0; --btn-text:#0F1720;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0; min-height:100%; background:var(--paper); color:var(--text);
+  font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif; font-size:16px; line-height:1.5;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px; background-attachment:fixed;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 16px 40px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+@media (max-width:860px){.wrap{grid-template-columns:1fr}}
+h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3.2rem);line-height:1;margin:0 0 6px;letter-spacing:-.02em}
+.intro{grid-column:1/-1;margin-bottom:-10px}
+.lede{margin:0;color:var(--muted);max-width:60ch}
+.boardbox{background:var(--frame);padding:6px;border-radius:4px;width:100%;max-width:760px}
+.board{display:grid;grid-template-columns:repeat(30,1fr);gap:1px;background:var(--grid);aspect-ratio:1/1;width:100%}
+.c{border:0;padding:0;margin:0;background:var(--cell);cursor:crosshair;position:relative;min-width:0;min-height:0;transition:background-color .15s}
+.c:hover{background:var(--cell-hover)}
+.c:focus-visible{outline:2px solid var(--hit);outline-offset:-2px;z-index:1}
+.c.miss{background:var(--miss)}
+.c.hit{background:var(--hit)}
+.c.shown{background:var(--ink)}
+.c.shown.head::after{content:"";position:absolute;inset:30%;border-radius:50%;background:var(--cell)}
+.c.pop{animation:pop .35s ease-out}
+@keyframes pop{0%{transform:scale(.4)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.c,.c.pop{animation:none;transition:none}}
+.board.locked .c{cursor:not-allowed}
+
+aside{background:var(--panel);border:2px solid var(--frame);border-radius:4px;padding:20px;position:sticky;top:calc(16px + env(safe-area-inset-top,0px))}
+@media (max-width:860px){aside{position:static}}
+.score{display:flex;gap:20px;margin-bottom:18px}
+.score div{flex:1}
+.score .n{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:3rem;line-height:1;font-variant-numeric:tabular-nums}
+.score .l{color:var(--muted);font-size:.9rem}
+.planes{display:flex;gap:6px;margin:0 0 18px}
+.planes span{flex:1;height:10px;border-radius:2px;border:2px solid var(--ink)}
+.planes span.down{background:var(--ink)}
+.btns{display:grid;gap:8px}
+button.act{font:inherit;font-weight:700;padding:11px 14px;border-radius:4px;border:2px solid var(--btn);background:var(--btn);color:var(--btn-text);cursor:pointer;text-align:left}
+button.act.ghost{background:transparent;color:var(--text)}
+button.act:disabled{opacity:.35;cursor:not-allowed}
+button.act:focus-visible{outline:3px solid var(--hit);outline-offset:2px}
+.status{min-height:3em;margin:16px 0 0;font-weight:700}
+.status.bad{color:var(--hit)}
+h2{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:500;font-size:1.1rem;margin:22px 0 8px}
+.sample{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;width:144px}
+.sample i{aspect-ratio:1;background:transparent}
+.sample i.b{background:var(--ink)}
+.sample i.h{background:var(--hit)}
+.legend{font-size:.9rem;color:var(--muted);margin:8px 0 0}
+.key{display:flex;flex-wrap:wrap;gap:12px;font-size:.9rem;color:var(--muted);margin-top:10px}
+.key b{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:-1px;margin-right:5px}
+
+dialog{border:2px solid var(--frame);border-radius:6px;background:var(--panel);color:var(--text);max-width:min(420px,90vw);padding:22px}
+dialog::backdrop{background:rgba(10,20,35,.45)}
+dialog h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:1.5rem;margin:0 0 8px;line-height:1.15}
+dialog p{margin:0 0 18px}
+dialog .row{display:flex;gap:8px;justify-content:flex-end}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="intro">
+    <h1>Plane Hunt</h1>
+    <p class="lede">Four planes are hidden in the grid. Hit a body square and it turns red; miss and it turns green. Find each plane's head to shoot it down. Fewer steps is better.</p>
+  </header>
+  <main>
+    <div class="boardbox"><div class="board locked" id="board" role="grid" aria-label="30 by 30 game grid"></div></div>
+  </main>
+  <aside>
+    <div class="score">
+      <div><div class="n" id="steps">0</div><div class="l">Your steps</div></div>
+      <div><div class="n" id="record">43</div><div class="l">Record</div></div>
+    </div>
+    <div class="planes" id="planes" aria-label="Planes shot down"><span></span><span></span><span></span><span></span></div>
+    <div class="btns">
+      <button class="act" id="setBtn">Set the planes</button>
+      <button class="act ghost" id="showBtn" disabled>Show the planes</button>
+      <button class="act ghost" id="clearBtn" disabled>Clear &amp; new game</button>
+    </div>
+    <p class="status" id="status" aria-live="polite">Press “Set the planes” to hide four new planes.</p>
+    <h2>What a plane looks like</h2>
+    <div class="sample" id="sample" aria-hidden="true"></div>
+    <p class="legend">9 squares wide at the wings, 5 at the tail, symmetric. Planes can face up, down, left or right, and never overlap.</p>
+    <div class="key"><span><b style="background:var(--hit)"></b>Body hit / head</span><span><b style="background:var(--miss)"></b>Miss</span><span><b style="background:var(--ink)"></b>Downed plane</span></div>
+  </aside>
+</div>
+
+<dialog id="dlg">
+  <h3 id="dlgTitle"></h3>
+  <p id="dlgText"></p>
+  <div class="row"><button class="act ghost" id="dlgNo">Cancel</button><button class="act" id="dlgYes">OK</button></div>
+</dialog>
+
+<script>
+(function(){
+  const N = 30;
+  const boardEl = document.getElementById('board');
+  const stepsEl = document.getElementById('steps');
+  const recordEl = document.getElementById('record');
+  const statusEl = document.getElementById('status');
+  const setBtn = document.getElementById('setBtn');
+  const showBtn = document.getElementById('showBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const planeBars = document.querySelectorAll('#planes span');
+
+  // Plane shape relative to the head, nose pointing up (direction 1 in the VBA):
+  // head, 7 body squares behind it, 9-wide wings on row 2, 5-wide tail on row 8.
+  const SHAPE = [[0,0]];
+  for (let i=1;i<=7;i++) SHAPE.push([i,0]);
+  for (let i=1;i<=4;i++){ SHAPE.push([2,-i]); SHAPE.push([2,i]); }
+  for (let j=-2;j<=2;j++) SHAPE.push([8,j]);   // 21 squares
+
+  function orient(dir,[r,c]){
+    if (dir===1) return [r,c];      // nose up
+    if (dir===2) return [-r,c];     // nose down
+    if (dir===3) return [c,r];      // nose left
+    return [c,-r];                  // nose right
+  }
+
+  // ---------- state ----------
+  let cells = [];            // DOM buttons, index r*N+c
+  let owner = new Int8Array(N*N);   // 0 = empty, 1..4 = plane id
+  let planes = [];           // [{cells:[idx...], head:idx, down:false}]
+  let planeSet=false, over=false, steps=0, hits=0;
+  let record = 43;
+  try { const v = parseInt(localStorage.getItem('planehunt-record'),10); if (v>0) record=v; } catch(e){}
+  recordEl.textContent = record;
+
+  // ---------- build board ----------
+  const frag = document.createDocumentFragment();
+  for (let r=0;r<N;r++) for (let c=0;c<N;c++){
+    const b = document.createElement('button');
+    b.className='c'; b.type='button'; b.dataset.i = r*N+c;
+    b.setAttribute('aria-label',`Row ${r+1}, column ${c+1}`);
+    frag.appendChild(b); cells.push(b);
+  }
+  boardEl.appendChild(frag);
+
+  // sample plane
+  const sample = document.getElementById('sample');
+  const sset = new Set(SHAPE.map(([r,c])=>r*9+(c+4)));
+  for (let k=0;k<81;k++){ const i=document.createElement('i'); if(k===4) i.className='h'; else if(sset.has(k)) i.className='b'; sample.appendChild(i); }
+
+  // ---------- plane placement ----------
+  function rnd(n){ return Math.floor(Math.random()*n); }
+  function placePlane(dir){
+    const offs = SHAPE.map(p=>orient(dir,p));
+    const rs = offs.map(o=>o[0]), cs = offs.map(o=>o[1]);
+    const rmin=-Math.min(...rs), rmax=N-1-Math.max(...rs);
+    const cmin=-Math.min(...cs), cmax=N-1-Math.max(...cs);
+    const hr = rmin + rnd(rmax-rmin+1), hc = cmin + rnd(cmax-cmin+1);
+    return offs.map(([r,c])=>(hr+r)*N+(hc+c));   // first entry is the head
+  }
+  function generate(){
+    // Planes 1-3 face three different directions; plane 4 faces any direction.
+    const d1 = 1+rnd(4); let d2,d3;
+    do { d2=1+rnd(4); } while(d2===d1);
+    do { d3=1+rnd(4); } while(d3===d1||d3===d2);
+    const d4 = 1+rnd(4);
+    const dirs=[d1,d2,d3,d4];
+    for(;;){
+      const ps = dirs.map(placePlane);
+      const used = new Set(); let ok=true;
+      for (const p of ps){ for (const i of p){ if(used.has(i)){ok=false;break;} used.add(i);} if(!ok)break; }
+      if (ok) return ps;
+    }
+  }
+
+  // ---------- UI helpers ----------
+  function say(msg,bad){ statusEl.textContent=msg; statusEl.classList.toggle('bad',!!bad); }
+  function syncButtons(){
+    setBtn.disabled = planeSet || hasMarks();
+    showBtn.disabled = !(planeSet && !over);
+    clearBtn.disabled = !(planeSet || hasMarks());
+    boardEl.classList.toggle('locked', !planeSet || over);
+    planeBars.forEach((s,k)=>s.classList.toggle('down', !!(planes[k]&&planes[k].down)));
+    stepsEl.textContent = steps;
+  }
+  function hasMarks(){ return cells.some(b=>b.classList.contains('miss')||b.classList.contains('hit')||b.classList.contains('shown')); }
+  function mark(i,cls){ const b=cells[i]; b.classList.remove('miss','hit'); b.classList.add(cls); b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); }
+  function showPlane(p){ p.cells.forEach(i=>{ cells[i].classList.remove('hit','miss'); cells[i].classList.add('shown'); }); cells[p.head].classList.add('head'); }
+
+  const dlg = document.getElementById('dlg');
+  function dialogBox(title,text,{confirm=false,yes='OK',no='Cancel'}={}){
+    return new Promise(res=>{
+      document.getElementById('dlgTitle').textContent=title;
+      document.getElementById('dlgText').textContent=text;
+      const y=document.getElementById('dlgYes'), n=document.getElementById('dlgNo');
+      y.textContent=yes; n.textContent=no; n.style.display=confirm?'':'none';
+      const done=v=>{ y.onclick=n.onclick=null; dlg.onclose=null; if(dlg.open) dlg.close(); res(v); };
+      y.onclick=()=>done(true); n.onclick=()=>done(false); dlg.onclose=()=>done(false);
+      if (typeof dlg.showModal==='function') dlg.showModal(); else res(confirm?window.confirm(text):true);
+      y.focus();
+    });
+  }
+
+  // ---------- actions ----------
+  setBtn.addEventListener('click',()=>{
+    if (hasMarks()) { say('Clear the existing planes first.',true); return; }
+    const ps = generate();
+    owner.fill(0);
+    planes = ps.map((arr,k)=>{ arr.forEach(i=>owner[i]=k+1); return {cells:arr, head:arr[0], down:false}; });
+    planeSet=true; over=false; steps=0; hits=0;
+    say('Four planes are hidden. Start clicking.');
+    syncButtons();
+  });
+
+  showBtn.addEventListener('click',async()=>{
+    if (!planeSet || over) return;
+    const ok = await dialogBox('Give up and see the answer?','The game ends and this round won’t count toward your record.',{confirm:true,yes:'Show the planes',no:'Keep playing'});
+    if (!ok) return;
+    planes.forEach(showPlane);
+    over=true;
+    say('Planes revealed. Clear the board to play again.');
+    syncButtons();
+  });
+
+  clearBtn.addEventListener('click',async()=>{
+    if (planeSet && !over){
+      const ok = await dialogBox('Give up this game?','The current planes and your steps will be cleared.',{confirm:true,yes:'Clear the board',no:'Keep playing'});
+      if (!ok) return;
+    }
+    cells.forEach(b=>b.className='c');
+    owner.fill(0); planes=[]; planeSet=false; over=false; steps=0; hits=0;
+    say('Board cleared. Press “Set the planes” to start.');
+    syncButtons();
+  });
+
+  const HIT_MSG = ['Good start! You shot down the first plane.','Well done! Another plane down.','Come on! Only one plane left.','All four planes are down!'];
+
+  boardEl.addEventListener('click',async e=>{
+    const b = e.target.closest('.c'); if(!b) return;
+    const i = +b.dataset.i;
+    if (!planeSet){ say(hasMarks()?'Game over. Clear the board to start a new one.':'Set the planes first.',true); return; }
+    if (over){ say('Game over. Clear the board to start a new one.',true); return; }
+
+    const k = owner[i];
+    if (k && planes[k-1].down){ say('That plane is already down. Find another one.',true); return; }
+    if (b.classList.contains('miss')||b.classList.contains('hit')){ say('You already tried that square.',true); return; }
+
+    steps++;
+    if (!k){ mark(i,'miss'); say('Miss.'); }
+    else if (i === planes[k-1].head){
+      const p = planes[k-1]; p.down=true; hits++;
+      showPlane(p);
+      say(HIT_MSG[hits-1]);
+      if (hits===4){
+        over=true; syncButtons();
+        let title,text;
+        if (steps>record){ title='All four planes down'; text=`You finished in ${steps} steps. The record is ${record}, so there’s room to improve.`; }
+        else if (steps===record){ title='You tied the record'; text=`You finished in ${steps} steps, matching the best result.`; }
+        else { title='New record!'; text=`You finished in ${steps} steps, beating the old record of ${record}.`; record=steps; recordEl.textContent=record; try{localStorage.setItem('planehunt-record',record);}catch(e){} }
+        say(`Finished in ${steps} steps.`);
+        await dialogBox(title,text,{yes:'Nice'});
+        return;
+      }
+    } else { mark(i,'hit'); say('Hit! That’s part of a plane, keep looking for its head.'); }
+    syncButtons();
+  });
+
+  syncButtons();
+})();
+</script>
+</body>
+</html>
