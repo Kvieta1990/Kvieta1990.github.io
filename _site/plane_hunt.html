@@ -28,6 +28,7 @@
   --text:#E6EDF5; --muted:#93A4B8; --panel:#17212D; --btn:#8FB3E0; --btn-text:#0F1720;
 }
 *,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
 html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{
   margin:0; min-height:100%; background:var(--paper); color:var(--text);
@@ -60,10 +61,14 @@ aside{background:var(--panel);border:2px solid var(--frame);border-radius:4px;pa
 .score div{flex:1}
 .score .n{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:3rem;line-height:1;font-variant-numeric:tabular-nums}
 .score .l{color:var(--muted);font-size:.9rem}
+.linkbtn{font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+.linkbtn:hover{color:var(--text)}
+.linkbtn:focus-visible{outline:2px solid var(--hit);outline-offset:2px}
 .planes{display:flex;gap:6px;margin:0 0 18px}
 .planes span{flex:1;height:10px;border-radius:2px;border:2px solid var(--ink)}
 .planes span.down{background:var(--ink)}
-.btns{display:grid;gap:8px}
+.btns{display:grid;gap:6px}
+.btns button.act{padding:5px 14px}
 button.act{font:inherit;font-weight:700;padding:11px 14px;border-radius:4px;border:2px solid var(--btn);background:var(--btn);color:var(--btn-text);cursor:pointer;text-align:left}
 button.act.ghost{background:transparent;color:var(--text)}
 button.act:disabled{opacity:.35;cursor:not-allowed}
@@ -78,6 +83,15 @@ h2{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:500;font-s
 .legend{font-size:.9rem;color:var(--muted);margin:8px 0 0}
 .key{display:flex;flex-wrap:wrap;gap:12px;font-size:.9rem;color:var(--muted);margin-top:10px}
 .key b{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:-1px;margin-right:5px}
+
+.account{display:flex;align-items:center;gap:10px;margin:0 0 18px;padding:0 0 16px;border-bottom:2px solid var(--grid);min-height:42px}
+.account img{width:32px;height:32px;border-radius:50%;flex:none}
+.account .who{flex:1;min-width:0;font-size:.9rem;line-height:1.25}
+.account .who b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.account .who span{color:var(--muted)}
+.account button.act{padding:7px 12px;font-size:.9rem;text-align:center}
+.account button.act.google{display:flex;align-items:center;gap:8px;width:100%;justify-content:center}
+.account button.act.google svg{width:18px;height:18px;flex:none}
 
 dialog{border:2px solid var(--frame);border-radius:6px;background:var(--panel);color:var(--text);max-width:min(420px,90vw);padding:22px}
 dialog::backdrop{background:rgba(10,20,35,.45)}
@@ -96,9 +110,18 @@ dialog .row{display:flex;gap:8px;justify-content:flex-end}
     <div class="boardbox"><div class="board locked" id="board" role="grid" aria-label="30 by 30 game grid"></div></div>
   </main>
   <aside>
+    <div class="account" id="account" hidden>
+      <button class="act ghost google" id="signInBtn" type="button">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+        Sign in with Google
+      </button>
+      <img id="userPic" alt="" referrerpolicy="no-referrer" hidden>
+      <div class="who" id="userWho" hidden><b id="userName"></b><span>Record saved to your account</span></div>
+      <button class="act ghost" id="signOutBtn" type="button" hidden>Sign out</button>
+    </div>
     <div class="score">
       <div><div class="n" id="steps">0</div><div class="l">Your steps</div></div>
-      <div><div class="n" id="record">43</div><div class="l">Record</div></div>
+      <div><div class="n" id="record">–</div><div class="l"><span id="recordLabel">Record</span> · <button class="linkbtn" id="resetBtn" type="button">reset</button></div></div>
     </div>
     <div class="planes" id="planes" aria-label="Planes shot down"><span></span><span></span><span></span><span></span></div>
     <div class="btns">
@@ -151,9 +174,73 @@ dialog .row{display:flex;gap:8px;justify-content:flex-end}
   let owner = new Int8Array(N*N);   // 0 = empty, 1..4 = plane id
   let planes = [];           // [{cells:[idx...], head:idx, down:false}]
   let planeSet=false, over=false, steps=0, hits=0;
-  let record = 43;
-  try { const v = parseInt(localStorage.getItem('planehunt-record'),10); if (v>0) record=v; } catch(e){}
-  recordEl.textContent = record;
+  function localBest(){ try { const v = parseInt(localStorage.getItem('planehunt-record'),10); return v>0 ? v : null; } catch(e){ return null; } }
+  let record = localBest();   // null until a game is finished
+  function showRecord(){ recordEl.textContent = record==null ? '–' : record; }
+  showRecord();
+
+  // ---------- Google sign-in + per-account record (Firebase) ----------
+  // Fill these in from Firebase console > Project settings > Your apps > Web app.
+  // These values are public identifiers, not secrets; access is enforced by Firestore rules.
+  const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyBudkA8gHYfC0N3rfCZhuJUuUMEc5BPZFI",
+    authDomain: "iris2020-6127d.firebaseapp.com",
+    projectId: "iris2020-6127d",
+    appId: "1:979932927330:web:6b975f53e438070b83c83b"
+  };
+  const FB = 'https://www.gstatic.com/firebasejs/12.3.0/';
+  let cloud = null;   // set once Firebase loads: {save(best)}
+  let user = null;
+
+  function setRecord(v, label){
+    record = v; showRecord();
+    document.getElementById('recordLabel').textContent = label;
+  }
+  async function initAuth(){
+    if (!FIREBASE_CONFIG.apiKey) return;   // not configured: play with the device-only record
+    const [{initializeApp},{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged},{getFirestore,doc,getDoc,setDoc,deleteDoc,serverTimestamp}] =
+      await Promise.all([import(FB+'firebase-app.js'),import(FB+'firebase-auth.js'),import(FB+'firebase-firestore.js')]);
+    const app = initializeApp(FIREBASE_CONFIG);
+    const auth = getAuth(app), db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({prompt:'select_account'});
+
+    const $ = id=>document.getElementById(id);
+    const signInBtn=$('signInBtn'), signOutBtn=$('signOutBtn'), pic=$('userPic'), who=$('userWho');
+    $('account').hidden = false;
+
+    signInBtn.addEventListener('click',async()=>{
+      try { await signInWithPopup(auth, provider); }
+      catch(e){ if (e.code!=='auth/popup-closed-by-user' && e.code!=='auth/cancelled-popup-request') say('Sign-in failed: '+(e.code||e.message),true); }
+    });
+    signOutBtn.addEventListener('click',()=>signOut(auth));
+
+    cloud = {
+      async save(best){
+        if (!user) return;
+        await setDoc(doc(db,'planehunt',user.uid),{best, name:user.displayName||'', updatedAt:serverTimestamp()},{merge:true});
+      },
+      async reset(){
+        if (user) await deleteDoc(doc(db,'planehunt',user.uid));
+      }
+    };
+
+    onAuthStateChanged(auth, async u=>{
+      user = u;
+      signInBtn.hidden = !!u; signOutBtn.hidden = !u; pic.hidden = !(u&&u.photoURL); who.hidden = !u;
+      if (!u){ setRecord(localBest(),'Record'); return; }
+      $('userName').textContent = u.displayName || u.email || 'Signed in';
+      if (u.photoURL) pic.src = u.photoURL;
+      try {
+        const snap = await getDoc(doc(db,'planehunt',u.uid));
+        let best = snap.exists() ? snap.data().best : null;
+        // First sign-in: carry over a record already set on this device.
+        if (best==null && localBest()){ best = localBest(); await cloud.save(best); }
+        if (user===u) setRecord(best,'Your record');
+      } catch(e){ say('Could not load your saved record: '+(e.code||e.message),true); }
+    });
+  }
+  initAuth().catch(e=>console.warn('Sign-in unavailable:',e));
 
   // ---------- build board ----------
   const frag = document.createDocumentFragment();
@@ -234,6 +321,18 @@ dialog .row{display:flex;gap:8px;justify-content:flex-end}
     syncButtons();
   });
 
+  document.getElementById('resetBtn').addEventListener('click',async()=>{
+    const where = user ? 'your account' : 'this browser';
+    const ok = await dialogBox('Reset your record?',`Your best result saved to ${where} will be deleted and the record will be empty until you finish a game. This can’t be undone.`,{confirm:true,yes:'Reset record',no:'Keep it'});
+    if (!ok) return;
+    // Clear the device record too, so it isn't carried back into the account on the next sign-in.
+    try{ localStorage.removeItem('planehunt-record'); }catch(e){}
+    try{ if (user && cloud) await cloud.reset(); }
+    catch(e){ say('Could not reset your record: '+(e.code||e.message),true); return; }
+    record = null; showRecord();
+    say('Record reset.');
+  });
+
   showBtn.addEventListener('click',async()=>{
     if (!planeSet || over) return;
     const ok = await dialogBox('Give up and see the answer?','The game ends and this round won’t count toward your record.',{confirm:true,yes:'Show the planes',no:'Keep playing'});
@@ -276,9 +375,11 @@ dialog .row{display:flex;gap:8px;justify-content:flex-end}
       if (hits===4){
         over=true; syncButtons();
         let title,text;
-        if (steps>record){ title='All four planes down'; text=`You finished in ${steps} steps. The record is ${record}, so there’s room to improve.`; }
+        if (record!=null && steps>record){ title='All four planes down'; text=`You finished in ${steps} steps. The record is ${record}, so there’s room to improve.`; }
         else if (steps===record){ title='You tied the record'; text=`You finished in ${steps} steps, matching the best result.`; }
-        else { title='New record!'; text=`You finished in ${steps} steps, beating the old record of ${record}.`; record=steps; recordEl.textContent=record; try{localStorage.setItem('planehunt-record',record);}catch(e){} }
+        else { title='New record!'; text = record==null ? `You finished in ${steps} steps. That’s your first record.` : `You finished in ${steps} steps, beating the old record of ${record}.`; record=steps; showRecord();
+          if (user && cloud) cloud.save(record).catch(e=>say('Could not save your record: '+(e.code||e.message),true));
+          else { try{localStorage.setItem('planehunt-record',record);}catch(e){} } }
         say(`Finished in ${steps} steps.`);
         await dialogBox(title,text,{yes:'Nice'});
         return;
